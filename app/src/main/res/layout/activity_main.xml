@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/reddish"
+    tools:context=".MainActivity">
+
+
+
+    <EditText
+        android:id="@+id/edtmobile"
+        android:inputType="phone"
+        android:maxLength="10"
+        android:layout_width="344dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/ic_mobile"
+        android:paddingLeft="50dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8.15dp"
+        android:hint="@string/mobile_number"
+        android:textColor="#ffffff"
+        android:maxLines="1"
+        android:textColorHint="#ffffff"
+
+        />
+    <Button
+        android:id="@+id/btnRegButton"
+        android:layout_width="226dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="67dp"
+        android:layout_marginTop="370dp"
+        android:layout_marginRight="67.15dp"
+        android:padding="7dp"
+        android:textAllCaps="false"
+        android:background="@drawable/round_button"
+        android:text="Login | Sign Up"
+        android:textStyle="bold"
+        android:fontFamily="@font/l_r"
+        android:textSize="20sp"
+        android:textColor="#DE0606"/>
+
+    <ImageView
+        android:id="@+id/localze"
+        android:layout_width="165dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_localze"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="98dp"
+        android:layout_marginRight="97.15dp"/>
+
+
+
+</RelativeLayout>

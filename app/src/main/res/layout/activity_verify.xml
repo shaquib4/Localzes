@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fcfcfc"
+    >
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginTop="350dp"
+        android:layout_gravity="center"
+        android:id="@+id/layout_otp">
+
+        <com.chaos.view.PinView
+
+            android:id="@+id/otp"
+            android:layout_weight="1"
+            app:itemCount="6"
+            app:lineWidth="1dp"
+            app:lineColor="#000"
+            android:itemBackground="#fff"
+            android:layout_width="wrap_content"
+
+            app:itemRadius="6dp"
+            android:layout_height="50dp" />
+
+
+
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/layout_otp"
+        >
+
+        <Button
+            android:id="@+id/btnVerify"
+
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/round2_button"
+            android:text="Verifying"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+
+    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/progress_verify"
+        android:layout_below="@id/layout_otp"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="250dp"
+        android:background="#de4500"
+        />
+
+</RelativeLayout>

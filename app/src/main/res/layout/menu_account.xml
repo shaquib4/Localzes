@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/txtmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Menu Item"
+        android:fontFamily="@font/montserrat_semibold"
+        android:paddingTop="15dp"
+        android:textAlignment="textStart"
+        android:textSize="15sp"
+        android:textColor="#0c0c0c"
+        />
+    <TextView
+        android:id="@+id/txtitemmenu"
+        android:layout_below="@+id/txtmenu"
+        android:layout_marginTop="2dp"
+        android:paddingBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Item"
+        android:fontFamily="@font/montserrat_regular"
+        android:textAlignment="textStart"
+        android:textSize="12sp"
+        android:textColor="#000"
+
+        />
+
+</RelativeLayout>

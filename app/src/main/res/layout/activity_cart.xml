@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fcfcfc"
+    tools:context=".Cart">
+
+    <ImageView
+        android:id="@+id/imgCart"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="260dp"
+        android:src="@drawable/ic_cart_empty" />
+
+    <TextView
+        android:id="@+id/noitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgCart"
+        android:text="No Item in your cart !"
+        android:textSize="18dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"/>
+
+    <Button
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/noitem"
+        android:layout_width="160dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="@dimen/_27sdp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Shop Now"
+        android:textColor="#fcfcfc"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:background="@drawable/round2_button"
+        />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        app:menu="@menu/customer_menu"
+        />
+
+</RelativeLayout>

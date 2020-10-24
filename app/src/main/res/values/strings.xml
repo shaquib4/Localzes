@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Localzes</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="password"><font fontfamily="@font/l_r" size="16">Password</font></string>
+    <string name="mobile_number"><font fontfamily="@font/l_r" size="16">Mobile Number</font></string>
+    <string name="create_your_account"><font lineheight="30sp">Create your Account</font></string>
+    <string name="full_name"><font fontfamily="@font/l_r" size="14">Full name</font></string>
+    <string name="mobile_number_reg"><font fontfamily="@font/l_r" size="14">Mobile number</font></string>
+    <string name="location"><font fontfamily="@font/l_r" size="14">Location</font></string>
+    <string name="password_reg"><font fontfamily="@font/l_r" size="14">Password</font></string>
+    <string name="confirm_password_reg"><font fontfamily="@font/l_r" size="14">Confirm Password</font></string>
+    <string name="email_reg"><font fontfamily="@font/l_r" size="14">Email</font></string>
+    <string name="otp"><font fontfamily="@font/l_r" size="16">Old password</font></string>
+    <string name="confirm_password_change"><font fontfamily="@font/l_r" size="16">Confirm New Password</font></string>
+    <string name="new_password"><font fontfamily="@font/l_r" size="16">New Password</font></string>
+    <string name="otp_reg_confirmation">Otp</string>
+
+</resources>
