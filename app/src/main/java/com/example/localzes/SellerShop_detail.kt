@@ -91,7 +91,7 @@ class SellerShop_detail : AppCompatActivity() {
 
                         mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
                             if (task.isSuccessful){
-                                startActivity(Intent(this@SellerShop_detail,Home::class.java))
+                                startActivity(Intent(this@SellerShop_detail,Home_seller::class.java))
                                 finish()
                                 Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
                             }

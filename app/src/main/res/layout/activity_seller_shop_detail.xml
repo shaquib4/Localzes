@@ -122,7 +122,7 @@
                     android:layout_marginEnd="@dimen/_7sdp"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
                     android:hint="@string/enter_shop_category_1"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:singleLine="true" />
                 <EditText
                     android:layout_below="@+id/edtCategory2"
@@ -138,7 +138,7 @@
                     android:layout_marginEnd="@dimen/_7sdp"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
                     android:hint="@string/enter_shop_category_3_optional"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:singleLine="true" />
                 <EditText
                     android:layout_below="@+id/edtCategory1"
@@ -154,7 +154,7 @@
                     android:layout_marginEnd="@dimen/_7sdp"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
                     android:hint="@string/enter_shop_category_2_optional"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:singleLine="true" />
 
 
