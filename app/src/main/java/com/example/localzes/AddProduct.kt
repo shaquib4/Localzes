@@ -10,17 +10,22 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_add_product.*
 
 class AddProduct : AppCompatActivity() {
     private lateinit var imagePath: Uri
     private lateinit var products: ModelAddProduct
+    private lateinit var mCartDatabaseRef: DatabaseReference
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
 
-
+        auth= FirebaseAuth.getInstance()
 
         image_view.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -64,6 +69,11 @@ class AddProduct : AppCompatActivity() {
                             etOfferPrice.text.toString().trim(),
                             etQuantity.text.toString().trim()
                         )
+
+                        val user = auth.currentUser
+                        var uid=user!!.uid
+
+                        mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                         //mCartDatabaseRef.child("Products").child(timestamp).setValue(cart)
                         //Toast.makeText(this, "Product Added", Toast.LENGTH_SHORT).show()
                         //clearData()
