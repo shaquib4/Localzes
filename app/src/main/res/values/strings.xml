@@ -15,5 +15,17 @@
     <string name="new_password"><font fontfamily="@font/l_r" size="16">New Password</font></string>
     <string name="otp_reg_confirmation">Otp</string>
     <string name="title_activity_maps2">Map</string>
-
+    <string name="enter_shop_name"><font size="14"
+        fontfamily="@font/l_r">Enter Shop Name</font></string>
+    <string name="your_upi_payment_phone_number_optional"><font size="14"
+        fontfamily="@font/l_r">Your UPI Payment Phone Number(Optional)</font></string>
+    <string name="enter_shop_category_1"><font size="14"
+        fontfamily="@font/l_r">Enter Shop Category 1</font></string>
+    <string name="enter_shop_category_2_optional"><font size="14"
+        fontfamily="@font/l_r">Enter Shop Category 2(Optional)</font></string>
+    <string name="enter_shop_category_3_optional"><font size="14"
+        fontfamily="@font/l_r">Enter Shop Category 3(Optional)</font></string>
+    <string name="localze"><stroke color="#fff" width="2dp">Localze</stroke></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

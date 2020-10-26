@@ -1,9 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SellerShop_detail">
+    android:background="#fcfcfc"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/wel"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="21sp"
+                    android:text="Welcome to localze"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="#De4500"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    />
+                <View
+                    android:layout_below="@+id/wel"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.2dp"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#eaeaea" /></RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fcfcfc">
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="10dp"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/choose_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="230dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/localze_shop" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Choose you Shop image"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="(Optional)"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="130dp"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"/></RelativeLayout>
+
+
+
+
+
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+                <View
+                    android:layout_below="@id/card"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.2dp"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:layout_marginTop="10dp"
+                    android:background="#eaeaea" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_below="@+id/edtName"
+                    android:id="@+id/edtCategory1"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:padding="@dimen/_7sdp"
+
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:hint="@string/enter_shop_category_1"
+                    android:inputType="phone"
+                    android:singleLine="true" />
+                <EditText
+                    android:layout_below="@+id/edtCategory2"
+                    android:id="@+id/edtCategory3"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:padding="@dimen/_7sdp"
+
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:hint="@string/enter_shop_category_3_optional"
+                    android:inputType="phone"
+                    android:singleLine="true" />
+                <EditText
+                    android:layout_below="@+id/edtCategory1"
+                    android:id="@+id/edtCategory2"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:padding="@dimen/_7sdp"
+
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:hint="@string/enter_shop_category_2_optional"
+                    android:inputType="phone"
+                    android:singleLine="true" />
+
+
+
+                <EditText
+                    android:id="@+id/edtName"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:padding="@dimen/_7sdp"
+
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:hint="@string/enter_shop_name"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
+                <EditText
+                    android:id="@+id/edtPay"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:padding="@dimen/_7sdp"
+                    android:layout_below="@+id/edtCategory3"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:hint="@string/your_upi_payment_phone_number_optional"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
+                <Button
+                    android:id="@+id/upload"
+                    android:layout_below="@id/edtPay"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:layout_marginLeft="@dimen/_22sdp"
+                    android:layout_marginRight="@dimen/_22sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_32sdp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/round2_button"
+                    android:text="Upload"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#fcfcfc"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
