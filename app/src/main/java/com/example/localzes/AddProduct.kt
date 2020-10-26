@@ -14,6 +14,8 @@ class AddProduct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
 
+        imageHint.setOnClickListener {  }
+
         image_view.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                 if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
