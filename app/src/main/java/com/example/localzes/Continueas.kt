@@ -20,6 +20,37 @@ class Continueas : AppCompatActivity() {
             progress_continue.visibility= View.VISIBLE
             customer()
         }
+        btnseller.setOnClickListener {
+            progress_continue.visibility= View.VISIBLE
+            seller()
+        }
+    }
+    private fun seller() {
+        firebaseUser= FirebaseAuth.getInstance().currentUser
+        userDatabase= FirebaseDatabase.getInstance().reference.child("seller").child(firebaseUser!!.uid)
+        userDatabase!!.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    progress_continue.visibility=View.GONE
+                    startActivity(Intent(this@Continueas,Home_seller::class.java))
+                    finish()
+                }else{
+                    progress_continue.visibility=View.GONE
+                    val phone=intent.getStringExtra("phone1")
+                    val intent=Intent(this@Continueas,Registerdetails_seller::class.java)
+                    intent.putExtra("phone2",phone)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+
+
+        })
     }
 
     private fun customer() {

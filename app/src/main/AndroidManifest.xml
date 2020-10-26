@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.localzes">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -22,14 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registerdetails_seller"></activity>
-        <activity android:name=".Registerdetails" />
-        <activity android:name=".Accounts" />
-        <activity android:name=".Search" />
-        <activity android:name=".Cart" />
-        <activity android:name=".Home" />
-        <activity android:name=".Continueas" />
-        <activity android:name=".Verify" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -42,6 +36,18 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".MapsActivity2"
+            android:label="@string/title_activity_maps2"></activity>
+        <activity android:name=".Home_seller" />
+        <activity android:name=".Registerdetails_seller" />
+        <activity android:name=".Registerdetails" />
+        <activity android:name=".Accounts" />
+        <activity android:name=".Search" />
+        <activity android:name=".Cart" />
+        <activity android:name=".Home" />
+        <activity android:name=".Continueas" />
+        <activity android:name=".Verify" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />

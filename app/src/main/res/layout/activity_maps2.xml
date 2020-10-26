@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".MapsActivity2"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <fragment
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:layout_marginTop="10dp"
+
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        tools:context=".MapsActivity"/>
+
+    <TextView
+        android:id="@+id/btnmapseller"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textSize="14sp"
+        />
+    <Button
+        android:layout_marginTop="@dimen/_200sdp"
+        android:id="@+id/btncontinueseller"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:textColor="#fff"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/l_r"
+        android:layout_height="42dp"
+        android:background="@drawable/round2_button"
+        android:text="Use my location"
+        />
+</LinearLayout>

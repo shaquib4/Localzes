@@ -14,5 +14,6 @@
     <string name="confirm_password_change"><font fontfamily="@font/l_r" size="16">Confirm New Password</font></string>
     <string name="new_password"><font fontfamily="@font/l_r" size="16">New Password</font></string>
     <string name="otp_reg_confirmation">Otp</string>
+    <string name="title_activity_maps2">Map</string>
 
 </resources>
