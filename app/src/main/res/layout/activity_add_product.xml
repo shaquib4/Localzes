@@ -115,7 +115,7 @@
                 android:textAlignment="center" />
 
             <EditText
-                android:id="@+id/etDiscription"
+                android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_below="@id/etTittle"
@@ -163,7 +163,7 @@
             <LinearLayout
                 android:weightSum="2"
                 android:id="@+id/linearLayout3"
-                android:layout_below="@id/etDiscription"
+                android:layout_below="@id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
@@ -203,6 +203,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btnAddProduct"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_below="@+id/linearLayout4"
