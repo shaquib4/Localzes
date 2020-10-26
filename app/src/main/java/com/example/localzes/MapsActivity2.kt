@@ -105,7 +105,7 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
             val email = intent.getStringExtra("email")
             val address = btnmapseller.text.toString()
 
-            val intent= Intent(this, Home_seller::class.java)
+            val intent= Intent(this,SellerShop_detail::class.java)
             intent.putExtra("name",name)
             intent.putExtra("email",email)
             intent.putExtra("address",address)
