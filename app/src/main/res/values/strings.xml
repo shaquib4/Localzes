@@ -23,4 +23,22 @@
     <string name="localze"><stroke color="#fff" width="2dp">Localze</stroke></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="Spinner_items">
+        <item>piece</item>
+        <item>kg</item>
+        <item>gm</item>
+        <item>ml</item>
+        <item>litre</item>
+        <item>meter</item>
+    </string-array>
+    <string-array name="Spinner_Item1">
+        <item>Mobile</item>
+        <item>Laptop</item>
+        <item>Fan</item>
+        <item>Cooler</item>
+        <item>Refrigerator</item>
+        <item>LED TV</item>
+        <item>Washing Mashine</item>
+
+    </string-array>
 </resources>
