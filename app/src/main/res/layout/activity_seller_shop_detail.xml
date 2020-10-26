@@ -62,6 +62,7 @@
                             android:scaleType="fitXY"
                             android:src="@drawable/localze_shop" />
                         <TextView
+                            android:id="@+id/txtChoose"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Choose you Shop image"
@@ -72,6 +73,7 @@
                             android:textStyle="bold"
                             android:textColor="#ffffff"/>
                         <TextView
+                            android:id="@+id/txtOptional"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="(Optional)"

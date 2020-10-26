@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_seller_shop_detail.*
 
 class SellerShop_detail : AppCompatActivity() {
     private lateinit var btnChooseImage: ImageView
@@ -44,9 +46,13 @@ class SellerShop_detail : AppCompatActivity() {
         auth= FirebaseAuth.getInstance()
 
         btnChooseImage.setOnClickListener {
+            txtChoose.visibility= View.GONE
+            txtOptional.visibility= View.GONE
             startFileChooser()
+
         }
         btnUpload.setOnClickListener {
+            txtChoose.visibility= View.GONE
             val user = auth.currentUser
             var uid=user!!.uid
 
