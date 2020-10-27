@@ -1,216 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#fcfcfc"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/wel"
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="21sp"
-                    android:text="Welcome to localze"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/montserrat_bold"
+                    android:text="Welcome to localze"
                     android:textColor="#De4500"
+                    android:textSize="21sp"
 
                     />
+
                 <View
-                    android:layout_below="@+id/wel"
                     android:layout_width="match_parent"
                     android:layout_height="1.2dp"
+                    android:layout_below="@+id/wel"
                     android:layout_marginStart="@dimen/_2sdp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:layout_marginBottom="10dp"
-                    android:background="#eaeaea" /></RelativeLayout>
+                    android:background="#eaeaea" />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="#fcfcfc">
-
 
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_155sdp"
-                    android:layout_margin="5dp"
-                    app:cardCornerRadius="10dp"
-                    >
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    android:layout_margin="@dimen/_7sdp"
+                    app:cardCornerRadius="10dp">
 
-                        <ImageView
-                            android:id="@+id/choose_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/localze_shop" />
-                        <TextView
-                            android:id="@+id/txtChoose"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Choose you Shop image"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:textStyle="bold"
-                            android:textColor="#ffffff"/>
-                        <TextView
-                            android:id="@+id/txtOptional"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="(Optional)"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="130dp"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:textStyle="bold"
-                            android:textColor="#ffffff"/></RelativeLayout>
-
-
-
-
-
-
-
+                    <ImageView
+                        android:id="@+id/choose_image"
+                        android:layout_width="155dp"
+                        android:layout_height="155dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_add_image" />
 
                 </androidx.cardview.widget.CardView>
 
-
+                <TextView
+                    android:id="@+id/txtAddShopImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card"
+                  android:layout_margin="@dimen/_7sdp"
+                    android:text="Add shop image (optional)" />
 
 
                 <View
-                    android:layout_below="@id/card"
                     android:layout_width="match_parent"
                     android:layout_height="1.2dp"
-                    android:layout_marginLeft="@dimen/_2sdp"
-                    android:layout_marginRight="@dimen/_2sdp"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/txtAddShopImage"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
                     android:background="#eaeaea" />
             </RelativeLayout>
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtChooseCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_7sdp"
+                    android:text="Choose shop category"
+                    android:textSize="18sp" />
+
+                <Spinner
+                    android:id="@+id/spn_category"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_7sdp"
+                    android:layout_toRightOf="@+id/txtChooseCategory"
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:entries="@array/Spinner_Category"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txtHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/spn_category"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:text="You can choose category further" />
+
                 <EditText
                     android:id="@+id/edtName"
-                    android:paddingStart="@dimen/_12sdp"
-                    android:padding="@dimen/_7sdp"
-
-                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
-                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_below="@+id/txtHint"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"
-
                     android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:hint="@string/enter_shop_name"
+                    android:gravity="center_vertical"
+                    android:hint="Shop Name"
                     android:inputType="textEmailAddress"
-                    android:singleLine="true" />
-                <EditText
-                    android:layout_below="@+id/edtName"
-                    android:id="@+id/edtCategory1"
-                    android:paddingStart="@dimen/_12sdp"
                     android:padding="@dimen/_7sdp"
-
-                    android:gravity="center_vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginStart="@dimen/_7sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"
-                    android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:hint="@string/enter_shop_category_1"
-                    android:inputType="text"
-                    android:singleLine="true" />
-                <EditText
-                    android:layout_below="@+id/edtCategory1"
-                    android:id="@+id/edtCategory2"
                     android:paddingStart="@dimen/_12sdp"
-                    android:padding="@dimen/_7sdp"
-
-                    android:gravity="center_vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginStart="@dimen/_7sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"
-                    android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:hint="@string/enter_shop_category_2_optional"
-                    android:inputType="text"
                     android:singleLine="true" />
-                <EditText
-                    android:layout_below="@+id/edtCategory2"
-                    android:id="@+id/edtCategory3"
-                    android:paddingStart="@dimen/_12sdp"
-                    android:padding="@dimen/_7sdp"
-
-                    android:gravity="center_vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginStart="@dimen/_7sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"
-                    android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:hint="@string/enter_shop_category_3_optional"
-                    android:inputType="text"
-                    android:singleLine="true" />
-
-
-
-
 
                 <EditText
                     android:id="@+id/edtPay"
-                    android:paddingStart="@dimen/_12sdp"
-                    android:padding="@dimen/_7sdp"
-                    android:layout_below="@+id/edtCategory3"
-                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
-                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_below="@+id/edtName"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_8sdp"
-
                     android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:hint="@string/your_upi_payment_phone_number_optional"
+                    android:gravity="center_vertical"
+                    android:hint="UPI ID (optional)"
                     android:inputType="textEmailAddress"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingStart="@dimen/_12sdp"
                     android:singleLine="true" />
+
                 <Button
                     android:id="@+id/upload"
-                    android:layout_below="@id/edtPay"
-                    android:layout_marginTop="@dimen/_24sdp"
-                    android:layout_marginLeft="@dimen/_22sdp"
-                    android:layout_marginRight="@dimen/_22sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_32sdp"
-                    android:textAllCaps="false"
+                   android:layout_below="@+id/edtPay"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="@dimen/_22sdp"
                     android:background="@drawable/round2_button"
-                    android:text="Upload"
                     android:fontFamily="@font/montserrat_medium"
+                    android:text="Upload"
+                    android:textAllCaps="false"
+                    android:textColor="#fcfcfc"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#fcfcfc"/>
+                    android:textStyle="bold" />
+
+
             </RelativeLayout>
+
 
 
         </LinearLayout>

@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imgCart"
         android:text="No Item in your cart !"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:fontFamily="@font/montserrat_medium"
         android:layout_centerHorizontal="true"
         android:textColor="#000"/>

@@ -13,13 +13,13 @@
         android:id="@+id/edtmobile"
         android:inputType="phone"
         android:maxLength="10"
-        android:layout_width="344dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="300dp"
         android:background="@drawable/ic_mobile"
-        android:paddingLeft="50dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8.15dp"
+      android:layout_centerHorizontal="true"
+        android:paddingLeft="@dimen/_30sdp"
         android:hint="@string/mobile_number"
         android:textColor="#ffffff"
         android:maxLines="1"
@@ -27,12 +27,12 @@
 
         />
     <Button
+        android:layout_below="@+id/edtmobile"
         android:id="@+id/btnRegButton"
         android:layout_width="226dp"
-        android:layout_height="41dp"
-        android:layout_marginLeft="67dp"
-        android:layout_marginTop="370dp"
-        android:layout_marginRight="67.15dp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
         android:padding="7dp"
         android:textAllCaps="false"
         android:background="@drawable/round_button"
@@ -48,8 +48,7 @@
         android:layout_height="60dp"
         android:src="@drawable/ic_localze"
         android:layout_marginTop="200dp"
-        android:layout_marginLeft="98dp"
-        android:layout_marginRight="97.15dp"/>
+        android:layout_centerHorizontal="true"/>
 
 
 

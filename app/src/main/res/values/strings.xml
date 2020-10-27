@@ -15,11 +15,6 @@
     <string name="new_password"><font fontfamily="@font/l_r" size="16">New Password</font></string>
     <string name="otp_reg_confirmation">Otp</string>
     <string name="title_activity_maps2">Map</string>
-    <string name="enter_shop_name"><font fontfamily="@font/l_r" size="14">Enter Shop Name</font></string>
-    <string name="your_upi_payment_phone_number_optional"><font fontfamily="@font/l_r" size="14">Your UPI Payment Phone Number(Optional)</font></string>
-    <string name="enter_shop_category_1"><font fontfamily="@font/l_r" size="14">Enter Shop Category 1</font></string>
-    <string name="enter_shop_category_2_optional"><font fontfamily="@font/l_r" size="14">Enter Shop Category 2(Optional)</font></string>
-    <string name="enter_shop_category_3_optional"><font fontfamily="@font/l_r" size="14">Enter Shop Category 3(Optional)</font></string>
     <string name="localze"><stroke color="#fff" width="2dp">Localze</stroke></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -39,6 +34,17 @@
         <item>Refrigerator</item>
         <item>LED TV</item>
         <item>Washing Mashine</item>
+    </string-array>
 
+    <string-array name="Spinner_Category">
+        <item>Food</item>
+        <item>Fashion</item>
+        <item>Groceries</item>
+        <item>Electronics</item>
+        <item>Beauty Product</item>
+        <item>Automobiles</item>
+        <item>Medical</item>
+        <item>Internet Cafe</item>
+        <item>Digital Shop</item>
     </string-array>
 </resources>
