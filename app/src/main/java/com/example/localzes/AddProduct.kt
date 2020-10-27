@@ -64,10 +64,12 @@ class AddProduct : AppCompatActivity() {
                         products = ModelAddProduct(
                             timestamp,
                             imageUrl.toString(),
+                            sp_spinner_add.selectedItem.toString(),
                             etTittle.text.toString().trim(),
                             etDescription.text.toString().trim(),
                             etSellPrice.text.toString().trim(),
                             etOfferPrice.text.toString().trim(),
+                            sp_unit.selectedItem.toString(),
                             etQuantity.text.toString().trim()
                         )
 
