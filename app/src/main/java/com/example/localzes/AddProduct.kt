@@ -30,6 +30,9 @@ class AddProduct : AppCompatActivity() {
 
         btnAddProduct.setOnClickListener {
             uploadData()
+            val intent=Intent(this,Seller_Products::class.java)
+            startActivity(intent)
+            finish()
         }
 
     }

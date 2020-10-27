@@ -47,7 +47,7 @@ class SellerShop_detail : AppCompatActivity() {
         btnUpload.setOnClickListener {
 
             val user = auth.currentUser
-            var uid=user!!.uid
+            val uid=user!!.uid
 
             mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
             uploadFile()
