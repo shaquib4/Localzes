@@ -38,21 +38,17 @@ class SellerShop_detail : AppCompatActivity() {
         btnUpload = findViewById(R.id.upload)
 
         etShopName = findViewById(R.id.edtName)
-        etCategory1 = findViewById(R.id.edtCategory1)
-
-        etCategory3=findViewById(R.id.edtCategory3)
+        etCategory1 = findViewById(R.id.spn_category)
         upi=findViewById(R.id.edtPay)
-        etCategory2=findViewById(R.id.edtCategory2)
         auth= FirebaseAuth.getInstance()
 
         btnChooseImage.setOnClickListener {
-            txtChoose.visibility= View.GONE
-            txtOptional.visibility= View.GONE
+
             startFileChooser()
 
         }
         btnUpload.setOnClickListener {
-            txtChoose.visibility= View.GONE
+
             val user = auth.currentUser
             var uid=user!!.uid
 
@@ -89,8 +85,6 @@ class SellerShop_detail : AppCompatActivity() {
                             etShopName.text.toString().trim(),
                             downloadUrl.toString(),
                             etCategory1.text.toString().trim(),
-                            etCategory2.text.toString().trim(),
-                            etCategory3.text.toString().trim(),
                             upi.text.toString().trim()
 
                         )
