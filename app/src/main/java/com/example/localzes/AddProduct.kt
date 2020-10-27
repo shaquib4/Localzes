@@ -55,14 +55,12 @@ class AddProduct : AppCompatActivity() {
 
     private fun uploadData() {
         if (imagePath != null) {
-            val pd = ProgressDialog(this)
-            pd.setTitle("Uploading.....")
-            pd.show()
+
             val productRef =
                 FirebaseStorage.getInstance().reference.child("uploads/" + System.currentTimeMillis() + ".jpg")
             productRef.putFile(imagePath)
-                .addOnSuccessListener { p0 ->
-                    pd.dismiss()
+                .addOnSuccessListener {
+
                     productRef.downloadUrl.addOnSuccessListener {
                         val imageUrl: Uri = it
                         val timestamp: String = "" + System.currentTimeMillis()
@@ -86,16 +84,16 @@ class AddProduct : AppCompatActivity() {
                             .setValue(products)
                         Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT)
                             .show()
-                        clearData()
+
                     }
                 }
                 .addOnFailureListener { p0 ->
-                    pd.dismiss()
+
                     Toast.makeText(applicationContext, p0.message, Toast.LENGTH_SHORT).show()
                 }
                 .addOnProgressListener { p0 ->
                     val progress = (100.0 * p0.bytesTransferred / p0.totalByteCount)
-                    pd.setMessage("Uploading ${progress.toInt()}%")
+
                 }
         }
     }
