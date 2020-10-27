@@ -25,11 +25,11 @@ class AddProduct : AppCompatActivity() {
         setContentView(R.layout.activity_add_product)
 
         auth= FirebaseAuth.getInstance()
-        btnshare.setOnClickListener{ val myIntent=Intent(Intent.ACTION_SEND)
+        /*btnshare.setOnClickListener{ val myIntent=Intent(Intent.ACTION_SEND)
             myIntent.type="type/plain"
             myIntent.putExtra(Intent.EXTRA_SUBJECT,"Localze")
             myIntent.putExtra(Intent.EXTRA_TEXT,"Localze")
-            startActivity(Intent.createChooser(myIntent,"Share App Via"))}
+            startActivity(Intent.createChooser(myIntent,"Share App Via"))}*/
 
 
 

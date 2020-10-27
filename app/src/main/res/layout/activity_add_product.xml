@@ -251,18 +251,7 @@
                     android:maxLines="1"
                     android:textAlignment="center"
                     android:textSize="18sp" />
-                <Button
-                    android:id="@+id/btnshare"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
-                    android:layout_below="@+id/btnAddProduct"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@drawable/proceed_to_add"
-                    android:text="share"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp" />
+
             </LinearLayout>
 
         </RelativeLayout>
