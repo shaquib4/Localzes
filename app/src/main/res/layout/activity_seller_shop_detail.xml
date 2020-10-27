@@ -53,12 +53,17 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_155sdp"
+                    android:layout_height="@dimen/_165sdp"
                     android:layout_margin="@dimen/_7sdp"
                     app:cardCornerRadius="10dp">
-
                     <ImageView
                         android:id="@+id/choose_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="fitXY" />
+                    <ImageView
+
                         android:layout_width="155dp"
                         android:layout_height="155dp"
                         android:layout_gravity="center"
@@ -92,16 +97,20 @@
                     android:id="@+id/txtChooseCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="@dimen/_13sdp"
                     android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginLeft="10dp"
                     android:text="Choose shop category"
                     android:textSize="17sp" />
 
                 <Spinner
                     android:id="@+id/spn_category"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_110sdp"
                     android:layout_height="@dimen/_35sdp"
-                    android:layout_margin="@dimen/_7sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
                     android:layout_toRightOf="@+id/txtChooseCategory"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
                     android:entries="@array/Spinner_Category"
