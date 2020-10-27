@@ -3,7 +3,7 @@
     <item
         android:id="@+id/nav_store_seller"
         android:title="My Store"
-        android:icon="@drawable/ic_myStore"
+        android:icon="@drawable/ic_mystore"
         />
     <item
         android:id="@+id/nav_order_seller"
