@@ -47,18 +47,18 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_155sdp"
                     android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     >
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
                         <ImageView
                             android:id="@+id/choose_image"
                             android:layout_width="match_parent"
-                            android:layout_height="230dp"
+                            android:layout_height="match_parent"
                             android:scaleType="fitXY"
                             android:src="@drawable/localze_shop" />
                         <TextView
@@ -111,6 +111,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:id="@+id/edtName"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:padding="@dimen/_7sdp"
+
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:hint="@string/enter_shop_name"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
+                <EditText
                     android:layout_below="@+id/edtName"
                     android:id="@+id/edtCategory1"
                     android:paddingStart="@dimen/_12sdp"
@@ -124,22 +140,6 @@
                     android:layout_marginEnd="@dimen/_7sdp"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
                     android:hint="@string/enter_shop_category_1"
-                    android:inputType="text"
-                    android:singleLine="true" />
-                <EditText
-                    android:layout_below="@+id/edtCategory2"
-                    android:id="@+id/edtCategory3"
-                    android:paddingStart="@dimen/_12sdp"
-                    android:padding="@dimen/_7sdp"
-
-                    android:gravity="center_vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginStart="@dimen/_7sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"
-                    android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:hint="@string/enter_shop_category_3_optional"
                     android:inputType="text"
                     android:singleLine="true" />
                 <EditText
@@ -158,11 +158,9 @@
                     android:hint="@string/enter_shop_category_2_optional"
                     android:inputType="text"
                     android:singleLine="true" />
-
-
-
                 <EditText
-                    android:id="@+id/edtName"
+                    android:layout_below="@+id/edtCategory2"
+                    android:id="@+id/edtCategory3"
                     android:paddingStart="@dimen/_12sdp"
                     android:padding="@dimen/_7sdp"
 
@@ -172,11 +170,15 @@
                     android:layout_marginStart="@dimen/_7sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_7sdp"
-
                     android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:hint="@string/enter_shop_name"
-                    android:inputType="textEmailAddress"
+                    android:hint="@string/enter_shop_category_3_optional"
+                    android:inputType="text"
                     android:singleLine="true" />
+
+
+
+
+
                 <EditText
                     android:id="@+id/edtPay"
                     android:paddingStart="@dimen/_12sdp"
