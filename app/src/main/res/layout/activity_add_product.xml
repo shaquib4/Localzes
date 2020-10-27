@@ -251,6 +251,7 @@
                     android:maxLines="1"
                     android:textAlignment="center"
                     android:textSize="18sp" />
+
             </LinearLayout>
 
         </RelativeLayout>

@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -26,7 +23,7 @@ class SellerShop_detail : AppCompatActivity() {
     private lateinit var mDatabaseRef: DatabaseReference
     private lateinit var etShopName: EditText
     private lateinit var btnSave: Button
-    private lateinit var etCategory1: EditText
+    private lateinit var etCategory1: Spinner
     private lateinit var etCategory2: EditText
     private lateinit var etCategory3: EditText
     private lateinit var upi: EditText
@@ -50,7 +47,7 @@ class SellerShop_detail : AppCompatActivity() {
         btnUpload.setOnClickListener {
 
             val user = auth.currentUser
-            var uid=user!!.uid
+            val uid=user!!.uid
 
             mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
             uploadFile()
@@ -84,14 +81,14 @@ class SellerShop_detail : AppCompatActivity() {
                             address!!.toString().trim(),
                             etShopName.text.toString().trim(),
                             downloadUrl.toString(),
-                            etCategory1.text.toString().trim(),
+                            etCategory1.selectedItem.toString(),
                             upi.text.toString().trim()
 
                         )
 
                         mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
                             if (task.isSuccessful){
-                                startActivity(Intent(this@SellerShop_detail,Home_seller::class.java))
+                                startActivity(Intent(this@SellerShop_detail,AddProduct::class.java))
                                 finish()
                                 Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
                             }
