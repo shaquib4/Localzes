@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -26,6 +25,13 @@ class AddProduct : AppCompatActivity() {
         setContentView(R.layout.activity_add_product)
 
         auth= FirebaseAuth.getInstance()
+        //btnShare.setOnClickListener{}
+        val myIntent=Intent(Intent.ACTION_SEND)
+        myIntent.type="type/plain"
+        myIntent.putExtra(Intent.EXTRA_SUBJECT,"Localze")
+        myIntent.putExtra(Intent.EXTRA_TEXT,"Localze")
+        startActivity(Intent.createChooser(myIntent,"Share App Via"))
+
 
         image_view.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
