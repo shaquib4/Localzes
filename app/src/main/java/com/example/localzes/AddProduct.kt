@@ -63,6 +63,7 @@ class AddProduct : AppCompatActivity() {
                         val timestamp: String = "" + System.currentTimeMillis()
                         products = ModelAddProduct(
                             timestamp,
+                            imageUrl.toString(),
                             etTittle.text.toString().trim(),
                             etDescription.text.toString().trim(),
                             etSellPrice.text.toString().trim(),
@@ -71,12 +72,11 @@ class AddProduct : AppCompatActivity() {
                         )
 
                         val user = auth.currentUser
-                        var uid=user!!.uid
+                        val uid=user!!.uid
 
                         mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                        //mCartDatabaseRef.child("Products").child(timestamp).setValue(cart)
-                        //Toast.makeText(this, "Product Added", Toast.LENGTH_SHORT).show()
-                        //clearData()
+                        Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT).show()
+                        clearData()
                     }
                 }
                 .addOnFailureListener { p0 ->
