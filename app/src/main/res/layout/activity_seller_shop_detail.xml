@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#fcfcfc"
     android:orientation="vertical">
 
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/card"
-                  android:layout_margin="@dimen/_7sdp"
+                    android:layout_margin="@dimen/_7sdp"
                     android:text="Add shop image (optional)" />
 
 
@@ -92,9 +92,10 @@
                     android:id="@+id/txtChooseCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_7sdp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:text="Choose shop category"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
                 <Spinner
                     android:id="@+id/spn_category"
@@ -106,19 +107,12 @@
                     android:entries="@array/Spinner_Category"
                     android:textAlignment="center" />
 
-                <TextView
-                    android:id="@+id/txtHint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/spn_category"
-                    android:layout_marginStart="@dimen/_7sdp"
-                    android:text="You can choose category further" />
 
                 <EditText
                     android:id="@+id/edtName"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
-                    android:layout_below="@+id/txtHint"
+                    android:layout_below="@+id/spn_category"
                     android:layout_marginHorizontal="@dimen/_7sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
@@ -148,10 +142,10 @@
                     android:id="@+id/upload"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_32sdp"
-                   android:layout_below="@+id/edtPay"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_below="@+id/edtPay"
                     android:layout_gravity="bottom"
                     android:layout_marginHorizontal="@dimen/_22sdp"
+                    android:layout_marginTop="120dp"
                     android:background="@drawable/round2_button"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="Upload"
@@ -160,12 +154,11 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-
             </RelativeLayout>
 
-
-
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
+
 
 </LinearLayout>
