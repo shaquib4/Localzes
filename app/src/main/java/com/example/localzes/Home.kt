@@ -74,14 +74,14 @@ class Home : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (i in snapshot.children) {
                     val obj = Upload(
-                        i.child("uid").toString(),
-                        i.child("name").toString(),
-                        i.child("email").toString(),
-                        i.child("address").toString(),
-                        i.child("shop_name").toString(),
-                        i.child("imageUrl").toString(),
-                        i.child("category1").toString(),
-                        i.child("upi").toString()
+                        i.child("uid").value.toString(),
+                        i.child("name").value.toString(),
+                        i.child("email").value.toString(),
+                        i.child("address").value.toString(),
+                        i.child("shop_name").value.toString(),
+                        i.child("imageUrl").value.toString(),
+                        i.child("category1").value.toString(),
+                        i.child("upi").value.toString()
                     )
                     (shops as ArrayList<Upload>).add(obj)
                     progress_home.visibility=View.GONE
