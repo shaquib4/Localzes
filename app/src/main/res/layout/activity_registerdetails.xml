@@ -14,8 +14,7 @@
         android:fontFamily="@font/l_r"
         android:layout_marginTop="200dp"
         android:textStyle="bold"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="62dp"/>
+        android:layout_gravity="center_horizontal"/>
 
     <EditText
         android:id="@+id/edtregName"
@@ -23,9 +22,8 @@
         android:textColor="#ffffff"
         android:layout_width="316.08dp"
         android:layout_height="43.8dp"
-        android:layout_marginLeft="25.9dp"
         android:layout_marginTop="34dp"
-        android:layout_marginRight="18dp"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/namereg"
         android:paddingStart="45dp"
         android:hint="@string/full_name"
@@ -35,11 +33,10 @@
         android:id="@+id/edtregemail"
         android:layout_width="316.08dp"
         android:layout_height="43.8dp"
-        android:layout_marginLeft="25.9dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="16.64dp"
         android:background="@drawable/emailreg"
         android:paddingStart="45dp"
-        android:layout_marginRight="18dp"
         android:textSize="14sp"
         android:textColor="#ffffff"
         android:hint="@string/email_reg"
@@ -52,7 +49,6 @@
         android:layout_width="226dp"
         android:layout_height="41dp"
         android:layout_marginTop="37dp"
-        android:layout_marginLeft="72dp"
         android:textAllCaps="false"
         android:background="@drawable/round_button"
         android:text="Proceed"
@@ -60,7 +56,7 @@
         android:textColor="#DE0606"
         android:padding="7dp"
         android:textStyle="bold"
-        android:layout_marginRight="62dp"
+        android:layout_gravity="center_horizontal"
         android:textSize="16sp"/>
 
 </LinearLayout>
