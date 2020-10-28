@@ -21,8 +21,8 @@ class Home : AppCompatActivity() {
 
 
         firebaseUser= FirebaseAuth.getInstance().currentUser
-        userDatabase= FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser!!.uid)
-        showAll()
+        userDatabase= FirebaseDatabase.getInstance().reference.child("seller").child(firebaseUser!!.uid)
+
 
         bottom_navHome.selectedItemId = R.id.nav_home
         bottom_navHome.setOnNavigationItemSelectedListener { item ->
@@ -59,24 +59,5 @@ class Home : AppCompatActivity() {
             return@setOnNavigationItemSelectedListener false
         }
     }
-    private fun showAll() {
-        userDatabase!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    progress_home.visibility=View.GONE
-                    val user:ModelClass?=snapshot.getValue(ModelClass::class.java)
-                    user_email.text=user!!.getEmail()
-                    user_name.text=user!!.getName()
-                    user_phone.text=user!!.getPhone()
-                }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-
-
-        })
-    }
 }
