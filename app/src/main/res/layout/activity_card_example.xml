@@ -2,17 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_270sdp"
+        android:layout_height="@dimen/_260sdp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
-        android:elevation="5dp"
-
         android:background="@drawable/bg_product_shop"
         app:cardCornerRadius="10dp">
 
@@ -26,6 +23,7 @@
                 android:layout_height="@dimen/_180sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/lanju" />
+
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
@@ -45,29 +43,19 @@
                 android:layout_below="@+id/view"
                 android:layout_marginStart="20dp"
                 android:text="Elecronics Accessoies"
-                android:textColor="#000000"
-                android:textSize="@dimen/_15ssp" />
+                android:textColor="#000"
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
-                android:id="@+id/txtVews1"
+                android:id="@+id/txtStock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/view"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:text="Views: 722 "
-                android:textColor="#696969"
-                android:textSize="@dimen/_12ssp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtVews1"
+                android:layout_alignBottom="@+id/txtPrice1"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="20dp"
                 android:text="Stock: IN "
                 android:textColor="#3498db"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_11ssp" />
 
             <TextView
                 android:id="@+id/txtPrice1"
@@ -77,47 +65,44 @@
                 android:layout_marginStart="20dp"
                 android:text="Rs. 699"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_15ssp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imgBorder5"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/txtPrice1"
-                android:layout_margin="10dp"
-                android:background="" />
 
             <ImageView
                 android:id="@+id/imgRating"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:layout_below="@id/imgBorder5"
-                android:src="@drawable/ic_rating"
-                android:layout_alignStart="@+id/txtVews1"/>
+                android:layout_alignTop="@+id/txtElectronics"
+                android:layout_toLeftOf="@+id/txtRatingPoints"
+                android:src="@drawable/ic_rating" />
+
             <TextView
+                android:id="@+id/txtRatingPoints"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_18sdp"
-                android:textSize="@dimen/_15ssp"
-                android:textColor="#de4500"
-                android:layout_toEndOf="@id/imgRating"
+                android:padding="@dimen/_2sdp"
+                android:layout_alignTop="@+id/txtElectronics"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="20dp"
                 android:text="4.5/5"
-                android:layout_below="@+id/imgBorder5"/>
+                android:textColor="#de4500"
+                android:textSize="@dimen/_13ssp" />
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imgBorder5"
-                android:textSize="@dimen/_12ssp"
-                android:layout_marginRight="20dp"
-                android:textStyle="bold"
-                android:textColor="#ff0000"
-                android:layout_marginStart="10dp"
-                android:text="Opens at 9:00 AM"/>
+                android:layout_height="@dimen/_12sdp"
+                android:layout_alignLeft="@+id/txtPrice1"
+                android:text="Rs. 1099"
+                android:textSize="@dimen/_10ssp"
+                android:layout_below="@+id/txtPrice1"/>
+            <View
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="1.0dp"
+                android:layout_alignLeft="@+id/txtPrice1"
+                android:background="#696969"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/txtPrice1"/>
 
         </RelativeLayout>
-
     </androidx.cardview.widget.CardView>
-
-
 </RelativeLayout>
 
