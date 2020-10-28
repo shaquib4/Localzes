@@ -86,7 +86,7 @@ class AddProduct : AppCompatActivity() {
                             .setValue(products)
                         Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT)
                             .show()
-                        clearData()
+
                     }
                 }
                 .addOnFailureListener { p0 ->
@@ -99,13 +99,5 @@ class AddProduct : AppCompatActivity() {
                 }
         }
     }
-
-
-    private fun clearData() {
-        etTittle.setText("")
-        etDescription.setText("")
-        etSellPrice.setText("")
-        etOfferPrice.setText("")
-        etQuantity.setText("")
-    }
+    
 }
