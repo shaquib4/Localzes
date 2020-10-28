@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_shop"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_240sdp"
+        android:layout_height="@dimen/_235sdp"
         android:layout_marginHorizontal="7dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_product_shop"
