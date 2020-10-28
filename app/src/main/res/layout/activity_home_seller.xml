@@ -353,7 +353,7 @@
                     app:cardCornerRadius="10dp">
 
                     <ImageView
-                        android:id="@+id/imgElectronics"
+                        android:id="@+id/imgShop"
                         android:layout_width="match_parent"
                         android:layout_height="220dp"
                         android:scaleType="fitXY"
@@ -364,12 +364,12 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@id/txtPrice1"
+                    android:layout_below="@id/txtCategory"
                     android:layout_marginTop="10dp"
                     android:background="#cdcdcd" />
 
                 <TextView
-                    android:id="@+id/txtElectronics"
+                    android:id="@+id/txtShop_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/card1"
@@ -398,10 +398,10 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/txtPrice1"
+                    android:id="@+id/txtCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtElectronics"
+                    android:layout_below="@+id/txtShop_name"
                     android:layout_marginLeft="30dp"
                     android:text="Rs. 699"
                     android:textColor="#de4500"
