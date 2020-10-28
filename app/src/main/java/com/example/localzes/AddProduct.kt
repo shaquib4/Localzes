@@ -97,13 +97,5 @@ class AddProduct : AppCompatActivity() {
                 }
         }
     }
-
-
-    private fun clearData() {
-        etTittle.setText("")
-        etDescription.setText("")
-        etSellPrice.setText("")
-        etOfferPrice.setText("")
-        etQuantity.setText("")
-    }
+    
 }
