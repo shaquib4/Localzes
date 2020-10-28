@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -13,15 +15,21 @@ import kotlinx.android.synthetic.main.activity_home.*
 class Home : AppCompatActivity() {
     private lateinit var userDatabase: DatabaseReference
     var firebaseUser: FirebaseUser? = null
+    private lateinit var shops:List<Upload>
+    private lateinit var recyclerShopUser:RecyclerView
+    private lateinit var userShopAdapter:AdapterUserShops
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         progress_home.visibility = View.VISIBLE
+        recyclerShopUser=findViewById(R.id.recycler_shop_user)
+        recyclerShopUser.layoutManager=LinearLayoutManager(this)
 
 
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
         userDatabase = FirebaseDatabase.getInstance().reference.child("seller")
+        shops=ArrayList<Upload>()
 
 
         bottom_navHome.selectedItemId = R.id.nav_home
@@ -60,12 +68,13 @@ class Home : AppCompatActivity() {
         }
         userDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
-                
+
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (i in snapshot.children) {
                     val obj = Upload(
+                        i.child("uid").toString(),
                         i.child("name").toString(),
                         i.child("email").toString(),
                         i.child("address").toString(),
@@ -74,7 +83,11 @@ class Home : AppCompatActivity() {
                         i.child("category1").toString(),
                         i.child("upi").toString()
                     )
+                    (shops as ArrayList<Upload>).add(obj)
+                    progress_home.visibility=View.GONE
                 }
+                userShopAdapter= AdapterUserShops(this@Home,shops)
+                recyclerShopUser.adapter=userShopAdapter
             }
 
         })

@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imgShop"
+                android:id="@+id/imgProduct"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
                 android:scaleType="centerCrop"
@@ -28,7 +28,7 @@
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1.3dp"
-                android:layout_below="@+id/imgShop"
+                android:layout_below="@+id/imgProduct"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:background="#eaeaea"
                 android:layout_marginEnd="@dimen/_2sdp"
@@ -37,14 +37,13 @@
 
 
             <TextView
-                android:id="@+id/txtShop_name"
+                android:id="@+id/txtProductTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view"
                 android:layout_marginStart="10dp"
-                android:text="Elecronics Accessoies"
+                android:text="Elecronics Accessories"
                 android:fontFamily="@font/montserrat_medium"
-
                 android:textColor="#000"
                 android:textSize="@dimen/_13ssp" />
 
@@ -52,7 +51,7 @@
                 android:id="@+id/txtStock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/txtCategory"
+                android:layout_alignBottom="@+id/txtProductPrice"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="5dp"
                 android:text="Stock: IN "
@@ -61,10 +60,10 @@
                 android:textSize="@dimen/_11ssp" />
 
             <TextView
-                android:id="@+id/txtCategory"
+                android:id="@+id/txtProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtShop_name"
+                android:layout_below="@+id/txtProductTitle"
                 android:layout_marginStart="10dp"
                 android:text="Rs. 699"
                 android:textColor="#de4500"
@@ -76,7 +75,7 @@
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
                 android:layout_marginTop="15dp"
-                android:layout_below="@id/imgShop"
+                android:layout_below="@id/imgProduct"
                 android:layout_toLeftOf="@+id/txtRatingShop"
                 android:src="@drawable/ic_rating" />
 
@@ -85,28 +84,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_18sdp"
 
-                android:layout_alignTop="@+id/txtShop_name"
+                android:layout_alignTop="@+id/txtProductTitle"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="10dp"
                 android:text="4.5/5"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_11ssp" />
             <TextView
+                android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_12sdp"
-                android:layout_alignLeft="@+id/txtCategory"
+                android:layout_alignLeft="@+id/txtProductPrice"
                 android:text="Rs. 1099"
                 android:textSize="@dimen/_10ssp"
-                android:layout_below="@+id/txtCategory"/>
-            <View
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="1.0dp"
-                android:layout_alignLeft="@+id/txtCategory"
-                android:background="#696969"
-                android:layout_marginTop="10dp"
-                android:layout_below="@id/txtCategory"/>
+                android:layout_below="@+id/txtProductPrice"/>
+
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000000"
+        android:layout_below="@id/card1"/>
 </RelativeLayout>
 

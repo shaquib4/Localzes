@@ -95,5 +95,10 @@
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000000"
+        android:layout_below="@id/card_shop"/>
 </RelativeLayout>
 

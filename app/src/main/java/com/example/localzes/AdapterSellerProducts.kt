@@ -16,8 +16,6 @@ class AdapterSellerProducts(val context:Context,private val products_seller:List
     class HolderProduct(view: View) : RecyclerView.ViewHolder(view){
         val imgProduct: ImageView =view.findViewById(R.id.imgProduct)
         val txtProductTitle: TextView =view.findViewById(R.id.txtProductTitle)
-        val txtProductDescription:TextView=view.findViewById(R.id.txtProductDescription)
-        val txtProductCategory:TextView=view.findViewById(R.id.txtProductCategory)
         val txtProductPrice:TextView=view.findViewById(R.id.txtProductPrice)
         val txtProductOfferPrice:TextView=view.findViewById(R.id.txtProductOfferPrice)
     }
@@ -35,13 +33,11 @@ class AdapterSellerProducts(val context:Context,private val products_seller:List
         val products=products_seller[position]
         Picasso.get().load(products.imageUrl).into(holder.imgProduct)
         holder.txtProductTitle.text=products.title
-        holder.txtProductDescription.text=products.description
-        holder.txtProductCategory.text=products.productCategory
-        holder.txtProductPrice.text="Rs.${products.offerPrice}"
-        val mString="Rs.${products.sellingPrice}"
+        holder.txtProductPrice.text="Rs. ${products.offerPrice}"
+        val mString="Rs. ${products.sellingPrice}"
         val spannableString=SpannableString(mString)
         val mStrikeThrough=StrikethroughSpan()
-        spannableString.setSpan(mStrikeThrough,0,mString.length-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(mStrikeThrough,0,mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         holder.txtProductOfferPrice.text=spannableString
     }
 }

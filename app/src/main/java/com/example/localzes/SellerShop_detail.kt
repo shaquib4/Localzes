@@ -75,7 +75,10 @@ class SellerShop_detail : AppCompatActivity() {
                         val name=intent.getStringExtra("name")
                         val email=intent.getStringExtra("email")
                         val address=intent.getStringExtra("address")
+                        val user = auth.currentUser
+                        val uid=user!!.uid
                         upload = Upload(
+                            uid,
                             name!!.toString().trim(),
                             email!!.toString().trim(),
                             address!!.toString().trim(),
