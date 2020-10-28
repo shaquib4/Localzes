@@ -1,81 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <LinearLayout
-        android:id="@+id/llPr"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="8">
+        android:layout_height="@dimen/_225sdp"
+        android:layout_marginHorizontal="7dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_product_shop"
+        app:cardCornerRadius="10dp">
 
-        <ImageView
-            android:id="@+id/imgProduct"
-            android:layout_width="0dp"
-            android:layout_height="85dp"
-            android:layout_weight="1.5"
-            android:scaleType="centerCrop" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/txtProductTitle"
+            <ImageView
+                android:id="@+id/imgElectronics"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Title"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="2dp"/>
-            <TextView
-                android:id="@+id/txtProductDescription"
+                android:layout_height="@dimen/_160sdp"
+                android:scaleType="centerCrop"
+
+                android:src="@drawable/lanju" />
+
+            <View
+                android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="2dp"/>
+                android:layout_height="1.3dp"
+                android:layout_below="@+id/imgElectronics"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:background="#eaeaea"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_marginBottom="7dp"
+                />
+
+
             <TextView
-                android:id="@+id/txtProductCategory"
-                android:layout_width="match_parent"
+                android:id="@+id/txtElectronics"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="2dp"/>
+                android:layout_below="@+id/view"
+                android:layout_marginStart="10dp"
+                android:text="Elecronics Accessoies"
+                android:fontFamily="@font/montserrat_medium"
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="85dp"
-            android:layout_weight="2.5"
-            android:orientation="vertical">
+                android:textColor="#000"
+                android:textSize="@dimen/_13ssp" />
+
             <TextView
-                android:id="@+id/txtProductPrice"
-                android:layout_width="match_parent"
+                android:id="@+id/txtStock"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="Rs.50"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:layout_alignBottom="@+id/txtPrice1"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:text="Stock: IN "
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="#3498db"
+                android:textSize="@dimen/_11ssp" />
+
             <TextView
-                android:id="@+id/txtProductOfferPrice"
-                android:layout_width="match_parent"
+                android:id="@+id/txtPrice1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="Rs.50"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:layout_below="@+id/txtElectronics"
+                android:layout_marginStart="10dp"
+                android:text="Rs. 699"
+                android:textColor="#de4500"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/imgRating"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/imgElectronics"
+                android:layout_toLeftOf="@+id/txtRatingPoints"
+                android:src="@drawable/ic_rating" />
 
+            <TextView
+                android:id="@+id/txtRatingPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_18sdp"
 
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@id/llPr"
-        android:background="#000000"
-        android:layout_margin="5dp"/>
+                android:layout_alignTop="@+id/txtElectronics"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:text="4.5/5"
+                android:textColor="#de4500"
+                android:textSize="@dimen/_11ssp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_12sdp"
+                android:layout_alignLeft="@+id/txtPrice1"
+                android:text="Rs. 1099"
+                android:textSize="@dimen/_10ssp"
+                android:layout_below="@+id/txtPrice1"/>
+            <View
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="1.0dp"
+                android:layout_alignLeft="@+id/txtPrice1"
+                android:background="#696969"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/txtPrice1"/>
 
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>
+
