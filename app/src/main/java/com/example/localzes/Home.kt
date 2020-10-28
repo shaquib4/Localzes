@@ -72,7 +72,9 @@ class Home : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                (shops as ArrayList<Upload>).clear()
                 for (i in snapshot.children) {
+
                     val obj = Upload(
                         i.child("uid").value.toString(),
                         i.child("name").value.toString(),
