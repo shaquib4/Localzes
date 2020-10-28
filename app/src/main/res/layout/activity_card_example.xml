@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card1"
@@ -11,6 +12,8 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:elevation="5dp"
+
+        android:background="@drawable/bg_ractangle_rounded_stroke"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
@@ -22,13 +25,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_180sdp"
                 android:scaleType="fitXY"
-                android:src="@drawable/shop" />
+                android:src="@drawable/lanju" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"
+                android:layout_below="@+id/imgElectronics"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_marginBottom="10dp"
+                android:background="#696969" />
+
 
             <TextView
                 android:id="@+id/txtElectronics"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imgElectronics"
+                android:layout_below="@+id/view"
                 android:layout_marginStart="20dp"
                 android:text="Elecronics Accessoies"
                 android:textColor="#000000"
@@ -38,7 +52,7 @@
                 android:id="@+id/txtVews1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imgElectronics"
+                android:layout_below="@+id/view"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="20dp"
                 android:text="Views: 722 "
@@ -72,7 +86,7 @@
                 android:layout_height="1dp"
                 android:layout_below="@+id/txtPrice1"
                 android:layout_margin="10dp"
-                android:background="#696969" />
+                android:background="" />
 
             <ImageView
                 android:id="@+id/imgRating"
@@ -94,6 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgBorder5"
                 android:textSize="@dimen/_12ssp"
+                android:layout_marginRight="20dp"
                 android:textStyle="bold"
                 android:textColor="#ff0000"
                 android:layout_marginStart="10dp"
