@@ -6,7 +6,7 @@
     android:background="@drawable/reddish">
 
     <TextView
-        android:layout_width="245dp"
+        android:layout_width="wrap_content"
         android:layout_height="28dp"
         android:text="@string/create_your_account"
         android:textSize="25dp"
