@@ -13,7 +13,7 @@
         android:layout_marginTop="10dp"
         android:elevation="5dp"
 
-        android:background="@drawable/bg_ractangle_rounded_stroke"
+        android:background="@drawable/bg_product_shop"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
