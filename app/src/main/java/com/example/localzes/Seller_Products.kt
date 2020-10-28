@@ -2,7 +2,9 @@ package com.example.localzes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -18,6 +20,7 @@ class Seller_Products : AppCompatActivity() {
         setContentView(R.layout.activity_seller__products)
         mSellerProducts = ArrayList<ModelAddProduct>()
         recyclerSellerProducts = findViewById(R.id.recycler_view_seller_products)
+        recyclerSellerProducts.layoutManager=LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid

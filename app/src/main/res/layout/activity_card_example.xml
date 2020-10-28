@@ -21,8 +21,7 @@
                 android:id="@+id/imgElectronics"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
-                android:scaleType="centerCrop"
-
+                android:scaleType="fitXY"
                 android:src="@drawable/lanju" />
 
             <View
@@ -31,10 +30,10 @@
                 android:layout_height="1.3dp"
                 android:layout_below="@+id/imgElectronics"
                 android:layout_marginStart="@dimen/_2sdp"
-                android:background="#eaeaea"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_marginBottom="7dp"
-                />
+                android:layout_marginBottom="10dp"
+                android:background="#eaeaea" />
 
 
             <TextView

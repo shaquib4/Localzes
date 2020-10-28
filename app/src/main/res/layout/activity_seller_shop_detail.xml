@@ -56,18 +56,20 @@
                     android:layout_height="@dimen/_165sdp"
                     android:layout_margin="@dimen/_7sdp"
                     app:cardCornerRadius="10dp">
-                    <ImageView
-                        android:id="@+id/choose_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:scaleType="fitXY" />
+
                     <ImageView
 
                         android:layout_width="155dp"
                         android:layout_height="155dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_add_image" />
+                    <ImageView
+                        android:id="@+id/choose_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="fitXY" />
+
 
                 </androidx.cardview.widget.CardView>
 
