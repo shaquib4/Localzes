@@ -8,7 +8,7 @@
         android:id="@+id/card1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_225sdp"
-        android:layout_marginHorizontal="7dp"
+        android:layout_marginHorizontal="5dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_product_shop"
         app:cardCornerRadius="10dp">
