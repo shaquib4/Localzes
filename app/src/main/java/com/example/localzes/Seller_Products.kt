@@ -33,6 +33,7 @@ class Seller_Products : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                (mSellerProducts as ArrayList<ModelAddProduct>).clear()
                 for (i in snapshot.children) {
                     val obj = ModelAddProduct(
                         i.child("productId").value.toString(),

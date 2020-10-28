@@ -23,6 +23,7 @@
         tools:listitem="@layout/shop_single_customer"/>
 
     <RelativeLayout
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fcfcfc"
