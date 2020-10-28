@@ -37,7 +37,7 @@
         android:layout_height="43.8dp"
         android:layout_marginLeft="25.9dp"
         android:layout_marginTop="16.64dp"
-        android:background="@drawable/emailreg"
+        android:background="@drawable/emailregs"
         android:paddingStart="45dp"
         android:layout_marginRight="18dp"
         android:textSize="14sp"
