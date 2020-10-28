@@ -20,7 +20,7 @@
             <ImageView
                 android:id="@+id/imgElectronics"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_180sdp"
+                android:layout_height="@dimen/_170sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/lanju" />
 
