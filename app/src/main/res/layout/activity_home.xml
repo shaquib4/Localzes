@@ -6,42 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".Home"
     android:orientation="vertical">
-
-
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:id="@+id/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:textSize="18sp"/>
-        <TextView
-            android:layout_below="@id/user_name"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:id="@+id/user_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="18sp"/>
-        <TextView
-            android:layout_below="@id/user_email"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:id="@+id/user_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone number"
-            android:textSize="18sp"/></RelativeLayout>
+        android:layout_height="wrap_content"
+        android:background="#ff4500"
+        app:titleTextAppearance="@font/montserrat_bold" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/bottom_navHome"
+        android:padding="2dp"
+        android:layout_marginTop="1dp"
+        app:stackFromEnd="true"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fcfcfc"
-        android:id="@+id/progress_home">
+        android:id="@+id/progress_home"
+        android:visibility="gone">
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
