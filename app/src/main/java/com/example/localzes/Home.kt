@@ -76,7 +76,7 @@ class Home : AppCompatActivity() {
                 for (i in snapshot.children) {
 
                     val obj = Upload(
-                        i.child("uid").value.toString(),
+                        i.child("shopId").value.toString(),
                         i.child("name").value.toString(),
                         i.child("email").value.toString(),
                         i.child("address").value.toString(),

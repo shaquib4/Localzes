@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 
 class UserProductsActivity : AppCompatActivity() {
-    var shopId: String? = "100"
+    private var shopId: String? = "100"
     private lateinit var mUserProductDatabase: DatabaseReference
     private lateinit var mUserProducts:List<ModelAddProduct>
     private lateinit var recyclerUserProduct:RecyclerView
@@ -15,7 +15,7 @@ class UserProductsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_products)
-        shopId = intent.getStringExtra("ShopId")
+        shopId = intent.getStringExtra("shopId")
         mUserProducts=ArrayList<ModelAddProduct>()
         recyclerUserProduct=findViewById(R.id.recycler_shop_user_products)
         recyclerUserProduct.layoutManager=LinearLayoutManager(this)
