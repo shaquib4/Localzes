@@ -34,7 +34,6 @@ class AdapterUserShops(val context:Context,private val shopsUser:List<Upload>):R
         Picasso.get().load(shops_user.imageUrl).into(holder.imgShop)
         holder.shopName.text=shops_user.shop_name
         holder.shopCategory.text=shops_user.category1
-
         holder.itemView.setOnClickListener{
             val intent=Intent(context,UserProductsActivity::class.java)
             intent.putExtra("shopId",shops_user.shopId)
