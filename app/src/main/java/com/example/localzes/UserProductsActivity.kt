@@ -11,7 +11,7 @@ class UserProductsActivity : AppCompatActivity() {
     private lateinit var mUserProductDatabase: DatabaseReference
     private lateinit var mUserProducts:List<ModelAddProduct>
     private lateinit var recyclerUserProduct:RecyclerView
-    private lateinit var userProductAdapter:AdapterSellerProducts
+    private lateinit var userProductAdapter:AdapterUserProducts
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_products)
@@ -42,7 +42,7 @@ class UserProductsActivity : AppCompatActivity() {
                     )
                     (mUserProducts as ArrayList<ModelAddProduct>).add(obj)
                 }
-                userProductAdapter=AdapterSellerProducts(this@UserProductsActivity,mUserProducts)
+                userProductAdapter=AdapterUserProducts(this@UserProductsActivity,mUserProducts)
                 recyclerUserProduct.adapter=userProductAdapter
             }
 
