@@ -63,5 +63,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val btnAddToCart:Button=view.findViewById(R.id.btncontinue)
 
 
+        
+
     }
 }
