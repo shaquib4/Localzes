@@ -80,7 +80,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.4"
-                    android:background="#a9a9a9"
+
+                    android:background="@drawable/add_item_decrease"
                     android:onClick="countIn"
                     android:text="+"
                     android:textColor="#000000"
@@ -90,6 +91,7 @@
                 <TextView
                     android:id="@+id/txtCounter"
                     android:layout_width="0dp"
+                    android:background="@drawable/add_item_quantity"
                     android:layout_height="match_parent"
                     android:layout_weight="3.2"
                     android:gravity="center"
@@ -101,7 +103,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.4"
-                    android:background="#a9a9a9"
+                    android:background="@drawable/add_item_increase"
                     android:onClick="countDe"
                     android:text="-"
                     android:textColor="#000000"
@@ -113,7 +115,9 @@
     <Button
         android:id="@+id/btncontinue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+        android:background="#de4500"
+        android:layout_marginHorizontal="2dp"
         android:layout_below="@id/Continue"
         android:text="Add To Cart"
         android:textAllCaps="false"
