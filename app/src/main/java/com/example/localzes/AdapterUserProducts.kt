@@ -45,7 +45,23 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         holder.productOfferPrice.text=spannableString
         holder.addItem.setOnClickListener {
+            showQuantityDialog(userProducts)
 
         }
+    }
+
+    private fun showQuantityDialog(userProducts: ModelAddProduct) {
+        val view=LayoutInflater.from(context).inflate(R.layout.cart_list,null)
+        val productName:TextView=view.findViewById(R.id.ProductName)
+        val originalPriceEach:TextView=view.findViewById(R.id.ProductPrice)
+        val originalOfferPriceEach:TextView=view.findViewById(R.id.ProductOfferPrice)
+        val productImage:ImageView=view.findViewById(R.id.ProductImage)
+        val finalPrice:TextView=view.findViewById(R.id.ProductFinalPrice)
+        val btnIncrease:Button=view.findViewById(R.id.btnIncrease)
+        val btnDecrease:Button=view.findViewById(R.id.btnDecrease)
+        val finalQuantity:TextView=view.findViewById(R.id.txtCounter)
+        val btnAddToCart:Button=view.findViewById(R.id.btncontinue)
+
+
     }
 }
