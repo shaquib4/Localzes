@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card1"
+        android:id="@+id/card1_customer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_225sdp"
         android:layout_marginHorizontal="5dp"
@@ -19,17 +19,17 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imgProduct"
+                android:id="@+id/imgProduct_customer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/lanju" />
 
             <View
-                android:id="@+id/view"
+                android:id="@+id/view_customer"
                 android:layout_width="match_parent"
                 android:layout_height="1.3dp"
-                android:layout_below="@+id/imgProduct"
+                android:layout_below="@+id/imgProduct_customer"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:background="#eaeaea"
                 android:layout_marginEnd="@dimen/_2sdp"
@@ -38,20 +38,20 @@
 
 
             <TextView
-                android:id="@+id/txtProductTitle"
+                android:id="@+id/txtProductTitle_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/view"
+                android:layout_below="@+id/view_customer"
                 android:layout_marginStart="10dp"
                 android:text="Elecronics Accessories"
                 android:fontFamily="@font/montserrat_medium"
                 android:textColor="#000"
                 android:textSize="@dimen/_13ssp" />
             <TextView
-                android:id="@+id/txtProductPrice"
+                android:id="@+id/txtProductPrice_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtProductTitle"
+                android:layout_below="@+id/txtProductTitle_customer"
                 android:layout_marginStart="10dp"
                 android:text="Rs. 699"
                 android:textColor="#de4500"
@@ -59,20 +59,20 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/imgRating"
+                android:id="@+id/imgRating_customer"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
                 android:layout_marginTop="8.5dp"
-                android:layout_below="@id/imgProduct"
-                android:layout_toLeftOf="@+id/txtRatingShop"
+                android:layout_below="@id/imgProduct_customer"
+                android:layout_toLeftOf="@+id/txtRatingShop_customer"
                 android:src="@drawable/ic_rating" />
 
             <TextView
-                android:id="@+id/txtRatingShop"
+                android:id="@+id/txtRatingShop_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_18sdp"
 
-                android:layout_alignTop="@+id/txtProductTitle"
+                android:layout_alignTop="@+id/txtProductTitle_customer"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="10dp"
                 android:text="4.5/5"
@@ -82,10 +82,10 @@
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_12sdp"
-                android:layout_alignLeft="@+id/txtProductPrice"
+                android:layout_alignLeft="@+id/txtProductPrice_customer"
                 android:text="Rs. 1099"
                 android:textSize="@dimen/_10ssp"
-                android:layout_below="@+id/txtProductPrice"/>
+                android:layout_below="@+id/txtProductPrice_customer"/>
 
 
         </RelativeLayout>

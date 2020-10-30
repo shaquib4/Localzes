@@ -14,9 +14,9 @@ import com.squareup.picasso.Picasso
 
 class AdapterSellerProducts(val context:Context,private val products_seller:List<ModelAddProduct>) : RecyclerView.Adapter<AdapterSellerProducts.HolderProduct>() {
     class HolderProduct(view: View) : RecyclerView.ViewHolder(view){
-        val imgProduct: ImageView =view.findViewById(R.id.imgProduct)
-        val txtProductTitle: TextView =view.findViewById(R.id.txtProductTitle)
-        val txtProductPrice:TextView=view.findViewById(R.id.txtProductPrice)
+        val imgProduct: ImageView =view.findViewById(R.id.imgProduct_customer)
+        val txtProductTitle: TextView =view.findViewById(R.id.txtProductTitle_customer)
+        val txtProductPrice:TextView=view.findViewById(R.id.txtProductPrice_customer)
         val txtProductOfferPrice:TextView=view.findViewById(R.id.txtProductOfferPrice)
     }
 

@@ -27,7 +27,7 @@
                 android:src="@drawable/lanju" />
 
             <View
-                android:id="@+id/view"
+                android:id="@+id/view_customer"
                 android:layout_width="match_parent"
                 android:layout_height="1.3dp"
                 android:layout_below="@+id/imgShop"
@@ -42,7 +42,7 @@
                 android:id="@+id/txtShop_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/view"
+                android:layout_below="@+id/view_customer"
                 android:layout_marginStart="10dp"
                 android:text="Khan Shops"
                 android:fontFamily="@font/montserrat_medium"
@@ -63,16 +63,16 @@
                android:fontFamily="@font/montserrat_medium" />
 
             <ImageView
-                android:id="@+id/imgRating"
+                android:id="@+id/imgRating_customer"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
                 android:layout_marginTop="12dp"
                 android:layout_below="@id/imgShop"
-                android:layout_toLeftOf="@+id/txtRatingShop"
+                android:layout_toLeftOf="@+id/txtRatingShop_customer"
                 android:src="@drawable/ic_rating" />
 
             <TextView
-                android:id="@+id/txtRatingShop"
+                android:id="@+id/txtRatingShop_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_18sdp"
                 android:layout_marginTop="5dp"
