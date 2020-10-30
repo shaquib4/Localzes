@@ -157,7 +157,7 @@
                     android:layout_gravity="bottom"
                     android:layout_marginHorizontal="@dimen/_22sdp"
                     android:layout_marginTop="120dp"
-                    android:background="@drawable/round2_button"
+                    android:background="@drawable/round2_btn"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="Upload"
                     android:textAllCaps="false"

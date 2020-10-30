@@ -42,8 +42,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view"
                 android:layout_marginStart="10dp"
-                android:text="Elecronics Accessoies"
                 android:fontFamily="@font/montserrat_medium"
+                android:text="Elecronics Accessoies"
 
                 android:textColor="#000"
                 android:textSize="@dimen/_13ssp" />
@@ -55,8 +55,8 @@
                 android:layout_alignBottom="@+id/txtCategory"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="5dp"
-                android:text="Stock: IN "
                 android:fontFamily="@font/montserrat_medium"
+                android:text="Stock: IN "
                 android:textColor="#3498db"
                 android:textSize="@dimen/_11ssp" />
 
@@ -75,8 +75,8 @@
                 android:id="@+id/imgRating"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
-                android:layout_marginTop="15dp"
                 android:layout_below="@id/imgShop"
+                android:layout_marginTop="15dp"
                 android:layout_toLeftOf="@+id/txtRatingShop"
                 android:src="@drawable/ic_rating" />
 
@@ -91,20 +91,22 @@
                 android:text="4.5/5"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_11ssp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_12sdp"
+                android:layout_below="@+id/txtCategory"
                 android:layout_alignLeft="@+id/txtCategory"
                 android:text="Rs. 1099"
-                android:textSize="@dimen/_10ssp"
-                android:layout_below="@+id/txtCategory"/>
+                android:textSize="@dimen/_10ssp" />
+
             <View
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="1.0dp"
+                android:layout_below="@id/txtCategory"
                 android:layout_alignLeft="@+id/txtCategory"
-                android:background="#696969"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/txtCategory"/>
+                android:background="#696969" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

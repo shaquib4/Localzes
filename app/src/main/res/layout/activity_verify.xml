@@ -47,7 +47,7 @@
             android:layout_width="260dp"
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/round2_button"
+            android:background="@drawable/round2_btn"
             android:text="Verifying"
             android:textAllCaps="false"
             android:textColor="#ffffff"

@@ -39,7 +39,7 @@
         android:textColor="#fcfcfc"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:background="@drawable/round2_button"
+        android:background="@drawable/round2_btn"
         />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navCart"
