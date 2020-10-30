@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
-                android:text="Product Name"
+                android:text="Nachos and dips  "
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#000000"
                 android:textStyle="bold" />
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
-                android:text="Seller:Shop Name"
+                android:text="Seller:Khan Baba"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -40,15 +40,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
-                android:text="Price"
+                android:text="Rs.1000"
                 android:textSize="20sp" />
             <TextView
                 android:id="@+id/ProductFinalPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
-                android:text="Final Price"
-                android:textSize="28sp" />
+                android:text="Rs.850"
+                android:textStyle="bold"
+                android:textColor="#de4500"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
@@ -62,8 +64,8 @@
                 android:id="@+id/ProductImage"
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/image01" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/lanju" />
 
             <LinearLayout
                 android:layout_width="match_parent"
