@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.app.AlertDialog
 import android.content.Context
 import android.text.SpannableString
 import android.text.Spanned
@@ -43,27 +44,68 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
         spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        holder.productOfferPrice.text=spannableString
+        holder.productOfferPrice.text = spannableString
         holder.addItem.setOnClickListener {
             showQuantityDialog(userProducts)
 
         }
     }
 
+    private var cost: Double = 0.0
+    private var finalCost: Double = 0.0
+    private var quantity: Int = 0
+
     private fun showQuantityDialog(userProducts: ModelAddProduct) {
-        val view=LayoutInflater.from(context).inflate(R.layout.cart_list,null)
-        val productName:TextView=view.findViewById(R.id.ProductName)
-        val originalPriceEach:TextView=view.findViewById(R.id.ProductPrice)
-        val originalOfferPriceEach:TextView=view.findViewById(R.id.ProductOfferPrice)
-        val productImage:ImageView=view.findViewById(R.id.ProductImage)
-        val finalPrice:TextView=view.findViewById(R.id.ProductFinalPrice)
-        val btnIncrease:Button=view.findViewById(R.id.btnIncrease)
-        val btnDecrease:Button=view.findViewById(R.id.btnDecrease)
-        val finalQuantity:TextView=view.findViewById(R.id.txtCounter)
-        val btnAddToCart:Button=view.findViewById(R.id.btncontinue)
+        val view = LayoutInflater.from(context).inflate(R.layout.add_to_cart, null)
+        val productName: TextView = view.findViewById(R.id.ProductName)
+        val originalPriceEach: TextView = view.findViewById(R.id.ProductPrice)
+        val originalOfferPriceEach: TextView = view.findViewById(R.id.ProductOfferPrice)
+        val productImage: ImageView = view.findViewById(R.id.ProductImage)
+        val finalPrice: TextView = view.findViewById(R.id.ProductFinalPrice)
+        val btnIncrease: Button = view.findViewById(R.id.btnIncrease)
+        val btnDecrease: Button = view.findViewById(R.id.btnDecrease)
+        val finalQuantity: TextView = view.findViewById(R.id.txtCounter)
+        val btnAddToCart: Button = view.findViewById(R.id.btncontinue)
+
+        val productId = userProducts.productId
+        val productTitle = userProducts.title
+        val productUrl = userProducts.imageUrl
+        quantity = 1
+        cost = userProducts.offerPrice.toDouble()
+        finalCost = userProducts.offerPrice.toDouble()
+        val builder = AlertDialog.Builder(context)
+        builder.setView(view)
+        Picasso.get().load(productUrl).into(productImage)
+        productName.text = productTitle
+        originalPriceEach.text = "Rs. ${userProducts.sellingPrice}"
+        originalOfferPriceEach.text = "Rs. ${userProducts.offerPrice}"
+        finalPrice.text = "Rs. ${finalCost.toString()}"
+        finalQuantity.text = quantity.toString()
+        val dialog = builder.create()
+        dialog.show()
+        btnIncrease.setOnClickListener {
+            finalCost += cost
+            quantity++
+            val amount = finalCost
+            finalPrice.text = "Rs. ${amount}"
+            finalQuantity.text = "Rs. ${quantity}"
+        }
+        btnDecrease.setOnClickListener {
+            if (quantity > 1) {
+                finalCost -= cost
+                quantity--
+                val amount = finalCost
+                finalPrice.text = "Rs. ${amount}"
+                finalQuantity.text = quantity.toString()
+            }
+            btnAddToCart.setOnClickListener {
 
 
-        
+            }
+
+
+        }
+
 
     }
 }
