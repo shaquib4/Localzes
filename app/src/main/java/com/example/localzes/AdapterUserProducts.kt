@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 class AdapterUserProducts(val context: Context, private val products_user: List<ModelAddProduct>) :
@@ -88,7 +89,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             quantity++
             val amount = finalCost
             finalPrice.text = "Rs. ${amount}"
-            finalQuantity.text = "Rs. ${quantity}"
+            finalQuantity.text = quantity.toString()
         }
         btnDecrease.setOnClickListener {
             if (quantity > 1) {
@@ -99,12 +100,27 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 finalQuantity.text = quantity.toString()
             }
             btnAddToCart.setOnClickListener {
+                val auth:FirebaseAuth=FirebaseAuth.getInstance()
+                val user=auth.currentUser
+                val uid=user!!.uid
+                val title=productName.text.toString().trim()
+                val priceEach=originalOfferPriceEach.text.toString().trim()
+                val finalPr=finalPrice.text.toString().replace("Rs. ","").trim()
+                val finalQ=finalQuantity.text.toString().trim()
+                addToCart(uid,title,priceEach,finalPr,finalQ)
+                dialog.dismiss()
+
 
 
             }
 
 
         }
+
+
+    }
+
+    private fun addToCart(uid: String, title: String, priceEach: String, finalPr: String, finalQ: String) {
 
 
     }
