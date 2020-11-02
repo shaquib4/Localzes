@@ -64,7 +64,10 @@ class AddProduct : AppCompatActivity() {
                     productRef.downloadUrl.addOnSuccessListener {
                         val imageUrl: Uri = it
                         val timestamp: String = "" + System.currentTimeMillis()
+                        val user = auth.currentUser
+                        val uid = user!!.uid
                         products = ModelAddProduct(
+                            uid,
                             timestamp,
                             imageUrl.toString(),
                             sp_spinner_add.selectedItem.toString(),
@@ -76,8 +79,7 @@ class AddProduct : AppCompatActivity() {
                             etQuantity.text.toString().trim()
                         )
 
-                        val user = auth.currentUser
-                        val uid = user!!.uid
+
 
                         mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller")
                         mCartDatabaseRef.child(uid).child("Products").child(timestamp)

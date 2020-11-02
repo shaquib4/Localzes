@@ -30,6 +30,7 @@ class UserProductsActivity : AppCompatActivity() {
                 (mUserProducts as ArrayList<ModelAddProduct>).clear()
                 for (i in snapshot.children) {
                     val obj = ModelAddProduct(
+                        i.child("shopId").value.toString(),
                         i.child("productId").value.toString(),
                         i.child("imageUrl").value.toString(),
                         i.child("productCategory").value.toString(),
