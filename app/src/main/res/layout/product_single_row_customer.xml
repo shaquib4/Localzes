@@ -24,6 +24,50 @@
                 android:layout_height="@dimen/_160sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/lanju" />
+            <TextView
+                android:id="@+id/txtStock_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/txtProductPrice_customer"
+                android:layout_marginStart="85dp"
+                android:layout_marginEnd="5dp"
+                android:text="Stock: IN "
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="#3498db"
+                android:textSize="@dimen/_11ssp" />
+            <ImageView
+                android:id="@+id/imgRating_customer"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_marginTop="8.5dp"
+                android:layout_below="@id/imgProduct_customer"
+                android:layout_toLeftOf="@+id/txtRatingShop_customer"
+                android:src="@drawable/ic_rating" />
+            <TextView
+                android:id="@+id/txtRatingShop_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_18sdp"
+                android:padding="2dp"
+                android:layout_alignTop="@+id/txtProductTitle_customer"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:text="4.5/5"
+                android:textColor="#de4500"
+                android:textSize="@dimen/_11ssp" />
+            <Button
+                android:id="@+id/btnAddItem"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_21sdp"
+                android:layout_below="@id/txtRatingShop_customer"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_add_item"
+                android:text="Add +"
+                android:textAllCaps="false"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="#696969"
+                android:textSize="@dimen/_13ssp" />
 
             <View
                 android:id="@+id/view_customer"
