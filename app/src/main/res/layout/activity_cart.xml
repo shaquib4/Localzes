@@ -7,6 +7,17 @@
     android:background="#fcfcfc"
     tools:context=".Cart">
 
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/imgCart"
         android:layout_width="150dp"
@@ -49,5 +60,6 @@
         android:background="#fff"
         app:menu="@menu/customer_menu"
         />
+    </RelativeLayout>
 
 </RelativeLayout>

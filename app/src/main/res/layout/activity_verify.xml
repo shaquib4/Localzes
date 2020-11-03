@@ -4,67 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#fcfcfc"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_centerHorizontal="true"
+        android:id="@+id/layout_otp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" android:layout_marginTop="350dp"
-        android:layout_gravity="center"
-        android:id="@+id/layout_otp">
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
 
         <com.chaos.view.PinView
-
             android:id="@+id/otp"
-            android:layout_weight="1"
-            app:itemCount="6"
-            app:lineWidth="1dp"
-            app:lineColor="#000"
-            android:itemBackground="#fff"
             android:layout_width="wrap_content"
-
+            android:layout_height="wrap_content"
+            android:itemBackground="#fff"
+            app:itemCount="6"
             app:itemRadius="6dp"
-            android:layout_height="50dp" />
-
-
-
-
+            app:lineColor="#000"
+            app:lineWidth="1dp" />
 
     </LinearLayout>
+
     <RelativeLayout
+
+        android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:layout_below="@id/layout_otp"
-        >
+        android:layout_marginTop="25dp">
 
         <Button
             android:id="@+id/btnVerify"
-
-            android:layout_width="260dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_centerHorizontal="true"
             android:background="@drawable/round2_btn"
             android:text="Verifying"
             android:textAllCaps="false"
             android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:textSize="@dimen/_15ssp"
             android:textStyle="bold" />
 
-
-
     </RelativeLayout>
+
     <ProgressBar
         android:id="@+id/progress_verify"
-        android:layout_below="@id/layout_otp"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="250dp"
-        android:background="#de4500"
-        />
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_below="@id/relative"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
 
 </RelativeLayout>
