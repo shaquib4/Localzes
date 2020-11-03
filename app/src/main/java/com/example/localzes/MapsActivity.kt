@@ -7,6 +7,7 @@ import android.location.Address
 import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -20,8 +21,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_maps.*
 import java.util.*
 
@@ -35,6 +36,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
     private lateinit var userDatabase: DatabaseReference
+    private lateinit var userDatabases: DatabaseReference
     private fun getLocationAccess() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             map.isMyLocationEnabled = true
@@ -84,12 +86,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth= FirebaseAuth.getInstance()
+
         btncontinue.setOnClickListener {
-            val name=intent.getStringExtra("name")
-            val phone=intent.getStringExtra("phone3")
-            val email=intent.getStringExtra("email")
-            val address=btnmap.text.toString()
-            customReg(name, email,phone ,address )
+            userDatabases= FirebaseDatabase.getInstance().reference.child("customers").child(firebaseUser!!.uid)
+            userDatabases!!.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()){
+                        progress_home.visibility= View.GONE
+                        val user:ModelClass?=snapshot.getValue(ModelClass::class.java)
+                        val phone:String?=user!!.getPhone()
+                        val name=intent.getStringExtra("name")
+                        val email=intent.getStringExtra("email")
+                        val address=btnmap.text.toString()
+                        customReg(name, email,phone ,address )
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+
+
+            })
+
         }
     }
 
