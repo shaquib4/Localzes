@@ -8,9 +8,9 @@
     <TextView
         android:id="@+id/localze"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:text="Localze"
-        android:textSize="50sp"
+        android:textSize="@dimen/_40ssp"
         android:textColor="#fff"
         android:fontFamily="@font/montserrat_bold"
         android:textStyle="bold"

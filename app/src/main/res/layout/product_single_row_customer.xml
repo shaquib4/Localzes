@@ -31,11 +31,9 @@
                 android:layout_height="1.3dp"
                 android:layout_below="@+id/imgProduct_customer"
                 android:layout_marginStart="@dimen/_2sdp"
-                android:background="#eaeaea"
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_marginBottom="7dp"
-                />
-
+                android:background="#eaeaea" />
 
             <TextView
                 android:id="@+id/txtProductTitle_customer"
@@ -43,35 +41,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view_customer"
                 android:layout_marginStart="10dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Elecronics Accessories"
-                android:fontFamily="@font/montserrat_medium"
                 android:textColor="#000"
-                android:textSize="@dimen/_13ssp" />
-
-            <TextView
-                android:id="@+id/txtStock_customer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/txtProductPrice_customer"
-                android:layout_marginStart="85dp"
-                android:layout_marginEnd="5dp"
-                android:text="Stock: IN "
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="#3498db"
-                android:textSize="@dimen/_11ssp" />
-            <Button
-                android:id="@+id/btnAddItem"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_21sdp"
-                android:layout_below="@id/txtRatingShop_customer"
-                android:layout_marginTop="2dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/bg_add_item"
-                android:text="Add +"
-                android:textAllCaps="false"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="#696969"
                 android:textSize="@dimen/_13ssp" />
 
             <TextView
@@ -85,38 +57,15 @@
                 android:textSize="@dimen/_12ssp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/imgRating_customer"
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_marginTop="8.5dp"
-                android:layout_below="@id/imgProduct_customer"
-                android:layout_toLeftOf="@+id/txtRatingShop_customer"
-                android:src="@drawable/ic_rating" />
-
-            <TextView
-                android:id="@+id/txtRatingShop_customer"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_18sdp"
-                android:padding="2dp"
-                android:layout_alignTop="@+id/txtProductTitle_customer"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="10dp"
-                android:text="4.5/5"
-                android:textColor="#de4500"
-                android:textSize="@dimen/_11ssp" />
             <TextView
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_12sdp"
-                android:layout_alignLeft="@+id/txtProductPrice_customer"
+                android:layout_below="@+id/txtProductPrice_customer"
+                android:layout_alignStart="@+id/txtProductPrice_customer"
                 android:text="Rs. 1099"
-                android:textSize="@dimen/_10ssp"
-                android:layout_below="@+id/txtProductPrice_customer"/>
-
-
+                android:textSize="@dimen/_10ssp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
 </RelativeLayout>
 

@@ -11,20 +11,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
 class AdapterUserProducts(val context: Context, private val products_user: List<ModelAddProduct>) :
     RecyclerView.Adapter<AdapterUserProducts.HolderUserProducts>() {
-    class HolderUserProducts(view: View) : RecyclerView.ViewHolder(view) {
-        val productImage: ImageView = view.findViewById(R.id.imgProduct_customer)
-        val productTitle: TextView = view.findViewById(R.id.txtProductTitle_customer)
-        val productPrice: TextView = view.findViewById(R.id.txtProductPrice_customer)
-        val productOfferPrice: TextView = view.findViewById(R.id.txtProductOfferPrice)
-        val addItem: Button = view.findViewById(R.id.btnAddItem)
 
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderUserProducts {
         val view = LayoutInflater.from(parent.context)
@@ -100,28 +96,40 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 finalQuantity.text = quantity.toString()
             }
             btnAddToCart.setOnClickListener {
-                val auth:FirebaseAuth=FirebaseAuth.getInstance()
-                val user=auth.currentUser
-                val uid=user!!.uid
-                val title=productName.text.toString().trim()
-                val priceEach=originalOfferPriceEach.text.toString().trim()
-                val finalPr=finalPrice.text.toString().replace("Rs. ","").trim()
-                val finalQ=finalQuantity.text.toString().trim()
-                addToCart(uid,title,priceEach,finalPr,finalQ)
+                val auth: FirebaseAuth = FirebaseAuth.getInstance()
+                val user = auth.currentUser
+                val uid = user!!.uid
+                val title = productName.text.toString().trim()
+                val priceEach = originalOfferPriceEach.text.toString().trim()
+                val finalPr = finalPrice.text.toString().replace("Rs. ", "").trim()
+                val finalQ = finalQuantity.text.toString().trim()
+                addToCart(uid, title, priceEach, finalPr, finalQ, userProducts.shopId,productId)
                 dialog.dismiss()
-
-
-
             }
-
-
         }
-
-
     }
-
-    private fun addToCart(uid: String, title: String, priceEach: String, finalPr: String, finalQ: String) {
-
+    private lateinit var cart:UserCartDetails
+    private lateinit var cartDetails:DatabaseReference
+    private fun addToCart(
+        uid: String,
+        title: String,
+        priceEach: String,
+        finalPr: String,
+        finalQ: String,
+        shopId: String,
+        productId: String
+    ) {
+        cart=UserCartDetails(uid,title,priceEach,finalPr,finalQ,shopId)
+        cartDetails= FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Cart")
+        cartDetails.child(productId).setValue(cart)
+        Toast.makeText(context,"Item added in the cart",Toast.LENGTH_SHORT).show()
+    }
+    inner class HolderUserProducts(view: View) : RecyclerView.ViewHolder(view) {
+        val productImage: ImageView = view.findViewById(R.id.imgProduct_customer)
+        val productTitle: TextView = view.findViewById(R.id.txtProductTitle_customer)
+        val productPrice: TextView = view.findViewById(R.id.txtProductPrice_customer)
+        val productOfferPrice: TextView = view.findViewById(R.id.txtProductOfferPrice)
+        val addItem: Button = view.findViewById(R.id.btnAddItem)
 
     }
 }
