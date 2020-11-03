@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
+    android:layout_height="@dimen/_200sdp">
 
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="10dp"
-
         android:id="@+id/cardProduct"
-        android:layout_margin="@dimen/_10sdp"
+
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        app:cardCornerRadius="10dp">
+
         <LinearLayout
             android:id="@+id/Continue"
             android:layout_width="match_parent"
@@ -31,10 +30,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:textSize="@dimen/_20ssp"
                     android:text="Nachos and dips"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#000000"
+                    android:textSize="@dimen/_20ssp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -45,41 +44,43 @@
                     android:text="Seller:Khan Baba"
                     android:textSize="@dimen/_13ssp"
                     android:textStyle="bold" />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-   android:weightSum="2">
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:id="@+id/ProductPrice"
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rs.1000"
-                    android:textSize="@dimen/_15ssp" />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-       <TextView
-                    android:layout_weight="1"
-                    android:layout_marginStart="@dimen/_6sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:id="@+id/ProductOfferPrice"
+                    <TextView
+                        android:id="@+id/ProductPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_weight="1"
+                        android:text="Rs.1000"
+                        android:textSize="@dimen/_15ssp" />
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rs.1000"
-                    android:textSize="@dimen/_17ssp" />
-                                 </LinearLayout>
+                    <TextView
+                        android:id="@+id/ProductOfferPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_weight="1"
+                        android:text="Rs.1000"
+                        android:textSize="@dimen/_17ssp" />
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/ProductFinalPrice"
                     android:layout_width="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
                     android:text="Rs.850"
-                    android:textStyle="bold"
                     android:textColor="#de4500"
-                    android:textSize="@dimen/_22ssp" />
+                    android:textSize="@dimen/_22ssp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -92,8 +93,7 @@
                 <ImageView
                     android:id="@+id/ProductImage"
                     android:layout_width="match_parent"
-
-                    android:layout_height="@dimen/_100sdp"
+                    android:layout_height="@dimen/_90sdp"
                     android:scaleType="fitXY"
                     android:src="@drawable/lanju" />
 
@@ -120,13 +120,13 @@
                     <TextView
                         android:id="@+id/txtCounter"
                         android:layout_width="0dp"
-                        android:background="@drawable/add_item_quantity"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
+                        android:background="@drawable/add_item_quantity"
                         android:gravity="center"
-                        android:textSize="@dimen/_15ssp"
                         android:text="1"
                         android:textColor="#696969"
+                        android:textSize="@dimen/_15ssp"
                         android:textStyle="bold" />
 
                     <Button
@@ -145,15 +145,16 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <Button
         android:id="@+id/btncontinue"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_8sdp"
         android:background="#de4500"
-        android:layout_marginHorizontal="10dp"
-        android:layout_below="@id/cardProduct"
         android:text="Add To Cart"
-        android:textColor="#ffffff"
         android:textAllCaps="false"
-        android:textSize="@dimen/_15ssp"/>
+        android:textColor="#ffffff"
+        android:textSize="@dimen/_15ssp" />
 </RelativeLayout>
