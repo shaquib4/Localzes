@@ -31,9 +31,11 @@
                 android:layout_height="1.3dp"
                 android:layout_below="@+id/imgProduct_customer"
                 android:layout_marginStart="@dimen/_2sdp"
+                android:background="#eaeaea"
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_marginBottom="7dp"
-                android:background="#eaeaea" />
+                />
+
 
             <TextView
                 android:id="@+id/txtProductTitle_customer"
@@ -41,10 +43,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view_customer"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/montserrat_medium"
                 android:text="Elecronics Accessories"
+                android:fontFamily="@font/montserrat_medium"
                 android:textColor="#000"
                 android:textSize="@dimen/_13ssp" />
+
 
             <TextView
                 android:id="@+id/txtProductPrice_customer"
@@ -61,11 +64,14 @@
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_12sdp"
-                android:layout_below="@+id/txtProductPrice_customer"
-                android:layout_alignStart="@+id/txtProductPrice_customer"
+                android:layout_alignLeft="@+id/txtProductPrice_customer"
                 android:text="Rs. 1099"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_10ssp"
+                android:layout_below="@+id/txtProductPrice_customer"/>
+
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
 </RelativeLayout>
 
