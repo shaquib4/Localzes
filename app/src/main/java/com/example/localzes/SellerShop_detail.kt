@@ -10,9 +10,10 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.activity_seller_shop_detail.*
 
 class SellerShop_detail : AppCompatActivity() {
@@ -21,6 +22,7 @@ class SellerShop_detail : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var filepath: Uri
     private lateinit var mDatabaseRef: DatabaseReference
+    private lateinit var userDatabases: DatabaseReference
     private lateinit var etShopName: EditText
     private lateinit var btnSave: Button
     private lateinit var etCategory1: Spinner
@@ -49,7 +51,8 @@ class SellerShop_detail : AppCompatActivity() {
             val user = auth.currentUser
             val uid=user!!.uid
 
-            mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+
+
             uploadFile()
         }
 
@@ -71,31 +74,52 @@ class SellerShop_detail : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     imageRef.downloadUrl.addOnSuccessListener {
-                        val downloadUrl: Uri = it
-                        val name=intent.getStringExtra("name")
-                        val email=intent.getStringExtra("email")
-                        val address=intent.getStringExtra("address")
                         val user = auth.currentUser
                         val uid=user!!.uid
-                        upload = Upload(
-                            uid,
-                            name!!.toString().trim(),
-                            email!!.toString().trim(),
-                            address!!.toString().trim(),
-                            etShopName.text.toString().trim(),
-                            downloadUrl.toString(),
-                            etCategory1.selectedItem.toString(),
-                            upi.text.toString().trim()
+                        userDatabases= FirebaseDatabase.getInstance().reference.child("customers").child(uid)
+                        userDatabases!!.addValueEventListener(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if (snapshot.exists()){
+                                    progress_home.visibility= View.GONE
+                                    val users:ModelClass?=snapshot.getValue(ModelClass::class.java)
+                                    val phone:String?=users!!.getPhone()
+                                    val downloadUrl: Uri = it
+                                    val name=intent.getStringExtra("name")
+                                    val email=intent.getStringExtra("email")
+                                    val address=intent.getStringExtra("address")
 
-                        )
+                                    upload = Upload(
+                                        uid,
+                                        phone.toString().trim(),
+                                        name!!.toString().trim(),
+                                        email!!.toString().trim(),
+                                        address!!.toString().trim(),
+                                        etShopName.text.toString().trim(),
+                                        downloadUrl.toString(),
+                                        etCategory1.selectedItem.toString(),
+                                        upi.text.toString().trim()
 
-                        mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
-                            if (task.isSuccessful){
-                                startActivity(Intent(this@SellerShop_detail,AddProduct::class.java))
-                                finish()
-                                Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
+                                    )
+                                    mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                                    mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
+                                        if (task.isSuccessful){
+                                            startActivity(Intent(this@SellerShop_detail,AddProduct::class.java))
+                                            finish()
+                                            Toast.makeText(applicationContext, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+
+                                }
                             }
-                        }
+
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+
+
+
+                        })
+
 
                     }
 
