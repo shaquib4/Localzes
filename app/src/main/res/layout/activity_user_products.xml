@@ -14,5 +14,82 @@
         app:stackFromEnd="true"
         tools:listitem="@layout/product_single_row"/>
 
+  <RelativeLayout
+      android:id="@+id/rl_cart_details"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/_35sdp"
+      android:background="#de4500"
+      android:layout_alignParentBottom="true">
+      <TextView
+         android:id="@+id/quantity_item"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="#fcfcfc"
+          android:layout_marginTop="@dimen/_8sdp"
+          android:layout_marginBottom="@dimen/_8sdp"
+          android:text="1"
+          android:fontFamily="@font/montserrat_medium"
+          android:layout_marginLeft="20sp"
+          android:textSize="18sp"
+          />
+      <TextView
+          android:id="@+id/item"
+          android:layout_toRightOf="@id/quantity_item"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="#fcfcfc"
+          android:layout_marginTop="@dimen/_8sdp"
+          android:layout_marginBottom="@dimen/_8sdp"
+          android:text="item"
+          android:fontFamily="@font/montserrat_medium"
+         android:layout_marginLeft="8dp"
+          android:textSize="18sp"
+          />
+      <TextView
+
+          android:id="@+id/dash"
+          android:layout_toRightOf="@id/item"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="#fcfcfc"
+          android:layout_marginTop="@dimen/_8sdp"
+          android:layout_marginBottom="@dimen/_8sdp"
+          android:text="|"
+          android:fontFamily="@font/montserrat_medium"
+          android:layout_marginLeft="8dp"
+          android:textSize="18sp"
+          />
+      <TextView
+
+
+          android:layout_toRightOf="@id/dash"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="#fcfcfc"
+          android:layout_marginTop="@dimen/_8sdp"
+          android:layout_marginBottom="@dimen/_8sdp"
+          android:text="200"
+          android:fontFamily="@font/montserrat_medium"
+          android:layout_marginLeft="8dp"
+          android:textSize="18sp"
+          />
+      <TextView
+          android:layout_alignParentRight="true"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="#fcfcfc"
+          android:layout_marginTop="@dimen/_8sdp"
+          android:layout_marginBottom="@dimen/_8sdp"
+          android:text="VIEW CART"
+          android:textStyle="bold"
+          android:layout_marginEnd="10dp"
+          android:fontFamily="@font/montserrat_medium"
+          android:layout_marginLeft="8dp"
+          android:textSize="17sp"
+          />
+
+
+  </RelativeLayout>
+
 
 </RelativeLayout>
