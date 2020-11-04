@@ -19,6 +19,7 @@ class AdapterCartItem(val context:Context,private val cart_user:List<UserCartDet
         val quantityCart:TextView=view.findViewById(R.id.txtCounter)
         val btnIncreaseCart:TextView=view.findViewById(R.id.btnIncrease)
         val removeItem:ImageView=view.findViewById(R.id.imgRemove)
+        val productTotalPrice:TextView=view.findViewById(R.id.txtProductTotalPrice)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderUserCart {
@@ -32,9 +33,32 @@ class AdapterCartItem(val context:Context,private val cart_user:List<UserCartDet
 
     override fun onBindViewHolder(holder: HolderUserCart, position: Int) {
         val cartDetails=cart_user[position]
+        val quantity=cartDetails.finalQuantity
+        val cost=cartDetails.finalPrice
+        val costOne=cartDetails.priceEach
         Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)
         holder.productTitleCart.text=cartDetails.productTitle
         holder.productOfferPriceCart.text=cartDetails.priceEach
         holder.productOriginalPriceCart.text=cartDetails.sellingPrice
+        holder.productTotalPrice.text=cartDetails.finalPrice
+        holder.quantityCart.text=quantity
+        var items=quantity.toInt()
+        var updatedCost=cost.toInt()
+        val oneCost=costOne.toInt()
+        holder.btnDecreaseCart.setOnClickListener {
+            if(items>1){
+                updatedCost-=oneCost
+                items--
+                holder.productTotalPrice.text="Rs. ${updatedCost}"
+                holder.quantityCart.text= items.toString()
+            }
+        }
+        holder.btnIncreaseCart.setOnClickListener {
+            updatedCost+=oneCost
+            items++
+            holder.productTotalPrice.text="Rs. ${updatedCost}"
+            holder.quantityCart.text= items.toString()
+        }
+        holder.removeItem.setOnClickListener {  }
     }
 }

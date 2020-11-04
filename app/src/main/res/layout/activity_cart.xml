@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#fcfcfc"
     tools:context=".Cart">
-
     <RelativeLayout
         android:id="@+id/relative1"
         android:layout_width="wrap_content"

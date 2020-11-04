@@ -84,7 +84,7 @@
 
 
                 <TextView
-                    android:id="@+id/txtProductOfferPrice"
+                    android:id="@+id/txtProductTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_12sdp"
                     android:layout_alignStart="@+id/txtProductPrice_customer"
