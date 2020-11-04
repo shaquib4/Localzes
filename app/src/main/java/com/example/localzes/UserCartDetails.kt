@@ -1,5 +1,5 @@
 package com.example.localzes
 
-class UserCartDetails(val orderBy:String,val productTitle:String,val priceEach:String,val finalPrice:String,val finalQuantity:String,val orderTo:String) {
-    constructor():this("","","","","","")
+class UserCartDetails(val orderBy:String,val productTitle:String,val priceEach:String,val finalPrice:String,val finalQuantity:String,val orderTo:String,val productImageUrl:String,val sellingPrice:String) {
+    constructor():this("","","","","","","","")
 }
