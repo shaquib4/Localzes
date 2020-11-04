@@ -10,13 +10,16 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_verify.*
+import java.util.HashMap
 import java.util.concurrent.TimeUnit
 
 class Verify : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     var userDatabase: DatabaseReference?=null
     lateinit var  storedVerificationId:String
+    private lateinit var suserDatabase: DatabaseReference
     lateinit var  resendToken: PhoneAuthProvider.ForceResendingToken
     var firebaseUser: FirebaseUser?=null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,11 +89,28 @@ class Verify : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = task.result?.user
                     progress_verify.visibility= View.GONE
+                    auth= FirebaseAuth.getInstance()
+                    val users = auth.currentUser
+                    var uid=users!!.uid
+                    suserDatabase = FirebaseDatabase.getInstance().reference.child("customers").child(uid)
+
+                    val userMap= HashMap<String,Any>()
                     val phone=  intent.getStringExtra("phone")
                     val intent= Intent(this,Continueas::class.java)
                     intent.putExtra("phone1",phone)
-                    startActivity(intent)
-                    finish()
+                    userMap["uid"]=uid
+                    userMap["phone"]=phone.toString()
+                    suserDatabase.setValue(userMap).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            startActivity(intent)
+                            finish()
+                        }else{
+                            Toast.makeText(
+                                baseContext, "Failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
 
                     // ...
                 } else {

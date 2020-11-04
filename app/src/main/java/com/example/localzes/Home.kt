@@ -77,6 +77,7 @@ class Home : AppCompatActivity() {
 
                     val obj = Upload(
                         i.child("shopId").value.toString(),
+                        i.child("phone").value.toString(),
                         i.child("name").value.toString(),
                         i.child("email").value.toString(),
                         i.child("address").value.toString(),

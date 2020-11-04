@@ -43,26 +43,9 @@ class Continueas : AppCompatActivity() {
                     progress_continue.visibility=View.GONE
                     val phone=intent.getStringExtra("phone1")
                     val intent=Intent(this@Continueas,Registerdetails_seller::class.java)
-                    val user = auth.currentUser
-                    var uid=user!!.uid
-                    suserDatabase = FirebaseDatabase.getInstance().reference.child("customers").child(uid)
+                    startActivity(intent)
+                    finish()
 
-                    val userMap= HashMap<String,Any>()
-                    userMap["uid"]=uid
-                    userMap["phone"]=phone!!.toString()
-
-
-                    suserDatabase.setValue(userMap).addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            startActivity(intent)
-                            finish()
-                        }else{
-                            Toast.makeText(
-                                baseContext, "Failed",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
 
 
                 }
@@ -91,27 +74,8 @@ class Continueas : AppCompatActivity() {
                     progress_continue.visibility= View.GONE
                     val phone=intent.getStringExtra("phone1")
                     val intent= Intent(this@Continueas,Registerdetails::class.java)
-
-                    val user = auth.currentUser
-                    var uid=user!!.uid
-                    cuserDatabase = FirebaseDatabase.getInstance().reference.child("customers").child(uid)
-
-                    val userMap= HashMap<String,Any>()
-                    userMap["uid"]=uid
-                    userMap["phone"]=phone!!.toString()
-
-
-                    cuserDatabase.setValue(userMap).addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            startActivity(intent)
-                            finish()
-                        }else{
-                            Toast.makeText(
-                                baseContext, "Failed",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
+                    startActivity(intent)
+                    finish()
 
 
                 }

@@ -36,7 +36,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
     private lateinit var userDatabase: DatabaseReference
-    private lateinit var userDatabases: DatabaseReference
+    private lateinit var suserDatabase: DatabaseReference
     private fun getLocationAccess() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             map.isMyLocationEnabled = true
@@ -86,13 +86,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth= FirebaseAuth.getInstance()
-
+        val user=auth.currentUser
+        val uid=user!!.uid
+        suserDatabase= FirebaseDatabase.getInstance().reference.child("customers").child(uid)
         btncontinue.setOnClickListener {
-            userDatabases= FirebaseDatabase.getInstance().reference.child("customers").child(firebaseUser!!.uid)
-            userDatabases!!.addValueEventListener(object : ValueEventListener {
+
+            suserDatabase!!.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()){
-                        progress_home.visibility= View.GONE
+
                         val user:ModelClass?=snapshot.getValue(ModelClass::class.java)
                         val phone:String?=user!!.getPhone()
                         val name=intent.getStringExtra("name")
@@ -132,6 +134,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }else{
             userDatabase.setValue(userMap).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    progress_home.visibility= View.GONE
                     startActivity(Intent(this,Home::class.java))
                     finish()
                 }else{

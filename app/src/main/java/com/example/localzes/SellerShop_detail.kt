@@ -80,7 +80,7 @@ class SellerShop_detail : AppCompatActivity() {
                         userDatabases!!.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 if (snapshot.exists()){
-                                    progress_home.visibility= View.GONE
+
                                     val users:ModelClass?=snapshot.getValue(ModelClass::class.java)
                                     val phone:String?=users!!.getPhone()
                                     val downloadUrl: Uri = it
