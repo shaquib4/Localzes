@@ -100,7 +100,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 val user = auth.currentUser
                 val uid = user!!.uid
                 val title = productName.text.toString().trim()
-                val priceEach = originalOfferPriceEach.text.toString().trim()
+                val priceEach = originalOfferPriceEach.text.toString().replace("Rs. ","").trim()
                 val finalPr = finalPrice.text.toString().replace("Rs. ", "").trim()
                 val finalQ = finalQuantity.text.toString().trim()
                 addToCart(uid, title, priceEach, finalPr, finalQ, userProducts.shopId,productId)
@@ -120,7 +120,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         productId: String
     ) {
         cart=UserCartDetails(uid,title,priceEach,finalPr,finalQ,shopId)
-        cartDetails= FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Cart")
+        cartDetails= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
         cartDetails.child(productId).setValue(cart)
         Toast.makeText(context,"Item added in the cart",Toast.LENGTH_SHORT).show()
     }
