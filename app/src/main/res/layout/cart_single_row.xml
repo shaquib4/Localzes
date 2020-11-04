@@ -49,15 +49,15 @@
                     android:textSize="@dimen/_13ssp" />
 
                 <ImageView
+                    android:layout_below="@+id/btnLinear"
                     android:id="@+id/imgRemove"
                     android:padding="@dimen/_1sdp"
                     android:layout_width="@dimen/_26sdp"
                     android:background="@drawable/bg_add_item"
                     android:layout_height="@dimen/_26sdp"
-                    android:layout_alignTop="@id/txtProductPrice_customer"
                     android:src="@drawable/ic_remove"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_23sdp"
                     />
 
                 <TextView
@@ -80,6 +80,54 @@
                     android:textSize="@dimen/_10ssp"
                     android:layout_below="@+id/txtProductPrice_customer"/>
 
+                <LinearLayout
+                    android:layout_alignTop="@+id/txtProductTitle_customer"
+                    android:layout_width="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_margin="5dp"
+                    android:id="@+id/btnLinear"
+                    android:background="#a9a9a9"
+                    android:orientation="horizontal"
+                    android:weightSum="8">
+
+                    <Button
+                        android:id="@+id/btnDecrease"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.4"
+                        android:background="@drawable/add_item_decrease"
+                        android:onClick="countDe"
+                        android:text="-"
+                        android:textColor="#696969"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtCounter"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:background="@drawable/add_item_quantity"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#696969"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnIncrease"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.4"
+                        android:background="@drawable/add_item_increase"
+                        android:onClick="countIn"
+                        android:text="+"
+                        android:textColor="#696969"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
