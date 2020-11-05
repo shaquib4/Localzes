@@ -26,6 +26,7 @@ class UserProductsActivity : AppCompatActivity() {
     private lateinit var viewCart: TextView
     var totalCost: Double = 0.00
     var totalOriginalPrice: Double = 0.00
+    var totalItems:Int=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_products)
@@ -104,13 +105,17 @@ class UserProductsActivity : AppCompatActivity() {
                 }
                 if (cartItems.isNotEmpty()) {
                     cartRelativeLayout.visibility = View.VISIBLE
-                    quantityItem.text = snapshot.childrenCount.toString()
+                    totalItems=snapshot.childrenCount.toInt()
+                    quantityItem.text = totalItems.toString()
                     costTotal.text = totalCost.toString()
                 }
             }
         })
         viewCart.setOnClickListener {
             val intent = Intent(this, Cart::class.java)
+            intent.putExtra("totalCost",totalCost)
+            intent.putExtra("totalOriginalPrice",totalOriginalPrice)
+            intent.putExtra("totalItems",totalItems)
             startActivity(intent)
         }
     }
