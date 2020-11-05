@@ -65,4 +65,5 @@
     <string name="overview">OVERVIEW</string>
     <string name="todo">TODO</string>
     <string name="connect_with_your_customer_for_visit_your_online_store_easly">Connect with your customer for visit your online store easly!</string>
+    <string name="title_activity_maps__new">Map</string>
 </resources>
