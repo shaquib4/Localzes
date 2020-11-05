@@ -12,25 +12,29 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#000000"
         android:textStyle="bold" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cart_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtTotalItems"
-        android:layout_marginTop="0dp"
-        android:padding="5dp" />
+
     <ScrollView
-        android:layout_below="@+id/cart_recycler_view"
+        android:layout_below="@+id/txtTotalItems"
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_alignBottom="@+id/view1"
         android:layout_height="0dp">
 
-
-        <androidx.cardview.widget.CardView
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cart_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:layout_marginTop="0dp"
+            android:padding="5dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/cart_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
 
             <RelativeLayout
                 android:id="@+id/details"
@@ -165,6 +169,8 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
+        </RelativeLayout>
+
     </ScrollView>
     <View
         android:id="@+id/view1"
@@ -244,7 +250,7 @@
         android:layout_above="@+id/llContinue"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#d3d3d39"/>
+        android:background="#d3d3d3"/>
     <LinearLayout
         android:id="@+id/llContinue"
         android:layout_width="match_parent"
