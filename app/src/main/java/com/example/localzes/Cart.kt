@@ -87,6 +87,7 @@ class Cart : AppCompatActivity() {
                 userCartAdapter= AdapterCartItem(this@Cart,cartProducts)
                 recyclerCartProduct.adapter=userCartAdapter
                 totalItems.text="Total Item :- ${snapshot.childrenCount}"
+
             }
 
         })
