@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:padding="2dp"
         app:stackFromEnd="true"
-        tools:listitem="@layout/product_single_row"/>
+        tools:listitem="@layout/product_single_row_customer"/>
 
   <RelativeLayout
-      android:visibility="invisible"
+
       android:id="@+id/rl_cart_details"
       android:layout_width="match_parent"
       android:layout_height="@dimen/_35sdp"
@@ -62,7 +62,7 @@
           />
       <TextView
 
-
+          android:id="@+id/total_cost_cart"
           android:layout_toRightOf="@id/dash"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -75,6 +75,7 @@
           android:textSize="18sp"
           />
       <TextView
+          android:id="@+id/txtViewCart"
           android:layout_alignParentRight="true"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
