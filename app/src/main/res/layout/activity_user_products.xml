@@ -10,7 +10,7 @@
         android:id="@+id/recycler_shop_user_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="2dp"
+         android:padding="2dp"
         app:stackFromEnd="true"
         tools:listitem="@layout/product_single_row_customer"/>
 
