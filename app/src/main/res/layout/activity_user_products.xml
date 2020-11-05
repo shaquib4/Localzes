@@ -15,6 +15,7 @@
         tools:listitem="@layout/product_single_row"/>
 
   <RelativeLayout
+      android:visibility="invisible"
       android:id="@+id/rl_cart_details"
       android:layout_width="match_parent"
       android:layout_height="@dimen/_35sdp"

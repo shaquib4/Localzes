@@ -17,17 +17,69 @@
         android:layout_height="320dp"
         tools:context=".MapsActivity"/>
 
-    <TextView
-        android:id="@+id/btnmapseller"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
-        android:textAllCaps="false"
-        android:textColor="#000"
-        android:textSize="14sp"
-        />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/btnmapseller"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/txtCity_seller"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/txtState_seller"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/txtCountry_seller"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/txtPincode_seller"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="14sp"
+            />
+    </RelativeLayout>
     <Button
         android:layout_marginTop="@dimen/_200sdp"
         android:id="@+id/btncontinueseller"

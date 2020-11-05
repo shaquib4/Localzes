@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
+import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.activity_maps2.*
 import java.util.*
 
@@ -104,11 +105,19 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
 
             val email = intent.getStringExtra("email")
             val address = btnmapseller.text.toString()
+            val city=txtCity_seller.text.toString()
+            val state=txtState_seller.text.toString()
+            val country=txtCountry_seller.text.toString()
+            val pinCode=txtPincode_seller.text.toString()
 
             val intent= Intent(this,SellerShop_detail::class.java)
             intent.putExtra("name",name)
             intent.putExtra("email",email)
             intent.putExtra("address",address)
+            intent.putExtra("city",city)
+            intent.putExtra("state",state)
+            intent.putExtra("country",country)
+            intent.putExtra("pinCode",pinCode)
 
             if (address.isEmpty()) {
                 btncontinueseller.setText("Continue")
@@ -144,8 +153,17 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
                     val address: String = addresses[0].getAddressLine(0)
 
 
-                    btnmapseller.text = address
 
+                    val city: String = addresses[0].subAdminArea
+                    val state: String = addresses[0].adminArea
+                    val pinCode: String = addresses[0].postalCode
+                    val country: String = addresses[0].countryName
+
+                    btnmapseller.text=address
+                    txtCity_seller.text=city
+                    txtState_seller.text=state
+                    txtPincode_seller.text=pinCode
+                    txtCountry_seller.text=country
 
 
 

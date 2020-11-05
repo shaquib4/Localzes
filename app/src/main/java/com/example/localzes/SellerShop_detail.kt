@@ -15,6 +15,7 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.activity_seller_shop_detail.*
+import java.util.HashMap
 
 class SellerShop_detail : AppCompatActivity() {
     private lateinit var btnChooseImage: ImageView
@@ -103,9 +104,32 @@ class SellerShop_detail : AppCompatActivity() {
                                     mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                                     mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
                                         if (task.isSuccessful){
-                                            startActivity(Intent(this@SellerShop_detail,AddProduct::class.java))
-                                            finish()
-                                            Toast.makeText(applicationContext, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
+                                            val city=intent.getStringExtra("city")
+                                            val state=intent.getStringExtra("state")
+                                            val country=intent.getStringExtra("country")
+                                            val pinCode=intent.getStringExtra("pinCode")
+                                            mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("current_address")
+                                            val userMaps= HashMap<String,Any>()
+                                            userMaps["address"]=address.toString()
+                                            userMaps["city"]=city!!.toString()
+                                            userMaps["state"]=state.toString()
+                                            userMaps["country"]=country.toString()
+                                            userMaps["pinCode"]=pinCode.toString()
+                                            mDatabaseRef.setValue(userMaps).addOnCompleteListener{ task ->
+                                                if (task.isSuccessful){
+                                                    startActivity(Intent(this@SellerShop_detail,AddProduct::class.java))
+                                                    finish()
+                                                    Toast.makeText(applicationContext, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
+
+                                                }
+                                                else{
+                                                    Toast.makeText(
+                                                        baseContext, "Failed",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
+
+                                        }
                                         }
                                     }
 
