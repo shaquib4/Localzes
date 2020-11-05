@@ -3,298 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        android:id="@+id/txtTotalItems"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:text="Total Item :- 9"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#000000"
-        android:textStyle="bold" />
 
-    <ScrollView
-        android:layout_below="@+id/txtTotalItems"
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_alignBottom="@+id/view1"
-        android:layout_height="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cart_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:padding="5dp" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_below="@+id/cart_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-
-            <RelativeLayout
-                android:id="@+id/details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/txtPriceDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:padding="5dp"
-                    android:text="Price Details"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:id="@+id/view5"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_below="@id/txtPriceDetails"
-                    android:background="#d3d3d3" />
-
-                <LinearLayout
-                    android:id="@+id/llPrice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/view5"
-                    android:weightSum="8">
-
-                    <TextView
-                        android:id="@+id/txtTotalPrice"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:padding="5dp"
-                        android:text="Price(1 item)"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/txtPrice"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:padding="5dp"
-                        android:text="Rs.600 "
-                        android:textAlignment="viewEnd"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llDiscount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/llPrice"
-                    android:weightSum="8">
-
-                    <TextView
-                        android:id="@+id/txtDiscount"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:padding="5dp"
-                        android:text="Discount"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/txtDiscountPrice"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:padding="5dp"
-                        android:text="- Rs.80 "
-                        android:textAlignment="viewEnd"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llDelivery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/llDiscount"
-                    android:weightSum="8">
-
-                    <TextView
-                        android:id="@+id/Delivery"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:padding="5dp"
-                        android:text="Delivery Charge"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/txtDeliveryCharge"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:padding="5dp"
-                        android:text="Rs.10 "
-                        android:textAlignment="viewEnd"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-
-
-                <View
-                    android:id="@+id/view4"
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:layout_below="@id/llDelivery"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:background="@drawable/dashed_line"
-                    android:layerType="software" />
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        </RelativeLayout>
-
-    </ScrollView>
-    <View
-        android:id="@+id/view1"
-        android:layout_above="@+id/rlAddress"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#d3d3d3"/>
-
-    <RelativeLayout
-        android:id="@+id/rlAddress"
-        android:layout_above="@+id/llTotalAmount"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp">
-        <TextView
-            android:id="@+id/txtHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Deliver to Home"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="@dimen/_13ssp"
-            android:layout_margin="10dp"/>
-        <TextView
-            android:id="@+id/txtAddAddress"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="ADD ADDRESS"
-            android:textColor="#de4500"
-            android:textSize="@dimen/_13ssp"
-            android:layout_margin="10dp"/>
-
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/view2"
-        android:layout_below="@+id/rlAddress"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#d3d3d3"/>
-
-    <LinearLayout
-        android:id="@+id/llTotalAmount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/llContinue"
-        android:weightSum="8">
-
-        <TextView
-            android:id="@+id/Amount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:padding="5dp"
-            android:text="Total Amount"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtTotalAmount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:padding="5dp"
-            android:text="Rs.530"
-            android:textAlignment="viewEnd"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-    <View
-        android:id="@+id/view3"
-        android:layout_above="@+id/llContinue"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#d3d3d3"/>
-    <LinearLayout
-        android:id="@+id/llContinue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:weightSum="4">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:background="#ffffff"
-            android:layout_weight="2.2"
-            android:orientation="vertical">
-
-
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:id="@+id/TotalPayment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ffffff"
-                android:textAlignment="center"
-                android:textSize="19sp"
-                android:paddingLeft="4dp"
-                android:text="Rs.530"
-                android:layout_marginBottom="2dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                />
-        </LinearLayout>
-
-
-        <Button
-            android:id="@+id/btnContinue"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.8"
-            android:background="#ff4500"
-            android:text="Continue"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
-    </LinearLayout>
     <RelativeLayout
         android:visibility="invisible"
         android:id="@+id/relative2"
@@ -343,4 +52,326 @@
             app:menu="@menu/customer_menu"
             />
     </RelativeLayout>
+    <TextView
+        android:id="@+id/txtTotalItems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:textSize="@dimen/_15ssp"
+        android:text="Total Item :- 9"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_below="@+id/txtTotalItems"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_alignBottom="@+id/view1"
+        android:layout_height="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cart_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:padding="5dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/cart_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+            <RelativeLayout
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtPriceDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:text="Price Details"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="@dimen/_15ssp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/txtPriceDetails"
+                    android:background="#d3d3d3" />
+
+                <LinearLayout
+                    android:id="@+id/llPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view5"
+                    android:weightSum="8">
+
+                    <TextView
+                        android:id="@+id/txtTotalPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:padding="5dp"
+                        android:text="Price(1 item)"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:id="@+id/txtPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:padding="5dp"
+                        android:text="Rs.600 "
+                        android:textAlignment="viewEnd"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_13ssp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/llPrice"
+                    android:weightSum="8">
+
+                    <TextView
+                        android:id="@+id/txtDiscount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:padding="5dp"
+                        android:text="Discount"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:id="@+id/txtDiscountPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:padding="5dp"
+                        android:text="- Rs.80 "
+                        android:textAlignment="viewEnd"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_13ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDelivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/llDiscount"
+                    android:weightSum="8">
+
+                    <TextView
+                        android:id="@+id/Delivery"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:padding="5dp"
+                        android:text="Delivery Charge"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:id="@+id/txtDeliveryCharge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:padding="5dp"
+                        android:text="Rs.10 "
+                        android:textAlignment="viewEnd"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_13ssp" />
+
+                </LinearLayout>
+
+
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@id/llDelivery"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/dashed_line"
+                    android:layerType="software" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+    <View
+        android:id="@+id/view1"
+        android:layout_above="@+id/rlAddress"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d3d3d3"/>
+
+    <RelativeLayout
+        android:id="@+id/rlAddress"
+        android:layout_above="@+id/llTotalAmount"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp">
+
+        <ImageView
+            android:background="@drawable/bg_add_item"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:id="@+id/imgHome"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_home"/>
+
+        <TextView
+            android:layout_toRightOf="@+id/imgHome"
+            android:id="@+id/txtArea"
+            android:textSize="@dimen/_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saraibika"
+            android:layout_below="@+id/txtHome"
+            />
+        <TextView
+            android:layout_toRightOf="@+id/imgHome"
+            android:id="@+id/txtTime"
+            android:textSize="@dimen/_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="21 mins"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_below="@+id/txtArea"
+            />
+        <TextView
+            android:layout_toRightOf="@+id/imgHome"
+            android:id="@+id/txtHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deliver to Home"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/txtAddAddress"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="ADD ADDRESS"
+            android:textColor="#de4500"
+            android:textSize="@dimen/_13ssp"
+            android:layout_margin="10dp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_below="@+id/rlAddress"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d3d3d3"/>
+
+    <LinearLayout
+        android:id="@+id/llTotalAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/llContinue"
+        android:weightSum="8">
+
+        <TextView
+            android:id="@+id/Amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:padding="5dp"
+            android:text="Total Amount"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000000"
+            android:textSize="@dimen/_15ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtTotalAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:padding="5dp"
+            android:text="Rs.530"
+            android:textAlignment="viewEnd"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000000"
+            android:textSize="@dimen/_15ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <View
+        android:id="@+id/view3"
+        android:layout_above="@+id/llContinue"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d3d3d3"/>
+    <LinearLayout
+        android:id="@+id/llContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:layout_weight="2.2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TotalPayment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:textAlignment="center"
+                android:textSize="@dimen/_15ssp"
+                android:padding="8dp"
+                android:text="Rs.530"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.8"
+            android:textSize="@dimen/_15ssp"
+            android:background="#ff4500"
+            android:text="Continue"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+    </LinearLayout>
+
 </RelativeLayout>
