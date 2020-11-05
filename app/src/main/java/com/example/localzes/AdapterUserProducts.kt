@@ -96,18 +96,19 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 finalPrice.text = "Rs. ${amount}"
                 finalQuantity.text = quantity.toString()
             }
-            btnAddToCart.setOnClickListener {
-                val auth: FirebaseAuth = FirebaseAuth.getInstance()
-                val user = auth.currentUser
-                val uid = user!!.uid
-                val title = productName.text.toString().trim()
-                val priceEach = originalOfferPriceEach.text.toString().replace("Rs. ","").trim()
-                val finalPr = finalPrice.text.toString().replace("Rs. ", "").trim()
-                val finalQ = finalQuantity.text.toString().trim()
-                val sellingPrice=originalPriceEach.text.toString().replace("Rs. ","").trim()
-                addToCart(uid, title, priceEach, finalPr, finalQ, userProducts.shopId,productId,productUrl,sellingPrice)
-                dialog.dismiss()
-            }
+
+        }
+        btnAddToCart.setOnClickListener {
+            val auth: FirebaseAuth = FirebaseAuth.getInstance()
+            val user = auth.currentUser
+            val uid = user!!.uid
+            val title = productName.text.toString().trim()
+            val priceEach = originalOfferPriceEach.text.toString().replace("Rs. ","").trim()
+            val finalPr = finalPrice.text.toString().replace("Rs. ", "").trim()
+            val finalQ = finalQuantity.text.toString().trim()
+            val sellingPrice=originalPriceEach.text.toString().replace("Rs. ","").trim()
+            addToCart(uid, title, priceEach, finalPr, finalQ, userProducts.shopId,productId,productUrl,sellingPrice)
+            dialog.dismiss()
         }
     }
     private lateinit var cart:UserCartDetails

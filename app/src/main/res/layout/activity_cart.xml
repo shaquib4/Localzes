@@ -310,7 +310,7 @@
                         android:layout_below="@id/view2"
                         android:layout_weight="4"
                         android:padding="5dp"
-                        android:text="Rs.530 "
+                        android:text="Rs.530"
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"

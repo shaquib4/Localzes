@@ -15,7 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="320dp"
         tools:context=".MapsActivity"/>
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TextView
         android:id="@+id/btnmap"
         android:layout_width="match_parent"
@@ -27,8 +29,57 @@
         android:textColor="#000"
         android:textSize="14sp"
         />
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/txtCity"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textSize="14sp"
+        />
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/txtState"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textSize="14sp"
+        />
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/txtCountry"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textSize="14sp"
+        />
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/txtPincode"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textSize="14sp"
+        />
+</RelativeLayout>
     <Button
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="230dp"
         android:id="@+id/btncontinue"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"

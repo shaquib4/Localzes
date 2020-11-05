@@ -134,9 +134,31 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }else{
             userDatabase.setValue(userMap).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    progress_home.visibility= View.GONE
-                    startActivity(Intent(this,Home::class.java))
-                    finish()
+                    val city=txtCity.text.toString()
+                    val state=txtState.text.toString()
+                    val country=txtCountry.text.toString()
+                    val pinCode=txtPincode.text.toString()
+                    userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid).child("current_address")
+                    val userMaps= HashMap<String,Any>()
+                    userMaps["address"]=address
+                    userMaps["city"]=city
+                    userMaps["state"]=state
+                    userMaps["country"]=country
+                    userMaps["pinCode"]=pinCode
+                    userDatabase.setValue(userMaps).addOnCompleteListener{ task ->
+                        if (task.isSuccessful){
+
+                            startActivity(Intent(this,Home::class.java))
+                            finish()
+                        }
+                        else{
+                            Toast.makeText(
+                                baseContext, "Failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+
                 }else{
                     Toast.makeText(
                         baseContext, "Failed",
@@ -174,11 +196,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     geocoder = Geocoder(applicationContext, Locale.getDefault())
                     addresses = geocoder.getFromLocation(lot, long, 1)
                     val address: String = addresses[0].getAddressLine(0)
-
+                    val city: String = addresses[0].subAdminArea
+                    val state: String = addresses[0].adminArea
+                    val pinCode: String = addresses[0].postalCode
+                    val country: String = addresses[0].countryName
 
                     btnmap.text=address
-
-
+                    txtCity.text=city
+                    txtState.text=state
+                    txtPincode.text=pinCode
+                    txtCountry.text=country
 
 
 
