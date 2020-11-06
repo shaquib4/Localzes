@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardAddress"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:background="@drawable/bg_border"
+                android:id="@+id/imgHome"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_home"
+               android:layout_marginHorizontal="10dp"
+                android:padding="10dp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"/>
+
+            <TextView
+                android:id="@+id/txtHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOME"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:layout_toEndOf="@+id/imgHome"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtAddress"
+                android:layout_toRightOf="@id/imgHome"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:text="Mohan chauraha, Saraivika, Jaunpur UP - 222202 India"
+                android:layout_below="@+id/txtHome"
+                />
+            <TextView
+                android:id="@+id/txtMobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile - 7518894470"
+                android:layout_below="@+id/txtAddress"
+                android:layout_toRightOf="@id/imgHome"/>
+
+            <TextView
+                android:id="@+id/txtEdit"
+                android:layout_toRightOf="@id/imgHome"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                android:textColor="#de4500"
+                android:text="EDIT ADDRESS"
+                />
+            <TextView
+                android:id="@+id/txtDelete"
+                android:layout_toRightOf="@id/txtEdit"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                android:textColor="#ff0000"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:text="DELETE"
+                />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

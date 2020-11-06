@@ -236,7 +236,7 @@
         android:layout_height="@dimen/_70sdp">
 
         <ImageView
-            android:background="@drawable/bg_add_item"
+            android:background="@drawable/bg_border"
             android:layout_margin="10dp"
             android:padding="10dp"
             android:id="@+id/imgHome"
