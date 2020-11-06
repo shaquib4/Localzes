@@ -8,6 +8,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
 class AdapterCartItem(val context:Context,private val cart_user:List<UserCartDetails>):RecyclerView.Adapter<AdapterCartItem.HolderUserCart>() {
@@ -31,7 +34,8 @@ class AdapterCartItem(val context:Context,private val cart_user:List<UserCartDet
     override fun getItemCount(): Int {
         return cart_user.size
     }
-
+    private lateinit var mCartDatabase:DatabaseReference
+    private lateinit var mAuth:FirebaseAuth
     override fun onBindViewHolder(holder: HolderUserCart, position: Int) {
         val cartDetails=cart_user[position]
         val quantity=cartDetails.finalQuantity
@@ -43,6 +47,10 @@ class AdapterCartItem(val context:Context,private val cart_user:List<UserCartDet
         holder.productOriginalPriceCart.text=cartDetails.sellingPrice
         holder.productTotalPrice.text=cartDetails.finalPrice
         holder.quantityCart.text=quantity
+        mAuth=FirebaseAuth.getInstance()
+        val user=mAuth.currentUser
+        val uid=user!!.uid
+        mCartDatabase=FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
         var items=quantity.toInt()
         var updatedCost=cost.toDouble()
         val oneCost=costOne.toInt()
