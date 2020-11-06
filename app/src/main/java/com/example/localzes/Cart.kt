@@ -88,6 +88,7 @@ class Cart : AppCompatActivity() {
                 recyclerCartProduct.adapter=userCartAdapter
                 totalItems.text="Total Item :- ${snapshot.childrenCount}"
 
+
             }
 
         })

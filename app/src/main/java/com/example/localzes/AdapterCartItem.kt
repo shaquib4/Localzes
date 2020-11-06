@@ -59,6 +59,8 @@ class AdapterCartItem(val context:Context,private val cart_user:List<UserCartDet
             holder.productTotalPrice.text="Rs. ${updatedCost}"
             holder.quantityCart.text= items.toString()
         }
-        holder.removeItem.setOnClickListener {  }
+        holder.removeItem.setOnClickListener {
+
+        }
     }
 }
