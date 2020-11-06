@@ -44,7 +44,7 @@ class AdapterCartItem(val context:Context,private val cart_user:List<UserCartDet
         holder.productTotalPrice.text=cartDetails.finalPrice
         holder.quantityCart.text=quantity
         var items=quantity.toInt()
-        var updatedCost=cost.toInt()
+        var updatedCost=cost.toDouble()
         val oneCost=costOne.toInt()
         holder.btnDecreaseCart.setOnClickListener {
             if(items>1){

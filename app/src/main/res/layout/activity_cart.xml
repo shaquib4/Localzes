@@ -48,16 +48,10 @@
         android:textSize="18sp"
         android:background="@drawable/round2_btn"
         />
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#fff"
-        app:menu="@menu/customer_menu"
-        />
+
     </RelativeLayout>
     <RelativeLayout
+        android:layout_above="@id/bottom_navCart"
         android:id="@+id/relative1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -93,12 +87,7 @@
             android:layout_below="@id/llCart"
             android:layout_marginTop="0dp"
             android:padding="5dp" />
-        <view
-            android:layout_width="match_parent"
-            android:layout_height="1.2dp"
-            android:layout_above="@id/llContinue"
-            android:layout_marginBottom="1dp"
-            />
+
         <LinearLayout
             android:id="@+id/llContinue"
             android:layout_width="match_parent"
@@ -144,7 +133,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/llContinue"
@@ -274,21 +263,13 @@
 
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:layout_below="@id/llDelivery"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:background="@drawable/dashed_line"
-                    android:layerType="software" />
+
 
                 <LinearLayout
                     android:id="@+id/llTotalAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/view2"
+
                     android:weightSum="8">
 
                     <TextView
@@ -318,8 +299,16 @@
                         android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </RelativeLayout>
 
 
     </RelativeLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        app:menu="@menu/customer_menu"
+        />
 </RelativeLayout>
