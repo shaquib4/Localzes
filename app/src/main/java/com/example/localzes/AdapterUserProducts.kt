@@ -124,7 +124,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         productUrl:String,
         sellingPrice:String
     ) {
-        cart=UserCartDetails(uid,title,priceEach,finalPr,finalQ,shopId,productUrl,sellingPrice)
+        cart=UserCartDetails(productId,uid,title,priceEach,finalPr,finalQ,shopId,productUrl,sellingPrice)
         cartDetails= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
         cartDetails.child(productId).setValue(cart)
         Toast.makeText(context,"Item added in the cart",Toast.LENGTH_SHORT).show()

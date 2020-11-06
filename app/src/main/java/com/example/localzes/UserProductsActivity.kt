@@ -81,6 +81,7 @@ class UserProductsActivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (i in snapshot.children) {
+                    val productId=i.child("productId").value.toString()
                     val orderBy = i.child("orderBy").value.toString()
                     val productTitle = i.child("productTitle").value.toString()
                     val priceEach = i.child("priceEach").value.toString()
@@ -90,6 +91,7 @@ class UserProductsActivity : AppCompatActivity() {
                     val productImageUrl = i.child("productImageUrl").value.toString()
                     val sellingPrice = i.child("sellingPrice").value.toString()
                     val obj = UserCartDetails(
+                        productId,
                         orderBy,
                         productTitle,
                         priceEach,

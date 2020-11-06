@@ -32,7 +32,7 @@
       android:layout_height="wrap_content"/>
 
   <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/rvAddress"
+      android:id="@+id/recycler_Address"
       tools:listitem="@layout/address_single_row"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
       android:id="@+id/btnAddNewAddress"
       android:layout_width="match_parent"
       android:layout_height="@dimen/_36sdp"
-      android:layout_below="@+id/rvAddress"
+      android:layout_below="@+id/recycler_Address"
       android:layout_margin="@dimen/_10sdp"
       android:textColor="#008000"
       android:elevation="0dp"

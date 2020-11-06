@@ -17,16 +17,17 @@ class Cart : AppCompatActivity() {
     private lateinit var recyclerCartProduct: RecyclerView
     private lateinit var userCartAdapter: AdapterCartItem
     private lateinit var cartProducts: List<UserCartDetails>
-    private lateinit var totalItems:TextView
-    private lateinit var txtTotalPrice:TextView
-    private var totalCost:String?="100"
-    private var totalOriginalPrice:String?="200"
-    private var totalItem:String?="300"
-    private lateinit var txtPrice:TextView
-    private lateinit var txtDiscountPrice:TextView
-    private lateinit var txtDeliveryCharge:TextView
-    private lateinit var txtTotalAmount:TextView
-    private lateinit var totalPayment:TextView
+    private lateinit var totalItems: TextView
+    private lateinit var txtTotalPrice: TextView
+    private var totalCost: String? = "100"
+    private var totalOriginalPrice: String? = "200"
+    private var totalItem: String? = "300"
+    private lateinit var txtPrice: TextView
+    private lateinit var txtDiscountPrice: TextView
+    private lateinit var txtDeliveryCharge: TextView
+    private lateinit var txtTotalAmount: TextView
+    private lateinit var totalPayment: TextView
+    var discountAmount: Double = 0.00
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart1)
@@ -34,18 +35,18 @@ class Cart : AppCompatActivity() {
         val user = auth.currentUser
         val uid = user!!.uid
         recyclerCartProduct = findViewById(R.id.cart_recycler_view)
-        txtTotalPrice=findViewById(R.id.txtTotalPrice)
-        txtPrice=findViewById(R.id.txtPrice)
-        txtDeliveryCharge=findViewById(R.id.txtDeliveryCharge)
-        txtDiscountPrice=findViewById(R.id.txtDiscountPrice)
-        txtTotalAmount=findViewById(R.id.txtTotalAmount)
-        totalPayment=findViewById(R.id.TotalPayment)
-        totalCost=intent.getStringExtra("totalCost")
-        totalOriginalPrice=intent.getStringExtra("totalOriginalPrice")
-        totalItem=intent.getStringExtra("totalItems")
+        txtTotalPrice = findViewById(R.id.txtTotalPrice)
+        txtPrice = findViewById(R.id.txtPrice)
+        txtDeliveryCharge = findViewById(R.id.txtDeliveryCharge)
+        txtDiscountPrice = findViewById(R.id.txtDiscountPrice)
+        txtTotalAmount = findViewById(R.id.txtTotalAmount)
+        totalPayment = findViewById(R.id.TotalPayment)
+        totalCost = intent.getStringExtra("totalCost")
+        totalOriginalPrice = intent.getStringExtra("totalOriginalPrice")
+        totalItem = intent.getStringExtra("totalItems")
         recyclerCartProduct.layoutManager = LinearLayoutManager(this)
-        cartProducts=ArrayList<UserCartDetails>()
-        totalItems=findViewById(R.id.txtTotalItems)
+        cartProducts = ArrayList<UserCartDetails>()
+        totalItems = findViewById(R.id.txtTotalItems)
         cartDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
 
@@ -91,6 +92,7 @@ class Cart : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (i in snapshot.children) {
                     val obj = UserCartDetails(
+                        i.child("productId").value.toString(),
                         i.child("orderBy").value.toString(),
                         i.child("productTitle").value.toString(),
                         i.child("priceEach").value.toString(),
@@ -102,13 +104,22 @@ class Cart : AppCompatActivity() {
                     )
                     (cartProducts as ArrayList<UserCartDetails>).add(obj)
                 }
-                userCartAdapter= AdapterCartItem(this@Cart,cartProducts)
-                recyclerCartProduct.adapter=userCartAdapter
-                totalItems.text="Total Item :- ${snapshot.childrenCount}"
-
-
+                userCartAdapter = AdapterCartItem(this@Cart, cartProducts)
+                recyclerCartProduct.adapter = userCartAdapter
+                totalItems.text = "Total Item :- ${snapshot.childrenCount}"
+                txtPrice.text = "Rs. ${totalCost}"
+                discountAmount =
+                    ((totalOriginalPrice.toString()).toDouble() - (totalCost.toString().toDouble()))
+                txtDiscountPrice.text = "-Rs. ${discountAmount}"
+                if (snapshot.childrenCount > 1) {
+                    txtTotalPrice.text = "Price(${snapshot.childrenCount} items)"
+                } else {
+                    txtTotalPrice.text = "Price(${snapshot.childrenCount} item)"
+                }
+                val amount = totalCost.toString()
+                txtTotalAmount.text = "Rs. ${amount}"
+                totalPayment.text = "Rs. ${amount}"
             }
-
         })
     }
 }
