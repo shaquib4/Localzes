@@ -46,9 +46,10 @@ class ManageAddress : AppCompatActivity() {
 
                     )
                     (addresses as ArrayList<ModelManageAddress>).add(obj)
-                    progress_home.visibility= View.GONE
+
                 }
                 userAddressAdapter= AdapterManageAddress(this@ManageAddress,addresses)
+                recyclerManageAddress.adapter=userAddressAdapter
                 //recyclerShopUser.adapter=userShopAdapter
             }
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class AdapterManageAddress(val context: Context, private val address_manage:List<ModelManageAddress>) : RecyclerView.Adapter<AdapterManageAddress.HolderManageAddress>() {
     class HolderManageAddress(view: View) :RecyclerView.ViewHolder(view) {
         val city:TextView=view.findViewById(R.id.txtHome)
-        val address:TextView=view.findViewById(R.id.txtHome)
+        val address:TextView=view.findViewById(R.id.txtAddress)
 
     }
 
