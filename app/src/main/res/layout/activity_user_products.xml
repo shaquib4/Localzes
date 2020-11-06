@@ -75,6 +75,20 @@
           android:textSize="18sp"
           />
       <TextView
+
+          android:id="@+id/total_cost"
+          android:layout_toRightOf="@id/total_cost_cart"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="#fcfcfc"
+          android:layout_marginTop="@dimen/_8sdp"
+          android:layout_marginBottom="@dimen/_8sdp"
+          android:text="shaquib"
+          android:fontFamily="@font/montserrat_medium"
+          android:layout_marginLeft="8dp"
+          android:textSize="18sp"
+          />
+      <TextView
           android:id="@+id/txtViewCart"
           android:layout_alignParentRight="true"
           android:layout_width="wrap_content"

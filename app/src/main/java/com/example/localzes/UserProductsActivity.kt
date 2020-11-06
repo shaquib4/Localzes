@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_user_products.*
 
 class UserProductsActivity : AppCompatActivity() {
     private var shopId: String? = "100"
@@ -110,15 +111,17 @@ class UserProductsActivity : AppCompatActivity() {
                     totalItems=snapshot.childrenCount.toInt()
                     quantityItem.text = totalItems.toString()
                     costTotal.text = totalCost.toString()
+                    viewCart.setOnClickListener {
+                        val intent = Intent(applicationContext, Cart::class.java)
+                        intent.putExtra("totalCost",totalCost.toString())
+                        intent.putExtra("totalOriginalPrice",totalOriginalPrice.toString())
+                        intent.putExtra("totalItems",totalItems.toString())
+                        startActivity(intent)
+                    }
                 }
             }
         })
-        viewCart.setOnClickListener {
-            val intent = Intent(this, Cart::class.java)
-            intent.putExtra("totalCost",totalCost)
-            intent.putExtra("totalOriginalPrice",totalOriginalPrice)
-            intent.putExtra("totalItems",totalItems)
-            startActivity(intent)
-        }
+        total_cost.text=totalCost.toString()
+
     }
 }
