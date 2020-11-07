@@ -4,37 +4,49 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="3dp"
-    app:contentPadding="5dp"
-    android:layout_marginBottom="1dp">
+    android:layout_marginHorizontal="2dp"
+    android:layout_marginVertical="3dp">
 
     <RelativeLayout
+        android:layout_margin="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:textSize="@dimen/_12ssp"
             android:id="@+id/itemTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ItemTitle"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="American Tourister"
             android:textColor="#000000"/>
         <TextView
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_2sdp"
             android:id="@+id/itemPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemTitle"
-            android:text="10"/>
+            android:textSize="@dimen/_13ssp"
+            android:textColor="#008000"
+            android:text="Rs. 1,209/-"/>
         <TextView
+            android:layout_marginTop="@dimen/_2sdp"
             android:id="@+id/totalQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quantity"
+            android:text="5 items"
+            android:textSize="@dimen/_12ssp"
             android:layout_below="@id/itemPrice"/>
         <TextView
+            android:layout_alignTop="@+id/itemPrice"
             android:id="@+id/totalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price"
-            android:layout_alignRight="@id/totalQuantity"
-            android:layout_alignParentRight="true"
+            android:text="Rs. 6,045.00"
+            android:textColor="#de4500"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="@dimen/_14ssp"
+            android:layout_alignParentEnd="true"
             />
     </RelativeLayout>
 

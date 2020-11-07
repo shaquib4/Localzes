@@ -82,13 +82,12 @@
                     android:layout_weight="1"
                     android:text="In Progress"
                     android:textColor="#008000" />
-                <Button
-                    android:id="@+id/btnEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit"
-                    android:textAlignment="center"
-                    android:textColor="#000000"/>
+                <ImageView
+                    android:id="@+id/imgEdit"
+                    android:src="@drawable/ic_edit"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    />
             </TableRow>
             <TableRow>
 
@@ -163,9 +162,10 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#000000" />
+        android:background="#d3d3d3" />
 
     <TextView
+        android:fontFamily="@font/montserrat_bold"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center"
@@ -177,7 +177,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#000000" />
+        android:background="#d3d3d3" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerOrderedSellerItem"
         android:layout_width="match_parent"
