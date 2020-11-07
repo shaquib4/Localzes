@@ -55,7 +55,7 @@
                 android:textColor="#de4500"
                 android:textSize="@dimen/_11ssp" />
             <Button
-                android:visibility="invisible"
+
                 android:id="@+id/btnAddItem"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_21sdp"
@@ -116,6 +116,8 @@
 
 
             <LinearLayout
+
+                android:visibility="invisible"
                android:layout_below="@+id/imgRating_customer"
                 android:layout_width="100dp"
                 android:layout_alignParentEnd="true"
@@ -127,7 +129,7 @@
                 android:weightSum="8">
 
                 <Button
-                    android:id="@+id/btnDecrease"
+                    android:id="@+id/btnDecrease_new"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.4"
@@ -151,7 +153,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btnIncrease"
+                    android:id="@+id/btnIncrease_new"
 
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
