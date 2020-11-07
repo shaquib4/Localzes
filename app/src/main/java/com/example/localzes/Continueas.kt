@@ -33,7 +33,7 @@ class Continueas : AppCompatActivity() {
     private fun seller() {
         firebaseUser= FirebaseAuth.getInstance().currentUser
         userDatabase= FirebaseDatabase.getInstance().reference.child("seller").child(firebaseUser!!.uid)
-        userDatabase!!.addValueEventListener(object : ValueEventListener {
+        userDatabase!!.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     progress_continue.visibility=View.GONE
@@ -64,7 +64,7 @@ class Continueas : AppCompatActivity() {
     private fun customer() {
         firebaseUser= FirebaseAuth.getInstance().currentUser
         userDatabase= FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser!!.uid)
-        userDatabase!!.addValueEventListener(object : ValueEventListener {
+        userDatabase!!.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     progress_continue.visibility= View.GONE
