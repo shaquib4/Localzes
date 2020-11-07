@@ -60,7 +60,7 @@
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="bold"
                 android:textColor="#ff0000"
-                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@id/imgHome"
                 android:text="DELETE"
                 />
         </RelativeLayout>
