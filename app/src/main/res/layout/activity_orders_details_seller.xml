@@ -20,44 +20,51 @@
             <TableRow>
 
                 <TextView
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/montserrat_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Order Id"
+                    android:text="Order Id :"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textSize="@dimen/_11ssp"
                     android:id="@+id/txtOrderId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:text="123456"
-                    android:textColor="#000000" />
+                   android:textStyle="bold"
+                    android:text="#123456"
+                    android:textColor="#555555" />
 
             </TableRow>
 
             <TableRow>
 
                 <TextView
+                    android:textSize="@dimen/_11ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Date"
+                    android:text="Date :"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView
+android:textSize="@dimen/_10ssp"
                     android:id="@+id/txtOrderDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:text="27/02/2020"
-                    android:textColor="#000000" />
+                    android:text="27/02/2020, 9:45 PM"
+                    android:textColor="#555555" />
 
 
             </TableRow>
@@ -65,16 +72,19 @@
             <TableRow>
 
                 <TextView
+                    android:textSize="@dimen/_11ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Order Status"
+                    android:text="Order Status :"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
 
                 <TextView
+                    android:textSize="@dimen/_10ssp"
                     android:id="@+id/txtOrderStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,32 +92,30 @@
                     android:layout_weight="1"
                     android:text="In Progress"
                     android:textColor="#008000" />
-                <ImageView
-                    android:id="@+id/imgEdit"
-                    android:src="@drawable/ic_edit"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    />
+
             </TableRow>
             <TableRow>
 
                 <TextView
+                    android:textSize="@dimen/_11ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Items"
+                    android:text="Items :"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textSize="@dimen/_10ssp"
                     android:id="@+id/txtItems"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="9"
-                    android:textColor="#000000" />
+                    android:textColor="#555555" />
 
 
 
@@ -116,44 +124,57 @@
             <TableRow>
 
                 <TextView
+                    android:textSize="@dimen/_11ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Amount"
+                    android:text="Amount :"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textSize="@dimen/_12ssp"
                     android:id="@+id/txtOrderCost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:text="Rs.600"
-                    android:textColor="#000000" />
+                    android:textStyle="bold"
+                    android:text="Rs. 1,209/-"
+                    android:textColor="#008000" />
 
             </TableRow>
 
             <TableRow>
 
                 <TextView
+                    android:textSize="@dimen/_11ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Delivery Address"
+                    android:text="Delivery Address :"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textSize="@dimen/_10ssp"
                     android:id="@+id/txtOrderDeliveryAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:text="ABC City"
+                    android:text="Saraibika, Jaunpur UP - 222202"
                     android:textColor="#000000" />
+                <ImageView
+                    android:id="@+id/imgEdit"
+                    android:src="@drawable/ic_edit"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    />
             </TableRow>
         </TableLayout>
 
@@ -165,9 +186,10 @@
         android:background="#d3d3d3" />
 
     <TextView
+        android:paddingVertical="@dimen/_8sdp"
         android:fontFamily="@font/montserrat_bold"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Ordered Items"
         android:textAlignment="center"
