@@ -47,7 +47,7 @@ class AdapterSellerOrders(
                 holder.orderStatusTv.setTextColor(context.resources.getColor(R.color.red))
             }
         }
-        val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm a")
+        val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
         val date= Date(sellerOrders.orderTime.toLong())
         val formattedDate=sdf.format(date)
         holder.orderDateTv.text=formattedDate
