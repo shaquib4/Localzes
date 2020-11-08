@@ -25,6 +25,7 @@
                 android:layout_height="@dimen/_60sdp"/>
 
             <TextView
+                android:fontFamily="@font/montserrat_bold"
                 android:id="@+id/txtHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,6 +52,7 @@
                 android:layout_toRightOf="@id/imgHome"/>
 
             <TextView
+                android:fontFamily="@font/montserrat_bold"
                 android:id="@+id/txtDelete"
               android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_alignParentBottom="true"

@@ -98,7 +98,7 @@
                     android:layout_height="@dimen/_22sdp"
                     android:layout_margin="5dp"
                     android:id="@+id/btnLinear"
-                    android:background="#a9a9a9"
+                    android:background="#ffffff"
                     android:orientation="horizontal"
                     android:weightSum="8">
 
