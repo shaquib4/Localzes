@@ -1,0 +1,82 @@
+package com.example.localzes
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+
+class UserOrdersActivity : AppCompatActivity() {
+    private lateinit var mUserOrderHistory: List<ModelUserOrderDetails>
+    private lateinit var recyclerOrderDetails: RecyclerView
+    private lateinit var userOrderHistoryAdapter: AdapterUserOrderHistory
+    private lateinit var orderHistoryDatabase: DatabaseReference
+    private lateinit var userAuth: FirebaseAuth
+    private lateinit var mOrderedItem: List<ModelOrderedItems>
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_user_orders)
+        recyclerOrderDetails = findViewById(R.id.recyclerUserOrderHistory)
+        userAuth = FirebaseAuth.getInstance()
+        val user = userAuth.currentUser
+        val uid = user!!.uid
+        mUserOrderHistory = ArrayList<ModelUserOrderDetails>()
+        mOrderedItem = ArrayList<ModelOrderedItems>()
+        orderHistoryDatabase =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
+
+        orderHistoryDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (i in snapshot.children) {
+                    val a = i.ref.key
+                    val databaseReference: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                            .child("MyOrders").child(a.toString()).child("orderedItems")
+                    databaseReference.addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(error: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            for (i in snapshot.children) {
+                                val obj = ModelOrderedItems(
+                                    i.child("pId").value.toString(),
+                                    i.child("name").value.toString(),
+                                    i.child("cost").value.toString(),
+                                    i.child("price").value.toString(),
+                                    i.child("quantity").value.toString()
+                                )
+                                (mOrderedItem as ArrayList<ModelOrderedItems>).add(obj)
+                            }
+                        }
+                    })
+                }
+            }
+        })
+        orderHistoryDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (i in snapshot.children) {
+                    val obj = ModelUserOrderDetails(
+                        i.child("orderId").value.toString(),
+                        i.child("orderTime").value.toString(),
+                        i.child("orderStatus").value.toString(),
+                        i.child("orderCost").value.toString(),
+                        i.child("orderBy").value.toString(),
+                        i.child("orderTo").value.toString(),
+                        i.child("orderQuantity").value.toString(),
+                        mOrderedItem as ArrayList<ModelOrderedItems>
+                    )
+                    (mUserOrderHistory as ArrayList<ModelUserOrderDetails>).add(obj)
+                }
+            }
+        })
+    }
+}

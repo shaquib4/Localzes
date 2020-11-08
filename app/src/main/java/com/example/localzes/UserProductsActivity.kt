@@ -116,6 +116,7 @@ class UserProductsActivity : AppCompatActivity() {
                         intent.putExtra("totalCost",totalCost.toString())
                         intent.putExtra("totalOriginalPrice",totalOriginalPrice.toString())
                         intent.putExtra("totalItems",totalItems.toString())
+                        intent.putExtra("shopUid",shopId)
                         startActivity(intent)
                     }
                 }

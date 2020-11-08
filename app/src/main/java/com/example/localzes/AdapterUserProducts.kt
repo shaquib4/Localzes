@@ -38,30 +38,48 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val mString = "Rs. ${userProducts.offerPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
-        val productId=userProducts.productId
-        val orderTo=userProducts.shopId
-        val auth=FirebaseAuth.getInstance()
-        val user=auth.currentUser
-        val orderBy=user!!.uid
-        val priceEach=userProducts.offerPrice
-        val productTitle=userProducts.title
-        val sellingPrice=userProducts.sellingPrice
-        val productUrl=userProducts.imageUrl
-        var cost:Double=0.0
-        var finalCost:Double=0.0
-        var quantity:Int=0
-        cost=userProducts.offerPrice.toDouble()
-        finalCost=userProducts.offerPrice.toDouble()
-        quantity=1
+        val productId = userProducts.productId
+        val orderTo = userProducts.shopId
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        val orderBy = user!!.uid
+        val priceEach = userProducts.offerPrice
+        val productTitle = userProducts.title
+        val sellingPrice = userProducts.sellingPrice
+        val productUrl = userProducts.imageUrl
+        var cost: Double = 0.0
+        var finalCost: Double = 0.0
+        var quantity: Int = 0
+        cost = userProducts.offerPrice.toDouble()
+        finalCost = userProducts.offerPrice.toDouble()
+        quantity = 1
         spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         holder.productOfferPrice.text = spannableString
         holder.addItem.setOnClickListener {
-            addToCart(orderBy,productTitle,priceEach,userProducts.offerPrice,"1",orderTo,productId,productUrl,sellingPrice,holder.btnIncrease,holder.btnDecrease,holder.btnLinear,cost,finalCost,quantity,holder.rating,holder.txtCounter,holder.addItem)
-            holder.addItem.visibility=View.GONE
+            addToCart(
+                orderBy,
+                productTitle,
+                priceEach,
+                userProducts.offerPrice,
+                "1",
+                orderTo,
+                productId,
+                productUrl,
+                sellingPrice,
+                holder.btnIncrease,
+                holder.btnDecrease,
+                holder.btnLinear,
+                cost,
+                finalCost,
+                quantity,
+                holder.rating,
+                holder.txtCounter,
+                holder.addItem
+            )
+            holder.addItem.visibility = View.GONE
 
         }
     }
-
 
 
     private fun addToCart(
@@ -72,74 +90,113 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         finalQ: String,
         shopId: String,
         productId: String,
-        productUrl:String,
-        sellingPrice:String,
-        btnIncrease:Button,
-        btnDecrease:Button,
-        btnLinear:LinearLayout,
-       cost:Double,
-        finalCost:Double,
-        quantity:Int,
-       rating:TextView,
-       txtCounter:TextView,
-       addItem:Button
+        productUrl: String,
+        sellingPrice: String,
+        btnIncrease: Button,
+        btnDecrease: Button,
+        btnLinear: LinearLayout,
+        cost: Double,
+        finalCost: Double,
+        quantity: Int,
+        rating: TextView,
+        txtCounter: TextView,
+        addItem: Button
     ) {
-       val cart=UserCartDetails(productId,uid,title,priceEach,finalPr,finalQ,shopId,productUrl,sellingPrice)
-       val cartDetails= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
+        val cart = UserCartDetails(
+            productId,
+            uid,
+            title,
+            priceEach,
+            finalPr,
+            finalQ,
+            shopId,
+            productUrl,
+            sellingPrice
+        )
+        val cartDetails =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
         cartDetails.child(productId).setValue(cart).addOnCompleteListener {
-            if(it.isSuccessful){
-             btnLinear.visibility=View.VISIBLE
-              var finalCost=finalCost
+            if (it.isSuccessful) {
+                btnLinear.visibility = View.VISIBLE
+                var finalCost = finalCost
 
-                var cost=cost
-                var quantity=quantity
+                var cost = cost
+                var quantity = quantity
 
 
                 btnIncrease.setOnClickListener {
-                    finalCost+=cost
+                    finalCost += cost
                     quantity++
-                    txtCounter.text=quantity.toString()
-                    val cart=UserCartDetails(productId,uid,title,priceEach,finalCost.toString(),quantity.toString(),shopId,productUrl,sellingPrice)
-                    val cartDetails= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
+                    txtCounter.text = quantity.toString()
+                    val cart = UserCartDetails(
+                        productId,
+                        uid,
+                        title,
+                        priceEach,
+                        finalCost.toString(),
+                        quantity.toString(),
+                        shopId,
+                        productUrl,
+                        sellingPrice
+                    )
+                    val cartDetails =
+                        FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                            .child("Cart")
                     cartDetails.child(productId).setValue(cart)
                 }
                 btnDecrease.setOnClickListener {
-                    var b=txtCounter.text
-                  b=quantity.toString()
-                    if (quantity>1){
-                        finalCost-=cost
+                    var b = txtCounter.text
+                    b = quantity.toString()
+                    if (quantity > 1) {
+                        finalCost -= cost
                         quantity--
-                        txtCounter.text=quantity.toString()
-                        val cart=UserCartDetails(productId,uid,title,priceEach,finalCost.toString(),quantity.toString(),shopId,productUrl,sellingPrice)
-                        val cartDetails= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
+                        txtCounter.text = quantity.toString()
+                        val cart = UserCartDetails(
+                            productId,
+                            uid,
+                            title,
+                            priceEach,
+                            finalCost.toString(),
+                            quantity.toString(),
+                            shopId,
+                            productUrl,
+                            sellingPrice
+                        )
+                        val cartDetails =
+                            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                                .child("Cart")
                         cartDetails.child(productId).setValue(cart)
                     }
-                    if (b<=1.toString()){
-                        btnLinear.visibility=View.GONE
-                        addItem.visibility=View.VISIBLE
-                        val cartDetails= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
-                        cartDetails.child(productId).removeValue().addOnCompleteListener{
-                            if (it.isSuccessful){
-                                Toast.makeText(context,"Item removed cart",Toast.LENGTH_SHORT).show()
+                    if (b <= 1.toString()) {
+                        btnLinear.visibility = View.GONE
+                        addItem.visibility = View.VISIBLE
+                        val cartDetails =
+                            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                                .child("Cart")
+                        cartDetails.child(productId).removeValue().addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(context, "Item removed cart", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
                     }
                 }
             }
         }
-        Toast.makeText(context,"Item added in the cart",Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Item added in the cart", Toast.LENGTH_SHORT).show()
     }
+
     inner class HolderUserProducts(view: View) : RecyclerView.ViewHolder(view) {
         val productImage: ImageView = view.findViewById(R.id.imgProduct_customer)
         val productTitle: TextView = view.findViewById(R.id.txtProductTitle_customer)
         val productPrice: TextView = view.findViewById(R.id.txtProductPrice_customer)
         val productOfferPrice: TextView = view.findViewById(R.id.txtProductOfferPrice)
         val addItem: Button = view.findViewById(R.id.btnAddItem)
-        val btnIncrease:Button=view.findViewById(R.id.btnIncrease_new)
-        val btnDecrease:Button=view.findViewById(R.id.btnDecrease_new)
-        val btnLinear:LinearLayout=view.findViewById(R.id.btnLinear)
-        val rating:TextView=view.findViewById(R.id.txtRatingShop_customer)
-        val txtCounter:TextView=view.findViewById(R.id.txtCounter)
+        val btnIncrease: Button = view.findViewById(R.id.btnIncrease_new)
+        val btnDecrease: Button = view.findViewById(R.id.btnDecrease_new)
+        val btnLinear: LinearLayout = view.findViewById(R.id.btnLinear)
+        val rating: TextView = view.findViewById(R.id.txtRatingShop_customer)
+        val txtCounter: TextView = view.findViewById(R.id.txtCounter)
 
 
     }

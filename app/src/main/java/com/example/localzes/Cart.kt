@@ -1,10 +1,13 @@
 package com.example.localzes
 
 import android.accounts.Account
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -27,13 +30,18 @@ class Cart : AppCompatActivity() {
     private lateinit var txtDeliveryCharge: TextView
     private lateinit var txtTotalAmount: TextView
     private lateinit var totalPayment: TextView
+    private lateinit var btnContinue: Button
     var discountAmount: Double = 0.00
+    private var shopId: String? = "100"
+    private lateinit var orderDetails: ModelOrderDetails
+    private lateinit var progressDialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart1)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
+        shopId = intent.getStringExtra("shopUid")
         recyclerCartProduct = findViewById(R.id.cart_recycler_view)
         txtTotalPrice = findViewById(R.id.txtTotalPrice)
         txtPrice = findViewById(R.id.txtPrice)
@@ -41,6 +49,7 @@ class Cart : AppCompatActivity() {
         txtDiscountPrice = findViewById(R.id.txtDiscountPrice)
         txtTotalAmount = findViewById(R.id.txtTotalAmount)
         totalPayment = findViewById(R.id.TotalPayment)
+        btnContinue = findViewById(R.id.btnContinue)
         totalCost = intent.getStringExtra("totalCost")
         totalOriginalPrice = intent.getStringExtra("totalOriginalPrice")
         totalItem = intent.getStringExtra("totalItems")
@@ -121,5 +130,45 @@ class Cart : AppCompatActivity() {
                 totalPayment.text = "Rs. ${amount}"
             }
         })
+        btnContinue.setOnClickListener {
+            progressDialog.setMessage("Placing Your Order....")
+            progressDialog.show()
+            val timestamp = System.currentTimeMillis().toString()
+            val orderId = timestamp
+            val orderTime = timestamp
+            val orderStatus = "Pending"
+            val orderCost = totalCost.toString()
+            val orderBy = uid
+            val orderTo = shopId.toString()
+            orderDetails =
+                ModelOrderDetails(orderId, orderTime, orderStatus, orderCost, orderBy, orderTo)
+            val ref:DatabaseReference=FirebaseDatabase.getInstance().reference.child("seller").child(orderTo).child("Orders")
+            ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
+                for (i in 0 until cartProducts.size){
+                    val productId=cartProducts[i].productId
+                    val orderedBy=cartProducts[i].orderBy
+                    val productTitle=cartProducts[i].productTitle
+                    val priceEach=cartProducts[i].priceEach
+                    val finalPrice=cartProducts[i].finalPrice
+                    val finalQuantity=cartProducts[i].finalQuantity
+                    val orderedTo=cartProducts[i].orderTo
+                    val sellingPrice=cartProducts[i].sellingPrice
+                    val headers=HashMap<String,String>()
+                    headers["productId"]=productId
+                    headers["orderBy"]=orderedBy
+                    headers["productTitle"]=productTitle
+                    headers["priceEach"]=priceEach
+                    headers["finalPrice"]=finalPrice
+                    headers["finalQuantity"]=finalQuantity
+                    headers["orderTo"]=orderedTo
+                    headers["sellingPrice"]=sellingPrice
+                    ref.child(timestamp).child("Items").child(productId).setValue(headers)
+                }
+                progressDialog.dismiss()
+                Toast.makeText(this,"Your order has been successfully placed",Toast.LENGTH_SHORT).show()
+
+            }
+
+        }
     }
 }
