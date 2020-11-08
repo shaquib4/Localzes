@@ -104,18 +104,25 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                     cartDetails.child(productId).setValue(cart)
                 }
                 btnDecrease.setOnClickListener {
+                    var b=txtCounter.text
+                  b=quantity.toString()
                     if (quantity>1){
                         finalCost-=cost
                         quantity--
+                        txtCounter.text=quantity.toString()
                         val cart=UserCartDetails(productId,uid,title,priceEach,finalCost.toString(),quantity.toString(),shopId,productUrl,sellingPrice)
                         val cartDetails= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
                         cartDetails.child(productId).setValue(cart)
                     }
-                    if (quantity<=1){
+                    if (b<=1.toString()){
                         btnLinear.visibility=View.GONE
                         addItem.visibility=View.VISIBLE
                         val cartDetails= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
-                        cartDetails.child(productId).removeValue()
+                        cartDetails.child(productId).removeValue().addOnCompleteListener{
+                            if (it.isSuccessful){
+                                Toast.makeText(context,"Item removed cart",Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     }
                 }
             }
