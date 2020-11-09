@@ -31,6 +31,7 @@ class UserProductsActivity : AppCompatActivity() {
     var totalItems:Int=0
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_products)
@@ -86,11 +87,15 @@ class UserProductsActivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                var a= arrayListOf<Double>()
-
+                var finalPriceList= arrayListOf<Double>()
+                var finalQuantityList= arrayListOf<Int>()
+                var sellingPriceList= arrayListOf<Double>()
+                totalOriginalPrice=0.0
                 totalCost=0.0
+
                 for (i in snapshot.children) {
-                    a.clear()
+                    finalPriceList.clear()
+                    sellingPriceList.clear()
 
                     val productId=i.child("productId").value.toString()
                     val orderBy = i.child("orderBy").value.toString()
@@ -101,6 +106,7 @@ class UserProductsActivity : AppCompatActivity() {
                     val orderTo = i.child("orderTo").value.toString()
                     val productImageUrl = i.child("productImageUrl").value.toString()
                     val sellingPrice = i.child("sellingPrice").value.toString()
+                    val finalsellingPrice=i.child("finalsellingPrice").value.toString()
                     val obj = UserCartDetails(
                         productId,
                         orderBy,
@@ -110,14 +116,20 @@ class UserProductsActivity : AppCompatActivity() {
                         finalQuantity,
                         orderTo,
                         productImageUrl,
-                        sellingPrice
+                        sellingPrice,
+                        finalsellingPrice
                     )
-                    a.add(finalPrice.toDouble())
-                    for (j in a){
+                    finalPriceList.add(finalPrice.toDouble())
+                    sellingPriceList.add(finalsellingPrice.toDouble())
+                    for (j in finalPriceList){
                         totalCost+=j
                     }
+                    for (k in sellingPriceList){
+                     totalOriginalPrice+=k
+                    }
+
                     (cartItems as ArrayList<UserCartDetails>).add(obj)
-                    totalOriginalPrice += sellingPrice.toDouble()
+
                 }
                 if (cartItems.isNotEmpty()) {
 

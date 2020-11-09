@@ -109,7 +109,8 @@ class Cart : AppCompatActivity() {
                         i.child("finalQuantity").value.toString(),
                         i.child("orderTo").value.toString(),
                         i.child("productImageUrl").value.toString(),
-                        i.child("sellingPrice").value.toString()
+                        i.child("sellingPrice").value.toString(),
+                        i.child("finalsellingPrice").value.toString()
                     )
                     (cartProducts as ArrayList<UserCartDetails>).add(obj)
                 }
@@ -119,7 +120,7 @@ class Cart : AppCompatActivity() {
                 txtPrice.text = "Rs. ${totalCost}"
                 discountAmount =
                     ((totalOriginalPrice.toString()).toDouble() - (totalCost.toString().toDouble()))
-                txtDiscountPrice.text = "-Rs. ${discountAmount}"
+                txtDiscountPrice.text = "Rs. ${discountAmount}"
                 if (snapshot.childrenCount > 1) {
                     txtTotalPrice.text = "Price(${snapshot.childrenCount} items)"
                 } else {
