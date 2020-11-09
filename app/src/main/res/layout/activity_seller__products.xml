@@ -45,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/card_view_Details"
+        android:layout_above="@id/bottom_navHome"
         android:padding="3dp"
         app:stackFromEnd="true"
         tools:listitem="@layout/product_single_row"/>

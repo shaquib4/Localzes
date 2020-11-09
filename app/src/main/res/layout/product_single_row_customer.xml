@@ -55,7 +55,7 @@
                 android:textColor="#de4500"
                 android:textSize="@dimen/_11ssp" />
             <Button
-android:visibility="invisible"
+
                 android:id="@+id/btnAddItem"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_21sdp"
@@ -117,7 +117,7 @@ android:visibility="invisible"
 
             <LinearLayout
 
-                android:visibility="visible"
+                android:visibility="invisible"
                android:layout_below="@+id/imgRating_customer"
                 android:layout_width="100dp"
                 android:layout_alignParentEnd="true"

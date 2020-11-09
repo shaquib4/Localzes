@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -28,6 +29,8 @@ class UserProductsActivity : AppCompatActivity() {
     var totalCost: Double = 0.00
     var totalOriginalPrice: Double = 0.00
     var totalItems:Int=0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_products)
@@ -69,6 +72,7 @@ class UserProductsActivity : AppCompatActivity() {
                         i.child("quantity").value.toString()
                     )
                     (mUserProducts as ArrayList<ModelAddProduct>).add(obj)
+
                 }
                 userProductAdapter = AdapterUserProducts(this@UserProductsActivity, mUserProducts)
                 recyclerUserProduct.adapter = userProductAdapter
@@ -81,7 +85,13 @@ class UserProductsActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
+
+                var a= arrayListOf<Double>()
+
+                totalCost=0.0
                 for (i in snapshot.children) {
+                    a.clear()
+
                     val productId=i.child("productId").value.toString()
                     val orderBy = i.child("orderBy").value.toString()
                     val productTitle = i.child("productTitle").value.toString()
@@ -102,15 +112,19 @@ class UserProductsActivity : AppCompatActivity() {
                         productImageUrl,
                         sellingPrice
                     )
+                    a.add(finalPrice.toDouble())
+                    for (j in a){
+                        totalCost+=j
+                    }
                     (cartItems as ArrayList<UserCartDetails>).add(obj)
-                    totalCost += priceEach.toDouble()
                     totalOriginalPrice += sellingPrice.toDouble()
                 }
                 if (cartItems.isNotEmpty()) {
+
                     cartRelativeLayout.visibility = View.VISIBLE
                     totalItems=snapshot.childrenCount.toInt()
                     quantityItem.text = totalItems.toString()
-                    costTotal.text = totalCost.toString()
+                    costTotal.text = (totalCost).toString()
                     viewCart.setOnClickListener {
                         val intent = Intent(applicationContext, Cart::class.java)
                         intent.putExtra("totalCost",totalCost.toString())
@@ -122,7 +136,7 @@ class UserProductsActivity : AppCompatActivity() {
                 }
             }
         })
-        total_cost.text=totalCost.toString()
+
 
     }
 }
