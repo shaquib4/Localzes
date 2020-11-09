@@ -1,6 +1,7 @@
 package com.example.localzes
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,7 +53,10 @@ class AdapterSellerOrders(
         val formattedDate=sdf.format(date)
         holder.orderDateTv.text=formattedDate
         holder.itemView.setOnClickListener {
-            
+            val intent= Intent(context,OrdersDetailsSellerActivity::class.java)
+            intent.putExtra("orderIdTv",sellerOrders.orderId)
+            intent.putExtra("orderByTv",sellerOrders.orderBy)
+            context.startActivity(intent)
         }
     }
 }

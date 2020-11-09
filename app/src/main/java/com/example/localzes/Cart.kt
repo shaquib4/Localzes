@@ -142,33 +142,42 @@ class Cart : AppCompatActivity() {
             val orderTo = shopId.toString()
             orderDetails =
                 ModelOrderDetails(orderId, orderTime, orderStatus, orderCost, orderBy, orderTo)
-            val ref:DatabaseReference=FirebaseDatabase.getInstance().reference.child("seller").child(orderTo).child("Orders")
+            val reference:DatabaseReference=FirebaseDatabase.getInstance().reference.child("users").child(orderBy).child("MyOrders")
+            reference.child(orderId).setValue(orderDetails)
+            val ref: DatabaseReference =
+                FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
+                    .child("Orders")
             ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
-                for (i in 0 until cartProducts.size){
-                    val productId=cartProducts[i].productId
-                    val orderedBy=cartProducts[i].orderBy
-                    val productTitle=cartProducts[i].productTitle
-                    val priceEach=cartProducts[i].priceEach
-                    val finalPrice=cartProducts[i].finalPrice
-                    val finalQuantity=cartProducts[i].finalQuantity
-                    val orderedTo=cartProducts[i].orderTo
-                    val sellingPrice=cartProducts[i].sellingPrice
-                    val headers=HashMap<String,String>()
-                    headers["productId"]=productId
-                    headers["orderBy"]=orderedBy
-                    headers["productTitle"]=productTitle
-                    headers["priceEach"]=priceEach
-                    headers["finalPrice"]=finalPrice
-                    headers["finalQuantity"]=finalQuantity
-                    headers["orderTo"]=orderedTo
-                    headers["sellingPrice"]=sellingPrice
+                for (i in 0 until cartProducts.size) {
+                    val productId = cartProducts[i].productId
+                    val orderedBy = cartProducts[i].orderBy
+                    val productTitle = cartProducts[i].productTitle
+                    val priceEach = cartProducts[i].priceEach
+                    val finalPrice = cartProducts[i].finalPrice
+                    val finalQuantity = cartProducts[i].finalQuantity
+                    val orderedTo = cartProducts[i].orderTo
+                    val sellingPrice = cartProducts[i].sellingPrice
+                    val headers = HashMap<String, String>()
+                    headers["productId"] = productId
+                    headers["orderBy"] = orderedBy
+                    headers["productTitle"] = productTitle
+                    headers["priceEach"] = priceEach
+                    headers["finalPrice"] = finalPrice
+                    headers["finalQuantity"] = finalQuantity
+                    headers["orderTo"] = orderedTo
+                    headers["sellingPrice"] = sellingPrice
                     ref.child(timestamp).child("Items").child(productId).setValue(headers)
+                    reference.child(orderId).child(productId).setValue(headers)
                 }
                 progressDialog.dismiss()
-                Toast.makeText(this,"Your order has been successfully placed",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your order has been successfully placed", Toast.LENGTH_SHORT)
+                    .show()
 
             }
-
+                .addOnFailureListener {
+                    progressDialog.dismiss()
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
         }
     }
 }

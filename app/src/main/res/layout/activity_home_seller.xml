@@ -167,7 +167,7 @@
                     android:contentDescription="@string/todo"
                     android:elevation="5dp"
                     android:padding="16dp"
-                    android:text="11"
+                    android:text="12"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="20sp"

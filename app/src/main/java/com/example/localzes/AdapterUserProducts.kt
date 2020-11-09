@@ -34,8 +34,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val userProducts = products_user[position]
         Picasso.get().load(userProducts.imageUrl).into(holder.productImage)
         holder.productTitle.text = userProducts.title
-        holder.productPrice.text = "Rs. ${userProducts.sellingPrice}"
-        val mString = "Rs. ${userProducts.offerPrice}"
+        holder.productPrice.text = "Rs. ${userProducts.offerPrice}"
+        val mString = "Rs. ${userProducts.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
         val productId = userProducts.productId

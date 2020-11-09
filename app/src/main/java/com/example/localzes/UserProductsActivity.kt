@@ -136,7 +136,5 @@ class UserProductsActivity : AppCompatActivity() {
                 }
             }
         })
-
-
     }
 }

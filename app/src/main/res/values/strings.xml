@@ -59,8 +59,8 @@
     <string name="www_localze_com">www.localze.com</string>
     <string name="orders">ORDERS</string>
     <string name="accepted">Accepted</string>
-    <string name="shipped">Shipped</string>
-    <string name="active">Active</string>
+    <string name="shipped">Out For Delivery</string>
+    <string name="active">Completed</string>
     <string name="pending">Pending</string>
     <string name="overview">OVERVIEW</string>
     <string name="todo">TODO</string>

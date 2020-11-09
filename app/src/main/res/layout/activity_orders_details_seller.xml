@@ -20,51 +20,51 @@
             <TableRow>
 
                 <TextView
-                    android:textSize="@dimen/_12ssp"
-                    android:fontFamily="@font/montserrat_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_bold"
                     android:text="Order Id :"
                     android:textColor="#000000"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:textSize="@dimen/_11ssp"
                     android:id="@+id/txtOrderId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                   android:textStyle="bold"
                     android:text="#123456"
-                    android:textColor="#555555" />
+                    android:textColor="#555555"
+                    android:textSize="@dimen/_11ssp"
+                    android:textStyle="bold" />
 
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:textSize="@dimen/_11ssp"
-                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Date :"
                     android:textColor="#000000"
+                    android:textSize="@dimen/_11ssp"
                     android:textStyle="bold" />
 
                 <TextView
-android:textSize="@dimen/_10ssp"
                     android:id="@+id/txtOrderDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="27/02/2020, 9:45 PM"
-                    android:textColor="#555555" />
+                    android:textColor="#555555"
+                    android:textSize="@dimen/_10ssp" />
 
 
             </TableRow>
@@ -72,51 +72,51 @@ android:textSize="@dimen/_10ssp"
             <TableRow>
 
                 <TextView
-                    android:textSize="@dimen/_11ssp"
-                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Order Status :"
                     android:textColor="#000000"
+                    android:textSize="@dimen/_11ssp"
                     android:textStyle="bold" />
 
 
                 <TextView
-                    android:textSize="@dimen/_10ssp"
                     android:id="@+id/txtOrderStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="In Progress"
-                    android:textColor="#008000" />
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_10ssp" />
 
             </TableRow>
+
             <TableRow>
 
                 <TextView
-                    android:textSize="@dimen/_11ssp"
-                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Items :"
                     android:textColor="#000000"
+                    android:textSize="@dimen/_11ssp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:textSize="@dimen/_10ssp"
                     android:id="@+id/txtItems"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="9"
-                    android:textColor="#555555" />
-
+                    android:textColor="#555555"
+                    android:textSize="@dimen/_10ssp" />
 
 
             </TableRow>
@@ -124,57 +124,57 @@ android:textSize="@dimen/_10ssp"
             <TableRow>
 
                 <TextView
-                    android:textSize="@dimen/_11ssp"
-                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Amount :"
                     android:textColor="#000000"
+                    android:textSize="@dimen/_11ssp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:textSize="@dimen/_12ssp"
                     android:id="@+id/txtOrderCost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:textStyle="bold"
                     android:text="Rs. 1,209/-"
-                    android:textColor="#008000" />
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
 
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:textSize="@dimen/_11ssp"
-                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Delivery Address :"
                     android:textColor="#000000"
+                    android:textSize="@dimen/_11ssp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:textSize="@dimen/_10ssp"
                     android:id="@+id/txtOrderDeliveryAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="Saraibika, Jaunpur UP - 222202"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10ssp" />
+
                 <ImageView
                     android:id="@+id/imgEdit"
-                    android:src="@drawable/ic_edit"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    />
+                    android:src="@drawable/ic_edit" />
             </TableRow>
         </TableLayout>
 
@@ -186,11 +186,11 @@ android:textSize="@dimen/_10ssp"
         android:background="#d3d3d3" />
 
     <TextView
-        android:paddingVertical="@dimen/_8sdp"
-        android:fontFamily="@font/montserrat_bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
+        android:paddingVertical="@dimen/_8sdp"
         android:text="Ordered Items"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -200,13 +200,14 @@ android:textSize="@dimen/_10ssp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#d3d3d3" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerOrderedSellerItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:stackFromEnd="true"
-        app:reverseLayout="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/row_ordered_items"/>
+        app:reverseLayout="true"
+        app:stackFromEnd="true"
+        tools:listitem="@layout/row_ordered_items" />
 
 </LinearLayout>

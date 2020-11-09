@@ -76,6 +76,8 @@ class UserOrdersActivity : AppCompatActivity() {
                     )
                     (mUserOrderHistory as ArrayList<ModelUserOrderDetails>).add(obj)
                 }
+                userOrderHistoryAdapter=AdapterUserOrderHistory(this@UserOrdersActivity,mUserOrderHistory)
+                recyclerOrderDetails.adapter=userOrderHistoryAdapter
             }
         })
     }
