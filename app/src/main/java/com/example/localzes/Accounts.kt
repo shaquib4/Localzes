@@ -3,17 +3,49 @@ package com.example.localzes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_accounts.*
+import kotlinx.android.synthetic.main.activity_maps.*
 import java.util.ArrayList
 
 class Accounts : AppCompatActivity() {
     private lateinit var listViewAdapter: ExpandableListViewAdapter
     private lateinit var menu:List<String>
+    private lateinit var auth: FirebaseAuth
+    private lateinit var userDatabase: DatabaseReference
     private lateinit var item:HashMap<String,List<String>>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accounts)
         bottom_navAcc.selectedItemId = R.id.nav_account
+       auth= FirebaseAuth.getInstance()
+        val user=auth.currentUser
+        val uid=user!!.uid
+        userDatabase= FirebaseDatabase.getInstance().reference.child("users").child(uid)
+        userDatabase!!.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+
+                    val user:ModelClass?=snapshot.getValue(ModelClass::class.java)
+                    val phone:String?=user!!.getPhone()
+                    val name:String?=user!!.getName()
+                    val email:String?=user!!.getEmail()
+                        txtaccmobile.text=phone.toString()
+                        txtaccName.text=name.toString()
+                        txtaccEmail.text=email.toString()
+
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+
+
+        })
         bottom_navAcc.setOnNavigationItemSelectedListener { item ->
 
 

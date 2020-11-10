@@ -19,10 +19,10 @@ class Home_seller : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_seller)
-        ordersAccepted=findViewById(R.id.imgAccepted)
-        ordersCompleted=findViewById(R.id.imgActive)
-        ordersOutForDelivery=findViewById(R.id.imgShipped)
-        ordersPending=findViewById(R.id.imgPending)
+        ordersAccepted=findViewById(R.id.txtItemAccepted)
+        ordersCompleted=findViewById(R.id.txtItemActive)
+        ordersOutForDelivery=findViewById(R.id.txtItemOFD)
+        ordersPending=findViewById(R.id.txtItemPending)
         orderAuth=FirebaseAuth.getInstance()
         val user=orderAuth.currentUser
         val uid=user!!.uid

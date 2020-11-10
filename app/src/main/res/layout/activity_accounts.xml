@@ -53,6 +53,7 @@
             android:layout_marginTop="3dp"
             android:text="7007436997"/>
         <TextView
+            android:id="@+id/txtaccEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtaccEdit"
