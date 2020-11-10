@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_3sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgItem"
+                android:src="@drawable/lanju"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                />
+            <TextView
+                android:layout_above="@+id/txtItemMRP"
+                android:id="@+id/txtItemName"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="#666666"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_toRightOf="@+id/imgItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aaloo Chat"/>
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/txtItemMRP"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="#d1d1d1"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_toRightOf="@+id/imgItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs. 1,499"/>
+            <TextView
+                android:id="@+id/txtItemPrice"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="#008000"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_toRightOf="@+id/imgItem"
+                android:layout_below="@+id/txtItemMRP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs. 526/-"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardFavourite"
+                app:cardCornerRadius="@dimen/_15sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp">
+
+                <ImageView
+                    android:padding="@dimen/_5sdp"
+                    android:id="@+id/imgFavourite"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/ic_favourite"/>
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/imgDelete"
+                android:src="@drawable/ic_remove"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
