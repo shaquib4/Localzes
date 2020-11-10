@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/imgBack"
+        android:layout_alignTop="@+id/txtPayment"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_back"
+        android:layout_margin="5dp"
+        />
+    <TextView
+        android:layout_toRightOf="@id/imgBack"
+        android:id="@+id/txtPayment"
+        android:layout_width="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_height="wrap_content"
+        android:text="Payment"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#de4500"
+        android:textSize="@dimen/_18ssp"
+        />
+    <View
+        android:id="@+id/view1"
+        android:layout_below="@+id/txtPayment"
+        android:background="#d3d3d3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPay"
+        app:cardCornerRadius="5dp"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_below="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp">
+
+        <TextView
+            android:id="@+id/txtSellerName"
+            android:layout_margin="10dp"
+            android:textSize="@dimen/_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seller Name Shop Name"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#000000"
+        />
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

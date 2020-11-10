@@ -31,41 +31,19 @@
                     android:id="@+id/imgBar"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_250sdp"
-                    android:background="@drawable/border" />
+                    android:background="@drawable/localze_shop" />
 
-                <TextView
-                    android:id="@+id/txtWelcome"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/rectangle_box"
-                    android:padding="5dp"
-                    android:paddingStart="@dimen/_35sdp"
-                    android:text="Location"
-                    android:textColor="#696969"
-                    android:textSize="@dimen/_15ssp"
-                    tools:ignore="RelativeOverlap" />
-
-                <ImageView
-                    android:id="@+id/imgLocation"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_location" />
 
                 <TextView
                     android:id="@+id/txtShopName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/txtWelcome"
-                    android:layout_marginTop="175dp"
+                    android:layout_marginTop="@dimen/_180sdp"
                     android:fontFamily="@font/montserrat_bold"
                     android:padding="10dp"
                     android:text="@string/shop_name"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/_22ssp"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_20ssp"
                     android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
@@ -73,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtShopName"
-                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     app:cardCornerRadius="10dp">
 
                     <RelativeLayout
@@ -113,16 +91,6 @@
                             android:textColor="#3498db"
                             android:textSize="@dimen/_15ssp" />
 
-                        <ImageView
-                            android:id="@+id/imgWhatsapp"
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:layout_below="@+id/txtConnect"
-                            android:layout_margin="5dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_toLeftOf="@+id/imgSend"
-                            android:contentDescription="@string/todo"
-                            android:src="@drawable/whatsapp" />
 
                         <ImageView
                             android:id="@+id/imgSend"
@@ -331,7 +299,7 @@
                     <TextView
                         android:id="@+id/txtTotalOrders"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_height="@dimen/_45sdp"
                         android:layout_marginHorizontal="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/rectangle_box"
@@ -346,7 +314,7 @@
                     <TextView
                         android:id="@+id/txtTotalIncome"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_height="@dimen/_45sdp"
                         android:layout_marginHorizontal="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/rectangle_box"
@@ -362,7 +330,7 @@
                     <TextView
                         android:id="@+id/txtStoreViews"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_height="@dimen/_45sdp"
                         android:layout_marginHorizontal="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/rectangle_box"
@@ -384,220 +352,6 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card1_customer"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="10dp"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/imgShop"
-                        android:layout_width="match_parent"
-                        android:layout_height="220dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/shop" />
-
-                </androidx.cardview.widget.CardView>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/txtCategory"
-                    android:layout_marginTop="10dp"
-                    android:background="#cdcdcd" />
-
-                <TextView
-                    android:id="@+id/txtShop_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/card1_customer"
-                    android:layout_marginLeft="30dp"
-                    android:text="Elecronics Accessoies"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txtVews1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/card1_customer"
-                    android:layout_marginLeft="290dp"
-                    android:text="Views: 722 "
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtVews1"
-                    android:layout_marginLeft="290dp"
-                    android:text="Stock: IN "
-                    android:textColor="#3498db"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txtCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtShop_name"
-                    android:layout_marginLeft="30dp"
-                    android:text="Rs. 699"
-                    android:textColor="#de4500"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card2"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="15dp"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/imgElectronics2"
-                        android:layout_width="match_parent"
-                        android:layout_height="220dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/shop" />
-
-                </androidx.cardview.widget.CardView>
-
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/txtPrice2"
-                    android:layout_marginTop="10dp"
-                    android:background="#cdcdcd" />
-
-                <TextView
-                    android:id="@+id/txtElectronics2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/card2"
-                    android:layout_marginLeft="30dp"
-                    android:text="Elecronics Accessoies"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txtVews2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/card2"
-                    android:layout_marginLeft="290dp"
-                    android:text="Views: 722 "
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtVews2"
-                    android:layout_marginLeft="290dp"
-                    android:text="Stock: IN "
-                    android:textColor="#3498db"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txtPrice2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtElectronics2"
-                    android:layout_marginLeft="30dp"
-                    android:text="Rs. 699"
-                    android:textColor="#de4500"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card3"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="15dp"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/imgElectronics3"
-                        android:layout_width="match_parent"
-                        android:layout_height="220dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/shop" />
-
-                </androidx.cardview.widget.CardView>
-
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/txtPrice3"
-                    android:layout_marginTop="10dp"
-                    android:background="#cdcdcd" />
-
-                <TextView
-                    android:id="@+id/txtElectronics3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/card3"
-                    android:layout_marginLeft="30dp"
-                    android:text="Elecronics Accessoies"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txtVews3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/card3"
-                    android:layout_marginLeft="290dp"
-                    android:text="Views: 722 "
-                    android:textColor="#696969"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtVews3"
-                    android:layout_marginLeft="290dp"
-                    android:text="Stock: IN "
-                    android:textColor="#3498db"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txtPrice3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtElectronics3"
-                    android:layout_marginLeft="30dp"
-                    android:text="Rs. 699"
-                    android:textColor="#de4500"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
 
 
             <ImageView
@@ -605,8 +359,6 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rectangle_box" />
-
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
