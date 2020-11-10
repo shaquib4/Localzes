@@ -49,7 +49,11 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val productUrl = userProducts.imageUrl
         var cost: Double = 0.0
         var finalCost: Double = 0.0
+        var finalSellingPrice:Double=0.0
+        var sellingP:Double=0.0
         var quantity: Int = 0
+        sellingP=userProducts.sellingPrice.toDouble()
+        finalSellingPrice=userProducts.sellingPrice.toDouble()
         cost = userProducts.offerPrice.toDouble()
         finalCost = userProducts.offerPrice.toDouble()
         quantity = 1
@@ -74,7 +78,10 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 quantity,
                 holder.rating,
                 holder.txtCounter,
-                holder.addItem
+                holder.addItem,
+                sellingP,
+                finalSellingPrice,
+                userProducts.sellingPrice
             )
             holder.addItem.visibility = View.GONE
 
@@ -100,7 +107,10 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         quantity: Int,
         rating: TextView,
         txtCounter: TextView,
-        addItem: Button
+        addItem: Button,
+        sellingP:Double,
+        finalSellingPrice:Double,
+        finalSellingPr:String
     ) {
         val cart = UserCartDetails(
             productId,
@@ -111,7 +121,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             finalQ,
             shopId,
             productUrl,
-            sellingPrice
+            sellingPrice,
+            finalSellingPr
         )
         val cartDetails =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
@@ -119,12 +130,14 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             if (it.isSuccessful) {
                 btnLinear.visibility = View.VISIBLE
                 var finalCost = finalCost
-
+                var finalSellingPrice=finalSellingPrice
+                var sellingP=sellingP
                 var cost = cost
                 var quantity = quantity
-
+                 var sellingPrice=sellingPrice
 
                 btnIncrease.setOnClickListener {
+                    finalSellingPrice +=  sellingP
                     finalCost += cost
                     quantity++
                     txtCounter.text = quantity.toString()
@@ -137,7 +150,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                         quantity.toString(),
                         shopId,
                         productUrl,
-                        sellingPrice
+                        sellingPrice,
+                        finalSellingPrice.toString()
+
                     )
                     val cartDetails =
                         FirebaseDatabase.getInstance().reference.child("users").child(uid)
@@ -148,6 +163,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                     var b = txtCounter.text
                     b = quantity.toString()
                     if (quantity > 1) {
+                        finalSellingPrice -=  sellingP
                         finalCost -= cost
                         quantity--
                         txtCounter.text = quantity.toString()
@@ -160,7 +176,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                             quantity.toString(),
                             shopId,
                             productUrl,
-                            sellingPrice
+                            sellingPrice,
+                            finalSellingPrice.toString()
                         )
                         val cartDetails =
                             FirebaseDatabase.getInstance().reference.child("users").child(uid)
