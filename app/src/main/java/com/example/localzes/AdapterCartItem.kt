@@ -1,6 +1,9 @@
 package com.example.localzes
 
 import android.content.Context
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +47,11 @@ class AdapterCartItem(val context:Context,private val cart_user:List<UserCartDet
         Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)
         holder.productTitleCart.text=cartDetails.productTitle
         holder.productOfferPriceCart.text=cartDetails.priceEach
-        holder.productOriginalPriceCart.text=cartDetails.sellingPrice
+        val mString ="Rs. ${cartDetails.sellingPrice}"
+        val spannableString = SpannableString(mString)
+        val mStrikeThrough = StrikethroughSpan()
+        spannableString.setSpan(mStrikeThrough,0,mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        holder.productOriginalPriceCart.text=spannableString
         holder.productTotalPrice.text=cartDetails.finalPrice
         holder.quantityCart.text=quantity
         mAuth=FirebaseAuth.getInstance()

@@ -145,7 +145,7 @@ class Cart : AppCompatActivity() {
             val orderBy = uid
             val orderTo = shopId.toString()
             orderDetails =
-                ModelOrderDetails(orderId, orderTime, orderStatus, orderCost, orderBy, orderTo)
+                ModelOrderDetails(orderId, orderTime, orderStatus, orderCost, orderBy, orderTo,totalItem.toString())
             val reference: DatabaseReference =
                 FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
                     .child("MyOrders")
@@ -173,7 +173,7 @@ class Cart : AppCompatActivity() {
                     headers["orderTo"] = orderedTo
                     headers["sellingPrice"] = sellingPrice
                     ref.child(timestamp).child("Items").child(productId).setValue(headers)
-                    reference.child(orderId).child(productId).setValue(headers)
+                    reference.child(orderId).child("orderedItems").child(productId).setValue(headers)
                 }
                 progressDialog.dismiss()
                 Toast.makeText(this, "Your order has been successfully placed", Toast.LENGTH_SHORT)

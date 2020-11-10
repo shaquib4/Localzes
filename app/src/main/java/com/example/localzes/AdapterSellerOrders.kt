@@ -19,6 +19,7 @@ class AdapterSellerOrders(
         val orderDateTv: TextView = view.findViewById(R.id.orderDateTv)
         val orderAmountTv: TextView = view.findViewById(R.id.orderAmountTv)
         val orderStatusTv: TextView = view.findViewById(R.id.orderStatusTv)
+        val totalItemsTv:TextView=view.findViewById(R.id.totalItemsTv)
 
     }
 
@@ -37,6 +38,12 @@ class AdapterSellerOrders(
         holder.orderIdTv.text = "OD${sellerOrders.orderId}"
         holder.orderAmountTv.text = "Amount:- Rs.${sellerOrders.orderCost}"
         holder.orderStatusTv.text = sellerOrders.orderStatus
+        if(sellerOrders.orderQuantity.toInt()>1){
+            holder.totalItemsTv.text="${sellerOrders.orderQuantity} items"
+        }
+        else{
+            holder.totalItemsTv.text="${sellerOrders.orderQuantity} item"
+        }
         when (sellerOrders.orderStatus) {
             "In Progress" -> {
                 holder.orderStatusTv.setTextColor(context.resources.getColor(R.color.green))
