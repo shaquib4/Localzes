@@ -83,5 +83,26 @@ class Home_seller : AppCompatActivity() {
             }
 
         })
+        ordersAccepted.setOnClickListener {
+            orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted").addValueEventListener(object :ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                }
+
+            })
+        }
+        ordersCompleted.setOnClickListener {
+
+        }
+        ordersPending.setOnClickListener {
+
+        }
+        ordersOutForDelivery.setOnClickListener {
+
+        }
     }
 }

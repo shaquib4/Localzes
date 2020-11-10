@@ -50,6 +50,9 @@ class Cart : AppCompatActivity() {
         txtTotalAmount = findViewById(R.id.txtTotalAmount)
         totalPayment = findViewById(R.id.TotalPayment)
         btnContinue = findViewById(R.id.btnContinue)
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Please Wait")
+        progressDialog.setCanceledOnTouchOutside(false)
         totalCost = intent.getStringExtra("totalCost")
         totalOriginalPrice = intent.getStringExtra("totalOriginalPrice")
         totalItem = intent.getStringExtra("totalItems")
@@ -142,7 +145,9 @@ class Cart : AppCompatActivity() {
             val orderTo = shopId.toString()
             orderDetails =
                 ModelOrderDetails(orderId, orderTime, orderStatus, orderCost, orderBy, orderTo)
-            val reference:DatabaseReference=FirebaseDatabase.getInstance().reference.child("users").child(orderBy).child("MyOrders")
+            val reference: DatabaseReference =
+                FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
+                    .child("MyOrders")
             reference.child(orderId).setValue(orderDetails)
             val ref: DatabaseReference =
                 FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
