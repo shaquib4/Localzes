@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OrdersCompletedActivity"></activity>
+        <activity android:name=".CurrentOrdersActivity" />
+        <activity android:name=".OrdersCompletedActivity" />
         <activity android:name=".OrderOutForDeliveryActivity" />
         <activity android:name=".OrdersAcceptedActivity" />
         <activity android:name=".UserOrdersActivity" />

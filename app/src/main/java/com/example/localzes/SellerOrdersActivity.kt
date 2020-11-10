@@ -17,7 +17,7 @@ class SellerOrdersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_orders)
         recyclerShopOrders = findViewById(R.id.recyclerShopOrders)
-        recyclerShopOrders.layoutManager=LinearLayoutManager(this)
+        recyclerShopOrders.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
@@ -38,15 +38,14 @@ class SellerOrdersActivity : AppCompatActivity() {
                         i.child("orderStatus").value.toString(),
                         i.child("orderCost").value.toString(),
                         i.child("orderBy").value.toString(),
-                        i.child("orderTo").value.toString()
+                        i.child("orderTo").value.toString(),
+                        i.child("orderQuantity").value.toString()
                     )
                     (mSellerOrders as ArrayList<ModelOrderDetails>).add(obj)
-                    sellerOrderAdapter= AdapterSellerOrders(this@SellerOrdersActivity,mSellerOrders)
-                    recyclerShopOrders.adapter=sellerOrderAdapter
                 }
-
+                sellerOrderAdapter = AdapterSellerOrders(this@SellerOrdersActivity, mSellerOrders)
+                recyclerShopOrders.adapter = sellerOrderAdapter
             }
-
         })
     }
 }

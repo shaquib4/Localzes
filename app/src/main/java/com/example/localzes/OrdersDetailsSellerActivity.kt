@@ -92,11 +92,11 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 (mOrderDetails as ArrayList<ModelOrderedItems>).clear()
                 for (i in snapshot.children) {
                     val obj = ModelOrderedItems(
-                        i.child("pId").value.toString(),
-                        i.child("name").value.toString(),
-                        i.child("cost").value.toString(),
-                        i.child("price").value.toString(),
-                        i.child("quantity").value.toString()
+                        i.child("productId").value.toString(),
+                        i.child("productTitle").value.toString(),
+                        i.child("finalPrice").value.toString(),
+                        i.child("priceEach").value.toString(),
+                        i.child("finalQuantity").value.toString()
                     )
                     (mOrderDetails as ArrayList<ModelOrderedItems>).add(obj)
                 }
