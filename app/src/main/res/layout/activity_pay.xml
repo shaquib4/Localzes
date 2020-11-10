@@ -36,15 +36,16 @@
         android:layout_margin="@dimen/_5sdp"
         android:layout_below="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
+            android:layout_margin="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/txtSellerName"
-            android:layout_margin="10dp"
+            android:layout_marginVertical="10dp"
             android:textSize="@dimen/_14ssp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,6 +58,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:layout_below="@+id/txtSellerName"
             android:textSize="@dimen/_12ssp"
+            android:textColor="#de4500"
             android:layout_alignStart="@+id/txtSellerName"
             android:text="upi: katappamama@paytm "
             android:layout_width="wrap_content"
@@ -65,12 +67,25 @@
             />
 
             <TextView
-                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:layout_below="@+id/txtUPI"
+                android:textSize="@dimen/_12ssp"
+                android:layout_alignStart="@+id/txtSellerName"
+                android:text="Payment for Ration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtReason"
+                />
+
+            <TextView
+                android:paddingVertical="@dimen/_6sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_below="@+id/txtReason"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:textSize="@dimen/_12ssp"
                 android:layout_alignStart="@+id/txtSellerName"
-                android:text="Amount:"
+                android:text="Payable Amount:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtAmount"
@@ -78,18 +93,63 @@
                 />
             <TextView
                 android:fontFamily="@font/montserrat_bold"
-                android:layout_below="@+id/txtAmount"
+
+             android:layout_alignParentEnd="true"
+             android:layout_alignTop="@+id/txtAmount"
                 android:textSize="@dimen/_20ssp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_alignStart="@+id/txtSellerName"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:text="Rs. 4,589.00"
                 android:textColor="#008000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtPrice"
+                android:id="@+id/txtPrice" />
 
-                />
         </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view2"
+        android:background="#d3d3d3"
+        android:layout_above="@+id/cardPay2"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPay2"
+      android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="@dimen/_18ssp"
+                android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="Rs. 4,589.00"
+            android:textColor="#008000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPayAmount" />
+
+        <Button
+            android:background="@drawable/proceed_to_add"
+            android:layout_width="wrap_content"
+            android:text="PAY NOW"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#fff"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_alignParentEnd="true"
+            />
+        </RelativeLayout>
+
 
     </androidx.cardview.widget.CardView>
 
