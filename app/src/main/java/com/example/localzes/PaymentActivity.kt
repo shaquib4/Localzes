@@ -49,20 +49,20 @@ class PaymentActivity : AppCompatActivity() {
         note = findViewById<View>(R.id.txtReason) as TextView
         name = findViewById<View>(R.id.txtSellerName) as TextView
         upivirtualid = findViewById<View>(R.id.txtUPI) as TextView
-        userDatabase=FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+        userDatabase=FirebaseDatabase.getInstance().reference.child("seller").child("1RyHylZe1RZxDGYrz9BozRv2Zdr1")
 
-        userDatabase.addValueEventListener(object :ValueEventListener{
+        userDatabase!!.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 val user:ModelClass?=snapshot.getValue(ModelClass::class.java)
-                val shopName:String?=user!!.getShopName()
+                val shopName:String?=user!!.getName()
                 val shopUpi:String?=user!!.getShopUpi()
                 amount!!.text=totalCost.toString()
                 name!!.text=shopName.toString()
-                upivirtualid!!.text=shopUpi.toString()
+                upivirtualid!!.text="8875309289@ybl"
             }
 
         })
@@ -70,8 +70,7 @@ class PaymentActivity : AppCompatActivity() {
 
 
         send!!.setOnClickListener { //Getting the values from the Texts
-            val sendf=intent.getStringExtra("send")
-            amount!!.text=totalCost.toString()
+
             if (TextUtils.isEmpty(name!!.text.toString().trim { it <= ' ' })) {
                 Toast.makeText(this@PaymentActivity, " Name is invalid", Toast.LENGTH_SHORT).show()
             } else if (TextUtils.isEmpty(

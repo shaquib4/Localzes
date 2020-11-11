@@ -54,13 +54,13 @@ class ModelClass {
     fun getShopName():String?{
         return shop_name
     }
-    fun setShopName(shopName: String){
-        this.shop_name=shopName
+    fun setShopName(shop_name: String){
+        this.shop_name=shop_name
     }
     fun getShopUpi():String?{
         return upi
     }
-    fun setShopUpi(shopUpi: String){
-        this.upi=shopUpi
+    fun setShopUpi(upi: String){
+        this.upi=upi
     }
 }
