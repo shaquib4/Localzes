@@ -33,8 +33,7 @@ class UserOrdersActivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (i in snapshot.children) {
-                    val a = i.ref.key
-                    orderHistoryDatabase.child(a.toString()).child("orderedItems")
+                    orderHistoryDatabase.child(i.child("orderId").value.toString()).child("orderedItems")
                         .addValueEventListener(object : ValueEventListener {
                             override fun onCancelled(error: DatabaseError) {
 
@@ -42,17 +41,17 @@ class UserOrdersActivity : AppCompatActivity() {
 
                             override fun onDataChange(snapshot: DataSnapshot) {
 
-                                for (i in snapshot.children) {
+                                for (j in snapshot.children) {
                                     val obj = ModelOrderedItems(
-                                        i.child("productId").value.toString(),
-                                        i.child("productTitle").value.toString(),
-                                        i.child("finalPrice").value.toString(),
-                                        i.child("priceEach").value.toString(),
-                                        i.child("finalQuantity").value.toString()
+                                        j.child("productId").value.toString(),
+                                        j.child("productTitle").value.toString(),
+                                        j.child("finalPrice").value.toString(),
+                                        j.child("priceEach").value.toString(),
+                                        j.child("finalQuantity").value.toString()
                                     )
                                     (mOrderedItem as ArrayList<ModelOrderedItems>).add(obj)
                                 }
-                                orderHistoryDatabase.child(a.toString())
+                                orderHistoryDatabase.child(i.child("orderId").toString())
                                     .addValueEventListener(object : ValueEventListener {
                                         override fun onCancelled(error: DatabaseError) {
 
