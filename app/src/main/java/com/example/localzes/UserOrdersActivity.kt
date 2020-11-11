@@ -45,7 +45,6 @@ class UserOrdersActivity : AppCompatActivity() {
 
                         override fun onDataChange(snapshot: DataSnapshot) {
                             for (i in snapshot.children) {
-                                (mOrderedItem as ArrayList<ModelOrderedItems>).clear()
                                 val obj = ModelOrderedItems(
                                     i.child("productId").value.toString(),
                                     i.child("productTitle").value.toString(),
