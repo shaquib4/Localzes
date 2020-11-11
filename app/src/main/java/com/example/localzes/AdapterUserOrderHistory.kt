@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,6 +22,7 @@ class AdapterUserOrderHistory(
         val orderId: TextView = view.findViewById(R.id.orderIdCustomerTv)
         val orderDate: TextView = view.findViewById(R.id.orderDateTv)
         val orderStatus: TextView = view.findViewById(R.id.orderStatusCustomerTv)
+        val orderShop: TextView = view.findViewById(R.id.txtShopName)
         val recyclerOrderHistoryItems: RecyclerView = view.findViewById(R.id.recyclerOrderHistory)
 
     }
@@ -39,6 +39,19 @@ class AdapterUserOrderHistory(
 
     override fun onBindViewHolder(holder: HolderUserOrderHistory, position: Int) {
         val orderHistory = order_history[position]
+        val databaseReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(orderHistory.orderTo)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val address = snapshot.child("address")
+                holder.orderShop.text = address.value.toString()
+            }
+
+        })
         holder.orderId.text = "OD${orderHistory.orderId}"
         if (orderHistory.orderQuantity.toInt() > 1) {
             holder.totalItems.text = "${orderHistory.orderQuantity} items"
@@ -55,13 +68,14 @@ class AdapterUserOrderHistory(
         setUpRecycler(holder.recyclerOrderHistoryItems, orderHistory)
 
     }
+
     private fun setUpRecycler(
         recyclerOrderHistoryItem: RecyclerView,
         orderHistoryItems: ModelUserOrderDetails
     ) {
         val orderedItemList = ArrayList<ModelOrderedItems>()
-        for(i in orderHistoryItems.orderedItems){
-            val obj=ModelOrderedItems(i.pId,i.name,i.cost,i.price,i.quantity)
+        for (i in orderHistoryItems.orderedItems) {
+            val obj = ModelOrderedItems(i.pId, i.name, i.cost, i.price, i.quantity)
             orderedItemList.add(obj)
         }
         val orderedItemAdapter = AdapterOrderedItems(context, orderedItemList)
