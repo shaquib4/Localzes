@@ -7,9 +7,10 @@
     tools:context=".PastOrdersActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPastOrders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        tools:listitem="@layout/row_order_user"/>
 
 
 </RelativeLayout>

@@ -18,7 +18,7 @@ class UserOrdersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_orders)
         recyclerOrderDetails = findViewById(R.id.recyclerUserOrderHistory)
-        recyclerOrderDetails.layoutManager=LinearLayoutManager(this)
+        recyclerOrderDetails.layoutManager = LinearLayoutManager(this)
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
@@ -26,7 +26,6 @@ class UserOrdersActivity : AppCompatActivity() {
         mOrderedItem = ArrayList<ModelOrderedItems>()
         orderHistoryDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
-
         orderHistoryDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -34,10 +33,11 @@ class UserOrdersActivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (i in snapshot.children) {
-                    val a = i.ref.key
+                    (mUserOrderHistory as ArrayList<ModelUserOrderDetails>).clear()
                     val databaseReference: DatabaseReference =
                         FirebaseDatabase.getInstance().reference.child("users").child(uid)
-                            .child("MyOrders").child(a.toString()).child("orderedItems")
+                            .child("MyOrders").child(i.child("orderId").value.toString())
+                            .child("orderedItems")
                     databaseReference.addValueEventListener(object : ValueEventListener {
                         override fun onCancelled(error: DatabaseError) {
 
@@ -45,6 +45,7 @@ class UserOrdersActivity : AppCompatActivity() {
 
                         override fun onDataChange(snapshot: DataSnapshot) {
                             for (i in snapshot.children) {
+                                (mOrderedItem as ArrayList<ModelOrderedItems>).clear()
                                 val obj = ModelOrderedItems(
                                     i.child("productId").value.toString(),
                                     i.child("productTitle").value.toString(),
@@ -55,17 +56,8 @@ class UserOrdersActivity : AppCompatActivity() {
                                 (mOrderedItem as ArrayList<ModelOrderedItems>).add(obj)
                             }
                         }
+
                     })
-                }
-            }
-        })
-        orderHistoryDatabase.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (i in snapshot.children) {
                     val obj = ModelUserOrderDetails(
                         i.child("orderId").value.toString(),
                         i.child("orderTime").value.toString(),
@@ -78,8 +70,9 @@ class UserOrdersActivity : AppCompatActivity() {
                     )
                     (mUserOrderHistory as ArrayList<ModelUserOrderDetails>).add(obj)
                 }
-                userOrderHistoryAdapter=AdapterUserOrderHistory(this@UserOrdersActivity,mUserOrderHistory)
-                recyclerOrderDetails.adapter=userOrderHistoryAdapter
+                userOrderHistoryAdapter =
+                    AdapterUserOrderHistory(this@UserOrdersActivity, mUserOrderHistory)
+                recyclerOrderDetails.adapter = userOrderHistoryAdapter
             }
         })
     }
