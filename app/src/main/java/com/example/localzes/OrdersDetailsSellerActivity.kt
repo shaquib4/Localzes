@@ -138,6 +138,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             editOrderStatus(selectedItem)
             dialog.dismiss()
         }
+        builder.create().show()
     }
 
     private fun editOrderStatus(selectedItem: String) {

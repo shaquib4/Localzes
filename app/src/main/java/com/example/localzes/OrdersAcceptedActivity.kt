@@ -2,6 +2,7 @@ package com.example.localzes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -20,6 +21,7 @@ class OrdersAcceptedActivity : AppCompatActivity() {
         val uid = user!!.uid
         ordersAcceptedList=ArrayList<ModelOrderDetails>()
         recyclerOrdersAccepted=findViewById(R.id.recyclerOrdersAccepted)
+        recyclerOrdersAccepted.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted").addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {

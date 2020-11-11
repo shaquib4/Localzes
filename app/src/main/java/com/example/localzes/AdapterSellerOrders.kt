@@ -38,7 +38,8 @@ class AdapterSellerOrders(
         holder.orderIdTv.text = "OD${sellerOrders.orderId}"
         holder.orderAmountTv.text = "Amount:- Rs.${sellerOrders.orderCost}"
         holder.orderStatusTv.text = sellerOrders.orderStatus
-        if(sellerOrders.orderQuantity.toInt()>1){
+        if(sellerOrders.orderQuantity>1.toString()){
+
             holder.totalItemsTv.text="${sellerOrders.orderQuantity} items"
         }
         else{
