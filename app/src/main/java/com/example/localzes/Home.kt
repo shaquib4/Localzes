@@ -44,7 +44,7 @@ class Home : AppCompatActivity() {
                 }
                 R.id.nav_search -> {
 
-                    startActivity(Intent(this, SellerOrdersActivity::class.java))
+                    startActivity(Intent(this, UserOrdersActivity::class.java))
                     overridePendingTransition(0, 0)
                     finish()
 

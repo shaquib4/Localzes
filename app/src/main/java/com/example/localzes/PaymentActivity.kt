@@ -1,6 +1,7 @@
 package com.example.localzes
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -14,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.database.*
 import java.util.ArrayList
 
 class PaymentActivity : AppCompatActivity() {
@@ -23,18 +25,53 @@ class PaymentActivity : AppCompatActivity() {
     var upivirtualid: TextView? = null
     var send: Button? = null
     var TAG = "main"
+    private lateinit var shopId:String
+    private lateinit var totalCost:String
+    private lateinit var totalItem:String
+    private lateinit var uid:String
+    private lateinit var progressDialog: ProgressDialog
+    private lateinit var orderDetails: ModelOrderDetails
+    private lateinit var cartProducts: List<UserCartDetails>
     val UPI_PAYMENT = 0
+    private lateinit var userDatabase:DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay)
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Please Wait")
+        progressDialog.setCanceledOnTouchOutside(false)
+        totalItem=intent.getStringExtra("totalItem").toString()
+        shopId=intent.getStringExtra("shopId").toString()
+        totalCost=intent.getStringExtra("totalCost").toString()
+        uid=intent.getStringExtra("orderBy").toString()
         send = findViewById<View>(R.id.btnPayNow) as Button
         amount = findViewById<View>(R.id.txtPayAmount) as TextView
         note = findViewById<View>(R.id.txtReason) as TextView
         name = findViewById<View>(R.id.txtSellerName) as TextView
         upivirtualid = findViewById<View>(R.id.txtUPI) as TextView
+        userDatabase=FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+
+        userDatabase.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user:ModelClass?=snapshot.getValue(ModelClass::class.java)
+                val shopName:String?=user!!.getShopName()
+                val shopUpi:String?=user!!.getShopUpi()
+                amount!!.text=totalCost.toString()
+                name!!.text=shopName.toString()
+                upivirtualid!!.text=shopUpi.toString()
+            }
+
+        })
+
+
+
         send!!.setOnClickListener { //Getting the values from the Texts
             val sendf=intent.getStringExtra("send")
-            amount!!.text=sendf.toString()
+            amount!!.text=totalCost.toString()
             if (TextUtils.isEmpty(name!!.text.toString().trim { it <= ' ' })) {
                 Toast.makeText(this@PaymentActivity, " Name is invalid", Toast.LENGTH_SHORT).show()
             } else if (TextUtils.isEmpty(
@@ -152,9 +189,59 @@ class PaymentActivity : AppCompatActivity() {
             }
             if (status == "success") {
                 //Code to handle successful transaction here.
-                Toast.makeText(this@PaymentActivity, "Transaction successful.", Toast.LENGTH_SHORT)
-                    .show()
-                Log.e("UPI", "payment successfull: $approvalRefNo")
+                progressDialog.setMessage("Placing Your Order....")
+                progressDialog.show()
+
+                val timestamp = System.currentTimeMillis().toString()
+                val orderId = timestamp
+                val orderTime = timestamp
+                val orderStatus = "Pending"
+                val orderCost = totalCost.toString()
+                val orderBy = uid
+                val orderTo = shopId.toString()
+                orderDetails =
+                    ModelOrderDetails(orderId, orderTime, orderStatus, orderCost, orderBy, orderTo,totalItem.toString())
+                val reference: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
+                        .child("MyOrders")
+                reference.child(orderId).setValue(orderDetails)
+                val ref: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
+                        .child("Orders")
+                ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
+                    for (i in 0 until cartProducts.size) {
+                        val productId = cartProducts[i].productId
+                        val orderedBy = cartProducts[i].orderBy
+                        val productTitle = cartProducts[i].productTitle
+                        val priceEach = cartProducts[i].priceEach
+                        val finalPrice = cartProducts[i].finalPrice
+                        val finalQuantity = cartProducts[i].finalQuantity
+                        val orderedTo = cartProducts[i].orderTo
+                        val sellingPrice = cartProducts[i].sellingPrice
+                        val headers = HashMap<String, String>()
+                        headers["productId"] = productId
+                        headers["orderBy"] = orderedBy
+                        headers["productTitle"] = productTitle
+                        headers["priceEach"] = priceEach
+                        headers["finalPrice"] = finalPrice
+                        headers["finalQuantity"] = finalQuantity
+                        headers["orderTo"] = orderedTo
+                        headers["sellingPrice"] = sellingPrice
+                        ref.child(timestamp).child("Items").child(productId).setValue(headers)
+                        reference.child(orderId).child("orderedItems").child(productId).setValue(headers).addOnCompleteListener {
+                            if (it.isSuccessful){
+                                progressDialog.dismiss()
+                                Toast.makeText(this, "Your order has been successfully placed", Toast.LENGTH_SHORT)
+                                    .show()
+                                startActivity(Intent(this@PaymentActivity,Home::class.java))
+                            }
+                        }
+                    }
+
+
+                }
+
+                Log.e("UPI", "payment successful: $approvalRefNo")
             } else if ("Payment cancelled by user." == paymentCancel) {
                 Toast.makeText(this@PaymentActivity, "Payment cancelled by user.", Toast.LENGTH_SHORT)
                     .show()

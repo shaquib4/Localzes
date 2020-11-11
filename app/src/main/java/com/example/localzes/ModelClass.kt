@@ -6,14 +6,19 @@ class ModelClass {
     private var address:String=""
     private var email:String=""
     private var phone:String=""
+    private var shop_name:String=""
+    private var upi:String=""
 
     constructor()
-    constructor(uid: String, name: String, address: String, email: String, phone: String) {
+    constructor(uid: String, name: String, address: String, email: String, phone: String,shop_name:String,upi:String) {
         this.uid = uid
         this.name = name
         this.address = address
         this.email = email
         this.phone = phone
+        this.shop_name=shop_name
+        this.upi=upi
+
     }
     fun getUid():String?{
         return uid
@@ -45,5 +50,17 @@ class ModelClass {
     }
     fun setPhone(phone: String){
         this.phone=phone
+    }
+    fun getShopName():String?{
+        return shop_name
+    }
+    fun setShopName(shopName: String){
+        this.shop_name=shopName
+    }
+    fun getShopUpi():String?{
+        return upi
+    }
+    fun setShopUpi(shopUpi: String){
+        this.upi=shopUpi
     }
 }

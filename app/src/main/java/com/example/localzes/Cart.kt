@@ -22,9 +22,9 @@ class Cart : AppCompatActivity() {
     private lateinit var cartProducts: List<UserCartDetails>
     private lateinit var totalItems: TextView
     private lateinit var txtTotalPrice: TextView
-    private var totalCost: String? = "100"
-    private var totalOriginalPrice: String? = "200"
-    private var totalItem: String? = "300"
+    private var totalCost: Double = 0.0
+    private var totalOriginalPrice: Double = 0.0
+    private var totalItem: Int = 0
     private lateinit var txtPrice: TextView
     private lateinit var txtDiscountPrice: TextView
     private lateinit var txtDeliveryCharge: TextView
@@ -32,7 +32,8 @@ class Cart : AppCompatActivity() {
     private lateinit var totalPayment: TextView
     private lateinit var btnContinue: Button
     var discountAmount: Double = 0.00
-    private var shopId: String? = "100"
+    private lateinit var shopId:String
+    private lateinit var orderByuid:String
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var progressDialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +42,7 @@ class Cart : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
-        shopId = intent.getStringExtra("shopUid")
+
         recyclerCartProduct = findViewById(R.id.cart_recycler_view)
         txtTotalPrice = findViewById(R.id.txtTotalPrice)
         txtPrice = findViewById(R.id.txtPrice)
@@ -53,9 +54,9 @@ class Cart : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
-        totalCost = intent.getStringExtra("totalCost")
-        totalOriginalPrice = intent.getStringExtra("totalOriginalPrice")
-        totalItem = intent.getStringExtra("totalItems")
+        totalCost = 0.0
+        totalOriginalPrice = 0.0
+
         recyclerCartProduct.layoutManager = LinearLayoutManager(this)
         cartProducts = ArrayList<UserCartDetails>()
         totalItems = findViewById(R.id.txtTotalItems)
@@ -102,25 +103,58 @@ class Cart : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                var finalPriceList= arrayListOf<Double>()
+                var finalQuantityList= arrayListOf<Int>()
+                var sellingPriceList= arrayListOf<Double>()
+                totalOriginalPrice=0.0
+                totalCost=0.0
+
                 for (i in snapshot.children) {
+                    finalPriceList.clear()
+                    sellingPriceList.clear()
+
+                    val productId=i.child("productId").value.toString()
+                    val orderBy = i.child("orderBy").value.toString()
+                    val productTitle = i.child("productTitle").value.toString()
+                    val priceEach = i.child("priceEach").value.toString()
+                    val finalPrice = i.child("finalPrice").value.toString()
+                    val finalQuantity = i.child("finalQuantity").value.toString()
+                    val orderTo = i.child("orderTo").value.toString()
+                    val productImageUrl = i.child("productImageUrl").value.toString()
+                    val sellingPrice = i.child("sellingPrice").value.toString()
+                    val finalsellingPrice=i.child("finalsellingPrice").value.toString()
                     val obj = UserCartDetails(
-                        i.child("productId").value.toString(),
-                        i.child("orderBy").value.toString(),
-                        i.child("productTitle").value.toString(),
-                        i.child("priceEach").value.toString(),
-                        i.child("finalPrice").value.toString(),
-                        i.child("finalQuantity").value.toString(),
-                        i.child("orderTo").value.toString(),
-                        i.child("productImageUrl").value.toString(),
-                        i.child("sellingPrice").value.toString(),
-                        i.child("finalsellingPrice").value.toString()
+                        productId,
+                        orderBy,
+                        productTitle,
+                        priceEach,
+                        finalPrice,
+                        finalQuantity,
+                        orderTo,
+                        productImageUrl,
+                        sellingPrice,
+                        finalsellingPrice
                     )
+                    finalPriceList.add(finalPrice.toDouble())
+                    sellingPriceList.add(finalsellingPrice.toDouble())
+                    shopId=orderTo.toString()
+                    orderByuid=orderBy.toString()
+                    for (j in finalPriceList){
+                        totalCost+=j
+                    }
+                    for (k in sellingPriceList){
+                        totalOriginalPrice+=k
+                    }
+
                     (cartProducts as ArrayList<UserCartDetails>).add(obj)
+
                 }
+
                 userCartAdapter = AdapterCartItem(this@Cart, cartProducts)
                 recyclerCartProduct.adapter = userCartAdapter
+                totalItem=snapshot.childrenCount.toInt()
                 totalItems.text = "Total Item :- ${snapshot.childrenCount}"
-                txtPrice.text = "Rs. ${totalCost}"
+                txtPrice.text = "Rs. ${totalOriginalPrice}"
                 discountAmount =
                     ((totalOriginalPrice.toString()).toDouble() - (totalCost.toString().toDouble()))
                 txtDiscountPrice.text = "Rs. ${discountAmount}"
@@ -129,14 +163,22 @@ class Cart : AppCompatActivity() {
                 } else {
                     txtTotalPrice.text = "Price(${snapshot.childrenCount} item)"
                 }
+
                 val amount = totalCost.toString()
                 txtTotalAmount.text = "Rs. ${amount}"
                 totalPayment.text = "Rs. ${amount}"
             }
         })
         btnContinue.setOnClickListener {
+            val intent=Intent(applicationContext,PaymentActivity::class.java)
+            intent.putExtra("shopId",shopId)
+            intent.putExtra("totalCost",totalCost)
+            intent.putExtra("orderBy",orderByuid)
+            intent.putExtra("totalItem",totalItem)
+            startActivity(intent)
             progressDialog.setMessage("Placing Your Order....")
             progressDialog.show()
+
             val timestamp = System.currentTimeMillis().toString()
             val orderId = timestamp
             val orderTime = timestamp
