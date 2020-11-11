@@ -5,334 +5,53 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".NewActivity">
-
-    <ImageView
-        android:id="@+id/imgBack"
-        android:layout_alignTop="@+id/txtPayment"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
-        android:src="@drawable/ic_back"
-        android:layout_margin="5dp"
-        />
-    <TextView
-        android:layout_toRightOf="@id/imgBack"
-        android:id="@+id/txtPayment"
-        android:layout_width="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
-        android:layout_height="wrap_content"
-        android:text="Order Placed"
-        android:fontFamily="@font/montserrat_medium"
-        android:textColor="#de4500"
-        android:textSize="@dimen/_16ssp"
-        />
-    <View
-        android:id="@+id/view1"
-        android:layout_below="@+id/txtPayment"
-        android:background="#d3d3d3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardSuccessful"
-        app:cardCornerRadius="5dp"
-        android:layout_margin="@dimen/_5sdp"
-        android:layout_below="@+id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:layout_margin="@dimen/_5sdp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardSuccess"
-                android:layout_margin="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_50sdp"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/ic_success"/>
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/txtSuccess"
-                android:textSize="@dimen/_13ssp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your Order is Successful"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="#000"
-                android:layout_below="@+id/cardSuccess"
-                android:layout_centerHorizontal="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Order id: #142179722"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="#de4500"
-                android:layout_below="@+id/txtSuccess"
-                android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_marginVertical="@dimen/_15sdp"
-        android:id="@+id/card2"
-        android:layout_below="@+id/cardSuccessful"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imgDelivery"
-                android:layout_margin="@dimen/_10sdp"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:src="@drawable/ic_delivery"/>
-
-            <TextView
-                android:id="@+id/txtDelivery"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Estimated Delivery by"
-                android:fontFamily="@font/montserrat_medium"
-                android:textSize="@dimen/_11ssp"
-                android:layout_toRightOf="@id/imgDelivery"
-                android:layout_centerVertical="true"/>
-
-            <TextView
-                android:id="@+id/txtDeliveryDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="14th Nov, Saturday"
-                android:textColor="#000"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="@dimen/_12ssp"
-                android:layout_toRightOf="@id/txtDelivery"
-                android:layout_centerVertical="true"/>
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card3"
-        android:layout_marginHorizontal="@dimen/_5sdp"
-        app:cardCornerRadius="@dimen/_5sdp"
-        android:layout_below="@+id/card2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:layout_margin="@dimen/_10sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textSize="@dimen/_12ssp"
-                android:id="@+id/itemTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="American Tourister"
-                android:textColor="#000000"/>
-            <TextView
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:id="@+id/itemPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/itemTitle"
-                android:textSize="@dimen/_13ssp"
-                android:textColor="#008000"
-                android:text="Rs. 1,209/-"/>
-            <TextView
-                android:layout_marginTop="@dimen/_2sdp"
-                android:id="@+id/totalQuantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5 items"
-                android:textSize="@dimen/_12ssp"
-                android:layout_below="@id/itemPrice"/>
-            <TextView
-                android:layout_alignTop="@+id/itemPrice"
-                android:id="@+id/totalPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rs. 6,045.00"
-                android:textColor="#de4500"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="@dimen/_14ssp"
-                android:layout_alignParentEnd="true"
-                />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card4"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_below="@id/card3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/txtPS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Price Summary"
-                android:textColor="#000"
-                android:textSize="@dimen/_15ssp"
-                android:layout_margin="@dimen/_5sdp"
-                android:fontFamily="@font/montserrat_bold"
-                />
-            <TextView
-                android:id="@+id/txtPP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Product Charges"
-                android:layout_below="@+id/txtPS"
-                android:textSize="@dimen/_12ssp"
-                android:layout_margin="@dimen/_5sdp"
-                android:fontFamily="@font/montserrat_medium"
-                />
-            <TextView
-                android:id="@+id/txtPCPrice"
-                android:layout_alignParentEnd="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rs. 6,045"
-                android:layout_below="@+id/txtPS"
-                android:textSize="@dimen/_12ssp"
-                android:layout_margin="@dimen/_5sdp"
-                android:fontFamily="@font/montserrat_medium"
-                />
-            <TextView
-                android:id="@+id/txtSC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Shipping Charges"
-                android:layout_below="@+id/txtPP"
-                android:textSize="@dimen/_12ssp"
-                android:layout_margin="@dimen/_5sdp"
-                android:fontFamily="@font/montserrat_medium"
-                />
-            <TextView
-                android:id="@+id/txtSCPrice"
-                android:layout_alignParentEnd="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rs. 40"
-                android:layout_below="@+id/txtPP"
-                android:textSize="@dimen/_12ssp"
-                android:layout_margin="@dimen/_5sdp"
-                android:fontFamily="@font/montserrat_medium"
-                />
-            <View
-                android:id="@id/view1"
-                android:layout_margin="@dimen/_5sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_below="@+id/txtSC"
-                android:background="#d3d3d3"/>
-
-            <TextView
-                android:id="@+id/txtTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="#000"
-                android:textSize="@dimen/_15ssp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_below="@id/view1"
-                />
-
-            <TextView
-                android:id="@+id/txtToralPrice"
-                android:layout_alignParentEnd="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rs. 6,085.00"
-                android:layout_below="@+id/view1"
-                android:textSize="@dimen/_12ssp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:fontFamily="@font/montserrat_medium"
-                />
-            <View
-                android:id="@id/view2"
-                android:layout_margin="@dimen/_5sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_below="@+id/txtTotal"
-                android:background="#d3d3d3"/>
-
-            <TextView
-                android:id="@+id/txtPayMethod"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Payment Method: "
-                android:fontFamily="@font/montserrat_medium"
-                android:layout_below="@+id/view2"
-                android:textSize="@dimen/_12ssp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                />
-
-            <TextView
-                android:id="@+id/txtMethod"
-                android:layout_toRightOf="@+id/txtPayMethod"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cash on delivery"
-                android:textColor="#de4500"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_below="@+id/view2"
-                android:textSize="@dimen/_12ssp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                />
-
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
     <TextView
         android:id="@+id/txtThankYou"
         android:layout_margin="@dimen/_10sdp"
         android:text="Thank You For Shpping !"
         android:textColor="#000"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_18ssp"
         android:fontFamily="@font/montserrat_bold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/card4"/>
+        android:layout_height="wrap_content" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-        android:layout_below="@id/txtThankYou"
+    android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/_10sdp"
-        android:text="Continue For Shopping"
+        android:text="Continue Shopping"
         android:textColor="#ffffff"
         android:fontFamily="@font/montserrat_bold"
         android:textSize="@dimen/_12ssp"
         android:background="@drawable/proceed_to_add"/>
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSuccess"
+        android:layout_margin="@dimen/_10sdp"
+      app:cardCornerRadius="@dimen/_80sdp"
+        android:layout_above="@+id/txtSuccess"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:src="@drawable/ic_success"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:id="@+id/txtSuccess"
+        android:textSize="@dimen/_13ssp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Order is Successfully Placed"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#000"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
