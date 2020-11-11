@@ -2,6 +2,7 @@ package com.example.localzes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -17,6 +18,7 @@ class UserOrdersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_orders)
         recyclerOrderDetails = findViewById(R.id.recyclerUserOrderHistory)
+        recyclerOrderDetails.layoutManager=LinearLayoutManager(this)
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid

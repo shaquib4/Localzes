@@ -47,7 +47,7 @@ class Home_seller : AppCompatActivity() {
         }
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Pending")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
@@ -57,7 +57,7 @@ class Home_seller : AppCompatActivity() {
                 }
             })
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
@@ -68,7 +68,7 @@ class Home_seller : AppCompatActivity() {
             })
         orderDatabaseReference.child("Orders").orderByChild("orderStatus")
             .equalTo("Out For Delivery")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
@@ -79,7 +79,7 @@ class Home_seller : AppCompatActivity() {
 
             })
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
@@ -89,7 +89,7 @@ class Home_seller : AppCompatActivity() {
                 }
 
             })
-        ordersAccepted.setOnClickListener {
+        OrderAcc.setOnClickListener {
             val intent=Intent(this,OrdersAcceptedActivity::class.java)
             startActivity(intent)
         }

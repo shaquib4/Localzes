@@ -137,6 +137,7 @@
             android:id="@+id/txtPayAmount" />
 
         <Button
+            android:id="@+id/btnPayNow"
             android:background="@drawable/proceed_to_add"
             android:layout_width="wrap_content"
             android:text="PAY NOW"
