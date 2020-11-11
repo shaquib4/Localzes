@@ -52,32 +52,39 @@ class UserOrdersActivity : AppCompatActivity() {
                                     )
                                     (mOrderedItem as ArrayList<ModelOrderedItems>).add(obj)
                                 }
-                            }
-                        })
-                    orderHistoryDatabase.child(a.toString())
-                        .addValueEventListener(object : ValueEventListener {
-                            override fun onCancelled(error: DatabaseError) {
+                                orderHistoryDatabase.child(a.toString())
+                                    .addValueEventListener(object : ValueEventListener {
+                                        override fun onCancelled(error: DatabaseError) {
 
-                            }
+                                        }
 
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                val obj =
-                                    ModelUserOrderDetails(
-                                        snapshot.child("orderId").value.toString(),
-                                        snapshot.child("orderTime").value.toString(),
-                                        snapshot.child("orderStatus").value.toString(),
-                                        snapshot.child("orderCost").value.toString(),
-                                        snapshot.child("orderBy").value.toString(),
-                                        snapshot.child("orderTo").value.toString(),
-                                        snapshot.child("orderQuantity").value.toString(),
-                                        mOrderedItem as ArrayList<ModelOrderedItems>
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            val obj =
+                                                ModelUserOrderDetails(
+                                                    snapshot.child("orderId").value.toString(),
+                                                    snapshot.child("orderTime").value.toString(),
+                                                    snapshot.child("orderStatus").value.toString(),
+                                                    snapshot.child("orderCost").value.toString(),
+                                                    snapshot.child("orderBy").value.toString(),
+                                                    snapshot.child("orderTo").value.toString(),
+                                                    snapshot.child("orderQuantity").value.toString(),
+                                                    mOrderedItem as ArrayList<ModelOrderedItems>
+                                                )
+                                            (mUserOrderHistory as ArrayList<ModelUserOrderDetails>).add(
+                                                obj
+                                            )
+                                        }
+
+                                    })
+                                userOrderHistoryAdapter =
+                                    AdapterUserOrderHistory(
+                                        this@UserOrdersActivity,
+                                        mUserOrderHistory
                                     )
-                                (mUserOrderHistory as ArrayList<ModelUserOrderDetails>).add(obj)
+                                recyclerOrderDetails.adapter = userOrderHistoryAdapter
                             }
                         })
                 }
-                userOrderHistoryAdapter=AdapterUserOrderHistory(this@UserOrdersActivity,mUserOrderHistory)
-                recyclerOrderDetails.adapter=userOrderHistoryAdapter
             }
         })
     }
