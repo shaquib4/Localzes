@@ -58,8 +58,8 @@ class Accounts : AppCompatActivity() {
                 val intent = Intent(this, CurrentOrdersActivity::class.java)
                 startActivity(intent)
             } else if (select == "Past Orders") {
-                //val intent=Intent(this,PastOrdersActivity::class.java)
-               // startActivity(intent)
+                val intent=Intent(this,PastOrdersActivity::class.java)
+                startActivity(intent)
             }
             return@setOnChildClickListener true
         }

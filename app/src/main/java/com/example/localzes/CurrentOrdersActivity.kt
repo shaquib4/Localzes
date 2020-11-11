@@ -4,8 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class CurrentOrdersActivity : AppCompatActivity() {
     private lateinit var userCurrentOrdersHistory:List<ModelUserOrderDetails>
@@ -23,6 +22,16 @@ class CurrentOrdersActivity : AppCompatActivity() {
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
-        //currentOrderHistoryDatabase=FirebaseDatabase
+        currentOrderHistoryDatabase=FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
+        currentOrderHistoryDatabase.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+            }
+
+        })
     }
 }
