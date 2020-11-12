@@ -82,6 +82,7 @@ class UserOrdersActivity : AppCompatActivity() {
                                     )
                                 recyclerOrderDetails.adapter = userOrderHistoryAdapter
                             }
+
                         })
                 }
             }
