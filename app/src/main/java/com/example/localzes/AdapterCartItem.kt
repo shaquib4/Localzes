@@ -13,8 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 class AdapterCartItem(val context: Context, private val cart_user: List<UserCartDetails>) :
@@ -83,13 +82,20 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         holder.removeItem.setOnClickListener {
             val cartDatabase: DatabaseReference =
                 FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
-            cartDatabase.child(cartDetails.productId).setValue(null).addOnCompleteListener {
-                Toast.makeText(
-                    context,
-                    "${cartDetails.productTitle} has been successfully removed",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            cartDatabase.child(cartDetails.productId).orderByChild("productId").equalTo(cartDetails.productId).addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(i in snapshot.children){
+                        i.ref.removeValue()
+                        Toast.makeText(context,"Item Removed",Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            })
+
         }
     }
 }
