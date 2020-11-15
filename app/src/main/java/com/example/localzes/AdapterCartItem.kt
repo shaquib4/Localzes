@@ -80,22 +80,31 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
             holder.quantityCart.text = items.toString()
         }
         holder.removeItem.setOnClickListener {
-            val cartDatabase: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
-            cartDatabase.child(cartDetails.productId).orderByChild("productId").equalTo(cartDetails.productId).addListenerForSingleValueEvent(object :ValueEventListener{
+            deleteItem(position)
+        }
+    }
+
+    private fun deleteItem(position: Int) {
+        val user = mAuth.currentUser
+        val uid = user!!.uid
+        val productId = cart_user[position].productId
+        val itemTitle = cart_user[position].productTitle
+        val dbReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
+        dbReference.orderByChild("productId").equalTo(productId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    for(i in snapshot.children){
+                    for (i in snapshot.children) {
                         i.ref.removeValue()
-                        Toast.makeText(context,"Item Removed",Toast.LENGTH_SHORT).show()
                     }
+                    Toast.makeText(context, "Item $itemTitle removed from cart", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
             })
-
-        }
     }
 }
