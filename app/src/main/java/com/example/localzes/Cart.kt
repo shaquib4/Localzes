@@ -106,6 +106,7 @@ class Cart : AppCompatActivity() {
                 var finalPriceList= arrayListOf<Double>()
                 var finalQuantityList= arrayListOf<Int>()
                 var sellingPriceList= arrayListOf<Double>()
+                (cartProducts as ArrayList<UserCartDetails>).clear()
                 totalOriginalPrice=0.0
                 totalCost=0.0
 
@@ -176,6 +177,7 @@ class Cart : AppCompatActivity() {
             intent.putExtra("orderBy",orderByuid)
             intent.putExtra("totalItem",totalItem)
             startActivity(intent)
+            finish()
         }
     }
 }

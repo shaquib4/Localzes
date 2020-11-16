@@ -96,7 +96,7 @@ class UserProductsActivity : AppCompatActivity() {
                 for (i in snapshot.children) {
                     finalPriceList.clear()
                     sellingPriceList.clear()
-
+                    (cartItems as ArrayList<UserCartDetails>).clear()
                     val productId=i.child("productId").value.toString()
                     val orderBy = i.child("orderBy").value.toString()
                     val productTitle = i.child("productTitle").value.toString()
@@ -144,6 +144,10 @@ class UserProductsActivity : AppCompatActivity() {
                         intent.putExtra("totalItems",totalItems.toString())
                         intent.putExtra("shopUid",shopId)
                         startActivity(intent)
+                        finish()
+                    }
+                     if (cartItems.isEmpty()){
+                        cartRelativeLayout.visibility=View.GONE
                     }
                 }
             }

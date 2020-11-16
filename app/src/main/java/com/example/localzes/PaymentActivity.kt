@@ -62,6 +62,7 @@ class PaymentActivity : AppCompatActivity() {
                 val upiId=snapshot.child("upi").value.toString()
                 name!!.text=names
                 upivirtualid!!.text=upiId
+                amount!!.text=totalCost
             }
 
         })
@@ -102,9 +103,10 @@ class PaymentActivity : AppCompatActivity() {
         Log.e("main ", "name $name--up--$upiId--$note--$amount")
         val uri = Uri.parse("upi://pay").buildUpon()
             .appendQueryParameter("pa", upiId)
-            .appendQueryParameter("pn", name) //.appendQueryParameter("mc", "")
-            //.appendQueryParameter("tid", "02125412")
-            //.appendQueryParameter("tr", "25584584")
+            .appendQueryParameter("pn", name)
+            //.appendQueryParameter("mc", "")
+            //.appendQueryParameter("tid", "02")
+            //.appendQueryParameter("tr", "255846894")
             .appendQueryParameter("tn", note)
             .appendQueryParameter("am", amount)
             .appendQueryParameter("cu", "INR") //.appendQueryParameter("refUrl", "blueapp")

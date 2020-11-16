@@ -11,8 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 @Suppress("NAME_SHADOWING")
@@ -57,7 +56,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         cost = userProducts.offerPrice.toDouble()
         finalCost = userProducts.offerPrice.toDouble()
         quantity = 1
-        spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        var mauth:FirebaseAuth= FirebaseAuth.getInstance()
         holder.productOfferPrice.text = spannableString
         holder.addItem.setOnClickListener {
             addToCart(

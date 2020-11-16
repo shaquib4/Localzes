@@ -38,6 +38,7 @@ class AdapterUserShops(val context:Context,private val shopsUser:List<Upload>):R
             val intent=Intent(context,UserProductsActivity::class.java)
             intent.putExtra("shopId",shops_user.shopId)
             context.startActivity(intent)
+
         }
     }
 }
