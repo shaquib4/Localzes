@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".UpdateProductDetailsActivity"></activity>
+        <activity android:name=".PaymentActivity" />
         <activity android:name=".CurrentOrdersActivity" />
         <activity android:name=".OrdersCompletedActivity" />
         <activity android:name=".OrderOutForDeliveryActivity" />
