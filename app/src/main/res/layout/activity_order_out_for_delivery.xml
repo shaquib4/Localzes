@@ -6,10 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".OrderOutForDeliveryActivity">
 
+    <ImageView
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_back"
+        android:id="@+id/imgBack"
+        android:layout_margin="@dimen/_10sdp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtOFD"
+        android:layout_toRightOf="@+id/imgBack"
+        android:text="Out For Delivery"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#000000"
+        android:textSize="@dimen/_18ssp"
+        android:layout_margin="@dimen/_5sdp"/>
+
+    <View
+        android:id="@id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/imgBack"
+        android:background="#d3d3d3"/>
+
+    <ImageView
+        android:id="@+id/imgEmpty"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:src="@drawable/ic_empty"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No orders out for delivery yet!"
+        android:layout_below="@+id/imgEmpty"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="@dimen/_15ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#696969"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/view1"
+        android:visibility="invisible"
         android:id="@+id/recyclerOutForDelivery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/row_order_seller"/>
+
+
+
+
 
 </RelativeLayout>
