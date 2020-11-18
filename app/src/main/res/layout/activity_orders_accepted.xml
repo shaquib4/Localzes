@@ -7,53 +7,60 @@
     tools:context=".OrdersAcceptedActivity">
 
     <ImageView
+        android:id="@+id/imgBack"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:src="@drawable/ic_back"
-        android:id="@+id/imgBack"
-        android:layout_margin="@dimen/_10sdp"/>
+        android:layout_margin="@dimen/_10sdp"
+        android:src="@drawable/ic_back" />
+
     <TextView
+        android:id="@+id/txtOFD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtOFD"
+        android:layout_margin="@dimen/_5sdp"
         android:layout_toRightOf="@+id/imgBack"
-        android:text="Accepted Orders"
         android:fontFamily="@font/montserrat_bold"
+        android:text="Accepted Orders"
         android:textColor="#000000"
-        android:textSize="@dimen/_18ssp"
-        android:layout_margin="@dimen/_5sdp"/>
+        android:textSize="@dimen/_18ssp" />
 
     <View
         android:id="@id/view1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/imgBack"
-        android:background="#d3d3d3"/>
+        android:background="#d3d3d3" />
 
-    <ImageView
-        android:id="@+id/imgEmpty"
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_60sdp"
-        android:src="@drawable/ic_empty"
-        android:layout_centerInParent="true"/>
+    <RelativeLayout
+        android:id="@+id/rl_Accepted_Orders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No orders accepted yet!"
-        android:layout_below="@+id/imgEmpty"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="@dimen/_15ssp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:textColor="#696969"/>
+        <ImageView
+            android:id="@+id/imgEmpty"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgEmpty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="No orders accepted yet!"
+            android:textColor="#696969"
+            android:textSize="@dimen/_15ssp" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/view1"
-        android:visibility="invisible"
         android:id="@+id/recyclerOrdersAccepted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/row_order_seller"/>
+        android:layout_below="@+id/view1"
+        tools:listitem="@layout/row_order_seller" />
 
 </RelativeLayout>

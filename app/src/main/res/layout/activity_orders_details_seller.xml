@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:text="In Progress"
+                    android:text="Pending"
                     android:textColor="#008000"
                     android:textSize="@dimen/_10ssp" />
 

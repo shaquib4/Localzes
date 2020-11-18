@@ -48,6 +48,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         val cost = cartDetails.finalPrice
         val costOne = cartDetails.priceEach
         val finalSelling=cartDetails.finalsellingPrice
+        val sellingOne=cartDetails.sellingPrice
         Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)
         holder.productTitleCart.text = cartDetails.productTitle
         holder.productOfferPriceCart.text = cartDetails.priceEach
@@ -66,25 +67,33 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         var items = quantity.toInt()
         var updatedCost = cost.toDouble()
         val oneCost = costOne.toInt()
-        val finalSell=finalSelling.toDouble()
+        var finalSell=finalSelling.toDouble()
+        val sellOne=sellingOne.toDouble()
         holder.btnDecreaseCart.setOnClickListener {
             if (items > 1) {
                 updatedCost -= oneCost
                 items--
+                finalSell-=sellOne
                 holder.productTotalPrice.text = "Rs. ${updatedCost}"
                 holder.quantityCart.text = items.toString()
                 val headers=HashMap<String,Any>()
                 headers["finalPrice"]=updatedCost.toString()
                 headers["finalQuantity"]=items.toString()
-                headers["finalSellingPrice"]
-                mCartDatabase.child(cart_user[position].productId)
+                headers["finalSellingPrice"]=finalSell.toString()
+                mCartDatabase.child(cart_user[position].productId).setValue(headers)
             }
         }
         holder.btnIncreaseCart.setOnClickListener {
             updatedCost += oneCost
             items++
+            finalSell+=sellOne
             holder.productTotalPrice.text = "Rs. ${updatedCost}"
             holder.quantityCart.text = items.toString()
+            val headers=HashMap<String,Any>()
+            headers["finalPrice"]=updatedCost.toString()
+            headers["finalQuantity"]=items.toString()
+            headers["finalSellingPrice"]=finalSell.toString()
+            mCartDatabase.child(cart_user[position].productId).setValue(headers)
         }
         holder.removeItem.setOnClickListener {
             deleteItem(position)
