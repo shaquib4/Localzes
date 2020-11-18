@@ -47,6 +47,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         val quantity = cartDetails.finalQuantity
         val cost = cartDetails.finalPrice
         val costOne = cartDetails.priceEach
+        val finalSelling=cartDetails.finalsellingPrice
         Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)
         holder.productTitleCart.text = cartDetails.productTitle
         holder.productOfferPriceCart.text = cartDetails.priceEach
@@ -65,12 +66,18 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         var items = quantity.toInt()
         var updatedCost = cost.toDouble()
         val oneCost = costOne.toInt()
+        val finalSell=finalSelling.toDouble()
         holder.btnDecreaseCart.setOnClickListener {
             if (items > 1) {
                 updatedCost -= oneCost
                 items--
                 holder.productTotalPrice.text = "Rs. ${updatedCost}"
                 holder.quantityCart.text = items.toString()
+                val headers=HashMap<String,Any>()
+                headers["finalPrice"]=updatedCost.toString()
+                headers["finalQuantity"]=items.toString()
+                headers["finalSellingPrice"]
+                mCartDatabase.child(cart_user[position].productId)
             }
         }
         holder.btnIncreaseCart.setOnClickListener {

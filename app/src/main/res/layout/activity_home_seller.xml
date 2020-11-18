@@ -32,7 +32,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_250sdp"
                     android:background="@drawable/localze_shop" />
-
+                <ImageView
+                    android:id="@+id/editShopDetails"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_edit" />
 
                 <TextView
                     android:id="@+id/txtShopName"
