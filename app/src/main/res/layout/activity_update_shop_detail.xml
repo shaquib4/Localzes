@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fcfcfc"
+    android:orientation="vertical"
+    tools:context=".UpdateShopDetailActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#de4500">
+
+                <TextView
+                    android:id="@+id/wel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="EDIT SHOP DETAILS"
+                    android:textColor="#ffffff"
+                    android:textSize="21sp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.2dp"
+                    android:layout_below="@+id/wel"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#eaeaea" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fcfcfc">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_165sdp"
+                    android:layout_margin="@dimen/_7sdp"
+                    app:cardCornerRadius="10dp">
+
+                    <ImageView
+
+                        android:layout_width="155dp"
+                        android:layout_height="155dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_add_image" />
+                    <ImageView
+                        android:id="@+id/choose_image_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="fitXY" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/txtAddShopImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card"
+                    android:layout_margin="@dimen/_7sdp"
+                    android:text="Add shop image (optional)" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.2dp"
+                    android:layout_below="@id/txtAddShopImage"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
+                    android:background="#eaeaea" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtChooseCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Choose shop category"
+                    android:textSize="17sp" />
+
+                <Spinner
+                    android:id="@+id/spn_category"
+                    android:layout_width="@dimen/_110sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:layout_toRightOf="@+id/txtChooseCategory"
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:entries="@array/Spinner_Category"
+                    android:textAlignment="center" />
+
+
+                <EditText
+                    android:id="@+id/edtNameUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_below="@+id/spn_category"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:gravity="center_vertical"
+                    android:hint="Shop Name"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/edtPayUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_below="@+id/edtNameUpdate"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:gravity="center_vertical"
+                    android:hint="UPI ID (optional)"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/Update"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_below="@+id/edtPayUpdate"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="@dimen/_22sdp"
+                    android:layout_marginTop="120dp"
+                    android:background="@drawable/round2_btn"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Update Details"
+                    android:textAllCaps="false"
+                    android:textColor="#fcfcfc"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

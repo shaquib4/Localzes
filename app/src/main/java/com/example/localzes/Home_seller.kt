@@ -1,13 +1,12 @@
 package com.example.localzes
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home_seller.*
 
 class Home_seller : AppCompatActivity() {
@@ -17,6 +16,8 @@ class Home_seller : AppCompatActivity() {
     private lateinit var ordersPending: TextView
     private lateinit var orderAuth: FirebaseAuth
     private lateinit var orderDatabaseReference: DatabaseReference
+    private lateinit var editShopDetails: ImageView
+    private lateinit var shopName: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_seller)
@@ -24,6 +25,8 @@ class Home_seller : AppCompatActivity() {
         ordersCompleted = findViewById(R.id.txtItemActive)
         ordersOutForDelivery = findViewById(R.id.txtItemOFD)
         ordersPending = findViewById(R.id.txtItemPending)
+        editShopDetails = findViewById(R.id.editShopDetails)
+        shopName = findViewById(R.id.txtShopName)
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
@@ -90,20 +93,34 @@ class Home_seller : AppCompatActivity() {
 
             })
         OrderAcc.setOnClickListener {
-            val intent=Intent(this,OrdersAcceptedActivity::class.java)
+            val intent = Intent(this, OrdersAcceptedActivity::class.java)
             startActivity(intent)
         }
         ordersCompleted.setOnClickListener {
-            val intent=Intent(this,OrdersCompletedActivity::class.java)
+            val intent = Intent(this, OrdersCompletedActivity::class.java)
             startActivity(intent)
         }
         ordersPending.setOnClickListener {
-            val intent=Intent(this,SellerOrdersActivity::class.java)
+            val intent = Intent(this, SellerOrdersActivity::class.java)
             startActivity(intent)
         }
         ordersOutForDelivery.setOnClickListener {
-            val intent=Intent(this,OrderOutForDeliveryActivity::class.java)
+            val intent = Intent(this, OrderOutForDeliveryActivity::class.java)
             startActivity(intent)
         }
+        editShopDetails.setOnClickListener {
+            val intent = Intent(this, UpdateShopDetailActivity::class.java)
+            startActivity(intent)
+        }
+        orderDatabaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val shop = snapshot.child("shop_name").value.toString()
+                shopName.text = shop
+            }
+        })
     }
 }
