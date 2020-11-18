@@ -7,20 +7,17 @@
     android:background="#fcfcfc"
     tools:context=".Cart">
 
-
-
     <RelativeLayout
         android:visibility="invisible"
         android:id="@+id/relative2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ImageView
         android:id="@+id/imgCart"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_130sdp"
         android:scaleType="centerCrop"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="260dp"
+       android:layout_centerInParent="true"
         android:src="@drawable/ic_cart_empty" />
 
     <TextView
@@ -29,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imgCart"
         android:text="No Item in your cart !"
-        android:textSize="18sp"
+        android:textSize="@dimen/_15ssp"
         android:fontFamily="@font/montserrat_medium"
         android:layout_centerHorizontal="true"
         android:textColor="#000"/>
@@ -37,7 +34,7 @@
     <Button
         android:layout_marginTop="12dp"
         android:layout_below="@id/noitem"
-        android:layout_width="160dp"
+        android:layout_width="@dimen/_150sdp"
         android:layout_centerHorizontal="true"
         android:layout_height="@dimen/_27sdp"
         android:textAllCaps="false"
@@ -45,7 +42,7 @@
         android:text="Shop Now"
         android:textColor="#fcfcfc"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="@dimen/_15ssp"
         android:background="@drawable/round2_btn"
         />
 
@@ -68,9 +65,11 @@
             <TextView
                 android:id="@+id/txtTotalItems"
                 android:layout_width="0dp"
+                android:textSize="@dimen/_15ssp"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1.3"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Total Item :- 9"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#000000"
@@ -104,20 +103,21 @@
                 android:orientation="vertical">
 
 
-
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/TotalPayment"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/TotalPayment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:background="#ffffff"
-                    android:textAlignment="center"
-                    android:textSize="19sp"
-                    android:paddingLeft="4dp"
+                    android:textSize="@dimen/_16ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Rs.530"
-                    android:layout_marginBottom="2dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     />
+                </RelativeLayout>
             </LinearLayout>
 
 
@@ -128,9 +128,10 @@
                 android:layout_weight="1.8"
                 android:background="#ff4500"
                 android:text="Continue"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="@dimen/_16ssp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffff"
-                android:textStyle="bold" />
+                android:textColor="#ffffff" />
         </LinearLayout>
 
         <RelativeLayout
@@ -173,26 +174,26 @@
                         android:id="@+id/txtTotalPrice"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/view1"
                         android:layout_weight="4"
                         android:padding="5dp"
                         android:text="Price(1 item)"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/_15ssp"
+                        android:fontFamily="@font/montserrat_medium"/>
 
                     <TextView
                         android:id="@+id/txtPrice"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/view1"
                         android:layout_weight="4"
                         android:padding="5dp"
                         android:text="Rs.600 "
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textSize="@dimen/_15ssp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -206,26 +207,27 @@
                         android:id="@+id/txtDiscount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/view1"
                         android:layout_weight="4"
                         android:padding="5dp"
                         android:text="Discount"
+                        android:fontFamily="@font/montserrat_medium"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <TextView
                         android:id="@+id/txtDiscountPrice"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/view1"
                         android:layout_weight="4"
                         android:padding="5dp"
                         android:text="- Rs.80 "
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/_15ssp"
+                        android:fontFamily="@font/montserrat_medium"
+                        />
 
                 </LinearLayout>
 
@@ -240,26 +242,26 @@
                         android:id="@+id/Delivery"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/view1"
                         android:layout_weight="4"
                         android:padding="5dp"
                         android:text="Delivery Charge"
+                        android:fontFamily="@font/montserrat_medium"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <TextView
                         android:id="@+id/txtDeliveryCharge"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/view1"
                         android:layout_weight="4"
                         android:padding="5dp"
                         android:text="Rs.10 "
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/_15ssp"
+                        android:fontFamily="@font/montserrat_medium"/>
 
                 </LinearLayout>
 
@@ -269,7 +271,6 @@
                     android:id="@+id/llTotalAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:weightSum="8">
 
                     <TextView
@@ -281,22 +282,21 @@
                         android:text="Total Amount"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_15ssp"
+                        android:fontFamily="@font/montserrat_bold"/>
 
                     <TextView
                         android:id="@+id/txtTotalAmount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/view2"
                         android:layout_weight="4"
-                        android:padding="5dp"
                         android:text="Rs.530"
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:paddingEnd="10dp"
+                        android:textSize="@dimen/_15ssp"
+                        android:fontFamily="@font/montserrat_bold"/>
                 </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>

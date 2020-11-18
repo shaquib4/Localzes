@@ -61,7 +61,7 @@
         android:text="Total Item :- 9"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#000000"
-        android:textStyle="bold" />
+        android:fontFamily="@font/montserrat_bold" />
 
     <ScrollView
         android:layout_below="@+id/txtTotalItems"
@@ -92,6 +92,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:fontFamily="@font/montserrat_bold"
                     android:id="@+id/txtPriceDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -123,6 +124,7 @@
                         android:layout_weight="4"
                         android:padding="5dp"
                         android:text="Price(1 item)"
+                        android:fontFamily="@font/montserrat_medium"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
                         android:textSize="@dimen/_13ssp" />
@@ -133,6 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:padding="5dp"
+                        android:fontFamily="@font/montserrat_medium"
                         android:text="Rs.600 "
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -153,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:padding="5dp"
+                        android:fontFamily="@font/montserrat_medium"
                         android:text="Discount"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
@@ -165,6 +169,7 @@
                         android:layout_weight="4"
                         android:padding="5dp"
                         android:text="- Rs.80 "
+                        android:fontFamily="@font/montserrat_medium"
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
@@ -188,6 +193,7 @@
                         android:text="Delivery Charge"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
+                        android:fontFamily="@font/montserrat_medium"
                         android:textSize="@dimen/_13ssp" />
 
                     <TextView
@@ -197,6 +203,7 @@
                         android:layout_weight="4"
                         android:padding="5dp"
                         android:text="Rs.10 "
+                        android:fontFamily="@font/montserrat_medium"
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
@@ -237,7 +244,7 @@
 
         <ImageView
             android:background="@drawable/bg_border"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/_8sdp"
             android:padding="10dp"
             android:id="@+id/imgHome"
             android:layout_width="@dimen/_50sdp"
@@ -245,33 +252,34 @@
             android:src="@drawable/ic_home"/>
 
         <TextView
-            android:layout_toRightOf="@+id/imgHome"
+            android:layout_toEndOf="@+id/imgHome"
             android:id="@+id/txtArea"
             android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Saraibika"
             android:layout_below="@+id/txtHome"
             />
         <TextView
-            android:layout_toRightOf="@+id/imgHome"
+            android:layout_toEndOf="@+id/imgHome"
             android:id="@+id/txtTime"
             android:textSize="@dimen/_12ssp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="21 mins"
             android:textColor="#000"
-            android:textStyle="bold"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_below="@+id/txtArea"
             />
         <TextView
-            android:layout_toRightOf="@+id/imgHome"
+            android:layout_toEndOf="@+id/imgHome"
             android:id="@+id/txtHome"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Deliver to Home"
             android:textColor="#000000"
-            android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:layout_marginTop="10dp"/>
         <TextView
@@ -282,7 +290,8 @@
             android:layout_height="wrap_content"
             android:text="ADD ADDRESS"
             android:textColor="#de4500"
-            android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="@dimen/_12ssp"
             android:layout_margin="10dp"/>
 
     </RelativeLayout>
@@ -310,8 +319,8 @@
             android:text="Total Amount"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000000"
-            android:textSize="@dimen/_15ssp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="@dimen/_15ssp" />
 
         <TextView
             android:id="@+id/txtTotalAmount"
@@ -320,10 +329,11 @@
             android:layout_weight="4"
             android:padding="5dp"
             android:text="Rs.530"
-            android:textAlignment="viewEnd"
+            android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000000"
             android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/montserrat_medium"
             android:textStyle="bold" />
     </LinearLayout>
     <View
@@ -347,17 +357,24 @@
             android:layout_weight="2.2"
             android:orientation="vertical">
 
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/TotalPayment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:textAlignment="center"
                 android:textSize="@dimen/_15ssp"
-                android:padding="8dp"
                 android:text="Rs.530"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/montserrat_bold"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 />
+            </RelativeLayout>
         </LinearLayout>
 
 
@@ -367,11 +384,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.8"
             android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="@dimen/_8sdp"
             android:background="#ff4500"
             android:text="Continue"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
+            android:textColor="#ffffff" />
     </LinearLayout>
 
 </RelativeLayout>

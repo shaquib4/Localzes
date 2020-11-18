@@ -44,11 +44,11 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Elecronics Accessoies"
-
                 android:textColor="#000"
                 android:textSize="@dimen/_13ssp" />
 
             <TextView
+
                 android:id="@+id/txtStock_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtShop_name"
                 android:layout_marginStart="10dp"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Rs. 699"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_12ssp"
@@ -81,6 +82,7 @@
                 android:src="@drawable/ic_rating" />
 
             <TextView
+                android:fontFamily="@font/montserrat_medium"
                 android:id="@+id/txtRatingShop_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_18sdp"
@@ -92,6 +94,7 @@
                 android:textSize="@dimen/_11ssp" />
 
             <TextView
+                android:fontFamily="@font/montserrat_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_12sdp"
                 android:layout_below="@+id/txtCategory"

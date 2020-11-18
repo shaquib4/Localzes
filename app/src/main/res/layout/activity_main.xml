@@ -10,27 +10,28 @@
 
 
     <EditText
+        android:layout_below="@+id/localze"
         android:id="@+id/edtmobile"
         android:inputType="phone"
+        android:textSize="@dimen/_12ssp"
         android:maxLength="10"
         android:layout_width="match_parent"
+        android:layout_marginTop="80dp"
         android:layout_marginHorizontal="20dp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_marginTop="300dp"
         android:background="@drawable/ic_mobile"
-      android:layout_centerHorizontal="true"
-        android:paddingLeft="@dimen/_30sdp"
+        android:paddingStart="@dimen/_30sdp"
         android:hint="@string/mobile_number"
         android:textColor="#ffffff"
         android:maxLines="1"
         android:textColorHint="#ffffff"
-
         />
     <Button
         android:layout_below="@+id/edtmobile"
         android:id="@+id/btnRegButton"
-        android:layout_width="226dp"
+        android:layout_width="@dimen/_180sdp"
         android:layout_height="@dimen/_35sdp"
+
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:padding="7dp"
@@ -39,15 +40,15 @@
         android:text="Login | Sign Up"
         android:textStyle="bold"
         android:fontFamily="@font/l_r"
-        android:textSize="20sp"
+        android:textSize="@dimen/_15ssp"
         android:textColor="#DE0606"/>
 
     <ImageView
         android:id="@+id/localze"
-        android:layout_width="165dp"
+      android:layout_width="match_parent"
         android:layout_height="60dp"
         android:src="@drawable/ic_localze"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="@dimen/_120sdp"
         android:layout_centerHorizontal="true"/>
 
 

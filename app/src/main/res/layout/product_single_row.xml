@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card1_customer"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_225sdp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="2dp"
@@ -18,18 +18,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/imgProduct_customer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/lanju" />
+            </androidx.cardview.widget.CardView>
+
 
             <View
                 android:id="@+id/view_customer"
                 android:layout_width="match_parent"
                 android:layout_height="1.3dp"
-                android:layout_below="@+id/imgProduct_customer"
+                android:layout_below="@+id/cardImage"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:background="#eaeaea"
                 android:layout_marginEnd="@dimen/_2sdp"
@@ -48,6 +55,7 @@
                 android:textColor="#000"
                 android:textSize="@dimen/_13ssp" />
             <TextView
+                android:fontFamily="@font/montserrat_bold"
                 android:id="@+id/txtProductPrice_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +63,8 @@
                 android:layout_marginStart="10dp"
                 android:text="Rs. 699"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_12ssp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:textSize="@dimen/_18ssp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -63,7 +72,7 @@
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
                 android:layout_marginTop="8.5dp"
-                android:layout_below="@id/imgProduct_customer"
+                android:layout_below="@id/cardImage"
                 android:layout_toLeftOf="@+id/txtRatingShop_customer"
                 android:src="@drawable/ic_rating" />
 
@@ -71,21 +80,25 @@
                 android:id="@+id/txtRatingShop_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_18sdp"
+                android:fontFamily="@font/montserrat_medium"
 
                 android:layout_alignTop="@+id/txtProductTitle_customer"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
                 android:text="4.5/5"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_12ssp" />
             <TextView
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_12sdp"
-                android:layout_alignStart="@+id/txtProductPrice_customer"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_2sdp"
+              android:layout_toRightOf="@id/txtProductPrice_customer"
                 android:text="Rs. 1099"
-                android:textSize="@dimen/_10ssp"
-                android:layout_below="@+id/txtProductPrice_customer"/>
+                android:textSize="@dimen/_12ssp"
+               android:layout_alignBottom="@id/txtProductPrice_customer"/>
 
 
         </RelativeLayout>

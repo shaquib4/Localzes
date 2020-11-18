@@ -12,6 +12,16 @@
         android:layout_height="wrap_content"
         android:background="#ff4500"
         app:titleTextAppearance="@font/montserrat_bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:text="Welcome to Localze !"
+        android:textSize="@dimen/_20ssp"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_margin="@dimen/_5sdp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_shop_user"
         android:layout_width="match_parent"

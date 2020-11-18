@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/imgBack"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_back"/>
+    <TextView
+        android:layout_toRightOf="@+id/imgBack"
+        android:id="@+id/txtANA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add New Address"
+        android:textColor="#000"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="@dimen/_15ssp"
+        android:layout_margin="@dimen/_10sdp"/>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/txtANA"
+        android:background="#de4500"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMap"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_below="@+id/view1">
+        <ImageView
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/map1"/>
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:textAlignment="center"
+        android:id="@+id/etArea"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_below="@+id/cardMap"
+        android:layout_margin="@dimen/_10sdp"
+        android:hint="House No./Area/Locality"/>
+
+    <TextView
+        android:textAlignment="center"
+        android:id="@+id/etLandmark"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_below="@+id/etArea"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:hint="Nearest Landmark"/>
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:weightSum="2"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_below="@+id/etLandmark"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp">
+
+    <TextView
+        android:textAlignment="center"
+        android:id="@+id/etPinCode"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:hint="Pin Code"/>
+
+        <TextView
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/etMobile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:hint="Mobile No. "/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:weightSum="2"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_below="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp">
+
+        <TextView
+            android:textAlignment="center"
+            android:id="@+id/etCity"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:hint="City"/>
+
+        <TextView
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/etState"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:hint="State"/>
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMyLocation"
+
+        android:layout_margin="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/ll2">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/txtUML"
+                android:layout_centerInParent="true"
+                android:text="Use my current location"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="#0000ff"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_my_location"
+                android:layout_toLeftOf="@+id/txtUML"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
