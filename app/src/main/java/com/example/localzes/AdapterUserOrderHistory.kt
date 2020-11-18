@@ -1,6 +1,7 @@
 package com.example.localzes
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import kotlin.collections.ArrayList
 
 class AdapterUserOrderHistory(
     val context: Context,
-    private val order_history: List<ModelUserOrderDetails>
+    private val order_history: List<ModelOrderDetails>
 ) : RecyclerView.Adapter<AdapterUserOrderHistory.HolderUserOrderHistory>() {
     class HolderUserOrderHistory(view: View) : RecyclerView.ViewHolder(view) {
         val totalItems: TextView = view.findViewById(R.id.totalItemsCustomerTv)
@@ -23,7 +24,7 @@ class AdapterUserOrderHistory(
         val orderDate: TextView = view.findViewById(R.id.orderDateTv)
         val orderStatus: TextView = view.findViewById(R.id.orderStatusCustomerTv)
         val orderShop: TextView = view.findViewById(R.id.txtShopName)
-        val recyclerOrderHistoryItems: RecyclerView = view.findViewById(R.id.recyclerOrderHistory)
+
 
     }
 
@@ -65,22 +66,10 @@ class AdapterUserOrderHistory(
         val formattedDate = sdf.format(date)
         holder.orderDate.text = formattedDate
         holder.orderStatus.text = orderHistory.orderStatus
-        setUpRecycler(holder.recyclerOrderHistoryItems, orderHistory)
+        holder.itemView.setOnClickListener {
+            //val intent= Intent(context,)
 
-    }
 
-    private fun setUpRecycler(
-        recyclerOrderHistoryItem: RecyclerView,
-        orderHistoryItems: ModelUserOrderDetails
-    ) {
-        val orderedItemList = ArrayList<ModelOrderedItems>()
-        for (i in orderHistoryItems.orderedItems) {
-            val obj = ModelOrderedItems(i.pId, i.name, i.cost, i.price, i.quantity)
-            orderedItemList.add(obj)
         }
-        val orderedItemAdapter = AdapterOrderedItems(context, orderedItemList)
-        val layoutManager = LinearLayoutManager(context)
-        recyclerOrderHistoryItem.layoutManager = layoutManager
-        recyclerOrderHistoryItem.adapter = orderedItemAdapter
     }
 }

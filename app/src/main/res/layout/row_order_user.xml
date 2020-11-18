@@ -136,10 +136,5 @@ android:layout_above="@+id/imgBorder1"
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerOrderHistory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/row_ordered_items"/>
     </LinearLayout>
 </LinearLayout>

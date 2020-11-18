@@ -78,6 +78,15 @@
                 android:text="4.5/5"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_11ssp" />
+            <ImageView
+                android:id="@+id/imgEditUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtRatingShop_customer"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_edit"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="3dp"/>
             <TextView
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"

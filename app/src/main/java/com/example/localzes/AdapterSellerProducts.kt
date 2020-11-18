@@ -1,6 +1,7 @@
 package com.example.localzes
 
 import android.content.Context
+import android.content.Intent
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
@@ -18,6 +19,7 @@ class AdapterSellerProducts(val context:Context,private val products_seller:List
         val txtProductTitle: TextView =view.findViewById(R.id.txtProductTitle_customer)
         val txtProductPrice:TextView=view.findViewById(R.id.txtProductPrice_customer)
         val txtProductOfferPrice:TextView=view.findViewById(R.id.txtProductOfferPrice)
+        val imgEditUpdate:ImageView=view.findViewById(R.id.imgEditUpdate)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderProduct {
@@ -39,5 +41,10 @@ class AdapterSellerProducts(val context:Context,private val products_seller:List
         val mStrikeThrough=StrikethroughSpan()
         spannableString.setSpan(mStrikeThrough,0,mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         holder.txtProductOfferPrice.text=spannableString
+        holder.imgEditUpdate.setOnClickListener {
+            val intent= Intent(context,UpdateProductDetailsActivity::class.java)
+            intent.putExtra("productId",products.productId)
+            context.startActivity(intent)
+        }
     }
 }
