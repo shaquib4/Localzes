@@ -31,6 +31,7 @@
         <activity android:name=".OrdersCompletedActivity" />
         <activity android:name=".OrderOutForDeliveryActivity" />
         <activity android:name=".OrdersAcceptedActivity" />
+        <activity android:name=".PastOrdersActivity" />
         <activity android:name=".OrdersDetailsSellerActivity" />
         <activity android:name=".SellerOrdersActivity" />
         <activity android:name=".ManageAddress" />

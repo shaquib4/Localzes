@@ -55,7 +55,7 @@ class Accounts : AppCompatActivity() {
         expand.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
             val select = listViewAdapter.getChild(groupPosition, childPosition) as String
             when (select) {
-                "Current Orders" -> {
+                "Current Order" -> {
                     val intent = Intent(this, CurrentOrdersActivity::class.java)
                     startActivity(intent)
                 }
@@ -63,7 +63,7 @@ class Accounts : AppCompatActivity() {
                     val intent = Intent(this, PastOrdersActivity::class.java)
                     startActivity(intent)
                 }
-                "Addresses" -> {
+                "Manage Address" -> {
                     val intent = Intent(this, ManageAddress::class.java)
                     startActivity(intent)
                 }

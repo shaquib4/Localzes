@@ -109,7 +109,7 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
             val state=txtState_seller.text.toString()
             val country=txtCountry_seller.text.toString()
             val pinCode=txtPincode_seller.text.toString()
-
+            val locality=txtLocality_seller.text.toString()
             val intent= Intent(this,SellerShop_detail::class.java)
             intent.putExtra("name",name)
             intent.putExtra("email",email)
@@ -118,6 +118,7 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
             intent.putExtra("state",state)
             intent.putExtra("country",country)
             intent.putExtra("pinCode",pinCode)
+            intent.putExtra("locality",locality)
 
             if (address.isEmpty()) {
                 btncontinueseller.setText("Continue")
@@ -158,13 +159,13 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
                     val state: String = addresses[0].adminArea
                     val pinCode: String = addresses[0].postalCode
                     val country: String = addresses[0].countryName
-
+                    val locality:String=addresses[0].locality
                     btnmapseller.text=address
                     txtCity_seller.text=city
                     txtState_seller.text=state
                     txtPincode_seller.text=pinCode
                     txtCountry_seller.text=country
-
+                    txtLocality_seller.text=locality
 
 
 

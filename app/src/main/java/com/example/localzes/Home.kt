@@ -84,7 +84,13 @@ class Home : AppCompatActivity() {
                         i.child("shop_name").value.toString(),
                         i.child("imageUrl").value.toString(),
                         i.child("category1").value.toString(),
-                        i.child("upi").value.toString()
+                        i.child("upi").value.toString(),
+                        i.child("locality").value.toString(),
+                        i.child("city").value.toString(),
+                        i.child("pinCode").value.toString(),
+                        i.child("state").value.toString(),
+                        i.child("country").value.toString()
+
                     )
                     (shops as ArrayList<Upload>).add(obj)
                     progress_home.visibility=View.GONE

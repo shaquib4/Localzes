@@ -81,7 +81,12 @@ class Search : AppCompatActivity() {
                         i.child("shop_name").value.toString(),
                         i.child("imageUrl").value.toString(),
                         i.child("category1").value.toString(),
-                        i.child("upi").value.toString()
+                        i.child("upi").value.toString(),
+                        i.child("locality").value.toString(),
+                        i.child("city").value.toString(),
+                        i.child("pinCode").value.toString(),
+                        i.child("state").value.toString(),
+                        i.child("country").value.toString()
                     )
                     (searchItem as ArrayList<Upload>).add(obj)
 
@@ -92,19 +97,45 @@ class Search : AppCompatActivity() {
             }
 
         })
-        searchAct.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(p0: Editable?) {
+        btnLocality.setOnClickListener {
+            btnLocality.setTextColor(this.resources.getColor(R.color.white))
+            btnLocality.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
+            btnShop.setTextColor(this.resources.getColor(R.color.black))
+            btnShop.setBackgroundColor(this.resources.getColor(R.color.white))
+            searchAct.addTextChangedListener(object : TextWatcher{
+                override fun afterTextChanged(p0: Editable?) {
 
-            }
+                }
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-            }
+                }
 
-            override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                searchShops(cs.toString().toLowerCase())
-            }
-        })
+                override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    searchLocality(cs.toString().toLowerCase())
+                }
+            })
+        }
+        btnShop.setOnClickListener {
+            btnShop.setTextColor(this.resources.getColor(R.color.white))
+            btnShop.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
+            btnLocality.setTextColor(this.resources.getColor(R.color.black))
+            btnLocality.setBackgroundColor(this.resources.getColor(R.color.white))
+            searchAct.addTextChangedListener(object : TextWatcher{
+                override fun afterTextChanged(p0: Editable?) {
+
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                }
+
+                override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    searchShops(cs.toString().toLowerCase())
+                }
+            })
+        }
+
     }
     private fun searchShops(str:String){
         val queryShop = FirebaseDatabase.getInstance().reference.child("seller").orderByChild("shop_name")
@@ -129,7 +160,51 @@ class Search : AppCompatActivity() {
                         i.child("shop_name").value.toString(),
                         i.child("imageUrl").value.toString(),
                         i.child("category1").value.toString(),
-                        i.child("upi").value.toString()
+                        i.child("upi").value.toString(),
+                        i.child("locality").value.toString(),
+                        i.child("city").value.toString(),
+                        i.child("pinCode").value.toString(),
+                        i.child("state").value.toString(),
+                        i.child("country").value.toString()
+                    )
+                    (searchItem as ArrayList<Upload>).add(obj)
+
+                }
+                searchAdapter=AdapterSearchItem(this@Search,searchItem)
+                recyclerSearchItem.adapter=searchAdapter
+
+            }
+        })
+    }
+    private fun searchLocality(str:String){
+        val queryShop = FirebaseDatabase.getInstance().reference.child("seller").orderByChild("locality")
+            .startAt(str)
+            .endAt(str + "\uf8ff")
+
+        queryShop.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (searchItem as ArrayList<Upload>).clear()
+                for (i in snapshot.children) {
+
+                    val obj = Upload(
+                        i.child("shopId").value.toString(),
+                        i.child("phone").value.toString(),
+                        i.child("name").value.toString(),
+                        i.child("email").value.toString(),
+                        i.child("address").value.toString(),
+                        i.child("shop_name").value.toString(),
+                        i.child("imageUrl").value.toString(),
+                        i.child("category1").value.toString(),
+                        i.child("upi").value.toString(),
+                        i.child("locality").value.toString(),
+                        i.child("city").value.toString(),
+                        i.child("pinCode").value.toString(),
+                        i.child("state").value.toString(),
+                        i.child("country").value.toString()
                     )
                     (searchItem as ArrayList<Upload>).add(obj)
 
