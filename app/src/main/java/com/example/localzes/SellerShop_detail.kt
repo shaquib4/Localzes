@@ -88,6 +88,11 @@ class SellerShop_detail : AppCompatActivity() {
                                     val name=intent.getStringExtra("name")
                                     val email=intent.getStringExtra("email")
                                     val address=intent.getStringExtra("address")
+                                    val city=intent.getStringExtra("city")
+                                    val state=intent.getStringExtra("state")
+                                    val country=intent.getStringExtra("country")
+                                    val pinCode=intent.getStringExtra("pinCode")
+                                    val locality=intent.getStringExtra("locality")
 
                                     upload = Upload(
                                         uid,
@@ -98,16 +103,18 @@ class SellerShop_detail : AppCompatActivity() {
                                         etShopName.text.toString().trim(),
                                         downloadUrl.toString(),
                                         etCategory1.selectedItem.toString(),
-                                        upi.text.toString().trim()
+                                        upi.text.toString().trim(),
+                                        locality!!.toString().trim().toLowerCase(),
+                                        city!!.toString().trim().toLowerCase(),
+                                        pinCode!!.toString().trim(),
+                                        state!!.toString().trim(),
+                                        country!!.toString().trim()
 
                                     )
                                     mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                                     mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
                                         if (task.isSuccessful){
-                                            val city=intent.getStringExtra("city")
-                                            val state=intent.getStringExtra("state")
-                                            val country=intent.getStringExtra("country")
-                                            val pinCode=intent.getStringExtra("pinCode")
+
                                             mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("current_address")
                                             val userMaps= HashMap<String,Any>()
                                             userMaps["address"]=address.toString()

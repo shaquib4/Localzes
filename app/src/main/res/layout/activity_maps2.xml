@@ -69,6 +69,18 @@
             />
         <TextView
             android:visibility="invisible"
+            android:id="@+id/txtLocality_seller"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:visibility="invisible"
             android:id="@+id/txtPincode_seller"
             android:layout_width="match_parent"
             android:layout_marginTop="30dp"

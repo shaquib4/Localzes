@@ -32,7 +32,8 @@ class AdapterUserShops(val context:Context,private val shopsUser:List<Upload>):R
     override fun onBindViewHolder(holder: HolderUserShops, position: Int) {
         val shops_user=shopsUser[position]
         Picasso.get().load(shops_user.imageUrl).into(holder.imgShop)
-        holder.shopName.text=shops_user.shop_name
+
+        holder.shopName.text=shops_user.shop_name.substring(0,1).toUpperCase()+shops_user.shop_name.substring(1)
         holder.shopCategory.text=shops_user.category1
         holder.itemView.setOnClickListener{
             val intent=Intent(context,UserProductsActivity::class.java)
