@@ -31,7 +31,7 @@ class Home_seller : AppCompatActivity() {
         val user = orderAuth.currentUser
         val uid = user!!.uid
 
-        bottom_navHome_seller.selectedItemId = R.id.nav_home
+        bottom_navHome_seller.selectedItemId = R.id.nav_store_seller
         bottom_navHome_seller.setOnNavigationItemSelectedListener { item ->
 
 
@@ -41,6 +41,32 @@ class Home_seller : AppCompatActivity() {
                 R.id.nav_product_seller -> {
 
                     startActivity(Intent(this, Seller_Products::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+
+                }
+                R.id.nav_order_seller -> {
+
+                    startActivity(Intent(this, OrdersSeller::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+
+                }
+                R.id.nav_account_seller -> {
+
+                    startActivity(Intent(this, AccountsSeller::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+
+                }
+                R.id.nav_store_seller -> {
+
+                   return@setOnNavigationItemSelectedListener true
+
+                }
+                R.id.nav_category_seller -> {
+
+                    startActivity(Intent(this, Category::class.java))
                     overridePendingTransition(0, 0)
                     finish()
 
