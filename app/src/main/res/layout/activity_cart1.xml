@@ -346,7 +346,7 @@
         android:id="@+id/llContinue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+       android:layout_above="@id/bottom_navCarts"
         android:weightSum="4">
 
         <LinearLayout
@@ -391,5 +391,13 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffff" />
     </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navCarts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        app:menu="@menu/customer_menu"
+        />
 
 </RelativeLayout>

@@ -1,6 +1,5 @@
 package com.example.localzes
 
-import android.accounts.Account
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,8 +31,8 @@ class Home : AppCompatActivity() {
         shops=ArrayList<Upload>()
 
 
-        bottom_navHome.selectedItemId = R.id.nav_home
-        bottom_navHome.setOnNavigationItemSelectedListener { item ->
+        bottom_navProducts.selectedItemId = R.id.nav_home
+        bottom_navProducts.setOnNavigationItemSelectedListener { item ->
 
 
             when (item.itemId) {

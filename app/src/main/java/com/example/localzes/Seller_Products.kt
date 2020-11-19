@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_home_seller.*
+import kotlinx.android.synthetic.main.activity_seller__products.*
 
 class Seller_Products : AppCompatActivity() {
     private lateinit var productDatabaseRef: DatabaseReference
@@ -24,6 +27,48 @@ class Seller_Products : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
+        bottom_navProducts.selectedItemId = R.id.nav_product_seller
+        bottom_navProducts.setOnNavigationItemSelectedListener { item ->
+
+
+            when (item.itemId) {
+
+
+                R.id.nav_product_seller -> {
+
+                   return@setOnNavigationItemSelectedListener true
+
+                }
+                R.id.nav_order_seller -> {
+
+                    startActivity(Intent(this, OrdersSeller::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+
+                }
+                R.id.nav_account_seller -> {
+
+                    startActivity(Intent(this, AccountsSeller::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+
+                }
+                R.id.nav_store_seller -> {
+
+                    startActivity(Intent(this, Home_seller::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+
+                }
+                R.id.nav_category_seller -> {
+
+                    startActivity(Intent(this, Category::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+
+                }
+            }
+            return@setOnNavigationItemSelectedListener false}
         productDatabaseRef =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
         productDatabaseRef.addValueEventListener(object : ValueEventListener {
