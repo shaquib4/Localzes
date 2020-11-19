@@ -97,17 +97,20 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_12sdp"
-                android:layout_below="@+id/txtCategory"
-                android:layout_alignLeft="@+id/txtCategory"
+                android:layout_toEndOf="@+id/txtCategory"
+                android:layout_alignBottom="@+id/txtCategory"
                 android:text="Rs. 1099"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:textSize="@dimen/_10ssp" />
 
             <View
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="1.0dp"
-                android:layout_below="@id/txtCategory"
-                android:layout_alignLeft="@+id/txtCategory"
-                android:layout_marginTop="10dp"
+           android:layout_alignBottom="@id/txtCategory"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+             android:layout_toRightOf="@+id/txtCategory"
                 android:background="#696969" />
 
         </RelativeLayout>

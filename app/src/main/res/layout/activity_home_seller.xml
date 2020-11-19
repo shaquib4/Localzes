@@ -72,7 +72,7 @@
                             android:padding="5dp"
                             android:text="@string/share_link_on_social_media"
                             android:textColor="#000000"
-                            android:textSize="@dimen/_12ssp"
+                            android:textSize="@dimen/_11ssp"
                             tools:ignore="RelativeOverlap" />
 
                         <TextView
@@ -98,7 +98,7 @@
                             android:textColor="#3498db"
                             android:fontFamily="@font/montserrat_medium"
 
-                            android:textSize="@dimen/_13ssp" />
+                            android:textSize="@dimen/_12ssp" />
 
 
                         <ImageView
@@ -110,7 +110,7 @@
                             android:layout_margin="5dp"
                             android:layout_marginTop="20dp"
                             android:contentDescription="@string/todo"
-                            android:src="@drawable/send" />
+                            android:src="@drawable/whatsapp" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -152,7 +152,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="193234"
+                            android:text="0"
                             android:textAlignment="center"
                             android:textColor="#000000"
                             android:textSize="@dimen/_10ssp" />
@@ -176,7 +176,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="193234"
+                            android:text="0"
                             android:textAlignment="center"
                             android:textColor="#000000"
                             android:textSize="@dimen/_10ssp" />
@@ -200,7 +200,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="193234"
+                            android:text="0"
                             android:textAlignment="center"
                             android:textColor="#000000"
                             android:textSize="@dimen/_10ssp" />
@@ -225,7 +225,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="193234"
+                            android:text="0"
                             android:textAlignment="center"
                             android:textColor="#000000"
                             android:textSize="@dimen/_10ssp" />
@@ -251,7 +251,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/accepted"
                         android:textAlignment="center"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_9ssp" />
 
                     <TextView
                         android:id="@+id/txtShipped"
@@ -261,7 +261,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Out For Delivery"
                         android:textAlignment="center"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_9ssp" />
 
                     <TextView
                         android:id="@+id/txtActive"
@@ -271,7 +271,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/active"
                         android:textAlignment="center"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_9ssp" />
 
                     <TextView
                         android:id="@+id/txtPending"
@@ -281,7 +281,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/pending"
                         android:textAlignment="center"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_9ssp" />
                 </LinearLayout>
 
                 <TextView
@@ -322,7 +322,7 @@
                         android:text="Total Orders"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_9ssp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -340,7 +340,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Total Income"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_9ssp" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_marginHorizontal="@dimen/_5sdp"
@@ -358,7 +358,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Store Views"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_9ssp" />
                     </RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -10,12 +10,13 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:layout_marginTop="10dp"
-
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="@dimen/_240sdp"
         tools:context=".MapsActivity"/>
 <RelativeLayout
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_below="@+id/map"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
@@ -23,11 +24,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:textAllCaps="false"
+        android:fontFamily="@font/montserrat_medium"
         android:textColor="#000"
-        android:textSize="14sp"
+        android:textSize="@dimen/_12ssp"
         />
     <TextView
         android:visibility="invisible"
@@ -35,11 +36,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:textAllCaps="false"
         android:textColor="#000"
-        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="@dimen/_12ssp"
         />
     <TextView
         android:visibility="invisible"
@@ -47,11 +48,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:textAllCaps="false"
+        android:fontFamily="@font/montserrat_medium"
         android:textColor="#000"
-        android:textSize="14sp"
+        android:textSize="@dimen/_12ssp"
         />
     <TextView
         android:visibility="invisible"
@@ -59,38 +60,40 @@
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:textAllCaps="false"
+        android:fontFamily="@font/montserrat_medium"
         android:textColor="#000"
-        android:textSize="14sp"
+        android:textSize="@dimen/_12ssp"
         />
     <TextView
+
         android:visibility="invisible"
         android:id="@+id/txtPincode"
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
+       android:layout_marginHorizontal="@dimen/_15sdp"
         android:textAllCaps="false"
         android:textColor="#000"
-        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="@dimen/_12ssp"
         />
+
 </RelativeLayout>
+
     <Button
-        android:layout_marginTop="230dp"
+        android:layout_alignParentBottom="true"
         android:id="@+id/btncontinue"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:layout_width="match_parent"
-        android:textColor="#fff"
+        android:textColor="#0000ff"
         android:textAllCaps="false"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/l_r"
-        android:layout_height="42dp"
-        android:background="@drawable/round2_btn"
+        android:textSize="@dimen/_15ssp"
+        android:fontFamily="@font/montserrat_medium"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/bg_product_shop"
         android:text="Use my location"
         />
-</LinearLayout>
+</RelativeLayout>

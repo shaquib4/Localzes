@@ -40,7 +40,7 @@
         android:text="Login | Sign Up"
         android:textStyle="bold"
         android:fontFamily="@font/l_r"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_12ssp"
         android:textColor="#DE0606"/>
 
     <ImageView
