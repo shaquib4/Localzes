@@ -80,7 +80,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
                 headers["finalPrice"]=updatedCost.toString()
                 headers["finalQuantity"]=items.toString()
                 headers["finalSellingPrice"]=finalSell.toString()
-                mCartDatabase.child(cart_user[position].productId).setValue(headers)
+                mCartDatabase.child(cart_user[position].productId).updateChildren(headers)
             }
         }
         holder.btnIncreaseCart.setOnClickListener {
@@ -93,7 +93,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
             headers["finalPrice"]=updatedCost.toString()
             headers["finalQuantity"]=items.toString()
             headers["finalSellingPrice"]=finalSell.toString()
-            mCartDatabase.child(cart_user[position].productId).setValue(headers)
+            mCartDatabase.child(cart_user[position].productId).updateChildren(headers)
         }
         holder.removeItem.setOnClickListener {
             deleteItem(position)
