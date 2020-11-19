@@ -39,7 +39,7 @@
                     android:textSize="@dimen/_17ssp"
                     android:fontFamily="@font/montserrat_medium"
                     android:textStyle="bold"
-                    android:text="Shop name"/>
+                    android:text="ProductName"/>
                 <TextView
                     android:layout_below="@+id/productName"
                     android:id="@+id/price"
@@ -50,7 +50,7 @@
                     android:textSize="@dimen/_15ssp"
                     android:fontFamily="@font/montserrat_medium"
                     android:textStyle="bold"
-                    android:text="Shop Address"/>
+                    android:text="200"/>
 
             </RelativeLayout>
 

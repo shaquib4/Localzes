@@ -8,6 +8,7 @@
     android:background="#fcfcfc">
 
    <EditText
+
        android:id="@+id/search_act"
        android:paddingStart="@dimen/_20sdp"
        android:hint="Search"
@@ -15,11 +16,21 @@
        android:layout_height="@dimen/_35sdp"
        android:layout_margin="5dp"
        android:background="@drawable/bg_product_shop"/>
+ <EditText
+
+     android:id="@+id/search"
+     android:paddingStart="@dimen/_20sdp"
+     android:hint="Search"
+     android:layout_width="match_parent"
+     android:layout_height="@dimen/_35sdp"
+     android:layout_margin="5dp"
+     android:background="@drawable/bg_product_shop"/>
     <Button
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_below="@id/search_act"
         android:id="@+id/btnShop"
-        android:layout_width="130dp"
+        android:layout_width="120dp"
         android:textAllCaps="false"
         android:text="Shops"
         android:background="@drawable/bg_ractangle_rounded_stroke"
@@ -30,9 +41,20 @@
         android:layout_below="@id/search_act"
         android:layout_toRightOf="@+id/btnShop"
         android:id="@+id/btnLocality"
-        android:layout_width="130dp"
+        android:layout_width="120dp"
         android:textAllCaps="false"
         android:text="Locality"
+        android:background="@drawable/bg_ractangle_rounded_stroke"
+        android:layout_height="38dp"/>
+    <Button
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/search_act"
+        android:layout_toRightOf="@+id/btnLocality"
+        android:id="@+id/btnProduct"
+        android:layout_width="120dp"
+        android:textAllCaps="false"
+        android:text="Product"
         android:background="@drawable/bg_ractangle_rounded_stroke"
         android:layout_height="38dp"/>
     <androidx.recyclerview.widget.RecyclerView

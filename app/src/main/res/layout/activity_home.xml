@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
+        android:layout_above="@id/bottom_navHome"
         android:padding="2dp"
         android:layout_marginTop="1dp"
         app:stackFromEnd="true"

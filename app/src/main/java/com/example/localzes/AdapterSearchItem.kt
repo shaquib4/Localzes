@@ -12,9 +12,9 @@ import com.squareup.picasso.Picasso
 
 class AdapterSearchItem(val context: Context,private val search:List<Upload>):RecyclerView.Adapter<AdapterSearchItem.HolderSearchItem>() {
     class HolderSearchItem(view: View) : RecyclerView.ViewHolder(view) {
-        val shopImage:ImageView=view.findViewById(R.id.shopImage)
-        val shopName:TextView=view.findViewById(R.id.shopName)
-        val shopAddress:TextView=view.findViewById(R.id.shopAddress)
+        val shopImage:ImageView=view.findViewById(R.id.productImage)
+        val shopName:TextView=view.findViewById(R.id.productName)
+        val shopAddress:TextView=view.findViewById(R.id.price)
 
     }
 
