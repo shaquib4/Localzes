@@ -79,7 +79,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
                 val headers=HashMap<String,Any>()
                 headers["finalPrice"]=updatedCost.toString()
                 headers["finalQuantity"]=items.toString()
-                headers["finalSellingPrice"]=finalSell.toString()
+                headers["finalsellingPrice"]=finalSell.toString()
                 mCartDatabase.child(cart_user[position].productId).updateChildren(headers)
             }
         }
@@ -92,7 +92,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
             val headers=HashMap<String,Any>()
             headers["finalPrice"]=updatedCost.toString()
             headers["finalQuantity"]=items.toString()
-            headers["finalSellingPrice"]=finalSell.toString()
+            headers["finalsellingPrice"]=finalSell.toString()
             mCartDatabase.child(cart_user[position].productId).updateChildren(headers)
         }
         holder.removeItem.setOnClickListener {

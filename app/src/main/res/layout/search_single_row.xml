@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_margin="@dimen/_5sdp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="wrap_content"
         >
 
         <LinearLayout
@@ -16,10 +18,13 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
-                android:layout_margin="2dp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:elevation="0dp"
+                android:layout_margin="@dimen/_2sdp"
                 android:layout_height="@dimen/_95sdp"
                 android:layout_weight="1">
                 <ImageView
+
                     android:id="@+id/productImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -36,7 +41,8 @@
                     android:layout_marginStart="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_17ssp"
+                    android:textSize="@dimen/_15ssp"
+                    android:textColor="#000000"
                     android:fontFamily="@font/montserrat_medium"
                     android:textStyle="bold"
                     android:text="Shop name"/>
@@ -44,12 +50,11 @@
                     android:layout_below="@+id/productName"
                     android:id="@+id/price"
                     android:layout_marginTop="3dp"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_15ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:textStyle="bold"
                     android:text="Shop Address"/>
 
             </RelativeLayout>
