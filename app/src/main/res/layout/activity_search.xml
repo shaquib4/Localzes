@@ -8,6 +8,7 @@
     android:background="#fcfcfc">
 
    <EditText
+
        android:id="@+id/search_act"
        android:paddingStart="@dimen/_20sdp"
        android:hint="Search"
@@ -15,6 +16,15 @@
        android:layout_height="@dimen/_35sdp"
        android:layout_margin="5dp"
        android:background="@drawable/bg_product_shop"/>
+ <EditText
+
+     android:id="@+id/search"
+     android:paddingStart="@dimen/_20sdp"
+     android:hint="Search"
+     android:layout_width="match_parent"
+     android:layout_height="@dimen/_35sdp"
+     android:layout_margin="5dp"
+     android:background="@drawable/bg_product_shop"/>
     <Button
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"

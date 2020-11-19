@@ -21,12 +21,13 @@ class Search : AppCompatActivity() {
     private lateinit var searchProductItem:  List<ModelAddProduct>
     private lateinit var searchItem: List<Upload>
     private lateinit var searchAct:EditText
+    private lateinit var search:EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         searchAct=findViewById(R.id.search_act)
         recyclerSearchItem=findViewById(R.id.recycler_search_item)
-
+         search=findViewById(R.id.search)
         recyclerSearchItem.layoutManager=LinearLayoutManager(this)
         searchItem=ArrayList<Upload>()
         searchProductItem=ArrayList<ModelAddProduct>()
@@ -102,6 +103,8 @@ class Search : AppCompatActivity() {
         })
 
         btnLocality.setOnClickListener {
+            searchAct.visibility=View.VISIBLE
+            search.visibility=View.GONE
             btnLocality.setTextColor(this.resources.getColor(R.color.white))
             btnLocality.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
             btnShop.setTextColor(this.resources.getColor(R.color.black))
@@ -123,6 +126,8 @@ class Search : AppCompatActivity() {
             })
         }
         btnShop.setOnClickListener {
+            searchAct.visibility=View.VISIBLE
+            search.visibility=View.GONE
             btnShop.setTextColor(this.resources.getColor(R.color.white))
             btnShop.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
             btnLocality.setTextColor(this.resources.getColor(R.color.black))
@@ -145,13 +150,15 @@ class Search : AppCompatActivity() {
         }
 
         btnProduct.setOnClickListener {
+
+            search.visibility=View.VISIBLE
             btnProduct.setTextColor(this.resources.getColor(R.color.white))
             btnProduct.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
             btnShop.setTextColor(this.resources.getColor(R.color.black))
             btnShop.setBackgroundColor(this.resources.getColor(R.color.white))
             btnLocality.setTextColor(this.resources.getColor(R.color.black))
             btnLocality.setBackgroundColor(this.resources.getColor(R.color.white))
-            searchAct.addTextChangedListener(object : TextWatcher{
+            search.addTextChangedListener(object : TextWatcher{
                 override fun afterTextChanged(p0: Editable?) {
 
                 }
@@ -170,6 +177,7 @@ class Search : AppCompatActivity() {
     }
 
     private fun searchProducts(string:String) {
+        (searchProductItem as ArrayList<ModelAddProduct>).clear()
        val userDatabases = FirebaseDatabase.getInstance().reference.child("seller")
         userDatabases.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
@@ -177,27 +185,13 @@ class Search : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                (searchProductItem as ArrayList<ModelAddProduct>).clear()
-                (searchItem as ArrayList<Upload>).clear()
+
+
                 for (i in snapshot.children) {
                     val shopId= i.child("shopId").value.toString()
-                    val obj = Upload(
-                        i.child("shopId").value.toString(),
-                        i.child("phone").value.toString(),
-                        i.child("name").value.toString(),
-                        i.child("email").value.toString(),
-                        i.child("address").value.toString(),
-                        i.child("shop_name").value.toString(),
-                        i.child("imageUrl").value.toString(),
-                        i.child("category1").value.toString(),
-                        i.child("upi").value.toString(),
-                        i.child("locality").value.toString(),
-                        i.child("city").value.toString(),
-                        i.child("pinCode").value.toString(),
-                        i.child("state").value.toString(),
-                        i.child("country").value.toString()
-                    )
-                    (searchItem as ArrayList<Upload>).add(obj)
+
+
+
                     val queryProductItem = FirebaseDatabase.getInstance().reference.child("seller").child(shopId).child("Products").orderByChild("title")
                         .startAt(string)
                         .endAt(string + "\uf8ff")
