@@ -16,7 +16,9 @@ import kotlinx.android.synthetic.main.activity_search.*
 class Search : AppCompatActivity() {
     private lateinit var userDatabase: DatabaseReference
     private lateinit var recyclerSearchItem: RecyclerView
+    private lateinit var searchProductAdapter:AdapterSearchProductItem
     private lateinit var searchAdapter: AdapterSearchItem
+    private lateinit var searchProductItem:  List<ModelAddProduct>
     private lateinit var searchItem: List<Upload>
     private lateinit var searchAct:EditText
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,9 +26,10 @@ class Search : AppCompatActivity() {
         setContentView(R.layout.activity_search)
         searchAct=findViewById(R.id.search_act)
         recyclerSearchItem=findViewById(R.id.recycler_search_item)
-        recyclerSearchItem.setHasFixedSize(true)
+
         recyclerSearchItem.layoutManager=LinearLayoutManager(this)
         searchItem=ArrayList<Upload>()
+        searchProductItem=ArrayList<ModelAddProduct>()
 
         bottom_navSearch.selectedItemId = R.id.nav_search
         bottom_navSearch.setOnNavigationItemSelectedListener { item ->
@@ -97,11 +100,14 @@ class Search : AppCompatActivity() {
             }
 
         })
+
         btnLocality.setOnClickListener {
             btnLocality.setTextColor(this.resources.getColor(R.color.white))
             btnLocality.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
             btnShop.setTextColor(this.resources.getColor(R.color.black))
             btnShop.setBackgroundColor(this.resources.getColor(R.color.white))
+            btnProduct.setTextColor(this.resources.getColor(R.color.black))
+            btnProduct.setBackgroundColor(this.resources.getColor(R.color.white))
             searchAct.addTextChangedListener(object : TextWatcher{
                 override fun afterTextChanged(p0: Editable?) {
 
@@ -121,6 +127,8 @@ class Search : AppCompatActivity() {
             btnShop.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
             btnLocality.setTextColor(this.resources.getColor(R.color.black))
             btnLocality.setBackgroundColor(this.resources.getColor(R.color.white))
+            btnProduct.setTextColor(this.resources.getColor(R.color.black))
+            btnProduct.setBackgroundColor(this.resources.getColor(R.color.white))
             searchAct.addTextChangedListener(object : TextWatcher{
                 override fun afterTextChanged(p0: Editable?) {
 
@@ -136,7 +144,97 @@ class Search : AppCompatActivity() {
             })
         }
 
+        btnProduct.setOnClickListener {
+            btnProduct.setTextColor(this.resources.getColor(R.color.white))
+            btnProduct.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
+            btnShop.setTextColor(this.resources.getColor(R.color.black))
+            btnShop.setBackgroundColor(this.resources.getColor(R.color.white))
+            btnLocality.setTextColor(this.resources.getColor(R.color.black))
+            btnLocality.setBackgroundColor(this.resources.getColor(R.color.white))
+            searchAct.addTextChangedListener(object : TextWatcher{
+                override fun afterTextChanged(p0: Editable?) {
+
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                }
+
+                override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    searchProducts(cs.toString().toLowerCase())
+                }
+            })
+
+        }
+
     }
+
+    private fun searchProducts(string:String) {
+       val userDatabases = FirebaseDatabase.getInstance().reference.child("seller")
+        userDatabases.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (searchProductItem as ArrayList<ModelAddProduct>).clear()
+                (searchItem as ArrayList<Upload>).clear()
+                for (i in snapshot.children) {
+                    val shopId= i.child("shopId").value.toString()
+                    val obj = Upload(
+                        i.child("shopId").value.toString(),
+                        i.child("phone").value.toString(),
+                        i.child("name").value.toString(),
+                        i.child("email").value.toString(),
+                        i.child("address").value.toString(),
+                        i.child("shop_name").value.toString(),
+                        i.child("imageUrl").value.toString(),
+                        i.child("category1").value.toString(),
+                        i.child("upi").value.toString(),
+                        i.child("locality").value.toString(),
+                        i.child("city").value.toString(),
+                        i.child("pinCode").value.toString(),
+                        i.child("state").value.toString(),
+                        i.child("country").value.toString()
+                    )
+                    (searchItem as ArrayList<Upload>).add(obj)
+                    val queryProductItem = FirebaseDatabase.getInstance().reference.child("seller").child(shopId).child("Products").orderByChild("title")
+                        .startAt(string)
+                        .endAt(string + "\uf8ff")
+                    queryProductItem.addValueEventListener(object : ValueEventListener{
+                        override fun onCancelled(error: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+
+                            for (i in snapshot.children) {
+                                val obj = ModelAddProduct(
+                                    i.child("shopId").value.toString(),
+                                    i.child("productId").value.toString(),
+                                    i.child("imageUrl").value.toString(),
+                                    i.child("productCategory").value.toString(),
+                                    i.child("title").value.toString(),
+                                    i.child("description").value.toString(),
+                                    i.child("sellingPrice").value.toString(),
+                                    i.child("offerPrice").value.toString(),
+                                    i.child("unit").value.toString(),
+                                    i.child("quantity").value.toString()
+                                )
+                                (searchProductItem as ArrayList<ModelAddProduct>).add(obj)
+
+                            }
+                            searchProductAdapter=AdapterSearchProductItem(this@Search,searchProductItem)
+                            recyclerSearchItem.adapter=searchProductAdapter
+                            //userProductAdapter = AdapterUserProducts(this@UserProductsActivity, mUserProducts)
+                            //recyclerUserProduct.adapter = userProductAdapter
+                        }
+                    })
+                }
+            }
+        })
+    }
+
     private fun searchShops(str:String){
         val queryShop = FirebaseDatabase.getInstance().reference.child("seller").orderByChild("shop_name")
             .startAt(str)

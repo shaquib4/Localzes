@@ -16,10 +16,11 @@
        android:layout_margin="5dp"
        android:background="@drawable/bg_product_shop"/>
     <Button
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_below="@id/search_act"
         android:id="@+id/btnShop"
-        android:layout_width="130dp"
+        android:layout_width="120dp"
         android:textAllCaps="false"
         android:text="Shops"
         android:background="@drawable/bg_ractangle_rounded_stroke"
@@ -30,9 +31,20 @@
         android:layout_below="@id/search_act"
         android:layout_toRightOf="@+id/btnShop"
         android:id="@+id/btnLocality"
-        android:layout_width="130dp"
+        android:layout_width="120dp"
         android:textAllCaps="false"
         android:text="Locality"
+        android:background="@drawable/bg_ractangle_rounded_stroke"
+        android:layout_height="38dp"/>
+    <Button
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/search_act"
+        android:layout_toRightOf="@+id/btnLocality"
+        android:id="@+id/btnProduct"
+        android:layout_width="120dp"
+        android:textAllCaps="false"
+        android:text="Product"
         android:background="@drawable/bg_ractangle_rounded_stroke"
         android:layout_height="38dp"/>
     <androidx.recyclerview.widget.RecyclerView
