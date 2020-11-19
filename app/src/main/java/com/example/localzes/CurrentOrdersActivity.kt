@@ -92,7 +92,8 @@ class CurrentOrdersActivity : AppCompatActivity() {
                             i.child("orderCost").value.toString(),
                             i.child("orderBy").value.toString(),
                             i.child("orderTo").value.toString(),
-                            i.child("orderQuantity").value.toString()
+                            i.child("orderQuantity").value.toString(),
+                            i.child("deliveryAddress").value.toString()
                         )
                         if (i.child("orderStatus").value.toString() == "Pending" || i.child("orderStatus").value.toString() == "Accepted" || i.child(
                                 "orderStatus"

@@ -29,6 +29,7 @@ class PaymentActivity : AppCompatActivity() {
     private var totalCost: String? = "200"
     private var totalItem: String? = "300"
     private var uid: String? = "400"
+    private var deliveryAddress:String?="500"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
@@ -200,6 +201,7 @@ class PaymentActivity : AppCompatActivity() {
                 val orderCost = totalCost.toString()
                 val orderBy = uid
                 val orderTo = shopId.toString()
+                val deliveryAddress=deliveryAddress.toString()
                 orderDetails =
                     ModelOrderDetails(
                         orderId,
@@ -208,7 +210,8 @@ class PaymentActivity : AppCompatActivity() {
                         orderCost,
                         orderBy.toString(),
                         orderTo,
-                        totalItem.toString()
+                        totalItem.toString(),
+                        deliveryAddress
                     )
                 val reference: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("users")

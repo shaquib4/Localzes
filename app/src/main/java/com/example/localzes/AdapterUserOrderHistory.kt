@@ -67,7 +67,9 @@ class AdapterUserOrderHistory(
         holder.orderDate.text = formattedDate
         holder.orderStatus.text = orderHistory.orderStatus
         holder.itemView.setOnClickListener {
-            //val intent= Intent(context,)
+            val intent= Intent(context,OrdersDetailsUserActivity::class.java)
+            intent.putExtra("orderId",orderHistory.orderId)
+            context.startActivity(intent)
 
 
         }

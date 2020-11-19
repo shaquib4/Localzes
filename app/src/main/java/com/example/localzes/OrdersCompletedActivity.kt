@@ -43,7 +43,8 @@ class OrdersCompletedActivity : AppCompatActivity() {
                            i.child("orderCost").value.toString(),
                            i.child("orderBy").value.toString(),
                            i.child("orderTo").value.toString(),
-                           i.child("orderQuantity").value.toString()
+                           i.child("orderQuantity").value.toString(),
+                           i.child("deliveryAddress").value.toString()
                        )
                        (ordersCompletedList as ArrayList<ModelOrderDetails>).add(obj)
 

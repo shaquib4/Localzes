@@ -34,6 +34,7 @@ class Cart : AppCompatActivity() {
     private lateinit var orderByuid:String
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var progressDialog: ProgressDialog
+    private lateinit var deliveryUser:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart1)
@@ -168,12 +169,24 @@ class Cart : AppCompatActivity() {
                 totalPayment.text = "Rs. ${amount}"
             }
         })
+        val reference:DatabaseReference=FirebaseDatabase.getInstance().reference.child("users").child(uid).child("current_address")
+        reference.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                deliveryUser=snapshot.child("address").value.toString()
+            }
+
+        })
         btnContinue.setOnClickListener {
             val intent=Intent(this,PaymentActivity::class.java)
             intent.putExtra("shopId",shopId)
             intent.putExtra("totalCost",totalCost)
             intent.putExtra("orderBy",orderByuid)
             intent.putExtra("totalItem",totalItem)
+            intent.putExtra("delivery",deliveryUser)
             startActivity(intent)
             finish()
         }

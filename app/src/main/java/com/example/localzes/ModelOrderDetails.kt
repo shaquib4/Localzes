@@ -7,7 +7,8 @@ class ModelOrderDetails(
     val orderCost: String,
     val orderBy: String,
     val orderTo: String,
-    val orderQuantity:String
+    val orderQuantity:String,
+    val deliveryAddress:String
 ) {
-    constructor():this("","","","","","","")
+    constructor():this("","","","","","","","")
 }
