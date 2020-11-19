@@ -58,17 +58,17 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
                 android:text="4.5/5"
+                android:fontFamily="@font/montserrat_bold"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_11ssp" />
             <Button
-                android:layout_alignTop="@+id/txtProductPrice_customer"
+                android:layout_alignTop="@+id/txtStock_customer"
                 android:id="@+id/btnAddItem"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_21sdp"
-                android:layout_marginTop="2dp"
                 android:elevation="0dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@drawable/bg_add_item"
                 android:text="Add +"
                 android:textAllCaps="false"
@@ -101,6 +101,15 @@
                 android:textSize="@dimen/_18ssp"
                />
 
+            <View
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="1dp"
+                android:background="#696969"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toRightOf="@id/txtProductPrice_customer"
+               android:layout_alignTop="@id/txtProductOfferPrice"/>
+
             <TextView
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
@@ -116,13 +125,13 @@
 
 
             <LinearLayout
-
+                android:layout_alignTop="@id/txtStock_customer"
                 android:visibility="invisible"
-               android:layout_below="@+id/imgRating_customer"
                 android:layout_width="100dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_height="@dimen/_22sdp"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:id="@+id/btnLinear"
                 android:background="#ffffff"
                 android:orientation="horizontal"
