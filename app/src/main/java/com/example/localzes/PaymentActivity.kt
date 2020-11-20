@@ -195,38 +195,9 @@ class PaymentActivity : AppCompatActivity() {
                 //Code to handle successful transaction here.
                 progressDialog.setMessage("Placing Your Order....")
                 progressDialog.show()
-
-                val timestamp = System.currentTimeMillis().toString()
-                val orderId = timestamp
-                val orderTime = timestamp
-                val orderStatus = "Pending"
-                val orderCost = totalCost.toString()
-                val orderBy = uid
-                val orderTo = shopId.toString()
-                val deliveryAddress = deliveryAddress.toString()
-                orderDetails =
-                    ModelOrderDetails(
-                        orderId,
-                        orderTime,
-                        orderStatus,
-                        orderCost,
-                        orderBy.toString(),
-                        orderTo,
-                        totalItem.toString(),
-                        deliveryAddress
-                    )
-                val reference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("users")
-                        .child(orderBy.toString())
-                        .child("MyOrders")
-                reference.child(orderId).setValue(orderDetails)
-                val ref: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
-                        .child("Orders")
-                ref.child(timestamp).setValue(orderDetails)
                 val dataReference: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("users")
-                        .child(orderBy.toString()).child("Cart")
+                        .child(uid.toString()).child("Cart")
                 dataReference.addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 
@@ -251,29 +222,59 @@ class PaymentActivity : AppCompatActivity() {
                         }
                     }
                 })
-                for (i in 0 until cartProducts.size) {
-                    val productId = cartProducts[i].productId
-                    val orderedBy = cartProducts[i].orderBy
-                    val productTitle = cartProducts[i].productTitle
-                    val priceEach = cartProducts[i].priceEach
-                    val finalPrice = cartProducts[i].finalPrice
-                    val finalQuantity = cartProducts[i].finalQuantity
-                    val orderedTo = cartProducts[i].orderTo
-                    val sellingPrice = cartProducts[i].sellingPrice
-                    val headers = HashMap<String, String>()
-                    headers["productId"] = productId
-                    headers["orderBy"] = orderedBy
-                    headers["productTitle"] = productTitle
-                    headers["priceEach"] = priceEach
-                    headers["finalPrice"] = finalPrice
-                    headers["finalQuantity"] = finalQuantity
-                    headers["orderTo"] = orderedTo
-                    headers["sellingPrice"] = sellingPrice
-                    ref.child(timestamp).child("Items").child(productId).setValue(headers)
-                    reference.child(orderId).child("orderedItems").child(productId)
-                        .setValue(headers)
+                val timestamp = System.currentTimeMillis().toString()
+                val orderId = timestamp
+                val orderTime = timestamp
+                val orderStatus = "Pending"
+                val orderCost = totalCost.toString()
+                val orderBy = uid
+                val orderTo = shopId.toString()
+                val deliveryAddress = deliveryAddress.toString()
+                orderDetails =
+                    ModelOrderDetails(
+                        orderId,
+                        orderTime,
+                        orderStatus,
+                        orderCost,
+                        orderBy.toString(),
+                        orderTo,
+                        totalItem.toString(),
+                        deliveryAddress
+                    )
+
+                val ref: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
+                        .child("Orders")
+                ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
+                    val reference: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("users")
+                            .child(orderBy.toString())
+                            .child("MyOrders")
+                    reference.child(orderId).setValue(orderDetails)
+                    for (i in 0 until cartProducts.size) {
+                        val productId = cartProducts[i].productId
+                        val orderedBy = cartProducts[i].orderBy
+                        val productTitle = cartProducts[i].productTitle
+                        val priceEach = cartProducts[i].priceEach
+                        val finalPrice = cartProducts[i].finalPrice
+                        val finalQuantity = cartProducts[i].finalQuantity
+                        val orderedTo = cartProducts[i].orderTo
+                        val sellingPrice = cartProducts[i].sellingPrice
+                        val headers = HashMap<String, String>()
+                        headers["productId"] = productId
+                        headers["orderBy"] = orderedBy
+                        headers["productTitle"] = productTitle
+                        headers["priceEach"] = priceEach
+                        headers["finalPrice"] = finalPrice
+                        headers["finalQuantity"] = finalQuantity
+                        headers["orderTo"] = orderedTo
+                        headers["sellingPrice"] = sellingPrice
+                        ref.child(timestamp).child("Items").child(productId).setValue(headers)
+                        reference.child(orderId).child("orderedItems").child(productId)
+                            .setValue(headers)
+                    }
+                    progressDialog.dismiss()
                 }
-                progressDialog.dismiss()
                 Log.e("UPI", "payment successful: $approvalRefNo")
             } else if ("Payment cancelled by user." == paymentCancel) {
                 Toast.makeText(
