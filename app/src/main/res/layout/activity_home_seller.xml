@@ -9,18 +9,20 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navHome_seller"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_40sdp"
         android:layout_alignParentBottom="true"
         android:background="#fff"
         app:menu="@menu/seller_menu" />
 
     <ScrollView
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:id="@+id/SV"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -323,6 +325,18 @@
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="@dimen/_9ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtTO"
+                            android:text="0"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:layout_below="@+id/txtTotalOrders"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:textSize="@dimen/_10ssp"
+                            android:layout_centerHorizontal="true"/>
+
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -341,6 +355,16 @@
                         android:text="Total Income"
                         android:textColor="#000000"
                         android:textSize="@dimen/_9ssp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtTI"
+                            android:text="0"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:layout_below="@+id/txtTotalIncome"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:textSize="@dimen/_10ssp"
+                            android:layout_centerHorizontal="true"/>
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_marginHorizontal="@dimen/_5sdp"
@@ -359,6 +383,16 @@
                         android:text="Store Views"
                         android:textColor="#000000"
                         android:textSize="@dimen/_9ssp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtSV"
+                            android:text="0"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:layout_below="@+id/txtStoreViews"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:textSize="@dimen/_10ssp"
+                            android:layout_centerHorizontal="true"/>
                     </RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>
