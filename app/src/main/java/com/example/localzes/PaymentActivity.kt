@@ -223,73 +223,57 @@ class PaymentActivity : AppCompatActivity() {
                 val ref: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
                         .child("Orders")
-                ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
-                    val dataReference: DatabaseReference =
-                        FirebaseDatabase.getInstance().reference.child("users")
-                            .child(orderBy.toString()).child("Cart")
-                    dataReference.addValueEventListener(object : ValueEventListener {
-                        override fun onCancelled(error: DatabaseError) {
+                ref.child(timestamp).setValue(orderDetails)
+                val dataReference: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("users")
+                        .child(orderBy.toString()).child("Cart")
+                dataReference.addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                        }
-
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            (cartProducts as ArrayList<UserCartDetails>).clear()
-                            for (i in snapshot.children) {
-                                val obj = UserCartDetails(
-                                    i.child("productId").value.toString(),
-                                    i.child("orderBy").value.toString(),
-                                    i.child("productTitle").value.toString(),
-                                    i.child("priceEach").value.toString(),
-                                    i.child("finalPrice").value.toString(),
-                                    i.child("finalQuantity").value.toString(),
-                                    i.child("orderTo").value.toString(),
-                                    i.child("productImageUrl").value.toString(),
-                                    i.child("sellingPrice").value.toString(),
-                                    i.child("finalsellingPrice").value.toString()
-                                )
-                                (cartProducts as ArrayList<UserCartDetails>).add(obj)
-                            }
-                        }
-                    })
-                    for (i in 0 until cartProducts.size) {
-                        val productId = cartProducts[i].productId
-                        val orderedBy = cartProducts[i].orderBy
-                        val productTitle = cartProducts[i].productTitle
-                        val priceEach = cartProducts[i].priceEach
-                        val finalPrice = cartProducts[i].finalPrice
-                        val finalQuantity = cartProducts[i].finalQuantity
-                        val orderedTo = cartProducts[i].orderTo
-                        val sellingPrice = cartProducts[i].sellingPrice
-                        val headers = HashMap<String, String>()
-                        headers["productId"] = productId
-                        headers["orderBy"] = orderedBy
-                        headers["productTitle"] = productTitle
-                        headers["priceEach"] = priceEach
-                        headers["finalPrice"] = finalPrice
-                        headers["finalQuantity"] = finalQuantity
-                        headers["orderTo"] = orderedTo
-                        headers["sellingPrice"] = sellingPrice
-                        ref.child(timestamp).child("Items").child(productId).setValue(headers)
-                        reference.child(orderId).child("orderedItems").child(productId)
-                            .setValue(headers).addOnCompleteListener {
-                                if (it.isSuccessful) {
-                                    progressDialog.dismiss()
-                                    //Toast.makeText(this, "Your order has been successfully placed", Toast.LENGTH_SHORT)
-                                    //.show()
-                                    startActivity(
-                                        Intent(
-                                            this@PaymentActivity,
-                                            NewActivity::class.java
-                                        )
-                                    )
-                                    dataReference.removeValue()
-                                }
-                            }
                     }
 
-
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        (cartProducts as ArrayList<UserCartDetails>).clear()
+                        for (i in snapshot.children) {
+                            val obj = UserCartDetails(
+                                i.child("productId").value.toString(),
+                                i.child("orderBy").value.toString(),
+                                i.child("productTitle").value.toString(),
+                                i.child("priceEach").value.toString(),
+                                i.child("finalPrice").value.toString(),
+                                i.child("finalQuantity").value.toString(),
+                                i.child("orderTo").value.toString(),
+                                i.child("productImageUrl").value.toString(),
+                                i.child("sellingPrice").value.toString(),
+                                i.child("finalsellingPrice").value.toString()
+                            )
+                            (cartProducts as ArrayList<UserCartDetails>).add(obj)
+                        }
+                    }
+                })
+                for (i in 0 until cartProducts.size) {
+                    val productId = cartProducts[i].productId
+                    val orderedBy = cartProducts[i].orderBy
+                    val productTitle = cartProducts[i].productTitle
+                    val priceEach = cartProducts[i].priceEach
+                    val finalPrice = cartProducts[i].finalPrice
+                    val finalQuantity = cartProducts[i].finalQuantity
+                    val orderedTo = cartProducts[i].orderTo
+                    val sellingPrice = cartProducts[i].sellingPrice
+                    val headers = HashMap<String, String>()
+                    headers["productId"] = productId
+                    headers["orderBy"] = orderedBy
+                    headers["productTitle"] = productTitle
+                    headers["priceEach"] = priceEach
+                    headers["finalPrice"] = finalPrice
+                    headers["finalQuantity"] = finalQuantity
+                    headers["orderTo"] = orderedTo
+                    headers["sellingPrice"] = sellingPrice
+                    ref.child(timestamp).child("Items").child(productId).setValue(headers)
+                    reference.child(orderId).child("orderedItems").child(productId)
+                        .setValue(headers)
                 }
-
+                progressDialog.dismiss()
                 Log.e("UPI", "payment successful: $approvalRefNo")
             } else if ("Payment cancelled by user." == paymentCancel) {
                 Toast.makeText(
