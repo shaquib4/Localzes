@@ -29,7 +29,7 @@ class PaymentActivity : AppCompatActivity() {
     private var totalCost: String? = "200"
     private var totalItem: String? = "300"
     private var uid: String? = "400"
-    private var deliveryAddress:String?="500"
+    private var deliveryAddress: String? = "500"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
@@ -45,6 +45,8 @@ class PaymentActivity : AppCompatActivity() {
         shopId = intent.getStringExtra("shopId")
         totalCost = intent.getStringExtra("totalCost")
         uid = intent.getStringExtra("orderBy")
+        deliveryAddress = intent.getStringExtra("delivery")
+        cartProducts = ArrayList<UserCartDetails>()
         send = findViewById<View>(R.id.btnPayNow) as Button
         amount = findViewById<View>(R.id.txtPayAmount) as TextView
         note = findViewById<View>(R.id.txtReason) as TextView
@@ -59,11 +61,11 @@ class PaymentActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val names=snapshot.child("shop_name").value.toString()
-                val upiId=snapshot.child("upi").value.toString()
-                name!!.text=names
-                upivirtualid!!.text=upiId
-                amount!!.text=totalCost
+                val names = snapshot.child("shop_name").value.toString()
+                val upiId = snapshot.child("upi").value.toString()
+                name!!.text = names
+                upivirtualid!!.text = upiId
+                amount!!.text = totalCost
             }
 
         })
@@ -201,7 +203,7 @@ class PaymentActivity : AppCompatActivity() {
                 val orderCost = totalCost.toString()
                 val orderBy = uid
                 val orderTo = shopId.toString()
-                val deliveryAddress=deliveryAddress.toString()
+                val deliveryAddress = deliveryAddress.toString()
                 orderDetails =
                     ModelOrderDetails(
                         orderId,
@@ -222,6 +224,33 @@ class PaymentActivity : AppCompatActivity() {
                     FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
                         .child("Orders")
                 ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
+                    val dataReference: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("users")
+                            .child(orderBy.toString()).child("Cart")
+                    dataReference.addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(error: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            (cartProducts as ArrayList<UserCartDetails>).clear()
+                            for (i in snapshot.children) {
+                                val obj = UserCartDetails(
+                                    i.child("productId").value.toString(),
+                                    i.child("orderBy").value.toString(),
+                                    i.child("productTitle").value.toString(),
+                                    i.child("priceEach").value.toString(),
+                                    i.child("finalPrice").value.toString(),
+                                    i.child("finalQuantity").value.toString(),
+                                    i.child("orderTo").value.toString(),
+                                    i.child("productImageUrl").value.toString(),
+                                    i.child("sellingPrice").value.toString(),
+                                    i.child("finalsellingPrice").value.toString()
+                                )
+                                (cartProducts as ArrayList<UserCartDetails>).add(obj)
+                            }
+                        }
+                    })
                     for (i in 0 until cartProducts.size) {
                         val productId = cartProducts[i].productId
                         val orderedBy = cartProducts[i].orderBy
@@ -243,13 +272,19 @@ class PaymentActivity : AppCompatActivity() {
                         ref.child(timestamp).child("Items").child(productId).setValue(headers)
                         reference.child(orderId).child("orderedItems").child(productId)
                             .setValue(headers).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                progressDialog.dismiss()
-                                //Toast.makeText(this, "Your order has been successfully placed", Toast.LENGTH_SHORT)
-                                //.show()
-                                startActivity(Intent(this@PaymentActivity, NewActivity::class.java))
+                                if (it.isSuccessful) {
+                                    progressDialog.dismiss()
+                                    //Toast.makeText(this, "Your order has been successfully placed", Toast.LENGTH_SHORT)
+                                    //.show()
+                                    startActivity(
+                                        Intent(
+                                            this@PaymentActivity,
+                                            NewActivity::class.java
+                                        )
+                                    )
+                                    dataReference.removeValue()
+                                }
                             }
-                        }
                     }
 
 

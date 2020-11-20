@@ -183,9 +183,9 @@ class Cart : AppCompatActivity() {
         btnContinue.setOnClickListener {
             val intent=Intent(this,PaymentActivity::class.java)
             intent.putExtra("shopId",shopId)
-            intent.putExtra("totalCost",totalCost)
+            intent.putExtra("totalCost",totalCost.toString())
             intent.putExtra("orderBy",orderByuid)
-            intent.putExtra("totalItem",totalItem)
+            intent.putExtra("totalItem",totalItem.toString())
             intent.putExtra("delivery",deliveryUser)
             startActivity(intent)
             finish()

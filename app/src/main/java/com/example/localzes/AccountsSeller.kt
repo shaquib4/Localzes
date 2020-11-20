@@ -19,6 +19,18 @@ class AccountsSeller : AppCompatActivity() {
         showList()
         listViewAdapter = ExpandableListViewAdapterSeller(this, menu, item)
         expand.setAdapter(listViewAdapter)
+        expand.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
+            val select=listViewAdapter.getChild(groupPosition, childPosition) as String
+            when(select){
+                "Offers"->{}
+                "Referrals"->{}
+                "Refunds Initiated"->{}
+                "Transaction History"->{}
+                "FAQs"->{}
+                "Contact Us"->{}
+            }
+            return@setOnChildClickListener true
+        }
 
         bottom_navAcc_seller.selectedItemId = R.id.nav_account_seller
         bottom_navAcc_seller.setOnNavigationItemSelectedListener { item ->

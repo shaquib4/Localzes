@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imgBack"
+        android:id="@+id/imgBackOutForDelivery"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_margin="@dimen/_10sdp"
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5sdp"
-        android:layout_toRightOf="@+id/imgBack"
+        android:layout_toRightOf="@id/imgBackOutForDelivery"
         android:fontFamily="@font/montserrat_bold"
         android:text="Out For Delivery"
         android:textColor="#000000"
@@ -29,7 +29,7 @@
         android:id="@id/view1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/imgBack"
+        android:layout_below="@id/imgBackOutForDelivery"
         android:background="#d3d3d3" />
 
     <RelativeLayout
