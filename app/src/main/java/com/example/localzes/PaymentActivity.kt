@@ -278,7 +278,8 @@ class PaymentActivity : AppCompatActivity() {
                             .setValue(headers)
                     }
                     progressDialog.dismiss()
-                    prepareNotificationMessage(orderId)
+                    startActivity(Intent(this,NewActivity::class.java))
+                   // prepareNotificationMessage(orderId)
                 }
                 Log.e("UPI", "payment successful: $approvalRefNo")
             } else if ("Payment cancelled by user." == paymentCancel) {

@@ -16,20 +16,16 @@
             android:weightSum="3"
             android:orientation="horizontal">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:elevation="0dp"
-                app:cardCornerRadius="@dimen/_5sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:layout_height="@dimen/_95sdp"
-                android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/productImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1.2"
+                    android:layout_height="@dimen/_95sdp"
                     android:src="@drawable/lanju"
-                    android:scaleType="fitCenter"/>
-            </androidx.cardview.widget.CardView>
+                    android:scaleType="centerCrop"/>
+
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

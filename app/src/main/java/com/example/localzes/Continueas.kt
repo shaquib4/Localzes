@@ -21,14 +21,14 @@ class Continueas : AppCompatActivity() {
     private lateinit var cuserDatabase: DatabaseReference
     private lateinit var suserDatabase: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var spEditor: SharedPreferences.Editor
+   // private lateinit var sharedPreferences: SharedPreferences
+  //  private lateinit var spEditor: SharedPreferences.Editor
     private var isChecked:Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continueas)
-        sharedPreferences=getSharedPreferences("SETTINGS_SP", Context.MODE_PRIVATE)
-        isChecked=sharedPreferences.getBoolean("FCM_ENABLED",false)
+       // sharedPreferences=getSharedPreferences("SETTINGS_SP", Context.MODE_PRIVATE)
+       // isChecked=sharedPreferences.getBoolean("FCM_ENABLED",false)
         progress_continue.visibility = View.GONE
         btnCustomer.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -63,8 +63,8 @@ class Continueas : AppCompatActivity() {
     private fun subscribeToTopic() {
         FirebaseMessaging.getInstance().subscribeToTopic(R.string.FCM_TOPIC.toString())
             .addOnSuccessListener {
-                spEditor.putBoolean("FCM_ENABLED",true)
-                spEditor.apply()
+               // spEditor.putBoolean("FCM_ENABLED",true)
+               // spEditor.apply()
             }
             .addOnFailureListener {
                 Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()

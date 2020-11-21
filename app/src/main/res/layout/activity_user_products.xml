@@ -5,7 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProductsActivity">
+
+    <EditText
+
+        android:id="@+id/searchShopProduct"
+        android:paddingStart="@dimen/_20sdp"
+        android:hint="Search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/bg_product_shop"/>
 <RelativeLayout
+    android:layout_below="@id/searchShopProduct"
     android:layout_above="@id/rl_cart_details"
     android:id="@+id/recycle"
     android:layout_width="match_parent"
