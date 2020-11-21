@@ -66,4 +66,6 @@
     <string name="todo">TODO</string>
     <string name="connect_with_your_customer_for_visit_your_online_store_easly">Connect with your customer for visit your online store easly!</string>
     <string name="title_activity_maps__new">Map</string>
+    <string name="FCM_KEY">AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D</string>
+    <string name="FCM_TOPIC">PUSH_NOTIFICATIONS</string>
 </resources>

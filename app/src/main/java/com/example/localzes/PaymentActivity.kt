@@ -15,8 +15,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.toolbox.JsonObjectRequest
 import com.google.firebase.database.*
+import org.json.JSONObject
 import java.util.ArrayList
+import com.android.volley.Response
+import com.android.volley.toolbox.Volley
 
 class PaymentActivity : AppCompatActivity() {
     var amount: TextView? = null
@@ -274,6 +278,7 @@ class PaymentActivity : AppCompatActivity() {
                             .setValue(headers)
                     }
                     progressDialog.dismiss()
+                    prepareNotificationMessage(orderId)
                 }
                 Log.e("UPI", "payment successful: $approvalRefNo")
             } else if ("Payment cancelled by user." == paymentCancel) {
@@ -317,5 +322,61 @@ class PaymentActivity : AppCompatActivity() {
             }
             return false
         }
+    }
+
+    private fun prepareNotificationMessage(orderId: String) {
+        //when user places order,send notification to seller
+        //prepare data for notification
+        val NOTIFICATION_TOPIC =
+            "/topics/" + R.string.FCM_TOPIC //must be same as subscribed by user
+        val NOTIFICATION_TITLE = "New order with $orderId has been received"
+        val NOTIFICATION_MESSAGE = "Congratulations....!You received a new order"
+        val NOTIFICATION_TYPE = "New Order"
+        //prepare json(what to send and where to send)
+        val notificationJs = JSONObject()
+        val notificationBodyJs = JSONObject()
+        try {
+            //what to send
+            notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
+            notificationBodyJs.put("buyerId", uid.toString())
+            notificationBodyJs.put("sellerUid", shopId.toString())
+            notificationBodyJs.put("orderId", orderId)
+            notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
+            notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
+            //where to send
+            notificationJs.put("to", NOTIFICATION_TOPIC)//to all who subscribed this topic
+            notificationJs.put("data", notificationBodyJs)
+        } catch (e: Exception) {
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+        }
+        sendFcmNotification(notificationJs, orderId)
+
+
+    }
+
+    private fun sendFcmNotification(notificationJs: JSONObject, orderId: String) {
+        val queue = Volley.newRequestQueue(this)
+        val jsonObjectRequest = object : JsonObjectRequest(
+            "https://fcm.googleapis.com/fcm/send",
+            notificationJs,
+            Response.Listener {
+                //after sending fcm start order details activity
+                val intent = Intent(this, NewActivity::class.java)
+                startActivity(intent)
+
+            },
+            Response.ErrorListener {
+                //if failed sending fcm,still start order details activity
+                Toast.makeText(this, "Some error occured", Toast.LENGTH_SHORT).show()
+
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "key=" + R.string.FCM_KEY
+                return headers
+            }
+        }
+        queue.add(jsonObjectRequest)
     }
 }
