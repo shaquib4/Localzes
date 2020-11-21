@@ -40,6 +40,7 @@ class Continueas : AppCompatActivity() {
             builder.setNegativeButton("DENY") { text, listener ->
 
             }
+            builder.create().show()
             progress_continue.visibility = View.VISIBLE
             customer()
         }
@@ -53,6 +54,7 @@ class Continueas : AppCompatActivity() {
             builder.setNegativeButton("DENY"){text,listener->
 
             }
+            builder.create().show()
             progress_continue.visibility = View.VISIBLE
             seller()
         }
