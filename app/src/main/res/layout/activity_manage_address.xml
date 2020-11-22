@@ -26,7 +26,7 @@
       android:textStyle="bold"
       android:fontFamily="@font/montserrat_bold"
       android:textColor="#000000"
-      android:textSize="@dimen/_14ssp"/>
+      android:textSize="@dimen/_13ssp"/>
   <View
 
       android:id="@+id/v1"
@@ -44,7 +44,7 @@
         android:textColor="#696969"
         android:layout_below="@+id/v1"
         android:text="Current Address"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_12ssp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.cardview.widget.CardView
@@ -75,14 +75,18 @@
             android:layout_height="wrap_content"
             android:text="HOME"
             android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
             android:textColor="#000"
+            android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
             android:layout_toEndOf="@+id/imgHome"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtAddress"
+            android:textSize="@dimen/_8ssp"
             android:layout_toRightOf="@id/imgHome"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_marginEnd="@dimen/_15sdp"
             android:text="Mohan chauraha, Saraivika, Jaunpur UP - 222202 India"
             android:layout_below="@+id/txtHome"
@@ -90,8 +94,10 @@
         <TextView
             android:id="@+id/txtMobile"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_height="wrap_content"
             android:text="Mobile - 7518894470"
+            android:textSize="@dimen/_9ssp"
             android:layout_below="@+id/txtAddress"
             android:layout_toRightOf="@id/imgHome"/>
 
@@ -121,7 +127,7 @@
       android:textColor="#696969"
       android:layout_below="@+id/cardAddress"
       android:text="Saved Addresses"
-      android:textSize="@dimen/_14ssp"
+      android:textSize="@dimen/_12ssp"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
 

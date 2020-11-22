@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:padding="10dp"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_8ssp"
                     android:text="Add product images*"
                     android:textColor="#a0a0a0" />
             </LinearLayout>
@@ -107,7 +107,7 @@
             <EditText
                 android:fontFamily="@font/montserrat_medium"
                 android:id="@+id/etTittle"
-                android:textSize="@dimen/_13ssp"
+                android:textSize="@dimen/_10ssp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_below="@id/linearLayout2"
@@ -134,7 +134,7 @@
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:fontFamily="@font/montserrat_medium"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <LinearLayout
                 android:weightSum="2"
@@ -153,7 +153,7 @@
                     android:layout_weight="1"
                     android:text="Choose Category"
                     android:textColor="#a0a0a0"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
 
                 <Spinner
@@ -189,7 +189,7 @@
                     android:maxLines="1"
                     android:textAlignment="center"
                     android:textColor="#de4500"
-                    android:textSize="@dimen/_13ssp"
+                    android:textSize="@dimen/_10ssp"
                     android:fontFamily="@font/montserrat_medium"/>
 
                 <EditText
@@ -209,7 +209,7 @@
                     android:textAlignment="center"
                     android:textColor="#3498db"
                     android:fontFamily="@font/montserrat_medium"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="@dimen/_10ssp" />
             </LinearLayout>
 
             <Button
@@ -261,7 +261,7 @@
                     android:maxLength="5"
                     android:maxLines="1"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_13ssp"
+                    android:textSize="@dimen/_10ssp"
                     android:fontFamily="@font/montserrat_medium"/>
 
             </LinearLayout>

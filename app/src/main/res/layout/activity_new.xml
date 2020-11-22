@@ -10,7 +10,7 @@
         android:layout_margin="@dimen/_10sdp"
         android:text="Thank You For Shpping !"
         android:textColor="#000"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/_13ssp"
         android:fontFamily="@font/montserrat_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -46,7 +46,7 @@
     <TextView
         android:layout_centerInParent="true"
         android:id="@+id/txtSuccess"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_12ssp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your Order is Successfully Placed"

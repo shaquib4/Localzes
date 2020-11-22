@@ -22,11 +22,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:background="#de4500"
+                android:fontFamily="@font/montserrat_bold"
                 android:padding="10dp"
                 android:text="EDIT PRODUCT DETAILS"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:textSize="25sp"
+                android:textSize="@dimen/_15ssp"
                 android:textStyle="bold" />
 
             <TextView
@@ -38,7 +39,8 @@
                 android:padding="10dp"
                 android:text="PRODUCT DETAILS"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="@dimen/_12ssp" />
 
             <ImageView
                 android:id="@+id/imgBorder1"
@@ -69,8 +71,8 @@
 
                 <ImageView
                     android:id="@+id/imageHintUpdate"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_add_image" />
 
@@ -93,9 +95,11 @@
                 <TextView
                     android:id="@+id/txtAddImageUpdate"
                     android:layout_width="0dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_weight="1"
+                    android:textSize="@dimen/_8ssp"
                     android:padding="10dp"
                     android:text="Add product images*"
                     android:textColor="#a0a0a0" />
@@ -109,6 +113,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_medium"
                 android:background="@drawable/textview_border"
                 android:hint="Product Name*"
                 android:maxLength="50"
@@ -123,12 +129,13 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_medium"
                 android:background="@drawable/textview_border"
                 android:hint="Product Description (optional)"
                 android:maxLength="300"
                 android:maxLines="1"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -142,11 +149,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:text="Choose Category"
                     android:textColor="#a0a0a0"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/_10ssp" />
 
 
                 <Spinner
@@ -178,12 +186,14 @@
                     android:layout_weight="1"
                     android:background="@drawable/textview_border"
                     android:hint="MRP*"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:inputType="number"
                     android:maxLength="10"
                     android:maxLines="1"
                     android:textAlignment="center"
                     android:textColor="#de4500"
-                    android:textSize="18sp" />
+                     />
 
                 <EditText
                     android:id="@+id/etOfferPriceUpdate"
@@ -193,6 +203,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="20dp"
                     android:layout_weight="1"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:background="@drawable/textview_border"
 
                     android:hint="Selling Price*"
@@ -201,7 +213,7 @@
                     android:maxLines="1"
                     android:textAlignment="center"
                     android:textColor="#3498db"
-                    android:textSize="18sp" />
+                    />
             </LinearLayout>
 
             <Button
@@ -215,7 +227,8 @@
                 android:background="@drawable/proceed_to_add"
                 android:text="UPDATE PRODUCT"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/montserrat_bold" />
 
             <LinearLayout
                 android:id="@+id/linearLayout4"
@@ -249,10 +262,11 @@
                     android:background="@drawable/textview_border"
                     android:hint="Quantity"
                     android:inputType="number"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:maxLength="5"
                     android:maxLines="1"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
             </LinearLayout>
 

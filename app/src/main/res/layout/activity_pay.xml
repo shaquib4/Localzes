@@ -6,22 +6,21 @@
 
     <ImageView
         android:id="@+id/imgBack"
-        android:layout_alignTop="@+id/txtPayment"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:src="@drawable/ic_back"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/_10sdp"
         />
     <TextView
         android:layout_toRightOf="@id/imgBack"
         android:id="@+id/txtPayment"
         android:layout_width="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
         android:layout_height="wrap_content"
         android:text="Payment"
-        android:fontFamily="@font/montserrat_medium"
-        android:textColor="#de4500"
-        android:textSize="@dimen/_18ssp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#000000"
+        android:textSize="@dimen/_13ssp"
         />
     <View
         android:id="@+id/view1"
@@ -46,7 +45,7 @@
         <TextView
             android:id="@+id/txtSellerName"
             android:layout_marginVertical="10dp"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_12ssp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Seller Shop Name"
@@ -57,7 +56,7 @@
         <TextView
             android:fontFamily="@font/montserrat_medium"
             android:layout_below="@+id/txtSellerName"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
             android:textColor="#de4500"
             android:layout_alignStart="@+id/txtSellerName"
             android:text="upi: katappamama@paytm "
@@ -70,7 +69,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:layout_below="@+id/txtUPI"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_10ssp"
                 android:layout_alignStart="@+id/txtSellerName"
                 android:text="Payment for Ration"
                 android:layout_width="wrap_content"
@@ -83,7 +82,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:layout_below="@+id/txtReason"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_10ssp"
                 android:layout_alignStart="@+id/txtSellerName"
                 android:text="Payable Amount:"
                 android:layout_width="wrap_content"
@@ -96,7 +95,7 @@
 
              android:layout_alignParentEnd="true"
              android:layout_alignTop="@+id/txtAmount"
-                android:textSize="@dimen/_20ssp"
+                android:textSize="@dimen/_15ssp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:text="Rs. 4,589.00"
                 android:textColor="#008000"

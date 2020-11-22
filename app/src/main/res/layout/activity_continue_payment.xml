@@ -21,7 +21,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="Continue Payment"
         android:textColor="#000000"
-        android:textSize="@dimen/_15ssp" />
+        android:textSize="@dimen/_13ssp" />
 
     <View
         android:id="@+id/view1"
@@ -55,7 +55,7 @@
                     android:fontFamily="@font/montserrat_medium"
                     android:text=" Pay on Delivery"
                     android:textColor="#000000"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <RadioButton
                     android:id="@+id/rbPWP"
@@ -66,7 +66,7 @@
                     android:fontFamily="@font/montserrat_medium"
                     android:text="Pay with Paytm"
                     android:textColor="#000000"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="@dimen/_12ssp" />
             </RadioGroup>
 
             <ImageView
@@ -127,7 +127,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Product Charges"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <TextView
                 android:id="@+id/txtPCPrice"
@@ -140,7 +140,7 @@
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Rs. 14,999"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <TextView
                 android:id="@+id/txtSC"
@@ -150,7 +150,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Shipping Charges"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <TextView
                 android:id="@+id/txtSCPrice"
@@ -162,7 +162,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="FREE"
                 android:textColor="#008000"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <View
                 android:id="@id/view1"
@@ -182,7 +182,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Total"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_12ssp" />
 
             <TextView
                 android:id="@+id/txtToralPrice"
@@ -217,7 +217,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Rs. 14,999"
                 android:textColor="#008000"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_13ssp" />
 
             <View
                 android:id="@+id/viewVertical"
@@ -261,6 +261,6 @@
         android:layout_toRightOf="@id/imgSecure"
         android:fontFamily="@font/montserrat_medium"
         android:text="Safe and Secure Payments. 100% Authentic products"
-        android:textSize="@dimen/_9ssp" />
+        android:textSize="@dimen/_8ssp" />
 
 </RelativeLayout>

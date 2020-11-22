@@ -18,12 +18,12 @@
         android:id="@+id/txtOFD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
         android:layout_toRightOf="@id/imgBackCompletedOrders"
         android:fontFamily="@font/montserrat_bold"
         android:text="Completed Orders"
         android:textColor="#000000"
-        android:textSize="@dimen/_18ssp" />
+        android:textSize="@dimen/_13ssp" />
 
     <View
         android:id="@id/view1"
@@ -40,8 +40,8 @@
 
         <ImageView
             android:id="@+id/imgEmpty"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
             android:layout_centerInParent="true"
             android:src="@drawable/ic_empty" />
 
@@ -54,7 +54,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="No orders completed yet!"
             android:textColor="#696969"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

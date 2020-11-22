@@ -45,7 +45,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Elecronics Accessoies"
                 android:textColor="#000"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_12ssp" />
 
             <TextView
 
@@ -58,7 +58,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Stock: IN "
                 android:textColor="#3498db"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <TextView
                 android:id="@+id/txtCategory"
