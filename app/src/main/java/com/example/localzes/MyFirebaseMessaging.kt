@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
+import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -18,9 +19,9 @@ import com.google.firebase.messaging.RemoteMessage
 import kotlin.random.Random
 
 class MyFirebaseMessaging : FirebaseMessagingService() {
-    private val NOTIFICATION_CHANNEL_ID = "MY_NOTIFICATION_CHANNEL_ID"
+    private val NOTIFICATION_CHANNEL_ID = "com.example.localzes.test"
     private lateinit var currentAuth: FirebaseAuth
-    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+    override fun onMessageReceived(@NonNull remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
         //all notifications will be received here
 
@@ -114,11 +115,15 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         val channelName:CharSequence="Some Sample Text"
         val channelDescription:String="Channel Description Here"
 
-        val notificationChannel:NotificationChannel=NotificationChannel(NOTIFICATION_CHANNEL_ID,channelName,NotificationManager.IMPORTANCE_HIGH)
+        val notificationChannel:NotificationChannel=NotificationChannel(NOTIFICATION_CHANNEL_ID,channelName,NotificationManager.IMPORTANCE_DEFAULT)
         notificationChannel.description=channelDescription
         notificationChannel.enableLights(true)
         notificationChannel.lightColor=R.color.red
         notificationChannel.enableVibration(true)
         notificationManager.createNotificationChannel(notificationChannel)
+    }
+
+    override fun onNewToken(p0: String) {
+        super.onNewToken(p0)
     }
 }

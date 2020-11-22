@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -61,15 +62,14 @@ class Continueas : AppCompatActivity() {
     }
 
     private fun subscribeToTopic() {
-        FirebaseMessaging.getInstance().subscribeToTopic(R.string.FCM_TOPIC.toString())
-            .addOnSuccessListener {
-                spEditor.putBoolean("FCM_ENABLED",true)
-                spEditor.apply()
+        FirebaseMessaging.getInstance().subscribeToTopic("PUSH_NOTIFICATIONS")
+            .addOnCompleteListener {task->
+                var msg="Notifications Are Enabled"
+                if (!task.isSuccessful) {
+                    msg  ="Notifications are not enabled"
+                }
+                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
             }
-            .addOnFailureListener {
-                Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
-            }
-
     }
 
     private fun seller() {

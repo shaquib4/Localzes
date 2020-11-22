@@ -355,7 +355,7 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     private fun sendFcmNotification(notificationJs: JSONObject, orderId: String) {
-        val queue = Volley.newRequestQueue(this)
+
         val jsonObjectRequest = object : JsonObjectRequest(
             "https://fcm.googleapis.com/fcm/send",
             notificationJs,
@@ -377,6 +377,8 @@ class PaymentActivity : AppCompatActivity() {
                 return headers
             }
         }
+        val queue = Volley.newRequestQueue(this)
+        queue.cache.clear()
         queue.add(jsonObjectRequest)
     }
 }
