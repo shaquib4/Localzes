@@ -7,11 +7,197 @@
     tools:context=".OrdersSeller">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/txtOrders"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:layout_centerInParent="true"
-        android:text="Orders"/>
+        android:layout_centerHorizontal="true"
+        android:background="#de4500"
+        android:fontFamily="@font/montserrat_bold"
+        android:paddingVertical="@dimen/_8sdp"
+        android:text="ORDERS"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="@dimen/_15ssp" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txtOrders"
+        android:layout_marginBottom="@dimen/_45sdp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_margin="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgOC"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:src="@drawable/ic_success" />
+
+                    <TextView
+                        android:id="@+id/txtOC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_toRightOf="@id/imgOC"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Completed"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/txtOC"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:background="#d3d3d3" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@+id/card1"
+                android:layout_margin="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgOA"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_margin="@dimen/_5sdp"
+
+                        android:src="@drawable/ic_accept" />
+
+                    <TextView
+                        android:id="@+id/txtOA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_toRightOf="@id/imgOA"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Accepted"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/txtOA"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:background="#d3d3d3" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@id/card2"
+                android:layout_margin="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgOS"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_margin="@dimen/_5sdp"
+
+                        android:src="@drawable/ic_delivery" />
+
+                    <TextView
+                        android:id="@+id/txtOS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_toRightOf="@id/imgOS"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Out For Delivery"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/txtOS"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:background="#d3d3d3" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@+id/card3"
+                android:layout_margin="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgOP"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:src="@drawable/ic_pending" />
+
+                    <TextView
+                        android:id="@+id/txtOP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_toRightOf="@id/imgOP"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Pending"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/txtOP"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:background="#d3d3d3" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navOrders_seller"
@@ -20,5 +206,4 @@
         android:layout_alignParentBottom="true"
         android:background="#fff"
         app:menu="@menu/seller_menu" />
-
 </RelativeLayout>

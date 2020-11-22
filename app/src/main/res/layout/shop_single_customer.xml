@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <ImageView
                 android:id="@+id/imgShop"
                 android:layout_width="match_parent"
@@ -87,10 +86,7 @@
                 android:textSize="@dimen/_9ssp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_below="@+id/txtCategory"/>
-
-
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-    
 </RelativeLayout>
 
