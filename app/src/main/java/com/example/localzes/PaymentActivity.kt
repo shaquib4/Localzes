@@ -350,7 +350,7 @@ class PaymentActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
-        sendFcmNotification(notificationJs, orderId)
+         sendFcmNotification(notificationJs, orderId)
 
 
     }
