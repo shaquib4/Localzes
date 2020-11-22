@@ -71,7 +71,7 @@ class AddProduct : AppCompatActivity() {
                             timestamp,
                             imageUrl.toString(),
                             sp_spinner_add.selectedItem.toString(),
-                            etTittle.text.toString().trim(),
+                            etTittle.text.toString().trim().toLowerCase(),
                             etDescription.text.toString().trim(),
                             etSellPrice.text.toString().trim(),
                             etOfferPrice.text.toString().trim(),

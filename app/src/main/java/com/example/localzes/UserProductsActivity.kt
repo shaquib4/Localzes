@@ -3,15 +3,16 @@ package com.example.localzes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_user_products.*
 
 class UserProductsActivity : AppCompatActivity() {
     private var shopId: String? = "100"
@@ -26,6 +27,7 @@ class UserProductsActivity : AppCompatActivity() {
     private lateinit var cartItems: List<UserCartDetails>
     private lateinit var auth: FirebaseAuth
     private lateinit var viewCart: TextView
+    private lateinit var search:EditText
     var totalCost: Double = 0.00
     var totalOriginalPrice: Double = 0.00
     var totalItems:Int=0
@@ -35,6 +37,7 @@ class UserProductsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_products)
+        search=findViewById(R.id.searchShopProduct)
         shopId = intent.getStringExtra("shopId")
         mUserProducts = ArrayList<ModelAddProduct>()
         cartRelativeLayout = findViewById(R.id.rl_cart_details)
@@ -48,6 +51,20 @@ class UserProductsActivity : AppCompatActivity() {
         val uid = user!!.uid
         recyclerUserProduct = findViewById(R.id.recycler_shop_user_products)
         recyclerUserProduct.layoutManager = LinearLayoutManager(this)
+
+        search.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                searchUserProducts(cs.toString().toLowerCase())
+            }
+        })
         cartDatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
         mUserProductDatabase =
@@ -150,6 +167,40 @@ class UserProductsActivity : AppCompatActivity() {
                         cartRelativeLayout.visibility=View.GONE
                     }
                 }
+            }
+        })
+    }
+
+    private fun searchUserProducts(str:String){
+      val  queryProduct =
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString()).child("Products").orderByChild("title")
+                .startAt(str)
+                .endAt(str + "\uf8ff")
+        queryProduct.addValueEventListener(object:ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (mUserProducts as ArrayList<ModelAddProduct>).clear()
+                for (i in snapshot.children) {
+                    val obj = ModelAddProduct(
+                        i.child("shopId").value.toString(),
+                        i.child("productId").value.toString(),
+                        i.child("imageUrl").value.toString(),
+                        i.child("productCategory").value.toString(),
+                        i.child("title").value.toString(),
+                        i.child("description").value.toString(),
+                        i.child("sellingPrice").value.toString(),
+                        i.child("offerPrice").value.toString(),
+                        i.child("unit").value.toString(),
+                        i.child("quantity").value.toString()
+                    )
+                    (mUserProducts as ArrayList<ModelAddProduct>).add(obj)
+
+                }
+                userProductAdapter = AdapterUserProducts(this@UserProductsActivity, mUserProducts)
+                recyclerUserProduct.adapter = userProductAdapter
             }
         })
     }
