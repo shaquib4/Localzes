@@ -2,6 +2,7 @@ package com.example.localzes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -13,6 +14,7 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
     private lateinit var ordersOutForDeliveryList: List<ModelOrderDetails>
     private lateinit var recyclerOutForDelivery: RecyclerView
     private lateinit var adapterOutForDelivery: AdapterSellerOrders
+    private lateinit var backOutForDelivery:ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_out_for_delivery)
@@ -21,6 +23,7 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         val uid = user!!.uid
         ordersOutForDeliveryList = ArrayList<ModelOrderDetails>()
         recyclerOutForDelivery = findViewById(R.id.recyclerOutForDelivery)
+        backOutForDelivery=findViewById(R.id.imgBackOutForDelivery)
         recyclerOutForDelivery.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         orderDatabaseReference.child("Orders").orderByChild("orderStatus")

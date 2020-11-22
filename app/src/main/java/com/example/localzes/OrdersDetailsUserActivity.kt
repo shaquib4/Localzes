@@ -25,10 +25,12 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
     private lateinit var databaseRef: DatabaseReference
     private lateinit var userAuth: FirebaseAuth
     private var orderItemId: String? = "100"
+    private var orderToId:String?="200"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_user)
         orderItemId = intent.getStringExtra("orderId")
+        orderToId=intent.getStringExtra("orderTo")
         orderIdUser = findViewById(R.id.txtOrderIdUser)
         orderDateUser = findViewById(R.id.txtOrderDateUser)
         orderStatusUser = findViewById(R.id.txtOrderStatusUser)
@@ -103,7 +105,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 totalAmountUser.text = "Rs. ${orderCost}"
                 orderDateUser.text = formattedDate
                 val reference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("seller").child(orderBy)
+                    FirebaseDatabase.getInstance().reference.child("seller").child(orderToId.toString())
                 reference.addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 
@@ -118,7 +120,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
 
                 })
                 val dataReference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("seller").child(orderTo).child("Orders").child(orderId)
+                    FirebaseDatabase.getInstance().reference.child("seller").child(orderToId.toString()).child("Orders").child(orderId)
                 dataReference.addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 

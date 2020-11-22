@@ -32,7 +32,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
     override fun onBindViewHolder(holder: HolderUserProducts, position: Int) {
         val userProducts = products_user[position]
         Picasso.get().load(userProducts.imageUrl).into(holder.productImage)
-        holder.productTitle.text = userProducts.title
+        holder.productTitle.text = userProducts.title.substring(0,1).toUpperCase()+userProducts.title.substring(1)
         holder.productPrice.text = "Rs. ${userProducts.offerPrice}"
         val mString = "Rs. ${userProducts.sellingPrice}"
         val spannableString = SpannableString(mString)

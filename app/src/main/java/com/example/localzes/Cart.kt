@@ -185,7 +185,7 @@ class Cart : AppCompatActivity() {
             intent.putExtra("shopId",shopId)
             intent.putExtra("totalCost",totalCost)
             intent.putExtra("orderBy",orderByuid)
-            intent.putExtra("totalItem",totalItem)
+            intent.putExtra("totalItem",totalItem.toString())
             intent.putExtra("delivery",deliveryUser)
             startActivity(intent)
             finish()

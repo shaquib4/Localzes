@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imgBack"
+        android:id="@+id/imgBackCompletedOrders"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_margin="@dimen/_10sdp"
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5sdp"
-        android:layout_toRightOf="@+id/imgBack"
+        android:layout_toRightOf="@id/imgBackCompletedOrders"
         android:fontFamily="@font/montserrat_bold"
         android:text="Completed Orders"
         android:textColor="#000000"
@@ -29,14 +29,14 @@
         android:id="@id/view1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/imgBack"
+        android:layout_below="@id/imgBackCompletedOrders"
         android:background="#d3d3d3" />
 
     <RelativeLayout
         android:id="@+id/rl_Completed_Orders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/imgEmpty"
@@ -48,7 +48,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgEmpty"
+            android:layout_below="@id/imgEmpty"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_bold"

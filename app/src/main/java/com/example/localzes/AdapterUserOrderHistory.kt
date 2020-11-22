@@ -69,6 +69,7 @@ class AdapterUserOrderHistory(
         holder.itemView.setOnClickListener {
             val intent= Intent(context,OrdersDetailsUserActivity::class.java)
             intent.putExtra("orderId",orderHistory.orderId)
+            intent.putExtra("orderTo",orderHistory.orderBy)
             context.startActivity(intent)
 
 

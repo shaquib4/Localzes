@@ -15,8 +15,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.toolbox.JsonObjectRequest
 import com.google.firebase.database.*
+import org.json.JSONObject
 import java.util.ArrayList
+import com.android.volley.Response
+import com.android.volley.toolbox.Volley
 
 class PaymentActivity : AppCompatActivity() {
     var amount: TextView? = null
@@ -29,7 +33,7 @@ class PaymentActivity : AppCompatActivity() {
     private var totalCost: String? = "200"
     private var totalItem: String? = "300"
     private var uid: String? = "400"
-    private var deliveryAddress:String?="500"
+    private var deliveryAddress: String? = "500"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
@@ -45,6 +49,8 @@ class PaymentActivity : AppCompatActivity() {
         shopId = intent.getStringExtra("shopId")
         totalCost = intent.getStringExtra("totalCost")
         uid = intent.getStringExtra("orderBy")
+        deliveryAddress = intent.getStringExtra("delivery")
+        cartProducts = ArrayList<UserCartDetails>()
         send = findViewById<View>(R.id.btnPayNow) as Button
         amount = findViewById<View>(R.id.txtPayAmount) as TextView
         note = findViewById<View>(R.id.txtReason) as TextView
@@ -59,11 +65,11 @@ class PaymentActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val names=snapshot.child("shop_name").value.toString()
-                val upiId=snapshot.child("upi").value.toString()
-                name!!.text=names
-                upivirtualid!!.text=upiId
-                amount!!.text=totalCost
+                val names = snapshot.child("shop_name").value.toString()
+                val upiId = snapshot.child("upi").value.toString()
+                name!!.text = names
+                upivirtualid!!.text = upiId
+                amount!!.text = totalCost
             }
 
         })
@@ -193,7 +199,33 @@ class PaymentActivity : AppCompatActivity() {
                 //Code to handle successful transaction here.
                 progressDialog.setMessage("Placing Your Order....")
                 progressDialog.show()
+                val dataReference: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("users")
+                        .child(uid.toString()).child("Cart")
+                dataReference.addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        (cartProducts as ArrayList<UserCartDetails>).clear()
+                        for (i in snapshot.children) {
+                            val obj = UserCartDetails(
+                                i.child("productId").value.toString(),
+                                i.child("orderBy").value.toString(),
+                                i.child("productTitle").value.toString(),
+                                i.child("priceEach").value.toString(),
+                                i.child("finalPrice").value.toString(),
+                                i.child("finalQuantity").value.toString(),
+                                i.child("orderTo").value.toString(),
+                                i.child("productImageUrl").value.toString(),
+                                i.child("sellingPrice").value.toString(),
+                                i.child("finalsellingPrice").value.toString()
+                            )
+                            (cartProducts as ArrayList<UserCartDetails>).add(obj)
+                        }
+                    }
+                })
                 val timestamp = System.currentTimeMillis().toString()
                 val orderId = timestamp
                 val orderTime = timestamp
@@ -201,7 +233,7 @@ class PaymentActivity : AppCompatActivity() {
                 val orderCost = totalCost.toString()
                 val orderBy = uid
                 val orderTo = shopId.toString()
-                val deliveryAddress=deliveryAddress.toString()
+                val deliveryAddress = deliveryAddress.toString()
                 orderDetails =
                     ModelOrderDetails(
                         orderId,
@@ -213,15 +245,16 @@ class PaymentActivity : AppCompatActivity() {
                         totalItem.toString(),
                         deliveryAddress
                     )
-                val reference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("users")
-                        .child(orderBy.toString())
-                        .child("MyOrders")
-                reference.child(orderId).setValue(orderDetails)
+
                 val ref: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
                         .child("Orders")
                 ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
+                    val reference: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("users")
+                            .child(orderBy.toString())
+                            .child("MyOrders")
+                    reference.child(orderId).setValue(orderDetails)
                     for (i in 0 until cartProducts.size) {
                         val productId = cartProducts[i].productId
                         val orderedBy = cartProducts[i].orderBy
@@ -242,19 +275,12 @@ class PaymentActivity : AppCompatActivity() {
                         headers["sellingPrice"] = sellingPrice
                         ref.child(timestamp).child("Items").child(productId).setValue(headers)
                         reference.child(orderId).child("orderedItems").child(productId)
-                            .setValue(headers).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                progressDialog.dismiss()
-                                //Toast.makeText(this, "Your order has been successfully placed", Toast.LENGTH_SHORT)
-                                //.show()
-                                startActivity(Intent(this@PaymentActivity, NewActivity::class.java))
-                            }
-                        }
+                            .setValue(headers)
                     }
-
-
+                    progressDialog.dismiss()
+                    startActivity(Intent(this,NewActivity::class.java))
+                   // prepareNotificationMessage(orderId)
                 }
-
                 Log.e("UPI", "payment successful: $approvalRefNo")
             } else if ("Payment cancelled by user." == paymentCancel) {
                 Toast.makeText(
@@ -297,5 +323,63 @@ class PaymentActivity : AppCompatActivity() {
             }
             return false
         }
+    }
+
+    private fun prepareNotificationMessage(orderId: String) {
+        //when user places order,send notification to seller
+        //prepare data for notification
+        val NOTIFICATION_TOPIC =
+            "/topics/" + R.string.FCM_TOPIC //must be same as subscribed by user
+        val NOTIFICATION_TITLE = "New order with $orderId has been received"
+        val NOTIFICATION_MESSAGE = "Congratulations....!You received a new order"
+        val NOTIFICATION_TYPE = "New Order"
+        //prepare json(what to send and where to send)
+        val notificationJs = JSONObject()
+        val notificationBodyJs = JSONObject()
+        try {
+            //what to send
+            notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
+            notificationBodyJs.put("buyerId", uid.toString())
+            notificationBodyJs.put("sellerUid", shopId.toString())
+            notificationBodyJs.put("orderId", orderId)
+            notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
+            notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
+            //where to send
+            notificationJs.put("to", NOTIFICATION_TOPIC)//to all who subscribed this topic
+            notificationJs.put("data", notificationBodyJs)
+        } catch (e: Exception) {
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+        }
+        sendFcmNotification(notificationJs, orderId)
+
+
+    }
+
+    private fun sendFcmNotification(notificationJs: JSONObject, orderId: String) {
+
+        val jsonObjectRequest = object : JsonObjectRequest(
+            "https://fcm.googleapis.com/fcm/send",
+            notificationJs,
+            Response.Listener {
+                //after sending fcm start order details activity
+                val intent = Intent(this, NewActivity::class.java)
+                startActivity(intent)
+
+            },
+            Response.ErrorListener {
+                //if failed sending fcm,still start order details activity
+                Toast.makeText(this, "Some error occured", Toast.LENGTH_SHORT).show()
+
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "key=" + R.string.FCM_KEY
+                return headers
+            }
+        }
+        val queue = Volley.newRequestQueue(this)
+        queue.cache.clear()
+        queue.add(jsonObjectRequest)
     }
 }
