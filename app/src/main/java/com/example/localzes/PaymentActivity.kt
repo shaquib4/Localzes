@@ -12,15 +12,16 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.firebase.database.*
 import org.json.JSONObject
 import java.util.ArrayList
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.example.localzes.Modals.ModelOrderDetails
 
 class PaymentActivity : AppCompatActivity() {
     var amount: TextView? = null
@@ -278,8 +279,8 @@ class PaymentActivity : AppCompatActivity() {
                             .setValue(headers)
                     }
                     progressDialog.dismiss()
-                    startActivity(Intent(this,NewActivity::class.java))
-                   // prepareNotificationMessage(orderId)
+                    startActivity(Intent(this, NewActivity::class.java))
+                    // prepareNotificationMessage(orderId)
                 }
                 Log.e("UPI", "payment successful: $approvalRefNo")
             } else if ("Payment cancelled by user." == paymentCancel) {
@@ -350,14 +351,14 @@ class PaymentActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
-         sendFcmNotification(notificationJs, orderId)
-
+        sendFcmNotification(notificationJs, orderId)
 
     }
 
     private fun sendFcmNotification(notificationJs: JSONObject, orderId: String) {
 
         val jsonObjectRequest = object : JsonObjectRequest(
+            Request.Method.POST,
             "https://fcm.googleapis.com/fcm/send",
             notificationJs,
             Response.Listener {

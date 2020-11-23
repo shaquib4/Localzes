@@ -1,15 +1,14 @@
 package com.example.localzes
 
-import android.app.AlertDialog
 import android.content.Context
 import android.text.SpannableString
-import android.text.Spanned
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.ModelAddProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso

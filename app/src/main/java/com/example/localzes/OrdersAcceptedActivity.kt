@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -36,7 +37,7 @@ class OrdersAcceptedActivity : AppCompatActivity() {
                 if(snapshot.exists()){
                     (ordersAcceptedList as ArrayList<ModelOrderDetails>).clear()
                     for(i in snapshot.children){
-                        val obj=ModelOrderDetails(
+                        val obj= ModelOrderDetails(
                             i.child("orderId").value.toString(),
                             i.child("orderTime").value.toString(),
                             i.child("orderStatus").value.toString(),

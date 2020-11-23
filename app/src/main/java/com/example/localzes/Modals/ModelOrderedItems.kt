@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Modals
 
 class ModelOrderedItems(
     val pId: String,

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.ModelAddProduct
 import com.squareup.picasso.Picasso
 
 class AdapterSellerProducts(val context:Context,private val products_seller:List<ModelAddProduct>) : RecyclerView.Adapter<AdapterSellerProducts.HolderProduct>() {

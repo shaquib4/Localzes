@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.ModelOrderedItems
 
 class AdapterOrderedItems(val context:Context,private val ordered_items:List<ModelOrderedItems>) : RecyclerView.Adapter<AdapterOrderedItems.HolderOrderedItems>() {
     class HolderOrderedItems(view: View) : RecyclerView.ViewHolder(view) {

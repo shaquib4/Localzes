@@ -7,14 +7,11 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.View
 import android.widget.*
+import com.example.localzes.Modals.ModelClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_maps.*
-import kotlinx.android.synthetic.main.activity_seller_shop_detail.*
 import java.util.HashMap
 
 class SellerShop_detail : AppCompatActivity() {
@@ -82,7 +79,8 @@ class SellerShop_detail : AppCompatActivity() {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 if (snapshot.exists()){
 
-                                    val users:ModelClass?=snapshot.getValue(ModelClass::class.java)
+                                    val users: ModelClass?=snapshot.getValue(
+                                        ModelClass::class.java)
                                     val phone:String?=users!!.getPhone()
                                     val downloadUrl: Uri = it
                                     val name=intent.getStringExtra("name")

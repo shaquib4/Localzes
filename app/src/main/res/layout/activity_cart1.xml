@@ -78,7 +78,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
-            android:padding="5dp" />
+            android:padding="5dp"
+            />
 
             <androidx.cardview.widget.CardView
                 android:layout_below="@+id/cart_recycler_view"

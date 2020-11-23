@@ -3,6 +3,9 @@ package com.example.localzes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_accounts.*
 import kotlinx.android.synthetic.main.activity_accounts.expand
 import kotlinx.android.synthetic.main.activity_accounts_seller.*
@@ -13,9 +16,41 @@ class AccountsSeller : AppCompatActivity() {
     private lateinit var listViewAdapter: ExpandableListViewAdapterSeller
     private lateinit var menu: List<String>
     private lateinit var item: HashMap<String, List<String>>
+    private lateinit var userName: TextView
+    private lateinit var userMobileNo: TextView
+    private lateinit var userEmailAddress: TextView
+    private lateinit var logOut: TextView
+    private lateinit var userAuth:FirebaseAuth
+    private lateinit var databaseReference: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accounts_seller)
+        userName=findViewById(R.id.txtaccName)
+        userMobileNo=findViewById(R.id.txtaccmobile)
+        userEmailAddress=findViewById(R.id.txtaccEmail)
+        logOut=findViewById(R.id.txtaccEdit)
+        userAuth= FirebaseAuth.getInstance()
+        val user=userAuth.currentUser
+        val uid=user!!.uid
+        databaseReference= FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        databaseReference.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userN=snapshot.child("name").value.toString()
+                val userM=snapshot.child("phone").value.toString()
+                val userE=snapshot.child("email").value.toString()
+                userName.text=userN
+                userMobileNo.text=userM
+                userEmailAddress.text=userE
+            }
+
+        })
+        logOut.setOnClickListener {
+            userAuth.signOut()
+        }
         showList()
         listViewAdapter = ExpandableListViewAdapterSeller(this, menu, item)
         expand.setAdapter(listViewAdapter)

@@ -7,10 +7,10 @@ import android.location.Address
 import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.localzes.Modals.ModelClass
 import com.google.android.gms.location.*
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,7 +22,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_maps.*
 import java.util.*
 
@@ -95,7 +94,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()){
 
-                        val user:ModelClass?=snapshot.getValue(ModelClass::class.java)
+                        val user: ModelClass?=snapshot.getValue(
+                            ModelClass::class.java)
                         val phone:String?=user!!.getPhone()
                         val name=intent.getStringExtra("name")
                         val email=intent.getStringExtra("email")

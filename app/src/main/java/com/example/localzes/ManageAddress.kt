@@ -2,14 +2,13 @@ package com.example.localzes
 
 
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.ModelManageAddress
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_home.*
 
 class ManageAddress : AppCompatActivity() {
     private lateinit var userDatabase: DatabaseReference

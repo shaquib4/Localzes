@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Modals
 
 class ModelClass {
     private var uid:String=""

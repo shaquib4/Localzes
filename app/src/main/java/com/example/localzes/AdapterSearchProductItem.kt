@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.ModelAddProduct
 import com.squareup.picasso.Picasso
 
 class AdapterSearchProductItem(val context: Context, private val searchProduct:List<ModelAddProduct>): RecyclerView.Adapter<AdapterSearchProductItem.HolderSearchProductItem>() {

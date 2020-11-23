@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -36,16 +37,17 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
                     if (snapshot.exists()) {
                         (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).clear()
                         for (i in snapshot.children) {
-                            val obj = ModelOrderDetails(
-                                i.child("orderId").value.toString(),
-                                i.child("orderTime").value.toString(),
-                                i.child("orderStatus").value.toString(),
-                                i.child("orderCost").value.toString(),
-                                i.child("orderBy").value.toString(),
-                                i.child("orderTo").value.toString(),
-                                i.child("orderQuantity").value.toString(),
-                                i.child("deliveryAddress").value.toString()
-                            )
+                            val obj =
+                                ModelOrderDetails(
+                                    i.child("orderId").value.toString(),
+                                    i.child("orderTime").value.toString(),
+                                    i.child("orderStatus").value.toString(),
+                                    i.child("orderCost").value.toString(),
+                                    i.child("orderBy").value.toString(),
+                                    i.child("orderTo").value.toString(),
+                                    i.child("orderQuantity").value.toString(),
+                                    i.child("deliveryAddress").value.toString()
+                                )
                             (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).add(obj)
                         }
                         adapterOutForDelivery=AdapterSellerOrders(this@OrderOutForDeliveryActivity,ordersOutForDeliveryList)

@@ -21,6 +21,7 @@ import kotlin.random.Random
 class MyFirebaseMessaging : FirebaseMessagingService() {
     private val NOTIFICATION_CHANNEL_ID = "com.example.localzes.test"
     private lateinit var currentAuth: FirebaseAuth
+    private lateinit var intent: Intent
     override fun onMessageReceived(@NonNull remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
         //all notifications will be received here
@@ -76,11 +77,10 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         val notificationManager: NotificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notificationId: Int = Random.nextInt(3000)
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setUpNotificationChannel(notificationManager)
 
         }
-        var intent: Intent? =null
         if(notificationType == "New Order"){
             intent=Intent(this,OrdersDetailsSellerActivity::class.java)
             intent.putExtra("orderIdTv",orderId)

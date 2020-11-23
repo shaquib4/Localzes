@@ -1,6 +1,6 @@
-package com.example.localzes
+package com.example.localzes.Modals
 
-class ModelOrderDetails(
+class ModelUserOrderDetails(
     val orderId: String,
     val orderTime: String,
     val orderStatus: String,
@@ -8,7 +8,7 @@ class ModelOrderDetails(
     val orderBy: String,
     val orderTo: String,
     val orderQuantity:String,
-    val deliveryAddress:String
+    val orderedItems:ArrayList<ModelOrderedItems>
 ) {
-    constructor():this("","","","","","","","")
+    constructor():this("","","","","","","",ArrayList())
 }

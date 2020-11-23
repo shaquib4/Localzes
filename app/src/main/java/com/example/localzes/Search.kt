@@ -9,8 +9,8 @@ import android.view.View
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.ModelAddProduct
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 class Search : AppCompatActivity() {
@@ -203,18 +203,19 @@ class Search : AppCompatActivity() {
                         override fun onDataChange(snapshot: DataSnapshot) {
 
                             for (i in snapshot.children) {
-                                val obj = ModelAddProduct(
-                                    i.child("shopId").value.toString(),
-                                    i.child("productId").value.toString(),
-                                    i.child("imageUrl").value.toString(),
-                                    i.child("productCategory").value.toString(),
-                                    i.child("title").value.toString(),
-                                    i.child("description").value.toString(),
-                                    i.child("sellingPrice").value.toString(),
-                                    i.child("offerPrice").value.toString(),
-                                    i.child("unit").value.toString(),
-                                    i.child("quantity").value.toString()
-                                )
+                                val obj =
+                                    ModelAddProduct(
+                                        i.child("shopId").value.toString(),
+                                        i.child("productId").value.toString(),
+                                        i.child("imageUrl").value.toString(),
+                                        i.child("productCategory").value.toString(),
+                                        i.child("title").value.toString(),
+                                        i.child("description").value.toString(),
+                                        i.child("sellingPrice").value.toString(),
+                                        i.child("offerPrice").value.toString(),
+                                        i.child("unit").value.toString(),
+                                        i.child("quantity").value.toString()
+                                    )
                                 (searchProductItem as ArrayList<ModelAddProduct>).add(obj)
 
                             }
