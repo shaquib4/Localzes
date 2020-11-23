@@ -46,9 +46,7 @@ class Seller_Products : AppCompatActivity() {
             }
         })
 
-        add.setOnClickListener {
-            startActivity(Intent(this,AddProduct::class.java))
-        }
+
         bottom_navProducts.selectedItemId = R.id.nav_product_seller
         bottom_navProducts.setOnNavigationItemSelectedListener { item ->
 
