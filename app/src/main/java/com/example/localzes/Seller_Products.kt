@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.localzes.Modals.ModelAddProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_home_seller.*
 import kotlinx.android.synthetic.main.activity_seller__products.*
 
 class Seller_Products : AppCompatActivity() {
@@ -44,6 +45,8 @@ class Seller_Products : AppCompatActivity() {
                 searchSellerProducts(cs.toString().toLowerCase())
             }
         })
+
+
         bottom_navProducts.selectedItemId = R.id.nav_product_seller
         bottom_navProducts.setOnNavigationItemSelectedListener { item ->
 

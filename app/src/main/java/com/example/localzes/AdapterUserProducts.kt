@@ -50,38 +50,59 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         var finalSellingPrice:Double=0.0
         var sellingP:Double=0.0
         var quantity: Int = 0
+        var mauth:FirebaseAuth= FirebaseAuth.getInstance()
+        var uid=mauth.currentUser!!.uid
+        var shopID: String? =null
+        val userDatabase= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
+            .addValueEventListener(object : ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                   for (i in snapshot.children){
+                       val shopId=i.child("orderTo").value.toString()
+                       shopID=shopId
+                   }
+                }
+            })
         sellingP=userProducts.sellingPrice.toDouble()
         finalSellingPrice=userProducts.sellingPrice.toDouble()
         cost = userProducts.offerPrice.toDouble()
         finalCost = userProducts.offerPrice.toDouble()
         quantity = 1
-        var mauth:FirebaseAuth= FirebaseAuth.getInstance()
+
         holder.productOfferPrice.text = spannableString
         holder.addItem.setOnClickListener {
-            addToCart(
-                orderBy,
-                productTitle,
-                priceEach,
-                userProducts.offerPrice,
-                "1",
-                orderTo,
-                productId,
-                productUrl,
-                sellingPrice,
-                holder.btnIncrease,
-                holder.btnDecrease,
-                holder.btnLinear,
-                cost,
-                finalCost,
-                quantity,
-                holder.rating,
-                holder.txtCounter,
-                holder.addItem,
-                sellingP,
-                finalSellingPrice,
-                userProducts.sellingPrice
-            )
-            holder.addItem.visibility = View.GONE
+            if (orderTo==shopID.toString()||shopID==null){
+                addToCart(
+                    orderBy,
+                    productTitle,
+                    priceEach,
+                    userProducts.offerPrice,
+                    "1",
+                    orderTo,
+                    productId,
+                    productUrl,
+                    sellingPrice,
+                    holder.btnIncrease,
+                    holder.btnDecrease,
+                    holder.btnLinear,
+                    cost,
+                    finalCost,
+                    quantity,
+                    holder.rating,
+                    holder.txtCounter,
+                    holder.addItem,
+                    sellingP,
+                    finalSellingPrice,
+                    userProducts.sellingPrice
+                )
+                holder.addItem.visibility = View.GONE
+            }else if (orderTo!==shopID.toString()){
+                Toast.makeText(context,"You cannot order simultaneously from two Shops",Toast.LENGTH_LONG).show()
+            }
+
 
         }
     }
