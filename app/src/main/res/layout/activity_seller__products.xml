@@ -6,22 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".Seller_Products">
 
-    <androidx.cardview.widget.CardView
+    <EditText
+
+        android:id="@+id/searchShopProduct"
+        android:paddingStart="@dimen/_20sdp"
+        android:hint="Search"
+        android:layout_below="@id/card_view_Details"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/bg_product_shop"/>
+
+    <LinearLayout
         android:id="@+id/card_view_Details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#708090"
-        app:contentPadding="3dp">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/llProducts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imgBack"
@@ -30,30 +34,41 @@
                 android:layout_height="@dimen/_20sdp"
                 android:src="@drawable/ic_back"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Products"
-                    android:textSize="@dimen/_18ssp"
-                    android:textColor="#000"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/imgBack" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Products"
+                android:textSize="@dimen/_18ssp"
+                android:textColor="#000"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgBack" />
+            <TextView
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:layout_marginRight="10dp"
+                android:textSize="@dimen/_30ssp"
+                android:textColor="#de4500"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
 
-            </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#d3d3d3"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#d3d3d3"/>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_seller_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/card_view_Details"
+        android:layout_below="@+id/searchShopProduct"
         android:layout_above="@id/bottom_navProducts"
-        android:padding="3dp"
+        android:padding="1dp"
         app:stackFromEnd="true"
         tools:listitem="@layout/product_single_row"/>
 
