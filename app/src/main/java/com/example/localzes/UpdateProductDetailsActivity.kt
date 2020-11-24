@@ -114,17 +114,18 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                         .show()
                 }
 
-        }
-        else{
-            val filePathName= "uploads/$productId.jpg"
-            val storageReference:StorageReference=FirebaseStorage.getInstance().getReference(filePathName)
+        } else {
+            val filePathName = "uploads/$productId.jpg"
+            val storageReference: StorageReference =
+                FirebaseStorage.getInstance().getReference(filePathName)
             storageReference.putFile(imagePathUpdate).addOnSuccessListener {
-                storageReference.downloadUrl.addOnSuccessListener {
-                    val imageUrl: Uri = it
+                val uriTask = it.storage.downloadUrl
+                val downloadImageUri = uriTask.result
+                if (uriTask.isSuccessful) {
                     val user = updateAuth.currentUser
                     val uid = user!!.uid
                     val headers = HashMap<String, Any>()
-                    headers["imageUrl"] = imageUrl
+                    headers["imageUrl"] = downloadImageUri
                     headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
                     headers["productCategory"] = categoryUpdate.selectedItem.toString().trim()
                     headers["quantity"] = quantityUpdate.text.toString().trim()
