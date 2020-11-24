@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.localzes.Adapters.ExpandableListViewAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_accounts.*
@@ -51,6 +52,9 @@ class Accounts : AppCompatActivity() {
             })
         logOut.setOnClickListener {
             userAuth.signOut()
+             val intent=Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         bottom_navAcc.selectedItemId = R.id.nav_account
         bottom_navAcc.setOnNavigationItemSelectedListener { item ->
@@ -87,7 +91,12 @@ class Accounts : AppCompatActivity() {
             return@setOnNavigationItemSelectedListener true
         }
         showList()
-        listViewAdapter = ExpandableListViewAdapter(this, menu, item)
+        listViewAdapter =
+            ExpandableListViewAdapter(
+                this,
+                menu,
+                item
+            )
         expand.setAdapter(listViewAdapter)
         expand.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
             val select = listViewAdapter.getChild(groupPosition, childPosition) as String

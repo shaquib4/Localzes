@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Adapters
 
 import android.content.Context
 import android.text.SpannableString
@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.UserCartDetails
+import com.example.localzes.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso

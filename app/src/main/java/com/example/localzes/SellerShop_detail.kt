@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.*
 import com.example.localzes.Modals.ModelClass
+import com.example.localzes.Modals.Upload
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -36,8 +37,8 @@ class SellerShop_detail : AppCompatActivity() {
 
         etShopName = findViewById(R.id.edtName)
         etCategory1 = findViewById(R.id.spn_category)
-        upi=findViewById(R.id.edtPay)
-        auth= FirebaseAuth.getInstance()
+        upi = findViewById(R.id.edtPay)
+        auth = FirebaseAuth.getInstance()
 
         btnChooseImage.setOnClickListener {
 
@@ -47,7 +48,7 @@ class SellerShop_detail : AppCompatActivity() {
         btnUpload.setOnClickListener {
 
             val user = auth.currentUser
-            val uid=user!!.uid
+            val uid = user!!.uid
 
 
 
@@ -55,42 +56,49 @@ class SellerShop_detail : AppCompatActivity() {
         }
 
     }
+
     private fun uploadFile() {
         if (filepath != null) {
             val pd = ProgressDialog(this)
             pd.setTitle("Uploading")
             pd.show()
-
+            val user = auth.currentUser
+            val uid = user!!.uid
             val imageRef =
-                FirebaseStorage.getInstance().reference.child("uploads/" + System.currentTimeMillis() + ".jpg")
+                FirebaseStorage.getInstance().reference.child(
+                    "uploads/" + uid
+                            + ".jpg"
+                )
             imageRef.putFile(filepath)
                 .addOnSuccessListener { p0 ->
                     pd.dismiss()
                     Toast.makeText(
                         applicationContext,
-                        "FileUploadedSucessfully",
+                        "FileUploadedSuccessfully",
                         Toast.LENGTH_SHORT
                     ).show()
                     imageRef.downloadUrl.addOnSuccessListener {
                         val user = auth.currentUser
-                        val uid=user!!.uid
-                        userDatabases= FirebaseDatabase.getInstance().reference.child("customers").child(uid)
+                        val uid = user!!.uid
+                        userDatabases =
+                            FirebaseDatabase.getInstance().reference.child("customers").child(uid)
                         userDatabases!!.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
-                                if (snapshot.exists()){
+                                if (snapshot.exists()) {
 
-                                    val users: ModelClass?=snapshot.getValue(
-                                        ModelClass::class.java)
-                                    val phone:String?=users!!.getPhone()
+                                    val users: ModelClass? = snapshot.getValue(
+                                        ModelClass::class.java
+                                    )
+                                    val phone: String? = users!!.getPhone()
                                     val downloadUrl: Uri = it
-                                    val name=intent.getStringExtra("name")
-                                    val email=intent.getStringExtra("email")
-                                    val address=intent.getStringExtra("address")
-                                    val city=intent.getStringExtra("city")
-                                    val state=intent.getStringExtra("state")
-                                    val country=intent.getStringExtra("country")
-                                    val pinCode=intent.getStringExtra("pinCode")
-                                    val locality=intent.getStringExtra("locality")
+                                    val name = intent.getStringExtra("name")
+                                    val email = intent.getStringExtra("email")
+                                    val address = intent.getStringExtra("address")
+                                    val city = intent.getStringExtra("city")
+                                    val state = intent.getStringExtra("state")
+                                    val country = intent.getStringExtra("country")
+                                    val pinCode = intent.getStringExtra("pinCode")
+                                    val locality = intent.getStringExtra("locality")
 
                                     upload = Upload(
                                         uid,
@@ -109,32 +117,45 @@ class SellerShop_detail : AppCompatActivity() {
                                         country!!.toString().trim()
 
                                     )
-                                    mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                                    mDatabaseRef =
+                                        FirebaseDatabase.getInstance().reference.child("seller")
+                                            .child(uid)
                                     mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
-                                        if (task.isSuccessful){
+                                        if (task.isSuccessful) {
 
-                                            mDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("current_address")
-                                            val userMaps= HashMap<String,Any>()
-                                            userMaps["address"]=address.toString()
-                                            userMaps["city"]=city!!.toString()
-                                            userMaps["state"]=state.toString()
-                                            userMaps["country"]=country.toString()
-                                            userMaps["pinCode"]=pinCode.toString()
-                                            mDatabaseRef.setValue(userMaps).addOnCompleteListener{ task ->
-                                                if (task.isSuccessful){
-                                                    startActivity(Intent(this@SellerShop_detail,AddProduct::class.java))
-                                                    finish()
-                                                    Toast.makeText(applicationContext, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
+                                            mDatabaseRef =
+                                                FirebaseDatabase.getInstance().reference.child("seller")
+                                                    .child(uid).child("current_address")
+                                            val userMaps = HashMap<String, Any>()
+                                            userMaps["address"] = address.toString()
+                                            userMaps["city"] = city!!.toString()
+                                            userMaps["state"] = state.toString()
+                                            userMaps["country"] = country.toString()
+                                            userMaps["pinCode"] = pinCode.toString()
+                                            mDatabaseRef.setValue(userMaps)
+                                                .addOnCompleteListener { task ->
+                                                    if (task.isSuccessful) {
+                                                        startActivity(
+                                                            Intent(
+                                                                this@SellerShop_detail,
+                                                                AddProduct::class.java
+                                                            )
+                                                        )
+                                                        finish()
+                                                        Toast.makeText(
+                                                            applicationContext,
+                                                            "Uploaded Successfully",
+                                                            Toast.LENGTH_SHORT
+                                                        ).show()
+
+                                                    } else {
+                                                        Toast.makeText(
+                                                            baseContext, "Failed",
+                                                            Toast.LENGTH_SHORT
+                                                        ).show()
+                                                    }
 
                                                 }
-                                                else{
-                                                    Toast.makeText(
-                                                        baseContext, "Failed",
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
-                                                }
-
-                                        }
                                         }
                                     }
 
@@ -144,7 +165,6 @@ class SellerShop_detail : AppCompatActivity() {
                             override fun onCancelled(error: DatabaseError) {
 
                             }
-
 
 
                         })

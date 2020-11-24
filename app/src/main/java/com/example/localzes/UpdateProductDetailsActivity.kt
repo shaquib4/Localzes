@@ -59,10 +59,9 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     val quantity = snapshot.child("quantity").value.toString()
                     Picasso.get().load(imageUrl).into(imageUpdate)
                     productName.setText(title)
-                    if(description!=null){
+                    if (description != null) {
                         descriptionUpdate.setText(description)
-                    }
-                    else{
+                    } else {
                         descriptionUpdate.setText("")
                     }
                     sellPriceUpdate.setText(mrp)
@@ -75,7 +74,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         }
         updateProduct.setOnClickListener {
             updateData()
-            val intent=Intent(this,Seller_Products::class.java)
+            val intent = Intent(this, Seller_Products::class.java)
             startActivity(intent)
             finish()
         }
@@ -99,7 +98,23 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     }
 
     private fun updateData() {
-        if (imagePathUpdate != null) {
+        if (imagePathUpdate == null) {
+            val headers = HashMap<String, String>()
+            headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
+            headers["productCategory"] = categoryUpdate.selectedItem.toString().trim()
+            headers["quantity"] = quantityUpdate.text.toString().trim()
+            headers["sellingPrice"] = sellPriceUpdate.text.toString().trim()
+            headers["title"] = productName.text.toString().trim()
+            headers["unit"] = unitUpdate.selectedItem.toString().trim()
+            headers["description"] = descriptionUpdate.text.toString().trim()
+            databaseRef.child("Products").child(productId.toString()).setValue(headers)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Item Updated Successfully", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+        }
+        else{
             val productRef =
                 FirebaseStorage.getInstance().reference.child("uploads/" + System.currentTimeMillis() + ".jpg")
             productRef.putFile(imagePathUpdate).addOnSuccessListener {

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Adapters.AdapterUserShops
+import com.example.localzes.Modals.Upload
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -16,7 +18,7 @@ class Home : AppCompatActivity() {
     var firebaseUser: FirebaseUser? = null
     private lateinit var shops:List<Upload>
     private lateinit var recyclerShopUser:RecyclerView
-    private lateinit var userShopAdapter:AdapterUserShops
+    private lateinit var userShopAdapter: AdapterUserShops
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -94,7 +96,10 @@ class Home : AppCompatActivity() {
                     (shops as ArrayList<Upload>).add(obj)
                     progress_home.visibility=View.GONE
                 }
-                userShopAdapter= AdapterUserShops(this@Home,shops)
+                userShopAdapter= AdapterUserShops(
+                    this@Home,
+                    shops
+                )
                 recyclerShopUser.adapter=userShopAdapter
             }
 

@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Adapters.AdapterManageAddress
 import com.example.localzes.Modals.ModelManageAddress
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -51,7 +52,11 @@ class ManageAddress : AppCompatActivity() {
                     (addresses as ArrayList<ModelManageAddress>).add(obj)
 
                 }
-                userAddressAdapter = AdapterManageAddress(this@ManageAddress, addresses)
+                userAddressAdapter =
+                    AdapterManageAddress(
+                        this@ManageAddress,
+                        addresses
+                    )
                 recyclerManageAddress.adapter = userAddressAdapter
                 //recyclerShopUser.adapter=userShopAdapter
             }

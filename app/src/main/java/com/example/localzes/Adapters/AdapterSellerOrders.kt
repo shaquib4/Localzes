@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModelOrderDetails
+import com.example.localzes.OrdersDetailsSellerActivity
+import com.example.localzes.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,7 +30,9 @@ class AdapterSellerOrders(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderSellerOrders {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.row_order_seller, parent, false)
-        return HolderSellerOrders(view)
+        return HolderSellerOrders(
+            view
+        )
     }
 
     override fun getItemCount(): Int {
@@ -64,7 +68,8 @@ class AdapterSellerOrders(
         holder.orderDateTv.text=formattedDate
         holder.orderDeliveryAddress.text=sellerOrders.deliveryAddress
         holder.itemView.setOnClickListener {
-            val intent= Intent(context,OrdersDetailsSellerActivity::class.java)
+            val intent= Intent(context,
+                OrdersDetailsSellerActivity::class.java)
             intent.putExtra("orderIdTv",sellerOrders.orderId)
             intent.putExtra("orderByTv",sellerOrders.orderBy)
             context.startActivity(intent)

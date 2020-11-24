@@ -22,6 +22,7 @@ import java.util.ArrayList
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
 import com.example.localzes.Modals.ModelOrderDetails
+import com.example.localzes.Modals.UserCartDetails
 
 class PaymentActivity : AppCompatActivity() {
     var amount: TextView? = null
@@ -211,18 +212,19 @@ class PaymentActivity : AppCompatActivity() {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         (cartProducts as ArrayList<UserCartDetails>).clear()
                         for (i in snapshot.children) {
-                            val obj = UserCartDetails(
-                                i.child("productId").value.toString(),
-                                i.child("orderBy").value.toString(),
-                                i.child("productTitle").value.toString(),
-                                i.child("priceEach").value.toString(),
-                                i.child("finalPrice").value.toString(),
-                                i.child("finalQuantity").value.toString(),
-                                i.child("orderTo").value.toString(),
-                                i.child("productImageUrl").value.toString(),
-                                i.child("sellingPrice").value.toString(),
-                                i.child("finalsellingPrice").value.toString()
-                            )
+                            val obj =
+                                UserCartDetails(
+                                    i.child("productId").value.toString(),
+                                    i.child("orderBy").value.toString(),
+                                    i.child("productTitle").value.toString(),
+                                    i.child("priceEach").value.toString(),
+                                    i.child("finalPrice").value.toString(),
+                                    i.child("finalQuantity").value.toString(),
+                                    i.child("orderTo").value.toString(),
+                                    i.child("productImageUrl").value.toString(),
+                                    i.child("sellingPrice").value.toString(),
+                                    i.child("finalsellingPrice").value.toString()
+                                )
                             (cartProducts as ArrayList<UserCartDetails>).add(obj)
                         }
                     }

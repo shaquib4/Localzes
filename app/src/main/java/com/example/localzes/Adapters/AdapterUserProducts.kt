@@ -1,5 +1,6 @@
-package com.example.localzes
+package com.example.localzes.Adapters
 
+import android.app.AlertDialog
 import android.content.Context
 import android.text.SpannableString
 import android.text.style.StrikethroughSpan
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModelAddProduct
+import com.example.localzes.Modals.UserCartDetails
+import com.example.localzes.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
@@ -100,10 +103,44 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 )
                 holder.addItem.visibility = View.GONE
             }else if (orderTo!==shopID.toString()){
-                Toast.makeText(context,"You cannot order simultaneously from two Shops",Toast.LENGTH_LONG).show()
+                val builder=AlertDialog.Builder(context)
+                val view=LayoutInflater.from(context).inflate(R.layout.custom_layout,null)
+                builder.setView(view)
+                val show=builder.show()
+                val confirm:Button=view.findViewById(R.id.btnConfirm)
+                val cancel:Button=view.findViewById(R.id.btnCancel)
+                confirm.setOnClickListener {
+                    val userDatabase= FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
+                    userDatabase.removeValue()
+                    addToCart(
+                        orderBy,
+                        productTitle,
+                        priceEach,
+                        userProducts.offerPrice,
+                        "1",
+                        orderTo,
+                        productId,
+                        productUrl,
+                        sellingPrice,
+                        holder.btnIncrease,
+                        holder.btnDecrease,
+                        holder.btnLinear,
+                        cost,
+                        finalCost,
+                        quantity,
+                        holder.rating,
+                        holder.txtCounter,
+                        holder.addItem,
+                        sellingP,
+                        finalSellingPrice,
+                        userProducts.sellingPrice
+                    )
+                    holder.addItem.visibility = View.VISIBLE
+                }
+                cancel.setOnClickListener {
+                    show.dismiss()
+                }
             }
-
-
         }
     }
 

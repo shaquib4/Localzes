@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.Upload
+import com.example.localzes.R
+import com.example.localzes.UserProductsActivity
 import com.squareup.picasso.Picasso
 
 class AdapterSearchItem(val context: Context,private val search:List<Upload>):RecyclerView.Adapter<AdapterSearchItem.HolderSearchItem>() {
@@ -21,7 +24,9 @@ class AdapterSearchItem(val context: Context,private val search:List<Upload>):Re
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderSearchItem {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.search_single_row, parent, false)
-        return HolderSearchItem(view)
+        return HolderSearchItem(
+            view
+        )
     }
 
     override fun getItemCount(): Int {
@@ -34,7 +39,8 @@ class AdapterSearchItem(val context: Context,private val search:List<Upload>):Re
         holder.shopAddress.text=searchItem.locality
         Picasso.get().load(searchItem.imageUrl).into(holder.shopImage)
         holder.itemView.setOnClickListener{
-            val intent= Intent(context,UserProductsActivity::class.java)
+            val intent= Intent(context,
+                UserProductsActivity::class.java)
             intent.putExtra("shopId",searchItem.shopId)
             context.startActivity(intent)
 

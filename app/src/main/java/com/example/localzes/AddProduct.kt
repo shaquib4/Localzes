@@ -55,15 +55,13 @@ class AddProduct : AppCompatActivity() {
 
     private fun uploadData() {
         if (imagePath != null) {
-
+            val timestamp: String =  System.currentTimeMillis().toString()
             val productRef =
-                FirebaseStorage.getInstance().reference.child("uploads/" + System.currentTimeMillis() + ".jpg")
+                FirebaseStorage.getInstance().reference.child("uploads/$timestamp.jpg")
             productRef.putFile(imagePath)
                 .addOnSuccessListener {
-
                     productRef.downloadUrl.addOnSuccessListener {
                         val imageUrl: Uri = it
-                        val timestamp: String = "" + System.currentTimeMillis()
                         val user = auth.currentUser
                         val uid = user!!.uid
                         products = ModelAddProduct(

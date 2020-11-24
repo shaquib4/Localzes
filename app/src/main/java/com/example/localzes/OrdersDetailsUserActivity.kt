@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Adapters.AdapterOrderedItems
 import com.example.localzes.Modals.ModelOrderedItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -66,7 +67,10 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                     (orderItemsList as ArrayList<ModelOrderedItems>).add(obj)
                 }
                 adapterOrderItems =
-                    AdapterOrderedItems(this@OrdersDetailsUserActivity, orderItemsList)
+                    AdapterOrderedItems(
+                        this@OrdersDetailsUserActivity,
+                        orderItemsList
+                    )
                 recyclerOrderUsers.adapter = adapterOrderItems
                 totalItemsUser.text = snapshot.childrenCount.toString()
             }

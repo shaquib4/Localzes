@@ -4,12 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.example.localzes.Adapters.ExpandableListViewAdapterSeller
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_accounts.*
 import kotlinx.android.synthetic.main.activity_accounts.expand
 import kotlinx.android.synthetic.main.activity_accounts_seller.*
-import kotlinx.android.synthetic.main.activity_home_seller.*
 import java.util.ArrayList
 
 class AccountsSeller : AppCompatActivity() {
@@ -50,9 +49,17 @@ class AccountsSeller : AppCompatActivity() {
         })
         logOut.setOnClickListener {
             userAuth.signOut()
+            val intent=Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         showList()
-        listViewAdapter = ExpandableListViewAdapterSeller(this, menu, item)
+        listViewAdapter =
+            ExpandableListViewAdapterSeller(
+                this,
+                menu,
+                item
+            )
         expand.setAdapter(listViewAdapter)
         expand.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
             val select=listViewAdapter.getChild(groupPosition, childPosition) as String

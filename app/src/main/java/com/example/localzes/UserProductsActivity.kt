@@ -11,7 +11,9 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Adapters.AdapterUserProducts
 import com.example.localzes.Modals.ModelAddProduct
+import com.example.localzes.Modals.UserCartDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -93,7 +95,11 @@ class UserProductsActivity : AppCompatActivity() {
                     (mUserProducts as ArrayList<ModelAddProduct>).add(obj)
 
                 }
-                userProductAdapter = AdapterUserProducts(this@UserProductsActivity, mUserProducts)
+                userProductAdapter =
+                    AdapterUserProducts(
+                        this@UserProductsActivity,
+                        mUserProducts
+                    )
                 recyclerUserProduct.adapter = userProductAdapter
             }
 
@@ -200,7 +206,11 @@ class UserProductsActivity : AppCompatActivity() {
                     (mUserProducts as ArrayList<ModelAddProduct>).add(obj)
 
                 }
-                userProductAdapter = AdapterUserProducts(this@UserProductsActivity, mUserProducts)
+                userProductAdapter =
+                    AdapterUserProducts(
+                        this@UserProductsActivity,
+                        mUserProducts
+                    )
                 recyclerUserProduct.adapter = userProductAdapter
             }
         })

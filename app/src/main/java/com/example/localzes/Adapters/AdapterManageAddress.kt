@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Adapters
 
 import android.app.AlertDialog
 import android.content.Context
@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.ManageAddress
 import com.example.localzes.Modals.ModelManageAddress
+import com.example.localzes.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -27,7 +29,9 @@ class AdapterManageAddress(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderManageAddress {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.address_single_row, parent, false)
-        return HolderManageAddress(view)
+        return HolderManageAddress(
+            view
+        )
     }
 
     override fun getItemCount(): Int {

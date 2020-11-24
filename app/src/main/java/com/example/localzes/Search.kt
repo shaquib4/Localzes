@@ -9,14 +9,17 @@ import android.view.View
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Adapters.AdapterSearchItem
+import com.example.localzes.Adapters.AdapterSearchProductItem
 import com.example.localzes.Modals.ModelAddProduct
+import com.example.localzes.Modals.Upload
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 class Search : AppCompatActivity() {
     private lateinit var userDatabase: DatabaseReference
     private lateinit var recyclerSearchItem: RecyclerView
-    private lateinit var searchProductAdapter:AdapterSearchProductItem
+    private lateinit var searchProductAdapter: AdapterSearchProductItem
     private lateinit var searchAdapter: AdapterSearchItem
     private lateinit var searchProductItem:  List<ModelAddProduct>
     private lateinit var searchItem: List<Upload>
@@ -95,7 +98,10 @@ class Search : AppCompatActivity() {
                     (searchItem as ArrayList<Upload>).add(obj)
 
                 }
-                 searchAdapter=AdapterSearchItem(this@Search,searchItem)
+                 searchAdapter= AdapterSearchItem(
+                     this@Search,
+                     searchItem
+                 )
 
 
             }
@@ -219,7 +225,11 @@ class Search : AppCompatActivity() {
                                 (searchProductItem as ArrayList<ModelAddProduct>).add(obj)
 
                             }
-                            searchProductAdapter=AdapterSearchProductItem(this@Search,searchProductItem)
+                            searchProductAdapter=
+                                AdapterSearchProductItem(
+                                    this@Search,
+                                    searchProductItem
+                                )
                             recyclerSearchItem.adapter=searchProductAdapter
                             //userProductAdapter = AdapterUserProducts(this@UserProductsActivity, mUserProducts)
                             //recyclerUserProduct.adapter = userProductAdapter
@@ -263,7 +273,10 @@ class Search : AppCompatActivity() {
                     (searchItem as ArrayList<Upload>).add(obj)
 
                 }
-                searchAdapter=AdapterSearchItem(this@Search,searchItem)
+                searchAdapter= AdapterSearchItem(
+                    this@Search,
+                    searchItem
+                )
                 recyclerSearchItem.adapter=searchAdapter
 
             }
@@ -302,7 +315,10 @@ class Search : AppCompatActivity() {
                     (searchItem as ArrayList<Upload>).add(obj)
 
                 }
-                searchAdapter=AdapterSearchItem(this@Search,searchItem)
+                searchAdapter= AdapterSearchItem(
+                    this@Search,
+                    searchItem
+                )
                 recyclerSearchItem.adapter=searchAdapter
 
             }

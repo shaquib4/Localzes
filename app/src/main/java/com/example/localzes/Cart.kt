@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Adapters.AdapterCartItem
 import com.example.localzes.Modals.ModelOrderDetails
+import com.example.localzes.Modals.UserCartDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_cart.*
@@ -151,7 +153,10 @@ class Cart : AppCompatActivity() {
 
                 }
 
-                userCartAdapter = AdapterCartItem(this@Cart, cartProducts)
+                userCartAdapter = AdapterCartItem(
+                    this@Cart,
+                    cartProducts
+                )
                 recyclerCartProduct.adapter = userCartAdapter
                 totalItem=snapshot.childrenCount.toInt()
                 totalItems.text = "Total Item :- ${snapshot.childrenCount}"

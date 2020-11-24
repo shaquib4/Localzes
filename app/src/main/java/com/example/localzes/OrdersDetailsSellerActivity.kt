@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.localzes.Adapters.AdapterOrderedItems
 import com.example.localzes.Modals.ModelOrderedItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -106,7 +107,10 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     (mOrderDetails as ArrayList<ModelOrderedItems>).add(obj)
                 }
                 sellerOrdersDetails =
-                    AdapterOrderedItems(this@OrdersDetailsSellerActivity, mOrderDetails)
+                    AdapterOrderedItems(
+                        this@OrdersDetailsSellerActivity,
+                        mOrderDetails
+                    )
                 recyclerOrderedSellerItems.adapter = sellerOrdersDetails
                 if (snapshot.childrenCount.toInt() > 1) {
                     totalItems.text = "${snapshot.childrenCount} items"

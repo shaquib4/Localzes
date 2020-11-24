@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModelOrderDetails
+import com.example.localzes.OrdersDetailsUserActivity
+import com.example.localzes.R
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,7 +32,9 @@ class AdapterUserOrderHistory(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderUserOrderHistory {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.row_order_user, parent, false)
-        return HolderUserOrderHistory(view)
+        return HolderUserOrderHistory(
+            view
+        )
     }
 
     override fun getItemCount(): Int {
@@ -66,7 +70,8 @@ class AdapterUserOrderHistory(
         holder.orderDate.text = formattedDate
         holder.orderStatus.text = orderHistory.orderStatus
         holder.itemView.setOnClickListener {
-            val intent= Intent(context,OrdersDetailsUserActivity::class.java)
+            val intent= Intent(context,
+                OrdersDetailsUserActivity::class.java)
             intent.putExtra("orderId",orderHistory.orderId)
             intent.putExtra("orderTo",orderHistory.orderBy)
             context.startActivity(intent)

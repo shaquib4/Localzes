@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModelOrderedItems
+import com.example.localzes.R
 
 class AdapterOrderedItems(val context:Context,private val ordered_items:List<ModelOrderedItems>) : RecyclerView.Adapter<AdapterOrderedItems.HolderOrderedItems>() {
     class HolderOrderedItems(view: View) : RecyclerView.ViewHolder(view) {
@@ -18,7 +19,9 @@ class AdapterOrderedItems(val context:Context,private val ordered_items:List<Mod
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderOrderedItems {
         val view=LayoutInflater.from(parent.context).inflate(R.layout.row_ordered_items,parent,false)
-        return HolderOrderedItems(view)
+        return HolderOrderedItems(
+            view
+        )
     }
 
     override fun getItemCount(): Int {

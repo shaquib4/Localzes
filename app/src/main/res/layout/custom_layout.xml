@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgAlert"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="200sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="#ff0000"
+        android:src="@drawable/ic_warning_black_18dp" />
+
+    <TextView
+        android:id="@+id/txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgAlert"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Adding a new product from new shop will clear your cart"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/confirmation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtMessage"
+        android:layout_marginTop="1dp"
+        android:text="Do you still want to continue ?"
+        android:textAlignment="center" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/confirmation"
+        android:layout_marginTop="25sp"
+        android:background="#000000" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="180sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view6"
+        android:background="@drawable/bg_ractangle_rounded_stroke"
+        android:backgroundTint="@color/acidGreen"
+        android:elevation="2dp"
+        android:text="CANCEL" />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="180sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view6"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/bg_ractangle_rounded_stroke"
+        android:backgroundTint="@color/acidGreen"
+        android:elevation="2dp"
+        android:text="OK" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/btnCancel"
+        android:background="#000000"/>
+
+</RelativeLayout>

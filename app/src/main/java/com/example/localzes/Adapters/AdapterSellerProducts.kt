@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModelAddProduct
+import com.example.localzes.R
+import com.example.localzes.UpdateProductDetailsActivity
 import com.squareup.picasso.Picasso
 
 class AdapterSellerProducts(val context:Context,private val products_seller:List<ModelAddProduct>) : RecyclerView.Adapter<AdapterSellerProducts.HolderProduct>() {
@@ -25,7 +27,9 @@ class AdapterSellerProducts(val context:Context,private val products_seller:List
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderProduct {
         val view=LayoutInflater.from(parent.context).inflate(R.layout.product_single_row,parent,false)
-        return HolderProduct(view)
+        return HolderProduct(
+            view
+        )
     }
 
     override fun getItemCount(): Int {
@@ -43,7 +47,8 @@ class AdapterSellerProducts(val context:Context,private val products_seller:List
         spannableString.setSpan(mStrikeThrough,0,mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         holder.txtProductOfferPrice.text=spannableString
         holder.imgEditUpdate.setOnClickListener {
-            val intent= Intent(context,UpdateProductDetailsActivity::class.java)
+            val intent= Intent(context,
+                UpdateProductDetailsActivity::class.java)
             intent.putExtra("productId",products.productId)
             context.startActivity(intent)
         }

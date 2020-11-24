@@ -1,4 +1,4 @@
-package com.example.localzes
+package com.example.localzes.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.localzes.R
 
-class ExpandableListViewAdapterSeller internal constructor(private val context: Context, private val menu: List<String>, private  val item:HashMap<String,List<String>>):
+class ExpandableListViewAdapter internal constructor(private val context: Context, private val menu: List<String>,private  val item:HashMap<String,List<String>>):
     BaseExpandableListAdapter() {
     override fun getGroup(groupPosition: Int): Any {
         return menu[groupPosition]
@@ -20,7 +21,7 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
     }
 
     override fun hasStableIds(): Boolean {
-        return false
+       return false
     }
 
     @SuppressLint("SetTextI18n")
@@ -42,12 +43,14 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
 
         menuTv.text=menuTitle
         if (menuTitle=="Account"){
-            menuitem.text = "Offers, Referrals"
+            menuitem.text = "Addresses, Favourites, Offers, Referrals"
 
         }else if (menuTitle=="Refunds & Payments"){
-            menuitem.text = "Refund Initiated, Transaction history"
+            menuitem.text = "Refund status, Payment modes, Transaction history"
         }
-
+        else if (menuTitle=="My Order"){
+            menuitem.text = "Current orders,Past orders"
+        }
         else if (menuTitle=="Help"){
             menuitem.text = "FAQs, Contact us"
         }
@@ -82,27 +85,37 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
             val inflater=context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             convertView = inflater.inflate(R.layout.items_menu,null)
         }
-        var itemTv=convertView!!.findViewById<TextView>(R.id.txtitem)
+          var itemTv=convertView!!.findViewById<TextView>(R.id.txtitem)
         var img=convertView!!.findViewById<ImageView>(R.id.imgitem)
 
         itemTv.text = itemTitles
-         if (itemTitles=="Offers"&& menuTitle=="Account")
-        {
-            img.setImageResource(R.drawable.ic_offer_vc)
-        }else if (itemTitles=="Referrals"&& menuTitle=="Account")
-        {
-            img.setImageResource(R.drawable.ic_referrals)
-        }else if (itemTitles=="Refund Initiated"&& menuTitle=="Refunds & Payments")
-        {
-            img.setImageResource(R.drawable.ic_refundstatus)
-        }else if (itemTitles=="Transaction History"&& menuTitle=="Refunds & Payments")
-        {
-            img.setImageResource(R.drawable.ic_refundstatus)
-        }else if (itemTitles=="FAQs"&& menuTitle=="Help"){
-             img.setImageResource(R.drawable.ic_offer_vc)
-         }else if(itemTitles=="Contact Us"&& menuTitle=="Help"){
-             img.setImageResource(R.drawable.ic_referrals)
-         }
+  if (itemTitles=="Manage Address"&& menuTitle=="Account"){
+      img.setImageResource(R.drawable.ic_location_vc)
+  }else if (itemTitles=="Favourites"&& menuTitle=="Account")
+  {
+      img.setImageResource(R.drawable.ic_favorite_black_24dp)
+  }else if (itemTitles=="Offers"&& menuTitle=="Account")
+  {
+      img.setImageResource(R.drawable.ic_offer_vc)
+  }else if (itemTitles=="Referrals"&& menuTitle=="Account")
+  {
+      img.setImageResource(R.drawable.ic_referrals)
+  }else if (itemTitles=="Refund Status"&& menuTitle=="Refunds & Payments")
+  {
+      img.setImageResource(R.drawable.ic_refundstatus)
+  }else if (itemTitles=="Payment Modes"&& menuTitle=="Refunds & Payments")
+  {
+      img.setImageResource(R.drawable.ic_paymentmode)
+  }else if (itemTitles=="Transaction History"&& menuTitle=="Refunds & Payments")
+  {
+      img.setImageResource(R.drawable.ic_refundstatus)
+  }else if (itemTitles=="Current Order"&& menuTitle=="My Order")
+  {
+      img.setImageResource(R.drawable.ic_shopping_cart_black_24dp)
+  }else if (itemTitles=="Past Orders"&& menuTitle=="My Order")
+  {
+      img.setImageResource(R.drawable.ic_pastorder)
+  }
 
         return convertView
     }
@@ -112,6 +125,6 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
     }
 
     override fun getGroupCount(): Int {
-        return menu.size
+      return menu.size
     }
 }

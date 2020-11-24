@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Adapters.AdapterSellerOrders
 import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -43,9 +44,15 @@ class SellerOrdersActivity : AppCompatActivity() {
                         i.child("orderQuantity").value.toString(),
                         i.child("deliveryAddress").value.toString()
                     )
-                    (mSellerOrders as ArrayList<ModelOrderDetails>).add(obj)
+                    if (i.child("orderStatus").value.toString() == "Pending") {
+                        (mSellerOrders as ArrayList<ModelOrderDetails>).add(obj)
+                    }
                 }
-                sellerOrderAdapter = AdapterSellerOrders(this@SellerOrdersActivity, mSellerOrders)
+                sellerOrderAdapter =
+                    AdapterSellerOrders(
+                        this@SellerOrdersActivity,
+                        mSellerOrders
+                    )
                 recyclerShopOrders.adapter = sellerOrderAdapter
             }
         })
