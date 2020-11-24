@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 
 class UpdateProductDetailsActivity : AppCompatActivity() {
@@ -115,10 +116,10 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
 
         }
         else{
-            val productRef =
-                FirebaseStorage.getInstance().reference.child("uploads/" + System.currentTimeMillis() + ".jpg")
-            productRef.putFile(imagePathUpdate).addOnSuccessListener {
-                productRef.downloadUrl.addOnSuccessListener {
+            val filePathName= "uploads/$productId.jpg"
+            val storageReference:StorageReference=FirebaseStorage.getInstance().getReference(filePathName)
+            storageReference.putFile(imagePathUpdate).addOnSuccessListener {
+                storageReference.downloadUrl.addOnSuccessListener {
                     val imageUrl: Uri = it
                     val user = updateAuth.currentUser
                     val uid = user!!.uid
