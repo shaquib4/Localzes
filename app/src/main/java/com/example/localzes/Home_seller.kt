@@ -18,6 +18,9 @@ class Home_seller : AppCompatActivity() {
     private lateinit var orderDatabaseReference: DatabaseReference
     private lateinit var editShopDetails: ImageView
     private lateinit var shopName: TextView
+    private lateinit var totalOrders:TextView
+    private lateinit var totalIncome:TextView
+    private lateinit var storeViews:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_seller)
@@ -27,6 +30,9 @@ class Home_seller : AppCompatActivity() {
         ordersPending = findViewById(R.id.txtItemPending)
         editShopDetails = findViewById(R.id.editShopDetails)
         shopName = findViewById(R.id.txtShopName)
+        totalOrders=findViewById(R.id.txtTO)
+        totalIncome=findViewById(R.id.txtTI)
+        storeViews=findViewById(R.id.txtSV)
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
@@ -147,6 +153,20 @@ class Home_seller : AppCompatActivity() {
                 val shop = snapshot.child("shop_name").value.toString()
                 shopName.text = shop
             }
+        })
+        orderDatabaseReference.child("Orders").addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val orders=snapshot.childrenCount.toString()
+                totalOrders.text=orders
+                for(i in snapshot.children){
+                    
+                }
+            }
+
         })
     }
 }

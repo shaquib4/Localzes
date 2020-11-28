@@ -93,7 +93,10 @@ class Search : AppCompatActivity() {
                         i.child("city").value.toString(),
                         i.child("pinCode").value.toString(),
                         i.child("state").value.toString(),
-                        i.child("country").value.toString()
+                        i.child("country").value.toString(),
+                        i.child("openingTime").value.toString(),
+                        i.child("closingTime").value.toString(),
+                        i.child("closingDay").value.toString()
                     )
                     (searchItem as ArrayList<Upload>).add(obj)
 
@@ -220,7 +223,9 @@ class Search : AppCompatActivity() {
                                         i.child("sellingPrice").value.toString(),
                                         i.child("offerPrice").value.toString(),
                                         i.child("unit").value.toString(),
-                                        i.child("quantity").value.toString()
+                                        i.child("quantity").value.toString(),
+                                        i.child("stock").value.toString()
+
                                     )
                                 (searchProductItem as ArrayList<ModelAddProduct>).add(obj)
 
@@ -268,7 +273,10 @@ class Search : AppCompatActivity() {
                         i.child("city").value.toString(),
                         i.child("pinCode").value.toString(),
                         i.child("state").value.toString(),
-                        i.child("country").value.toString()
+                        i.child("country").value.toString(),
+                        i.child("openingTime").value.toString(),
+                        i.child("closingTime").value.toString(),
+                        i.child("closingDay").value.toString()
                     )
                     (searchItem as ArrayList<Upload>).add(obj)
 
@@ -310,7 +318,10 @@ class Search : AppCompatActivity() {
                         i.child("city").value.toString(),
                         i.child("pinCode").value.toString(),
                         i.child("state").value.toString(),
-                        i.child("country").value.toString()
+                        i.child("country").value.toString(),
+                        i.child("openingTime").value.toString(),
+                        i.child("closingTime").value.toString(),
+                        i.child("closingDay").value.toString()
                     )
                     (searchItem as ArrayList<Upload>).add(obj)
 

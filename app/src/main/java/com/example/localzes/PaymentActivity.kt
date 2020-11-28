@@ -246,7 +246,8 @@ class PaymentActivity : AppCompatActivity() {
                         orderBy.toString(),
                         orderTo,
                         totalItem.toString(),
-                        deliveryAddress
+                        deliveryAddress,
+                        "Paytm"
                     )
 
                 val ref: DatabaseReference =

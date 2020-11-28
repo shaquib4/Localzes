@@ -25,6 +25,9 @@ class SellerShop_detail : AppCompatActivity() {
     private lateinit var etShopName: EditText
     private lateinit var btnSave: Button
     private lateinit var etCategory1: Spinner
+    private lateinit var openingTime: Spinner
+    private lateinit var closingTime: Spinner
+    private lateinit var closingDay: Spinner
     private lateinit var etCategory2: EditText
     private lateinit var etCategory3: EditText
     private lateinit var upi: EditText
@@ -34,11 +37,14 @@ class SellerShop_detail : AppCompatActivity() {
         setContentView(R.layout.activity_seller_shop_detail)
         btnChooseImage = findViewById(R.id.choose_image)
         btnUpload = findViewById(R.id.upload)
-
+        openingTime=findViewById(R.id.openTime)
+        closingTime=findViewById(R.id.closeTime)
+        closingDay=findViewById(R.id.closeDay)
         etShopName = findViewById(R.id.edtName)
         etCategory1 = findViewById(R.id.spn_category)
         upi = findViewById(R.id.edtPay)
         auth = FirebaseAuth.getInstance()
+
 
         btnChooseImage.setOnClickListener {
 
@@ -114,14 +120,22 @@ class SellerShop_detail : AppCompatActivity() {
                                         city!!.toString().trim().toLowerCase(),
                                         pinCode!!.toString().trim(),
                                         state!!.toString().trim(),
-                                        country!!.toString().trim()
-
+                                        country!!.toString().trim(),
+                                        openingTime.selectedItem.toString(),
+                                        closingTime.selectedItem.toString(),
+                                        closingDay.selectedItem.toString()
                                     )
                                     mDatabaseRef =
                                         FirebaseDatabase.getInstance().reference.child("seller")
                                             .child(uid)
                                     mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
+                                            val headers = HashMap<String, String>()
+                                            headers["viewCount"] = 0.toString()
+                                            mDatabaseRef =
+                                                FirebaseDatabase.getInstance().reference.child("seller")
+                                                    .child(uid).child("shopViews")
+                                            mDatabaseRef.setValue(headers)
 
                                             mDatabaseRef =
                                                 FirebaseDatabase.getInstance().reference.child("seller")

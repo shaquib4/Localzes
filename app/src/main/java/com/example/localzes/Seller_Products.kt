@@ -21,15 +21,15 @@ class Seller_Products : AppCompatActivity() {
     private lateinit var mSellerProducts: List<ModelAddProduct>
     private lateinit var productAdapter: AdapterSellerProducts
     private lateinit var recyclerSellerProducts: RecyclerView
-    private lateinit var search:EditText
+    private lateinit var search: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller__products)
         mSellerProducts = ArrayList<ModelAddProduct>()
         recyclerSellerProducts = findViewById(R.id.recycler_view_seller_products)
-        recyclerSellerProducts.layoutManager=LinearLayoutManager(this)
+        recyclerSellerProducts.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
-        search=findViewById(R.id.searchShopProduct)
+        search = findViewById(R.id.searchShopProduct)
         val user = auth.currentUser
         val uid = user!!.uid
         search.addTextChangedListener(object : TextWatcher {
@@ -56,7 +56,7 @@ class Seller_Products : AppCompatActivity() {
 
                 R.id.nav_product_seller -> {
 
-                   return@setOnNavigationItemSelectedListener true
+                    return@setOnNavigationItemSelectedListener true
 
                 }
                 R.id.nav_order_seller -> {
@@ -88,12 +88,13 @@ class Seller_Products : AppCompatActivity() {
 
                 }
             }
-            return@setOnNavigationItemSelectedListener false}
+            return@setOnNavigationItemSelectedListener false
+        }
         productDatabaseRef =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
         productDatabaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@Seller_Products,error.message,Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Seller_Products, error.message, Toast.LENGTH_SHORT).show()
 
             }
 
@@ -110,7 +111,8 @@ class Seller_Products : AppCompatActivity() {
                         i.child("sellingPrice").value.toString(),
                         i.child("offerPrice").value.toString(),
                         i.child("unit").value.toString(),
-                        i.child("quantity").value.toString()
+                        i.child("quantity").value.toString(),
+                        i.child("stock").value.toString()
                     )
                     (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
                 }
@@ -124,14 +126,15 @@ class Seller_Products : AppCompatActivity() {
         })
     }
 
-    private fun searchSellerProducts(str:String){
+    private fun searchSellerProducts(str: String) {
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user!!.uid
-        val  queryProduct =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products").orderByChild("title")
+        val queryProduct =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
+                .orderByChild("title")
                 .startAt(str)
                 .endAt(str + "\uf8ff")
-        queryProduct.addValueEventListener(object:ValueEventListener{
+        queryProduct.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -149,7 +152,8 @@ class Seller_Products : AppCompatActivity() {
                         i.child("sellingPrice").value.toString(),
                         i.child("offerPrice").value.toString(),
                         i.child("unit").value.toString(),
-                        i.child("quantity").value.toString()
+                        i.child("quantity").value.toString(),
+                        i.child("stock").value.toString()
                     )
                     (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
 

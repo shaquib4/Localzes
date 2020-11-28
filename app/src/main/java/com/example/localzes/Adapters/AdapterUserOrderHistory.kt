@@ -73,7 +73,7 @@ class AdapterUserOrderHistory(
             val intent= Intent(context,
                 OrdersDetailsUserActivity::class.java)
             intent.putExtra("orderId",orderHistory.orderId)
-            intent.putExtra("orderTo",orderHistory.orderBy)
+            intent.putExtra("orderTo",orderHistory.orderTo)
             context.startActivity(intent)
 
 

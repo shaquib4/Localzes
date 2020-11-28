@@ -42,7 +42,8 @@ class PastOrdersActivity : AppCompatActivity() {
                         i.child("orderBy").value.toString(),
                         i.child("orderTo").value.toString(),
                         i.child("orderQuantity").value.toString(),
-                        i.child("deliveryAddress").value.toString()
+                        i.child("deliveryAddress").value.toString(),
+                        i.child("paymentMode").value.toString()
                     )
                     if (i.child("orderStatus").value.toString() == "Completed") {
                         (mOrderedItem as ArrayList<ModelOrderDetails>).add(obj)

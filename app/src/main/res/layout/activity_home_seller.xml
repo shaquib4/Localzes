@@ -15,10 +15,10 @@
         app:menu="@menu/seller_menu" />
 
     <ScrollView
-        android:layout_marginBottom="@dimen/_40sdp"
         android:id="@+id/SV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_40sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,6 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_250sdp"
                     android:background="@drawable/localze_shop" />
+
                 <ImageView
                     android:id="@+id/editShopDetails"
                     android:layout_width="@dimen/_30sdp"
@@ -66,11 +67,11 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:fontFamily="@font/montserrat_medium"
                             android:id="@+id/txtShare"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignStart="@+id/txtConnect"
+                            android:fontFamily="@font/montserrat_medium"
                             android:padding="5dp"
                             android:text="@string/share_link_on_social_media"
                             android:textColor="#000000"
@@ -83,9 +84,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txtShare"
                             android:layout_marginHorizontal="10dp"
+                            android:fontFamily="@font/montserrat_medium"
                             android:text="@string/connect_with_your_customer_for_visit_your_online_store_easly"
                             android:textColor="#696969"
-                            android:fontFamily="@font/montserrat_medium"
                             android:textSize="@dimen/_9ssp" />
 
                         <TextView
@@ -95,10 +96,10 @@
                             android:layout_below="@id/txtConnect"
                             android:layout_alignStart="@+id/txtShare"
                             android:layout_marginTop="20dp"
+                            android:fontFamily="@font/montserrat_medium"
                             android:padding="5dp"
                             android:text="@string/www_localze_com"
                             android:textColor="#3498db"
-                            android:fontFamily="@font/montserrat_medium"
 
                             android:textSize="@dimen/_12ssp" />
 
@@ -309,90 +310,93 @@
                     android:weightSum="3">
 
                     <RelativeLayout
-                        android:layout_marginHorizontal="@dimen/_5sdp"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/_5sdp"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle_box"
-                        android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/txtTotalOrders"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                      android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="Total Orders"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_9ssp" />
+                        android:background="@drawable/rectangle_box">
 
                         <TextView
+                            android:id="@+id/txtTotalOrders"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Total Orders"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_9ssp" />
+
+                        <TextView
                             android:id="@+id/txtTO"
-                            android:text="0"
-                            android:fontFamily="@font/montserrat_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_below="@+id/txtTotalOrders"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginVertical="@dimen/_5sdp"
-                            android:textSize="@dimen/_10ssp"
-                            android:layout_centerHorizontal="true"/>
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="0"
+                            android:textSize="@dimen/_10ssp" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_marginHorizontal="@dimen/_5sdp"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/_5sdp"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangle_box"
-                        android:layout_height="match_parent">
+                        android:background="@drawable/rectangle_box">
 
-                    <TextView
-                        android:id="@+id/txtTotalIncome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                       android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="Total Income"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_9ssp" />
                         <TextView
+                            android:id="@+id/txtTotalIncome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Total Income"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_9ssp" />
+
+                        <TextView
                             android:id="@+id/txtTI"
-                            android:text="0"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:layout_below="@+id/txtTotalIncome"
-                            android:layout_marginVertical="@dimen/_5sdp"
-                            android:textSize="@dimen/_10ssp"
-                            android:layout_centerHorizontal="true"/>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_marginHorizontal="@dimen/_5sdp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rectangle_box"
-                        android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/txtStoreViews"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                       android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="Store Views"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_9ssp" />
-                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/txtSV"
-                            android:text="0"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:layout_below="@+id/txtStoreViews"
+                            android:layout_below="@+id/txtTotalIncome"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginVertical="@dimen/_5sdp"
-                            android:textSize="@dimen/_10ssp"
-                            android:layout_centerHorizontal="true"/>
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="0"
+                            android:textSize="@dimen/_10ssp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rectangle_box">
+
+
+                        <TextView
+                            android:id="@+id/txtStoreViews"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Store Views"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_9ssp" />
+
+                        <TextView
+                            android:id="@+id/txtSV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtStoreViews"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="0"
+                            android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>

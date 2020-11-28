@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.localzes.Modals.ModelAddProduct
@@ -19,6 +21,7 @@ class AddProduct : AppCompatActivity() {
     private lateinit var products: ModelAddProduct
     private lateinit var mCartDatabaseRef: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var radioGroup:RadioGroup
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
@@ -27,9 +30,13 @@ class AddProduct : AppCompatActivity() {
         image_view.setOnClickListener {
             startImageChooser()
         }
+        radioGroup=findViewById(R.id.radioStock)
 
         btnAddProduct.setOnClickListener {
-            uploadData()
+            val id=radioGroup.checkedRadioButtonId
+            val radioButton=findViewById<RadioButton>(id)
+            val stock=radioButton.text
+            uploadData(stock)
             val intent=Intent(this,Seller_Products::class.java)
             startActivity(intent)
             finish()
@@ -53,7 +60,7 @@ class AddProduct : AppCompatActivity() {
         }
     }
 
-    private fun uploadData() {
+    private fun uploadData(stock: CharSequence) {
         if (imagePath != null) {
             val timestamp: String =  System.currentTimeMillis().toString()
             val productRef =
@@ -74,7 +81,8 @@ class AddProduct : AppCompatActivity() {
                             etSellPrice.text.toString().trim(),
                             etOfferPrice.text.toString().trim(),
                             sp_unit.selectedItem.toString(),
-                            etQuantity.text.toString().trim()
+                            etQuantity.text.toString().trim(),
+                            stock.toString()
                         )
 
 

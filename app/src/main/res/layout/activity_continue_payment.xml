@@ -185,7 +185,7 @@
                 android:textSize="@dimen/_12ssp" />
 
             <TextView
-                android:id="@+id/txtToralPrice"
+                android:id="@+id/txtTotalPayPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view1"
@@ -235,7 +235,7 @@
                 android:background="@drawable/proceed_to_add"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Continue"
-                android:id="@+id/btnContinue"
+                android:id="@+id/btnPayContinue"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/_12ssp" />
 

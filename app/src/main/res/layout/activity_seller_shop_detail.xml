@@ -80,9 +80,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/card"
                     android:layout_margin="@dimen/_7sdp"
-                    android:textSize="@dimen/_8ssp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Add shop image (optional)" />
+                    android:text="Add shop image (optional)"
+                    android:textSize="@dimen/_8ssp" />
 
 
                 <View
@@ -134,12 +134,12 @@
                     android:fontFamily="@font/montserrat_medium"
                     android:gravity="center_vertical"
                     android:hint="Shop Name"
-                    android:textSize="@dimen/_12ssp"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:padding="@dimen/_7sdp"
                     android:paddingStart="@dimen/_12sdp"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="@dimen/_12ssp" />
 
                 <EditText
                     android:id="@+id/edtPay"
@@ -154,10 +154,10 @@
                     android:hint="UPI ID (optional)"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:textSize="@dimen/_12ssp"
                     android:padding="@dimen/_7sdp"
                     android:paddingStart="@dimen/_12sdp"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="@dimen/_12ssp" />
 
                 <Button
                     android:id="@+id/upload"
@@ -189,11 +189,11 @@
 
 
                 <LinearLayout
-                    android:layout_marginHorizontal="@dimen/_7sdp"
                     android:id="@+id/ll1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtTime"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
                     android:orientation="horizontal"
                     android:weightSum="4">
 
@@ -212,17 +212,18 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:background="@drawable/textview_border"
                         android:layout_width="0dp"
+                        android:layout_height="@dimen/_32sdp"
                         android:layout_weight="1.5"
-                        android:layout_height="@dimen/_32sdp">
-                    <Spinner
-                        android:textAlignment="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:entries="@array/Spinner_Hours" />
-                    </RelativeLayout>
+                        android:background="@drawable/textview_border">
 
+                        <Spinner
+                            android:id="@+id/openTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:entries="@array/Spinner_Hours"
+                            android:textAlignment="center" />
+                    </RelativeLayout>
 
 
                     <RelativeLayout
@@ -240,53 +241,58 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:background="@drawable/textview_border"
                         android:layout_width="0dp"
+                        android:layout_height="@dimen/_32sdp"
                         android:layout_weight="1.5"
-                        android:layout_height="@dimen/_32sdp">
+                        android:background="@drawable/textview_border">
+
                         <Spinner
-                            android:textAlignment="center"
+                            android:id="@+id/closeTime"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:entries="@array/Spinner_Hours" />
+                            android:entries="@array/Spinner_Hours"
+                            android:textAlignment="center" />
                     </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_below="@+id/ll1"
                     android:id="@+id/ll2"
-                    android:layout_marginHorizontal="@dimen/_7sdp"
-                    android:weightSum="2"
-                    android:layout_marginVertical="@dimen/_10sdp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll1"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <RelativeLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent">
-                    <TextView
-                        android:textColor="#000"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                     android:layout_centerInParent="true"
-                        android:textSize="@dimen/_10ssp"
-                        android:text="Select Shop's Closing Day"/>
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Select Shop's Closing Day"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
 
 
                     <RelativeLayout
-                        android:background="@drawable/textview_border"
                         android:layout_width="0dp"
+                        android:layout_height="@dimen/_32sdp"
                         android:layout_weight="1"
-                        android:layout_height="@dimen/_32sdp">
+                        android:background="@drawable/textview_border">
+
                         <Spinner
-                            android:textAlignment="center"
+                            android:id="@+id/closeDay"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:entries="@array/Spinner_Days" />
+                            android:entries="@array/Spinner_Days"
+                            android:textAlignment="center" />
                     </RelativeLayout>
 
                 </LinearLayout>

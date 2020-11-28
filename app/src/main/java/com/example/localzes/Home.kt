@@ -90,8 +90,10 @@ class Home : AppCompatActivity() {
                         i.child("city").value.toString(),
                         i.child("pinCode").value.toString(),
                         i.child("state").value.toString(),
-                        i.child("country").value.toString()
-
+                        i.child("country").value.toString(),
+                        i.child("openingTime").value.toString(),
+                        i.child("closingTime").value.toString(),
+                        i.child("closingDay").value.toString()
                     )
                     (shops as ArrayList<Upload>).add(obj)
                     progress_home.visibility=View.GONE

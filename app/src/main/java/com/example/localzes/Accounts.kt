@@ -34,7 +34,7 @@ class Accounts : AppCompatActivity() {
         userAuth= FirebaseAuth.getInstance()
         val user=userAuth.currentUser
         val uid=user!!.uid
-        databaseReference=FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        databaseReference=FirebaseDatabase.getInstance().reference.child("users").child(uid)
             databaseReference.addValueEventListener(object:ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
 
