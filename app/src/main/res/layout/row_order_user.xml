@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#fcfcfc"
     android:orientation="vertical">
 
@@ -22,8 +22,8 @@
                 android:id="@+id/cardProduct1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
                 android:layout_marginLeft="3dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginRight="3dp"
                 app:cardCornerRadius="10dp">
 
@@ -33,109 +33,122 @@
 
                     <ImageView
                         android:id="@+id/imgProduct1"
-                        android:scaleType="fitCenter"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_60sdp"
                         android:layout_margin="@dimen/_10sdp"
+                        android:scaleType="fitCenter"
                         android:src="@drawable/lanju" />
 
                     <ImageView
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_below="@+id/txtShopName"
                         android:id="@+id/imgBorder1"
                         android:layout_width="match_parent"
-                        android:layout_marginHorizontal="10dp"
-                        android:background="#f1f1f1"
                         android:layout_height="1dp"
-                    />
-
+                        android:layout_below="@+id/txtMobile"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="#f1f1f1" />
 
 
                     <TextView
-                        android:fontFamily="@font/montserrat_medium"
-                        android:layout_toRightOf="@+id/imgProduct1"
                         android:id="@+id/totalItemsCustomerTv"
-                        android:textColor="#696969"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        android:textSize="@dimen/_10ssp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5 items"/>
-
-                    <TextView
-                        android:fontFamily="@font/montserrat_bold"
-                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_toRightOf="@+id/imgProduct1"
-                        android:layout_below="@+id/totalItemsCustomerTv"
-                        android:id="@+id/orderAmountCustomerTv"
-                        android:textColor="#de4500"
-                        android:textSize="@dimen/_15ssp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rs. 499/-"/>
-                    <TextView
-                        android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:layout_toLeftOf="@+id/txtCod1"
-                        android:layout_below="@+id/orderAmountCustomerTv"
-                        android:id="@+id/txtShopName"
-                        android:textColor="#555555"
-                        android:textSize="@dimen/_10ssp"
-                        android:layout_toRightOf="@+id/imgProduct1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="47/118B Anarkali Gali, Lundpur, UP - xxxxxx"/>
-
-                    <TextView
-                        android:fontFamily="@font/montserrat_bold"
-                        android:id="@+id/orderIdCustomerTv"
-                        android:padding="5dp"
-                        android:textSize="@dimen/_12ssp"
-                        android:textColor="#000000"
-                        android:layout_marginEnd="10dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Order Id #142197"/>
-
-                    <TextView
-android:layout_above="@+id/imgBorder1"
-                        android:layout_margin="10dp"
-                        android:id="@+id/txtCod1"
-                        android:padding="5dp"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/_13ssp"
-                        android:layout_alignRight="@id/orderIdCustomerTv"
-                        android:background="@drawable/bg_add_item"
-                        android:textColor="#de4500"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="COD"/>
-                    <TextView
-                       android:layout_alignParentEnd="true"
-                        android:id="@+id/orderDateTv"
-                        android:padding="5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:layout_margin="10dp"
-                        android:textSize="@dimen/_10ssp"
+                        android:text="5 items"
                         android:textColor="#696969"
-                        android:layout_below="@+id/imgBorder1"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <TextView
+                        android:id="@+id/orderAmountCustomerTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="01/01/2021, 3:45 PM"/>
+                        android:layout_below="@+id/totalItemsCustomerTv"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/imgProduct1"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Rs. 499/-"
+                        android:textColor="#de4500"
+                        android:textSize="@dimen/_15ssp" />
+
+                    <TextView
+                        android:id="@+id/txtShopName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/orderAmountCustomerTv"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toStartOf="@+id/txtCod1"
+                        android:layout_toEndOf="@+id/imgProduct1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Ratnakar Chaurasiya"
+                        android:textColor="#555555"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/txtMobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtShopName"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toStartOf="@+id/txtCod1"
+                        android:layout_toEndOf="@+id/imgProduct1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="+91 7518894470"
+                        android:textColor="#555555"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <TextView
+                        android:id="@+id/orderIdCustomerTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:padding="5dp"
+                        android:text="Order Id #142197"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/txtCod1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/imgBorder1"
+                        android:layout_alignEnd="@id/orderIdCustomerTv"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/bg_add_item"
+                        android:padding="5dp"
+                        android:text="COD"
+                        android:textColor="#de4500"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/orderDateTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgBorder1"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:padding="5dp"
+                        android:text="01/01/2021, 3:45 PM"
+                        android:textColor="#696969"
+                        android:textSize="@dimen/_10ssp" />
 
                     <TextView
                         android:id="@+id/orderStatusCustomerTv"
-                        android:layout_margin="10dp"
-                        android:padding="5dp"
-                        android:background="@drawable/rectangle_box"
-                        android:layout_below="@id/imgBorder1"
-                        android:textColor="#08B000"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:textSize="@dimen/_10ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="IN PROGRESS"/>
+                        android:layout_below="@id/imgBorder1"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/rectangle_box"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:padding="5dp"
+                        android:text="IN PROGRESS"
+                        android:textColor="#08B000"
+                        android:textSize="@dimen/_10ssp" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
