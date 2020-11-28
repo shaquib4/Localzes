@@ -1,69 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imgAlert"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="200sp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"
-        android:background="#ff0000"
-        android:src="@drawable/ic_warning_black_18dp" />
-
-    <TextView
-        android:id="@+id/txtMessage"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgAlert"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Adding a new product from new shop will clear your cart"
-        android:textAlignment="center" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/confirmation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtMessage"
-        android:layout_marginTop="1dp"
-        android:text="Do you still want to continue ?"
-        android:textAlignment="center" />
+        <TextView
+            android:id="@+id/txtANI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Adding New Item"
+            android:textColor="#000000"
+            android:textSize="@dimen/_12ssp" />
 
-    <View
-        android:id="@+id/view6"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/confirmation"
-        android:layout_marginTop="25sp"
-        android:background="#000000" />
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/txtANI"
+            android:background="#d3d3d3" />
 
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="180sp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view6"
-        android:background="@drawable/bg_ractangle_rounded_stroke"
-        android:backgroundTint="@color/acidGreen"
-        android:elevation="2dp"
-        android:text="CANCEL" />
+        <ImageView
+            android:layout_margin="@dimen/_5sdp"
+            android:id="@+id/imgAlert"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_below="@id/view1"
+           android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_baseline_sentiment_very_dissatisfied_24" />
 
-    <Button
-        android:id="@+id/btnConfirm"
-        android:layout_width="180sp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view6"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/bg_ractangle_rounded_stroke"
-        android:backgroundTint="@color/acidGreen"
-        android:elevation="2dp"
-        android:text="OK" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/btnCancel"
-        android:background="#000000"/>
+        <TextView
+            android:id="@+id/txtMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgAlert"
+            android:textSize="@dimen/_10ssp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Adding a new product from new shop will clear your cart" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/confirmation"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtMessage"
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:textSize="@dimen/_10ssp"
+            android:text="Do you still want to continue ?" />
+
+        <LinearLayout
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/confirmation">
+
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btnCancel"
+                android:layout_width="180sp"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/montserrat_bold"
+              android:background="#d3d3d3"
+                android:text="CANCEL" />
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btnConfirm"
+                android:layout_width="180sp"
+                android:textColor="#fff"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12ssp"
+                android:background="#de4500"
+                android:text="Confirm" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

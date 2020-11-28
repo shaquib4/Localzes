@@ -75,6 +75,7 @@
 
                 <TextView
                     android:id="@+id/txtAddShopImage"
+                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/card"
@@ -102,6 +103,7 @@
                     android:layout_marginStart="@dimen/_13sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Choose shop category"
                     android:textSize="17sp" />
 
@@ -125,10 +127,12 @@
                     android:layout_height="@dimen/_35sdp"
                     android:layout_below="@+id/spn_category"
                     android:layout_marginHorizontal="@dimen/_7sdp"
+                    android:maxLines="1"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
                     android:gravity="center_vertical"
                     android:hint="Shop Name"
+                    android:fontFamily="@font/montserrat_medium"
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/_7sdp"
                     android:paddingStart="@dimen/_12sdp"
@@ -138,6 +142,7 @@
                     android:id="@+id/edtPay"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
+                    android:maxLines="1"
                     android:layout_below="@+id/edtName"
                     android:layout_marginHorizontal="@dimen/_7sdp"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -146,6 +151,7 @@
                     android:hint="UPI ID (optional)"
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/_7sdp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:paddingStart="@dimen/_12sdp"
                     android:singleLine="true" />
 
@@ -158,12 +164,21 @@
                     android:layout_marginHorizontal="@dimen/_22sdp"
                     android:layout_marginTop="120dp"
                     android:background="@drawable/round2_btn"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:fontFamily="@font/montserrat_bold"
                     android:text="Upload"
                     android:textAllCaps="false"
                     android:textColor="#fcfcfc"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_below="@+id/edtPay"
+                    android:text="Select Activity Hours"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
 
             </RelativeLayout>
 

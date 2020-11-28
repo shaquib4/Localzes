@@ -26,6 +26,10 @@
         <item>litre</item>
         <item>meter</item>
     </string-array>
+    <string-array name="Stock">
+        <item>IN</item>
+        <item>OUT</item>
+    </string-array>
     <string-array name="Spinner_Item1">
         <item>Mobile</item>
         <item>Laptop</item>
