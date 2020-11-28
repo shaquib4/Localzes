@@ -19,7 +19,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardProduct1"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginBottom="5dp"
@@ -38,12 +38,14 @@
                         android:src="@drawable/lanju" />
 
                     <ImageView
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:layout_below="@id/txtMobile"
                         android:id="@+id/imgBorder1"
                         android:layout_width="match_parent"
                         android:layout_marginHorizontal="10dp"
                         android:background="#f1f1f1"
                         android:layout_height="1dp"
-                        android:layout_marginTop="100dp"/>
+                      />
 
 
 
@@ -69,16 +71,30 @@
                         android:layout_height="wrap_content"
                         android:text="Rs. 499"/>
                     <TextView
-                        android:id="@+id/orderDeliveryAddress"
+                        android:id="@+id/txtShopName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/orderAmountTv"
+                        android:layout_below="@+id/orderAmountTv"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toStartOf="@+id/txtCod1"
+                        android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
+                        android:text="Ratnakar Chaurasiya"
+                        android:textColor="#555555"
+                        android:textSize="@dimen/_11ssp" />
 
-                        android:layout_toRightOf="@id/imgProduct1"
-                        android:textColor="#696969"
-                        android:textSize="@dimen/_10ssp"
-                        android:text="Delivery Address"/>
+                    <TextView
+                        android:id="@+id/txtMobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtShopName"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toStartOf="@+id/txtCod1"
+                        android:layout_toEndOf="@+id/imgProduct1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="+91 7518894470"
+                        android:textColor="#555555"
+                        android:textSize="@dimen/_10ssp" />
 
                     <TextView
                         android:id="@+id/orderIdTv"
@@ -109,7 +125,7 @@
                     <TextView
                         android:id="@+id/orderDateTv"
                         android:padding="5dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginEnd="10dp"
                         android:textSize="@dimen/_10ssp"
                         android:layout_alignRight="@+id/orderIdTv"
                         android:textColor="#696969"
@@ -120,7 +136,7 @@
 
                     <TextView
                         android:id="@+id/orderStatusTv"
-                        android:layout_margin="10dp"
+                        android:layout_marginStart="10dp"
                         android:padding="5dp"
                         android:fontFamily="@font/montserrat_medium"
                         android:background="@drawable/rectangle_box"
