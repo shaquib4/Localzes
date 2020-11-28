@@ -150,7 +150,7 @@ class UserProductsActivity : AppCompatActivity() {
                         totalCost+=j
                     }
                     for (k in sellingPriceList){
-                     totalOriginalPrice+=k
+                        totalOriginalPrice+=k
                     }
 
                     (cartItems as ArrayList<UserCartDetails>).add(obj)
@@ -171,7 +171,7 @@ class UserProductsActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
-                     if (cartItems.isEmpty()){
+                    if (cartItems.isEmpty()){
                         cartRelativeLayout.visibility=View.GONE
                     }
                 }
@@ -180,7 +180,7 @@ class UserProductsActivity : AppCompatActivity() {
     }
 
     private fun searchUserProducts(str:String){
-      val  queryProduct =
+        val  queryProduct =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString()).child("Products").orderByChild("title")
                 .startAt(str)
                 .endAt(str + "\uf8ff")

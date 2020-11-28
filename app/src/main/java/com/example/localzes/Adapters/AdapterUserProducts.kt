@@ -135,7 +135,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                         finalSellingPrice,
                         userProducts.sellingPrice
                     )
-                    holder.addItem.visibility = View.VISIBLE
+                    holder.addItem.visibility = View.GONE
+                    show.dismiss()
                 }
                 cancel.setOnClickListener {
                     show.dismiss()
