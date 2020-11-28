@@ -29,7 +29,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Welcome to localze"
                     android:textColor="#De4500"
-                    android:textSize="21sp"
+                    android:textSize="@dimen/_15ssp"
 
                     />
 
@@ -59,10 +59,11 @@
 
                     <ImageView
 
-                        android:layout_width="155dp"
-                        android:layout_height="155dp"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_add_image" />
+
                     <ImageView
                         android:id="@+id/choose_image"
                         android:layout_width="match_parent"
@@ -75,11 +76,12 @@
 
                 <TextView
                     android:id="@+id/txtAddShopImage"
-                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/card"
                     android:layout_margin="@dimen/_7sdp"
+                    android:textSize="@dimen/_8ssp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Add shop image (optional)" />
 
 
@@ -101,19 +103,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_13sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="Choose shop category"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/_10ssp" />
 
                 <Spinner
                     android:id="@+id/spn_category"
                     android:layout_width="@dimen/_110sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="@dimen/_32sdp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/_7sdp"
                     android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
                     android:layout_marginRight="@dimen/_7sdp"
                     android:layout_toRightOf="@+id/txtChooseCategory"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
@@ -124,16 +126,17 @@
                 <EditText
                     android:id="@+id/edtName"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="@dimen/_32sdp"
                     android:layout_below="@+id/spn_category"
                     android:layout_marginHorizontal="@dimen/_7sdp"
-                    android:maxLines="1"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:fontFamily="@font/montserrat_medium"
                     android:gravity="center_vertical"
                     android:hint="Shop Name"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="@dimen/_12ssp"
                     android:inputType="textEmailAddress"
+                    android:maxLines="1"
                     android:padding="@dimen/_7sdp"
                     android:paddingStart="@dimen/_12sdp"
                     android:singleLine="true" />
@@ -141,17 +144,18 @@
                 <EditText
                     android:id="@+id/edtPay"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:maxLines="1"
+                    android:layout_height="@dimen/_32sdp"
                     android:layout_below="@+id/edtName"
                     android:layout_marginHorizontal="@dimen/_7sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
+                    android:fontFamily="@font/montserrat_medium"
                     android:gravity="center_vertical"
                     android:hint="UPI ID (optional)"
                     android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:textSize="@dimen/_12ssp"
                     android:padding="@dimen/_7sdp"
-                    android:fontFamily="@font/montserrat_medium"
                     android:paddingStart="@dimen/_12sdp"
                     android:singleLine="true" />
 
@@ -159,10 +163,10 @@
                     android:id="@+id/upload"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_32sdp"
-                    android:layout_below="@+id/edtPay"
+                    android:layout_below="@+id/ll2"
                     android:layout_gravity="bottom"
                     android:layout_marginHorizontal="@dimen/_22sdp"
-                    android:layout_marginTop="120dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/round2_btn"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Upload"
@@ -173,18 +177,124 @@
 
                 <TextView
                     android:id="@+id/txtTime"
-                    android:layout_below="@+id/edtPay"
-                    android:text="Select Activity Hours"
-                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:layout_below="@+id/edtPay"
+                    android:layout_alignLeft="@+id/edtPay"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Select Shop's Activity Hours"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_10ssp" />
+
+
+                <LinearLayout
+                    android:layout_marginHorizontal="@dimen/_7sdp"
+                    android:id="@+id/ll1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtTime"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Open"
+                            android:textSize="@dimen/_10ssp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:background="@drawable/textview_border"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:layout_height="@dimen/_32sdp">
+                    <Spinner
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:entries="@array/Spinner_Hours" />
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Close"
+                            android:textSize="@dimen/_10ssp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:background="@drawable/textview_border"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:layout_height="@dimen/_32sdp">
+                        <Spinner
+                            android:textAlignment="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:entries="@array/Spinner_Hours" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/ll1"
+                    android:id="@+id/ll2"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
+                    android:weightSum="2"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+                    <TextView
+                        android:textColor="#000"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:layout_centerInParent="true"
+                        android:textSize="@dimen/_10ssp"
+                        android:text="Select Shop's Closing Day"/>
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:background="@drawable/textview_border"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="@dimen/_32sdp">
+                        <Spinner
+                            android:textAlignment="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:entries="@array/Spinner_Days" />
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </RelativeLayout>
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
 </LinearLayout>

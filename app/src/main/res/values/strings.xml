@@ -51,6 +51,43 @@
         <item>Internet Cafe</item>
         <item>Digital Shop</item>
     </string-array>
+    <string-array name="Spinner_Days">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+    <string-array name="Spinner_Hours">
+        <item>12:00 AM</item>
+        <item>1:00 AM</item>
+        <item>2:00 AM</item>
+        <item>3:00 AM</item>
+        <item>4:00 AM</item>
+        <item>5:00 AM</item>
+        <item>6:00 AM</item>
+        <item>7:00 AM</item>
+        <item>8:00 AM</item>
+        <item>9:00 AM</item>
+        <item>10:00 AM</item>
+        <item>11:00 AM</item>
+        <item>12:00 PM</item>
+        <item>1:00 PM</item>
+        <item>2:00 PM</item>
+        <item>3:00 PM</item>
+        <item>4:00 PM</item>
+        <item>5:00 PM</item>
+        <item>6:00 PM</item>
+        <item>7:00 PM</item>
+        <item>8:00 PM</item>
+        <item>9:00 PM</item>
+        <item>10:00 PM</item>
+        <item>11:00 PM</item>
+
+
+    </string-array>
     <string name="dashboard">Dashboard</string>
     <string name="Profile">Profile</string>
     <string name="Favourites">Favourites</string>
