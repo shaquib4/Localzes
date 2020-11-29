@@ -23,7 +23,7 @@ class AdapterSellerOrders(
         val orderAmountTv: TextView = view.findViewById(R.id.orderAmountTv)
         val orderStatusTv: TextView = view.findViewById(R.id.orderStatusTv)
         val totalItemsTv:TextView=view.findViewById(R.id.totalItemsTv)
-        val orderDeliveryAddress:TextView=view.findViewById(R.id.orderDeliveryAddress)
+        //val orderDeliveryAddress:TextView=view.findViewById(R.id.orderDeliveryAddress)
 
     }
 
@@ -66,7 +66,7 @@ class AdapterSellerOrders(
         val date= Date(sellerOrders.orderTime.toLong())
         val formattedDate=sdf.format(date)
         holder.orderDateTv.text=formattedDate
-        holder.orderDeliveryAddress.text=sellerOrders.deliveryAddress
+        //holder.orderDeliveryAddress.text=sellerOrders.deliveryAddress
         holder.itemView.setOnClickListener {
             val intent= Intent(context,
                 OrdersDetailsSellerActivity::class.java)

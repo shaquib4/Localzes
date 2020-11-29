@@ -2,6 +2,8 @@ package com.example.localzes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterUserOrderHistory
@@ -15,9 +17,11 @@ class PastOrdersActivity : AppCompatActivity() {
     private lateinit var pastOrderHistoryDatabase: DatabaseReference
     private lateinit var userAuth: FirebaseAuth
     private lateinit var mOrderedItem: List<ModelOrderDetails>
+    private lateinit var relativePast:RelativeLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_past_orders)
+        relativePast=findViewById(R.id.rl_Past_orders)
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
@@ -50,12 +54,19 @@ class PastOrdersActivity : AppCompatActivity() {
                     }
 
                 }
-                userPastOrderAdapter =
-                    AdapterUserOrderHistory(
-                        this@PastOrdersActivity,
-                        mOrderedItem
-                    )
-                recyclerOrderDetails.adapter = userPastOrderAdapter
+                if(mOrderedItem.isEmpty()){
+                    recyclerOrderDetails.visibility= View.GONE
+                } else{
+                    relativePast.visibility=View.GONE
+                    recyclerOrderDetails.visibility=View.VISIBLE
+                    userPastOrderAdapter =
+                        AdapterUserOrderHistory(
+                            this@PastOrdersActivity,
+                            mOrderedItem
+                        )
+                    recyclerOrderDetails.adapter = userPastOrderAdapter
+                }
+
             }
         })
     }

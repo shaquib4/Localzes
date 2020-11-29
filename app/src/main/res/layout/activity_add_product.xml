@@ -302,14 +302,13 @@
 
                     <RadioButton
                         android:checked="true"
-                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="IN" />
 
                     <RadioButton
-
-                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="OUT" />

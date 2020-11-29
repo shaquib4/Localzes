@@ -35,7 +35,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:id="@+id/rl_Out_For_delivery">
 
         <ImageView
@@ -62,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view1"
-        tools:listitem="@layout/row_order_seller" />
+        tools:listitem="@layout/row_order_seller"
+        android:visibility="gone"/>
 
 </RelativeLayout>
