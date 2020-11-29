@@ -96,7 +96,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
         val pendingIntent:PendingIntent= PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT)
-        val largeIcon:Bitmap=BitmapFactory.decodeResource(resources,R.drawable.ic_localze)
+        val largeIcon:Bitmap=BitmapFactory.decodeResource(resources,R.drawable.localze_shop)
         val notificationSoundUri: Uri =RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder: NotificationCompat.Builder=NotificationCompat.Builder(this,NOTIFICATION_CHANNEL_ID)
         notificationBuilder.setSmallIcon(R.drawable.ic_localze)

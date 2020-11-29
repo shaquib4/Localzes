@@ -295,23 +295,23 @@
 
                 <RadioGroup
                     android:id="@+id/radioStock"
+                    android:orientation="horizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:layout_weight="1">
 
                     <RadioButton
+                        android:checked="true"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:checked="true"
                         android:text="IN" />
 
                     <RadioButton
 
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_20sdp"
                         android:text="OUT" />
                 </RadioGroup>
 

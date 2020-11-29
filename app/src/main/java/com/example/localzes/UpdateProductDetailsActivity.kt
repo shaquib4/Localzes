@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -116,28 +117,34 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
 
         } else {
             val filePathName = "uploads/$productId.jpg"
+            val user = updateAuth.currentUser
+            val uid = user!!.uid
             val storageReference: StorageReference =
-                FirebaseStorage.getInstance().getReference(filePathName)
+                FirebaseStorage.getInstance().reference.child(filePathName)
             storageReference.putFile(imagePathUpdate).addOnSuccessListener {
-                val uriTask = it.storage.downloadUrl
-                val downloadImageUri = uriTask.result
-                if (uriTask.isSuccessful) {
-                    val user = updateAuth.currentUser
-                    val uid = user!!.uid
-                    val headers = HashMap<String, Any>()
-                    headers["imageUrl"] = downloadImageUri
-                    headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
-                    headers["productCategory"] = categoryUpdate.selectedItem.toString().trim()
-                    headers["quantity"] = quantityUpdate.text.toString().trim()
-                    headers["sellingPrice"] = sellPriceUpdate.text.toString().trim()
-                    headers["title"] = productName.text.toString().trim()
-                    headers["unit"] = unitUpdate.selectedItem.toString().trim()
-                    headers["description"] = descriptionUpdate.text.toString().trim()
-                    databaseRef.child("Products").child(productId.toString()).setValue(headers)
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Item Updated Successfully", Toast.LENGTH_SHORT)
-                                .show()
-                        }
+                storageReference.downloadUrl.addOnSuccessListener {
+                    val imageUrl: Uri = it
+                    val request = UserProfileChangeRequest.Builder().setPhotoUri(it).build()
+                    user.updateProfile(request).addOnSuccessListener {
+                        val headers = HashMap<String, Any>()
+                        headers["imageUrl"] = imageUrl.toString()
+                        headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
+                        headers["productCategory"] = categoryUpdate.selectedItem.toString().trim()
+                        headers["quantity"] = quantityUpdate.text.toString().trim()
+                        headers["sellingPrice"] = sellPriceUpdate.text.toString().trim()
+                        headers["title"] = productName.text.toString().trim()
+                        headers["unit"] = unitUpdate.selectedItem.toString().trim()
+                        headers["description"] = descriptionUpdate.text.toString().trim()
+                        databaseRef.child("Products").child(productId.toString()).setValue(headers)
+                            .addOnSuccessListener {
+                                Toast.makeText(
+                                    this,
+                                    "Item Updated Successfully",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                            }
+                    }
                 }
             }
         }

@@ -5,12 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PastOrdersActivity">
+    <ImageView
+        android:id="@+id/imgBackPast"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:src="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/txtPO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_toRightOf="@id/imgBackPast"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Past Orders"
+        android:textColor="#000000"
+        android:textSize="@dimen/_13ssp" />
+
+    <View
+        android:id="@id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/imgBackPast"
+        android:background="#d3d3d3" />
+
+    <RelativeLayout
+        android:id="@+id/rl_Past_orders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgEmpty"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgEmpty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="No past orders yet!"
+            android:textColor="#696969"
+            android:textSize="@dimen/_15ssp" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerPastOrders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/row_order_user"/>
+        tools:listitem="@layout/row_order_user"
+        android:layout_below="@id/view1"
+        android:visibility="gone"/>
 
 
 </RelativeLayout>
