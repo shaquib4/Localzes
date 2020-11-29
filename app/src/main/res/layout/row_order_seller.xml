@@ -53,6 +53,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:id="@+id/totalItemsTv"
                         android:textColor="#696969"
+                        android:textSize="@dimen/_8ssp"
                         android:layout_marginTop="7dp"
                         android:layout_marginStart="100dp"
                         android:layout_width="wrap_content"
@@ -62,7 +63,7 @@
                     <TextView
                         android:id="@+id/orderAmountTv"
                         android:textColor="#de4500"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_13ssp"
                         android:fontFamily="@font/montserrat_bold"
 
                         android:layout_marginTop="25dp"
@@ -81,7 +82,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Ratnakar Chaurasiya"
                         android:textColor="#555555"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_10ssp" />
 
                     <TextView
                         android:id="@+id/txtMobile"

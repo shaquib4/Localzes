@@ -160,7 +160,7 @@
                 <Spinner
                     android:id="@+id/sp_spinner_add"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="@dimen/_32sdp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="20dp"
                     android:layout_weight="1"
@@ -295,17 +295,22 @@
 
                 <RadioGroup
                     android:id="@+id/radioStock"
+                    android:orientation="horizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
+                    android:layout_weight="1">
 
                     <RadioButton
-                        android:layout_width="match_parent"
+                        android:checked="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="IN" />
 
                     <RadioButton
-                        android:layout_width="match_parent"
+
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="OUT" />
                 </RadioGroup>
