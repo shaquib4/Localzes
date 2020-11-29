@@ -89,7 +89,6 @@
         android:textColor="#fff"
         android:textAllCaps="false"
         android:textSize="20dp"
-        android:textStyle="bold"
         android:fontFamily="@font/l_r"
         android:layout_height="42dp"
         android:background="@drawable/round2_btn"

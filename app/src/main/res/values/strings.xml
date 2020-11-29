@@ -19,75 +19,70 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="Spinner_items">
-        <font fontfamily="@font/montserrat_medium" size="10"><item>piece</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>litre</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>meter</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>kg</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>ml</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>gm</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>pound</item></font>
+        <item><font fontfamily="@font/montserrat_medium" size="10">piece</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">litre</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10"> meter </font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10"> gm </font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10"> kg </font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10"> pound </font></item>
     </string-array>
-    <string-array name="Stock">
-        <font fontfamily="@font/montserrat_medium" size="10"><item>IN</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>OUT</item></font>
-    </string-array>
+
     <string-array name="Spinner_Item1">
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Mobile</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Laptop</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Fan</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Cooler</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Refrigerator</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Television</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Camera</item></font>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Mobile</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Laptop</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Fan</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">AC</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Television</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Refrigerator</font></item>
     </string-array>
 
     <string-array name="Spinner_Category">
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Food</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Fashion</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Groceries</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Electronics</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Beauty Product</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Automobiles</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Medical</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Internet Cafe</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Digital Shop</item></font>
+       <item><font fontfamily="@font/montserrat_medium" size="10">Food</font></item>
+       <item><font fontfamily="@font/montserrat_medium" size="10">Fashion</font></item>
+       <item><font fontfamily="@font/montserrat_medium" size="10">Groceries</font></item>
+       <item><font fontfamily="@font/montserrat_medium" size="10">Electronics</font></item>
+       <item><font fontfamily="@font/montserrat_medium" size="10">Beauty Product</font></item>
+       <item><font fontfamily="@font/montserrat_medium" size="10">Medical</font></item>
+       <item><font fontfamily="@font/montserrat_medium" size="10">Automobiles</font></item>
+       <item><font fontfamily="@font/montserrat_medium" size="10">Internet Cafe</font></item>
+       <item><font fontfamily="@font/montserrat_medium" size="10">Digital Shop</font></item>
     </string-array>
     <string-array name="Spinner_Days">
-        <font fontfamily="@font/montserrat_medium" size="10"><item>None</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Sunday</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Monday</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"> <item>Tuesday</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Wednesday</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Thursday</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Friday</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>Saturday</item></font>
-    
+        <item><font fontfamily="@font/montserrat_medium" size="10">None</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Sunday</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Monday</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Tuesday</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Wednesday</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Thursday</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Friday</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">Saturday</font></item>
     </string-array>
     <string-array name="Spinner_Hours">
-        <font fontfamily="@font/montserrat_medium" size="10"><item>12:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>1:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>2:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>3:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>4:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>5:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>6:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>7:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>8:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>9:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>10:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>11:00 AM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>12:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>1:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>2:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>3:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>4:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>5:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>6:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>7:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>8:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>9:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>10:00 PM</item></font>
-        <font fontfamily="@font/montserrat_medium" size="10"><item>11:00 PM</item></font>
+        <item><font fontfamily="@font/montserrat_medium" size="10">12:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">1:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">2:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">3:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">4:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">5:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">6:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">7:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">8:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">9:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">10:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">11:00 AM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">12:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">1:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">2:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">3:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">4:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">5:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">6:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">7:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">8:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">9:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">10:00 PM</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="10">11:00 PM</font></item>
+
     </string-array>
     <string name="dashboard">Dashboard</string>
     <string name="Profile">Profile</string>

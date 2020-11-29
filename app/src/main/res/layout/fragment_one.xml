@@ -52,7 +52,7 @@
                     android:fontFamily="@font/montserrat_medium"
 
                     android:textColor="#000"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textSize="@dimen/_13ssp" />
 
 
 
@@ -63,7 +63,7 @@
                     android:layout_below="@+id/txtShop_name"
                     android:layout_marginStart="10dp"
                     android:text="Foods"
-                    android:textSize="@dimen/_13ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:fontFamily="@font/montserrat_medium" />
 
                 <ImageView

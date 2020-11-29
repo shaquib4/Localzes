@@ -41,7 +41,6 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="Shop Now"
         android:textColor="#fcfcfc"
-        android:textStyle="bold"
         android:textSize="@dimen/_15ssp"
         android:background="@drawable/round2_btn"
         />
@@ -73,8 +72,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Total Item :- 9"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textColor="#000000" />
 
 
         </LinearLayout>
@@ -155,7 +153,7 @@
                     android:text="Price Details"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textSize="22sp"
-                    android:textStyle="bold" />
+                   />
 
                 <View
                     android:id="@+id/view1"

@@ -121,8 +121,7 @@
                         android:padding="5dp"
                         android:text="COD"
                         android:textColor="#de4500"
-                        android:textSize="@dimen/_13ssp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_13ssp" />
 
                     <TextView
                         android:id="@+id/orderDateTv"

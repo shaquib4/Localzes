@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    app:cardCornerRadius="@dimen/_5sdp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,8 +35,7 @@
             android:layout_height="@dimen/_50sdp"
             android:layout_below="@id/view1"
            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_baseline_sentiment_very_dissatisfied_24" />
-
+            android:src="@drawable/ic_outline_notifications_active_24"/>
         <TextView
             android:id="@+id/txtMessage"
             android:layout_width="wrap_content"

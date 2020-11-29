@@ -59,8 +59,8 @@
                     android:layout_marginStart="10dp"
                     android:text="Rs. 699"
                     android:textColor="#de4500"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textSize="@dimen/_14ssp" />
 
                 <ImageView
                     android:id="@+id/imgRating_customer"
@@ -75,6 +75,7 @@
                     android:id="@+id/txtRatingShop_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_18sdp"
+                    android:fontFamily="@font/montserrat_bold"
 
                     android:layout_alignTop="@+id/txtProductTitle_customer"
                     android:layout_alignParentEnd="true"
@@ -85,11 +86,15 @@
                 <TextView
                     android:id="@+id/txtProductOfferPrice"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_12sdp"
-                    android:layout_alignStart="@+id/txtProductPrice_customer"
-                    android:text="Rs. 1099"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_toRightOf="@id/txtProductPrice_customer"
+                     android:text="Rs. 1099"
                     android:textSize="@dimen/_10ssp"
-                    android:layout_below="@+id/txtProductPrice_customer"/>
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:layout_alignBottom="@id/txtProductPrice_customer"
+                   />
 
 
             </RelativeLayout>

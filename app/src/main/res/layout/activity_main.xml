@@ -38,7 +38,6 @@
         android:textAllCaps="false"
         android:background="@drawable/round_button"
         android:text="Login | Sign Up"
-        android:textStyle="bold"
         android:fontFamily="@font/l_r"
         android:textSize="@dimen/_12ssp"
         android:textColor="#DE0606"/>

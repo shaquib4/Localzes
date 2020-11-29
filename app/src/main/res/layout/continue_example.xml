@@ -14,8 +14,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:textSize="@dimen/_35ssp"
-        android:textColor="#fff"
-        android:textStyle="bold"/>
+        android:textColor="#fff" />
 
     <TextView
         android:fontFamily="sans-serif-condensed-medium"
@@ -26,8 +25,7 @@
         android:layout_below="@+id/txtWelcome"
         android:layout_marginStart="@dimen/_10sdp"
         android:textSize="@dimen/_28ssp"
-        android:textColor="#fff"
-        android:textStyle="bold"/>
+        android:textColor="#fff" />
     <TextView
         android:fontFamily="@font/montserrat_bold"
         android:id="@+id/txtLocalze"
@@ -37,8 +35,7 @@
         android:layout_below="@+id/txtTo"
         android:layout_marginStart="@dimen/_10sdp"
         android:textSize="@dimen/_30ssp"
-        android:textColor="#fff"
-        android:textStyle="bold"/>
+        android:textColor="#fff" />
 
 
     <RelativeLayout
@@ -86,7 +83,6 @@
             android:id="@+id/txtCAS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="Continue as Seller"
             android:textSize="@dimen/_15ssp"
@@ -117,7 +113,6 @@
             android:id="@+id/txtCAD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="Continue as Deliver"
             android:textSize="@dimen/_15ssp"

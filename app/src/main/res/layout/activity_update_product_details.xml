@@ -220,7 +220,7 @@
                 android:id="@+id/btnUpdateProduct"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_32sdp"
-                android:layout_below="@+id/linearLayout4"
+                android:layout_below="@+id/linearLayout5"
                 android:layout_centerHorizontal="true"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
@@ -269,6 +269,55 @@
                     android:textAlignment="center" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout4"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Stock"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_12ssp" />
+                </RelativeLayout>
+
+                <RadioGroup
+                    android:id="@+id/radioStock"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:checked="true"
+                        android:text="IN" />
+
+                    <RadioButton
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:text="OUT" />
+                </RadioGroup>
+
+            </LinearLayout>
+
 
         </RelativeLayout>
     </LinearLayout>

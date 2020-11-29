@@ -39,7 +39,6 @@
             android:fontFamily="@font/montserrat_medium"
             android:text="Shop Now"
             android:textColor="#fcfcfc"
-            android:textStyle="bold"
             android:textSize="18sp"
             android:background="@drawable/round2_btn"
             />
@@ -101,8 +100,7 @@
                     android:padding="5dp"
                     android:text="Price Details"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <View
                     android:id="@+id/view5"
@@ -255,7 +253,7 @@
         <TextView
             android:layout_toEndOf="@+id/imgHome"
             android:id="@+id/txtArea"
-            android:textSize="@dimen/_11ssp"
+            android:textSize="@dimen/_10ssp"
             android:fontFamily="@font/montserrat_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -265,7 +263,7 @@
         <TextView
             android:layout_toEndOf="@+id/imgHome"
             android:id="@+id/txtTime"
-            android:textSize="@dimen/_11ssp"
+            android:textSize="@dimen/_10ssp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="21 mins"
@@ -281,18 +279,17 @@
             android:layout_height="wrap_content"
             android:text="Deliver to Home"
             android:textColor="#000000"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_11ssp"
             android:layout_marginTop="10dp"/>
         <TextView
             android:id="@+id/txtAddAddress"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
-            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="ADD ADDRESS"
             android:textColor="#de4500"
             android:fontFamily="@font/montserrat_bold"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
             android:layout_margin="10dp"/>
 
     </RelativeLayout>
@@ -334,8 +331,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000000"
             android:textSize="@dimen/_12ssp"
-            android:fontFamily="@font/montserrat_medium"
-            android:textStyle="bold" />
+            android:fontFamily="@font/montserrat_medium" />
     </LinearLayout>
     <View
         android:id="@+id/view3"

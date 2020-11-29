@@ -114,8 +114,8 @@
                         android:layout_margin="10dp"
                         android:id="@+id/txtCod1"
                         android:padding="5dp"
-                        android:textStyle="bold"
                         android:textSize="@dimen/_13ssp"
+                        android:fontFamily="@font/montserrat_bold"
                         android:layout_alignRight="@id/orderIdTv"
                         android:background="@drawable/bg_add_item"
                         android:layout_below="@id/orderIdTv"
@@ -136,6 +136,7 @@
                         android:text="01/01/2021, 3:45 PM"/>
 
                     <TextView
+                        android:layout_marginBottom="@dimen/_5sdp"
                         android:id="@+id/orderStatusTv"
                         android:layout_marginStart="10dp"
                         android:padding="5dp"

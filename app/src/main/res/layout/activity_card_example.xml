@@ -69,8 +69,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Rs. 699"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_12ssp" />
 
             <ImageView
                 android:id="@+id/imgRating_customer"

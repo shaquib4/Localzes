@@ -27,14 +27,14 @@
 
                 <TextView
                     android:id="@+id/ProductName"
+                    android:fontFamily="@font/montserrat_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
                     android:text="Nachos and dips"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#000000"
-                    android:textSize="@dimen/_20ssp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/Description"
@@ -42,8 +42,7 @@
                     android:layout_height="wrap_content"
                     android:padding="3dp"
                     android:text="Seller:Khan Baba"
-                    android:textSize="@dimen/_13ssp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_10ssp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -55,21 +54,23 @@
                         android:id="@+id/ProductPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_weight="1"
                         android:text="Rs.1000"
-                        android:textSize="@dimen/_15ssp" />
+                        android:textSize="@dimen/_12ssp" />
 
                     <TextView
                         android:id="@+id/ProductOfferPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
                         android:layout_marginStart="@dimen/_6sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_weight="1"
                         android:text="Rs.1000"
-                        android:textSize="@dimen/_17ssp" />
+                        android:textSize="@dimen/_12ssp" />
                 </LinearLayout>
 
                 <TextView
@@ -78,9 +79,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:text="Rs.850"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textColor="#de4500"
-                    android:textSize="@dimen/_22ssp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_15ssp" />
 
             </LinearLayout>
 
@@ -114,8 +115,7 @@
                         android:onClick="countDe"
                         android:text="-"
                         android:textColor="#696969"
-                        android:textSize="@dimen/_15ssp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <TextView
                         android:id="@+id/txtCounter"
@@ -126,8 +126,7 @@
                         android:gravity="center"
                         android:text="1"
                         android:textColor="#696969"
-                        android:textSize="@dimen/_15ssp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <Button
                         android:id="@+id/btnIncrease"
@@ -139,8 +138,7 @@
                         android:onClick="countIn"
                         android:text="+"
                         android:textColor="#696969"
-                        android:textSize="@dimen/_15ssp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_15ssp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -150,6 +148,7 @@
         android:id="@+id/btncontinue"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
+        android:fontFamily="@font/montserrat_bold"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/_8sdp"
         android:background="#de4500"

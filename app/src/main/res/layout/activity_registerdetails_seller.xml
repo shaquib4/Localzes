@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/reddish">
 
     <TextView
-        android:layout_width="245dp"
-        android:layout_height="28dp"
+        android:layout_width="wrap_content"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edtregNameSeller"
         android:text="@string/create_your_account"
-        android:textSize="25dp"
+        android:id="@+id/txtCYA"
+        android:textSize="@dimen/_15ssp"
+        android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
-        android:fontFamily="@font/l_r"
-        android:layout_marginTop="200dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="62dp"/>
+        android:fontFamily="@font/montserrat_bold"/>
 
     <EditText
+        android:layout_above="@id/edtregemailSeller"
+        android:layout_marginVertical="@dimen/_10sdp"
         android:id="@+id/edtregNameSeller"
-        android:textSize="14sp"
+        android:textSize="@dimen/_12ssp"
         android:textColor="#ffffff"
-        android:layout_width="316.08dp"
-        android:layout_height="43.8dp"
-        android:layout_marginLeft="25.9dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginRight="18dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_height="@dimen/_32sdp"
         android:background="@drawable/nameregs"
         android:paddingStart="45dp"
         android:hint="@string/full_name"
@@ -33,13 +33,13 @@
 
     <EditText
         android:id="@+id/edtregemailSeller"
-        android:layout_width="316.08dp"
-        android:layout_height="43.8dp"
-        android:layout_marginLeft="25.9dp"
-        android:layout_marginTop="16.64dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_centerInParent="true"
         android:background="@drawable/emailregs"
         android:paddingStart="45dp"
-        android:layout_marginRight="18dp"
         android:textSize="14sp"
         android:textColor="#ffffff"
         android:hint="@string/email_reg"
@@ -49,18 +49,16 @@
 
     <Button
         android:id="@+id/btnRegSeller"
-        android:layout_width="226dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginLeft="72dp"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
         android:textAllCaps="false"
+        android:layout_below="@id/edtregemailSeller"
         android:background="@drawable/round_button"
         android:text="Proceed"
-        android:fontFamily="@font/l_r"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_bold"
         android:textColor="#DE0606"
-        android:padding="7dp"
-        android:textStyle="bold"
-        android:layout_marginRight="62dp"
         android:textSize="16sp"/>
 
-</LinearLayout>
+</RelativeLayout>

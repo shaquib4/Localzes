@@ -67,8 +67,7 @@
                     android:layout_marginStart="10dp"
                     android:text="Rs. 699"
                     android:textColor="#de4500"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold"/>
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/txtProductOfferPrice2"
@@ -111,8 +110,7 @@
                         android:onClick="countDe"
                         android:text="-"
                         android:textColor="#696969"
-                        android:textSize="@dimen/_15ssp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <TextView
                         android:id="@+id/txtCounter"
@@ -123,8 +121,7 @@
                         android:gravity="center"
                         android:text="1"
                         android:textColor="#696969"
-                        android:textSize="@dimen/_15ssp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <Button
                         android:id="@+id/btnIncrease"
@@ -136,8 +133,7 @@
                         android:onClick="countIn"
                         android:text="+"
                         android:textColor="#696969"
-                        android:textSize="@dimen/_15ssp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_15ssp" />
                 </LinearLayout>
 
             </RelativeLayout>
