@@ -282,8 +282,7 @@ class PaymentActivity : AppCompatActivity() {
                             .setValue(headers)
                     }
                     progressDialog.dismiss()
-                    startActivity(Intent(this, NewActivity::class.java))
-                    // prepareNotificationMessage(orderId)
+                    prepareNotificationMessage(orderId)
                 }
                 Log.e("UPI", "payment successful: $approvalRefNo")
             } else if ("Payment cancelled by user." == paymentCancel) {
@@ -333,7 +332,7 @@ class PaymentActivity : AppCompatActivity() {
         //when user places order,send notification to seller
         //prepare data for notification
         val NOTIFICATION_TOPIC =
-            "/topics/" + R.string.FCM_TOPIC //must be same as subscribed by user
+            "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
         val NOTIFICATION_TITLE = "New order with $orderId has been received"
         val NOTIFICATION_MESSAGE = "Congratulations....!You received a new order"
         val NOTIFICATION_TYPE = "New Order"
@@ -378,12 +377,12 @@ class PaymentActivity : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Content-Type"] = "application/json"
-                headers["Authorization"] = "key=" + R.string.FCM_KEY
+                headers["Authorization"] = "key=AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D"
                 return headers
             }
         }
-        val queue = Volley.newRequestQueue(this)
-        queue.cache.clear()
-        queue.add(jsonObjectRequest)
+         Volley.newRequestQueue(this).add(jsonObjectRequest)
+
+
     }
 }
