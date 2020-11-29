@@ -333,8 +333,8 @@ class PaymentActivity : AppCompatActivity() {
         //prepare data for notification
         val NOTIFICATION_TOPIC =
             "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
-        val NOTIFICATION_TITLE = "New order with $orderId has been received"
-        val NOTIFICATION_MESSAGE = "Congratulations....!You received a new order"
+        val NOTIFICATION_TITLE = "New order has been received"
+        val NOTIFICATION_MESSAGE = "Congrats....!You received a new order"
         val NOTIFICATION_TYPE = "New Order"
         //prepare json(what to send and where to send)
         val notificationJs = JSONObject()

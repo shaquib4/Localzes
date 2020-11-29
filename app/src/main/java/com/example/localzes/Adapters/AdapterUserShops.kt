@@ -51,7 +51,7 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
                 context,
                 UserProductsActivity::class.java
             )
-            val databaseReference =
+            /*val databaseReference =
                 FirebaseDatabase.getInstance().reference.child("seller").child(shops_user.shopId)
                     .child("shopViews")
             databaseReference.addValueEventListener(object : ValueEventListener {
@@ -66,7 +66,7 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
                     headers["viewCount"] = (shopViews + 1).toString()
                     databaseReference.setValue(headers)
                 }
-            })
+            })*/
             intent.putExtra("shopId", shops_user.shopId)
             context.startActivity(intent)
         }

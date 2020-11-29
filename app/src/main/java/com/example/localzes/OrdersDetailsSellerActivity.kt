@@ -160,24 +160,36 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         ref.child(uid).child("Orders").child(orderIdTv.toString()).updateChildren(headers)
             .addOnSuccessListener {
                 Toast.makeText(this, "Order has been $selectedItem", Toast.LENGTH_SHORT).show()
-                val message="Order has been $selectedItem"
+                val message = "Order has been $selectedItem"
                 val reference: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("users")
                 reference.child(orderByTv.toString()).child("MyOrders").child(orderIdTv.toString())
                     .updateChildren(headers)
-                prepareNotificationMessage(orderIdTv.toString(),message)
+                prepareNotificationMessage(orderIdTv.toString(), message)
             }
             .addOnFailureListener {
                 Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
             }
     }
-    private fun prepareNotificationMessage(orderId: String,message:String) {
+
+    private fun prepareNotificationMessage(orderId: String, message: String) {
         //when seller changes order Status,send notification to buyer
         //prepare data for notification
         val NOTIFICATION_TOPIC =
-            "/topics/" + R.string.FCM_TOPIC //must be same as subscribed by user
-        val NOTIFICATION_TITLE = "Your order with $orderId has been received"
-        val NOTIFICATION_MESSAGE = ""+message
+            "/topics/PUSH_NOTIFICATIONS" //must be same as subscribed by user
+        val NOTIFICATION_TITLE = message
+        var NOTIFICATION_MESSAGE:String=""
+        when (message) {
+            "Order has been Accepted" -> {
+                NOTIFICATION_MESSAGE = "Yay! Your order has been accepted"
+            }
+            "Order has been Out For Delivery" -> {
+                NOTIFICATION_MESSAGE = "Your order is on the way"
+            }
+            "Order has been Cancelled" -> {
+                NOTIFICATION_MESSAGE = "Sorry for the inconvenience"
+            }
+        }
         val NOTIFICATION_TYPE = "OrderStatusChanged"
         //prepare json(what to send and where to send)
         val notificationJs = JSONObject()
@@ -186,7 +198,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             //what to send
             notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
             notificationBodyJs.put("buyerId", orderByTv.toString())
-            notificationBodyJs.put("sellerUid",(shopAuth.currentUser)!!.uid)
+            notificationBodyJs.put("sellerUid", (shopAuth.currentUser)!!.uid)
             notificationBodyJs.put("orderId", orderId)
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
             notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
@@ -217,10 +229,11 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Content-Type"] = "application/json"
-                headers["Authorization"] = "key=" + R.string.FCM_KEY
+                headers["Authorization"] =
+                    "key=AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D"
                 return headers
             }
         }
-        queue.add(jsonObjectRequest)
+        Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
 }

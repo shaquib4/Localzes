@@ -130,12 +130,12 @@ class SellerShop_detail : AppCompatActivity() {
                                             .child(uid)
                                     mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
-                                            val headers = HashMap<String, String>()
+                                            /*val headers = HashMap<String, String>()
                                             headers["viewCount"] = 0.toString()
                                             mDatabaseRef =
                                                 FirebaseDatabase.getInstance().reference.child("seller")
                                                     .child(uid).child("shopViews")
-                                            mDatabaseRef.setValue(headers)
+                                            mDatabaseRef.setValue(headers)*/
 
                                             mDatabaseRef =
                                                 FirebaseDatabase.getInstance().reference.child("seller")
