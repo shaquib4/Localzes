@@ -3,7 +3,9 @@ package com.example.localzes
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,9 @@ import com.example.localzes.Modals.UserCartDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_cart.*
+import kotlinx.android.synthetic.main.activity_cart.bottom_navCart
+import kotlinx.android.synthetic.main.activity_cart1.*
+import org.w3c.dom.Text
 
 class Cart : AppCompatActivity() {
     private lateinit var cartDatabase: DatabaseReference
@@ -33,11 +38,16 @@ class Cart : AppCompatActivity() {
     private lateinit var totalPayment: TextView
     private lateinit var btnContinue: Button
     var discountAmount: Double = 0.00
-    private lateinit var shopId:String
-    private lateinit var orderByuid:String
+    private lateinit var shopId: String
+    private lateinit var orderByuid: String
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var progressDialog: ProgressDialog
-    private lateinit var deliveryUser:String
+    private lateinit var deliveryUser: String
+    private lateinit var deliveryAddress: TextView
+    private lateinit var addAddress: TextView
+    private lateinit var relativeCartEmpty: RelativeLayout
+    private lateinit var relativeCart: RelativeLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart1)
@@ -53,6 +63,10 @@ class Cart : AppCompatActivity() {
         txtTotalAmount = findViewById(R.id.txtTotalAmount)
         totalPayment = findViewById(R.id.TotalPayment)
         btnContinue = findViewById(R.id.btnContinue)
+        deliveryAddress = findViewById(R.id.txtArea)
+        addAddress = findViewById(R.id.txtAddAddress)
+        relativeCartEmpty = findViewById(R.id.rl_cart_empty)
+        relativeCart = findViewById(R.id.rl_cart)
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
@@ -65,8 +79,8 @@ class Cart : AppCompatActivity() {
         cartDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
 
-        bottom_navCart.selectedItemId = R.id.nav_cart
-        bottom_navCart.setOnNavigationItemSelectedListener { item ->
+        bottom_navCarts.selectedItemId = R.id.nav_cart
+        bottom_navCarts.setOnNavigationItemSelectedListener { item ->
 
 
             when (item.itemId) {
@@ -105,18 +119,18 @@ class Cart : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                var finalPriceList= arrayListOf<Double>()
-                var finalQuantityList= arrayListOf<Int>()
-                var sellingPriceList= arrayListOf<Double>()
+                var finalPriceList = arrayListOf<Double>()
+                var finalQuantityList = arrayListOf<Int>()
+                var sellingPriceList = arrayListOf<Double>()
                 (cartProducts as ArrayList<UserCartDetails>).clear()
-                totalOriginalPrice=0.0
-                totalCost=0.0
+                totalOriginalPrice = 0.0
+                totalCost = 0.0
 
                 for (i in snapshot.children) {
                     finalPriceList.clear()
                     sellingPriceList.clear()
 
-                    val productId=i.child("productId").value.toString()
+                    val productId = i.child("productId").value.toString()
                     val orderBy = i.child("orderBy").value.toString()
                     val productTitle = i.child("productTitle").value.toString()
                     val priceEach = i.child("priceEach").value.toString()
@@ -125,7 +139,7 @@ class Cart : AppCompatActivity() {
                     val orderTo = i.child("orderTo").value.toString()
                     val productImageUrl = i.child("productImageUrl").value.toString()
                     val sellingPrice = i.child("sellingPrice").value.toString()
-                    val finalsellingPrice=i.child("finalsellingPrice").value.toString()
+                    val finalsellingPrice = i.child("finalsellingPrice").value.toString()
                     val obj = UserCartDetails(
                         productId,
                         orderBy,
@@ -140,61 +154,77 @@ class Cart : AppCompatActivity() {
                     )
                     finalPriceList.add(finalPrice.toDouble())
                     sellingPriceList.add(finalsellingPrice.toDouble())
-                    shopId= orderTo
-                    orderByuid= orderBy
-                    for (j in finalPriceList){
-                        totalCost+=j
+                    shopId = orderTo
+                    orderByuid = orderBy
+                    for (j in finalPriceList) {
+                        totalCost += j
                     }
-                    for (k in sellingPriceList){
-                        totalOriginalPrice+=k
+                    for (k in sellingPriceList) {
+                        totalOriginalPrice += k
                     }
 
                     (cartProducts as ArrayList<UserCartDetails>).add(obj)
 
                 }
+                if (cartProducts.isEmpty()) {
+                    relativeCart.visibility= View.GONE
 
-                userCartAdapter = AdapterCartItem(
-                    this@Cart,
-                    cartProducts
-                )
-                recyclerCartProduct.adapter = userCartAdapter
-                totalItem=snapshot.childrenCount.toInt()
-                totalItems.text = "Total Item :- ${snapshot.childrenCount}"
-                txtPrice.text = "Rs. ${totalOriginalPrice}"
-                discountAmount =
-                    ((totalOriginalPrice.toString()).toDouble() - (totalCost.toString().toDouble()))
-                txtDiscountPrice.text = "Rs. ${discountAmount}"
-                if (snapshot.childrenCount > 1) {
-                    txtTotalPrice.text = "Price(${snapshot.childrenCount} items)"
                 } else {
-                    txtTotalPrice.text = "Price(${snapshot.childrenCount} item)"
+                    relativeCartEmpty.visibility=View.GONE
+                    relativeCart.visibility=View.VISIBLE
+                    userCartAdapter = AdapterCartItem(
+                        this@Cart,
+                        cartProducts
+                    )
+                    recyclerCartProduct.adapter = userCartAdapter
+                    totalItem = snapshot.childrenCount.toInt()
+                    totalItems.text = "Total Item :- ${snapshot.childrenCount}"
+                    txtPrice.text = "Rs. ${totalOriginalPrice}"
+                    discountAmount =
+                        ((totalOriginalPrice.toString()).toDouble() - (totalCost.toString()
+                            .toDouble()))
+                    txtDiscountPrice.text = "Rs. ${discountAmount}"
+                    if (snapshot.childrenCount > 1) {
+                        txtTotalPrice.text = "Price(${snapshot.childrenCount} items)"
+                    } else {
+                        txtTotalPrice.text = "Price(${snapshot.childrenCount} item)"
+                    }
+
+                    val amount = totalCost.toString()
+                    txtTotalAmount.text = "Rs. ${amount}"
+                    totalPayment.text = "Rs. ${amount}"
                 }
 
-                val amount = totalCost.toString()
-                txtTotalAmount.text = "Rs. ${amount}"
-                totalPayment.text = "Rs. ${amount}"
+
             }
         })
-        val reference:DatabaseReference=FirebaseDatabase.getInstance().reference.child("users").child(uid).child("current_address")
-        reference.addValueEventListener(object :ValueEventListener{
+        val reference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                .child("current_address")
+        reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                deliveryUser=snapshot.child("address").value.toString()
+                deliveryUser = snapshot.child("address").value.toString()
+                deliveryAddress.text = deliveryUser
             }
 
         })
         btnContinue.setOnClickListener {
-            val intent=Intent(this,continue_payment::class.java)
-            intent.putExtra("shopId",shopId)
-            intent.putExtra("totalCost",totalCost.toString())
-            intent.putExtra("orderBy",orderByuid)
-            intent.putExtra("totalItem",totalItem.toString())
-            intent.putExtra("delivery",deliveryUser)
+            val intent = Intent(this, continue_payment::class.java)
+            intent.putExtra("shopId", shopId)
+            intent.putExtra("totalCost", totalCost.toString())
+            intent.putExtra("orderBy", orderByuid)
+            intent.putExtra("totalItem", totalItem.toString())
+            intent.putExtra("delivery", deliveryUser)
             startActivity(intent)
             finish()
+        }
+        addAddress.setOnClickListener {
+            val intent = Intent(this, ManageAddress::class.java)
+            startActivity(intent)
         }
     }
 }

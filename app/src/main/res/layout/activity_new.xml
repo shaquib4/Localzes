@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Thank You For Shpping !"
+        android:text="Thank You For Shopping !"
         android:textColor="#000"
         android:textSize="@dimen/_13ssp" />
 

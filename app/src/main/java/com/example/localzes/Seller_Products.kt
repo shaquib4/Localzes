@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,11 +23,13 @@ class Seller_Products : AppCompatActivity() {
     private lateinit var productAdapter: AdapterSellerProducts
     private lateinit var recyclerSellerProducts: RecyclerView
     private lateinit var search: EditText
+    private lateinit var imgBackProducts:ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller__products)
         mSellerProducts = ArrayList<ModelAddProduct>()
         recyclerSellerProducts = findViewById(R.id.recycler_view_seller_products)
+        imgBackProducts=findViewById(R.id.imgBackProducts)
         recyclerSellerProducts.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         search = findViewById(R.id.searchShopProduct)
@@ -166,5 +169,9 @@ class Seller_Products : AppCompatActivity() {
                 recyclerSellerProducts.adapter = productAdapter
             }
         })
+        imgBackProducts.setOnClickListener {
+            val intent=Intent(this,Home_seller::class.java)
+            startActivity(intent)
+        }
     }
 }

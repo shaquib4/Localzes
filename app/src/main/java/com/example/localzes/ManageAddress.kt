@@ -1,7 +1,10 @@
 package com.example.localzes
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +21,8 @@ class ManageAddress : AppCompatActivity() {
     private lateinit var recyclerManageAddress: RecyclerView
     private lateinit var userAddressAdapter: AdapterManageAddress
     private lateinit var txtCurrentAddress: TextView
+    private lateinit var imgBackManage:ImageView
+    private lateinit var addNewAddress:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_address)
@@ -26,6 +31,8 @@ class ManageAddress : AppCompatActivity() {
         val uid = user!!.uid
         recyclerManageAddress = findViewById(R.id.recycler_Address)
         txtCurrentAddress = findViewById(R.id.txtAddress)
+        addNewAddress=findViewById(R.id.btnAddNewAddress)
+        imgBackManage=findViewById(R.id.imgBackManage)
         recyclerManageAddress.layoutManager = LinearLayoutManager(this)
 
         userDatabase =
@@ -72,5 +79,13 @@ class ManageAddress : AppCompatActivity() {
                 txtCurrentAddress.text = currentAddress
             }
         })
+        imgBackManage.setOnClickListener {
+            val intent=Intent(this,Home::class.java)
+            startActivity(intent)
+            finish()
+        }
+        addNewAddress.setOnClickListener {
+
+        }
     }
 }

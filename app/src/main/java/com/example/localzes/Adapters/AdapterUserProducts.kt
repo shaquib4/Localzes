@@ -36,6 +36,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         Picasso.get().load(userProducts.imageUrl).into(holder.productImage)
         holder.productTitle.text = userProducts.title.substring(0,1).toUpperCase()+userProducts.title.substring(1)
         holder.productPrice.text = "Rs. ${userProducts.offerPrice}"
+        holder.stock.text="STOCK :- "+userProducts.stock
         val mString = "Rs. ${userProducts.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
@@ -271,7 +272,6 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val btnLinear: LinearLayout = view.findViewById(R.id.btnLinear)
         val rating: TextView = view.findViewById(R.id.txtRatingShop_customer)
         val txtCounter: TextView = view.findViewById(R.id.txtCounter)
-
-
+        val stock:TextView=view.findViewById(R.id.txtStock_customer)
     }
 }

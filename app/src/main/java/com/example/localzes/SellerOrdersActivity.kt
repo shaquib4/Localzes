@@ -2,6 +2,9 @@ package com.example.localzes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterSellerOrders
@@ -15,10 +18,14 @@ class SellerOrdersActivity : AppCompatActivity() {
     private lateinit var mSellerOrders: List<ModelOrderDetails>
     private lateinit var sellerOrderDatabase: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var imgBackPending:ImageView
+    private lateinit var relativeOrders:RelativeLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_orders)
         recyclerShopOrders = findViewById(R.id.recyclerShopOrders)
+        imgBackPending=findViewById(R.id.imgBackPending)
+        relativeOrders=findViewById(R.id.rl_Pending_Orders)
         recyclerShopOrders.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
@@ -49,12 +56,19 @@ class SellerOrdersActivity : AppCompatActivity() {
                         (mSellerOrders as ArrayList<ModelOrderDetails>).add(obj)
                     }
                 }
-                sellerOrderAdapter =
-                    AdapterSellerOrders(
-                        this@SellerOrdersActivity,
-                        mSellerOrders
-                    )
-                recyclerShopOrders.adapter = sellerOrderAdapter
+                if(mSellerOrders.isEmpty()){
+                    recyclerShopOrders.visibility= View.GONE
+                }
+                else{
+                    relativeOrders.visibility=View.GONE
+                    recyclerShopOrders.visibility=View.VISIBLE
+                    sellerOrderAdapter =
+                        AdapterSellerOrders(
+                            this@SellerOrdersActivity,
+                            mSellerOrders
+                        )
+                    recyclerShopOrders.adapter = sellerOrderAdapter
+                }
             }
         })
     }

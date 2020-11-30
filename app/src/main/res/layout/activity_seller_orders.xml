@@ -6,10 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".SellerOrdersActivity">
 
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgBackPending"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/txtPendingOrders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/imgBackPending"
+            android:layout_toRightOf="@+id/imgBackPending"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Pending Orders"
+            android:textColor="#000000"
+            android:textSize="@dimen/_13ssp" />
+
+        <View
+
+            android:id="@+id/v1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/imgBackPending"
+            android:background="#d3d3d3" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_Pending_Orders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgEmpty"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgEmpty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="No orders pending yet!"
+            android:textColor="#696969"
+            android:textSize="@dimen/_15ssp" />
+    </RelativeLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerShopOrders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/row_order_seller"/>
+        android:visibility="gone"
+        android:layout_below="@id/rl_top"
+        tools:listitem="@layout/row_order_seller" />
 
 </RelativeLayout>
