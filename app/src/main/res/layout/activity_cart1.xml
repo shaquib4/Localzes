@@ -6,9 +6,10 @@
 
     <RelativeLayout
         android:visibility="invisible"
+        android:layout_above="@id/bottom_navCarts"
         android:id="@+id/relative2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <ImageView
             android:id="@+id/imgCart"
             android:layout_width="150dp"
@@ -42,14 +43,7 @@
             android:textSize="18sp"
             android:background="@drawable/round2_btn"
             />
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navCart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#fff"
-            app:menu="@menu/customer_menu"
-            />
+
     </RelativeLayout>
     <TextView
         android:id="@+id/txtTotalItems"
