@@ -72,7 +72,6 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@drawable/bg_add_item"
                 android:text="Add +"
-                android:textAllCaps="false"
                 android:fontFamily="@font/montserrat_medium"
                 android:textColor="#696969"
                 android:textSize="@dimen/_13ssp" />
@@ -99,14 +98,14 @@
                 android:text="Rs. 699"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_15ssp"
+                android:textSize="@dimen/_13ssp"
                />
 
             <View
-                android:layout_width="@dimen/_60sdp"
+                android:layout_width="@dimen/_50sdp"
                 android:layout_height="1dp"
                 android:background="#696969"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_9sdp"
                 android:layout_marginStart="@dimen/_5sdp"
             android:layout_toRightOf="@id/txtProductPrice_customer"
                android:layout_alignTop="@id/txtProductOfferPrice"/>
