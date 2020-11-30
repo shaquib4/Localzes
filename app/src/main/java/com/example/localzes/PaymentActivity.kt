@@ -234,7 +234,7 @@ class PaymentActivity : AppCompatActivity() {
                 val orderTime = timestamp
                 val orderStatus = "Pending"
                 val orderCost = totalCost.toString()
-                val orderBy = uid
+                val orderBy = uid.toString()
                 val orderTo = shopId.toString()
                 val deliveryAddress = deliveryAddress.toString()
                 orderDetails =
@@ -243,7 +243,7 @@ class PaymentActivity : AppCompatActivity() {
                         orderTime,
                         orderStatus,
                         orderCost,
-                        orderBy.toString(),
+                        orderBy,
                         orderTo,
                         totalItem.toString(),
                         deliveryAddress,
@@ -256,7 +256,7 @@ class PaymentActivity : AppCompatActivity() {
                 ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
                     val reference: DatabaseReference =
                         FirebaseDatabase.getInstance().reference.child("users")
-                            .child(orderBy.toString())
+                            .child(orderBy)
                             .child("MyOrders")
                     reference.child(orderId).setValue(orderDetails)
                     for (i in 0 until cartProducts.size) {

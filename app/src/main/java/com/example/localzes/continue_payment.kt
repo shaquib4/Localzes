@@ -89,7 +89,7 @@ class continue_payment : AppCompatActivity() {
                 val orderTime = timestamp
                 val orderStatus = "Pending"
                 val orderCost = totalCost.toString()
-                val orderBy = uid
+                val orderBy = uid.toString()
                 val orderTo = shopId.toString()
                 val deliveryAddress = deliveryAddress.toString()
                 orderDetails =
@@ -98,7 +98,7 @@ class continue_payment : AppCompatActivity() {
                         orderTime,
                         orderStatus,
                         orderCost,
-                        orderBy.toString(),
+                        orderBy,
                         orderTo,
                         totalItem.toString(),
                         deliveryAddress,
