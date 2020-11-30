@@ -64,7 +64,7 @@
                 android:text="Rs. 699"
                 android:textColor="#de4500"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:textSize="@dimen/_15ssp"
+                android:textSize="@dimen/_14ssp"
                 android:textStyle="bold" />
 
             <ImageView
