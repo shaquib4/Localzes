@@ -101,7 +101,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
 
     private fun updateData() {
         if (imagePathUpdate == null) {
-            val headers = HashMap<String, String>()
+            val headers = HashMap<String, Any>()
             headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
             headers["productCategory"] = categoryUpdate.selectedItem.toString().trim()
             headers["quantity"] = quantityUpdate.text.toString().trim()
@@ -109,7 +109,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
             headers["title"] = productName.text.toString().trim()
             headers["unit"] = unitUpdate.selectedItem.toString().trim()
             headers["description"] = descriptionUpdate.text.toString().trim()
-            databaseRef.child("Products").child(productId.toString()).setValue(headers)
+            databaseRef.child("Products").child(productId.toString()).updateChildren(headers)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Item Updated Successfully", Toast.LENGTH_SHORT)
                         .show()
@@ -123,9 +123,10 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                 FirebaseStorage.getInstance().reference.child(filePathName)
             storageReference.putFile(imagePathUpdate).addOnSuccessListener {
                 storageReference.downloadUrl.addOnSuccessListener {
+                    val users=FirebaseAuth.getInstance().currentUser
                     val imageUrl: Uri = it
                     val request = UserProfileChangeRequest.Builder().setPhotoUri(it).build()
-                    user.updateProfile(request).addOnSuccessListener {
+                    users?.updateProfile(request)?.addOnSuccessListener {
                         val headers = HashMap<String, Any>()
                         headers["imageUrl"] = imageUrl.toString()
                         headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
@@ -135,7 +136,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                         headers["title"] = productName.text.toString().trim()
                         headers["unit"] = unitUpdate.selectedItem.toString().trim()
                         headers["description"] = descriptionUpdate.text.toString().trim()
-                        databaseRef.child("Products").child(productId.toString()).setValue(headers)
+                        databaseRef.child("Products").child(productId.toString()).updateChildren(headers)
                             .addOnSuccessListener {
                                 Toast.makeText(
                                     this,
