@@ -8,6 +8,7 @@ import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -57,9 +58,13 @@ class AdapterSellerProducts(
         holder.switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 holder.stock.text="STOCK: IN"
+                val fadeOut=AnimationUtils.loadAnimation(context,R.anim.fade_out)
+                holder.imgProduct.startAnimation(fadeOut)
 
             } else {
                 holder.stock.text="STOCK: OUT"
+                val fadeIn=AnimationUtils.loadAnimation(context,R.anim.fade_in)
+                holder.imgProduct.startAnimation(fadeIn)
             }
         }
         holder.imgEditUpdate.setOnClickListener {
