@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModelOrderDetails
 import com.example.localzes.OrdersDetailsSellerActivity
@@ -23,7 +25,7 @@ class AdapterSellerOrders(
         val orderAmountTv: TextView = view.findViewById(R.id.orderAmountTv)
         val orderStatusTv: TextView = view.findViewById(R.id.orderStatusTv)
         val totalItemsTv:TextView=view.findViewById(R.id.totalItemsTv)
-        //val orderDeliveryAddress:TextView=view.findViewById(R.id.orderDeliveryAddress)
+        val switch: SwitchCompat =view.findViewById(R.id.switchStock)
 
     }
 
@@ -66,7 +68,14 @@ class AdapterSellerOrders(
         val date= Date(sellerOrders.orderTime.toLong())
         val formattedDate=sdf.format(date)
         holder.orderDateTv.text=formattedDate
-        //holder.orderDeliveryAddress.text=sellerOrders.deliveryAddress
+        holder.switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                Toast.makeText(context,"Switch is On", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(context,"Switch is Off", Toast.LENGTH_SHORT).show()
+            }
+        }
         holder.itemView.setOnClickListener {
             val intent= Intent(context,
                 OrdersDetailsSellerActivity::class.java)
