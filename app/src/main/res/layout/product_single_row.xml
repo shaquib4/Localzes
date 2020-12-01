@@ -107,7 +107,8 @@
                 android:layout_below="@+id/imgEditUpdate"
                 android:layout_alignParentRight="true"
                 android:textOff="(OUT OF STOCK)"
-                android:textOn="(IN STOCK)" />
+                android:textOn="(IN STOCK)"
+                android:theme="@style/SwitchTheme"/>
 
             <TextView
                 android:id="@+id/txtProductOfferPrice"

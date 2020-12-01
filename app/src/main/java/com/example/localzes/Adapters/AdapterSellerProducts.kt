@@ -55,6 +55,7 @@ class AdapterSellerProducts(val context:Context,private val products_seller:List
             }
             else{
                 Toast.makeText(context,"Switch is Off", Toast.LENGTH_SHORT).show()
+                holder.switch.setThumbResource(R.color.black)
             }
         }
         holder.imgEditUpdate.setOnClickListener {
