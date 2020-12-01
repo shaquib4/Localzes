@@ -28,6 +28,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     private lateinit var quantityUpdate: EditText
     private lateinit var unitUpdate: Spinner
     private lateinit var updateProduct: Button
+    private lateinit var radioGroup: RadioGroup
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_product_details)
@@ -43,6 +44,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         unitUpdate = findViewById(R.id.sp_unit_update)
         quantityUpdate = findViewById(R.id.etQuantityUpdate)
         updateProduct = findViewById(R.id.btnUpdateProduct)
+        radioGroup=findViewById(R.id.radioStockCustomer)
         productId = intent.getStringExtra("productId")
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         databaseRef.child("Products").child(productId.toString())

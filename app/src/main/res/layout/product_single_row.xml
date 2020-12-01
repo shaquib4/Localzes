@@ -67,6 +67,15 @@
                 android:textColor="#de4500"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtStock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtProductPrice_customer"
+                android:layout_alignParentLeft="true"
+                android:text="STOCK:IN"
+                android:layout_marginStart="10dp"
+                android:textSize="@dimen/_14sdp" />
 
             <ImageView
                 android:id="@+id/imgRating_customer"
@@ -106,8 +115,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgEditUpdate"
                 android:layout_alignParentRight="true"
-                android:textOff="(OUT OF STOCK)"
-                android:textOn="(IN STOCK)"
+                android:track="@drawable/rectangle_track"
+                android:thumb="@drawable/rectangle_thumb"
                 android:theme="@style/SwitchTheme"/>
 
             <TextView

@@ -9,8 +9,7 @@
     <RelativeLayout
         android:id="@+id/relexpand"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
         <TextView
             android:layout_marginTop="@dimen/_20sdp"
             android:id="@+id/txtaccName"
@@ -68,18 +67,60 @@
             android:id="@+id/storeStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Store Status"
+            android:text="Store Status :"
             android:layout_marginStart="20dp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="@dimen/_10sdp"/>
+            android:textSize="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_medium"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OPEN"
+            android:layout_toEndOf="@id/storeStatus"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"/>
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchOpen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_6sdp"
-            android:textOn="Open"
-            android:textOff="Close"/>
+            android:track="@drawable/rectangle_track"
+            android:thumb="@drawable/rectangle_thumb"
+            android:theme="@style/SwitchTheme"/>
+        <TextView
+            android:id="@+id/storeDelivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery :"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_below="@id/storeStatus"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AVAILABLE"
+            android:layout_below="@id/storeStatus"
+            android:layout_toEndOf="@id/storeDelivery"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"/>
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/switchOpen"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_6sdp"
+            android:track="@drawable/rectangle_track"
+            android:thumb="@drawable/rectangle_thumb"
+            android:theme="@style/SwitchTheme"/>
 
     </RelativeLayout>
 

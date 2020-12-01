@@ -24,7 +24,9 @@ class AdapterSellerOrders(
         val orderDateTv: TextView = view.findViewById(R.id.orderDateTv)
         val orderAmountTv: TextView = view.findViewById(R.id.orderAmountTv)
         val orderStatusTv: TextView = view.findViewById(R.id.orderStatusTv)
-        val totalItemsTv:TextView=view.findViewById(R.id.totalItemsTv)
+        val totalItemsTv: TextView = view.findViewById(R.id.totalItemsTv)
+        val paymentCOD: TextView = view.findViewById(R.id.txtCod1)
+        val paymentPAID: TextView = view.findViewById(R.id.txtCod2)
 
 
     }
@@ -46,12 +48,11 @@ class AdapterSellerOrders(
         holder.orderIdTv.text = "OD${sellerOrders.orderId}"
         holder.orderAmountTv.text = "Amount:- Rs.${sellerOrders.orderCost}"
         holder.orderStatusTv.text = sellerOrders.orderStatus
-        if(sellerOrders.orderQuantity>1.toString()){
+        if (sellerOrders.orderQuantity > 1.toString()) {
 
-            holder.totalItemsTv.text="${sellerOrders.orderQuantity} items"
-        }
-        else{
-            holder.totalItemsTv.text="${sellerOrders.orderQuantity} item"
+            holder.totalItemsTv.text = "${sellerOrders.orderQuantity} items"
+        } else {
+            holder.totalItemsTv.text = "${sellerOrders.orderQuantity} item"
         }
         when (sellerOrders.orderStatus) {
             "In Progress" -> {
@@ -65,15 +66,23 @@ class AdapterSellerOrders(
             }
         }
         val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
-        val date= Date(sellerOrders.orderTime.toLong())
-        val formattedDate=sdf.format(date)
-        holder.orderDateTv.text=formattedDate
-
+        val date = Date(sellerOrders.orderTime.toLong())
+        val formattedDate = sdf.format(date)
+        holder.orderDateTv.text = formattedDate
+        if (sellerOrders.paymentMode == "Cash on Delivery") {
+            holder.paymentPAID.visibility=View.GONE
+            holder.paymentCOD.visibility=View.VISIBLE
+        } else if(sellerOrders.paymentMode=="Paytm") {
+            holder.paymentPAID.visibility=View.GONE
+            holder.paymentCOD.visibility=View.VISIBLE
+        }
         holder.itemView.setOnClickListener {
-            val intent= Intent(context,
-                OrdersDetailsSellerActivity::class.java)
-            intent.putExtra("orderIdTv",sellerOrders.orderId)
-            intent.putExtra("orderByTv",sellerOrders.orderBy)
+            val intent = Intent(
+                context,
+                OrdersDetailsSellerActivity::class.java
+            )
+            intent.putExtra("orderIdTv", sellerOrders.orderId)
+            intent.putExtra("orderByTv", sellerOrders.orderBy)
             context.startActivity(intent)
         }
     }
