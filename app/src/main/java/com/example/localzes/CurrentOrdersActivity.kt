@@ -50,7 +50,9 @@ class CurrentOrdersActivity : AppCompatActivity() {
                         i.child("orderTo").value.toString(),
                         i.child("orderQuantity").value.toString(),
                         i.child("deliveryAddress").value.toString(),
-                        i.child("paymentMode").value.toString()
+                        i.child("paymentMode").value.toString(),
+                        i.child("orderByName").value.toString(),
+                        i.child("orderByMobile").value.toString()
                     )
                     if (i.child("orderStatus").value.toString() == "Pending" || i.child("orderStatus").value.toString() == "Accepted" || i.child(
                             "orderStatus"

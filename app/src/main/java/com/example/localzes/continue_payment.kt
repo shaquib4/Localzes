@@ -28,6 +28,8 @@ class continue_payment : AppCompatActivity() {
     private var totalItem: String? = "300"
     private var uid: String? = "400"
     private var deliveryAddress: String? = "500"
+    private var orderByName:String?="600"
+    private var orderByMobile:String?="700"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var cartProducts: List<UserCartDetails>
     private lateinit var orderDetails: ModelOrderDetails
@@ -43,6 +45,8 @@ class continue_payment : AppCompatActivity() {
         totalItem = intent.getStringExtra("totalItem")
         uid = intent.getStringExtra("orderBy")
         deliveryAddress = intent.getStringExtra("delivery")
+        orderByName=intent.getStringExtra("orderByName")
+        orderByMobile=intent.getStringExtra("orderByMobile")
         cartProducts = ArrayList<UserCartDetails>()
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
@@ -102,7 +106,9 @@ class continue_payment : AppCompatActivity() {
                         orderTo,
                         totalItem.toString(),
                         deliveryAddress,
-                        "Cash on Delivery"
+                        "Cash on Delivery",
+                        orderByName.toString(),
+                        orderByMobile.toString()
                     )
 
                 val ref: DatabaseReference =
@@ -146,6 +152,8 @@ class continue_payment : AppCompatActivity() {
                 intent.putExtra("orderBy", uid.toString())
                 intent.putExtra("totalItem", totalItem.toString())
                 intent.putExtra("delivery", deliveryAddress.toString())
+                intent.putExtra("orderByName",orderByName.toString())
+                intent.putExtra("orderByMobile",orderByMobile.toString())
                 startActivity(intent)
                 finish()
             }

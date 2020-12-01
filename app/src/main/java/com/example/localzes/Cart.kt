@@ -47,6 +47,8 @@ class Cart : AppCompatActivity() {
     private lateinit var addAddress: TextView
     private lateinit var relativeCartEmpty: RelativeLayout
     private lateinit var relativeCart: RelativeLayout
+    private lateinit var orderByName:String
+    private lateinit var orderByMobile:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -212,6 +214,18 @@ class Cart : AppCompatActivity() {
             }
 
         })
+        val ref:DatabaseReference=FirebaseDatabase.getInstance().reference.child(uid)
+        ref.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                orderByName=snapshot.child("name").value.toString()
+                orderByMobile=snapshot.child("phone").value.toString()
+            }
+
+        })
         btnContinue.setOnClickListener {
             val intent = Intent(this, continue_payment::class.java)
             intent.putExtra("shopId", shopId)
@@ -219,6 +233,8 @@ class Cart : AppCompatActivity() {
             intent.putExtra("orderBy", orderByuid)
             intent.putExtra("totalItem", totalItem.toString())
             intent.putExtra("delivery", deliveryUser)
+            intent.putExtra("orderByName",orderByName)
+            intent.putExtra("orderByMobile",orderByMobile)
             startActivity(intent)
             finish()
         }

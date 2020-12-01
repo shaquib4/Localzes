@@ -9,7 +9,9 @@ class ModelOrderDetails(
     val orderTo: String,
     val orderQuantity:String,
     val deliveryAddress:String,
-    val paymentMode:String
+    val paymentMode:String,
+    val orderByName:String,
+    val orderByMobile:String
 ) {
-    constructor():this("","","","","","","","","")
+    constructor():this("","","","","","","","","","","")
 }

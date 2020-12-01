@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.Modals.UserCartDetails
@@ -144,6 +145,14 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 }
             }
         }
+        holder.switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                Toast.makeText(context,"Switch is On",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(context,"Switch is Off",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 
@@ -273,5 +282,6 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val rating: TextView = view.findViewById(R.id.txtRatingShop_customer)
         val txtCounter: TextView = view.findViewById(R.id.txtCounter)
         val stock:TextView=view.findViewById(R.id.txtStock_customer)
+        val switch:SwitchCompat=view.findViewById(R.id.switchStock)
     }
 }

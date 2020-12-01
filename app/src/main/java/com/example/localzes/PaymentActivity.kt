@@ -36,6 +36,8 @@ class PaymentActivity : AppCompatActivity() {
     private var totalItem: String? = "300"
     private var uid: String? = "400"
     private var deliveryAddress: String? = "500"
+    private var orderByName:String?="600"
+    private var orderByMobile:String?="700"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
@@ -52,6 +54,8 @@ class PaymentActivity : AppCompatActivity() {
         totalCost = intent.getStringExtra("totalCost")
         uid = intent.getStringExtra("orderBy")
         deliveryAddress = intent.getStringExtra("delivery")
+        orderByName=intent.getStringExtra("orderByName")
+        orderByMobile=intent.getStringExtra("orderByMobile")
         cartProducts = ArrayList<UserCartDetails>()
         send = findViewById<View>(R.id.btnPayNow) as Button
         amount = findViewById<View>(R.id.txtPayAmount) as TextView
@@ -247,7 +251,9 @@ class PaymentActivity : AppCompatActivity() {
                         orderTo,
                         totalItem.toString(),
                         deliveryAddress,
-                        "Paytm"
+                        "Paytm",
+                        orderByName.toString(),
+                        orderByMobile.toString()
                     )
 
                 val ref: DatabaseReference =
