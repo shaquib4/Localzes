@@ -73,6 +73,7 @@
             android:textSize="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_medium"/>
         <TextView
+            android:id="@+id/storeOpen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="OPEN"
@@ -102,6 +103,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:layout_below="@id/storeStatus"/>
         <TextView
+            android:id="@+id/deliveryAvailable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="AVAILABLE"
@@ -112,6 +114,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/montserrat_bold"/>
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchDelivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/switchOpen"

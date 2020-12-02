@@ -2,6 +2,9 @@ package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
@@ -17,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.R
 import com.example.localzes.UpdateProductDetailsActivity
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
 class AdapterSellerProducts(
@@ -30,7 +35,7 @@ class AdapterSellerProducts(
         val txtProductOfferPrice: TextView = view.findViewById(R.id.txtProductOfferPrice)
         val imgEditUpdate: ImageView = view.findViewById(R.id.imgEditUpdate)
         val switch: SwitchCompat = view.findViewById(R.id.switchStock)
-        val stock:TextView=view.findViewById(R.id.txtStock)
+        val stock: TextView = view.findViewById(R.id.txtStock)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderProduct {
@@ -57,14 +62,17 @@ class AdapterSellerProducts(
         holder.txtProductOfferPrice.text = spannableString
         holder.switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                holder.stock.text="STOCK: IN"
-                val fadeOut=AnimationUtils.loadAnimation(context,R.anim.fade_out)
-                holder.imgProduct.startAnimation(fadeOut)
+                val reference: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("seller")
+                holder.imgProduct.isEnabled = false
+                val draw = holder.imgProduct.drawable
+                val bitmap = (draw as BitmapDrawable).bitmap
+                val newBitmap: Bitmap = convertImage(bitmap) as Bitmap
+                holder.imgProduct.setImageBitmap(newBitmap)
+
 
             } else {
-                holder.stock.text="STOCK: OUT"
-                val fadeIn=AnimationUtils.loadAnimation(context,R.anim.fade_in)
-                holder.imgProduct.startAnimation(fadeIn)
+
             }
         }
         holder.imgEditUpdate.setOnClickListener {
@@ -75,5 +83,31 @@ class AdapterSellerProducts(
             intent.putExtra("productId", products.productId)
             context.startActivity(intent)
         }
+    }
+
+    private fun convertImage(original: Bitmap): Any {
+        val finalImage = Bitmap.createBitmap(original.width, original.height, original.config)
+        var A: Int
+        var R: Int
+        var G: Int
+        var B: Int
+        var colorPixel: Int
+        val width = original.width
+        val height = original.height
+        for (x in 0 until height) {
+            for (y in 0 until width) {
+                colorPixel = original.getPixel(x, y)
+                A = Color.alpha(colorPixel)
+                R = Color.red(colorPixel)
+                G = Color.green(colorPixel)
+                B = Color.blue(colorPixel)
+                R = (R + G + B) / 3
+                G = R
+                B = R
+                finalImage.setPixel(x, y, Color.argb(A, R, G, B))
+
+            }
+        }
+        return finalImage
     }
 }

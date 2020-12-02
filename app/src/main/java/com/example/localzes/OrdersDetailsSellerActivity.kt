@@ -133,17 +133,45 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             }
         })
         imgEdit.setOnClickListener {
-            editOrderStatusDialog()
+            val reference:DatabaseReference=FirebaseDatabase.getInstance().reference.child("Seller").child(uid).child("Orders").child(orderIdTv.toString())
+            reference.addValueEventListener(object :ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
 
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                   if(snapshot.child("orderStatus").value.toString()=="Pending"){
+                       editOrderStatusDialog()
+                   }
+                    else if(snapshot.child("orderStatus").value.toString()=="Accepted"){
+                       newEditOrderStatusDialog()
+                   }
+                }
+            })
         }
     }
 
+    private fun newEditOrderStatusDialog() {
+        val options= arrayOf("Out For Delivery")
+        val builder=AlertDialog.Builder(this)
+        builder.setTitle("Edit Order Status")
+        builder.setSingleChoiceItems(options,-1){dialog, which ->
+            val selectedItem=options[which]
+            editOrderStatus(selectedItem)
+            dialog.dismiss()
+        }
+        builder.create().show()
+    }
+
     private fun editOrderStatusDialog() {
-        val options = arrayOf("Accepted", "Out For Delivery", "Cancelled")
+        val options = arrayOf("Accepted", "Cancelled")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
+            if(selectedItem=="Cancelled"){
+                imgEdit.isEnabled=false
+            }
             editOrderStatus(selectedItem)
             dialog.dismiss()
         }

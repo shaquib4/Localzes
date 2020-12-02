@@ -1,9 +1,12 @@
 package com.example.localzes
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
 import com.example.localzes.Adapters.ExpandableListViewAdapterSeller
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -21,17 +24,46 @@ class AccountsSeller : AppCompatActivity() {
     private lateinit var logOut: TextView
     private lateinit var userAuth:FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var storeStatus:TextView
+    private lateinit var deliveryAvailibility:TextView
+    private lateinit var switchStoreStatus:SwitchCompat
+    private lateinit var switchDelivery:SwitchCompat
+    private lateinit var sharedPreferences: SharedPreferences
+    private var IsChecked:Boolean=true
+    private lateinit var spEditor: SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accounts_seller)
         userName=findViewById(R.id.txtaccName)
         userMobileNo=findViewById(R.id.txtaccmobile)
         userEmailAddress=findViewById(R.id.txtaccEmail)
+        storeStatus=findViewById(R.id.storeStatus)
+        deliveryAvailibility=findViewById(R.id.deliveryAvailable)
+        switchStoreStatus=findViewById(R.id.switchOpen)
+        switchDelivery=findViewById(R.id.switchDelivery)
         logOut=findViewById(R.id.txtaccEdit)
+        sharedPreferences=getSharedPreferences("SETTINGS", Context.MODE_PRIVATE)
+        IsChecked=sharedPreferences.getBoolean("IN",true)
+        switchStoreStatus.isChecked=IsChecked
         userAuth= FirebaseAuth.getInstance()
         val user=userAuth.currentUser
         val uid=user!!.uid
         databaseReference= FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        switchStoreStatus.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                databaseReference.child("StoreStatus").setValue("OPEN")
+                spEditor=sharedPreferences.edit()
+                spEditor.putBoolean("IN",true)
+                spEditor.apply()
+
+            }
+            else{
+                databaseReference.child("StoreStatus").setValue("CLOSED")
+                spEditor=sharedPreferences.edit()
+                spEditor.putBoolean("IN",false)
+                spEditor.apply()
+            }
+        }
         databaseReference.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
