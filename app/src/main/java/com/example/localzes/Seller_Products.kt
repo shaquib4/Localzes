@@ -181,5 +181,6 @@ class Seller_Products : AppCompatActivity() {
     override fun onBackPressed() {
         val intent=Intent(applicationContext,Home_seller::class.java)
         startActivity(intent)
+        finish()
     }
 }

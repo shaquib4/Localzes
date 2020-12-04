@@ -56,7 +56,8 @@ class Category : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent=Intent(applicationContext,Home::class.java)
+        val intent=Intent(applicationContext,Home_seller::class.java)
         startActivity(intent)
+        finish()
     }
 }
