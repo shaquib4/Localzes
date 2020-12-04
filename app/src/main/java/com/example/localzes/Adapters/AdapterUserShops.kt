@@ -19,6 +19,7 @@ import com.example.localzes.R
 import com.example.localzes.UserProductsActivity
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>) :
     RecyclerView.Adapter<AdapterUserShops.HolderUserShops>() {
@@ -57,15 +58,20 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
-                    Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)
+                try {
+                    if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
+                        Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)
+                    }
+                    else if(snapshot.child("StoreStatus").value.toString() == "CLOSED"){
+                        val colorMatrix=ColorMatrix()
+                        colorMatrix.setSaturation(0.0f)
+                        val filter=ColorMatrixColorFilter(colorMatrix)
+                        holder.imgShop.colorFilter=filter
+                    }
+                }catch (e:Exception){
+                    e.printStackTrace()
                 }
-                else if(snapshot.child("StoreStatus").value.toString() == "CLOSED"){
-                    val colorMatrix=ColorMatrix()
-                    colorMatrix.setSaturation(0.0f)
-                    val filter=ColorMatrixColorFilter(colorMatrix)
-                    holder.imgShop.colorFilter=filter
-                }
+
             }
         })
 
