@@ -31,7 +31,7 @@ class Seller_Products : AppCompatActivity() {
         setContentView(R.layout.activity_seller__products)
         mSellerProducts = ArrayList<ModelAddProduct>()
         recyclerSellerProducts = findViewById(R.id.recycler_view_seller_products)
-        imgBackProducts=findViewById(R.id.imgBackProducts)
+       // imgBackProducts=findViewById(R.id.imgBackProducts)
         txtAddProduct=findViewById(R.id.add)
         recyclerSellerProducts.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()

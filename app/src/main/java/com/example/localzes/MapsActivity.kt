@@ -1,16 +1,20 @@
 package com.example.localzes
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
+import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.localzes.Modals.ModelClass
+import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -23,9 +27,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_maps.*
+import kotlinx.android.synthetic.main.map_ui.*
+import java.io.IOException
 import java.util.*
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback ,LocationListener,GoogleMap.OnCameraMoveListener,GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener {
 
     private lateinit var map: GoogleMap
     private lateinit var auth: FirebaseAuth
@@ -39,8 +45,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun getLocationAccess() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             map.isMyLocationEnabled = true
-            getLocationUpdates()
-            startLocationUpdates()
+            map.setOnCameraMoveListener(this)
+            map.setOnCameraMoveStartedListener(this)
+            map.setOnCameraIdleListener(this)
+            locationRequest = LocationRequest()
+            val builder=LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+            val settingsClient=LocationServices.getSettingsClient(this)
+            val task=settingsClient.checkLocationSettings(builder.build())
+            task.addOnSuccessListener {
+                getLocationUpdates()
+                startLocationUpdates()
+            }
+                .addOnFailureListener{
+                        e ->
+                    if (e is ResolvableApiException) {
+                        try {
+                            e.startResolutionForResult(this@MapsActivity, 51)
+                        } catch (e1: IntentSender.SendIntentException) {
+                            e1.printStackTrace()
+                        }
+                    }
+                }
         }
         else
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST)
@@ -68,6 +93,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     return
                 }
                 map.isMyLocationEnabled = true
+                map.setOnCameraMoveListener(this)
+                map.setOnCameraMoveStartedListener(this)
+                map.setOnCameraIdleListener(this)
+                locationRequest = LocationRequest()
+                val builder=LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+                val settingsClient=LocationServices.getSettingsClient(this)
+                val task=settingsClient.checkLocationSettings(builder.build())
+                task.addOnSuccessListener {
+                    getLocationUpdates()
+                    startLocationUpdates()
+                }
+                    .addOnFailureListener{
+                            e ->
+                        if (e is ResolvableApiException) {
+                            try {
+                                e.startResolutionForResult(this@MapsActivity, 51)
+                            } catch (e1: IntentSender.SendIntentException) {
+                                e1.printStackTrace()
+                            }
+                        }
+                    }
             }
             else {
                 Toast.makeText(this, "User has not granted location access permission", Toast.LENGTH_LONG).show()
@@ -88,7 +134,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val user=auth.currentUser
         val uid=user!!.uid
         suserDatabase= FirebaseDatabase.getInstance().reference.child("customers").child(uid)
-        btncontinue.setOnClickListener {
+        SaveAddress.setOnClickListener {
 
             suserDatabase!!.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -126,18 +172,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         userMap["name"]=name.toString()
         userMap["email"]=email.toString()
         userMap["address"]=address
-
-        if (address.isEmpty()){
-            btncontinue.setText("Continue")
-            getLocationAccess()
-
-        }else{
             userDatabase.setValue(userMap).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val city=txtCity.text.toString()
                     val state=txtState.text.toString()
                     val country=txtCountry.text.toString()
                     val pinCode=txtPincode.text.toString()
+                    val locality=txtLocality.text.toString()
                     userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid).child("current_address")
                     val userMaps= HashMap<String,Any>()
                     userMaps["address"]=address
@@ -145,11 +186,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     userMaps["state"]=state
                     userMaps["country"]=country
                     userMaps["pinCode"]=pinCode
+                    userMaps["locality"]=locality
                     userDatabase.setValue(userMaps).addOnCompleteListener{ task ->
                         if (task.isSuccessful){
 
-                            startActivity(Intent(this,Home::class.java))
-                            finish()
+                            Toast.makeText(this,country,Toast.LENGTH_LONG).show()
                         }
                         else{
                             Toast.makeText(
@@ -166,7 +207,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     ).show()
                 }
             }
-        }
+
 
 
 
@@ -174,6 +215,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // ...
 
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 51) {
+            if (resultCode == Activity.RESULT_OK) {
+                getLocationUpdates()
+                startLocationUpdates()
+            }
+        }
     }
 
     public fun getLocationUpdates() {
@@ -194,7 +244,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     val geocoder: Geocoder
                     val addresses: List<Address>
                     geocoder = Geocoder(applicationContext, Locale.getDefault())
-                    addresses = geocoder.getFromLocation(lot, long, 1)
+                 try{   addresses = geocoder.getFromLocation(lot, long, 1)
                     val address: String = addresses[0].getAddressLine(0)
                     val city: String = addresses[0].subAdminArea
                     val state: String = addresses[0].adminArea
@@ -205,14 +255,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     txtCity.text=city
                     txtState.text=state
                     txtPincode.text=pinCode
-                    txtCountry.text=country
+                    txtCountry.text=country}catch (e:Exception){
+                     e.printStackTrace()
+                 }
+                    fusedLocationClient.removeLocationUpdates(locationCallback)
 
 
 
                     if (location != null) {
                         val latLng = LatLng(location.latitude, location.longitude)
-                        val markerOptions = MarkerOptions().position(latLng)
-                        map.addMarker(markerOptions)
+                      //  val markerOptions = MarkerOptions().position(latLng)
+                      //  map.addMarker(markerOptions)
                         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
                     }
                 }
@@ -263,5 +316,69 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
          val sydney = LatLng(26.7606, 83.3732)
          map.addMarker(MarkerOptions().position(sydney).title("Gorakhpur , India").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
          map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,zoom))*/
+    }
+
+    override fun onLocationChanged(location: Location?) {
+        val geocoder: Geocoder
+        val addresses: List<Address>
+        geocoder = Geocoder(applicationContext, Locale.getDefault())
+        try{ addresses = geocoder.getFromLocation(location!!.latitude, location!!.longitude, 1)
+            val address: String = addresses[0].getAddressLine(0)
+            val city: String = addresses[0].subAdminArea
+            val state: String = addresses[0].adminArea
+            val pinCode: String = addresses[0].postalCode
+            val country: String = addresses[0].countryName
+
+            btnmap.text=address
+            txtCity.text=city
+            txtState.text=state
+            txtPincode.text=pinCode
+            txtCountry.text=country
+        } catch (e:Exception){
+            e.printStackTrace()
+        }
+
+    }
+
+    override fun onCameraMove() {
+
+    }
+
+    override fun onCameraMoveStarted(p0: Int) {
+
+    }
+
+    override fun onCameraIdle() {
+        val geocoder: Geocoder
+
+        val addresses: List<Address>
+        geocoder = Geocoder(applicationContext, Locale.getDefault())
+        try{
+            addresses = geocoder.getFromLocation(map!!.cameraPosition.target.latitude, map!!.cameraPosition.target.longitude, 1)
+            val address: String = addresses[0].getAddressLine(0)
+            val city: String = addresses[0].subAdminArea
+            val state: String = addresses[0].adminArea
+            val pinCode: String = addresses[0].postalCode
+            val country: String = addresses[0].countryName
+            val locality:String=addresses[0].locality
+
+            btnmap.text="$locality, $state($city), $pinCode $country"
+            txtCity.text=city
+            txtState.text=state
+            txtPincode.text=pinCode
+            txtLocality.text=locality
+            txtCountry.text=country
+            City.text="($city),"
+            State.text=state
+            Pincode.text=" $pinCode"
+
+            Locality_bold.text=locality
+            localit.text="$locality,"
+
+        } catch (e:IndexOutOfBoundsException){
+            e.printStackTrace()
+        } catch (e: Exception){
+            e.printStackTrace()
+        }
     }
 }
