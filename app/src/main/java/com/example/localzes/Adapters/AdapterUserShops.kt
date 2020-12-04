@@ -2,6 +2,9 @@ package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.Upload
 import com.example.localzes.R
 import com.example.localzes.UserProductsActivity
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>) :
@@ -46,6 +46,26 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
         holder.shopName.text =
             shops_user.shop_name.substring(0, 1).toUpperCase() + shops_user.shop_name.substring(1)
         holder.shopCategory.text = shops_user.category1
+        val reference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(shops_user.shopId)
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
+                    Picasso.get().load(shops_user.imageUrl).into(holder.imgShop)
+                }
+                else if(snapshot.child("StoreStatus").value.toString() == "CLOSED"){
+                    val draw=holder.imgShop.drawable
+                    val bitmap=(draw as BitmapDrawable).bitmap
+                    val newBitmap=convertImage(bitmap)
+                    holder.imgShop.setImageBitmap(newBitmap)
+                }
+            }
+        })
+
         holder.itemView.setOnClickListener {
             val intent = Intent(
                 context,
@@ -70,5 +90,30 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
             intent.putExtra("shopId", shops_user.shopId)
             context.startActivity(intent)
         }
+    }
+
+    private fun convertImage(original: Bitmap): Bitmap {
+        val finalImage = Bitmap.createBitmap(original.width, original.height, original.config)
+        var A: Int
+        var R: Int
+        var G: Int
+        var B: Int
+        var colorPixel: Int
+        val width = original.width
+        val height = original.height
+        for (x in 0 until width) {
+            for (y in 0 until height) {
+                colorPixel = original.getPixel(x, y)
+                A = Color.alpha(colorPixel)
+                R = Color.red(colorPixel)
+                G = Color.green(colorPixel)
+                B = Color.blue(colorPixel)
+                R = (R + G + B) / 3
+                G = R
+                B = R
+                finalImage.setPixel(x, y, Color.argb(A, R, G, B))
+            }
+        }
+        return finalImage
     }
 }

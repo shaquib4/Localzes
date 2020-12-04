@@ -64,31 +64,32 @@ class UpdateShopDetailActivity : AppCompatActivity() {
 
     private fun updateData() {
 
-            val user = FirebaseAuth.getInstance().currentUser
+        val user = FirebaseAuth.getInstance().currentUser
 
-            val uid = user!!.uid
-            val shopRef =
-                FirebaseStorage.getInstance().reference.child(   "uploads/" + uid
-                        + ".jpg")
-            shopRef.putFile(imagePathUpdated).addOnSuccessListener {
-                shopRef.downloadUrl.addOnSuccessListener {
-                    val imageUrl: Uri = it
-                 val request=   UserProfileChangeRequest.Builder().setPhotoUri(it).build()
-                   user.updateProfile(request).addOnSuccessListener {
-                       val headers = HashMap<String, Any>()
-                       headers["imageUrl"]=imageUrl.toString()
-                       headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
-                       headers["shop_name"] = shopNameUpdate.text.toString().trim()
-                       headers["upi"] = upiIdUpdate.text.toString().trim()
-                       databaseRef.updateChildren(headers).addOnSuccessListener {
-                           Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT).show()
-                       }
-                   }
-
-
+        val uid = user!!.uid
+        val shopRef =
+            FirebaseStorage.getInstance().reference.child(
+                "uploads/" + uid
+                        + ".jpg"
+            )
+        shopRef.putFile(imagePathUpdated).addOnSuccessListener {
+            shopRef.downloadUrl.addOnSuccessListener {
+                val imageUrl: Uri = it
+                val request = UserProfileChangeRequest.Builder().setPhotoUri(it).build()
+                user.updateProfile(request).addOnSuccessListener {
+                    val headers = HashMap<String, Any>()
+                    headers["imageUrl"] = imageUrl.toString()
+                    headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
+                    headers["shop_name"] = shopNameUpdate.text.toString().trim()
+                    headers["upi"] = upiIdUpdate.text.toString().trim()
+                    databaseRef.updateChildren(headers).addOnSuccessListener {
+                        Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT).show()
+                    }
                 }
+
             }
         }
+    }
 
 
     private fun startImageChooser() {
@@ -105,5 +106,10 @@ class UpdateShopDetailActivity : AppCompatActivity() {
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imagePathUpdated)
             imageShopUpdate.setImageBitmap(bitmap)
         }
+    }
+
+    override fun onBackPressed() {
+        val intent=Intent(applicationContext,Home_seller::class.java)
+        startActivity(intent)
     }
 }

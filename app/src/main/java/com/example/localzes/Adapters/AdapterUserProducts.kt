@@ -2,6 +2,9 @@ package com.example.localzes.Adapters
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.text.SpannableString
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
@@ -34,10 +37,31 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
 
     override fun onBindViewHolder(holder: HolderUserProducts, position: Int) {
         val userProducts = products_user[position]
-        Picasso.get().load(userProducts.imageUrl).into(holder.productImage)
         holder.productTitle.text = userProducts.title.substring(0,1).toUpperCase()+userProducts.title.substring(1)
         holder.productPrice.text = "Rs. ${userProducts.offerPrice}"
         holder.stock.text="STOCK :- "+userProducts.stock
+       /* val dRef:DatabaseReference=FirebaseDatabase.getInstance().reference.child("seller").child(userProducts.shopId).child("Products").child(userProducts.productId)
+        dRef.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.child("stock").value.toString()==)
+            }
+
+        })*/
+        when(userProducts.stock){
+            "IN"->{
+                Picasso.get().load(userProducts.imageUrl).into(holder.productImage)
+            }
+            "OUT"->{
+                val draw=holder.productImage.drawable
+                val bitmap=(draw as BitmapDrawable).bitmap
+                val newBitmap=convertImage(bitmap)
+                holder.productImage.setImageBitmap(newBitmap)
+            }
+        }
         val mString = "Rs. ${userProducts.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
@@ -276,5 +300,29 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val txtCounter: TextView = view.findViewById(R.id.txtCounter)
         val stock:TextView=view.findViewById(R.id.txtStock_customer)
 
+    }
+    private fun convertImage(original:Bitmap): Bitmap {
+        val finalImage=Bitmap.createBitmap(original.width,original.height,original.config)
+        var A: Int
+        var R: Int
+        var G: Int
+        var B: Int
+        var colorPixel: Int
+        val width = original.width
+        val height = original.height
+        for (x in 0 until width) {
+            for (y in 0 until height) {
+                colorPixel = original.getPixel(x, y)
+                A = Color.alpha(colorPixel)
+                R = Color.red(colorPixel)
+                G = Color.green(colorPixel)
+                B = Color.blue(colorPixel)
+                R = (R + G + B) / 3
+                G = R
+                B = R
+                finalImage.setPixel(x, y, Color.argb(A, R, G, B))
+            }
+        }
+        return finalImage
     }
 }

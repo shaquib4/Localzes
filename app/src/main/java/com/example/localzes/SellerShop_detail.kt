@@ -130,6 +130,7 @@ class SellerShop_detail : AppCompatActivity() {
                                             .child(uid)
                                     mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
+                                            mDatabaseRef.child("StoreStatus").setValue("OPEN")
                                             /*val headers = HashMap<String, String>()
                                             headers["viewCount"] = 0.toString()
                                             mDatabaseRef =

@@ -52,6 +52,7 @@ class AccountsSeller : AppCompatActivity() {
         switchStoreStatus.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 databaseReference.child("StoreStatus").setValue("OPEN")
+                storeStatus.text="OPEN"
                 spEditor=sharedPreferences.edit()
                 spEditor.putBoolean("IN",true)
                 spEditor.apply()
@@ -59,6 +60,7 @@ class AccountsSeller : AppCompatActivity() {
             }
             else{
                 databaseReference.child("StoreStatus").setValue("CLOSED")
+                storeStatus.text="CLOSED"
                 spEditor=sharedPreferences.edit()
                 spEditor.putBoolean("IN",false)
                 spEditor.apply()
@@ -176,5 +178,10 @@ class AccountsSeller : AppCompatActivity() {
         item[menu[1]] = item2
         item[menu[2]] = item3
 
+    }
+
+    override fun onBackPressed() {
+        val intent=Intent(applicationContext,Home_seller::class.java)
+        startActivity(intent)
     }
 }

@@ -27,6 +27,8 @@ class AdapterSellerOrders(
         val totalItemsTv: TextView = view.findViewById(R.id.totalItemsTv)
         val paymentCOD: TextView = view.findViewById(R.id.txtCod1)
         val paymentPAID: TextView = view.findViewById(R.id.txtCod2)
+        val orderedByName:TextView=view.findViewById(R.id.txtOrderedBy)
+        val orderedByMobile:TextView=view.findViewById(R.id.txtMobileOrderedBy)
 
 
     }
@@ -48,6 +50,8 @@ class AdapterSellerOrders(
         holder.orderIdTv.text = "OD${sellerOrders.orderId}"
         holder.orderAmountTv.text = "Amount:- Rs.${sellerOrders.orderCost}"
         holder.orderStatusTv.text = sellerOrders.orderStatus
+        holder.orderedByName.text=sellerOrders.orderByName
+        holder.orderedByMobile.text=sellerOrders.orderByMobile
         if (sellerOrders.orderQuantity > 1.toString()) {
 
             holder.totalItemsTv.text = "${sellerOrders.orderQuantity} items"

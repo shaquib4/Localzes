@@ -67,7 +67,7 @@ class AdapterSellerProducts(
                 holder.imgProduct.isEnabled = false
                 val draw = holder.imgProduct.drawable
                 val bitmap = (draw as BitmapDrawable).bitmap
-                val newBitmap: Bitmap = convertImage(bitmap) as Bitmap
+                val newBitmap: Bitmap = convertImage(bitmap)
                 holder.imgProduct.setImageBitmap(newBitmap)
 
 
@@ -85,7 +85,7 @@ class AdapterSellerProducts(
         }
     }
 
-    private fun convertImage(original: Bitmap): Any {
+    private fun convertImage(original: Bitmap): Bitmap {
         val finalImage = Bitmap.createBitmap(original.width, original.height, original.config)
         var A: Int
         var R: Int
@@ -94,8 +94,8 @@ class AdapterSellerProducts(
         var colorPixel: Int
         val width = original.width
         val height = original.height
-        for (x in 0 until height) {
-            for (y in 0 until width) {
+        for (x in 0 until width) {
+            for (y in 0 until height) {
                 colorPixel = original.getPixel(x, y)
                 A = Color.alpha(colorPixel)
                 R = Color.red(colorPixel)

@@ -149,4 +149,9 @@ class Accounts : AppCompatActivity() {
         item[menu[2]] = item3
         item[menu[3]] = item4
     }
+
+    override fun onBackPressed() {
+        val intent=Intent(applicationContext,Home::class.java)
+        startActivity(intent)
+    }
 }

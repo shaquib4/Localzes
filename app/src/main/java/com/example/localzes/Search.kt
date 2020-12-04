@@ -335,4 +335,9 @@ class Search : AppCompatActivity() {
             }
         })
     }
+
+    override fun onBackPressed() {
+        val intent=Intent(applicationContext,Home::class.java)
+        startActivity(intent)
+    }
 }

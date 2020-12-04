@@ -54,4 +54,9 @@ class Category : AppCompatActivity() {
             return@setOnNavigationItemSelectedListener false
         }
     }
+
+    override fun onBackPressed() {
+        val intent=Intent(applicationContext,Home::class.java)
+        startActivity(intent)
+    }
 }

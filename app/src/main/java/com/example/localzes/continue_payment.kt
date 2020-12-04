@@ -33,6 +33,7 @@ class continue_payment : AppCompatActivity() {
     private lateinit var progressDialog: ProgressDialog
     private lateinit var cartProducts: List<UserCartDetails>
     private lateinit var orderDetails: ModelOrderDetails
+    private lateinit var imgBackContinue:ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_payment)
@@ -40,6 +41,7 @@ class continue_payment : AppCompatActivity() {
         shippingCharges = findViewById(R.id.txtSCPrice)
         totalCharges = findViewById(R.id.txtTotalPayPrice)
         totalChargesTv = findViewById(R.id.txtPrice)
+        imgBackContinue=findViewById(R.id.imgBackContinue)
         shopId = intent.getStringExtra("shopId")
         totalCost = intent.getStringExtra("totalCost")
         totalItem = intent.getStringExtra("totalItem")
@@ -157,6 +159,13 @@ class continue_payment : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+        }
+        productCharges.text="Rs. "+totalCost.toString()
+        totalChargesTv.text="Rs. "+totalCost.toString()+"/-"
+        totalCharges.text="Rs. "+totalCost.toString()
+        imgBackContinue.setOnClickListener {
+            val intent=Intent(this,Home_seller::class.java)
+            startActivity(intent)
         }
     }
 

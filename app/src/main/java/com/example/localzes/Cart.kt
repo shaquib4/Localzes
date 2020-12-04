@@ -3,14 +3,18 @@ package com.example.localzes
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterCartItem
+import com.example.localzes.Adapters.AdapterManageAddress
+import com.example.localzes.Modals.ModelManageAddress
 import com.example.localzes.Modals.ModelOrderDetails
 import com.example.localzes.Modals.UserCartDetails
 import com.google.firebase.auth.FirebaseAuth
@@ -49,6 +53,7 @@ class Cart : AppCompatActivity() {
     private lateinit var relativeCart: RelativeLayout
     private lateinit var orderByName:String
     private lateinit var orderByMobile:String
+    private lateinit var addresses: List<ModelManageAddress>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +72,7 @@ class Cart : AppCompatActivity() {
         btnContinue = findViewById(R.id.btnContinue)
         deliveryAddress = findViewById(R.id.txtArea)
         addAddress = findViewById(R.id.txtAddAddress)
+        addresses = ArrayList<ModelManageAddress>()
         relativeCartEmpty = findViewById(R.id.rl_cart_empty)
         relativeCart = findViewById(R.id.rl_cart)
         progressDialog = ProgressDialog(this)
@@ -214,7 +220,7 @@ class Cart : AppCompatActivity() {
             }
 
         })
-        val ref:DatabaseReference=FirebaseDatabase.getInstance().reference.child(uid)
+        val ref:DatabaseReference=FirebaseDatabase.getInstance().reference.child("users").child(uid)
         ref.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
@@ -239,8 +245,44 @@ class Cart : AppCompatActivity() {
             finish()
         }
         addAddress.setOnClickListener {
-            val intent = Intent(this, ManageAddress::class.java)
-            startActivity(intent)
+           /* val intent = Intent(this, ManageAddress::class.java)
+            startActivity(intent)*
+            */
+            val mRef:DatabaseReference=FirebaseDatabase.getInstance().reference.child("users").child(uid)
+            mRef.child("address").addValueEventListener(object :ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (addresses as ArrayList<ModelManageAddress>).clear()
+                    for (i in snapshot.children) {
+
+                        val obj = ModelManageAddress(
+                            i.child("address").value.toString(),
+                            i.child("city").value.toString(),
+                            i.child("pinCode").value.toString(),
+                            i.child("country").value.toString(),
+                            i.child("state").value.toString()
+
+                        )
+                        (addresses as ArrayList<ModelManageAddress>).add(obj)
+                    }
+                }
+            })
+            val builder=AlertDialog.Builder(this)
+            val view=LayoutInflater.from(this).inflate(R.layout.address_layout,null,false)
+            builder.setView(view)
+            val rv:RecyclerView=view.findViewById(R.id.recycler_Address_dialog)
+            rv.layoutManager=LinearLayoutManager(this)
+            val adapter:AdapterManageAddress=AdapterManageAddress(this,addresses)
+            rv.adapter=adapter
+            builder.create().show()
         }
+    }
+
+    override fun onBackPressed() {
+        val intent=Intent(applicationContext,Home::class.java)
+        startActivity(intent)
     }
 }

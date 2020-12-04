@@ -2,8 +2,10 @@ package com.example.localzes
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -18,8 +20,10 @@ class Home_seller : AppCompatActivity() {
     private lateinit var orderDatabaseReference: DatabaseReference
     private lateinit var editShopDetails: ImageView
     private lateinit var shopName: TextView
-    private lateinit var totalOrders:TextView
-    private lateinit var totalIncome:TextView
+    private lateinit var totalOrders: TextView
+    private lateinit var totalIncome: TextView
+    private var backPressedTime = 0L
+
     //private lateinit var storeViews:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +34,9 @@ class Home_seller : AppCompatActivity() {
         ordersPending = findViewById(R.id.txtItemPending)
         editShopDetails = findViewById(R.id.editShopDetails)
         shopName = findViewById(R.id.txtShopName)
-        totalOrders=findViewById(R.id.txtTO)
-        totalIncome=findViewById(R.id.txtTI)
-       // storeViews=findViewById(R.id.txtSV)
+        totalOrders = findViewById(R.id.txtTO)
+        totalIncome = findViewById(R.id.txtTI)
+        // storeViews=findViewById(R.id.txtSV)
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
@@ -67,7 +71,7 @@ class Home_seller : AppCompatActivity() {
                 }
                 R.id.nav_store_seller -> {
 
-                   return@setOnNavigationItemSelectedListener true
+                    return@setOnNavigationItemSelectedListener true
 
                 }
                 R.id.nav_category_seller -> {
@@ -168,5 +172,18 @@ class Home_seller : AppCompatActivity() {
             }
 
         })*/
+    }
+
+    override fun onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+        } else {
+            Toast.makeText(
+                applicationContext,
+                "Press back again to exit the app",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        backPressedTime = System.currentTimeMillis()
     }
 }

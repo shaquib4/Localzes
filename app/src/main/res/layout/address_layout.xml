@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtCurrentAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/v1"
+                android:background="#f9f9f9"
+                android:fontFamily="@font/montserrat_bold"
+                android:paddingVertical="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Current Address"
+                android:textColor="#696969"
+                android:textSize="@dimen/_12ssp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardAddress"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_below="@+id/txtCurrentAddress"
+                android:layout_marginHorizontal="3dp"
+                android:layout_marginTop="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgHome"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/bg_border"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_home" />
+
+                    <TextView
+                        android:id="@+id/txtHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_toEndOf="@+id/imgHome"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="HOME"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <TextView
+                        android:id="@+id/txtAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtHome"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_toRightOf="@id/imgHome"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Mohan chauraha, Saraivika, Jaunpur UP - 222202 India"
+                        android:textSize="@dimen/_8ssp" />
+
+                    <TextView
+                        android:id="@+id/txtMobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtAddress"
+                        android:layout_toRightOf="@id/imgHome"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Mobile - 7518894470"
+                        android:textSize="@dimen/_9ssp" />
+
+                    <TextView
+                        android:id="@+id/txtDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_toRightOf="@id/imgHome"
+                        android:text="DELETE"
+                        android:textColor="#ff0000"
+                        android:textSize="@dimen/_10ssp" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/txtSavedAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardAddress"
+                android:background="#f9f9f9"
+                android:fontFamily="@font/montserrat_bold"
+                android:paddingVertical="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Saved Addresses"
+                android:textColor="#696969"
+                android:textSize="@dimen/_12ssp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_Address_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtSavedAddress"
+                tools:listitem="@layout/address_single_row" />
+
+
+            <Button
+                android:id="@+id/btnAddNewAddress"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_below="@+id/recycler_Address_dialog"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/bg_border"
+                android:elevation="0dp"
+                android:text="ADD NEW ADDRESS"
+                android:textColor="#008000"
+                android:textSize="@dimen/_15ssp" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

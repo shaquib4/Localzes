@@ -25,7 +25,7 @@ class AdapterUserOrderHistory(
         val orderDate: TextView = view.findViewById(R.id.orderDateTv)
         val orderStatus: TextView = view.findViewById(R.id.orderStatusCustomerTv)
         val orderShop: TextView = view.findViewById(R.id.txtShopName)
-
+        val orderShopMobile:TextView=view.findViewById(R.id.txtShopMobile)
 
     }
 
@@ -51,8 +51,10 @@ class AdapterUserOrderHistory(
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val address = snapshot.child("address")
-                holder.orderShop.text = address.value.toString()
+                val shopName = snapshot.child("shop_name")
+                val shopMobile=snapshot.child("phone")
+                holder.orderShop.text = shopName.value.toString()
+                holder.orderShopMobile.text=shopMobile.value.toString()
             }
 
         })

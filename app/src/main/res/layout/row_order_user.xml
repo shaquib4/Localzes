@@ -44,7 +44,7 @@
                         android:id="@+id/imgBorder1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@+id/txtMobile"
+                        android:layout_below="@+id/txtShopMobile"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="#f1f1f1" />
@@ -87,7 +87,7 @@
                         android:textSize="@dimen/_11ssp" />
 
                     <TextView
-                        android:id="@+id/txtMobile"
+                        android:id="@+id/txtShopMobile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txtShopName"

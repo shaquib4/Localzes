@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterUserShops
@@ -16,21 +17,22 @@ import kotlinx.android.synthetic.main.activity_home.*
 class Home : AppCompatActivity() {
     private lateinit var userDatabase: DatabaseReference
     var firebaseUser: FirebaseUser? = null
-    private lateinit var shops:List<Upload>
-    private lateinit var recyclerShopUser:RecyclerView
+    private lateinit var shops: List<Upload>
+    private lateinit var recyclerShopUser: RecyclerView
     private lateinit var userShopAdapter: AdapterUserShops
+    private var backPressedTime = 0L
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         progress_home.visibility = View.VISIBLE
-        recyclerShopUser=findViewById(R.id.recycler_shop_user)
-        recyclerShopUser.layoutManager=LinearLayoutManager(this)
+        recyclerShopUser = findViewById(R.id.recycler_shop_user)
+        recyclerShopUser.layoutManager = LinearLayoutManager(this)
 
 
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
         userDatabase = FirebaseDatabase.getInstance().reference.child("seller")
-        shops=ArrayList<Upload>()
+        shops = ArrayList<Upload>()
 
 
         bottom_navProducts.selectedItemId = R.id.nav_home
@@ -96,18 +98,31 @@ class Home : AppCompatActivity() {
                         i.child("closingDay").value.toString()
                     )
                     (shops as ArrayList<Upload>).add(obj)
-                    progress_home.visibility=View.GONE
+                    progress_home.visibility = View.GONE
                 }
-                userShopAdapter= AdapterUserShops(
+                userShopAdapter = AdapterUserShops(
                     this@Home,
                     shops
                 )
-                recyclerShopUser.adapter=userShopAdapter
+                recyclerShopUser.adapter = userShopAdapter
             }
 
         })
 
 
+    }
+
+    override fun onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+        } else {
+            Toast.makeText(
+                applicationContext,
+                "Press back again to exit the app",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        backPressedTime = System.currentTimeMillis()
     }
 
 }

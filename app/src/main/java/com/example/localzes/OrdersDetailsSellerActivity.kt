@@ -133,30 +133,31 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             }
         })
         imgEdit.setOnClickListener {
-            val reference:DatabaseReference=FirebaseDatabase.getInstance().reference.child("Seller").child(uid).child("Orders").child(orderIdTv.toString())
-            reference.addValueEventListener(object :ValueEventListener{
+            val reference: DatabaseReference =
+                FirebaseDatabase.getInstance().reference.child("Seller").child(uid).child("Orders")
+                    .child(orderIdTv.toString())
+            reference.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                   if(snapshot.child("orderStatus").value.toString()=="Pending"){
-                       editOrderStatusDialog()
-                   }
-                    else if(snapshot.child("orderStatus").value.toString()=="Accepted"){
-                       newEditOrderStatusDialog()
-                   }
+                    if (snapshot.child("orderStatus").value.toString() == "Pending") {
+                        editOrderStatusDialog()
+                    } else if (snapshot.child("orderStatus").value.toString() == "Accepted") {
+                        newEditOrderStatusDialog()
+                    }
                 }
             })
         }
     }
 
     private fun newEditOrderStatusDialog() {
-        val options= arrayOf("Out For Delivery")
-        val builder=AlertDialog.Builder(this)
+        val options = arrayOf("Out For Delivery")
+        val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
-        builder.setSingleChoiceItems(options,-1){dialog, which ->
-            val selectedItem=options[which]
+        builder.setSingleChoiceItems(options, -1) { dialog, which ->
+            val selectedItem = options[which]
             editOrderStatus(selectedItem)
             dialog.dismiss()
         }
@@ -169,8 +170,8 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
-            if(selectedItem=="Cancelled"){
-                imgEdit.isEnabled=false
+            if (selectedItem == "Cancelled") {
+                imgEdit.isEnabled = false
             }
             editOrderStatus(selectedItem)
             dialog.dismiss()
@@ -206,7 +207,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         val NOTIFICATION_TOPIC =
             "/topics/PUSH_NOTIFICATIONS" //must be same as subscribed by user
         val NOTIFICATION_TITLE = message
-        var NOTIFICATION_MESSAGE:String=""
+        var NOTIFICATION_MESSAGE: String = ""
         when (message) {
             "Order has been Accepted" -> {
                 NOTIFICATION_MESSAGE = "Yay! Your order has been accepted"
