@@ -102,6 +102,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         quantity = 1
 
         holder.productOfferPrice.text = spannableString
+        
         holder.addItem.setOnClickListener {
             if (orderTo==shopID.toString()||shopID==null){
                 addToCart(
