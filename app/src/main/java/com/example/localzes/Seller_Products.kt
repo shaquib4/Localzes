@@ -38,6 +38,9 @@ class Seller_Products : AppCompatActivity() {
         search = findViewById(R.id.searchShopProduct)
         val user = auth.currentUser
         val uid = user!!.uid
+        additem.setOnClickListener {
+            startActivity(Intent(this,AddProduct::class.java))
+        }
         search.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
