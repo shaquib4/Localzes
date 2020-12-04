@@ -25,12 +25,13 @@
      android:layout_height="@dimen/_35sdp"
      android:layout_margin="5dp"
      android:background="@drawable/bg_product_shop"/>
+
     <Button
         android:fontFamily="@font/montserrat_bold"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_below="@id/search_act"
-        android:layout_toLeftOf="@+id/btnLocality"
+        android:layout_toStartOf="@+id/btnLocality"
         android:id="@+id/btnShop"
         android:textSize="@dimen/_10ssp"
         android:layout_width="120dp"
@@ -54,7 +55,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:layout_marginTop="5dp"
         android:textSize="@dimen/_10ssp"
-        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_below="@id/search_act"
         android:layout_toRightOf="@+id/btnLocality"
         android:id="@+id/btnProduct"

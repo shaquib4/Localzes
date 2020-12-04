@@ -19,20 +19,24 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#de4500">
+                android:layout_height="@dimen/_35sdp"
+                android:background="#fff">
 
                 <TextView
                     android:id="@+id/wel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginVertical="@dimen/_10sdp"
+                  android:layout_centerInParent="true"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="EDIT SHOP DETAILS"
-                    android:textColor="#ffffff"
+                    android:textColor="#de4500"
                     android:textSize="@dimen/_15ssp"
                     />
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#d3d3d3"/>
             </RelativeLayout>
 
             <RelativeLayout

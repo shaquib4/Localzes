@@ -19,16 +19,20 @@
             <TextView
                 android:id="@+id/txtSellUpdate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="#de4500"
+                android:layout_height="@dimen/_35sdp"
+                android:background="#ffffff"
                 android:fontFamily="@font/montserrat_bold"
-                android:padding="10dp"
                 android:text="EDIT PRODUCT DETAILS"
-                android:textAlignment="center"
-                android:textColor="#ffffff"
+                android:gravity="center"
+                android:textColor="#de4500"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/txtSellUpdate"
+                android:background="#d3d3d3"/>
 
             <TextView
                 android:id="@+id/txtDetailsUpdate"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fcfcfc"
@@ -23,9 +22,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:layout_marginBottom="5dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginBottom="5dp"
                 app:cardCornerRadius="10dp">
 
                 <RelativeLayout
@@ -58,7 +57,6 @@
                         android:layout_toRightOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="5 items"
-                        android:textColor="#696969"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
@@ -83,7 +81,6 @@
                         android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Ratnakar Chaurasiya"
-                        android:textColor="#555555"
                         android:textSize="@dimen/_11ssp" />
 
                     <TextView
@@ -96,7 +93,6 @@
                         android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="+91 7518894470"
-                        android:textColor="#555555"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
@@ -119,6 +115,7 @@
                         android:layout_alignEnd="@id/orderIdCustomerTv"
                         android:layout_margin="10dp"
                         android:background="@drawable/bg_add_item"
+                        android:fontFamily="@font/montserrat_bold"
                         android:padding="5dp"
                         android:text="COD"
                         android:textColor="#de4500"
@@ -134,7 +131,6 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="5dp"
                         android:text="01/01/2021, 3:45 PM"
-                        android:textColor="#696969"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView

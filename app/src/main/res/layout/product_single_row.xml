@@ -19,25 +19,18 @@
             android:layout_height="match_parent">
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardImage"
+            <ImageView
+                android:id="@+id/imgProduct_customer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imgProduct_customer"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_160sdp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/lanju" />
-            </androidx.cardview.widget.CardView>
-
+                android:layout_height="@dimen/_160sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/lanju" />
 
             <View
                 android:id="@+id/view_customer"
                 android:layout_width="match_parent"
                 android:layout_height="1.3dp"
-                android:layout_below="@+id/cardImage"
+                android:layout_below="@+id/imgProduct_customer"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_marginBottom="7dp"
@@ -61,27 +54,30 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtProductTitle_customer"
                 android:layout_marginStart="10dp"
-                android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Rs. 699"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtStock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtProductPrice_customer"
-                android:layout_alignParentLeft="true"
-                android:text="STOCK:IN"
+                android:layout_marginVertical="@dimen/_5sdp"
+
                 android:layout_marginStart="10dp"
-                android:textSize="@dimen/_14sdp" />
+                android:fontFamily="@font/montserrat_medium"
+                android:text="STOCK: IN"
+                android:textColor="#1589ff"
+                android:textSize="@dimen/_12ssp" />
 
             <ImageView
                 android:id="@+id/imgRating_customer"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
-                android:layout_below="@id/cardImage"
+                android:layout_below="@id/imgProduct_customer"
                 android:layout_marginTop="8.5dp"
                 android:layout_toLeftOf="@+id/txtRatingShop_customer"
                 android:src="@drawable/ic_rating" />
@@ -101,23 +97,22 @@
 
             <ImageView
                 android:id="@+id/imgEditUpdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtRatingShop_customer"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_edit" />
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/edit" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchStock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imgEditUpdate"
+                android:layout_alignBottom="@+id/txtStock"
                 android:layout_alignParentRight="true"
-                android:track="@drawable/rectangle_track"
+                android:layout_margin="@dimen/_5sdp"
+                android:theme="@style/SwitchTheme"
                 android:thumb="@drawable/rectangle_thumb"
-                android:theme="@style/SwitchTheme"/>
+                android:track="@drawable/rectangle_track" />
 
             <TextView
                 android:id="@+id/txtProductOfferPrice"
