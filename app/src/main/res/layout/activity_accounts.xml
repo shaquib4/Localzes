@@ -12,19 +12,20 @@
         android:layout_height="wrap_content"
         >
         <TextView
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_toLeftOf="@id/txtaccEdit"
+            android:layout_alignParentLeft="true"
             android:id="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mohd Shaquib"
             android:textAllCaps="true"
             android:textSize="@dimen/_12ssp"
-            android:layout_marginStart="20dp"
+           android:layout_margin="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#000000"/>
         <TextView
+            android:layout_alignTop="@+id/txtaccName"
             android:id="@+id/txtaccEdit"
-            android:layout_marginTop="@dimen/_22sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LOG OUT"
@@ -39,20 +40,18 @@
             android:layout_below="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/_10sdp"
             android:textSize="@dimen/_10ssp"
             android:fontFamily="@font/montserrat_medium"
-            android:layout_marginTop="3dp"
             android:text="7007436997"/>
         <TextView
-            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_alignTop="@+id/txtaccmobile"
+            android:layout_marginStart="@dimen/_10sdp"
             android:id="@+id/txtaccEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtaccName"
             android:text="khanshaquib21@gmail.com"
             android:layout_toEndOf="@+id/txtaccmobile"
-            android:layout_marginTop="3dp"
             android:textSize="@dimen/_10ssp"
             android:fontFamily="@font/montserrat_medium"
 

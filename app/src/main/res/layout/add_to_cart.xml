@@ -114,7 +114,7 @@
                         android:background="@drawable/add_item_decrease"
                         android:onClick="countDe"
                         android:text="-"
-                        android:textColor="#696969"
+                        android:textColor="#de4500"
                         android:textSize="@dimen/_15ssp" />
 
                     <TextView
@@ -125,7 +125,7 @@
                         android:background="@drawable/add_item_quantity"
                         android:gravity="center"
                         android:text="1"
-                        android:textColor="#696969"
+                        android:textColor="#de4500"
                         android:textSize="@dimen/_15ssp" />
 
                     <Button
@@ -137,7 +137,7 @@
                         android:background="@drawable/add_item_increase"
                         android:onClick="countIn"
                         android:text="+"
-                        android:textColor="#696969"
+                        android:textColor="#de4500"
                         android:textSize="@dimen/_15ssp" />
                 </LinearLayout>
             </LinearLayout>

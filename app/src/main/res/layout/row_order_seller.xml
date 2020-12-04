@@ -55,7 +55,6 @@
                         android:layout_marginTop="7dp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="5 items"
-                        android:textColor="#696969"
                         android:textSize="@dimen/_8ssp" />
 
                     <TextView
@@ -80,7 +79,6 @@
                         android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Ratnakar Chaurasiya"
-                        android:textColor="#555555"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
@@ -93,7 +91,6 @@
                         android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="+91 7518894470"
-                        android:textColor="#555555"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
@@ -147,7 +144,6 @@
                         android:layout_marginEnd="10dp"
                         android:padding="5dp"
                         android:text="01/01/2021, 3:45 PM"
-                        android:textColor="#696969"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView

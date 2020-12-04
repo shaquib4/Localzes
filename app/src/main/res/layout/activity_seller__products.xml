@@ -24,36 +24,20 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:background="#de4500"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp">
 
-            <ImageView
-                android:id="@+id/imgBackProducts"
-                android:layout_margin="@dimen/_10sdp"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_back"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Products"
+                android:text="PRODUCTS"
                 android:textSize="@dimen/_15ssp"
-                android:textColor="#000"
+                android:textColor="#ffffff"
                 android:fontFamily="@font/montserrat_bold"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imgBackProducts" />
-            <TextView
-                android:id="@+id/add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+"
-                android:layout_marginRight="10dp"
-                android:textSize="@dimen/_30ssp"
-                android:textColor="#de4500"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true" />
+              android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
         <View
@@ -71,6 +55,20 @@
         android:padding="1dp"
         app:stackFromEnd="true"
         tools:listitem="@layout/product_single_row"/>
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add item +"
+        android:textColor="#de4500"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:fontFamily="@font/montserrat_bold"
+       android:layout_centerHorizontal="true"
+        android:textSize="@dimen/_13ssp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/bg_add_item"
+        android:layout_above="@+id/bottom_navProducts"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navProducts"

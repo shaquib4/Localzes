@@ -31,13 +31,14 @@
                     />
 
                 <TextView
+                    android:textColor="#000000"
+                    android:fontFamily="@font/montserrat_medium"
                     android:id="@+id/txtOrderId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="#123456"
-                    android:textColor="#555555"
                     android:textSize="@dimen/_11ssp" />
 
             </TableRow>
@@ -55,13 +56,13 @@
                     android:textSize="@dimen/_11ssp" />
 
                 <TextView
+                    android:fontFamily="@font/montserrat_medium"
                     android:id="@+id/txtOrderDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="27/02/2020, 9:45 PM"
-                    android:textColor="#555555"
                     android:textSize="@dimen/_10ssp" />
 
 
@@ -81,6 +82,7 @@
 
 
                 <TextView
+                    android:fontFamily="@font/montserrat_medium"
                     android:id="@+id/txtOrderStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,13 +107,13 @@
                     android:textSize="@dimen/_11ssp" />
 
                 <TextView
+                    android:fontFamily="@font/montserrat_medium"
                     android:id="@+id/txtItems"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="9"
-                    android:textColor="#555555"
                     android:textSize="@dimen/_10ssp" />
 
 
@@ -120,11 +122,11 @@
             <TableRow>
 
                 <TextView
+                    android:fontFamily="@font/montserrat_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
                     android:text="Amount :"
                     android:textColor="#000000"
                     android:textSize="@dimen/_11ssp" />
@@ -156,20 +158,20 @@
                     />
 
                 <TextView
+                    android:fontFamily="@font/montserrat_medium"
                     android:id="@+id/txtOrderDeliveryAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="Saraibika, Jaunpur UP - 222202"
-                    android:textColor="#696969"
                     android:textSize="@dimen/_10ssp" />
 
                 <ImageView
                     android:id="@+id/imgEdit"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_edit" />
+                    android:src="@drawable/edit" />
             </TableRow>
         </TableLayout>
 
@@ -185,6 +187,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
+        android:background="#ffffff"
         android:textSize="@dimen/_12ssp"
         android:paddingVertical="@dimen/_8sdp"
         android:text="Ordered Items"

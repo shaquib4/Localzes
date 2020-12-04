@@ -93,13 +93,14 @@
             />
     </RelativeLayout>
     <Button
-        android:layout_marginTop="@dimen/_200sdp"
+
         android:id="@+id/btncontinueseller"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_width="match_parent"
         android:textColor="#fff"
         android:textAllCaps="false"
+        android:layout_marginTop="@dimen/_100sdp"
         android:textSize="20dp"
         android:fontFamily="@font/l_r"
         android:layout_height="42dp"

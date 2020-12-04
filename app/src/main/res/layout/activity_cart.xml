@@ -150,9 +150,10 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:padding="5dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Price Details"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/_15ssp"
                    />
 
                 <View
@@ -177,7 +178,6 @@
                         android:padding="5dp"
                         android:text="Price(1 item)"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
                         android:textSize="@dimen/_10ssp"
                         android:fontFamily="@font/montserrat_medium"/>
 
@@ -190,7 +190,6 @@
                         android:text="Rs.600 "
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
                         android:fontFamily="@font/montserrat_medium"
                         android:textSize="@dimen/_10ssp" />
                 </LinearLayout>
@@ -211,7 +210,6 @@
                         android:text="Discount"
                         android:fontFamily="@font/montserrat_medium"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
@@ -223,7 +221,6 @@
                         android:text="- Rs.80 "
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
                         android:textSize="@dimen/_10ssp"
                         android:fontFamily="@font/montserrat_medium"
                         />
@@ -246,7 +243,6 @@
                         android:text="Delivery Charge"
                         android:fontFamily="@font/montserrat_medium"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
@@ -258,7 +254,6 @@
                         android:text="Rs.10 "
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
                         android:textSize="@dimen/_10ssp"
                         android:fontFamily="@font/montserrat_medium"/>
 
