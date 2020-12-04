@@ -32,7 +32,7 @@ class Seller_Products : AppCompatActivity() {
         mSellerProducts = ArrayList<ModelAddProduct>()
         recyclerSellerProducts = findViewById(R.id.recycler_view_seller_products)
        // imgBackProducts=findViewById(R.id.imgBackProducts)
-        txtAddProduct=findViewById(R.id.add)
+      //  txtAddProduct=findViewById(R.id.add)
         recyclerSellerProducts.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         search = findViewById(R.id.searchShopProduct)
@@ -130,14 +130,7 @@ class Seller_Products : AppCompatActivity() {
                 recyclerSellerProducts.adapter = productAdapter
             }
         })
-        imgBackProducts.setOnClickListener {
-            val intent=Intent(this,Home_seller::class.java)
-            startActivity(intent)
-        }
-        txtAddProduct.setOnClickListener {
-            val intent=Intent(this,AddProduct::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun searchSellerProducts(str: String) {

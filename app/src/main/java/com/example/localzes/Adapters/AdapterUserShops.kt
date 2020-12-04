@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.localzes.Modals.Upload
 import com.example.localzes.R
 import com.example.localzes.UserProductsActivity
@@ -41,7 +44,7 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
 
     override fun onBindViewHolder(holder: HolderUserShops, position: Int) {
         val shops_user = shopsUser[position]
-        Picasso.get().load(shops_user.imageUrl).into(holder.imgShop)
+        Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)
 
         holder.shopName.text =
             shops_user.shop_name.substring(0, 1).toUpperCase() + shops_user.shop_name.substring(1)
@@ -55,13 +58,13 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
-                    Picasso.get().load(shops_user.imageUrl).into(holder.imgShop)
+                    Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)
                 }
                 else if(snapshot.child("StoreStatus").value.toString() == "CLOSED"){
-                    val draw=holder.imgShop.drawable
-                    val bitmap=(draw as BitmapDrawable).bitmap
-                    val newBitmap=convertImage(bitmap)
-                    holder.imgShop.setImageBitmap(newBitmap)
+                    val colorMatrix=ColorMatrix()
+                    colorMatrix.setSaturation(0.0f)
+                    val filter=ColorMatrixColorFilter(colorMatrix)
+                    holder.imgShop.colorFilter=filter
                 }
             }
         })

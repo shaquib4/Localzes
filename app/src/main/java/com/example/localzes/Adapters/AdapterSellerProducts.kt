@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.graphics.drawable.BitmapDrawable
 import android.text.SpannableString
 import android.text.Spanned
@@ -17,11 +19,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.R
 import com.example.localzes.UpdateProductDetailsActivity
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 class AdapterSellerProducts(
@@ -52,7 +54,7 @@ class AdapterSellerProducts(
 
     override fun onBindViewHolder(holder: HolderProduct, position: Int) {
         val products = products_seller[position]
-        Picasso.get().load(products.imageUrl).into(holder.imgProduct)
+        Glide.with(context).load(products.imageUrl).into(holder.imgProduct)
         holder.txtProductTitle.text = products.title
         holder.txtProductPrice.text = "Rs. ${products.offerPrice}"
         val mString = "Rs. ${products.sellingPrice}"
@@ -61,19 +63,25 @@ class AdapterSellerProducts(
         spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         holder.txtProductOfferPrice.text = spannableString
         holder.switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                val reference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("seller")
-                holder.imgProduct.isEnabled = false
-                val draw = holder.imgProduct.drawable
-                val bitmap = (draw as BitmapDrawable).bitmap
-                val newBitmap: Bitmap = convertImage(bitmap)
-                holder.imgProduct.setImageBitmap(newBitmap)
+            
+            if (isChecked){
+                val userMap=HashMap<String,Any>()
+                userMap["stock"]="IN"
 
 
-            } else {
+                val reference=FirebaseDatabase.getInstance().reference.child("seller").child(products.shopId).child("Products")
+                    .child(products.productId)
+                reference.updateChildren(userMap)
+            }else{
+                val userMap=HashMap<String,Any>()
+                userMap["stock"]="OUT"
 
+
+                val reference=FirebaseDatabase.getInstance().reference.child("seller").child(products.shopId).child("Products")
+                    .child(products.productId)
+                reference.updateChildren(userMap)
             }
+
         }
         holder.imgEditUpdate.setOnClickListener {
             val intent = Intent(
