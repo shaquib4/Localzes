@@ -85,7 +85,8 @@ class ManageAddress : AppCompatActivity() {
             finish()
         }
         addNewAddress.setOnClickListener {
-
+         startActivity(Intent(this,MapsActivity_New::class.java))
+          finish()
         }
     }
 }

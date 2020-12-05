@@ -45,6 +45,7 @@
             android:textSize="14sp"
             />
         <TextView
+            android:visibility="invisible"
             android:id="@+id/btnmap_new"
             android:layout_width="match_parent"
             android:layout_marginTop="30dp"

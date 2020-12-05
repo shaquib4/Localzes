@@ -55,7 +55,7 @@ class AdapterSellerProducts(
     override fun onBindViewHolder(holder: HolderProduct, position: Int) {
         val products = products_seller[position]
         Glide.with(context).load(products.imageUrl).into(holder.imgProduct)
-        holder.txtProductTitle.text = products.title
+        holder.txtProductTitle.text = products.title.substring(0,1).toUpperCase()+products.title.substring(1)
         holder.txtProductPrice.text = "Rs. ${products.offerPrice}"
         val mString = "Rs. ${products.sellingPrice}"
         val spannableString = SpannableString(mString)

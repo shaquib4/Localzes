@@ -189,12 +189,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback ,LocationListener,G
                     userMaps["pinCode"]=pinCode
                     userMaps["locality"]=locality
                     userMaps["locality2"]=locality2
-                    userMaps["house/block"]=HouseNo
+                    userMaps["houseBlock"]=houseNo
                     userMaps["nearestLandmark"]=nearestLandmark
                     userDatabase.setValue(userMaps).addOnCompleteListener{ task ->
                         if (task.isSuccessful){
 
-                            Toast.makeText(this,country,Toast.LENGTH_LONG).show()
+                            startActivity(Intent(this,Home::class.java))
+                            finish()
                         }
                         else{
                             Toast.makeText(
