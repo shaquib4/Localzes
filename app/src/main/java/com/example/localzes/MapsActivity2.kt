@@ -2,14 +2,17 @@ package com.example.localzes
 
 import android.Manifest
 import android.content.Intent
+import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -25,7 +28,7 @@ import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.activity_maps2.*
 import java.util.*
 
-class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,GoogleMap.OnCameraMoveListener,GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener {
 
 
     private lateinit var map: GoogleMap
@@ -44,8 +47,26 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             map.isMyLocationEnabled = true
-            getLocationUpdates()
-            startLocationUpdates()
+            map.setOnCameraMoveListener(this)
+            map.setOnCameraMoveStartedListener(this)
+            map.setOnCameraIdleListener(this)
+            locationRequest = LocationRequest()
+            val builder=LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+            val settingsClient=LocationServices.getSettingsClient(this)
+            val task=settingsClient.checkLocationSettings(builder.build())
+            task.addOnSuccessListener {
+                getLocationUpdates()
+                startLocationUpdates()
+            }
+                .addOnFailureListener{
+                        e ->
+                    if (e is ResolvableApiException)
+                        try {
+                            e.startResolutionForResult(this@MapsActivity2, 51)
+                        } catch (e1: IntentSender.SendIntentException) {
+                            e1.printStackTrace()
+                        }
+                    }
         } else
             ActivityCompat.requestPermissions(
                 this,
@@ -80,6 +101,27 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
                     return
                 }
                 map.isMyLocationEnabled = true
+                map.setOnCameraMoveListener(this)
+                map.setOnCameraMoveStartedListener(this)
+                map.setOnCameraIdleListener(this)
+                locationRequest = LocationRequest()
+                val builder=LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+                val settingsClient=LocationServices.getSettingsClient(this)
+                val task=settingsClient.checkLocationSettings(builder.build())
+                task.addOnSuccessListener {
+                    getLocationUpdates()
+                    startLocationUpdates()
+                }
+                    .addOnFailureListener{
+                            e ->
+                        if (e is ResolvableApiException) {
+                            try {
+                                e.startResolutionForResult(this@MapsActivity2, 51)
+                            } catch (e1: IntentSender.SendIntentException) {
+                                e1.printStackTrace()
+                            }
+                        }
+                    }
             } else {
                 Toast.makeText(
                     this,
@@ -100,7 +142,7 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
-        btncontinueseller.setOnClickListener {
+        SaveAddress_seller.setOnClickListener {
             val name = intent.getStringExtra("name")
 
             val email = intent.getStringExtra("email")
@@ -110,6 +152,9 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
             val country=txtCountry_seller.text.toString()
             val pinCode=txtPincode_seller.text.toString()
             val locality=txtLocality_seller.text.toString()
+            val locality2=edtLocality_seller.text.toString()
+            val nearestLandmark=edtNearestLandmark_seller.text.toString()
+            val houseNo=HouseNo_seller.text.toString()
             val intent= Intent(this,SellerShop_detail::class.java)
             intent.putExtra("name",name)
             intent.putExtra("email",email)
@@ -119,15 +164,15 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
             intent.putExtra("country",country)
             intent.putExtra("pinCode",pinCode)
             intent.putExtra("locality",locality)
+            intent.putExtra("locality2",locality2)
+            intent.putExtra("nearestLandmark",nearestLandmark)
+            intent.putExtra("HouseNo",houseNo)
 
-            if (address.isEmpty()) {
-                btncontinueseller.setText("Continue")
-                getLocationAccess()
 
-            } else{
+
                 startActivity(intent)
                 finish()
-            }
+
         }
     }
 
@@ -150,22 +195,33 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
                     val geocoder: Geocoder
                     val addresses: List<Address>
                     geocoder = Geocoder(applicationContext, Locale.getDefault())
-                    addresses = geocoder.getFromLocation(lot, long, 1)
-                    val address: String = addresses[0].getAddressLine(0)
+                    try {
+                        addresses = geocoder.getFromLocation(lot, long, 1)
+                        val address: String = addresses[0].getAddressLine(0)
 
 
 
-                    val city: String = addresses[0].subAdminArea
-                    val state: String = addresses[0].adminArea
-                    val pinCode: String = addresses[0].postalCode
-                    val country: String = addresses[0].countryName
-                    val locality:String=addresses[0].locality
-                    btnmapseller.text=address
-                    txtCity_seller.text=city
-                    txtState_seller.text=state
-                    txtPincode_seller.text=pinCode
-                    txtCountry_seller.text=country
-                    txtLocality_seller.text=locality
+                        val city: String = addresses[0].subAdminArea
+                        val state: String = addresses[0].adminArea
+                        val pinCode: String = addresses[0].postalCode
+                        val country: String = addresses[0].countryName
+                        val locality:String=addresses[0].locality
+                        btnmapseller.text="$locality, $state($city), $pinCode $country"
+                        txtCity_seller.text=city
+                        txtState_seller.text=state
+                        txtPincode_seller.text=pinCode
+                        txtLocality_seller.text=locality
+                        txtCountry_seller.text=country
+                        City_seller.text="($city),"
+                        State_seller.text=state
+                        Pincode_seller.text=" $pinCode"
+
+                        Locality_bold_seller.text=locality
+                        localit_seller.text="$locality,"
+                    }catch (e:java.lang.Exception){
+                        e.printStackTrace()
+                    }
+
 
 
 
@@ -223,6 +279,81 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback {
          val sydney = LatLng(26.7606, 83.3732)
          map.addMarker(MarkerOptions().position(sydney).title("Gorakhpur , India").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
          map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,zoom))*/
+    }
+
+    override fun onLocationChanged(location: Location?) {
+        val geocoder: Geocoder
+
+        val addresses: List<Address>
+        geocoder = Geocoder(applicationContext, Locale.getDefault())
+        try{
+            addresses = geocoder.getFromLocation(location!!.latitude, location!!.longitude, 1)
+            val address: String = addresses[0].getAddressLine(0)
+            val city: String = addresses[0].subAdminArea
+            val state: String = addresses[0].adminArea
+            val pinCode: String = addresses[0].postalCode
+            val country: String = addresses[0].countryName
+            val locality:String=addresses[0].locality
+
+            btnmapseller.text="$locality, $state($city), $pinCode $country"
+            txtCity_seller.text=city
+            txtState_seller.text=state
+            txtPincode_seller.text=pinCode
+            txtLocality_seller.text=locality
+            txtCountry_seller.text=country
+            City_seller.text="($city),"
+            State_seller.text=state
+            Pincode_seller.text=" $pinCode"
+
+            Locality_bold_seller.text=locality
+            localit_seller.text="$locality,"
+
+
+        } catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    override fun onCameraMove() {
+
+    }
+
+    override fun onCameraMoveStarted(p0: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCameraIdle() {
+        val geocoder: Geocoder
+
+        val addresses: List<Address>
+        geocoder = Geocoder(applicationContext, Locale.getDefault())
+        try{
+            addresses = geocoder.getFromLocation(map!!.cameraPosition.target.latitude, map!!.cameraPosition.target.longitude, 1)
+            val address: String = addresses[0].getAddressLine(0)
+            val city: String = addresses[0].subAdminArea
+            val state: String = addresses[0].adminArea
+            val pinCode: String = addresses[0].postalCode
+            val country: String = addresses[0].countryName
+            val locality:String=addresses[0].locality
+
+            btnmapseller.text="$locality, $state($city), $pinCode $country"
+            txtCity_seller.text=city
+            txtState_seller.text=state
+            txtPincode_seller.text=pinCode
+            txtLocality_seller.text=locality
+            txtCountry_seller.text=country
+            City_seller.text="($city),"
+            State_seller.text=state
+            Pincode_seller.text=" $pinCode"
+
+            Locality_bold_seller.text=locality
+            localit_seller.text="$locality,"
+
+        } catch (e:IndexOutOfBoundsException){
+            e.printStackTrace()
+        } catch (e: Exception){
+            e.printStackTrace()
+        }
     }
 
 }

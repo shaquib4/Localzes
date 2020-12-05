@@ -105,6 +105,9 @@ class SellerShop_detail : AppCompatActivity() {
                                     val country = intent.getStringExtra("country")
                                     val pinCode = intent.getStringExtra("pinCode")
                                     val locality = intent.getStringExtra("locality")
+                                    val locality2=intent.getStringExtra("locality2")
+                                    val nearestLandmark=intent.getStringExtra("nearestLandmark")
+                                    val houseNo=intent.getStringExtra("HouseNo")
 
                                     upload = Upload(
                                         uid,
@@ -147,6 +150,9 @@ class SellerShop_detail : AppCompatActivity() {
                                             userMaps["state"] = state.toString()
                                             userMaps["country"] = country.toString()
                                             userMaps["pinCode"] = pinCode.toString()
+                                            userMaps["locality2"]=locality2.toString()
+                                            userMaps["nearestLandmark"]=nearestLandmark.toString()
+                                            userMaps["House/Block"]=houseNo.toString()
                                             mDatabaseRef.setValue(userMaps)
                                                 .addOnCompleteListener { task ->
                                                     if (task.isSuccessful) {

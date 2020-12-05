@@ -22,12 +22,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_maps.*
-import kotlinx.android.synthetic.main.map_ui.*
 import java.io.IOException
 import java.util.*
 
@@ -179,6 +177,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback ,LocationListener,G
                     val country=txtCountry.text.toString()
                     val pinCode=txtPincode.text.toString()
                     val locality=txtLocality.text.toString()
+                    val locality2=edtLocality.text.toString()
+                    val houseNo=HouseNo.text.toString()
+                    val nearestLandmark=edtNearestLandmark.text.toString()
                     userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid).child("current_address")
                     val userMaps= HashMap<String,Any>()
                     userMaps["address"]=address
@@ -187,6 +188,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback ,LocationListener,G
                     userMaps["country"]=country
                     userMaps["pinCode"]=pinCode
                     userMaps["locality"]=locality
+                    userMaps["locality2"]=locality2
+                    userMaps["house/block"]=HouseNo
+                    userMaps["nearestLandmark"]=nearestLandmark
                     userDatabase.setValue(userMaps).addOnCompleteListener{ task ->
                         if (task.isSuccessful){
 
@@ -328,12 +332,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback ,LocationListener,G
             val state: String = addresses[0].adminArea
             val pinCode: String = addresses[0].postalCode
             val country: String = addresses[0].countryName
+            val locality:String=addresses[0].locality
 
-            btnmap.text=address
+            btnmap.text="$locality, $state($city), $pinCode $country"
             txtCity.text=city
             txtState.text=state
             txtPincode.text=pinCode
+            txtLocality.text=locality
             txtCountry.text=country
+            City.text="($city),"
+            State.text=state
+            Pincode.text=" $pinCode"
+
+            Locality_bold.text=locality
+            localit.text="$locality,"
         } catch (e:Exception){
             e.printStackTrace()
         }
@@ -377,7 +389,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback ,LocationListener,G
 
         } catch (e:IndexOutOfBoundsException){
             e.printStackTrace()
-        } catch (e: Exception){
+        } catch (e: IOException){
             e.printStackTrace()
         }
     }
