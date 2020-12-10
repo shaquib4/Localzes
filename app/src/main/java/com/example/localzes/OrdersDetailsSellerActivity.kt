@@ -265,4 +265,9 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         }
         Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

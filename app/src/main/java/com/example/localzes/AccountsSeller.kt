@@ -37,7 +37,7 @@ class AccountsSeller : AppCompatActivity() {
         userName=findViewById(R.id.txtaccName)
         userMobileNo=findViewById(R.id.txtaccmobile)
         userEmailAddress=findViewById(R.id.txtaccEmail)
-        storeStatus=findViewById(R.id.storeStatus)
+        storeStatus=findViewById(R.id.storeOpen)
         deliveryAvailibility=findViewById(R.id.deliveryAvailable)
         switchStoreStatus=findViewById(R.id.switchOpen)
         switchDelivery=findViewById(R.id.switchDelivery)

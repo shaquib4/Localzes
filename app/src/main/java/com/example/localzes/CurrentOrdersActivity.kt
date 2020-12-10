@@ -81,4 +81,10 @@ class CurrentOrdersActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    override fun onBackPressed() {
+        val intent=Intent(this,Accounts::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

@@ -55,12 +55,14 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         when(userProducts.stock){
             "IN"->{
                 Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
+                holder.addItem.isClickable=true
             }
             "OUT"->{
                 val colorMatrix= ColorMatrix()
                 colorMatrix.setSaturation(0.0f)
                 val filter= ColorMatrixColorFilter(colorMatrix)
                 holder.productImage.colorFilter=filter
+                holder.addItem.isClickable=false
             }
         }
         val mString = "Rs. ${userProducts.sellingPrice}"
@@ -499,29 +501,5 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val txtCounter: TextView = view.findViewById(R.id.txtCounter)
         val stock:TextView=view.findViewById(R.id.txtStock_customer)
 
-    }
-    private fun convertImage(original:Bitmap): Bitmap {
-        val finalImage=Bitmap.createBitmap(original.width,original.height,original.config)
-        var A: Int
-        var R: Int
-        var G: Int
-        var B: Int
-        var colorPixel: Int
-        val width = original.width
-        val height = original.height
-        for (x in 0 until width) {
-            for (y in 0 until height) {
-                colorPixel = original.getPixel(x, y)
-                A = Color.alpha(colorPixel)
-                R = Color.red(colorPixel)
-                G = Color.green(colorPixel)
-                B = Color.blue(colorPixel)
-                R = (R + G + B) / 3
-                G = R
-                B = R
-                finalImage.setPixel(x, y, Color.argb(A, R, G, B))
-            }
-        }
-        return finalImage
     }
 }

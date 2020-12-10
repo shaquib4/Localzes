@@ -131,4 +131,8 @@ class Continueas : AppCompatActivity() {
         })
 
     }
+
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 }

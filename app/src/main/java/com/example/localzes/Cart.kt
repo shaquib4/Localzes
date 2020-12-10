@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -17,6 +18,7 @@ import com.example.localzes.Adapters.AdapterManageAddress
 import com.example.localzes.Modals.ModelManageAddress
 import com.example.localzes.Modals.ModelOrderDetails
 import com.example.localzes.Modals.UserCartDetails
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_cart.*
@@ -51,9 +53,10 @@ class Cart : AppCompatActivity() {
     private lateinit var addAddress: TextView
     private lateinit var relativeCartEmpty: RelativeLayout
     private lateinit var relativeCart: RelativeLayout
-    private lateinit var orderByName:String
-    private lateinit var orderByMobile:String
+    private lateinit var orderByName: String
+    private lateinit var orderByMobile: String
     private lateinit var addresses: List<ModelManageAddress>
+    private lateinit var btnShopNow: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +75,7 @@ class Cart : AppCompatActivity() {
         btnContinue = findViewById(R.id.btnContinue)
         deliveryAddress = findViewById(R.id.txtArea)
         addAddress = findViewById(R.id.txtAddAddress)
+        btnShopNow = findViewById(R.id.btnShopNow)
         addresses = ArrayList<ModelManageAddress>()
         relativeCartEmpty = findViewById(R.id.rl_cart_empty)
         relativeCart = findViewById(R.id.rl_cart)
@@ -175,11 +179,16 @@ class Cart : AppCompatActivity() {
 
                 }
                 if (cartProducts.isEmpty()) {
-                    relativeCart.visibility= View.GONE
+                    relativeCart.visibility = View.GONE
+                    btnShopNow.setOnClickListener {
+                        val intent = Intent(this@Cart, Home_seller::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
 
                 } else {
-                    relativeCartEmpty.visibility=View.GONE
-                    relativeCart.visibility=View.VISIBLE
+                    relativeCartEmpty.visibility = View.GONE
+                    relativeCart.visibility = View.VISIBLE
                     userCartAdapter = AdapterCartItem(
                         this@Cart,
                         cartProducts
@@ -220,15 +229,16 @@ class Cart : AppCompatActivity() {
             }
 
         })
-        val ref:DatabaseReference=FirebaseDatabase.getInstance().reference.child("users").child(uid)
-        ref.addValueEventListener(object :ValueEventListener{
+        val ref: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+        ref.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                orderByName=snapshot.child("name").value.toString()
-                orderByMobile=snapshot.child("phone").value.toString()
+                orderByName = snapshot.child("name").value.toString()
+                orderByMobile = snapshot.child("phone").value.toString()
             }
 
         })
@@ -239,17 +249,17 @@ class Cart : AppCompatActivity() {
             intent.putExtra("orderBy", orderByuid)
             intent.putExtra("totalItem", totalItem.toString())
             intent.putExtra("delivery", deliveryUser)
-            intent.putExtra("orderByName",orderByName)
-            intent.putExtra("orderByMobile",orderByMobile)
+            intent.putExtra("orderByName", orderByName)
+            intent.putExtra("orderByMobile", orderByMobile)
             startActivity(intent)
             finish()
         }
         addAddress.setOnClickListener {
-           /* val intent = Intent(this, ManageAddress::class.java)
-            startActivity(intent)*
-            */
-            val mRef:DatabaseReference=FirebaseDatabase.getInstance().reference.child("users").child(uid)
-            mRef.child("address").addValueEventListener(object :ValueEventListener{
+            val dialog = BottomSheetDialog(this)
+            val view = LayoutInflater.from(this).inflate(R.layout.address_layout, null, false)
+            val mRef: DatabaseReference =
+                FirebaseDatabase.getInstance().reference.child("users").child(uid)
+            mRef.child("address").addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
@@ -270,19 +280,21 @@ class Cart : AppCompatActivity() {
                     }
                 }
             })
-            val builder=AlertDialog.Builder(this)
-            val view=LayoutInflater.from(this).inflate(R.layout.address_layout,null,false)
-            builder.setView(view)
-            val rv:RecyclerView=view.findViewById(R.id.recycler_Address_dialog)
-            rv.layoutManager=LinearLayoutManager(this)
-            val adapter:AdapterManageAddress=AdapterManageAddress(this,addresses)
-            rv.adapter=adapter
-            builder.create().show()
+            dialog.setContentView(view)
+            dialog.show()
+            val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
+            val layoutManager = LinearLayoutManager(this)
+            rv.layoutManager = layoutManager
+            val adapter: AdapterManageAddress = AdapterManageAddress(this, addresses)
+            rv.adapter = adapter
+            dialog.setCancelable(true)
+            dialog.setCanceledOnTouchOutside(true)
+            dialog.behavior.setPeekHeight(150)
         }
     }
 
     override fun onBackPressed() {
-        val intent=Intent(applicationContext,Home::class.java)
+        val intent = Intent(applicationContext, Home::class.java)
         startActivity(intent)
         finish()
     }

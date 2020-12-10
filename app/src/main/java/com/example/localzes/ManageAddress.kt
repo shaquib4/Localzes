@@ -21,8 +21,9 @@ class ManageAddress : AppCompatActivity() {
     private lateinit var recyclerManageAddress: RecyclerView
     private lateinit var userAddressAdapter: AdapterManageAddress
     private lateinit var txtCurrentAddress: TextView
-    private lateinit var imgBackManage:ImageView
-    private lateinit var addNewAddress:Button
+    private lateinit var imgBackManage: ImageView
+    private lateinit var addNewAddress: Button
+    private lateinit var mobileTv: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_address)
@@ -31,8 +32,9 @@ class ManageAddress : AppCompatActivity() {
         val uid = user!!.uid
         recyclerManageAddress = findViewById(R.id.recycler_Address)
         txtCurrentAddress = findViewById(R.id.txtAddress)
-        addNewAddress=findViewById(R.id.btnAddNewAddress)
-        imgBackManage=findViewById(R.id.imgBackManage)
+        addNewAddress = findViewById(R.id.btnAddNewAddress)
+        imgBackManage = findViewById(R.id.imgBackManage)
+        mobileTv = findViewById(R.id.txtMobile)
         recyclerManageAddress.layoutManager = LinearLayoutManager(this)
 
         userDatabase =
@@ -65,7 +67,18 @@ class ManageAddress : AppCompatActivity() {
                         addresses
                     )
                 recyclerManageAddress.adapter = userAddressAdapter
-                //recyclerShopUser.adapter=userShopAdapter
+            }
+
+        })
+        userDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val mobNo = snapshot.child("phone").value.toString()
+                mobileTv.text = mobNo
+
             }
 
         })
@@ -80,7 +93,7 @@ class ManageAddress : AppCompatActivity() {
             }
         })
         imgBackManage.setOnClickListener {
-            val intent=Intent(this,Home::class.java)
+            val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
         }

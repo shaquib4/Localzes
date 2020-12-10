@@ -80,4 +80,10 @@ class OrdersAcceptedActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onBackPressed() {
+        val intent=Intent(this,Home_seller::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

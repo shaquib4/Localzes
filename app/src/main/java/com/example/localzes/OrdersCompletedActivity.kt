@@ -20,7 +20,7 @@ class OrdersCompletedActivity : AppCompatActivity() {
     private lateinit var recyclerOrdersCompleted: RecyclerView
     private lateinit var adapterOrdersCompleted: AdapterSellerOrders
     private lateinit var orderCompleted: RelativeLayout
-    private lateinit var back:ImageView
+    private lateinit var back: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_completed)
@@ -30,7 +30,7 @@ class OrdersCompletedActivity : AppCompatActivity() {
         ordersCompletedList = ArrayList<ModelOrderDetails>()
         orderCompleted = findViewById(R.id.rl_Completed_Orders)
         recyclerOrdersCompleted = findViewById(R.id.recyclerOrdersCompleted)
-        back=findViewById(R.id.imgBackCompletedOrders)
+        back = findViewById(R.id.imgBackCompletedOrders)
         recyclerOrdersCompleted.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")
@@ -76,9 +76,15 @@ class OrdersCompletedActivity : AppCompatActivity() {
                 }
             })
         back.setOnClickListener {
-            val intent= Intent(this,Home_seller::class.java)
+            val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, Home_seller::class.java)
+        startActivity(intent)
+        finish()
     }
 }

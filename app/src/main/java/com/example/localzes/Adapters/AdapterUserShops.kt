@@ -12,11 +12,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.localzes.Modals.Upload
 import com.example.localzes.R
 import com.example.localzes.UserProductsActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -27,6 +32,9 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
         val imgShop: ImageView = view.findViewById(R.id.imgShop)
         val shopName: TextView = view.findViewById(R.id.txtShop_name)
         val shopCategory: TextView = view.findViewById(R.id.txtCategory)
+        val cardShop: CardView = view.findViewById(R.id.card_shop)
+        val unFavorite: FloatingActionButton = view.findViewById(R.id.btnFavorites)
+        val favorite: FloatingActionButton = view.findViewById(R.id.btnFavorites1)
 
 
     }
@@ -45,11 +53,54 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
 
     override fun onBindViewHolder(holder: HolderUserShops, position: Int) {
         val shops_user = shopsUser[position]
+        val user = FirebaseAuth.getInstance().currentUser
+        val uid = user!!.uid
         Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)
 
         holder.shopName.text =
             shops_user.shop_name.substring(0, 1).toUpperCase() + shops_user.shop_name.substring(1)
         holder.shopCategory.text = shops_user.category1
+        holder.unFavorite.setOnClickListener {
+            val view = it
+            holder.unFavorite.visibility = View.GONE
+            holder.favorite.visibility = View.VISIBLE
+            val obj = Upload(
+                shops_user.shopId,
+                shops_user.phone,
+                shops_user.name,
+                shops_user.email,
+                shops_user.address,
+                shops_user.shop_name,
+                shops_user.imageUrl,
+                shops_user.category1,
+                shops_user.upi,
+                shops_user.locality,
+                shops_user.city,
+                shops_user.pinCode,
+                shops_user.state,
+                shops_user.country,
+                shops_user.openingTime,
+                shops_user.closingTime,
+                shops_user.closingDay
+            )
+            val favShopReference: DatabaseReference =
+                FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                    .child("Favorites")
+            favShopReference.child(shops_user.shopId).setValue(obj).addOnSuccessListener {
+                val snackbar = Snackbar.make(view, "Added to favorites", Snackbar.LENGTH_LONG)
+                snackbar.show()
+            }
+
+        }
+        holder.favorite.setOnClickListener {
+            val favShopReference: DatabaseReference =
+                FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                    .child("Favorites").child(shops_user.shopId)
+            favShopReference.removeValue().addOnSuccessListener {
+                holder.favorite.visibility = View.GONE
+                holder.unFavorite.visibility = View.VISIBLE
+            }
+        }
         val reference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(shops_user.shopId)
         reference.addValueEventListener(object : ValueEventListener {
@@ -61,14 +112,15 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
                 try {
                     if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
                         Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)
-                    }
-                    else if(snapshot.child("StoreStatus").value.toString() == "CLOSED"){
-                        val colorMatrix=ColorMatrix()
+                        holder.cardShop.isClickable = true
+                    } else if (snapshot.child("StoreStatus").value.toString() == "CLOSED") {
+                        val colorMatrix = ColorMatrix()
                         colorMatrix.setSaturation(0.0f)
-                        val filter=ColorMatrixColorFilter(colorMatrix)
-                        holder.imgShop.colorFilter=filter
+                        val filter = ColorMatrixColorFilter(colorMatrix)
+                        holder.imgShop.colorFilter = filter
+                        holder.cardShop.isClickable = false
                     }
-                }catch (e:Exception){
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
 
@@ -99,30 +151,5 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
             intent.putExtra("shopId", shops_user.shopId)
             context.startActivity(intent)
         }
-    }
-
-    private fun convertImage(original: Bitmap): Bitmap {
-        val finalImage = Bitmap.createBitmap(original.width, original.height, original.config)
-        var A: Int
-        var R: Int
-        var G: Int
-        var B: Int
-        var colorPixel: Int
-        val width = original.width
-        val height = original.height
-        for (x in 0 until width) {
-            for (y in 0 until height) {
-                colorPixel = original.getPixel(x, y)
-                A = Color.alpha(colorPixel)
-                R = Color.red(colorPixel)
-                G = Color.green(colorPixel)
-                B = Color.blue(colorPixel)
-                R = (R + G + B) / 3
-                G = R
-                B = R
-                finalImage.setPixel(x, y, Color.argb(A, R, G, B))
-            }
-        }
-        return finalImage
     }
 }

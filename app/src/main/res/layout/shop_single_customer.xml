@@ -2,20 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/_2sdp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_2sdp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_shop"
-        android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/bg_product_shop"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnFavorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:backgroundTint="#d3d3d3"
+                android:padding="2dp"
+                android:src="@drawable/ic_baseline_favorite_border_24" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnFavorites1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:backgroundTint="#d3d3d3"
+                android:padding="2dp"
+                android:src="@drawable/ic_favourite"
+                android:visibility="gone" />
+
 
             <ImageView
                 android:id="@+id/imgShop"
@@ -26,12 +46,12 @@
 
 
             <View
+                android:id="@+id/view1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:id="@+id/view1"
-                android:layout_margin="@dimen/_2sdp"
                 android:layout_below="@+id/imgShop"
-                android:background="#d3d3d3"/>
+                android:layout_margin="@dimen/_2sdp"
+                android:background="#d3d3d3" />
 
             <TextView
                 android:id="@+id/txtShop_name"
@@ -39,11 +59,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view1"
                 android:layout_marginStart="10dp"
-                android:text="Khan Shops"
                 android:fontFamily="@font/montserrat_medium"
+                android:text="Khan Shops"
                 android:textColor="#000"
                 android:textSize="@dimen/_13ssp" />
-
 
 
             <TextView
@@ -52,16 +71,16 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtShop_name"
                 android:layout_marginStart="10dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Foods"
-                android:textSize="@dimen/_11ssp"
-               android:fontFamily="@font/montserrat_medium" />
+                android:textSize="@dimen/_11ssp" />
 
             <ImageView
                 android:id="@+id/imgRating_customer"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_below="@id/view1"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_toLeftOf="@+id/txtRatingShop_customer"
                 android:src="@drawable/ic_rating" />
@@ -73,20 +92,21 @@
                 android:layout_alignTop="@+id/imgRating_customer"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="10dp"
-                android:text="4.5/5"
                 android:fontFamily="@font/montserrat_bold"
+                android:text="4.5/5"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_11ssp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_12sdp"
+                android:layout_below="@+id/txtCategory"
                 android:layout_alignLeft="@+id/txtCategory"
-                android:text="8:00 am to 9:00 pm"
-                android:fontFamily="@font/montserrat_semibold"
-                android:textColor="#de4500"
-                android:textSize="@dimen/_9ssp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_below="@+id/txtCategory"/>
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="8:00 am to 9:00 pm"
+                android:textColor="#de4500"
+                android:textSize="@dimen/_9ssp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

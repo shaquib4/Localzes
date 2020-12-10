@@ -23,6 +23,9 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private lateinit var shopNameUpdate: EditText
     private lateinit var upiIdUpdate: EditText
     private lateinit var btnUpdateDetails: Button
+    private lateinit var spinnerOpen: Spinner
+    private lateinit var spinnerClose: Spinner
+    private lateinit var spinnerClosingDay: Spinner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_shop_detail)
@@ -34,6 +37,9 @@ class UpdateShopDetailActivity : AppCompatActivity() {
         shopNameUpdate = findViewById(R.id.edtNameUpdate)
         upiIdUpdate = findViewById(R.id.edtPayUpdate)
         btnUpdateDetails = findViewById(R.id.Update)
+        spinnerClose = findViewById(R.id.spinner_close)
+        spinnerOpen = findViewById(R.id.spinner_open)
+        spinnerClosingDay = findViewById(R.id.spinner_closing_day)
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -63,6 +69,19 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     }
 
     private fun updateData() {
+        if (imagePathUpdated == null) {
+            val headers = HashMap<String, Any>()
+            headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
+            headers["shop_name"] = shopNameUpdate.text.toString().trim()
+            headers["upi"] = upiIdUpdate.text.toString().trim()
+            headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
+            headers["closingTime"] =spinnerClose.selectedItem.toString().trim()
+            headers["closingDay"]=spinnerClosingDay.selectedItem.toString().trim()
+                databaseRef.updateChildren(headers).addOnSuccessListener {
+                    Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT).show()
+                }
+
+        }
 
         val user = FirebaseAuth.getInstance().currentUser
 
@@ -82,6 +101,9 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
                     headers["shop_name"] = shopNameUpdate.text.toString().trim()
                     headers["upi"] = upiIdUpdate.text.toString().trim()
+                    headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
+                    headers["closingTime"] =spinnerClose.selectedItem.toString().trim()
+                    headers["closingDay"]=spinnerClosingDay.selectedItem.toString().trim()
                     databaseRef.updateChildren(headers).addOnSuccessListener {
                         Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT).show()
                     }
@@ -109,7 +131,8 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent=Intent(applicationContext,Home_seller::class.java)
+        val intent = Intent(applicationContext, Home_seller::class.java)
         startActivity(intent)
+        finish()
     }
 }

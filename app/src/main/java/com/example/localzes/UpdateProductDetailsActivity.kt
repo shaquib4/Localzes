@@ -152,4 +152,10 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        val intent=Intent(this,Seller_Products::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

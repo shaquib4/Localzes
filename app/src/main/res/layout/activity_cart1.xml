@@ -31,6 +31,7 @@
             android:textSize="18sp" />
 
         <Button
+            android:id="@+id/btnShopNow"
             android:layout_width="160dp"
             android:layout_height="@dimen/_27sdp"
             android:layout_below="@id/noitem"
