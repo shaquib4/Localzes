@@ -147,6 +147,7 @@ class Home_seller : AppCompatActivity() {
         editShopDetails.setOnClickListener {
             val intent = Intent(this, UpdateShopDetailActivity::class.java)
             startActivity(intent)
+            finish()
         }
         orderDatabaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
