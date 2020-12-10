@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:src="@drawable/ic_pin"
-        android:translationY="-18dp"/>
+        android:translationY="-15dp"/>
 </RelativeLayout>
 <RelativeLayout
     android:layout_marginTop="@dimen/_10sdp"

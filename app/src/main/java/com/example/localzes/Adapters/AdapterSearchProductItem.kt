@@ -35,7 +35,7 @@ class AdapterSearchProductItem(val context: Context, private val searchProduct:L
 
     override fun onBindViewHolder(holder: HolderSearchProductItem, position: Int) {
        val products=searchProduct[position]
-        holder.productName.text=products.title
+        holder.productName.text=products.title.substring(0,1).toUpperCase()+products.title.substring(1)
         holder.productPrice.text=products.offerPrice
         Picasso.get().load(products.imageUrl).into(holder.productImage)
         holder.itemView.setOnClickListener{

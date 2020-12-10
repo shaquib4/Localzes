@@ -47,6 +47,7 @@ class AdapterManageAddress(
         holder.address.text = address_user.address
         holder.itemView.setOnClickListener {
             val builder = AlertDialog.Builder(context)
+            val show=builder.show()
             builder.setTitle("Confirmation")
             builder.setMessage("Are you sure you want to set your current address as ${address_manage[position].address},${address_manage[position].city}")
             builder.setPositiveButton("Yes") { text, listener ->
@@ -61,13 +62,14 @@ class AdapterManageAddress(
                         "Delivery Address Updated Successfully",
                         Toast.LENGTH_SHORT
                     ).show()
+                    show.dismiss()
+
                 }
-                val intent = Intent(context, ManageAddress::class.java)
-                context.startActivity(intent)
+
+
             }
             builder.setNegativeButton("No") { text, listener ->
-                val intent = Intent(context, ManageAddress::class.java)
-                context.startActivity(intent)
+                show.dismiss()
             }
             builder.create().show()
         }

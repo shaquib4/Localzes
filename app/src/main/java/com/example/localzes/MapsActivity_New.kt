@@ -181,12 +181,13 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
             userMap["pinCode"]=pinCode
             userMap["locality"]=locality
             userMap["locality2"]=locality2
-            userMap["house/block"]=HouseNo
+            userMap["houseBlock"]=houseNo
             userMap["nearestLandmark"]=nearestLandmark
 
                 userDatabase.child(maxId.toString()).setValue(userMap).addOnCompleteListener{ task ->
                     if (task.isSuccessful){
-                        Toast.makeText(applicationContext,"saved",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this,Accounts::class.java))
+                        finish()
                     }
 
 
@@ -241,6 +242,7 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
                     } catch (e: Exception){
                         e.printStackTrace()
                     }
+                    fusedLocationClient.removeLocationUpdates(locationCallback)
 
 
 

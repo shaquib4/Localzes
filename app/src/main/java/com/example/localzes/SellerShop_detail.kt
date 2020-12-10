@@ -115,7 +115,7 @@ class SellerShop_detail : AppCompatActivity() {
                                         name!!.toString().trim(),
                                         email!!.toString().trim(),
                                         address!!.toString().trim(),
-                                        etShopName.text.toString().trim(),
+                                        etShopName.text.toString().trim().toLowerCase(),
                                         downloadUrl.toString(),
                                         etCategory1.selectedItem.toString(),
                                         upi.text.toString().trim(),
@@ -152,7 +152,7 @@ class SellerShop_detail : AppCompatActivity() {
                                             userMaps["pinCode"] = pinCode.toString()
                                             userMaps["locality2"]=locality2.toString()
                                             userMaps["nearestLandmark"]=nearestLandmark.toString()
-                                            userMaps["House/Block"]=houseNo.toString()
+                                            userMaps["houseBlock"]=houseNo.toString()
                                             mDatabaseRef.setValue(userMaps)
                                                 .addOnCompleteListener { task ->
                                                     if (task.isSuccessful) {

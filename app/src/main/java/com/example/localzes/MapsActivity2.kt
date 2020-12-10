@@ -221,6 +221,7 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
                     }catch (e:java.lang.Exception){
                         e.printStackTrace()
                     }
+                    fusedLocationClient.removeLocationUpdates(locationCallback)
 
 
 
@@ -228,7 +229,7 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
                     if (location != null) {
                         val latLng = LatLng(location.latitude, location.longitude)
                         val markerOptions = MarkerOptions().position(latLng)
-                        map.addMarker(markerOptions)
+                     //   map.addMarker(markerOptions)
                         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
                     }
                 }
@@ -319,7 +320,7 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
     }
 
     override fun onCameraMoveStarted(p0: Int) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onCameraIdle() {
