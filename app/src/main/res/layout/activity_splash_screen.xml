@@ -25,6 +25,7 @@
             android:padding="5dp"
             android:minWidth="110dp"
             android:text="NEXT"
+            android:id="@+id/btnNext"
             android:textSize="14sp"/>
     </RelativeLayout>
     <View
@@ -41,6 +42,7 @@
         android:layout_above="@id/view6"
         android:layout_marginBottom="12dp"/>
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/introSliderViewPager"
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_marginBottom="12dp"

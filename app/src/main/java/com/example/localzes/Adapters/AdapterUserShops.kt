@@ -93,12 +93,15 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
 
         }
         holder.favorite.setOnClickListener {
+            val view=it
             val favShopReference: DatabaseReference =
                 FirebaseDatabase.getInstance().reference.child("users").child(uid)
                     .child("Favorites").child(shops_user.shopId)
             favShopReference.removeValue().addOnSuccessListener {
                 holder.favorite.visibility = View.GONE
                 holder.unFavorite.visibility = View.VISIBLE
+                val snackbar = Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)
+                snackbar.show()
             }
         }
         val reference: DatabaseReference =
@@ -112,13 +115,13 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
                 try {
                     if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
                         Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)
-                        holder.cardShop.isClickable = true
+                        holder.itemView.isClickable = true
                     } else if (snapshot.child("StoreStatus").value.toString() == "CLOSED") {
                         val colorMatrix = ColorMatrix()
                         colorMatrix.setSaturation(0.0f)
                         val filter = ColorMatrixColorFilter(colorMatrix)
                         holder.imgShop.colorFilter = filter
-                        holder.cardShop.isClickable = false
+                        holder.itemView.isClickable = false
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
