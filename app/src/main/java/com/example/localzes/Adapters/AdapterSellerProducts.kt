@@ -55,31 +55,63 @@ class AdapterSellerProducts(
     override fun onBindViewHolder(holder: HolderProduct, position: Int) {
         val products = products_seller[position]
         Glide.with(context).load(products.imageUrl).into(holder.imgProduct)
-        holder.txtProductTitle.text = products.title.substring(0,1).toUpperCase()+products.title.substring(1)
+        holder.txtProductTitle.text =
+            products.title.substring(0, 1).toUpperCase() + products.title.substring(1)
         holder.txtProductPrice.text = "Rs. ${products.offerPrice}"
         val mString = "Rs. ${products.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
         spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         holder.txtProductOfferPrice.text = spannableString
+        val ref = FirebaseDatabase.getInstance().reference.child("seller").child(products.shopId)
+            .child("Products").child(products.productId)
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.child("Stock").value.toString() == "IN") {
+                    holder.switch.isChecked = true
+                    holder.stock.text = "STOCK: IN"
+                } else if (snapshot.child("Stock").value.toString() == "OUT") {
+                    holder.switch.isChecked = false
+                    holder.stock.text = "STOCK: OUT"
+                }
+            }
+
+        })
+    /*    if (products.stock == "IN") {
+            holder.switch.isChecked = true
+            holder.stock.text = "STOCK: IN"
+        } else if (products.stock == "OUT") {
+            holder.switch.isChecked = false
+            holder.stock.text = "STOCK: OUT"
+        }*/
         holder.switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            
-            if (isChecked){
-                val userMap=HashMap<String,Any>()
-                userMap["stock"]="IN"
+
+            if (isChecked) {
+                val userMap = HashMap<String, Any>()
+                userMap["stock"] = "IN"
 
 
-                val reference=FirebaseDatabase.getInstance().reference.child("seller").child(products.shopId).child("Products")
-                    .child(products.productId)
+                val reference =
+                    FirebaseDatabase.getInstance().reference.child("seller").child(products.shopId)
+                        .child("Products")
+                        .child(products.productId)
                 reference.updateChildren(userMap)
-            }else{
-                val userMap=HashMap<String,Any>()
-                userMap["stock"]="OUT"
+                holder.stock.text = "STOCK: IN"
+            } else {
+                val userMap = HashMap<String, Any>()
+                userMap["stock"] = "OUT"
 
 
-                val reference=FirebaseDatabase.getInstance().reference.child("seller").child(products.shopId).child("Products")
-                    .child(products.productId)
+                val reference =
+                    FirebaseDatabase.getInstance().reference.child("seller").child(products.shopId)
+                        .child("Products")
+                        .child(products.productId)
                 reference.updateChildren(userMap)
+                holder.stock.text = "STOCK: OUT"
             }
 
         }
@@ -91,31 +123,5 @@ class AdapterSellerProducts(
             intent.putExtra("productId", products.productId)
             context.startActivity(intent)
         }
-    }
-
-    private fun convertImage(original: Bitmap): Bitmap {
-        val finalImage = Bitmap.createBitmap(original.width, original.height, original.config)
-        var A: Int
-        var R: Int
-        var G: Int
-        var B: Int
-        var colorPixel: Int
-        val width = original.width
-        val height = original.height
-        for (x in 0 until width) {
-            for (y in 0 until height) {
-                colorPixel = original.getPixel(x, y)
-                A = Color.alpha(colorPixel)
-                R = Color.red(colorPixel)
-                G = Color.green(colorPixel)
-                B = Color.blue(colorPixel)
-                R = (R + G + B) / 3
-                G = R
-                B = R
-                finalImage.setPixel(x, y, Color.argb(A, R, G, B))
-
-            }
-        }
-        return finalImage
     }
 }

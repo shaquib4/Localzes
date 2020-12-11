@@ -1,6 +1,7 @@
 package com.example.localzes.Adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.R
+import com.example.localzes.UserProductsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -45,6 +47,11 @@ class AdapterFavoriteItems(val context: Context, val favList: List<ModelAddProdu
         }
         holder.imgFavorites.setOnClickListener {
             deleteFavItem(position)
+        }
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, UserProductsActivity::class.java)
+            intent.putExtra("shopId", favItems.shopId)
+            context.startActivity(intent)
         }
     }
 

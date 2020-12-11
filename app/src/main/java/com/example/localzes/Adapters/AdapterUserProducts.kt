@@ -42,12 +42,11 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val uAuth = FirebaseAuth.getInstance()
         val mUser = uAuth.currentUser
         val mUid = mUser!!.uid
-
         Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
         holder.productTitle.text =
             userProducts.title.substring(0, 1).toUpperCase() + userProducts.title.substring(1)
         holder.productPrice.text = "Rs. ${userProducts.offerPrice}"
-        holder.stock.text = "STOCK :- " + userProducts.stock
+        /*holder.stock.text = "STOCK :- " + userProducts.stock*/
         /* val dRef:DatabaseReference=FirebaseDatabase.getInstance().reference.child("seller").child(userProducts.shopId).child("Products").child(userProducts.productId)
          dRef.addValueEventListener(object :ValueEventListener{
              override fun onCancelled(error: DatabaseError) {
@@ -59,7 +58,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
              }
 
          })*/
-        when (userProducts.stock) {
+        /*when (userProducts.stock) {
             "IN" -> {
                 Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
                 holder.itemView.isClickable = true
@@ -71,7 +70,32 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 holder.productImage.colorFilter = filter
                 holder.itemView.isClickable = false
             }
-        }
+        }*/
+        val ref =
+            FirebaseDatabase.getInstance().reference.child("seller").child(userProducts.shopId)
+                .child("Products").child(userProducts.productId)
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.child("Stock").value.toString() == "IN") {
+                    holder.stock.text == "STOCK: IN"
+                    Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
+                    holder.itemView.isClickable = true
+                } else if (snapshot.child("Stock").value.toString() == "OUT") {
+                    holder.stock.text = "STOCK: OUT"
+                    val colorMatrix = ColorMatrix()
+                    colorMatrix.setSaturation(0.0f)
+                    val filter = ColorMatrixColorFilter(colorMatrix)
+                    holder.productImage.colorFilter = filter
+                    holder.itemView.isClickable = false
+                }
+
+            }
+
+        })
         holder.unfavorite.setOnClickListener {
             val view = it
             holder.unfavorite.visibility = View.GONE
