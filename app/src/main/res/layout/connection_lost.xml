@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="5dp"
+
+        android:layout_height="@dimen/_160sdp">
+
+        <RelativeLayout
+            android:background="@drawable/bg_add_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgWifi"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_wifi" />
+
+
+            <ImageView
+                android:id="@+id/imgAlert"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_65sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_alignTop="@id/imgWifi"
+              android:layout_alignStart="@id/imgWifi"
+                android:layout_marginStart="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_alert" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgAlert"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="No Internet Connection"
+                android:textSize="@dimen/_13ssp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
