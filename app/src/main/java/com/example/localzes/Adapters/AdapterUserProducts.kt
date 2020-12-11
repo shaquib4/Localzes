@@ -62,14 +62,14 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         when (userProducts.stock) {
             "IN" -> {
                 Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
-                holder.addItem.isClickable = true
+                holder.itemView.isClickable = true
             }
             "OUT" -> {
                 val colorMatrix = ColorMatrix()
                 colorMatrix.setSaturation(0.0f)
                 val filter = ColorMatrixColorFilter(colorMatrix)
                 holder.productImage.colorFilter = filter
-                holder.addItem.isClickable = false
+                holder.itemView.isClickable = false
             }
         }
         holder.unfavorite.setOnClickListener {
