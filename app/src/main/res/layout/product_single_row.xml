@@ -57,8 +57,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Rs. 699"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_14ssp" />
 
             <TextView
                 android:id="@+id/txtStock"
