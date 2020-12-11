@@ -131,22 +131,27 @@ class Home_seller : AppCompatActivity() {
         OrderAcc.setOnClickListener {
             val intent = Intent(this, OrdersAcceptedActivity::class.java)
             startActivity(intent)
+            finish()
         }
         ordersCompleted.setOnClickListener {
             val intent = Intent(this, OrdersCompletedActivity::class.java)
             startActivity(intent)
+            finish()
         }
         ordersPending.setOnClickListener {
             val intent = Intent(this, SellerOrdersActivity::class.java)
             startActivity(intent)
+            finish()
         }
         ordersOutForDelivery.setOnClickListener {
             val intent = Intent(this, OrderOutForDeliveryActivity::class.java)
             startActivity(intent)
+            finish()
         }
         editShopDetails.setOnClickListener {
             val intent = Intent(this, UpdateShopDetailActivity::class.java)
             startActivity(intent)
+            finish()
         }
         orderDatabaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {

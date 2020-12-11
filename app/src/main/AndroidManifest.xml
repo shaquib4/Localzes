@@ -26,6 +26,7 @@
         <activity android:name=".continue_payment" />
         <activity android:name=".Category" />
         <activity android:name=".OrdersSeller" />
+        <activity android:name=".PagerActivity"/>
         <activity android:name=".AccountsSeller" />
         <activity android:name=".OrdersDetailsUserActivity" />
         <activity android:name=".UpdateShopDetailActivity" />

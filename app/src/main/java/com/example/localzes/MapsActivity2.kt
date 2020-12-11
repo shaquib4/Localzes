@@ -286,8 +286,9 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
         val geocoder: Geocoder
 
         val addresses: List<Address>
-        geocoder = Geocoder(applicationContext, Locale.getDefault())
+
         try{
+            geocoder = Geocoder(applicationContext, Locale.getDefault())
             addresses = geocoder.getFromLocation(location!!.latitude, location!!.longitude, 1)
             val address: String = addresses[0].getAddressLine(0)
             val city: String = addresses[0].subAdminArea

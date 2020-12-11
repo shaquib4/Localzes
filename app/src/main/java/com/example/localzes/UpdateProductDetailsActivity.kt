@@ -15,7 +15,7 @@ import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 
 class UpdateProductDetailsActivity : AppCompatActivity() {
-    private lateinit var imagePathUpdate: Uri
+    private  var imagePathUpdate: Uri?=null
     private lateinit var databaseRef: DatabaseReference
     private lateinit var updateAuth: FirebaseAuth
     private var productId: String? = "100"
@@ -123,7 +123,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
             val uid = user!!.uid
             val storageReference: StorageReference =
                 FirebaseStorage.getInstance().reference.child(filePathName)
-            storageReference.putFile(imagePathUpdate).addOnSuccessListener {
+            storageReference.putFile(imagePathUpdate!!).addOnSuccessListener {
                 storageReference.downloadUrl.addOnSuccessListener {
                     val users=FirebaseAuth.getInstance().currentUser
                     val imageUrl: Uri = it

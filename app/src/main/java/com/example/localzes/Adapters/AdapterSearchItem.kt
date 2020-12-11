@@ -36,7 +36,11 @@ class AdapterSearchItem(val context: Context,private val search:List<Upload>):Re
     override fun onBindViewHolder(holder: HolderSearchItem, position: Int) {
         val searchItem=search[position]
         holder.shopName.text=searchItem.shop_name.substring(0,1).toUpperCase()+searchItem.shop_name.substring(1)
-        holder.shopAddress.text=searchItem.locality.substring(0,1).toUpperCase()+searchItem.locality.substring(1)
+        try{holder.shopAddress.text=searchItem.locality.substring(0,1).toUpperCase()+
+                searchItem.locality.substring(1)}catch (e:Exception){
+            e.printStackTrace()
+        }
+
         Picasso.get().load(searchItem.imageUrl).into(holder.shopImage)
         holder.itemView.setOnClickListener{
             val intent= Intent(context,

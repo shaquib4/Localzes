@@ -1,10 +1,15 @@
 package com.example.localzes
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterUserShops
@@ -13,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home.*
+import util.ConnectionManager
 
 class Home : AppCompatActivity() {
     private lateinit var userDatabase: DatabaseReference
@@ -69,6 +75,7 @@ class Home : AppCompatActivity() {
             }
             return@setOnNavigationItemSelectedListener false
         }
+        if (ConnectionManager().checkConnectivity(this)){
         userDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -107,7 +114,21 @@ class Home : AppCompatActivity() {
                 recyclerShopUser.adapter = userShopAdapter
             }
 
-        })
+        })}else{
+            val dialog= AlertDialog.Builder(this)
+            dialog.setTitle("Error")
+            dialog.setMessage("Internet Connection not Found")
+            dialog.setPositiveButton("Open Setting"){text, listener->
+                val settingsIntent=Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                startActivity(settingsIntent)
+                finish()
+            }
+            dialog.setNegativeButton("Exit"){text,listener->
+                ActivityCompat.finishAffinity(this)
+            }
+            dialog.create()
+            dialog.show()
+        }
 
 
     }

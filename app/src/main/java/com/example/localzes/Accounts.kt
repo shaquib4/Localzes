@@ -113,6 +113,10 @@ class Accounts : AppCompatActivity() {
                     val intent = Intent(this, ManageAddress::class.java)
                     startActivity(intent)
                 }
+                "Favourites"->{
+                    val intent=Intent(this,PagerActivity::class.java)
+                    startActivity(intent)
+                }
             }
             return@setOnChildClickListener true
         }

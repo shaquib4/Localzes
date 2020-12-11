@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -73,5 +74,11 @@ class SellerOrdersActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onBackPressed() {
+        val intent= Intent(this,Home_seller::class.java)
+        startActivity(intent)
+        finish()
     }
 }

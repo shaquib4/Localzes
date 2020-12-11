@@ -15,7 +15,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 class UpdateShopDetailActivity : AppCompatActivity() {
-    private lateinit var imagePathUpdated: Uri
+    private var imagePathUpdated: Uri?=null
     private lateinit var databaseRef: DatabaseReference
     private lateinit var updateAuth: FirebaseAuth
     private lateinit var imageShopUpdate: ImageView
@@ -81,34 +81,35 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT).show()
                 }
 
-        }
+        }else {
+            val user = FirebaseAuth.getInstance().currentUser
 
-        val user = FirebaseAuth.getInstance().currentUser
-
-        val uid = user!!.uid
-        val shopRef =
-            FirebaseStorage.getInstance().reference.child(
-                "uploads/" + uid
-                        + ".jpg"
-            )
-        shopRef.putFile(imagePathUpdated).addOnSuccessListener {
-            shopRef.downloadUrl.addOnSuccessListener {
-                val imageUrl: Uri = it
-                val request = UserProfileChangeRequest.Builder().setPhotoUri(it).build()
-                user.updateProfile(request).addOnSuccessListener {
-                    val headers = HashMap<String, Any>()
-                    headers["imageUrl"] = imageUrl.toString()
-                    headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
-                    headers["shop_name"] = shopNameUpdate.text.toString().trim()
-                    headers["upi"] = upiIdUpdate.text.toString().trim()
-                    headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
-                    headers["closingTime"] =spinnerClose.selectedItem.toString().trim()
-                    headers["closingDay"]=spinnerClosingDay.selectedItem.toString().trim()
-                    databaseRef.updateChildren(headers).addOnSuccessListener {
-                        Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT).show()
+            val uid = user!!.uid
+            val shopRef =
+                FirebaseStorage.getInstance().reference.child(
+                    "uploads/" + uid
+                            + ".jpg"
+                )
+            shopRef.putFile(imagePathUpdated!!).addOnSuccessListener {
+                shopRef.downloadUrl.addOnSuccessListener {
+                    val imageUrl: Uri = it
+                    val request = UserProfileChangeRequest.Builder().setPhotoUri(it).build()
+                    user.updateProfile(request).addOnSuccessListener {
+                        val headers = HashMap<String, Any>()
+                        headers["imageUrl"] = imageUrl.toString()
+                        headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
+                        headers["shop_name"] = shopNameUpdate.text.toString().trim()
+                        headers["upi"] = upiIdUpdate.text.toString().trim()
+                        headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
+                        headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
+                        headers["closingDay"] = spinnerClosingDay.selectedItem.toString().trim()
+                        databaseRef.updateChildren(headers).addOnSuccessListener {
+                            Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT)
+                                .show()
+                        }
                     }
-                }
 
+                }
             }
         }
     }

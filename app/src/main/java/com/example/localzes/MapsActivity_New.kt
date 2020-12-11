@@ -213,8 +213,9 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
                     val long = location.longitude
                     val geocoder: Geocoder
                     val addresses: List<Address>
-                    geocoder = Geocoder(applicationContext, Locale.getDefault())
+
                     try {
+                        geocoder = Geocoder(applicationContext, Locale.getDefault())
                         addresses = geocoder.getFromLocation(lot, long, 1)
 
 

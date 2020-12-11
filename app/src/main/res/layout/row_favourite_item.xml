@@ -67,7 +67,7 @@
 
                 <ImageView
                     android:padding="@dimen/_5sdp"
-                    android:id="@+id/imgFavourite"
+                    android:id="@+id/imgFavourites"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:src="@drawable/ic_favourite"/>

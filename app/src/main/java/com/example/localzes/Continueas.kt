@@ -6,14 +6,17 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_continueas.*
+import util.ConnectionManager
 import java.util.HashMap
 
 class Continueas : AppCompatActivity() {
@@ -28,6 +31,8 @@ class Continueas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continueas)
+
+        if (ConnectionManager().checkConnectivity(this)){
         sharedPreferences=getSharedPreferences("SETTINGS_SP", Context.MODE_PRIVATE)
         isChecked=sharedPreferences.getBoolean("FCM_ENABLED",false)
         progress_continue.visibility = View.GONE
@@ -58,7 +63,22 @@ class Continueas : AppCompatActivity() {
             builder.create().show()
             progress_continue.visibility = View.VISIBLE
             seller()
+        }}else{
+            val dialog= AlertDialog.Builder(this)
+            dialog.setTitle("Error")
+            dialog.setMessage("Internet Connection not Found")
+            dialog.setPositiveButton("Open Setting"){text, listener->
+                val settingsIntent=Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                startActivity(settingsIntent)
+                finish()
+            }
+            dialog.setNegativeButton("Exit"){text,listener->
+                ActivityCompat.finishAffinity(this)
+            }
+            dialog.create()
+            dialog.show()
         }
+
     }
 
     private fun subscribeToTopic() {
