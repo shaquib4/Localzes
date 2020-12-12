@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -71,23 +72,29 @@ class AdapterSellerProducts(
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.child("Stock").value.toString() == "IN") {
-                    holder.switch.isChecked = true
+
+
+
+                if (snapshot.child("stock").value.toString() == "IN"
+                    &&products.productId==snapshot.child("productId").value.toString()){
+                    holder.switch.isChecked=true
                     holder.stock.text = "STOCK: IN"
-                } else if (snapshot.child("Stock").value.toString() == "OUT") {
-                    holder.switch.isChecked = false
+                }else if (snapshot.child("stock").value.toString() == "OUT"
+                    &&products.productId==snapshot.child("productId").value.toString()) {
+                    holder.switch.isChecked=false
                     holder.stock.text = "STOCK: OUT"
+
                 }
             }
 
         })
-    /*    if (products.stock == "IN") {
-            holder.switch.isChecked = true
-            holder.stock.text = "STOCK: IN"
-        } else if (products.stock == "OUT") {
-            holder.switch.isChecked = false
-            holder.stock.text = "STOCK: OUT"
-        }*/
+        /*    if (products.stock == "IN") {
+                holder.switch.isChecked = true
+                holder.stock.text = "STOCK: IN"
+            } else if (products.stock == "OUT") {
+                holder.switch.isChecked = false
+                holder.stock.text = "STOCK: OUT"
+            }*/
         holder.switch.setOnCheckedChangeListener { buttonView, isChecked ->
 
             if (isChecked) {

@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.localzes.Modals.ModelAddProduct
@@ -21,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.lang.Exception
 
 @Suppress("NAME_SHADOWING")
 class AdapterUserProducts(val context: Context, private val products_user: List<ModelAddProduct>) :
@@ -42,6 +44,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val uAuth = FirebaseAuth.getInstance()
         val mUser = uAuth.currentUser
         val mUid = mUser!!.uid
+
         Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
         holder.productTitle.text =
             userProducts.title.substring(0, 1).toUpperCase() + userProducts.title.substring(1)
@@ -58,20 +61,24 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
              }
 
          })*/
-        /*when (userProducts.stock) {
+       when (userProducts.stock) {
             "IN" -> {
                 Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
-                holder.itemView.isClickable = true
+                holder.stock.text == "STOCK: IN"
+
             }
             "OUT" -> {
                 val colorMatrix = ColorMatrix()
                 colorMatrix.setSaturation(0.0f)
                 val filter = ColorMatrixColorFilter(colorMatrix)
                 holder.productImage.colorFilter = filter
-                holder.itemView.isClickable = false
+                holder.stock.text = "STOCK: OUT"
+
+
             }
-        }*/
-        val ref =
+        }
+
+      /*val ref =
             FirebaseDatabase.getInstance().reference.child("seller").child(userProducts.shopId)
                 .child("Products").child(userProducts.productId)
         ref.addValueEventListener(object : ValueEventListener {
@@ -80,22 +87,37 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.child("Stock").value.toString() == "IN") {
-                    holder.stock.text == "STOCK: IN"
-                    Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
-                    holder.itemView.isClickable = true
-                } else if (snapshot.child("Stock").value.toString() == "OUT") {
-                    holder.stock.text = "STOCK: OUT"
-                    val colorMatrix = ColorMatrix()
-                    colorMatrix.setSaturation(0.0f)
-                    val filter = ColorMatrixColorFilter(colorMatrix)
-                    holder.productImage.colorFilter = filter
-                    holder.itemView.isClickable = false
-                }
+               if( snapshot.child("productId").value.toString()==userProducts.productId){
+                   try {
+                       val stock=snapshot.child("stock").value.toString()
+                       if (stock=="IN") {
+                           holder.addItem.visibility=View.VISIBLE
+                           holder.card.isClickable=false
+                           holder.stock.text == "STOCK: IN"
+                           Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
+
+
+                       } else {
+                           holder.addItem.visibility=View.GONE
+                           holder.card.isClickable=false
+                           holder.stock.text = "STOCK: OUT"
+                           val colorMatrix = ColorMatrix()
+                           colorMatrix.setSaturation(0.0f)
+                           val filter = ColorMatrixColorFilter(colorMatrix)
+                           holder.productImage.colorFilter = filter
+
+                       }
+                   }catch (e: Exception) {
+                       e.printStackTrace()
+                   }
+
+               }
+
 
             }
 
-        })
+        })*/
+
         holder.unfavorite.setOnClickListener {
             val view = it
             holder.unfavorite.visibility = View.GONE
@@ -195,7 +217,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                 val finalSPDB = snapshot.child("finalsellingPrice").value.toString()
                                 val sPDB = snapshot.child("sellingPrice").value.toString()
                                 val cPDB = snapshot.child("priceEach").value.toString()
-                                if (snapshot.child("productId").value.toString() == productId && finalQDB.isNotEmpty()) {
+                                if (snapshot.child("productId").value.toString() == productId && finalQDB.isNotEmpty()&&userProducts.stock=="IN") {
                                     holder.addItem.visibility = View.GONE
                                     holder.btnLinear.visibility = View.VISIBLE
                                     holder.txtCounter.text = finalQDB
@@ -226,7 +248,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
 
                                     }
 
-                                } else if (snapshot.child("productId").value.toString() !== productId) {
+                                } else if (snapshot.child("productId").value.toString() !== productId&&userProducts.stock=="IN") {
                                     holder.addItem.visibility = View.VISIBLE
                                     holder.addItem.setOnClickListener {
                                         if (orderTo == shopID.toString() || shopID == null) {
@@ -303,7 +325,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                         })
 
 
-                } else {
+                } else if(!snapshot.exists()&&userProducts.stock=="IN") {
                     holder.addItem.setOnClickListener {
                         if (orderTo == shopID.toString() || shopID == null) {
                             addToCart(
@@ -374,6 +396,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                             }
                         }
                     }
+                }else if(!snapshot.exists()&&userProducts.stock=="OUT"){
+                    holder.addItem.isClickable=false
                 }
             }
         })
@@ -577,6 +601,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val stock: TextView = view.findViewById(R.id.txtStock_customer)
         val unfavorite: FloatingActionButton = view.findViewById(R.id.btnFavoriteItem)
         val favorite: FloatingActionButton = view.findViewById(R.id.btnFavoriteItem1)
+        val card:CardView=view.findViewById(R.id.card1_customer)
 
     }
 }

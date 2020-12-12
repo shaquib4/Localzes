@@ -101,7 +101,7 @@ class Seller_Products : AppCompatActivity() {
         }
         productDatabaseRef =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
-        productDatabaseRef.addValueEventListener(object : ValueEventListener {
+        productDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@Seller_Products, error.message, Toast.LENGTH_SHORT).show()
 
