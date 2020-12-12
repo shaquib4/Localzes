@@ -15,6 +15,7 @@
             android:id="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/txtaccEdit"
             android:text="Mohd Shaquib"
             android:textAllCaps="true"
             android:textSize="@dimen/_15ssp"
@@ -80,7 +81,6 @@
             android:text="OPEN"
             android:layout_toEndOf="@id/storeStatus"
             android:layout_marginLeft="15dp"
-            android:textStyle="bold"
             android:fontFamily="@font/montserrat_bold"/>
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchOpen"
@@ -111,7 +111,6 @@
             android:layout_below="@id/storeStatus"
             android:layout_toEndOf="@id/storeDelivery"
             android:layout_marginLeft="15dp"
-            android:textStyle="bold"
             android:fontFamily="@font/montserrat_bold"/>
         <androidx.appcompat.widget.SwitchCompat
             android:layout_alignTop="@id/storeDelivery"
@@ -128,6 +127,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_below="@id/rl_Status"
         android:layout_above="@id/bottom_navAcc_seller"
         android:layout_width="match_parent"

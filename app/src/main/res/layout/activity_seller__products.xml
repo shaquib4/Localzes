@@ -7,15 +7,15 @@
     tools:context=".Seller_Products">
 
     <EditText
-
         android:id="@+id/searchShopProduct"
-        android:paddingStart="@dimen/_20sdp"
-        android:hint="Search"
-        android:layout_below="@id/card_view_Details"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/bg_product_shop"/>
+        android:layout_below="@id/card_view_Details"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/bg_product_shop"
+        android:hint="Search"
+        android:paddingStart="@dimen/_20sdp"
+        tools:ignore="RtlSymmetry" />
 
     <LinearLayout
         android:id="@+id/card_view_Details"
@@ -24,51 +24,48 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:background="#de4500"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp">
+            android:layout_height="@dimen/_35sdp"
+            android:background="#de4500">
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PRODUCTS"
-                android:textSize="@dimen/_15ssp"
-                android:textColor="#ffffff"
-                android:fontFamily="@font/montserrat_bold"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-              android:layout_centerHorizontal="true" />
+                android:fontFamily="@font/montserrat_bold"
+                android:text="PRODUCTS"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/_14ssp" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#d3d3d3"/>
+            android:background="#d3d3d3" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/recycler_view_seller_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/additem"
         android:layout_below="@+id/searchShopProduct"
-        android:layout_above="@id/bottom_navProducts"
         android:padding="1dp"
         app:stackFromEnd="true"
-        tools:listitem="@layout/product_single_row"/>
+        tools:listitem="@layout/product_single_row" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/additem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add item +"
-        android:textColor="#de4500"
-        android:paddingHorizontal="@dimen/_10sdp"
-        android:fontFamily="@font/montserrat_bold"
-       android:layout_centerHorizontal="true"
-        android:textSize="@dimen/_13ssp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/bg_add_item"
-        android:layout_above="@+id/bottom_navProducts"/>
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_above="@+id/bottom_navProducts"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/disk_circle" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navProducts"

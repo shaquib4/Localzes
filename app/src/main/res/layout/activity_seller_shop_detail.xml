@@ -189,11 +189,11 @@
 
                 <LinearLayout
                     android:id="@+id/ll1"
-                    android:layout_alignLeft="@id/txtChooseCategory"
                     android:layout_width="match_parent"
-                    android:layout_marginEnd="@dimen/_7sdp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtTime"
+                    android:layout_alignLeft="@id/txtChooseCategory"
+                    android:layout_marginEnd="@dimen/_7sdp"
                     android:orientation="horizontal"
                     android:weightSum="4">
 
@@ -212,9 +212,9 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_marginEnd="@dimen/_5sdp"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_25sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
                         android:layout_weight="1.5"
                         android:background="@drawable/rectangle_box">
 
@@ -229,8 +229,8 @@
 
                     <RelativeLayout
                         android:layout_width="0dp"
-                        android:layout_marginStart="@dimen/_5sdp"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
                         android:layout_weight="0.5">
 
                         <TextView
@@ -262,9 +262,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll1"
-                    android:layout_marginEnd="@dimen/_7sdp"
                     android:layout_alignLeft="@id/txtChooseCategory"
                     android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -279,7 +279,7 @@
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/montserrat_medium"
                             android:text="Select Shop's Closing Day"
-                            android:textSize="@dimen/_10ssp" />
+                            android:textSize="@dimen/_8ssp" />
                     </RelativeLayout>
 
 

@@ -124,7 +124,6 @@
         android:layout_marginStart="2dp"
         android:textSize="20sp"
         android:textColor="#000"
-        android:textStyle="bold"
         android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
         android:text="Gorakhpur"/>
@@ -314,7 +313,7 @@
         android:layout_height="@dimen/_35sdp"
         android:background="@drawable/bg_buttons"
         android:textSize="15sp"
-        android:textStyle="bold"
+  android:fontFamily="@font/montserrat_bold"
         android:textColor="#fff"
         android:text="Save And Proceed"/>
 </RelativeLayout>
