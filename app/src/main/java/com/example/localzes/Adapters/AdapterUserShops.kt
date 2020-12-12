@@ -2,17 +2,13 @@ package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
-import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -23,7 +19,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.squareup.picasso.Picasso
 import java.lang.Exception
 
 class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>) :
@@ -60,7 +55,59 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
         holder.shopName.text =
             shops_user.shop_name.substring(0, 1).toUpperCase() + shops_user.shop_name.substring(1)
         holder.shopCategory.text = shops_user.category1
-        holder.unFavorite.setOnClickListener {
+        val favShopReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                .child("Favorites")
+        favShopReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    favShopReference.child(shops_user.shopId)
+                        .addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if (snapshot.exists()) {
+                                    holder.unFavorite.visibility = View.GONE
+                                    holder.favorite.visibility = View.VISIBLE
+                                    holder.favorite.setOnClickListener {
+                                        addToFavorites(
+                                            it,
+                                            shops_user,
+                                            uid,
+                                            holder.unFavorite,
+                                            holder.favorite
+                                        )
+                                    }
+
+                                } else {
+                                    holder.favorite.visibility = View.GONE
+                                    holder.unFavorite.visibility = View.VISIBLE
+                                    holder.unFavorite.setOnClickListener {
+                                        addToFavorites1(
+                                            holder.favorite,
+                                            holder.unFavorite,
+                                            it,
+                                            shops_user,
+                                            uid
+                                        )
+                                    }
+
+                                }
+                            }
+
+                        })
+                }
+            }
+
+        })
+
+        /*holder.unFavorite.setOnClickListener {
             val view = it
             holder.unFavorite.visibility = View.GONE
             holder.favorite.visibility = View.VISIBLE
@@ -83,9 +130,7 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
                 shops_user.closingTime,
                 shops_user.closingDay
             )
-            val favShopReference: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("users").child(uid)
-                    .child("Favorites")
+
             favShopReference.child(shops_user.shopId).setValue(obj).addOnSuccessListener {
                 val snackbar = Snackbar.make(view, "Added to favorites", Snackbar.LENGTH_LONG)
                 snackbar.show()
@@ -93,7 +138,7 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
 
         }
         holder.favorite.setOnClickListener {
-            val view=it
+            val view = it
             val favShopReference: DatabaseReference =
                 FirebaseDatabase.getInstance().reference.child("users").child(uid)
                     .child("Favorites").child(shops_user.shopId)
@@ -103,7 +148,7 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
                 val snackbar = Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)
                 snackbar.show()
             }
-        }
+        }*/
         val reference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(shops_user.shopId)
         reference.addValueEventListener(object : ValueEventListener {
@@ -154,5 +199,87 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
             intent.putExtra("shopId", shops_user.shopId)
             context.startActivity(intent)
         }
+    }
+
+    private fun addToFavorites1(
+        favorite: FloatingActionButton,
+        unFavorite: FloatingActionButton,
+        it: View,
+        shop_user: Upload,
+        uid: String
+    ) {
+        val view = it
+        val obj = Upload(
+            shop_user.shopId,
+            shop_user.phone,
+            shop_user.name,
+            shop_user.email,
+            shop_user.address,
+            shop_user.shop_name,
+            shop_user.imageUrl,
+            shop_user.category1,
+            shop_user.upi,
+            shop_user.locality,
+            shop_user.city,
+            shop_user.pinCode,
+            shop_user.state,
+            shop_user.country,
+            shop_user.openingTime,
+            shop_user.closingTime,
+            shop_user.closingDay
+
+        )
+        val favShopReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                .child("Favorites")
+        favShopReference.child(shop_user.shopId).setValue(obj).addOnSuccessListener {
+            unFavorite.visibility = View.GONE
+            favorite.visibility = View.VISIBLE
+            val snackbar = Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
+            snackbar.show()
+
+        }
+
+
+    }
+
+    private fun addToFavorites(
+        it: View,
+        shop_user: Upload,
+        uid: String,
+        unFavorite: FloatingActionButton,
+        favorite1: FloatingActionButton
+    ) {
+        val view = it
+        val obj = Upload(
+            shop_user.shopId,
+            shop_user.phone,
+            shop_user.name,
+            shop_user.email,
+            shop_user.address,
+            shop_user.shop_name,
+            shop_user.imageUrl,
+            shop_user.category1,
+            shop_user.upi,
+            shop_user.locality,
+            shop_user.city,
+            shop_user.pinCode,
+            shop_user.state,
+            shop_user.country,
+            shop_user.openingTime,
+            shop_user.closingTime,
+            shop_user.closingDay
+
+        )
+        val favShopReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                .child("Favorites")
+        favShopReference.child(shop_user.shopId).removeValue().addOnSuccessListener {
+            favorite1.visibility = View.GONE
+            unFavorite.visibility = View.VISIBLE
+            val snackbar = Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)
+            snackbar.show()
+        }
+
     }
 }

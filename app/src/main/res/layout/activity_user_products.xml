@@ -9,105 +9,107 @@
     <EditText
 
         android:id="@+id/searchShopProduct"
-        android:paddingStart="@dimen/_20sdp"
-        android:hint="Search"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_marginTop="3dp"
-        android:background="@drawable/bg_product_shop"/>
-<RelativeLayout
-    android:layout_below="@id/searchShopProduct"
-    android:layout_above="@id/rl_cart_details"
-    android:id="@+id/recycle"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
+        android:background="@drawable/bg_product_shop"
+        android:hint="Search"
+        android:paddingStart="@dimen/_20sdp" />
 
-        android:id="@+id/recycler_shop_user_products"
+    <RelativeLayout
+        android:id="@+id/recycle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        app:stackFromEnd="true"
-        tools:listitem="@layout/product_single_row_customer"/></RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_above="@id/rl_cart_details"
+        android:layout_below="@id/searchShopProduct">
 
-  <RelativeLayout
+        <androidx.recyclerview.widget.RecyclerView
 
-      android:id="@+id/rl_cart_details"
-      android:layout_width="match_parent"
-      android:layout_height="@dimen/_35sdp"
-      android:background="#de4500"
-      android:layout_alignParentBottom="true">
-      <TextView
-         android:id="@+id/quantity_item"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#fcfcfc"
-          android:layout_marginTop="@dimen/_8sdp"
-          android:layout_marginBottom="@dimen/_8sdp"
-          android:text="1"
-          android:fontFamily="@font/montserrat_medium"
-          android:layout_marginLeft="20sp"
-          android:textSize="@dimen/_12ssp"
-          />
-      <TextView
-          android:id="@+id/item"
-          android:layout_toRightOf="@id/quantity_item"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#fcfcfc"
-          android:layout_marginTop="@dimen/_8sdp"
-          android:layout_marginBottom="@dimen/_8sdp"
-          android:text="item"
-          android:fontFamily="@font/montserrat_medium"
-         android:layout_marginLeft="8dp"
-          android:textSize="@dimen/_12ssp"
-          />
-      <TextView
+            android:id="@+id/recycler_shop_user_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            app:stackFromEnd="true"
+            tools:listitem="@layout/product_single_row_customer" />
+    </RelativeLayout>
 
-          android:id="@+id/dash"
-          android:layout_toRightOf="@id/item"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#fcfcfc"
-          android:layout_marginTop="@dimen/_8sdp"
-          android:layout_marginBottom="@dimen/_8sdp"
-          android:text="|"
-          android:fontFamily="@font/montserrat_medium"
-          android:layout_marginLeft="8dp"
-          android:textSize="18sp"
-          />
-      <TextView
+    <RelativeLayout
 
-          android:id="@+id/total_cost_cart"
-          android:layout_toRightOf="@id/dash"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#fcfcfc"
-          android:layout_marginTop="@dimen/_8sdp"
-          android:layout_marginBottom="@dimen/_8sdp"
-          android:text="200"
-          android:fontFamily="@font/montserrat_medium"
-          android:layout_marginLeft="8dp"
-          android:textSize="@dimen/_12ssp"
-          />
+        android:id="@+id/rl_cart_details"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_alignParentBottom="true"
+        android:background="#de4500">
 
-      <TextView
-          android:id="@+id/txtViewCart"
-          android:layout_alignParentRight="true"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#fcfcfc"
-          android:layout_marginTop="@dimen/_8sdp"
-          android:layout_marginBottom="@dimen/_8sdp"
-          android:text="VIEW CART"
-          android:layout_marginEnd="10dp"
-          android:fontFamily="@font/montserrat_medium"
-          android:layout_marginLeft="8dp"
-          android:textSize="@dimen/_12ssp"
-          />
+        <TextView
+            android:id="@+id/quantity_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="1"
+            android:textColor="#fcfcfc"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+            android:id="@+id/item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_toRightOf="@id/quantity_item"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="item"
+            android:textColor="#fcfcfc"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+
+            android:id="@+id/dash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_toRightOf="@id/item"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="|"
+            android:textColor="#fcfcfc"
+            android:textSize="18sp" />
+
+        <TextView
+
+            android:id="@+id/total_cost_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_toRightOf="@id/dash"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="200"
+            android:textColor="#fcfcfc"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+            android:id="@+id/txtViewCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="VIEW CART"
+            android:textColor="#fcfcfc"
+            android:textSize="@dimen/_12ssp" />
 
 
-  </RelativeLayout>
+    </RelativeLayout>
 
 
 </RelativeLayout>

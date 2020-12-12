@@ -181,7 +181,7 @@ class Cart : AppCompatActivity() {
                 if (cartProducts.isEmpty()) {
                     relativeCart.visibility = View.GONE
                     btnShopNow.setOnClickListener {
-                        val intent = Intent(this@Cart, Home_seller::class.java)
+                        val intent = Intent(this@Cart, Home::class.java)
                         startActivity(intent)
                         finish()
                     }

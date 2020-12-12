@@ -1,106 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card1_customer"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_favorite_item"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_225sdp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/bg_product_shop"
-            app:cardCornerRadius="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imgProduct_customer"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_160sdp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/lanju" />
-
-                <View
-                    android:id="@+id/view_customer"
-                    android:layout_width="match_parent"
-                    android:layout_height="1.3dp"
-                    android:layout_below="@+id/imgProduct_customer"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:background="#eaeaea"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_marginBottom="7dp"
-                    />
-
-
-                <TextView
-                    android:id="@+id/txtProductTitle_customer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/view_customer"
-                    android:layout_marginStart="10dp"
-                    android:text="Elecronics Accessories"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_13ssp" />
-                <TextView
-                    android:id="@+id/txtProductPrice_customer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtProductTitle_customer"
-                    android:layout_marginStart="10dp"
-                    android:text="Rs. 699"
-                    android:textColor="#de4500"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textSize="@dimen/_14ssp" />
-
-                <ImageView
-                    android:id="@+id/imgRating_customer"
-                    android:layout_width="@dimen/_16sdp"
-                    android:layout_height="@dimen/_16sdp"
-                    android:layout_marginTop="8.5dp"
-                    android:layout_below="@id/imgProduct_customer"
-                    android:layout_toLeftOf="@+id/txtRatingShop_customer"
-                    android:src="@drawable/ic_rating" />
-
-                <TextView
-                    android:id="@+id/txtRatingShop_customer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_18sdp"
-                    android:fontFamily="@font/montserrat_bold"
-
-                    android:layout_alignTop="@+id/txtProductTitle_customer"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="10dp"
-                    android:text="4.5/5"
-                    android:textColor="#de4500"
-                    android:textSize="@dimen/_11ssp" />
-                <TextView
-                    android:id="@+id/txtProductOfferPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:layout_toRightOf="@id/txtProductPrice_customer"
-                     android:text="Rs. 1099"
-                    android:textSize="@dimen/_10ssp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:padding="@dimen/_2sdp"
-                    android:layout_alignBottom="@id/txtProductPrice_customer"
-                   />
-
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/row_favourite_item" />
     </RelativeLayout>
-
-
 </FrameLayout>
