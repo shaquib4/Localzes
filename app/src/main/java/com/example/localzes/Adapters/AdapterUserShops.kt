@@ -102,6 +102,38 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
                             }
 
                         })
+                } else {
+                    holder.unFavorite.setOnClickListener {
+                        val view = it
+                        holder.unFavorite.visibility = View.GONE
+                        holder.favorite.visibility = View.VISIBLE
+                        val obj = Upload(
+                            shops_user.shopId,
+                            shops_user.phone,
+                            shops_user.name,
+                            shops_user.email,
+                            shops_user.address,
+                            shops_user.shop_name,
+                            shops_user.imageUrl,
+                            shops_user.category1,
+                            shops_user.upi,
+                            shops_user.locality,
+                            shops_user.city,
+                            shops_user.pinCode,
+                            shops_user.state,
+                            shops_user.country,
+                            shops_user.openingTime,
+                            shops_user.closingTime,
+                            shops_user.closingDay
+
+                        )
+                        favShopReference.child(shops_user.shopId).setValue(obj)
+                            .addOnSuccessListener {
+                                val snackbar =
+                                    Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
+                                snackbar.show()
+                            }
+                    }
                 }
             }
 
