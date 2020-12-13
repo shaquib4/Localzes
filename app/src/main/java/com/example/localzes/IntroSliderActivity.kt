@@ -28,7 +28,7 @@ class IntroSliderActivity : AppCompatActivity() {
     lateinit var preference: SharedPreferences
     private lateinit var btnNext: Button
     val pref_show_intro = "Intro"
-    private lateinit var skipIntro:TextView
+    private lateinit var skipIntro: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro_slider)

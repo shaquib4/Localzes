@@ -127,7 +127,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    favItemReference.child(userProducts.shopId)
+                    favItemReference.child(userProducts.shopId).child("Products").child(userProducts.productId)
                         .addValueEventListener(object : ValueEventListener {
                             override fun onCancelled(error: DatabaseError) {
 

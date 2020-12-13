@@ -1,15 +1,13 @@
 package com.example.localzes
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,11 +21,13 @@ import util.ConnectionManager
 
 class Home : AppCompatActivity() {
     private lateinit var userDatabase: DatabaseReference
+    private lateinit var mUserDatabase: DatabaseReference
     var firebaseUser: FirebaseUser? = null
     private lateinit var shops: List<Upload>
     private lateinit var recyclerShopUser: RecyclerView
     private lateinit var userShopAdapter: AdapterUserShops
     private lateinit var relativeHome: RelativeLayout
+    private var currentCity: String = ""
     private var backPressedTime = 0L
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,20 @@ class Home : AppCompatActivity() {
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
         userDatabase = FirebaseDatabase.getInstance().reference.child("seller")
+        mUserDatabase =
+            FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser!!.uid)
+                .child("current_address")
         shops = ArrayList<Upload>()
+        mUserDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                currentCity = snapshot.child("city").value.toString()
+            }
+
+        })
 
 
         bottom_navProducts.selectedItemId = R.id.nav_home
@@ -107,8 +120,12 @@ class Home : AppCompatActivity() {
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString()
                         )
-                        (shops as ArrayList<Upload>).add(obj)
-                        progress_home.visibility = View.GONE
+                        if (currentCity == i.child("city").value.toString()) {
+                            (shops as ArrayList<Upload>).add(obj)
+                            progress_home.visibility = View.GONE
+                        } else {
+                            progress_home.visibility = View.GONE
+                        }
                     }
                     if (shops.isEmpty()) {
                         recyclerShopUser.visibility = View.GONE
