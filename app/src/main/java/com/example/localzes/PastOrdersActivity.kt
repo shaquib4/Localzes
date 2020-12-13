@@ -1,8 +1,10 @@
 package com.example.localzes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,10 +20,12 @@ class PastOrdersActivity : AppCompatActivity() {
     private lateinit var userAuth: FirebaseAuth
     private lateinit var mOrderedItem: List<ModelOrderDetails>
     private lateinit var relativePast:RelativeLayout
+    private lateinit var imgBackPast:ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_past_orders)
         relativePast=findViewById(R.id.rl_Past_orders)
+        imgBackPast=findViewById(R.id.imgBackPast)
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
@@ -71,5 +75,10 @@ class PastOrdersActivity : AppCompatActivity() {
 
             }
         })
+        imgBackPast.setOnClickListener {
+            val intent=Intent(this,Accounts::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

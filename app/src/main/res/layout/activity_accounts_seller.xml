@@ -15,7 +15,6 @@
             android:id="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/txtaccEdit"
             android:text="Mohd Shaquib"
             android:textAllCaps="true"
             android:textSize="@dimen/_15ssp"
@@ -41,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/_10ssp"
-            android:fontFamily="@font/l_r"
+            android:fontFamily="@font/montserrat_regular"
             android:layout_marginTop="3dp"
             android:text="7007436997"/>
         <TextView

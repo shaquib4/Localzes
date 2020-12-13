@@ -15,7 +15,8 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="Thank You For Shopping !"
         android:textColor="#000"
-        android:textSize="@dimen/_13ssp" />
+        android:textSize="@dimen/_13ssp"
+        android:gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/btnContinueShopping"

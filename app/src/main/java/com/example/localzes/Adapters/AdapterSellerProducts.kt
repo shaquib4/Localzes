@@ -58,7 +58,7 @@ class AdapterSellerProducts(
         Glide.with(context).load(products.imageUrl).into(holder.imgProduct)
         holder.txtProductTitle.text =
             products.title.substring(0, 1).toUpperCase() + products.title.substring(1)
-        holder.txtProductPrice.text = "Rs. ${products.offerPrice}"
+        holder.txtProductPrice.text = "₹${products.offerPrice}"
         val mString = "Rs. ${products.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()

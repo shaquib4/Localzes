@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterSellerProducts
@@ -23,23 +21,25 @@ class Seller_Products : AppCompatActivity() {
     private lateinit var mSellerProducts: List<ModelAddProduct>
     private lateinit var productAdapter: AdapterSellerProducts
     private lateinit var recyclerSellerProducts: RecyclerView
+    private lateinit var relativeAddProduct: RelativeLayout
     private lateinit var search: EditText
-    private lateinit var imgBackProducts:ImageView
-    private lateinit var txtAddProduct:TextView
+    private lateinit var imgBackProducts: ImageView
+    private lateinit var txtAddProduct: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller__products)
         mSellerProducts = ArrayList<ModelAddProduct>()
         recyclerSellerProducts = findViewById(R.id.recycler_view_seller_products)
-       // imgBackProducts=findViewById(R.id.imgBackProducts)
-      //  txtAddProduct=findViewById(R.id.add)
+        // imgBackProducts=findViewById(R.id.imgBackProducts)
+        //  txtAddProduct=findViewById(R.id.add)
+        relativeAddProduct = findViewById(R.id.rl_Add_Products)
         recyclerSellerProducts.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         search = findViewById(R.id.searchShopProduct)
         val user = auth.currentUser
         val uid = user!!.uid
         additem.setOnClickListener {
-            startActivity(Intent(this,AddProduct::class.java))
+            startActivity(Intent(this, AddProduct::class.java))
         }
         search.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
@@ -125,12 +125,18 @@ class Seller_Products : AppCompatActivity() {
                     )
                     (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
                 }
-                productAdapter =
-                    AdapterSellerProducts(
-                        this@Seller_Products,
-                        mSellerProducts
-                    )
-                recyclerSellerProducts.adapter = productAdapter
+                if (mSellerProducts.isEmpty()) {
+                    recyclerSellerProducts.visibility = View.GONE
+                } else {
+                    relativeAddProduct.visibility = View.GONE
+                    recyclerSellerProducts.visibility = View.VISIBLE
+                    productAdapter =
+                        AdapterSellerProducts(
+                            this@Seller_Products,
+                            mSellerProducts
+                        )
+                    recyclerSellerProducts.adapter = productAdapter
+                }
             }
         })
 
@@ -179,7 +185,7 @@ class Seller_Products : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent=Intent(applicationContext,Home_seller::class.java)
+        val intent = Intent(applicationContext, Home_seller::class.java)
         startActivity(intent)
         finish()
     }

@@ -160,12 +160,13 @@ class continue_payment : AppCompatActivity() {
                 finish()
             }
         }
-        productCharges.text="Rs. "+totalCost.toString()
-        totalChargesTv.text="Rs. "+totalCost.toString()+"/-"
-        totalCharges.text="Rs. "+totalCost.toString()
+        productCharges.text="₹"+totalCost.toString()
+        totalChargesTv.text="₹"+totalCost.toString()+"/-"
+        totalCharges.text="₹"+totalCost.toString()
         imgBackContinue.setOnClickListener {
-            val intent=Intent(this,Home_seller::class.java)
+            val intent=Intent(this,Cart::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

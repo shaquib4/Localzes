@@ -48,7 +48,7 @@ class AdapterSellerOrders(
     override fun onBindViewHolder(holder: HolderSellerOrders, position: Int) {
         val sellerOrders = seller_orders[position]
         holder.orderIdTv.text = "OD${sellerOrders.orderId}"
-        holder.orderAmountTv.text = "Amount:- Rs.${sellerOrders.orderCost}"
+        holder.orderAmountTv.text = "Amount:- ₹.${sellerOrders.orderCost}"
         holder.orderStatusTv.text = sellerOrders.orderStatus
         holder.orderedByName.text=sellerOrders.orderByName
         holder.orderedByMobile.text=sellerOrders.orderByMobile

@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,17 +32,36 @@ class ITEM : Fragment() {
         val uid = user!!.uid
         databaseReference = FirebaseDatabase.getInstance().reference.child("users").child(uid)
             .child("FavoriteItems")
-        databaseReference.addValueEventListener(object :ValueEventListener{
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-               for(i in snapshot.children){
-                   val obj=ModelAddProduct()
-               }
-            }
+                (favItems as ArrayList<ModelAddProduct>).clear()
+                for (i in snapshot.children) {
+                    val obj = ModelAddProduct(
+                        i.child("shopId").value.toString(),
+                        i.child("productId").value.toString(),
+                        i.child("imageUrl").value.toString(),
+                        i.child("productCategory").value.toString(),
+                        i.child("title").value.toString(),
+                        i.child("description").value.toString(),
+                        i.child("sellingPrice").value.toString(),
+                        i.child("offerPrice").value.toString(),
+                        i.child("unit").value.toString(),
+                        i.child("quantity").value.toString(),
+                        i.child("stock").value.toString()
+                    )
+                    (favItems as ArrayList<ModelAddProduct>).add(obj)
+                }
+                try {
+                    favoriteItemAdapter = AdapterFavoriteItems(activity as Context, favItems)
+                    favRecyclerItem.adapter = favoriteItemAdapter
+                } catch (e: Exception) {
 
+                }
+            }
         })
         return view
     }

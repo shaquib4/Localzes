@@ -1,10 +1,12 @@
 package com.example.localzes
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -18,28 +20,38 @@ import kotlinx.android.synthetic.main.activity_add_product.*
 
 class AddProduct : AppCompatActivity() {
     private lateinit var imagePath: Uri
+    private lateinit var progressDialog: ProgressDialog
     private lateinit var products: ModelAddProduct
     private lateinit var mCartDatabaseRef: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private lateinit var radioGroup:RadioGroup
+    private lateinit var radioGroup: RadioGroup
+    private lateinit var imgBackAdd: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
 
         auth = FirebaseAuth.getInstance()
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Please Wait")
+        progressDialog.setCanceledOnTouchOutside(false)
         image_view.setOnClickListener {
             startImageChooser()
         }
-        radioGroup=findViewById(R.id.radioStock)
-
-        btnAddProduct.setOnClickListener {
-            val id=radioGroup.checkedRadioButtonId
-            val radioButton=findViewById<RadioButton>(id)
-            val stock=radioButton.text
-            uploadData(stock)
-            val intent=Intent(this,Seller_Products::class.java)
+        radioGroup = findViewById(R.id.radioStock)
+        imgBackAdd.setOnClickListener {
+            val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)
             finish()
+        }
+
+        btnAddProduct.setOnClickListener {
+            progressDialog.setMessage("Adding Your Product....")
+            progressDialog.show()
+            val id = radioGroup.checkedRadioButtonId
+            val radioButton = findViewById<RadioButton>(id)
+            val stock = radioButton.text
+            uploadData(stock, progressDialog)
+
         }
 
     }
@@ -60,9 +72,9 @@ class AddProduct : AppCompatActivity() {
         }
     }
 
-    private fun uploadData(stock: CharSequence) {
+    private fun uploadData(stock: CharSequence, progressDialog: ProgressDialog) {
         if (imagePath != null) {
-            val timestamp: String =  System.currentTimeMillis().toString()
+            val timestamp: String = System.currentTimeMillis().toString()
             val productRef =
                 FirebaseStorage.getInstance().reference.child("uploads/$timestamp.jpg")
             productRef.putFile(imagePath)
@@ -89,9 +101,18 @@ class AddProduct : AppCompatActivity() {
 
                         mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller")
                         mCartDatabaseRef.child(uid).child("Products").child(timestamp)
-                            .setValue(products)
-                        Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT)
-                            .show()
+                            .setValue(products).addOnSuccessListener {
+                                progressDialog.dismiss()
+                                Toast.makeText(
+                                    this,
+                                    "Product Added Successfully",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                                val intent = Intent(this, Home_seller::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
 
                     }
                 }
@@ -105,5 +126,5 @@ class AddProduct : AppCompatActivity() {
                 }
         }
     }
-    
+
 }

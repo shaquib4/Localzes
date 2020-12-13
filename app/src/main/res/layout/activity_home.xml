@@ -24,6 +24,34 @@
         android:id="@+id/view1"
         android:layout_below="@id/txtWelcome"
         android:background="#d3d3d3"/>
+    <RelativeLayout
+        android:id="@+id/rl_Home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navProducts"
+        android:layout_below="@id/txtWelcome"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imgEmpty"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            android:id="@+id/noProducts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgEmpty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Sorry! No shops found in your city "
+            android:textColor="#696969"
+            android:textSize="@dimen/_12ssp" />
+    </RelativeLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_shop_user"
@@ -34,7 +62,8 @@
         android:padding="2dp"
         android:layout_marginTop="1dp"
         app:stackFromEnd="true"
-        tools:listitem="@layout/shop_single_customer"/>
+        tools:listitem="@layout/shop_single_customer"
+        android:visibility="gone"/>
 
     <RelativeLayout
         android:visibility="invisible"

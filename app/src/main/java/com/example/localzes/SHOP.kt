@@ -19,14 +19,15 @@ class SHOP : Fragment() {
     lateinit var favShops: List<Upload>
     lateinit var favoriteAdapter: AdapterFavoriteShops
     lateinit var databaseReference: DatabaseReference
+    lateinit var v: View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_one, container, false)
-        favRecyclerShop = view.findViewById(R.id.recycler_favorite_shop)
+        /*favRecyclerShop = view.findViewById(R.id.recycler_favorite_shop)
         favShops = ArrayList<Upload>()
-        favRecyclerShop.layoutManager = LinearLayoutManager(activity)
+        favRecyclerShop.layoutManager = LinearLayoutManager(activity)*/
         val auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
@@ -38,6 +39,7 @@ class SHOP : Fragment() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                (favShops as ArrayList<Upload>).clear()
                 for (i in snapshot.children) {
                     val obj = Upload(
                         i.child("shopId").value.toString(),
@@ -66,4 +68,13 @@ class SHOP : Fragment() {
         })
         return view
     }
+
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        this.v = view
+        favRecyclerShop = view.findViewById(R.id.recycler_favorite_shop)
+        favShops = ArrayList<Upload>()
+        favRecyclerShop.layoutManager = LinearLayoutManager(activity)
+
+    }*/
 }

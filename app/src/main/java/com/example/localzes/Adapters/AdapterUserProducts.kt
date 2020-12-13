@@ -48,7 +48,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
         holder.productTitle.text =
             userProducts.title.substring(0, 1).toUpperCase() + userProducts.title.substring(1)
-        holder.productPrice.text = "Rs. ${userProducts.offerPrice}"
+        holder.productPrice.text = "₹${userProducts.offerPrice}"
         /*holder.stock.text = "STOCK :- " + userProducts.stock*/
         /* val dRef:DatabaseReference=FirebaseDatabase.getInstance().reference.child("seller").child(userProducts.shopId).child("Products").child(userProducts.productId)
          dRef.addValueEventListener(object :ValueEventListener{
@@ -61,7 +61,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
              }
 
          })*/
-       when (userProducts.stock) {
+        when (userProducts.stock) {
             "IN" -> {
                 Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
                 holder.stock.text == "STOCK: IN"
@@ -78,45 +78,119 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             }
         }
 
-      /*val ref =
-            FirebaseDatabase.getInstance().reference.child("seller").child(userProducts.shopId)
-                .child("Products").child(userProducts.productId)
-        ref.addValueEventListener(object : ValueEventListener {
+        /*val ref =
+              FirebaseDatabase.getInstance().reference.child("seller").child(userProducts.shopId)
+                  .child("Products").child(userProducts.productId)
+          ref.addValueEventListener(object : ValueEventListener {
+              override fun onCancelled(error: DatabaseError) {
+
+              }
+
+              override fun onDataChange(snapshot: DataSnapshot) {
+                 if( snapshot.child("productId").value.toString()==userProducts.productId){
+                     try {
+                         val stock=snapshot.child("stock").value.toString()
+                         if (stock=="IN") {
+                             holder.addItem.visibility=View.VISIBLE
+                             holder.card.isClickable=false
+                             holder.stock.text == "STOCK: IN"
+                             Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
+
+
+                         } else {
+                             holder.addItem.visibility=View.GONE
+                             holder.card.isClickable=false
+                             holder.stock.text = "STOCK: OUT"
+                             val colorMatrix = ColorMatrix()
+                             colorMatrix.setSaturation(0.0f)
+                             val filter = ColorMatrixColorFilter(colorMatrix)
+                             holder.productImage.colorFilter = filter
+
+                         }
+                     }catch (e: Exception) {
+                         e.printStackTrace()
+                     }
+
+                 }
+
+
+              }
+
+          })*/
+        val favItemReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(mUid)
+                .child("FavoriteItems")
+        favItemReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-               if( snapshot.child("productId").value.toString()==userProducts.productId){
-                   try {
-                       val stock=snapshot.child("stock").value.toString()
-                       if (stock=="IN") {
-                           holder.addItem.visibility=View.VISIBLE
-                           holder.card.isClickable=false
-                           holder.stock.text == "STOCK: IN"
-                           Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
+                if (snapshot.exists()) {
+                    favItemReference.child(userProducts.shopId)
+                        .addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError) {
 
+                            }
 
-                       } else {
-                           holder.addItem.visibility=View.GONE
-                           holder.card.isClickable=false
-                           holder.stock.text = "STOCK: OUT"
-                           val colorMatrix = ColorMatrix()
-                           colorMatrix.setSaturation(0.0f)
-                           val filter = ColorMatrixColorFilter(colorMatrix)
-                           holder.productImage.colorFilter = filter
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if (snapshot.exists()) {
+                                    holder.unfavorite.visibility = View.GONE
+                                    holder.favorite.visibility = View.VISIBLE
+                                    holder.favorite.setOnClickListener {
+                                        addToFavorites(
+                                            it,
+                                            userProducts,
+                                            mUid,
+                                            holder.unfavorite,
+                                            holder.favorite
+                                        )
+                                    }
+                                } else {
+                                    holder.favorite.visibility = View.GONE
+                                    holder.unfavorite.visibility = View.VISIBLE
+                                    holder.unfavorite.setOnClickListener {
+                                        addToFavorites1(
+                                            it,
+                                            userProducts,
+                                            mUid,
+                                            holder.unfavorite,
+                                            holder.favorite
+                                        )
+                                    }
 
-                       }
-                   }catch (e: Exception) {
-                       e.printStackTrace()
-                   }
+                                }
+                            }
 
-               }
-
-
+                        })
+                } else {
+                    holder.unfavorite.setOnClickListener {
+                        val view = it
+                        holder.unfavorite.visibility = View.GONE
+                        holder.favorite.visibility = View.VISIBLE
+                        val obj = ModelAddProduct(
+                            userProducts.shopId,
+                            userProducts.productId,
+                            userProducts.imageUrl,
+                            userProducts.productCategory,
+                            userProducts.title,
+                            userProducts.description,
+                            userProducts.sellingPrice,
+                            userProducts.offerPrice,
+                            userProducts.unit,
+                            userProducts.quantity,
+                            userProducts.stock
+                        )
+                        favItemReference.child(userProducts.shopId).setValue(obj)
+                            .addOnSuccessListener {
+                                val snackbar =
+                                    Snackbar.make(view, "Added To Favorites", Snackbar.LENGTH_LONG)
+                                snackbar.show()
+                            }
+                    }
+                }
             }
-
-        })*/
+        })
 
         holder.unfavorite.setOnClickListener {
             val view = it
@@ -156,7 +230,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 snackbar.show()
             }
         }
-        val mString = "Rs. ${userProducts.sellingPrice}"
+        val mString = "₹${userProducts.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
         var pid: String? = null
@@ -217,7 +291,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                 val finalSPDB = snapshot.child("finalsellingPrice").value.toString()
                                 val sPDB = snapshot.child("sellingPrice").value.toString()
                                 val cPDB = snapshot.child("priceEach").value.toString()
-                                if (snapshot.child("productId").value.toString() == productId && finalQDB.isNotEmpty()&&userProducts.stock=="IN") {
+                                if (snapshot.child("productId").value.toString() == productId && finalQDB.isNotEmpty() && userProducts.stock == "IN") {
                                     holder.addItem.visibility = View.GONE
                                     holder.btnLinear.visibility = View.VISIBLE
                                     holder.txtCounter.text = finalQDB
@@ -248,7 +322,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
 
                                     }
 
-                                } else if (snapshot.child("productId").value.toString() !== productId&&userProducts.stock=="IN") {
+                                } else if (snapshot.child("productId").value.toString() !== productId && userProducts.stock == "IN") {
                                     holder.addItem.visibility = View.VISIBLE
                                     holder.addItem.setOnClickListener {
                                         if (orderTo == shopID.toString() || shopID == null) {
@@ -325,7 +399,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                         })
 
 
-                } else if(!snapshot.exists()&&userProducts.stock=="IN") {
+                } else if (!snapshot.exists() && userProducts.stock == "IN") {
                     holder.addItem.setOnClickListener {
                         if (orderTo == shopID.toString() || shopID == null) {
                             addToCart(
@@ -396,8 +470,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                             }
                         }
                     }
-                }else if(!snapshot.exists()&&userProducts.stock=="OUT"){
-                    holder.addItem.isClickable=false
+                } else if (!snapshot.exists() && userProducts.stock == "OUT") {
+                    holder.addItem.isClickable = false
                 }
             }
         })
@@ -409,6 +483,72 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
 
         holder.productOfferPrice.text = spannableString
 
+
+    }
+
+    private fun addToFavorites1(
+        it: View,
+        userProducts: ModelAddProduct,
+        mUid: String,
+        unfavorite: FloatingActionButton,
+        favorite: FloatingActionButton
+    ) {
+        val view = it
+        val obj = ModelAddProduct(
+            userProducts.shopId,
+            userProducts.productId,
+            userProducts.imageUrl,
+            userProducts.productCategory,
+            userProducts.title,
+            userProducts.description,
+            userProducts.sellingPrice,
+            userProducts.offerPrice,
+            userProducts.unit,
+            userProducts.quantity,
+            userProducts.stock
+        )
+        val favItemReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(mUid)
+                .child("FavoriteItems")
+        favItemReference.child(userProducts.shopId).setValue(obj).addOnSuccessListener {
+            unfavorite.visibility = View.GONE
+            favorite.visibility = View.VISIBLE
+            val snackbar = Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
+            snackbar.show()
+        }
+    }
+
+    private fun addToFavorites(
+        it: View,
+        userProducts: ModelAddProduct,
+        mUid: String,
+        unfavorite: FloatingActionButton,
+        favorite: FloatingActionButton
+    ) {
+
+        val view = it
+        val obj = ModelAddProduct(
+            userProducts.shopId,
+            userProducts.productId,
+            userProducts.imageUrl,
+            userProducts.productCategory,
+            userProducts.title,
+            userProducts.description,
+            userProducts.sellingPrice,
+            userProducts.offerPrice,
+            userProducts.unit,
+            userProducts.quantity,
+            userProducts.stock
+        )
+        val favItemReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(mUid)
+                .child("FavoriteItems")
+        favItemReference.child(userProducts.shopId).removeValue().addOnSuccessListener {
+            favorite.visibility = View.GONE
+            unfavorite.visibility = View.VISIBLE
+            val snackbar = Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)
+            snackbar.show()
+        }
 
     }
 
@@ -601,7 +741,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val stock: TextView = view.findViewById(R.id.txtStock_customer)
         val unfavorite: FloatingActionButton = view.findViewById(R.id.btnFavoriteItem)
         val favorite: FloatingActionButton = view.findViewById(R.id.btnFavoriteItem1)
-        val card:CardView=view.findViewById(R.id.card1_customer)
+        val card: CardView = view.findViewById(R.id.card1_customer)
 
     }
 }

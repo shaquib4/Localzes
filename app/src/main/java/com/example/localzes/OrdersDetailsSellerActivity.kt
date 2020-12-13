@@ -1,8 +1,10 @@
 package com.example.localzes
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -33,6 +35,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private lateinit var shopAuth: FirebaseAuth
     private var orderIdTv: String? = "100"
     private var orderByTv: String? = "200"
+    private lateinit var imgBackOrderDetails:ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_seller)
@@ -85,7 +88,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 }
                 txtOrderId.text = "OD${orderId}"
                 txtOrderStatus.text = orderStatus
-                totalAmount.text = "Rs. ${orderCost}"
+                totalAmount.text = "₹${orderCost}"
                 txtOrderDate.text = formattedDate
             }
         })
@@ -132,23 +135,55 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 deliveryAddress.text = address
             }
         })
-        imgEdit.setOnClickListener {
-            val reference: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("Seller").child(uid).child("Orders")
-                    .child(orderIdTv.toString())
+        val reference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("Seller").child(uid).child("Orders")
+                .child(orderIdTv.toString())
+        /*imgEdit.setOnClickListener {
             reference.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.child("orderStatus").value.toString() == "Pending") {
+                   *//* if (snapshot.child("orderStatus").value.toString() == "Pending") {
                         editOrderStatusDialog()
                     } else if (snapshot.child("orderStatus").value.toString() == "Accepted") {
                         newEditOrderStatusDialog()
-                    }
+                    }*//*
                 }
             })
+        }*/
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                when (snapshot.child("orderStatus").value.toString()) {
+                    "Pending" -> {
+                        imgEdit.setOnClickListener {
+                            editOrderStatusDialog()
+                        }
+                    }
+                    "Accepted" -> {
+                        imgEdit.setOnClickListener {
+                            newEditOrderStatusDialog()
+                        }
+
+                    }
+                    "Cancelled" -> {
+                        imgEdit.visibility = View.GONE
+                    }
+                    "Out For Delivery" -> {
+                        imgEdit.visibility = View.GONE
+                    }
+                }
+            }
+        })
+        imgBackOrderDetails.setOnClickListener {
+            val intent= Intent(this,Home_seller::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -170,9 +205,9 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
-            if (selectedItem == "Cancelled") {
+            /*if (selectedItem == "Cancelled") {
                 imgEdit.isEnabled = false
-            }
+            }*/
             editOrderStatus(selectedItem)
             dialog.dismiss()
         }

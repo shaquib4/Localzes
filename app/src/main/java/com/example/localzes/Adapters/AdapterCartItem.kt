@@ -53,13 +53,13 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         val sellingOne=cartDetails.sellingPrice
         Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)
         holder.productTitleCart.text = cartDetails.productTitle
-        holder.productOfferPriceCart.text = "Rs. ${cartDetails.priceEach}"
+        holder.productOfferPriceCart.text = "₹${cartDetails.priceEach}"
         val mString = "Rs. ${cartDetails.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
         spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         holder.productOriginalPriceCart.text = spannableString
-        holder.productTotalPrice.text = "Rs. ${cartDetails.finalPrice}"
+        holder.productTotalPrice.text = "₹${cartDetails.finalPrice}"
         holder.quantityCart.text = quantity
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
@@ -76,7 +76,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
                 updatedCost -= oneCost
                 items--
                 finalSell-=sellOne
-                holder.productTotalPrice.text = "Rs. ${updatedCost}"
+                holder.productTotalPrice.text = "₹${updatedCost}"
                 holder.quantityCart.text = items.toString()
                 val headers=HashMap<String,Any>()
                 headers["finalPrice"]=updatedCost.toString()
@@ -89,7 +89,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
             updatedCost += oneCost
             items++
             finalSell+=sellOne
-            holder.productTotalPrice.text = "Rs. ${updatedCost}"
+            holder.productTotalPrice.text = "₹${updatedCost}"
             holder.quantityCart.text = items.toString()
             val headers=HashMap<String,Any>()
             headers["finalPrice"]=updatedCost.toString()

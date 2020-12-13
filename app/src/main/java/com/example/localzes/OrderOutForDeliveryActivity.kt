@@ -74,10 +74,15 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
                     }
                 }
             })
+        backOutForDelivery.setOnClickListener {
+            val intent = Intent(this, Home_seller::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onBackPressed() {
-        val intent=Intent(this,Home_seller::class.java)
+        val intent = Intent(this, Home_seller::class.java)
         startActivity(intent)
         finish()
     }

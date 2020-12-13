@@ -40,11 +40,8 @@ class AdapterFavoriteItems(val context: Context, val favList: List<ModelAddProdu
         val favItems = favList[position]
         Glide.with(context).load(favItems.imageUrl).into(holder.imgItem)
         holder.itemName.text = favItems.title
-        holder.itemOriginalCost.text = favItems.sellingPrice
-        holder.itemSellingCost.text = favItems.offerPrice
-        holder.itemView.setOnClickListener {
-
-        }
+        holder.itemOriginalCost.text = "₹${favItems.sellingPrice}"
+        holder.itemSellingCost.text = "₹${favItems.offerPrice}"
         holder.imgFavorites.setOnClickListener {
             deleteFavItem(position)
         }

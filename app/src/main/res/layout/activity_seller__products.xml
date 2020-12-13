@@ -17,6 +17,47 @@
         android:paddingStart="@dimen/_20sdp"
         tools:ignore="RtlSymmetry" />
 
+    <RelativeLayout
+        android:id="@+id/rl_Add_Products"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navProducts"
+        android:layout_below="@id/searchShopProduct"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imgEmpty"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            android:id="@+id/noProducts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgEmpty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="No products added yet!"
+            android:textColor="#696969"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/noProducts"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Click + button to add your products"
+            android:textColor="#696969"
+            android:textSize="@dimen/_12ssp" />
+
+    </RelativeLayout>
+
+
     <LinearLayout
         android:id="@+id/card_view_Details"
         android:layout_width="match_parent"
@@ -47,25 +88,32 @@
             android:background="#d3d3d3" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-
-        android:id="@+id/recycler_view_seller_products"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/additem"
-        android:layout_below="@+id/searchShopProduct"
-        android:padding="1dp"
-        app:stackFromEnd="true"
-        tools:listitem="@layout/product_single_row" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navProducts"
+        android:layout_below="@id/searchShopProduct">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/additem"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_above="@+id/bottom_navProducts"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/_10sdp"
-        android:background="@drawable/disk_circle" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/additem"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:backgroundTint="#ff4500"
+            android:src="@drawable/ic_add_item" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_seller_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:visibility="gone"
+            app:stackFromEnd="true"
+            tools:listitem="@layout/product_single_row" />
+    </RelativeLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navProducts"

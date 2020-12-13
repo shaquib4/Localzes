@@ -23,10 +23,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SplashScreenActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".continue_payment" />
         <activity android:name=".Category" />
         <activity android:name=".OrdersSeller" />
-        <activity android:name=".PagerActivity"/>
+        <activity android:name=".PagerActivity" />
         <activity android:name=".AccountsSeller" />
         <activity android:name=".OrdersDetailsUserActivity" />
         <activity android:name=".UpdateShopDetailActivity" />
@@ -75,7 +76,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".IntroSliderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

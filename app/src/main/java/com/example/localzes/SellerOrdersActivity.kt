@@ -74,6 +74,11 @@ class SellerOrdersActivity : AppCompatActivity() {
                 }
             }
         })
+        imgBackPending.setOnClickListener {
+            val intent=Intent(this,Home_seller::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onBackPressed() {

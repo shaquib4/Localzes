@@ -1,7 +1,9 @@
 package com.example.localzes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterOrderedItems
@@ -27,12 +29,13 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
     private lateinit var databaseRef: DatabaseReference
     private lateinit var userAuth: FirebaseAuth
     private var orderItemId: String? = "100"
-    private var orderToId:String?="200"
+    private var orderToId: String? = "200"
+    private lateinit var imgBackOrderDetails: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_user)
         orderItemId = intent.getStringExtra("orderId")
-        orderToId=intent.getStringExtra("orderTo")
+        orderToId = intent.getStringExtra("orderTo")
         orderIdUser = findViewById(R.id.txtOrderIdUser)
         orderDateUser = findViewById(R.id.txtOrderDateUser)
         orderStatusUser = findViewById(R.id.txtOrderStatusUser)
@@ -42,6 +45,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
         deliveryAddress = findViewById(R.id.txtOrderDeliveryAddressUser)
         shopAddress = findViewById(R.id.txtOrderShopAddressUser)
         recyclerOrderUsers = findViewById(R.id.recycler_order_users)
+        imgBackOrderDetails = findViewById(R.id.imgBackOrderDetails)
         orderItemsList = ArrayList<ModelOrderedItems>()
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
@@ -107,10 +111,11 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 }
                 orderIdUser.text = "OD${orderId}"
                 orderStatusUser.text = orderStatus
-                totalAmountUser.text = "Rs. ${orderCost}"
+                totalAmountUser.text = "₹${orderCost}"
                 orderDateUser.text = formattedDate
                 val reference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("seller").child(orderToId.toString())
+                    FirebaseDatabase.getInstance().reference.child("seller")
+                        .child(orderToId.toString())
                 reference.addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 
@@ -125,20 +130,26 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
 
                 })
                 val dataReference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("seller").child(orderToId.toString()).child("Orders").child(orderId)
+                    FirebaseDatabase.getInstance().reference.child("seller")
+                        .child(orderToId.toString()).child("Orders").child(orderId)
                 dataReference.addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 
                     }
 
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        val delivery=snapshot.child("deliveryAddress").value.toString()
-                        deliveryAddress.text=delivery
+                        val delivery = snapshot.child("deliveryAddress").value.toString()
+                        deliveryAddress.text = delivery
                     }
 
                 })
             }
         })
+        imgBackOrderDetails.setOnClickListener {
+            val intent = Intent(this, Home_seller::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onBackPressed() {

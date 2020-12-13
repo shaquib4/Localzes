@@ -31,8 +31,8 @@ class AdapterOrderedItems(val context:Context,private val ordered_items:List<Mod
     override fun onBindViewHolder(holder: HolderOrderedItems, position: Int) {
         val orderedItems=ordered_items[position]
         holder.itemTitle.text=orderedItems.name
-        holder.itemPrice.text="Rs. ${orderedItems.price}"
-        holder.totalPrice.text="Rs. ${orderedItems.cost}"
+        holder.itemPrice.text="₹${orderedItems.price}"
+        holder.totalPrice.text="₹${orderedItems.cost}"
         holder.totalQuantity.text=orderedItems.quantity
     }
 }

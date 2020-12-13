@@ -196,11 +196,11 @@ class Cart : AppCompatActivity() {
                     recyclerCartProduct.adapter = userCartAdapter
                     totalItem = snapshot.childrenCount.toInt()
                     totalItems.text = "Total Item :- ${snapshot.childrenCount}"
-                    txtPrice.text = "Rs. ${totalOriginalPrice}"
+                    txtPrice.text = "₹${totalOriginalPrice}"
                     discountAmount =
                         ((totalOriginalPrice.toString()).toDouble() - (totalCost.toString()
                             .toDouble()))
-                    txtDiscountPrice.text = "Rs. ${discountAmount}"
+                    txtDiscountPrice.text = "₹${discountAmount}"
                     if (snapshot.childrenCount > 1) {
                         txtTotalPrice.text = "Price(${snapshot.childrenCount} items)"
                     } else {
@@ -208,8 +208,8 @@ class Cart : AppCompatActivity() {
                     }
 
                     val amount = totalCost.toString()
-                    txtTotalAmount.text = "Rs. ${amount}"
-                    totalPayment.text = "Rs. ${amount}"
+                    txtTotalAmount.text = "₹${amount}"
+                    totalPayment.text = "₹${amount}"
                 }
 
 
@@ -285,11 +285,10 @@ class Cart : AppCompatActivity() {
             val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
             val layoutManager = LinearLayoutManager(this)
             rv.layoutManager = layoutManager
-            val adapter: AdapterManageAddress = AdapterManageAddress(this, addresses)
+            val adapter = AdapterManageAddress(this, addresses)
             rv.adapter = adapter
             dialog.setCancelable(true)
             dialog.setCanceledOnTouchOutside(true)
-            dialog.behavior.setPeekHeight(150)
         }
     }
 

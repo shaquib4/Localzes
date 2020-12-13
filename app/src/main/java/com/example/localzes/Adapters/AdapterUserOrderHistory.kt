@@ -64,7 +64,7 @@ class AdapterUserOrderHistory(
         } else {
             holder.totalItems.text = "${orderHistory.orderQuantity} item"
         }
-        holder.orderAmount.text = "Rs ${orderHistory.orderCost}"
+        holder.orderAmount.text = "₹${orderHistory.orderCost}"
 
         val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
         val date = Date(orderHistory.orderTime.toLong())
