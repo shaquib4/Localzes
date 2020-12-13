@@ -35,12 +35,14 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private lateinit var shopAuth: FirebaseAuth
     private var orderIdTv: String? = "100"
     private var orderByTv: String? = "200"
+    private var mStatus:String?=null
     private lateinit var imgBackOrderDetails:ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_seller)
         recyclerOrderedSellerItems = findViewById(R.id.recyclerOrderedSellerItem)
         mOrderDetails = ArrayList<ModelOrderedItems>()
+        imgBackOrderDetails=findViewById(R.id.imgBackOrderDetails)
         orderIdTv = intent.getStringExtra("orderIdTv")
         orderByTv = intent.getStringExtra("orderByTv")
         txtOrderId = findViewById(R.id.txtOrderId)
@@ -75,15 +77,23 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 when (orderStatus) {
                     "Pending" -> {
                         txtOrderStatus.setTextColor(resources.getColor(R.color.colorAccent))
+                        imgEdit.setOnClickListener {
+                            editOrderStatusDialog()
+                        }
                     }
                     "Accepted" -> {
                         txtOrderStatus.setTextColor(resources.getColor(R.color.green))
+                        imgEdit.setOnClickListener {
+                            newEditOrderStatusDialog()
+                        }
                     }
                     "Out For Delivery" -> {
                         txtOrderStatus.setTextColor(resources.getColor(R.color.acidGreen))
+                        imgEdit.visibility=View.GONE
                     }
                     "Cancelled" -> {
                         txtOrderStatus.setTextColor(resources.getColor(R.color.red))
+                        imgEdit.visibility=View.GONE
                     }
                 }
                 txtOrderId.text = "OD${orderId}"
@@ -152,6 +162,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     }*//*
                 }
             })
+
         }*/
         reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -159,27 +170,11 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                when (snapshot.child("orderStatus").value.toString()) {
-                    "Pending" -> {
-                        imgEdit.setOnClickListener {
-                            editOrderStatusDialog()
-                        }
-                    }
-                    "Accepted" -> {
-                        imgEdit.setOnClickListener {
-                            newEditOrderStatusDialog()
-                        }
-
-                    }
-                    "Cancelled" -> {
-                        imgEdit.visibility = View.GONE
-                    }
-                    "Out For Delivery" -> {
-                        imgEdit.visibility = View.GONE
-                    }
-                }
+               val status=snapshot.child("orderStatus").value.toString() == "Pending"
             }
+
         })
+
         imgBackOrderDetails.setOnClickListener {
             val intent= Intent(this,Home_seller::class.java)
             startActivity(intent)
