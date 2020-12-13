@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterFavoriteItems
 import com.example.localzes.Modals.ModelAddProduct
@@ -26,6 +27,7 @@ class ITEM : Fragment() {
         // Inflate the layout for this   fragment
         val view = inflater.inflate(R.layout.fragment_two, container, false)
         favRecyclerItem = view.findViewById(R.id.recycler_favorite_item)
+        favRecyclerItem.layoutManager = LinearLayoutManager(activity)
         favItems = ArrayList<ModelAddProduct>()
         val auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
