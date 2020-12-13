@@ -69,7 +69,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 val orderStatus = snapshot.child("orderStatus").value.toString()
                 val orderCost = snapshot.child("orderCost").value.toString()
                 val orderBy = snapshot.child("orderBy").value.toString()
-                val orderTo = snapshot.child("orderTo").value.toString()
+                 val orderTo = snapshot.child("orderTo").value.toString()
 
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
