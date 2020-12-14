@@ -8,4 +8,6 @@
     <color name="acidGreen">#b0bf1a</color>
     <color name="red">#8b0000</color>
     <color name="black">#000000</color>
+    <color name="colorEndGrad">#167A1C</color>
+    <color name="colorStartGrad">#54B159</color>
 </resources>

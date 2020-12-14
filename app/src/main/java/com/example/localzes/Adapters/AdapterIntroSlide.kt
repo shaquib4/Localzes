@@ -1,33 +1,74 @@
 package com.example.localzes.Adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
 import com.example.localzes.Modals.IntroSlide
 import com.example.localzes.R
 
-class AdapterIntroSlide(private val introSlides: List<IntroSlide>) :
-    RecyclerView.Adapter<AdapterIntroSlide.IntroSlideViewHolder>() {
-    inner class IntroSlideViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val imageSplash = view.findViewById<ImageView>(R.id.imgSplash)
-        fun bind(introSlide: IntroSlide) {
-            imageSplash.setImageResource(introSlide.image)
-        }
+
+/*
+class AdapterIntroSlide(
+    val context: Context, private val introSlides: List<IntroSlide>
+) : PagerAdapter() {
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layoutScreen = inflater.inflate(R.layout.slide_layout_container, null)
+        val imgSlide = layoutScreen.findViewById<ImageView>(R.id.imgSplash)
+        imgSlide.setImageResource(introSlides[position].image)
+        container.addView(layoutScreen)
+        return layoutScreen
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroSlideViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.slide_layout_container, parent, false)
-        return IntroSlideViewHolder(view)
+    override fun isViewFromObject(view: View, `object`: Any): Boolean {
+        return view == `object`
     }
 
-    override fun getItemCount(): Int {
+    override fun getCount(): Int {
+        return introSlides.size
+
+    }
+
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        container.removeView(`object` as View)
+
+    }
+
+}*/
+class AdapterIntroSlide(
+    val context: Context, private val introSlides: List<IntroSlide>
+) :
+    PagerAdapter() {
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        val inflater =
+            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layoutScreen: View = inflater.inflate(R.layout.slide_layout_container, null)
+        val imgSlide =
+            layoutScreen.findViewById<ImageView>(
+                R.id.imgSplash
+            )
+        imgSlide.setImageResource(introSlides[position].image)
+        container.addView(layoutScreen)
+        return layoutScreen
+    }
+
+    override fun getCount(): Int {
         return introSlides.size
     }
 
-    override fun onBindViewHolder(holder: IntroSlideViewHolder, position: Int) {
-        holder.bind(introSlides[position])
+    override fun isViewFromObject(view: View, o: Any): Boolean {
+        return view === o
     }
+
+    override fun destroyItem(
+        container: ViewGroup,
+        position: Int,
+        `object`: Any
+    ) {
+        container.removeView(`object` as View)
+    }
+
 }
