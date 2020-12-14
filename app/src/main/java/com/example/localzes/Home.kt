@@ -120,7 +120,7 @@ class Home : AppCompatActivity() {
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString()
                         )
-                        if (currentCity == i.child("city").value.toString()) {
+                        if (currentCity.toLowerCase() == i.child("city").value.toString()) {
                             (shops as ArrayList<Upload>).add(obj)
                             progress_home.visibility = View.GONE
                         } else {
