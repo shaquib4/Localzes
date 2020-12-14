@@ -254,9 +254,8 @@ class Cart : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        addAddress.setOnClickListener {
-            val dialog = BottomSheetDialog(this)
-            val view = LayoutInflater.from(this).inflate(R.layout.address_layout, null, false)
+
+
             val mRef: DatabaseReference =
                 FirebaseDatabase.getInstance().reference.child("users").child(uid)
             mRef.child("address").addValueEventListener(object : ValueEventListener {
@@ -278,23 +277,29 @@ class Cart : AppCompatActivity() {
                         )
                         (addresses as ArrayList<ModelManageAddress>).add(obj)
                     }
+                    addAddress.setOnClickListener {
+                        val dialog = BottomSheetDialog(this@Cart)
+                        val view = LayoutInflater.from(this@Cart).inflate(R.layout.address_layout, null, false)
+                        val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
+                        val btnAddNewAddress:Button=view.findViewById(R.id.btnAddNewAddress)
+                        val layoutManager = LinearLayoutManager(this@Cart)
+                        rv.layoutManager = layoutManager
+                        val adapter = AdapterManageAddress(this@Cart, addresses)
+                        rv.adapter = adapter
+                        btnAddNewAddress.setOnClickListener {
+                            startActivity(Intent(this@Cart, MapsActivity_New::class.java))
+                            finish()
+                        }
+                        dialog.setContentView(view)
+                        dialog.show()
+                        dialog.setCancelable(false)
+                        dialog.setCanceledOnTouchOutside(true)
+
+                    }
                 }
             })
-            dialog.setContentView(view)
-            dialog.show()
-            val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
-            val btnAddNewAddress:Button=view.findViewById(R.id.btnAddNewAddress)
-            btnAddNewAddress.setOnClickListener {
-                startActivity(Intent(this, MapsActivity_New::class.java))
-                finish()
-            }
-            val layoutManager = LinearLayoutManager(this)
-            rv.layoutManager = layoutManager
-            val adapter = AdapterManageAddress(this, addresses)
-            rv.adapter = adapter
-            dialog.setCancelable(false)
-            dialog.setCanceledOnTouchOutside(true)
-        }
+
+
     }
 
     override fun onBackPressed() {
