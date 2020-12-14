@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ class ITEM : Fragment() {
     lateinit var favItems: List<ModelAddProduct>
     lateinit var favoriteItemAdapter: AdapterFavoriteItems
     lateinit var databaseReference: DatabaseReference
+    lateinit var relativeItems: RelativeLayout
 
 
     override fun onCreateView(
@@ -27,6 +29,7 @@ class ITEM : Fragment() {
         // Inflate the layout for this   fragment
         val view = inflater.inflate(R.layout.fragment_two, container, false)
         favRecyclerItem = view.findViewById(R.id.recycler_favorite_item)
+        relativeItems = view.findViewById(R.id.rl_Items_Favorites)
         favRecyclerItem.layoutManager = LinearLayoutManager(activity)
         favItems = ArrayList<ModelAddProduct>()
         val auth = FirebaseAuth.getInstance()
@@ -57,11 +60,17 @@ class ITEM : Fragment() {
                     )
                     (favItems as ArrayList<ModelAddProduct>).add(obj)
                 }
-                try {
-                    favoriteItemAdapter = AdapterFavoriteItems(activity as Context, favItems)
-                    favRecyclerItem.adapter = favoriteItemAdapter
-                } catch (e: Exception) {
+                if (favItems.isEmpty()) {
+                    favRecyclerItem.visibility = View.GONE
+                } else {
+                    relativeItems.visibility = View.GONE
+                    favRecyclerItem.visibility = View.VISIBLE
+                    try {
+                        favoriteItemAdapter = AdapterFavoriteItems(activity as Context, favItems)
+                        favRecyclerItem.adapter = favoriteItemAdapter
+                    } catch (e: Exception) {
 
+                    }
                 }
             }
         })

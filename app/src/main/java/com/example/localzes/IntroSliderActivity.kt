@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -32,6 +34,7 @@ class IntroSliderActivity : AppCompatActivity() {
     private lateinit var btnNext: Button
     private lateinit var btnGetStarted: Button
     var position = 0
+    private lateinit var btnAnim: Animation
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -44,6 +47,7 @@ class IntroSliderActivity : AppCompatActivity() {
         tabIndicator = findViewById(R.id.tab_indicator)
         btnNext = findViewById(R.id.btn_next)
         btnGetStarted = findViewById(R.id.btn_get_started)
+        btnAnim = AnimationUtils.loadAnimation(applicationContext, R.anim.button_animation)
 
         if (restorePrefData()) {
             startActivity(Intent(this, SplashScreenActivity::class.java))
@@ -83,7 +87,7 @@ class IntroSliderActivity : AppCompatActivity() {
 
             override fun onTabSelected(tab: TabLayout.Tab) {
                 if (tab.position == mList.size - 1) {
-                    loadLastScreen();
+                    loadLastScreen()
                 }
             }
 
@@ -185,5 +189,6 @@ class IntroSliderActivity : AppCompatActivity() {
         btnNext.visibility = View.INVISIBLE
         btnGetStarted.visibility = View.VISIBLE
         tabIndicator.visibility = View.INVISIBLE
+        btnGetStarted.animation = btnAnim
     }
 }

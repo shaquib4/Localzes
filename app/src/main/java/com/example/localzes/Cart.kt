@@ -283,11 +283,16 @@ class Cart : AppCompatActivity() {
             dialog.setContentView(view)
             dialog.show()
             val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
+            val btnAddNewAddress:Button=view.findViewById(R.id.btnAddNewAddress)
+            btnAddNewAddress.setOnClickListener {
+                startActivity(Intent(this, MapsActivity_New::class.java))
+                finish()
+            }
             val layoutManager = LinearLayoutManager(this)
             rv.layoutManager = layoutManager
             val adapter = AdapterManageAddress(this, addresses)
             rv.adapter = adapter
-            dialog.setCancelable(true)
+            dialog.setCancelable(false)
             dialog.setCanceledOnTouchOutside(true)
         }
     }

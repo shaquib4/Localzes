@@ -127,7 +127,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    favItemReference.child(userProducts.shopId).child("Products").child(userProducts.productId)
+                    favItemReference.child(userProducts.productId)
                         .addValueEventListener(object : ValueEventListener {
                             override fun onCancelled(error: DatabaseError) {
 
@@ -181,7 +181,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                             userProducts.quantity,
                             userProducts.stock
                         )
-                        favItemReference.child(userProducts.shopId).setValue(obj)
+                        favItemReference.child(userProducts.productId).setValue(obj)
                             .addOnSuccessListener {
                                 val snackbar =
                                     Snackbar.make(view, "Added To Favorites", Snackbar.LENGTH_LONG)
@@ -192,7 +192,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             }
         })
 
-        holder.unfavorite.setOnClickListener {
+        /*holder.unfavorite.setOnClickListener {
             val view = it
             holder.unfavorite.visibility = View.GONE
             holder.favorite.visibility = View.VISIBLE
@@ -212,7 +212,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             val oDatabaseReference =
                 FirebaseDatabase.getInstance().reference.child("users").child(mUid)
                     .child("FavoritesItems")
-            oDatabaseReference.child(userProducts.shopId).setValue(obj).addOnSuccessListener {
+            oDatabaseReference.child(userProducts.productId).setValue(obj).addOnSuccessListener {
                 val snackbar = Snackbar.make(view, "Added to favorites", Snackbar.LENGTH_LONG)
                 snackbar.show()
             }
@@ -229,7 +229,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 val snackbar = Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)
                 snackbar.show()
             }
-        }
+        }*/
         val mString = "₹${userProducts.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
@@ -510,7 +510,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val favItemReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(mUid)
                 .child("FavoriteItems")
-        favItemReference.child(userProducts.shopId).setValue(obj).addOnSuccessListener {
+        favItemReference.child(userProducts.productId).setValue(obj).addOnSuccessListener {
             unfavorite.visibility = View.GONE
             favorite.visibility = View.VISIBLE
             val snackbar = Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
@@ -543,7 +543,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val favItemReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(mUid)
                 .child("FavoriteItems")
-        favItemReference.child(userProducts.shopId).removeValue().addOnSuccessListener {
+        favItemReference.child(userProducts.productId).removeValue().addOnSuccessListener {
             favorite.visibility = View.GONE
             unfavorite.visibility = View.VISIBLE
             val snackbar = Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)

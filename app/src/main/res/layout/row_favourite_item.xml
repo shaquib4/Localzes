@@ -75,15 +75,6 @@
                     android:src="@drawable/ic_favourite" />
             </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/imgDelete"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="@dimen/_10sdp"
-                android:src="@drawable/ic_remove" />
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

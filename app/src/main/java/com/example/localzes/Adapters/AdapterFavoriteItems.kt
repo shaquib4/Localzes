@@ -56,11 +56,11 @@ class AdapterFavoriteItems(val context: Context, val favList: List<ModelAddProdu
         val mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
         val uid = user!!.uid
-        val shopId = favList[position].shopId
+        val productId = favList[position].productId
         val dbReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
                 .child("FavoriteItems")
-        dbReference.orderByChild("shopId").equalTo(shopId)
+        dbReference.orderByChild("productId").equalTo(productId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 

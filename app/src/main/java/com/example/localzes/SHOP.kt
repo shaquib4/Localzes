@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +18,10 @@ import com.google.firebase.database.*
 class SHOP : Fragment() {
     lateinit var favRecyclerShop: RecyclerView
     lateinit var favShops: List<Upload>
+    lateinit var relativeShop: RelativeLayout
     lateinit var favoriteAdapter: AdapterFavoriteShops
     lateinit var databaseReference: DatabaseReference
+
     //lateinit var v: View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +29,7 @@ class SHOP : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_one, container, false)
         favRecyclerShop = view.findViewById(R.id.recycler_favorite_shop)
+        relativeShop = view.findViewById(R.id.rl_Shop_Favorites)
         favShops = ArrayList<Upload>()
         favRecyclerShop.layoutManager = LinearLayoutManager(activity)
         val auth = FirebaseAuth.getInstance()
@@ -62,10 +66,17 @@ class SHOP : Fragment() {
                     )
                     (favShops as ArrayList<Upload>).add(obj)
                 }
-                try{
-                favoriteAdapter = AdapterFavoriteShops(activity as Context, favShops)
-                favRecyclerShop.adapter = favoriteAdapter}catch (e:Exception){
-                    e.printStackTrace()
+                if (favShops.isEmpty()) {
+                    favRecyclerShop.visibility = View.GONE
+                } else {
+                    relativeShop.visibility = View.GONE
+                    favRecyclerShop.visibility = View.VISIBLE
+                    try {
+                        favoriteAdapter = AdapterFavoriteShops(activity as Context, favShops)
+                        favRecyclerShop.adapter = favoriteAdapter
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
             }
         })
