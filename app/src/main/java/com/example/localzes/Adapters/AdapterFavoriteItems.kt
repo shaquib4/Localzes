@@ -42,7 +42,6 @@ class AdapterFavoriteItems(val context: Context, val favList: List<ModelAddProdu
         val favItems = favList[position]
         val databaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(favItems.shopId)
-                .child("Products").child(favItems.productId)
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -50,23 +49,50 @@ class AdapterFavoriteItems(val context: Context, val favList: List<ModelAddProdu
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 try {
-                    if (snapshot.child("stock").value.toString() == "IN") {
-                        Glide.with(context).load(favItems.imageUrl).into(holder.imgItem)
-                        holder.itemView.isClickable = true
-                    } else if (snapshot.child("stock").value.toString() == "OUT") {
+                    if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
+                        databaseReference.child("Products").child(favItems.productId)
+                            .addValueEventListener(object : ValueEventListener {
+                                override fun onCancelled(error: DatabaseError) {
+
+                                }
+
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    try {
+                                        if (snapshot.child("stock").value.toString() == "IN") {
+                                            Glide.with(context).load(favItems.imageUrl)
+                                                .into(holder.imgItem)
+                                            holder.itemView.isClickable = true
+                                        } else if (snapshot.child("stock").value.toString() == "OUT") {
+                                            val colorMatrix = ColorMatrix()
+                                            colorMatrix.setSaturation(0.0f)
+                                            val filter = ColorMatrixColorFilter(colorMatrix)
+                                            holder.imgItem.colorFilter = filter
+                                            holder.itemView.isClickable = false
+                                        }
+                                    } catch (e: Exception) {
+                                        e.printStackTrace()
+                                    }
+
+                                }
+
+                            })
+
+                    } else if (snapshot.child("StoreStatus").value.toString() == "CLOSED") {
                         val colorMatrix = ColorMatrix()
                         colorMatrix.setSaturation(0.0f)
                         val filter = ColorMatrixColorFilter(colorMatrix)
                         holder.imgItem.colorFilter = filter
                         holder.itemView.isClickable = false
                     }
-                } catch (e: Exception) {
+                } catch (e: java.lang.Exception) {
                     e.printStackTrace()
                 }
-
             }
 
         })
+
+
+
         Glide.with(context).load(favItems.imageUrl).into(holder.imgItem)
         holder.itemName.text = favItems.title
         holder.itemOriginalCost.text = "₹${favItems.sellingPrice}"

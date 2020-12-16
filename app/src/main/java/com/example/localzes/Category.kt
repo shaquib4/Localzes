@@ -11,7 +11,7 @@ class Category : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 
-        bottom_navCategory_seller.selectedItemId=R.id.nav_category_seller
+        bottom_navCategory_seller.selectedItemId = R.id.nav_category_seller
         bottom_navCategory_seller.setOnNavigationItemSelectedListener {
             when (it.itemId) {
 
@@ -56,7 +56,7 @@ class Category : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent=Intent(applicationContext,Home_seller::class.java)
+        val intent = Intent(applicationContext, Home_seller::class.java)
         startActivity(intent)
         finish()
     }

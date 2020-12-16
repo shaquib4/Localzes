@@ -20,14 +20,14 @@ class CurrentOrdersActivity : AppCompatActivity() {
     private lateinit var userAuth: FirebaseAuth
     private lateinit var mOrderedItem: List<ModelOrderDetails>
     private lateinit var relativeCurrent: RelativeLayout
-    private lateinit var imgBackCurrent:ImageView
+    private lateinit var imgBackCurrent: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_current_orders)
         mOrderedItem = ArrayList<ModelOrderDetails>()
         recyclerOrderDetails = findViewById(R.id.recyclerCurrentOrders)
         relativeCurrent = findViewById(R.id.rl_Current_orders)
-        imgBackCurrent=findViewById(R.id.imgBackCurrent)
+        imgBackCurrent = findViewById(R.id.imgBackCurrent)
         recyclerOrderDetails.layoutManager = LinearLayoutManager(this)
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
@@ -38,6 +38,7 @@ class CurrentOrdersActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
 
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 (mOrderedItem as ArrayList<ModelOrderDetails>).clear()
                 for (i in snapshot.children) {
@@ -77,13 +78,13 @@ class CurrentOrdersActivity : AppCompatActivity() {
             }
         })
         imgBackCurrent.setOnClickListener {
-            val intent=Intent(this,Home::class.java)
+            val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }
     }
 
     override fun onBackPressed() {
-        val intent=Intent(this,Accounts::class.java)
+        val intent = Intent(this, Accounts::class.java)
         startActivity(intent)
         finish()
     }

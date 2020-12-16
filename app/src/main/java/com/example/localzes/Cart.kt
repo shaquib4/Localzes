@@ -256,48 +256,49 @@ class Cart : AppCompatActivity() {
         }
 
 
-            val mRef: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("users").child(uid)
-            mRef.child("address").addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
+        val mRef: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+        mRef.child("address").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (addresses as ArrayList<ModelManageAddress>).clear()
+                for (i in snapshot.children) {
+
+                    val obj = ModelManageAddress(
+                        i.child("address").value.toString(),
+                        i.child("city").value.toString(),
+                        i.child("pinCode").value.toString(),
+                        i.child("country").value.toString(),
+                        i.child("state").value.toString()
+
+                    )
+                    (addresses as ArrayList<ModelManageAddress>).add(obj)
+                }
+                addAddress.setOnClickListener {
+                    val dialog = BottomSheetDialog(this@Cart)
+                    val view =
+                        LayoutInflater.from(this@Cart).inflate(R.layout.address_layout, null, false)
+                    val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
+                    val btnAddNewAddress: Button = view.findViewById(R.id.btnAddNewAddress)
+                    val layoutManager = LinearLayoutManager(this@Cart)
+                    rv.layoutManager = layoutManager
+                    val adapter = AdapterManageAddress(this@Cart, addresses)
+                    rv.adapter = adapter
+                    btnAddNewAddress.setOnClickListener {
+                        startActivity(Intent(this@Cart, MapsActivity_New::class.java))
+                        finish()
+                    }
+                    dialog.setContentView(view)
+                    dialog.show()
+                    dialog.setCancelable(false)
+                    dialog.setCanceledOnTouchOutside(true)
 
                 }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    (addresses as ArrayList<ModelManageAddress>).clear()
-                    for (i in snapshot.children) {
-
-                        val obj = ModelManageAddress(
-                            i.child("address").value.toString(),
-                            i.child("city").value.toString(),
-                            i.child("pinCode").value.toString(),
-                            i.child("country").value.toString(),
-                            i.child("state").value.toString()
-
-                        )
-                        (addresses as ArrayList<ModelManageAddress>).add(obj)
-                    }
-                    addAddress.setOnClickListener {
-                        val dialog = BottomSheetDialog(this@Cart)
-                        val view = LayoutInflater.from(this@Cart).inflate(R.layout.address_layout, null, false)
-                        val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
-                        val btnAddNewAddress:Button=view.findViewById(R.id.btnAddNewAddress)
-                        val layoutManager = LinearLayoutManager(this@Cart)
-                        rv.layoutManager = layoutManager
-                        val adapter = AdapterManageAddress(this@Cart, addresses)
-                        rv.adapter = adapter
-                        btnAddNewAddress.setOnClickListener {
-                            startActivity(Intent(this@Cart, MapsActivity_New::class.java))
-                            finish()
-                        }
-                        dialog.setContentView(view)
-                        dialog.show()
-                        dialog.setCancelable(false)
-                        dialog.setCanceledOnTouchOutside(true)
-
-                    }
-                }
-            })
+            }
+        })
 
 
     }

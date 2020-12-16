@@ -29,12 +29,12 @@ class continue_payment : AppCompatActivity() {
     private var totalItem: String? = "300"
     private var uid: String? = "400"
     private var deliveryAddress: String? = "500"
-    private var orderByName:String?="600"
-    private var orderByMobile:String?="700"
+    private var orderByName: String? = "600"
+    private var orderByMobile: String? = "700"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var cartProducts: List<UserCartDetails>
     private lateinit var orderDetails: ModelOrderDetails
-    private lateinit var imgBackContinue:ImageView
+    private lateinit var imgBackContinue: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_payment)
@@ -42,14 +42,14 @@ class continue_payment : AppCompatActivity() {
         shippingCharges = findViewById(R.id.txtSCPrice)
         totalCharges = findViewById(R.id.txtTotalPayPrice)
         totalChargesTv = findViewById(R.id.txtPrice)
-        imgBackContinue=findViewById(R.id.imgBackContinue)
+        imgBackContinue = findViewById(R.id.imgBackContinue)
         shopId = intent.getStringExtra("shopId")
         totalCost = intent.getStringExtra("totalCost")
         totalItem = intent.getStringExtra("totalItem")
         uid = intent.getStringExtra("orderBy")
         deliveryAddress = intent.getStringExtra("delivery")
-        orderByName=intent.getStringExtra("orderByName")
-        orderByMobile=intent.getStringExtra("orderByMobile")
+        orderByName = intent.getStringExtra("orderByName")
+        orderByMobile = intent.getStringExtra("orderByMobile")
         cartProducts = ArrayList<UserCartDetails>()
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
@@ -155,17 +155,17 @@ class continue_payment : AppCompatActivity() {
                 intent.putExtra("orderBy", uid.toString())
                 intent.putExtra("totalItem", totalItem.toString())
                 intent.putExtra("delivery", deliveryAddress.toString())
-                intent.putExtra("orderByName",orderByName.toString())
-                intent.putExtra("orderByMobile",orderByMobile.toString())
+                intent.putExtra("orderByName", orderByName.toString())
+                intent.putExtra("orderByMobile", orderByMobile.toString())
                 startActivity(intent)
                 finish()
             }
         }
-        productCharges.text="₹"+totalCost.toString()
-        totalChargesTv.text="₹"+totalCost.toString()+"/-"
-        totalCharges.text="₹"+totalCost.toString()
+        productCharges.text = "₹" + totalCost.toString()
+        totalChargesTv.text = "₹" + totalCost.toString() + "/-"
+        totalCharges.text = "₹" + totalCost.toString()
         imgBackContinue.setOnClickListener {
-            val intent=Intent(this,Cart::class.java)
+            val intent = Intent(this, Cart::class.java)
             startActivity(intent)
             finish()
         }
@@ -218,12 +218,12 @@ class continue_payment : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Content-Type"] = "application/json"
-                headers["Authorization"] = "key=AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D"
+                headers["Authorization"] =
+                    "key=AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D"
                 return headers
             }
         }
         Volley.newRequestQueue(this).add(jsonObjectRequest)
-
 
 
     }

@@ -37,7 +37,7 @@ class AddProduct : AppCompatActivity() {
         image_view.setOnClickListener {
             startImageChooser()
         }
-        imgBackAdd=findViewById(R.id.imgBackAdd)
+        imgBackAdd = findViewById(R.id.imgBackAdd)
         radioGroup = findViewById(R.id.radioStock)
         imgBackAdd.setOnClickListener {
             val intent = Intent(this, Home_seller::class.java)

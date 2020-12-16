@@ -22,68 +22,67 @@ class AccountsSeller : AppCompatActivity() {
     private lateinit var userMobileNo: TextView
     private lateinit var userEmailAddress: TextView
     private lateinit var logOut: TextView
-    private lateinit var userAuth:FirebaseAuth
+    private lateinit var userAuth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var storeStatus:TextView
-    private lateinit var deliveryAvailibility:TextView
-    private lateinit var switchStoreStatus:SwitchCompat
-    private lateinit var switchDelivery:SwitchCompat
+    private lateinit var storeStatus: TextView
+    private lateinit var deliveryAvailibility: TextView
+    private lateinit var switchStoreStatus: SwitchCompat
+    private lateinit var switchDelivery: SwitchCompat
     private lateinit var sharedPreferences: SharedPreferences
-    private var IsChecked:Boolean=true
+    private var IsChecked: Boolean = true
     private lateinit var spEditor: SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accounts_seller)
-        userName=findViewById(R.id.txtaccName)
-        userMobileNo=findViewById(R.id.txtaccmobile)
-        userEmailAddress=findViewById(R.id.txtaccEmail)
-        storeStatus=findViewById(R.id.storeOpen)
-        deliveryAvailibility=findViewById(R.id.deliveryAvailable)
-        switchStoreStatus=findViewById(R.id.switchOpen)
-        switchDelivery=findViewById(R.id.switchDelivery)
-        logOut=findViewById(R.id.txtaccEdit)
-        sharedPreferences=getSharedPreferences("SETTINGS", Context.MODE_PRIVATE)
-        IsChecked=sharedPreferences.getBoolean("IN",true)
-        switchStoreStatus.isChecked=IsChecked
-        userAuth= FirebaseAuth.getInstance()
-        val user=userAuth.currentUser
-        val uid=user!!.uid
-        databaseReference= FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        userName = findViewById(R.id.txtaccName)
+        userMobileNo = findViewById(R.id.txtaccmobile)
+        userEmailAddress = findViewById(R.id.txtaccEmail)
+        storeStatus = findViewById(R.id.storeOpen)
+        deliveryAvailibility = findViewById(R.id.deliveryAvailable)
+        switchStoreStatus = findViewById(R.id.switchOpen)
+        switchDelivery = findViewById(R.id.switchDelivery)
+        logOut = findViewById(R.id.txtaccEdit)
+        sharedPreferences = getSharedPreferences("SETTINGS", Context.MODE_PRIVATE)
+        IsChecked = sharedPreferences.getBoolean("IN", true)
+        switchStoreStatus.isChecked = IsChecked
+        userAuth = FirebaseAuth.getInstance()
+        val user = userAuth.currentUser
+        val uid = user!!.uid
+        databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         switchStoreStatus.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked){
+            if (isChecked) {
                 databaseReference.child("StoreStatus").setValue("OPEN")
-                storeStatus.text="OPEN"
-                spEditor=sharedPreferences.edit()
-                spEditor.putBoolean("IN",true)
+                storeStatus.text = "OPEN"
+                spEditor = sharedPreferences.edit()
+                spEditor.putBoolean("IN", true)
                 spEditor.apply()
 
-            }
-            else{
+            } else {
                 databaseReference.child("StoreStatus").setValue("CLOSED")
-                storeStatus.text="CLOSED"
-                spEditor=sharedPreferences.edit()
-                spEditor.putBoolean("IN",false)
+                storeStatus.text = "CLOSED"
+                spEditor = sharedPreferences.edit()
+                spEditor.putBoolean("IN", false)
                 spEditor.apply()
             }
         }
-        databaseReference.addValueEventListener(object :ValueEventListener{
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val userN=snapshot.child("name").value.toString()
-                val userM=snapshot.child("phone").value.toString()
-                val userE=snapshot.child("email").value.toString()
-                userName.text=userN
-                userMobileNo.text=userM
-                userEmailAddress.text=userE
+                val userN = snapshot.child("name").value.toString()
+                val userM = snapshot.child("phone").value.toString()
+                val userE = snapshot.child("email").value.toString()
+                userName.text = userN
+                userMobileNo.text = userM
+                userEmailAddress.text = userE
             }
 
         })
         logOut.setOnClickListener {
             userAuth.signOut()
-            val intent=Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -96,14 +95,20 @@ class AccountsSeller : AppCompatActivity() {
             )
         expand.setAdapter(listViewAdapter)
         expand.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-            val select=listViewAdapter.getChild(groupPosition, childPosition) as String
-            when(select){
-                "Offers"->{}
-                "Referrals"->{}
-                "Refunds Initiated"->{}
-                "Transaction History"->{}
-                "FAQs"->{}
-                "Contact Us"->{}
+            val select = listViewAdapter.getChild(groupPosition, childPosition) as String
+            when (select) {
+                "Offers" -> {
+                }
+                "Referrals" -> {
+                }
+                "Refunds Initiated" -> {
+                }
+                "Transaction History" -> {
+                }
+                "FAQs" -> {
+                }
+                "Contact Us" -> {
+                }
             }
             return@setOnChildClickListener true
         }
@@ -131,7 +136,7 @@ class AccountsSeller : AppCompatActivity() {
                 }
                 R.id.nav_account_seller -> {
 
-                   return@setOnNavigationItemSelectedListener true
+                    return@setOnNavigationItemSelectedListener true
 
                 }
                 R.id.nav_store_seller -> {
@@ -150,8 +155,10 @@ class AccountsSeller : AppCompatActivity() {
 
                 }
             }
-            return@setOnNavigationItemSelectedListener false}
+            return@setOnNavigationItemSelectedListener false
+        }
     }
+
     private fun showList() {
 
         menu = ArrayList()
@@ -181,7 +188,7 @@ class AccountsSeller : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent=Intent(applicationContext,Home_seller::class.java)
+        val intent = Intent(applicationContext, Home_seller::class.java)
         startActivity(intent)
         finish()
     }
