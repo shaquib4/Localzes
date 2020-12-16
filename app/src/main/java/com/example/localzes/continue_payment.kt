@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.example.localzes.Modals.ModelOrderDetails
 import com.example.localzes.Modals.UserCartDetails
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_continue_payment.*
 import org.json.JSONObject
 import java.util.ArrayList
 
@@ -55,7 +56,7 @@ class continue_payment : AppCompatActivity() {
         progressDialog.setCanceledOnTouchOutside(false)
         radioGroup = findViewById(R.id.radioPayment)
 
-        findViewById<Button>(R.id.btnPayContinue).setOnClickListener {
+        btnPayContinue.setOnClickListener {
 
             val id = radioGroup.checkedRadioButtonId
             val radioButton = findViewById<RadioButton>(id)
@@ -147,7 +148,7 @@ class continue_payment : AppCompatActivity() {
                     progressDialog.dismiss()
                     prepareNotificationMessage(orderId)
                 }
-            } else if (radioButton.text == "Pay with Paytm") {
+            } else if (radioButton.text == " Pay with Paytm") {
                 val intent = Intent(this, PaymentActivity::class.java)
                 intent.putExtra("shopId", shopId.toString())
                 intent.putExtra("totalCost", totalCost.toString())
