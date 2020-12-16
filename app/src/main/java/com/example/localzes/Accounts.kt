@@ -18,41 +18,41 @@ class Accounts : AppCompatActivity() {
     private lateinit var listViewAdapter: ExpandableListViewAdapter
     private lateinit var menu: List<String>
     private lateinit var item: HashMap<String, List<String>>
-    private lateinit var userName:TextView
-    private lateinit var userMobileNo:TextView
-    private lateinit var userEmailAddress:TextView
-    private lateinit var logOut:TextView
+    private lateinit var userName: TextView
+    private lateinit var userMobileNo: TextView
+    private lateinit var userEmailAddress: TextView
+    private lateinit var logOut: TextView
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var userAuth:FirebaseAuth
+    private lateinit var userAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accounts)
-        userName=findViewById(R.id.txtaccName)
-        userMobileNo=findViewById(R.id.txtaccmobile)
-        userEmailAddress=findViewById(R.id.txtaccEmail)
-        logOut=findViewById(R.id.txtaccEdit)
-        userAuth= FirebaseAuth.getInstance()
-        val user=userAuth.currentUser
-        val uid=user!!.uid
-        databaseReference=FirebaseDatabase.getInstance().reference.child("users").child(uid)
-            databaseReference.addValueEventListener(object:ValueEventListener{
-                override fun onCancelled(error: DatabaseError) {
+        userName = findViewById(R.id.txtaccName)
+        userMobileNo = findViewById(R.id.txtaccmobile)
+        userEmailAddress = findViewById(R.id.txtaccEmail)
+        logOut = findViewById(R.id.txtaccEdit)
+        userAuth = FirebaseAuth.getInstance()
+        val user = userAuth.currentUser
+        val uid = user!!.uid
+        databaseReference = FirebaseDatabase.getInstance().reference.child("users").child(uid)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
-                }
+            }
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val userN=snapshot.child("name").value.toString()
-                    val userM=snapshot.child("phone").value.toString()
-                    val userE=snapshot.child("email").value.toString()
-                    userName.text=userN
-                    userMobileNo.text=userM
-                    userEmailAddress.text=userE
-                }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userN = snapshot.child("name").value.toString()
+                val userM = snapshot.child("phone").value.toString()
+                val userE = snapshot.child("email").value.toString()
+                userName.text = userN
+                userMobileNo.text = userM
+                userEmailAddress.text = userE
+            }
 
-            })
+        })
         logOut.setOnClickListener {
             userAuth.signOut()
-             val intent=Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -113,8 +113,8 @@ class Accounts : AppCompatActivity() {
                     val intent = Intent(this, ManageAddress::class.java)
                     startActivity(intent)
                 }
-                "Favourites"->{
-                    val intent=Intent(this,PagerActivity::class.java)
+                "Favourites" -> {
+                    val intent = Intent(this, PagerActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -155,7 +155,7 @@ class Accounts : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent=Intent(applicationContext,Home::class.java)
+        val intent = Intent(applicationContext, Home::class.java)
         startActivity(intent)
         finish()
     }

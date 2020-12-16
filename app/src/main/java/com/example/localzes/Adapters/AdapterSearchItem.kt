@@ -2,15 +2,19 @@ package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.localzes.Modals.Upload
 import com.example.localzes.R
 import com.example.localzes.UserProductsActivity
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 class AdapterSearchItem(val context: Context,private val search:List<Upload>):RecyclerView.Adapter<AdapterSearchItem.HolderSearchItem>() {
@@ -40,6 +44,32 @@ class AdapterSearchItem(val context: Context,private val search:List<Upload>):Re
                 searchItem.locality.substring(1)}catch (e:Exception){
             e.printStackTrace()
         }
+
+        val reference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(searchItem.shopId)
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
+                        Glide.with(context).load(searchItem.imageUrl).into(holder.shopImage)
+                        holder.itemView.isClickable = true
+                    } else if (snapshot.child("StoreStatus").value.toString() == "CLOSED") {
+                        val colorMatrix = ColorMatrix()
+                        colorMatrix.setSaturation(0.0f)
+                        val filter = ColorMatrixColorFilter(colorMatrix)
+                        holder.shopImage.colorFilter = filter
+                        holder.itemView.isClickable = false
+                    }
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                }
+
+            }
+        })
 
         Picasso.get().load(searchItem.imageUrl).into(holder.shopImage)
         holder.itemView.setOnClickListener{

@@ -2,6 +2,8 @@ package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import com.example.localzes.R
 import com.example.localzes.UserProductsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.lang.Exception
 
 class AdapterFavoriteShops(val context: Context, val favList: List<Upload>) :
     RecyclerView.Adapter<AdapterFavoriteShops.HolderFavoriteShops>() {
@@ -39,6 +42,31 @@ class AdapterFavoriteShops(val context: Context, val favList: List<Upload>) :
 
     override fun onBindViewHolder(holder: HolderFavoriteShops, position: Int) {
         val fav_shops = favList[position]
+        val databaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(fav_shops.shopId)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
+                        Glide.with(context).load(fav_shops.imageUrl).into(holder.imgItem)
+                        holder.itemView.isClickable = true
+                    } else if (snapshot.child("StoreStatus").value.toString() == "CLOSED") {
+                        val colorMatrix = ColorMatrix()
+                        colorMatrix.setSaturation(0.0f)
+                        val filter = ColorMatrixColorFilter(colorMatrix)
+                        holder.imgItem.colorFilter = filter
+                        holder.itemView.isClickable = false
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+        })
         holder.txtShopName.text = fav_shops.shop_name
         holder.txtShopAddress.text = fav_shops.address
         Glide.with(context).load(fav_shops.imageUrl).into(holder.imgItem)

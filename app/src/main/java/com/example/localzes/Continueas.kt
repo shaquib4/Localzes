@@ -25,54 +25,28 @@ class Continueas : AppCompatActivity() {
     private lateinit var cuserDatabase: DatabaseReference
     private lateinit var suserDatabase: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var spEditor: SharedPreferences.Editor
-    private var isChecked:Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continueas)
 
-        if (ConnectionManager().checkConnectivity(this)){
-        sharedPreferences=getSharedPreferences("SETTINGS_SP", Context.MODE_PRIVATE)
-        isChecked=sharedPreferences.getBoolean("FCM_ENABLED",false)
-        progress_continue.visibility = View.GONE
-        btnCustomer.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Request Permission")
-            builder.setMessage("Click Allow to get notifications about your orders or Deny")
-            builder.setPositiveButton("ALLOW") { text, listener ->
-                subscribeToTopic()
+        if (ConnectionManager().checkConnectivity(this)) {
+            progress_continue.visibility = View.GONE
+            btnCustomer.setOnClickListener {
+                customer()
             }
-            builder.setNegativeButton("DENY") { text, listener ->
-
+            btnseller.setOnClickListener {
+                seller()
             }
-            builder.create().show()
-            progress_continue.visibility = View.VISIBLE
-            customer()
-        }
-        btnseller.setOnClickListener {
-            val builder=AlertDialog.Builder(this)
-            builder.setTitle("Request Permission")
-            builder.setMessage("Click Allow to get information about your orders")
-            builder.setPositiveButton("ALLOW"){text,listener->
-                subscribeToTopic()
-            }
-            builder.setNegativeButton("DENY"){text,listener->
-
-            }
-            builder.create().show()
-            progress_continue.visibility = View.VISIBLE
-            seller()
-        }}else{
-            val dialog= AlertDialog.Builder(this)
+        } else {
+            val dialog = AlertDialog.Builder(this)
             dialog.setTitle("Error")
             dialog.setMessage("Internet Connection not Found")
-            dialog.setPositiveButton("Open Setting"){text, listener->
-                val settingsIntent=Intent(Settings.ACTION_WIRELESS_SETTINGS)
+            dialog.setPositiveButton("Open Setting") { text, listener ->
+                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
                 startActivity(settingsIntent)
                 finish()
             }
-            dialog.setNegativeButton("Exit"){text,listener->
+            dialog.setNegativeButton("Exit") { text, listener ->
                 ActivityCompat.finishAffinity(this)
             }
             dialog.create()
@@ -81,16 +55,6 @@ class Continueas : AppCompatActivity() {
 
     }
 
-    private fun subscribeToTopic() {
-        FirebaseMessaging.getInstance().subscribeToTopic("PUSH_NOTIFICATIONS")
-            .addOnCompleteListener {task->
-                var msg="Notifications Are Enabled"
-                if (!task.isSuccessful) {
-                    msg  ="Notifications are not enabled"
-                }
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-            }
-    }
 
     private fun seller() {
         firebaseUser = FirebaseAuth.getInstance().currentUser
