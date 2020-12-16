@@ -2,6 +2,8 @@ package com.example.localzes.Adapters
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +40,33 @@ class AdapterFavoriteItems(val context: Context, val favList: List<ModelAddProdu
 
     override fun onBindViewHolder(holder: HolderFavoriteItems, position: Int) {
         val favItems = favList[position]
+        val databaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(favItems.shopId)
+                .child("Products").child(favItems.productId)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    if (snapshot.child("stock").value.toString() == "IN") {
+                        Glide.with(context).load(favItems.imageUrl).into(holder.imgItem)
+                        holder.itemView.isClickable = true
+                    } else if (snapshot.child("stock").value.toString() == "OUT") {
+                        val colorMatrix = ColorMatrix()
+                        colorMatrix.setSaturation(0.0f)
+                        val filter = ColorMatrixColorFilter(colorMatrix)
+                        holder.imgItem.colorFilter = filter
+                        holder.itemView.isClickable = false
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+            }
+
+        })
         Glide.with(context).load(favItems.imageUrl).into(holder.imgItem)
         holder.itemName.text = favItems.title
         holder.itemOriginalCost.text = "₹${favItems.sellingPrice}"

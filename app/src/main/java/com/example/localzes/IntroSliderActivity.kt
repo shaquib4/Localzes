@@ -54,9 +54,10 @@ class IntroSliderActivity : AppCompatActivity() {
             finish()
         }
         val mList: MutableList<IntroSlide> = ArrayList()
-        val fresh: Boolean = mList.add(IntroSlide(R.drawable.splash_screen))
-        mList.add(IntroSlide(R.drawable.lanju))
-        mList.add(IntroSlide(R.drawable.localze_shop))
+        val fresh: Boolean = mList.add(IntroSlide(R.drawable.register))
+        mList.add(IntroSlide(R.drawable.seller))
+        mList.add(IntroSlide(R.drawable.customer))
+        mList.add(IntroSlide(R.drawable.deliver))
         introViewPagerAdapter = AdapterIntroSlide(this, mList)
         viewPager.adapter = introViewPagerAdapter
         tabIndicator.setupWithViewPager(viewPager)
