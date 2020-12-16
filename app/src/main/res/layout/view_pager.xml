@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/toolbar"
-        android:id="@+id/toolbar1"/>
+        android:id="@+id/toolbar1"
+        layout="@layout/toolbar" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
