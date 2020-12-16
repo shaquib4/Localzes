@@ -13,10 +13,12 @@ import com.example.localzes.Adapters.AdapterSearchItem
 import com.example.localzes.Adapters.AdapterSearchProductItem
 import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.Modals.Upload
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 class Search : AppCompatActivity() {
+    private lateinit var mUserDatabase: DatabaseReference
     private lateinit var userDatabase: DatabaseReference
     private lateinit var recyclerSearchItem: RecyclerView
     private lateinit var searchProductAdapter: AdapterSearchProductItem
@@ -24,6 +26,7 @@ class Search : AppCompatActivity() {
     private lateinit var searchProductItem:  List<ModelAddProduct>
     private lateinit var searchItem: List<Upload>
     private lateinit var searchAct:EditText
+    private var currentCity: String = ""
     private lateinit var search:EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,9 +71,25 @@ class Search : AppCompatActivity() {
                 }
             }
             return@setOnNavigationItemSelectedListener true
+
         }
+        val firebaseUser = FirebaseAuth.getInstance().currentUser
         userDatabase = FirebaseDatabase.getInstance().reference.child("seller")
-        userDatabase.addValueEventListener(object : ValueEventListener {
+        mUserDatabase =
+            FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser!!.uid)
+                .child("current_address")
+        mUserDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                currentCity = snapshot.child("city").value.toString()
+            }
+
+        })
+        userDatabase = FirebaseDatabase.getInstance().reference.child("seller")
+       /* userDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -109,7 +128,7 @@ class Search : AppCompatActivity() {
 
             }
 
-        })
+        })*/
 
         btnLocality.setOnClickListener {
             searchAct.visibility=View.VISIBLE
@@ -199,7 +218,7 @@ class Search : AppCompatActivity() {
                 for (i in snapshot.children) {
                     val shopId= i.child("shopId").value.toString()
 
-
+                   var city= i.child("city").value.toString()
 
                     val queryProductItem = FirebaseDatabase.getInstance().reference.child("seller").child(shopId).child("Products").orderByChild("title")
                         .startAt(string)
@@ -227,7 +246,8 @@ class Search : AppCompatActivity() {
                                         i.child("stock").value.toString()
 
                                     )
-                                (searchProductItem as ArrayList<ModelAddProduct>).add(obj)
+                                if (city.toLowerCase()==currentCity.toLowerCase()){
+                                (searchProductItem as ArrayList<ModelAddProduct>).add(obj)}
 
                             }
                             searchProductAdapter=
@@ -252,7 +272,7 @@ class Search : AppCompatActivity() {
 
         queryShop.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -278,7 +298,8 @@ class Search : AppCompatActivity() {
                         i.child("closingTime").value.toString(),
                         i.child("closingDay").value.toString()
                     )
-                    (searchItem as ArrayList<Upload>).add(obj)
+                    if(currentCity.toLowerCase() == i.child("city").value.toString()){
+                        (searchItem as ArrayList<Upload>).add(obj)}
 
                 }
                 searchAdapter= AdapterSearchItem(
@@ -323,7 +344,8 @@ class Search : AppCompatActivity() {
                         i.child("closingTime").value.toString(),
                         i.child("closingDay").value.toString()
                     )
-                    (searchItem as ArrayList<Upload>).add(obj)
+                    if(currentCity.toLowerCase() == i.child("city").value.toString()){
+                    (searchItem as ArrayList<Upload>).add(obj)}
 
                 }
                 searchAdapter= AdapterSearchItem(
