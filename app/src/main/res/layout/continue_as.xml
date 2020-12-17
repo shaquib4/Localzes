@@ -12,7 +12,7 @@
         android:layout_marginTop="@dimen/_80sdp"/>
 
     <Button
-        android:id="@+id/seller_btn"
+        android:id="@+id/btnseller"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/view1"
@@ -33,6 +33,7 @@
         android:layout_centerInParent="true"/>
 
     <Button
+        android:id="@+id/btnCustomer"
         android:text="As Customer"
         android:textAllCaps="false"
         android:textSize="@dimen/_18ssp"
@@ -41,7 +42,6 @@
         android:layout_below="@id/view"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_40sdp"
-        android:id="@+id/customer_btn"
        android:layout_marginStart="@dimen/_10sdp"
         android:background="@drawable/ic_customer_btn"
         android:layout_marginTop="@dimen/_60sdp"/>
@@ -60,4 +60,12 @@
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="@dimen/_16ssp" />
+    <ProgressBar
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:id="@+id/progress_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        />
 </RelativeLayout>

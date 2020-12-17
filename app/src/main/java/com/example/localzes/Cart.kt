@@ -9,6 +9,7 @@ import android.view.View.inflate
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,6 +46,7 @@ class Cart : AppCompatActivity() {
     private lateinit var btnContinue: Button
     var discountAmount: Double = 0.00
     private lateinit var shopId: String
+    private lateinit var pId: String
     private lateinit var orderByuid: String
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var progressDialog: ProgressDialog
@@ -167,6 +169,7 @@ class Cart : AppCompatActivity() {
                     finalPriceList.add(finalPrice.toDouble())
                     sellingPriceList.add(finalsellingPrice.toDouble())
                     shopId = orderTo
+                    pId=productId
                     orderByuid = orderBy
                     for (j in finalPriceList) {
                         totalCost += j
@@ -210,7 +213,40 @@ class Cart : AppCompatActivity() {
                     val amount = totalCost.toString()
                     txtTotalAmount.text = "₹${amount}"
                     totalPayment.text = "₹${amount}"
+
+
+                    val database=FirebaseDatabase.getInstance().reference.child("seller")
+                        .child(shopId).child("Products").child(pId)
+                    database.addValueEventListener(object :ValueEventListener{
+                        override fun onCancelled(error: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            btnContinue.setOnClickListener {
+                                if (snapshot.child("stock").value.toString()=="OUT"){
+                                    Toast.makeText(this@Cart,"Some Products are out of stock,Please remove",Toast.LENGTH_SHORT)
+                                        .show()
+                                }else if (snapshot.child("stock").value.toString()=="IN"){
+                                    val intent = Intent(this@Cart, continue_payment::class.java)
+                                    intent.putExtra("shopId", shopId)
+                                    intent.putExtra("totalCost", totalCost.toString())
+                                    intent.putExtra("orderBy", orderByuid)
+                                    intent.putExtra("totalItem", totalItem.toString())
+                                    intent.putExtra("delivery", deliveryUser)
+                                    intent.putExtra("orderByName", orderByName)
+                                    intent.putExtra("orderByMobile", orderByMobile)
+                                    startActivity(intent)
+                                    finish()
+                                }}
+
+                        }
+                    })
                 }
+
+
+
+
 
 
             }
@@ -242,18 +278,7 @@ class Cart : AppCompatActivity() {
             }
 
         })
-        btnContinue.setOnClickListener {
-            val intent = Intent(this, continue_payment::class.java)
-            intent.putExtra("shopId", shopId)
-            intent.putExtra("totalCost", totalCost.toString())
-            intent.putExtra("orderBy", orderByuid)
-            intent.putExtra("totalItem", totalItem.toString())
-            intent.putExtra("delivery", deliveryUser)
-            intent.putExtra("orderByName", orderByName)
-            intent.putExtra("orderByMobile", orderByMobile)
-            startActivity(intent)
-            finish()
-        }
+
 
 
         val mRef: DatabaseReference =
