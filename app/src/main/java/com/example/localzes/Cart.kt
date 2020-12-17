@@ -169,7 +169,7 @@ class Cart : AppCompatActivity() {
                     finalPriceList.add(finalPrice.toDouble())
                     sellingPriceList.add(finalsellingPrice.toDouble())
                     shopId = orderTo
-                    pId=productId
+                    pId = productId
                     orderByuid = orderBy
                     for (j in finalPriceList) {
                         totalCost += j
@@ -213,8 +213,40 @@ class Cart : AppCompatActivity() {
                     val amount = totalCost.toString()
                     txtTotalAmount.text = "₹${amount}"
                     totalPayment.text = "₹${amount}"
+                    for (i in cartProducts) {
+                        val proId = i.productId
+                        val database =
+                            FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
+                                .child("Products").child(proId)
+                        database.addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError) {
 
+                            }
 
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if (snapshot.child("stock").value.toString() == "OUT") {
+                                    Toast.makeText(
+                                        this@Cart,
+                                        "Some Products are out of stock,Please remove",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                } else if (snapshot.child("stock").value.toString() == "IN") {
+                                    val intent = Intent(this@Cart, continue_payment::class.java)
+                                    intent.putExtra("shopId", shopId)
+                                    intent.putExtra("totalCost", totalCost.toString())
+                                    intent.putExtra("orderBy", orderByuid)
+                                    intent.putExtra("totalItem", totalItem.toString())
+                                    intent.putExtra("delivery", deliveryUser)
+                                    intent.putExtra("orderByName", orderByName)
+                                    intent.putExtra("orderByMobile", orderByMobile)
+                                    startActivity(intent)
+                                    finish()
+                                }
+                            }
+                        })
+                    }
+/*
                     val database=FirebaseDatabase.getInstance().reference.child("seller")
                         .child(shopId).child("Products").child(pId)
                     database.addValueEventListener(object :ValueEventListener{
@@ -241,12 +273,8 @@ class Cart : AppCompatActivity() {
                                 }}
 
                         }
-                    })
+                    })*/
                 }
-
-
-
-
 
 
             }
@@ -278,7 +306,6 @@ class Cart : AppCompatActivity() {
             }
 
         })
-
 
 
         val mRef: DatabaseReference =
