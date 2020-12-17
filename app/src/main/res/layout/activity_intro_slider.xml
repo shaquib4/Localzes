@@ -30,8 +30,8 @@
         android:layout_above="@id/btn_get_started"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:layout_width="2dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
         app:tabBackground="@drawable/indicator_selector">
 
     </com.google.android.material.tabs.TabLayout>

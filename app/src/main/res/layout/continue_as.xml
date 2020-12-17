@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/continue_as"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:id="@+id/view1"
+        android:layout_marginTop="@dimen/_80sdp"/>
+    <Button
+        android:text="As Seller"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_18ssp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#fff"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:id="@+id/seller_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/ic_seller_btn"
+        android:layout_below="@id/view1"
+        android:layout_marginTop="@dimen/_90sdp"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:id="@+id/view"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:text="As Customer"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_18ssp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#fff"
+        android:layout_below="@id/view"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:id="@+id/customer_btn"
+       android:layout_marginStart="@dimen/_10sdp"
+        android:background="@drawable/ic_customer_btn"
+        android:layout_marginTop="@dimen/_60sdp"/>
+
+    <Button
+        android:text="As Delivery Partner"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_16ssp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#fff"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:id="@+id/deliver_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/ic_seller_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_20sdp"/>
+</RelativeLayout>
