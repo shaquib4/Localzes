@@ -18,7 +18,7 @@ import java.util.ArrayList
 
 class continue_payment : AppCompatActivity() {
 
-    lateinit var radioGroup: RadioGroup
+    private var radioGroup: RadioGroup?=null
     lateinit var button: Button
     private lateinit var productCharges: TextView
     private lateinit var shippingCharges: TextView
@@ -58,7 +58,7 @@ class continue_payment : AppCompatActivity() {
 
         btnPayContinue.setOnClickListener {
 
-            val id = radioGroup.checkedRadioButtonId
+            val id = radioGroup!!.checkedRadioButtonId
             val radioButton = findViewById<RadioButton>(id)
             if (radioButton.text == " Pay on Delivery") {
                 progressDialog.setMessage("Placing Your Order....")
@@ -161,6 +161,8 @@ class continue_payment : AppCompatActivity() {
                 intent.putExtra("orderByMobile", orderByMobile.toString())
                 startActivity(intent)
                 finish()
+            }else{
+                btnPayContinue.isClickable=false
             }
         }
         productCharges.text = "₹" + totalCost.toString()

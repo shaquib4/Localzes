@@ -10,21 +10,21 @@
         android:layout_height="1dp"
         android:id="@+id/view1"
         android:layout_marginTop="@dimen/_80sdp"/>
+
     <Button
-        android:text="As Seller"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_18ssp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="#fff"
+        android:id="@+id/seller_btn"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_40sdp"
-        android:id="@+id/seller_btn"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:background="@drawable/ic_seller_btn"
         android:layout_below="@id/view1"
-        android:layout_marginTop="@dimen/_90sdp"
-        />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="122dp"
+        android:layout_marginEnd="49dp"
+        android:background="@drawable/ic_seller_btn"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="As Seller"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="@dimen/_18ssp" />
 
     <View
         android:layout_width="1dp"
@@ -47,17 +47,17 @@
         android:layout_marginTop="@dimen/_60sdp"/>
 
     <Button
-        android:text="As Delivery Partner"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_16ssp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="#fff"
+        android:id="@+id/deliver_btn"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_40sdp"
-        android:id="@+id/deliver_btn"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:background="@drawable/ic_seller_btn"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/_20sdp"/>
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="29dp"
+        android:background="@drawable/ic_seller_btn"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="As Delivery Partner"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="@dimen/_16ssp" />
 </RelativeLayout>

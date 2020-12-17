@@ -37,11 +37,7 @@ class IntroSliderActivity : AppCompatActivity() {
     private lateinit var btnAnim: Animation
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+
         setContentView(R.layout.activity_intro_slider)
         viewPager = findViewById(R.id.screen_viewpager)
         tabIndicator = findViewById(R.id.tab_indicator)

@@ -209,7 +209,7 @@ class Search : AppCompatActivity() {
        val userDatabases = FirebaseDatabase.getInstance().reference.child("seller")
         userDatabases.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -219,6 +219,7 @@ class Search : AppCompatActivity() {
                     val shopId= i.child("shopId").value.toString()
 
                    var city= i.child("city").value.toString()
+                  var status=  i.child("StoreStatus").value.toString()
 
                     val queryProductItem = FirebaseDatabase.getInstance().reference.child("seller").child(shopId).child("Products").orderByChild("title")
                         .startAt(string)
@@ -246,7 +247,7 @@ class Search : AppCompatActivity() {
                                         i.child("stock").value.toString()
 
                                     )
-                                if (city.toLowerCase()==currentCity.toLowerCase()){
+                                if (city.toLowerCase()==currentCity.toLowerCase()&& status== "OPEN"){
                                 (searchProductItem as ArrayList<ModelAddProduct>).add(obj)}
 
                             }

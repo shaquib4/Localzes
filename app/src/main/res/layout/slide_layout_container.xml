@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:scaleType="fitXY"
         android:id="@+id/imgSplash"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
