@@ -37,9 +37,9 @@ class SellerShop_detail : AppCompatActivity() {
         setContentView(R.layout.activity_seller_shop_detail)
         btnChooseImage = findViewById(R.id.choose_image)
         btnUpload = findViewById(R.id.upload)
-        openingTime=findViewById(R.id.openTime)
-        closingTime=findViewById(R.id.closeTime)
-        closingDay=findViewById(R.id.closeDay)
+        openingTime = findViewById(R.id.openTime)
+        closingTime = findViewById(R.id.closeTime)
+        closingDay = findViewById(R.id.closeDay)
         etShopName = findViewById(R.id.edtName)
         etCategory1 = findViewById(R.id.spn_category)
         upi = findViewById(R.id.edtPay)
@@ -105,9 +105,9 @@ class SellerShop_detail : AppCompatActivity() {
                                     val country = intent.getStringExtra("country")
                                     val pinCode = intent.getStringExtra("pinCode")
                                     val locality = intent.getStringExtra("locality")
-                                    val locality2=intent.getStringExtra("locality2")
-                                    val nearestLandmark=intent.getStringExtra("nearestLandmark")
-                                    val houseNo=intent.getStringExtra("HouseNo")
+                                    val locality2 = intent.getStringExtra("locality2")
+                                    val nearestLandmark = intent.getStringExtra("nearestLandmark")
+                                    val houseNo = intent.getStringExtra("HouseNo")
 
                                     upload = Upload(
                                         uid,
@@ -150,9 +150,9 @@ class SellerShop_detail : AppCompatActivity() {
                                             userMaps["state"] = state.toString()
                                             userMaps["country"] = country.toString()
                                             userMaps["pinCode"] = pinCode.toString()
-                                            userMaps["locality2"]=locality2.toString()
-                                            userMaps["nearestLandmark"]=nearestLandmark.toString()
-                                            userMaps["houseBlock"]=houseNo.toString()
+                                            userMaps["locality2"] = locality2.toString()
+                                            userMaps["nearestLandmark"] = nearestLandmark.toString()
+                                            userMaps["houseBlock"] = houseNo.toString()
                                             mDatabaseRef.setValue(userMaps)
                                                 .addOnCompleteListener { task ->
                                                     if (task.isSuccessful) {

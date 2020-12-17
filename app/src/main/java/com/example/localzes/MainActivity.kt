@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             btnRegButton.setOnClickListener {
                 subscribeToTopic()
+                savePrefData()
                 register()
             }
         }

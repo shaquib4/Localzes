@@ -146,7 +146,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
             }
         })
         imgBackOrderDetails.setOnClickListener {
-            val intent = Intent(this, Home_seller::class.java)
+            val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
         }

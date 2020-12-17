@@ -36,8 +36,8 @@ class PaymentActivity : AppCompatActivity() {
     private var totalItem: String? = "300"
     private var uid: String? = "400"
     private var deliveryAddress: String? = "500"
-    private var orderByName:String?="600"
-    private var orderByMobile:String?="700"
+    private var orderByName: String? = "600"
+    private var orderByMobile: String? = "700"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
@@ -54,8 +54,8 @@ class PaymentActivity : AppCompatActivity() {
         totalCost = intent.getStringExtra("totalCost")
         uid = intent.getStringExtra("orderBy")
         deliveryAddress = intent.getStringExtra("delivery")
-        orderByName=intent.getStringExtra("orderByName")
-        orderByMobile=intent.getStringExtra("orderByMobile")
+        orderByName = intent.getStringExtra("orderByName")
+        orderByMobile = intent.getStringExtra("orderByMobile")
         cartProducts = ArrayList<UserCartDetails>()
         send = findViewById<View>(R.id.btnPayNow) as Button
         amount = findViewById<View>(R.id.txtPayAmount) as TextView
@@ -287,6 +287,7 @@ class PaymentActivity : AppCompatActivity() {
                         reference.child(orderId).child("orderedItems").child(productId)
                             .setValue(headers)
                     }
+                    dataReference.removeValue()
                     progressDialog.dismiss()
                     prepareNotificationMessage(orderId)
                 }
@@ -383,11 +384,12 @@ class PaymentActivity : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Content-Type"] = "application/json"
-                headers["Authorization"] = "key=AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D"
+                headers["Authorization"] =
+                    "key=AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D"
                 return headers
             }
         }
-         Volley.newRequestQueue(this).add(jsonObjectRequest)
+        Volley.newRequestQueue(this).add(jsonObjectRequest)
 
 
     }

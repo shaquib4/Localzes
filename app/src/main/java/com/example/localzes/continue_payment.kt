@@ -120,7 +120,7 @@ class continue_payment : AppCompatActivity() {
                 ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
                     val reference: DatabaseReference =
                         FirebaseDatabase.getInstance().reference.child("users")
-                            .child(orderBy.toString())
+                            .child(orderBy)
                             .child("MyOrders")
                     reference.child(orderId).setValue(orderDetails)
                     for (i in 0 until cartProducts.size) {
@@ -145,8 +145,10 @@ class continue_payment : AppCompatActivity() {
                         reference.child(orderId).child("orderedItems").child(productId)
                             .setValue(headers)
                     }
+                    dataReference.removeValue()
                     progressDialog.dismiss()
                     prepareNotificationMessage(orderId)
+
                 }
             } else if (radioButton.text == " Pay with Paytm") {
                 val intent = Intent(this, PaymentActivity::class.java)
@@ -226,5 +228,11 @@ class continue_payment : AppCompatActivity() {
         Volley.newRequestQueue(this).add(jsonObjectRequest)
 
 
+    }
+
+    override fun onBackPressed() {
+        val intent=Intent(this,Cart::class.java)
+        startActivity(intent)
+        finish()
     }
 }

@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -40,6 +41,12 @@ class PagerActivity: AppCompatActivity() {
             return tittleList[position]
         }
 
+    }
+
+    override fun onBackPressed() {
+        val intent= Intent(this,AccountsSeller::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }
