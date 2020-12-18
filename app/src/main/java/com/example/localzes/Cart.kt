@@ -53,6 +53,7 @@ class Cart : AppCompatActivity() {
     private lateinit var deliveryUser: String
     private lateinit var deliveryAddress: TextView
     private lateinit var addAddress: TextView
+    private var boolean:Boolean=true
     private lateinit var relativeCartEmpty: RelativeLayout
     private lateinit var relativeCart: RelativeLayout
     private lateinit var orderByName: String
@@ -213,9 +214,9 @@ class Cart : AppCompatActivity() {
                     val amount = totalCost.toString()
                     txtTotalAmount.text = "₹${amount}"
                     totalPayment.text = "₹${amount}"
-                    for (i in cartProducts) {
+                      for (i in cartProducts) {
                         val proId = i.productId
-                        val database =
+                      val database =
                             FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
                                 .child("Products").child(proId)
                         database.addValueEventListener(object : ValueEventListener {
@@ -224,25 +225,27 @@ class Cart : AppCompatActivity() {
                             }
 
                             override fun onDataChange(snapshot: DataSnapshot) {
-                                if (snapshot.child("stock").value.toString() == "OUT") {
-                                    Toast.makeText(
-                                        this@Cart,
-                                        "Some Products are out of stock,Please remove",
-                                        Toast.LENGTH_SHORT
-                                    )
-                                        .show()
-                                } else if (snapshot.child("stock").value.toString() == "IN") {
-                                    val intent = Intent(this@Cart, continue_payment::class.java)
-                                    intent.putExtra("shopId", shopId)
-                                    intent.putExtra("totalCost", totalCost.toString())
-                                    intent.putExtra("orderBy", orderByuid)
-                                    intent.putExtra("totalItem", totalItem.toString())
-                                    intent.putExtra("delivery", deliveryUser)
-                                    intent.putExtra("orderByName", orderByName)
-                                    intent.putExtra("orderByMobile", orderByMobile)
-                                    startActivity(intent)
-                                    finish()
-                                }
+
+
+                                        if (snapshot.child("stock").value.toString() == "OUT") {
+
+                                            boolean=false
+                                        } /*else if (snapshot.child("stock").value.toString() == "IN"&&snapshot.child("stock").value.toString()
+                                        !=="OUT") {
+                                            val intent =
+                                                Intent(this@Cart, continue_payment::class.java)
+                                            intent.putExtra("shopId", shopId)
+                                            intent.putExtra("totalCost", totalCost.toString())
+                                            intent.putExtra("orderBy", orderByuid)
+                                            intent.putExtra("totalItem", totalItem.toString())
+                                            intent.putExtra("delivery", deliveryUser)
+                                            intent.putExtra("orderByName", orderByName)
+                                            intent.putExtra("orderByMobile", orderByMobile)
+                                            startActivity(intent)
+                                            finish()
+                                        }*/
+
+
                             }
                         })
                     }
@@ -279,6 +282,23 @@ class Cart : AppCompatActivity() {
 
             }
         })
+        btnContinue.setOnClickListener {
+            if (boolean==true){
+                val intent = Intent(this@Cart, continue_payment::class.java)
+                intent.putExtra("shopId", shopId)
+                intent.putExtra("totalCost", totalCost.toString())
+                intent.putExtra("orderBy", orderByuid)
+                intent.putExtra("totalItem", totalItem.toString())
+                intent.putExtra("delivery", deliveryUser)
+                intent.putExtra("orderByName", orderByName)
+                intent.putExtra("orderByMobile", orderByMobile)
+                startActivity(intent)
+                finish()
+            }else if (boolean==false){
+                Toast.makeText(this, "Some Products are out of stock,Please remove", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         val reference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
                 .child("current_address")
