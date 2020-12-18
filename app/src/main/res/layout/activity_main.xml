@@ -19,6 +19,7 @@
 
     <EditText
         android:id="@+id/edtmobile"
+        android:layout_toRightOf="@id/imgMobile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/montserrat_medium"
@@ -31,6 +32,7 @@
         android:textSize="@dimen/_12ssp" />
 
     <ImageView
+        android:id="@+id/imgMobile"
         android:src="@drawable/ic_baseline_phone_iphone_24"
         android:layout_margin="@dimen/_5sdp"
         android:layout_width="@dimen/_30sdp"
