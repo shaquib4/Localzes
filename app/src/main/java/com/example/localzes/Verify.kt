@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.tasks.TaskExecutors
 import com.google.firebase.FirebaseException
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit
 
 class Verify : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var lastDigit:TextView
     var userDatabase: DatabaseReference?=null
     lateinit var  storedVerificationId:String
     private lateinit var suserDatabase: DatabaseReference
@@ -26,8 +28,11 @@ class Verify : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verify)
         auth = FirebaseAuth.getInstance()
+        lastDigit=findViewById(R.id.lastNumber)
         firebaseUser= FirebaseAuth.getInstance().currentUser
         val phone=  intent.getStringExtra("phone")
+        val number=phone.toString()
+        lastDigit.text=number.takeLast(2)
         sendVerification("+91$phone")
         progress_verify.visibility= View.VISIBLE
 

@@ -7,15 +7,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 
 class UpdateShopDetailActivity : AppCompatActivity() {
-    private var imagePathUpdated: Uri?=null
+    private var imagePathUpdated: Uri? = null
     private lateinit var databaseRef: DatabaseReference
     private lateinit var updateAuth: FirebaseAuth
     private lateinit var imageShopUpdate: ImageView
@@ -75,13 +78,13 @@ class UpdateShopDetailActivity : AppCompatActivity() {
             headers["shop_name"] = shopNameUpdate.text.toString().trim()
             headers["upi"] = upiIdUpdate.text.toString().trim()
             headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
-            headers["closingTime"] =spinnerClose.selectedItem.toString().trim()
-            headers["closingDay"]=spinnerClosingDay.selectedItem.toString().trim()
-                databaseRef.updateChildren(headers).addOnSuccessListener {
-                    Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT).show()
-                }
+            headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
+            headers["closingDay"] = spinnerClosingDay.selectedItem.toString().trim()
+            databaseRef.updateChildren(headers).addOnSuccessListener {
+                Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT).show()
+            }
 
-        }else {
+        } else {
             val user = FirebaseAuth.getInstance().currentUser
 
             val uid = user!!.uid
@@ -125,10 +128,33 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == Activity.RESULT_OK && data != null) {
-            imagePathUpdated = data.data!!
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imagePathUpdated)
-            imageShopUpdate.setImageBitmap(bitmap)
+            data.data?.let { uri ->
+                launchCropImage(uri)
+
+            }
+            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                val result = CropImage.getActivityResult(data)
+                if (resultCode == Activity.RESULT_OK) {
+                    imagePathUpdated = result.uri
+                    result.uri?.let {
+                        setImage(it)
+                    }
+                }
+            }
         }
+    }
+
+    private fun setImage(it: Uri) {
+        Glide.with(this).load(it).into(imageShopUpdate)
+
+    }
+
+    private fun launchCropImage(uri: Uri) {
+        CropImage.activity(uri)
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setAspectRatio(16, 5)
+            .setCropShape(CropImageView.CropShape.RECTANGLE)
+            .start(this)
     }
 
     override fun onBackPressed() {
