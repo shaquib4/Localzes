@@ -2,7 +2,7 @@
     <string name="app_name">Localzes</string>
     <string name="title_activity_maps">Map</string>
     <string name="password"><font fontfamily="@font/l_r" size="16">Password</font></string>
-    <string name="mobile_number"><font fontfamily="@font/l_r" size="16">Mobile Number</font></string>
+    <string name="mobile_number"><font fontfamily="@font/l_r" size="16">Enter your mobile number</font></string>
     <string name="create_your_account"><font lineheight="30sp">Create your Account</font></string>
     <string name="full_name"><font fontfamily="@font/l_r" size="14">Full name</font></string>
     <string name="mobile_number_reg"><font fontfamily="@font/l_r" size="14">Mobile number</font></string>

@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/reddish"
+    android:background="@drawable/login"
     tools:context=".MainActivity">
 
 
 
     <EditText
+        android:fontFamily="@font/montserrat_medium"
         android:layout_below="@+id/localze"
         android:id="@+id/edtmobile"
+        android:layout_above="@id/btnRegButton"
         android:inputType="phone"
         android:textSize="@dimen/_12ssp"
         android:maxLength="10"
         android:layout_width="match_parent"
-        android:layout_marginTop="80dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="@dimen/_30sdp"
         android:layout_height="@dimen/_40sdp"
         android:background="@drawable/ic_mobile"
         android:paddingStart="@dimen/_30sdp"
@@ -26,29 +28,34 @@
         android:maxLines="1"
         android:textColorHint="#ffffff"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login or Sign Up with your Mobile number"
+        android:layout_above="@+id/edtmobile"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:textSize="@dimen/_13ssp"
+        />
     <Button
-        android:layout_below="@+id/edtmobile"
+      android:layout_alignParentBottom="true"
         android:id="@+id/btnRegButton"
         android:layout_width="@dimen/_180sdp"
         android:layout_height="@dimen/_35sdp"
-
-        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:padding="7dp"
         android:textAllCaps="false"
+        android:layout_marginBottom="@dimen/_100sdp"
         android:background="@drawable/round_button"
         android:text="Login | Sign Up"
         android:fontFamily="@font/l_r"
         android:textSize="@dimen/_12ssp"
         android:textColor="#DE0606"/>
-
-    <ImageView
-        android:id="@+id/localze"
-      android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_localze"
-        android:layout_marginTop="@dimen/_120sdp"
-        android:layout_centerHorizontal="true"/>
 
 
 
