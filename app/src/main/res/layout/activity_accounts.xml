@@ -19,7 +19,7 @@
             android:layout_margin="@dimen/_10sdp"
             android:layout_toLeftOf="@id/txtaccEdit"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Mohd Shaquib"
+            android:text=" "
             android:textAllCaps="true"
             android:textColor="#000000"
             android:textSize="@dimen/_12ssp" />
@@ -44,7 +44,7 @@
             android:layout_below="@+id/txtaccName"
             android:layout_marginLeft="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_medium"
-            android:text="7007436997"
+            android:text=" "
             android:textSize="@dimen/_10ssp" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_toEndOf="@+id/txtaccmobile"
             android:fontFamily="@font/montserrat_medium"
-            android:text="khanshaquib21@gmail.com"
+            android:text=" "
             android:textSize="@dimen/_10ssp"
 
             />

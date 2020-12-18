@@ -8,55 +8,63 @@
     tools:context=".MainActivity">
 
 
-
-    <EditText
-        android:fontFamily="@font/montserrat_medium"
-        android:layout_below="@+id/localze"
-        android:id="@+id/edtmobile"
-        android:layout_above="@id/btnRegButton"
-        android:inputType="phone"
-        android:textSize="@dimen/_12ssp"
-        android:maxLength="10"
-        android:layout_width="match_parent"
+    <RelativeLayout
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="@dimen/_30sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:background="@drawable/ic_mobile"
-        android:paddingStart="@dimen/_30sdp"
+        android:background="@drawable/stroke"
+        android:id="@+id/rl1"
+        android:layout_above="@id/btnRegButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp">
+
+    <EditText
+        android:id="@+id/edtmobile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/montserrat_medium"
         android:hint="@string/mobile_number"
-        android:textColor="#ffffff"
+        android:inputType="phone"
+        android:maxLength="10"
         android:maxLines="1"
+        android:textColor="#ffffff"
         android:textColorHint="#ffffff"
+        android:textSize="@dimen/_12ssp" />
+
+    <ImageView
+        android:src="@drawable/ic_baseline_phone_iphone_24"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         />
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login or Sign Up with your Mobile number"
-        android:layout_above="@+id/edtmobile"
-        android:textAlignment="center"
-        android:layout_marginHorizontal="@dimen/_20sdp"
-        android:textColor="#ffffff"
-        android:fontFamily="@font/montserrat_bold"
+        android:layout_above="@+id/rl1"
         android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_30sdp"
-        android:textSize="@dimen/_13ssp"
-        />
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Login or Sign Up with your Mobile number"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/_13ssp" />
+
     <Button
-      android:layout_alignParentBottom="true"
         android:id="@+id/btnRegButton"
         android:layout_width="@dimen/_180sdp"
         android:layout_height="@dimen/_35sdp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:padding="7dp"
-        android:textAllCaps="false"
         android:layout_marginBottom="@dimen/_100sdp"
         android:background="@drawable/round_button"
-        android:text="Login | Sign Up"
         android:fontFamily="@font/l_r"
-        android:textSize="@dimen/_12ssp"
-        android:textColor="#DE0606"/>
-
+        android:padding="7dp"
+        android:text="Login | Sign Up"
+        android:textAllCaps="false"
+        android:textColor="#DE0606"
+        android:textSize="@dimen/_12ssp" />
 
 
 </RelativeLayout>

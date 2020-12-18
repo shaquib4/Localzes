@@ -15,7 +15,7 @@
             android:id="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mohd Shaquib"
+            android:text=" "
             android:textAllCaps="true"
             android:textSize="@dimen/_15ssp"
             android:layout_marginStart="20dp"
@@ -42,14 +42,14 @@
             android:textSize="@dimen/_10ssp"
             android:fontFamily="@font/montserrat_regular"
             android:layout_marginTop="3dp"
-            android:text="7007436997"/>
+            android:text=" "/>
         <TextView
             android:layout_marginStart="@dimen/_5sdp"
             android:id="@+id/txtaccEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtaccName"
-            android:text="khanshaquib21@gmail.com"
+            android:text=" "
             android:layout_toEndOf="@+id/txtaccmobile"
             android:layout_marginTop="3dp"
             android:textSize="@dimen/_10ssp"

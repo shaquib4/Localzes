@@ -17,20 +17,20 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnFavoriteItem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentRight="true"
-                android:backgroundTint="#d4d4d4"
-                android:padding="2dp"
+                android:backgroundTint="#ffffff"
+                android:layout_margin="@dimen/_10sdp"
                 android:src="@drawable/ic_baseline_favorite_border_24" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnFavoriteItem1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_margin="@dimen/_10sdp"
                 android:layout_alignParentRight="true"
-                android:backgroundTint="#d4d4d4"
-                android:padding="2dp"
+                android:backgroundTint="#ffffff"
                 android:src="@drawable/ic_favourite"
                 android:visibility="gone"/>
 
