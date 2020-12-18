@@ -219,7 +219,27 @@ class SellerShop_detail : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 111 && resultCode == Activity.RESULT_OK && data != null) {
+        when (requestCode) {
+            111 -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    data?.data?.let { uri ->
+                        launchCropImage(uri)
+                    }
+                }
+            }
+            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+                if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                    val result = CropImage.getActivityResult(data)
+                    if (resultCode == Activity.RESULT_OK) {
+                        filepath = result.uri
+                        result.uri?.let {
+                            setImage(it)
+                        }
+                    }
+                }
+            }
+        }
+        /*if (requestCode == 111 && resultCode == Activity.RESULT_OK && data != null) {
             data.data?.let { uri ->
                 launchCropImage(uri)
             }
@@ -232,7 +252,7 @@ class SellerShop_detail : AppCompatActivity() {
                     }
                 }
             }
-        }
+        }*/
     }
 
     private fun setImage(uri: Uri) {
@@ -243,7 +263,7 @@ class SellerShop_detail : AppCompatActivity() {
     private fun launchCropImage(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(16, 5)
+            .setAspectRatio(16, 12)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
 
