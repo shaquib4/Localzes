@@ -7,15 +7,18 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 
 class UpdateProductDetailsActivity : AppCompatActivity() {
-    private  var imagePathUpdate: Uri?=null
+    private var imagePathUpdate: Uri? = null
     private lateinit var databaseRef: DatabaseReference
     private lateinit var updateAuth: FirebaseAuth
     private var productId: String? = "100"
@@ -44,7 +47,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         unitUpdate = findViewById(R.id.sp_unit_update)
         quantityUpdate = findViewById(R.id.etQuantityUpdate)
         updateProduct = findViewById(R.id.btnUpdateProduct)
-        radioGroup=findViewById(R.id.radioStockCustomer)
+        radioGroup = findViewById(R.id.radioStockCustomer)
         productId = intent.getStringExtra("productId")
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         databaseRef.child("Products").child(productId.toString())
@@ -95,10 +98,32 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == Activity.RESULT_OK && data != null) {
-            imagePathUpdate = data.data!!
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imagePathUpdate)
-            imageUpdate.setImageBitmap(bitmap)
+            data.data?.let { uri ->
+                launchImageCrop(uri)
+            }
+            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                val result = CropImage.getActivityResult(data)
+                if (requestCode == Activity.RESULT_OK) {
+                    imagePathUpdate = result.uri
+                    result.uri?.let {
+                        setImage(it)
+                    }
+                }
+            }
         }
+    }
+
+    private fun setImage(it: Uri) {
+        Glide.with(this).load(it).into(imageUpdate)
+
+    }
+
+    private fun launchImageCrop(uri: Uri) {
+        CropImage.activity(uri)
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setAspectRatio(7, 2)
+            .setCropShape(CropImageView.CropShape.RECTANGLE)
+            .start(this)
     }
 
     private fun updateData() {
@@ -125,7 +150,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                 FirebaseStorage.getInstance().reference.child(filePathName)
             storageReference.putFile(imagePathUpdate!!).addOnSuccessListener {
                 storageReference.downloadUrl.addOnSuccessListener {
-                    val users=FirebaseAuth.getInstance().currentUser
+                    val users = FirebaseAuth.getInstance().currentUser
                     val imageUrl: Uri = it
                     val request = UserProfileChangeRequest.Builder().setPhotoUri(it).build()
                     users?.updateProfile(request)?.addOnSuccessListener {
@@ -138,7 +163,8 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                         headers["title"] = productName.text.toString().trim()
                         headers["unit"] = unitUpdate.selectedItem.toString().trim()
                         headers["description"] = descriptionUpdate.text.toString().trim()
-                        databaseRef.child("Products").child(productId.toString()).updateChildren(headers)
+                        databaseRef.child("Products").child(productId.toString())
+                            .updateChildren(headers)
                             .addOnSuccessListener {
                                 Toast.makeText(
                                     this,
@@ -154,7 +180,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent=Intent(this,Seller_Products::class.java)
+        val intent = Intent(this, Seller_Products::class.java)
         startActivity(intent)
         finish()
     }

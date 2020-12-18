@@ -34,6 +34,7 @@
         android:layout_marginBottom="@dimen/_160sdp" />
 
     <TextView
+        android:id="@+id/lastNumber"
         android:layout_width="wrap_content"
         android:fontFamily="@font/montserrat_bold"
         android:layout_height="wrap_content"

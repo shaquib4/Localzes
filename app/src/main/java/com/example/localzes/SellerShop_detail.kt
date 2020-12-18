@@ -8,11 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.example.localzes.Modals.ModelClass
 import com.example.localzes.Modals.Upload
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import java.util.HashMap
 
 class SellerShop_detail : AppCompatActivity() {
@@ -216,10 +219,53 @@ class SellerShop_detail : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 111 && resultCode == Activity.RESULT_OK && data != null) {
-            filepath = data.data!!
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filepath)
-            btnChooseImage.setImageBitmap(bitmap)
+        when (requestCode) {
+            111 -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    data?.data?.let { uri ->
+                        launchCropImage(uri)
+                    }
+                }
+            }
+            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+                if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                    val result = CropImage.getActivityResult(data)
+                    if (resultCode == Activity.RESULT_OK) {
+                        filepath = result.uri
+                        result.uri?.let {
+                            setImage(it)
+                        }
+                    }
+                }
+            }
         }
+        /*if (requestCode == 111 && resultCode == Activity.RESULT_OK && data != null) {
+            data.data?.let { uri ->
+                launchCropImage(uri)
+            }
+            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                val result = CropImage.getActivityResult(data)
+                if (resultCode == Activity.RESULT_OK) {
+                    filepath = result.uri
+                    result.uri?.let {
+                        setImage(it)
+                    }
+                }
+            }
+        }*/
+    }
+
+    private fun setImage(uri: Uri) {
+        Glide.with(this).load(uri).into(btnChooseImage)
+
+    }
+
+    private fun launchCropImage(uri: Uri) {
+        CropImage.activity(uri)
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setAspectRatio(16, 11)
+            .setCropShape(CropImageView.CropShape.RECTANGLE)
+            .start(this)
+
     }
 }

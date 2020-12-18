@@ -3,20 +3,28 @@ package com.example.localzes
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.localzes.Modals.ModelAddProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
+import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.activity_add_product.*
+import java.io.ByteArrayOutputStream
+import java.io.File
 
 class AddProduct : AppCompatActivity() {
     private lateinit var imagePath: Uri
@@ -26,6 +34,10 @@ class AddProduct : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var radioGroup: RadioGroup
     private lateinit var imgBackAdd: ImageView
+    private lateinit var thumb_reference: StorageReference
+    private lateinit var timestamp: String
+
+    var thumb_Bitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
@@ -34,9 +46,11 @@ class AddProduct : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
+        timestamp = System.currentTimeMillis().toString()
         image_view.setOnClickListener {
             startImageChooser()
         }
+        thumb_reference = FirebaseStorage.getInstance().reference.child("thumb_images")
         imgBackAdd = findViewById(R.id.imgBackAdd)
         radioGroup = findViewById(R.id.radioStock)
         imgBackAdd.setOnClickListener {
@@ -52,9 +66,7 @@ class AddProduct : AppCompatActivity() {
             val radioButton = findViewById<RadioButton>(id)
             val stock = radioButton.text
             uploadData(stock, progressDialog)
-
         }
-
     }
 
     private fun startImageChooser() {
@@ -66,16 +78,67 @@ class AddProduct : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK && data != null) {
-            imagePath = data.data!!
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imagePath)
-            image_view.setImageBitmap(bitmap)
+        when (requestCode) {
+            100 -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    data?.data?.let { uri ->
+                        launchImageCrop(uri)
+                    }
+                }
+            }
+            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+                val result = CropImage.getActivityResult(data)
+                if (resultCode == Activity.RESULT_OK) {
+                    imagePath = result.uri
+                    val path = File(imagePath.path.toString())
+                    try {
+                        thumb_Bitmap = Compressor(this)
+                            .setQuality(50)
+                            .compressToBitmap(path)
+                        val baos = ByteArrayOutputStream()
+                        thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+                        val final_image = baos.toByteArray()
+                        /*image_view.setImageURI(imagePath)*/
+                        val thumb_filepath = thumb_reference.child("$timestamp.jpg")
+                        val uploadTask: UploadTask = thumb_filepath.putBytes(final_image)
+                        uploadTask.addOnSuccessListener { it: UploadTask.TaskSnapshot ->
+                            val imageUri = it.storage.downloadUrl
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                    /*val byteArrayOutputStream= ByteArrayOutputStream()
+                    thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG,85,byteArrayOutputStream)
+                    val thumb_Byte=byteArrayOutputStream.toByteArray()
+                    val thumb_filepath=thumb_reference.child("$timestamp.jpg")
+                    val uploadTask=thumb_filepath.putBytes(thumb_Byte)
+                    uploadTask.addOnSuccessListener {taskSnapshot->
+                    }*/
+                    result.uri?.let {
+                        setImage(it)
+                    }
+                }
+            }
         }
+    }
+
+    private fun setImage(it: Uri) {
+        Glide.with(this).load(it).into(image_view)
+    }
+
+    private fun launchImageCrop(uri: Uri) {
+        CropImage.activity(uri)
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setAspectRatio(16, 10)
+            .setCropShape(CropImageView.CropShape.RECTANGLE)
+            .start(this)
+
+
     }
 
     private fun uploadData(stock: CharSequence, progressDialog: ProgressDialog) {
         if (imagePath != null) {
-            val timestamp: String = System.currentTimeMillis().toString()
+
             val productRef =
                 FirebaseStorage.getInstance().reference.child("uploads/$timestamp.jpg")
             productRef.putFile(imagePath)
