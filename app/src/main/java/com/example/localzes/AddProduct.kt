@@ -78,24 +78,25 @@ class AddProduct : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK && data != null) {
-            data.data?.let { uri ->
-                launchImageCrop(uri)
+        when (requestCode) {
+            100 -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    data?.data?.let { uri ->
+                        launchImageCrop(uri)
+                    }
+                }
             }
-
-            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
                     imagePath = result.uri
                     val path = File(imagePath.path.toString())
                     try {
                         thumb_Bitmap = Compressor(this)
-                            .setMaxWidth(200)
-                            .setMaxWidth(200)
-                            .setQuality(85)
+                            .setQuality(50)
                             .compressToBitmap(path)
                         val baos = ByteArrayOutputStream()
-                        thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 85, baos)
+                        thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 50, baos)
                         val final_image = baos.toByteArray()
                         /*image_view.setImageURI(imagePath)*/
                         val thumb_filepath = thumb_reference.child("$timestamp.jpg")
@@ -128,7 +129,7 @@ class AddProduct : AppCompatActivity() {
     private fun launchImageCrop(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(7, 2)
+            .setAspectRatio(16, 10)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
 
