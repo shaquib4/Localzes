@@ -13,12 +13,13 @@
 
     <Button
         android:id="@+id/btnseller"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_195sdp"
+        android:layout_height="@dimen/_38sdp"
         android:layout_below="@id/view1"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="114dp"
-        android:layout_marginEnd="49dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="122dp"
+        android:layout_marginEnd="42dp"
         android:background="@drawable/ic_seller_btn"
         android:fontFamily="@font/montserrat_bold"
         android:text="As Seller"
@@ -41,7 +42,7 @@
         android:textColor="#fff"
         android:layout_below="@id/view"
         android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_38sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:background="@drawable/ic_customer_btn"
         android:layout_marginTop="@dimen/_60sdp"/>
@@ -49,7 +50,7 @@
     <Button
         android:id="@+id/deliver_btn"
         android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_38sdp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="32dp"
