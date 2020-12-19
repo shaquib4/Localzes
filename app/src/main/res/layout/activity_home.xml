@@ -73,6 +73,8 @@
         android:id="@+id/progress_home"
         >
         <ProgressBar
+            android:indeterminateDrawable="@drawable/progress_bar2"
+            android:indeterminateDuration="@android:integer/config_longAnimTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
