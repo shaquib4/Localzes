@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -37,6 +36,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     private lateinit var updateProduct: Button
     private lateinit var radioGroup: RadioGroup
     var thumb_Bitmap: Bitmap? = null
+    var imgUrl: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_product_details)
@@ -122,6 +122,17 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                         val baos = ByteArrayOutputStream()
                         thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 50, baos)
                         val final_image = baos.toByteArray()
+                        val filePathName = "uploads/$productId.jpg"
+                        val storageReference: StorageReference =
+                            FirebaseStorage.getInstance().reference.child(filePathName)
+                        val uploadTask = storageReference.putBytes(final_image)
+                        uploadTask.addOnSuccessListener { taskSnapshot ->
+                            val imageUri = taskSnapshot.storage.downloadUrl
+                            imageUri.addOnSuccessListener {
+                                imgUrl = it
+                            }
+                        }
+
                     } catch (e: Exception) {
 
                     }
@@ -141,7 +152,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     private fun launchImageCrop(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(7, 2)
+            .setAspectRatio(16, 10)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
     }
@@ -163,7 +174,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                 }
 
         } else {
-            val filePathName = "uploads/$productId.jpg"
+/*            val filePathName = "uploads/$productId.jpg"
             val user = updateAuth.currentUser
             val uid = user!!.uid
             val storageReference: StorageReference =
@@ -195,6 +206,29 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                             }
                     }
                 }
+            }*/
+            val users = FirebaseAuth.getInstance().currentUser
+            val imageUrl = imgUrl
+            val request = UserProfileChangeRequest.Builder().setPhotoUri(imgUrl).build()
+            users?.updateProfile(request)?.addOnSuccessListener {
+                val headers = HashMap<String, Any>()
+                headers["imageUrl"] = imageUrl.toString()
+                headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
+                headers["productCategory"] = categoryUpdate.selectedItem.toString().trim()
+                headers["quantity"] = quantityUpdate.text.toString().trim()
+                headers["sellingPrice"] = sellPriceUpdate.text.toString().trim()
+                headers["title"] = productName.text.toString().trim()
+                headers["unit"] = unitUpdate.selectedItem.toString().trim()
+                headers["description"] = descriptionUpdate.text.toString().trim()
+                databaseRef.child("Products").child(productId.toString())
+                    .updateChildren(headers).addOnSuccessListener {
+                        Toast.makeText(
+                            this,
+                            "Item Updated Successfully",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
             }
         }
     }

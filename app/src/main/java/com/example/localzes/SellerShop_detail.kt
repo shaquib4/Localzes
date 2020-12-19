@@ -41,6 +41,7 @@ class SellerShop_detail : AppCompatActivity() {
     private lateinit var upi: EditText
     private lateinit var upload: Upload
     var thumb_Bitmap: Bitmap? = null
+    var imgUrl: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_shop_detail)
@@ -53,19 +54,17 @@ class SellerShop_detail : AppCompatActivity() {
         etCategory1 = findViewById(R.id.spn_category)
         upi = findViewById(R.id.edtPay)
         auth = FirebaseAuth.getInstance()
+
         btnChooseImage.setOnClickListener {
             startFileChooser()
         }
         btnUpload.setOnClickListener {
-
-            val user = auth.currentUser
-            val uid = user!!.uid
             uploadFile()
         }
     }
 
     private fun uploadFile() {
-        if (filepath != null) {
+        if (filepath != null) {/*
             val pd = ProgressDialog(this)
             pd.setTitle("Uploading")
             pd.show()
@@ -135,12 +134,12 @@ class SellerShop_detail : AppCompatActivity() {
                                     mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
                                             mDatabaseRef.child("StoreStatus").setValue("OPEN")
-                                            /*val headers = HashMap<String, String>()
+                                            *//*val headers = HashMap<String, String>()
                                             headers["viewCount"] = 0.toString()
                                             mDatabaseRef =
                                                 FirebaseDatabase.getInstance().reference.child("seller")
                                                     .child(uid).child("shopViews")
-                                            mDatabaseRef.setValue(headers)*/
+                                            mDatabaseRef.setValue(headers)*//*
 
                                             mDatabaseRef =
                                                 FirebaseDatabase.getInstance().reference.child("seller")
@@ -204,7 +203,100 @@ class SellerShop_detail : AppCompatActivity() {
                 .addOnProgressListener { p0 ->
                     val progress = (100.0 * p0.bytesTransferred / p0.totalByteCount)
                     pd.setMessage("Uploading ${progress.toInt()}%")
+                }*/
+            val pd = ProgressDialog(this)
+            pd.setTitle("Uploading")
+            pd.show()
+            val user = auth.currentUser
+            val uid = user!!.uid
+            userDatabases =
+                FirebaseDatabase.getInstance().reference.child("customers").child(uid)
+            userDatabases.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
                 }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val users: ModelClass? = snapshot.getValue(
+                            ModelClass::class.java
+                        )
+                        val phone: String? = users!!.getPhone()
+                        val downloadUrl = imgUrl
+                        val name = intent.getStringExtra("name")
+                        val email = intent.getStringExtra("email")
+                        val address = intent.getStringExtra("address")
+                        val city = intent.getStringExtra("city")
+                        val state = intent.getStringExtra("state")
+                        val country = intent.getStringExtra("country")
+                        val pinCode = intent.getStringExtra("pinCode")
+                        val locality = intent.getStringExtra("locality")
+                        val locality2 = intent.getStringExtra("locality2")
+                        val nearestLandmark = intent.getStringExtra("nearestLandmark")
+                        val houseNo = intent.getStringExtra("HouseNo")
+                        upload = Upload(
+                            uid,
+                            phone.toString().trim(),
+                            name!!.toString().trim(),
+                            email!!.toString().trim(),
+                            address!!.toString().trim(),
+                            etShopName.text.toString().trim().toLowerCase(),
+                            downloadUrl,
+                            etCategory1.selectedItem.toString(),
+                            upi.text.toString().trim(),
+                            locality!!.toString().trim().toLowerCase(),
+                            city!!.toString().trim().toLowerCase(),
+                            pinCode!!.toString().trim(),
+                            state!!.toString().trim(),
+                            country!!.toString().trim(),
+                            openingTime.selectedItem.toString(),
+                            closingTime.selectedItem.toString(),
+                            closingDay.selectedItem.toString()
+                        )
+                        mDatabaseRef =
+                            FirebaseDatabase.getInstance().reference.child("seller")
+                                .child(uid)
+                        mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                mDatabaseRef.child("StoreStatus").setValue("OPEN")
+                                mDatabaseRef =
+                                    FirebaseDatabase.getInstance().reference.child("seller")
+                                        .child(uid).child("current_address")
+                                val userMaps = HashMap<String, Any>()
+                                userMaps["address"] = address.toString()
+                                userMaps["city"] = city.toString()
+                                userMaps["state"] = state.toString()
+                                userMaps["country"] = country.toString()
+                                userMaps["pinCode"] = pinCode.toString()
+                                userMaps["locality2"] = locality2.toString()
+                                userMaps["nearestLandmark"] = nearestLandmark.toString()
+                                userMaps["houseBlock"] = houseNo.toString()
+                                mDatabaseRef.setValue(userMaps).addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        startActivity(
+                                            Intent(
+                                                this@SellerShop_detail,
+                                                AddProduct::class.java
+                                            )
+                                        )
+                                        finish()
+                                        Toast.makeText(
+                                            applicationContext,
+                                            "Uploaded Successfully",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    } else {
+                                        Toast.makeText(
+                                            baseContext, "Failed",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            })
         }
     }
 
@@ -238,6 +330,21 @@ class SellerShop_detail : AppCompatActivity() {
                             val baos = ByteArrayOutputStream()
                             thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 75, baos)
                             val compressedImage = baos.toByteArray()
+                            val user = auth.currentUser
+                            val uid = user!!.uid
+                            val imageRef =
+                                FirebaseStorage.getInstance().reference.child(
+                                    "uploads/" + uid
+                                            + ".jpg"
+                                )
+                            val uploadTask: UploadTask = imageRef.putBytes(compressedImage)
+                            uploadTask.addOnSuccessListener { taskSnapshot ->
+                                val imageUri = taskSnapshot.storage.downloadUrl
+                                imageUri.addOnSuccessListener {
+                                    imgUrl = it.toString()
+                                }
+
+                            }
 
                         } catch (e: Exception) {
 
