@@ -5,45 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login"
-   >
+    tools:context=".MainActivity">
 
 
-    <RelativeLayout
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="@dimen/_30sdp"
-        android:background="@drawable/stroke"
-        android:id="@+id/rl1"
-        android:layout_above="@id/btnRegButton"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_33sdp">
 
-    <EditText
-        android:id="@+id/edtmobile"
-        android:layout_toRightOf="@id/imgMobile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="@string/mobile_number"
-        android:inputType="phone"
-        android:maxLength="10"
-        android:maxLines="1"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"
-        android:textSize="@dimen/_12ssp" />
+        <EditText
+            android:id="@+id/edtmobile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_above="@id/btnRegButton"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@drawable/stroke"
+            android:fontFamily="@font/montserrat_medium"
+            android:hint="@string/mobile_number"
+            android:inputType="phone"
+            android:drawableLeft="@drawable/ic_baseline_phone_iphone_24"
+            android:maxLength="10"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:maxLines="1"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="@dimen/_12ssp" />
 
-    <ImageView
-        android:id="@+id/imgMobile"
-        android:src="@drawable/ic_baseline_phone_iphone_24"
-        android:layout_margin="@dimen/_5sdp"
-        android:layout_width="@dimen/_25sdp"
-        android:layout_height="@dimen/_25sdp"
-        />
-    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/rl1"
+        android:layout_above="@+id/edtmobile"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_30sdp"
