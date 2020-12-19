@@ -39,7 +39,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:layout_height="wrap_content"
         android:text="48"
-        android:layout_above="@id/progress_verify"
+        android:layout_above="@id/viewCenter"
         android:layout_marginBottom="@dimen/_160sdp"
         android:textSize="@dimen/_13ssp"
         android:layout_toRightOf="@id/mobile_hint"/>
