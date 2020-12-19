@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -17,20 +18,21 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnFavoriteItem"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_alignParentRight="true"
-                android:backgroundTint="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="#ffffff"
                 android:layout_margin="@dimen/_10sdp"
-                android:src="@drawable/ic_baseline_favorite_border_24" />
+                android:src="@drawable/ic_baseline_favorite_border_24"
+                tools:ignore="RelativeOverlap" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnFavoriteItem1"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
-                android:layout_alignParentRight="true"
-                android:backgroundTint="#ffffff"
+                android:layout_alignParentEnd="true"
+                android:background="#ffffff"
                 android:src="@drawable/ic_favourite"
                 android:visibility="gone"/>
 
@@ -90,7 +92,7 @@
             <Button
                 android:id="@+id/btnAddItem"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_21sdp"
+                android:layout_height="@dimen/_22sdp"
                 android:layout_alignTop="@+id/txtStock_customer"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/_10sdp"

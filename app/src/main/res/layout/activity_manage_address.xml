@@ -109,6 +109,7 @@
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:layout_toRightOf="@id/imgHome"
+                    android:fontFamily="@font/montserrat_bold"
                     android:text="DELETE"
                     android:textColor="#ff0000"
                     android:textSize="@dimen/_10ssp" />
@@ -145,6 +146,7 @@
             android:layout_margin="@dimen/_10sdp"
             android:background="@drawable/bg_border"
             android:elevation="0dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="ADD NEW ADDRESS"
             android:textColor="#008000"
             android:textSize="@dimen/_15ssp" />
