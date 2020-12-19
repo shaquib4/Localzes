@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_2sdp">
@@ -21,18 +22,19 @@
                 android:id="@+id/btnFavorites"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:backgroundTint="#d3d3d3"
-                android:padding="2dp"
-                android:src="@drawable/ic_baseline_favorite_border_24" />
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="#ffffff"
+                android:src="@drawable/ic_baseline_favorite_border_24"
+                tools:ignore="RelativeOverlap" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnFavorites1"
+                android:layout_margin="@dimen/_10sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:backgroundTint="#d3d3d3"
-                android:padding="2dp"
+                android:layout_alignParentEnd="true"
+                android:background="#ffffff"
                 android:src="@drawable/ic_favourite"
                 android:visibility="gone" />
 
