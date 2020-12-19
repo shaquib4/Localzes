@@ -3,62 +3,74 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#de4500">
+    android:background="@drawable/email_ui">
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_marginVertical="@dimen/_10sdp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Register as Seller"
+        android:textColor="#de4500"
+        android:textSize="@dimen/_20ssp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_40sdp"
         android:layout_above="@+id/edtregNameSeller"
         android:text="@string/create_your_account"
         android:id="@+id/txtCYA"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_18ssp"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
         android:fontFamily="@font/montserrat_bold"/>
 
     <EditText
         android:layout_above="@id/edtregemailSeller"
-        android:layout_marginVertical="@dimen/_10sdp"
         android:id="@+id/edtregNameSeller"
         android:textSize="@dimen/_12ssp"
         android:textColor="#ffffff"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="@dimen/_20sdp"
-        android:layout_height="@dimen/_32sdp"
-        android:background="@drawable/nameregs"
-        android:paddingStart="45dp"
-        android:hint="@string/full_name"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/stroke"
+        android:drawableLeft="@drawable/ic_outline_person_24"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:hint=" Enter your full name"
         android:textColorHint="#ffffff"/>
 
     <EditText
+        android:layout_above="@id/btnRegSeller"
         android:id="@+id/edtregemailSeller"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-        android:layout_marginVertical="@dimen/_10sdp"
+       android:layout_marginBottom="@dimen/_20sdp"
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_centerInParent="true"
-        android:background="@drawable/emailregs"
-        android:paddingStart="45dp"
+        android:background="@drawable/stroke"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:drawableLeft="@drawable/ic_outline_email_24"
         android:textSize="14sp"
         android:textColor="#ffffff"
-        android:hint="@string/email_reg"
+        android:hint="  Enter your email"
         android:textColorHint="#ffffff"/>
 
 
 
     <Button
+        android:layout_alignParentBottom="true"
         android:id="@+id/btnRegSeller"
         android:layout_width="@dimen/_160sdp"
         android:layout_height="@dimen/_32sdp"
-        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_80sdp"
         android:textAllCaps="false"
-        android:layout_below="@id/edtregemailSeller"
         android:background="@drawable/round_button"
         android:text="Proceed"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/montserrat_bold"
         android:textColor="#DE0606"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/_15ssp"/>
 
 </RelativeLayout>
