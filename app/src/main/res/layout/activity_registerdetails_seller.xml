@@ -52,7 +52,7 @@
         android:background="@drawable/stroke"
         android:paddingHorizontal="@dimen/_10sdp"
         android:drawableLeft="@drawable/ic_outline_email_24"
-        android:textSize="14sp"
+        android:textSize="@dimen/_12ssp"
         android:textColor="#ffffff"
         android:hint="  Enter your email"
         android:textColorHint="#ffffff"/>
