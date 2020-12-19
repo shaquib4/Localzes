@@ -3,6 +3,7 @@ package com.example.localzes
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,8 +15,12 @@ import com.example.localzes.Modals.Upload
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import id.zelory.compressor.Compressor
+import java.io.ByteArrayOutputStream
+import java.io.File
 import java.util.HashMap
 
 class SellerShop_detail : AppCompatActivity() {
@@ -35,6 +40,7 @@ class SellerShop_detail : AppCompatActivity() {
     private lateinit var etCategory3: EditText
     private lateinit var upi: EditText
     private lateinit var upload: Upload
+    var thumb_Bitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_shop_detail)
@@ -47,23 +53,15 @@ class SellerShop_detail : AppCompatActivity() {
         etCategory1 = findViewById(R.id.spn_category)
         upi = findViewById(R.id.edtPay)
         auth = FirebaseAuth.getInstance()
-
-
         btnChooseImage.setOnClickListener {
-
             startFileChooser()
-
         }
         btnUpload.setOnClickListener {
 
             val user = auth.currentUser
             val uid = user!!.uid
-
-
-
             uploadFile()
         }
-
     }
 
     private fun uploadFile() {
@@ -232,6 +230,18 @@ class SellerShop_detail : AppCompatActivity() {
                     val result = CropImage.getActivityResult(data)
                     if (resultCode == Activity.RESULT_OK) {
                         filepath = result.uri
+                        val path = File(filepath.path.toString())
+                        try {
+                            thumb_Bitmap = Compressor(this)
+                                .setQuality(75)
+                                .compressToBitmap(path)
+                            val baos = ByteArrayOutputStream()
+                            thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 75, baos)
+                            val compressedImage = baos.toByteArray()
+
+                        } catch (e: Exception) {
+
+                        }
                         result.uri?.let {
                             setImage(it)
                         }

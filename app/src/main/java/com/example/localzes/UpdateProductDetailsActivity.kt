@@ -2,6 +2,7 @@ package com.example.localzes
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,6 +17,9 @@ import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import id.zelory.compressor.Compressor
+import java.io.ByteArrayOutputStream
+import java.io.File
 
 class UpdateProductDetailsActivity : AppCompatActivity() {
     private var imagePathUpdate: Uri? = null
@@ -32,6 +36,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     private lateinit var unitUpdate: Spinner
     private lateinit var updateProduct: Button
     private lateinit var radioGroup: RadioGroup
+    var thumb_Bitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_product_details)
@@ -97,16 +102,31 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK && data != null) {
-            data.data?.let { uri ->
-                launchImageCrop(uri)
+        when (requestCode) {
+            100 -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    data?.data?.let { uri ->
+                        launchImageCrop(uri)
+                    }
+                }
             }
-            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 val result = CropImage.getActivityResult(data)
-                if (requestCode == Activity.RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     imagePathUpdate = result.uri
-                    result.uri?.let {
-                        setImage(it)
+                    val path = File(imagePathUpdate?.path.toString())
+                    try {
+                        thumb_Bitmap = Compressor(this)
+                            .setQuality(50)
+                            .compressToBitmap(path)
+                        val baos = ByteArrayOutputStream()
+                        thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+                        val final_image = baos.toByteArray()
+                    } catch (e: Exception) {
+
+                    }
+                    result.uri?.let { uri ->
+                        setImage(uri)
                     }
                 }
             }

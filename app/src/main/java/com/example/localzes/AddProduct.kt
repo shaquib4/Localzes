@@ -34,8 +34,10 @@ class AddProduct : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var radioGroup: RadioGroup
     private lateinit var imgBackAdd: ImageView
-    private lateinit var thumb_reference: StorageReference
+
+    /*private lateinit var thumb_reference: StorageReference*/
     private lateinit var timestamp: String
+    var imgUrl: String = ""
 
     var thumb_Bitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +52,7 @@ class AddProduct : AppCompatActivity() {
         image_view.setOnClickListener {
             startImageChooser()
         }
-        thumb_reference = FirebaseStorage.getInstance().reference.child("thumb_images")
+        /*thumb_reference = FirebaseStorage.getInstance().reference.child("thumb_images")*/
         imgBackAdd = findViewById(R.id.imgBackAdd)
         radioGroup = findViewById(R.id.radioStock)
         imgBackAdd.setOnClickListener {
@@ -99,21 +101,19 @@ class AddProduct : AppCompatActivity() {
                         thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 50, baos)
                         val final_image = baos.toByteArray()
                         /*image_view.setImageURI(imagePath)*/
-                        val thumb_filepath = thumb_reference.child("$timestamp.jpg")
-                        val uploadTask: UploadTask = thumb_filepath.putBytes(final_image)
-                        uploadTask.addOnSuccessListener { it: UploadTask.TaskSnapshot ->
-                            val imageUri = it.storage.downloadUrl
+                        /* val thumb_filepath = thumb_reference.child("$timestamp.jpg")*/
+                        val productRef =
+                            FirebaseStorage.getInstance().reference.child("uploads/$timestamp.jpg")
+                        val uploadTask: UploadTask = productRef.putBytes(final_image)
+                        uploadTask.addOnSuccessListener { taskSnapshot ->
+                            val imageUri = taskSnapshot.storage.downloadUrl
+                            imageUri.addOnSuccessListener {
+                                imgUrl = it.toString()
+                            }
                         }
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
-                    /*val byteArrayOutputStream= ByteArrayOutputStream()
-                    thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG,85,byteArrayOutputStream)
-                    val thumb_Byte=byteArrayOutputStream.toByteArray()
-                    val thumb_filepath=thumb_reference.child("$timestamp.jpg")
-                    val uploadTask=thumb_filepath.putBytes(thumb_Byte)
-                    uploadTask.addOnSuccessListener {taskSnapshot->
-                    }*/
                     result.uri?.let {
                         setImage(it)
                     }
@@ -138,7 +138,7 @@ class AddProduct : AppCompatActivity() {
 
     private fun uploadData(stock: CharSequence, progressDialog: ProgressDialog) {
         if (imagePath != null) {
-
+/*
             val productRef =
                 FirebaseStorage.getInstance().reference.child("uploads/$timestamp.jpg")
             productRef.putFile(imagePath)
@@ -187,10 +187,38 @@ class AddProduct : AppCompatActivity() {
                 .addOnProgressListener { p0 ->
                     val progress = (100.0 * p0.bytesTransferred / p0.totalByteCount)
 
+                }*/
+            val user = auth.currentUser
+            val uid = user!!.uid
+            products = ModelAddProduct(
+                uid,
+                timestamp,
+                imgUrl,
+                sp_spinner_add.selectedItem.toString(),
+                etTittle.text.toString().trim().toLowerCase(),
+                etDescription.text.toString().trim(),
+                etSellPrice.text.toString().trim(),
+                etOfferPrice.text.toString().trim(),
+                sp_unit.selectedItem.toString(),
+                etQuantity.text.toString().trim(),
+                stock.toString()
+            )
+            mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller")
+            mCartDatabaseRef.child(uid).child("Products").child(timestamp)
+                .setValue(products).addOnSuccessListener {
+                    progressDialog.dismiss()
+                    Toast.makeText(
+                        this,
+                        "Product Added Successfully",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    val intent = Intent(this, Home_seller::class.java)
+                    startActivity(intent)
+                    finish()
                 }
         }
     }
-
     override fun onBackPressed() {
         val intent = Intent(this, Home_seller::class.java)
         startActivity(intent)
