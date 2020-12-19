@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="@dimen/_10sdp"
-                android:background="#ffffff"
+                android:backgroundTint="#ffffff"
                 android:src="@drawable/ic_baseline_favorite_border_24"
                 tools:ignore="RelativeOverlap" />
 
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="#ffffff"
+                android:backgroundTint="#ffffff"
                 android:src="@drawable/ic_favourite"
                 android:visibility="gone" />
 
