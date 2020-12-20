@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Modals.IntroSlide
 import com.example.localzes.R
 
 
@@ -72,10 +73,13 @@ class AdapterIntroSlide(
 
 }
 */
-class AdapterIntroSlide(private var images: List<Int>) :
+class AdapterIntroSlide(private var images: List<IntroSlide>) :
     RecyclerView.Adapter<AdapterIntroSlide.Pager2ViewHolder>() {
     inner class Pager2ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageSplash: ImageView = view.findViewById(R.id.imgSplash)
+        fun bind(introSlide: IntroSlide) {
+            imageSplash.setImageResource(introSlide.image)
+        }
 
 
     }
@@ -91,6 +95,6 @@ class AdapterIntroSlide(private var images: List<Int>) :
     }
 
     override fun onBindViewHolder(holder: Pager2ViewHolder, position: Int) {
-        holder.imageSplash.setImageResource(images[position])
+        holder.bind(images[position])
     }
 }

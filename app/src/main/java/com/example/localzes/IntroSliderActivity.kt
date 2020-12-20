@@ -36,17 +36,34 @@ class IntroSliderActivity : AppCompatActivity() {
     private lateinit var btnGetStarted: Button
     var position = 0
     private lateinit var btnAnim: Animation*/
-    private var imagesList = mutableListOf<Int>()
+    private lateinit var btnNext: Button
+    private lateinit var btnGetStarted: Button
+    private val introSliderAdapter = AdapterIntroSlide(
+        listOf(
+            IntroSlide(R.drawable.register),
+            IntroSlide(R.drawable.seller),
+            IntroSlide(R.drawable.customer),
+            IntroSlide(R.drawable.deliver)
+        )
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
         setContentView(R.layout.activity_intro_slider)
-        imagesList.add(R.drawable.register)
-        imagesList.add(R.drawable.seller)
-        imagesList.add(R.drawable.customer)
-        imagesList.add(R.drawable.deliver)
-        view_pager2.adapter = AdapterIntroSlide(imagesList)
+        btnNext = findViewById(R.id.btn_next)
+        btnGetStarted = findViewById(R.id.btn_get_started)
+        view_pager2.adapter = introSliderAdapter
+        btnNext.setOnClickListener {
+            if (view_pager2.currentItem + 1 < introSliderAdapter.itemCount) {
+                view_pager2.currentItem += 1
+            } else {
+                Intent(applicationContext, SplashScreenActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
+        }
 
         /*viewPager = findViewById(R.id.screen_viewpager)
         tabIndicator = findViewById(R.id.tab_indicator)
