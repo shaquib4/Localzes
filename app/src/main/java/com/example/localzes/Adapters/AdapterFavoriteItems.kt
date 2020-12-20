@@ -25,7 +25,7 @@ class AdapterFavoriteItems(val context: Context, val favList: List<ModelAddProdu
         val itemName: TextView = view.findViewById(R.id.txtItemName)
         val itemOriginalCost: TextView = view.findViewById(R.id.txtItemMRP)
         val itemSellingCost: TextView = view.findViewById(R.id.txtItemPrice)
-        val imgFavorites: ImageView = view.findViewById(R.id.imgFavourites)
+        val imgFavorites: ImageView = view.findViewById(R.id.imgFavourite)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderFavoriteItems {

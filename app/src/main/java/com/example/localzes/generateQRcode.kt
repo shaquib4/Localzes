@@ -1,12 +1,16 @@
 package com.example.localzes
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.view.View
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.BarcodeFormat
@@ -17,15 +21,18 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
-private const val PERMISSION_REQUEST = 10
+
 class generateQRcode : AppCompatActivity() {
+    private val PERMISSION_REQUEST = 10
     private var list=ArrayList<String>()
+    private lateinit var storeQr:RelativeLayout
     private var permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private lateinit var context: Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generate_q_rcode)
         context = this
+        storeQr=findViewById(R.id.storeQR)
         list.add("lallu")
         list.add("Ballu")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -40,9 +47,35 @@ class generateQRcode : AppCompatActivity() {
     }
 
     fun generateQRCode(){
-        val bitmap = encodeAsBitmap(list,300,300,context)
+        val bitmap = encodeAsBitmap(list,400,400,context)
         iv_qr_code.setImageBitmap(bitmap)
-        qrsave.setOnClickListener {  createImageFile(bitmap)}
+
+        qrsave.setOnClickListener {
+            val b=Bitmap.createBitmap(storeQr.width,storeQr.height,Bitmap.Config.ARGB_8888)
+            val cs=Canvas(b)
+            storeQr.draw(cs)
+
+
+            createImageFile(b)
+            val string="name,line".split(",").toTypedArray()
+            Toast.makeText(this,string[0],Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private fun bit(view: View): Bitmap? {
+
+        val rBitmap=Bitmap.createBitmap(storeQr.getWidth(),300,Bitmap.Config.ARGB_8888)
+        val canvas=Canvas(rBitmap)
+        val bgDraw=view.background
+        if (bgDraw!=null){
+            bgDraw.draw(canvas)
+        }else{
+            canvas.drawColor(android.R.color.background_dark)
+        }
+        view.draw(canvas)
+        return rBitmap
+
     }
 
 
@@ -61,7 +94,7 @@ class generateQRcode : AppCompatActivity() {
     fun encodeAsBitmap(str: ArrayList<String>, WIDTH: Int, HEIGHT: Int, ctx: Context): Bitmap? {
         val result: BitMatrix
         try {
-          
+
             result = MultiFormatWriter().encode(
                 str[0],
                 BarcodeFormat.QR_CODE, WIDTH, HEIGHT, null)
