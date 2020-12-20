@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -16,7 +17,9 @@ import com.example.localzes.Modals.Upload
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_scan_q_r_code.*
 import util.ConnectionManager
 
 class Home : AppCompatActivity() {
@@ -36,7 +39,12 @@ class Home : AppCompatActivity() {
         recyclerShopUser = findViewById(R.id.recycler_shop_user)
         relativeHome = findViewById(R.id.rl_Home)
         recyclerShopUser.layoutManager = LinearLayoutManager(this)
-
+        imgScan.setOnClickListener {
+            val scanner = IntentIntegrator(this)
+            scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+            scanner.setBeepEnabled(false)
+            scanner.initiateScan()
+        }
 
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -172,6 +180,26 @@ class Home : AppCompatActivity() {
             ).show()
         }
         backPressedTime = System.currentTimeMillis()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+            if (result != null) {
+                if (result.contents == null) {
+                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+                } else {
+                    val shopId=result.contents
+                    if (shopId.isNotEmpty()){
+                        val intent=Intent(this,UserProductsActivity::class.java)
+                        intent.putExtra("shopId",shopId)
+                        startActivity(intent)
+                    }
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+        }
     }
 
 }

@@ -41,6 +41,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:textSize="@dimen/_17ssp"/>
         <RelativeLayout
+            android:id="@+id/bg_QR"
             android:background="@drawable/bg_store"
             android:layout_width="match_parent"
             android:layout_centerInParent="true"
@@ -52,7 +53,7 @@
                 android:textColor="#fff"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/montserrat_bold"
-                android:textSize="@dimen/_25ssp"/>
+                android:textSize="@dimen/_21ssp"/>
         <ImageView
             android:id="@+id/iv_qr_code"
             android:layout_centerInParent="true"
@@ -72,7 +73,13 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="Scan using localze mobile app"/>
         </RelativeLayout>
-
+<ImageView
+    android:layout_width="@dimen/_165sdp"
+    android:layout_marginTop="10dp"
+    android:layout_centerHorizontal="true"
+    android:layout_height="@dimen/_38sdp"
+    android:layout_below="@+id/bg_QR"
+    android:src="@drawable/localze"/>
 
     </RelativeLayout></androidx.cardview.widget.CardView>
 
