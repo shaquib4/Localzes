@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.localzes.Adapters.AdapterIntroSlide
 import com.example.localzes.Modals.IntroSlide
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_intro_slider.*
 
 class IntroSliderActivity : AppCompatActivity() {
     /*private val introSliderAdapter = AdapterIntroSlide(
@@ -27,19 +28,27 @@ class IntroSliderActivity : AppCompatActivity() {
     lateinit var preference: SharedPreferences
     private lateinit var btnNext: Button
     val pref_show_intro = "Intro"
-    private lateinit var skipIntro: TextView*/
+    private lateinit var skipIntro: TextView*//*
     private lateinit var viewPager: ViewPager
     private lateinit var introViewPagerAdapter: AdapterIntroSlide
     private lateinit var tabIndicator: TabLayout
     private lateinit var btnNext: Button
     private lateinit var btnGetStarted: Button
     var position = 0
-    private lateinit var btnAnim: Animation
+    private lateinit var btnAnim: Animation*/
+    private var imagesList = mutableListOf<Int>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         setContentView(R.layout.activity_intro_slider)
-        viewPager = findViewById(R.id.screen_viewpager)
+        imagesList.add(R.drawable.register)
+        imagesList.add(R.drawable.seller)
+        imagesList.add(R.drawable.customer)
+        imagesList.add(R.drawable.deliver)
+        view_pager2.adapter = AdapterIntroSlide(imagesList)
+
+        /*viewPager = findViewById(R.id.screen_viewpager)
         tabIndicator = findViewById(R.id.tab_indicator)
         btnNext = findViewById(R.id.btn_next)
         btnGetStarted = findViewById(R.id.btn_get_started)
@@ -89,7 +98,7 @@ class IntroSliderActivity : AppCompatActivity() {
             }
 
         })
-        /*btnNext = findViewById(R.id.btnNext)
+        *//*btnNext = findViewById(R.id.btnNext)
         preference = getSharedPreferences("IntroSlider", Context.MODE_PRIVATE)
         if (!preference.getBoolean(pref_show_intro, true)) {
             startActivity(Intent(applicationContext, SplashScreenActivity::class.java))
@@ -162,7 +171,7 @@ class IntroSliderActivity : AppCompatActivity() {
                 )
             }
         }
-    }*/
+    }*//*
     }
 
     private fun savePrefData() {
@@ -187,5 +196,8 @@ class IntroSliderActivity : AppCompatActivity() {
         btnGetStarted.visibility = View.VISIBLE
         tabIndicator.visibility = View.INVISIBLE
         btnGetStarted.animation = btnAnim
+    }*/
     }
+
+
 }
