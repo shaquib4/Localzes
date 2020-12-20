@@ -24,7 +24,7 @@ import java.io.FileOutputStream
 
 class generateQRcode : AppCompatActivity() {
     private val PERMISSION_REQUEST = 10
-    private var list=ArrayList<String>()
+
     private lateinit var storeQr:RelativeLayout
     private var permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private lateinit var context: Context
@@ -33,8 +33,7 @@ class generateQRcode : AppCompatActivity() {
         setContentView(R.layout.activity_generate_q_rcode)
         context = this
         storeQr=findViewById(R.id.storeQR)
-        list.add("lallu")
-        list.add("Ballu")
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkPermission(context, permissions)) {
                 generateQRCode()
@@ -47,7 +46,7 @@ class generateQRcode : AppCompatActivity() {
     }
 
     fun generateQRCode(){
-        val bitmap = encodeAsBitmap(list,400,400,context)
+        val bitmap = encodeAsBitmap("uid",400,400,context)
         iv_qr_code.setImageBitmap(bitmap)
 
         qrsave.setOnClickListener {
@@ -57,8 +56,8 @@ class generateQRcode : AppCompatActivity() {
 
 
             createImageFile(b)
-            val string="name,line".split(",").toTypedArray()
-            Toast.makeText(this,string[0],Toast.LENGTH_LONG).show()
+           // val string="name,line".split(",").toTypedArray()
+
         }
     }
 
@@ -91,12 +90,12 @@ class generateQRcode : AppCompatActivity() {
         Toast.makeText(this,"saved",Toast.LENGTH_LONG).show()
     }
 
-    fun encodeAsBitmap(str: ArrayList<String>, WIDTH: Int, HEIGHT: Int, ctx: Context): Bitmap? {
+    fun encodeAsBitmap(str: String, WIDTH: Int, HEIGHT: Int, ctx: Context): Bitmap? {
         val result: BitMatrix
         try {
 
             result = MultiFormatWriter().encode(
-                str[0],
+                str,
                 BarcodeFormat.QR_CODE, WIDTH, HEIGHT, null)
         } catch (iae: IllegalArgumentException) {
             return null

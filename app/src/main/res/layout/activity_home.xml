@@ -17,6 +17,12 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/montserrat_bold"
         android:layout_margin="@dimen/_10sdp"/>
+    <ImageView
+        android:id="@+id/imgScan"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_alignParentRight="true"
+        android:layout_height="@dimen/_38sdp"
+        android:src="@drawable/stores"/>
 
     <View
         android:layout_width="match_parent"
