@@ -45,6 +45,22 @@ class AddProduct : AppCompatActivity() {
         setContentView(R.layout.activity_add_product)
 
         auth = FirebaseAuth.getInstance()
+        if (etTittle.text.toString().isEmpty()) {
+            etTittle.error = "Please enter product name"
+            return
+        }
+        if (etSellPrice.text.toString().isEmpty()) {
+            etSellPrice.error = "Please enter MRP of product"
+            return
+        }
+        if (etOfferPrice.text.toString().isEmpty()) {
+            etOfferPrice.error = "Please enter selling price of product"
+            return
+        }
+        if (etQuantity.text.toString().isEmpty()) {
+            etQuantity.error = "Please enter quantity"
+            return
+        }
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
@@ -219,6 +235,7 @@ class AddProduct : AppCompatActivity() {
                 }
         }
     }
+
     override fun onBackPressed() {
         val intent = Intent(this, Home_seller::class.java)
         startActivity(intent)
