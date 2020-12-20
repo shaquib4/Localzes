@@ -27,6 +27,7 @@
         android:fontFamily="@font/montserrat_bold"/>
 
     <EditText
+        android:fontFamily="@font/montserrat_medium"
         android:layout_above="@id/edtregemailSeller"
         android:id="@+id/edtregNameSeller"
         android:textSize="@dimen/_12ssp"
@@ -42,6 +43,7 @@
         android:textColorHint="#ffffff"/>
 
     <EditText
+        android:fontFamily="@font/montserrat_medium"
         android:layout_above="@id/btnRegSeller"
         android:id="@+id/edtregemailSeller"
         android:layout_width="match_parent"
