@@ -207,7 +207,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private fun launchCropImage(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(16, 5)
+            .setAspectRatio(16, 11)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
     }

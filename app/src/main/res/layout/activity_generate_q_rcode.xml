@@ -31,6 +31,7 @@
             android:background="#fff"
             android:src="@drawable/stores" />
         <TextView
+            android:id="@+id/store_Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/store_image"
