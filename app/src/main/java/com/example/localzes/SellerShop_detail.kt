@@ -54,17 +54,26 @@ class SellerShop_detail : AppCompatActivity() {
         etCategory1 = findViewById(R.id.spn_category)
         upi = findViewById(R.id.edtPay)
         auth = FirebaseAuth.getInstance()
-        if (etShopName.text.toString().isEmpty()) {
-            etShopName.error = "Please Enter Your Shop Name"
-            return
-        }
+
 
 
         btnChooseImage.setOnClickListener {
             startFileChooser()
         }
         btnUpload.setOnClickListener {
-            uploadFile()
+            when {
+                etShopName.text.toString().isEmpty() -> {
+                    etShopName.error = "Please Enter Your Shop Name"
+                    return@setOnClickListener
+                }
+                filepath == null -> {
+                    Toast.makeText(this, "Please Provide Your Shop Image", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                else -> {
+                    uploadFile()
+                }
+            }
         }
     }
 
@@ -302,6 +311,9 @@ class SellerShop_detail : AppCompatActivity() {
                     }
                 }
             })
+        } else {
+            btnUpload.isClickable = false
+            Toast.makeText(this, "Please Provide Your Shop Image", Toast.LENGTH_LONG).show()
         }
     }
 

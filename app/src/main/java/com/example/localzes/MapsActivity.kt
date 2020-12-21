@@ -141,43 +141,42 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        if (edtLocality.text.toString().isEmpty()) {
-            edtLocality.error = "Please Enter Your Locality"
-            return
-        }
-        if (edtNearestLandmark.text.toString().isEmpty()) {
-            edtNearestLandmark.error = "Please Enter Your nearest Landmark"
-            return
-        }
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
         suserDatabase = FirebaseDatabase.getInstance().reference.child("customers").child(uid)
         SaveAddress.setOnClickListener {
+            if (edtLocality.text.toString().isEmpty()) {
+                edtLocality.error = "Please Enter Your Locality"
+                return@setOnClickListener
+            }
+            if (edtNearestLandmark.text.toString().isEmpty()) {
+                edtNearestLandmark.error = "Please Enter Your nearest Landmark"
+                return@setOnClickListener
+            } else {
 
-            suserDatabase!!.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
+                suserDatabase!!.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
 
-                        val user: ModelClass? = snapshot.getValue(
-                            ModelClass::class.java
-                        )
-                        val phone: String? = user!!.getPhone()
-                        val name = intent.getStringExtra("name")
-                        val email = intent.getStringExtra("email")
-                        val address = btnmap.text.toString()
-                        customReg(name, email, phone, address)
+                            val user: ModelClass? = snapshot.getValue(
+                                ModelClass::class.java
+                            )
+                            val phone: String? = user!!.getPhone()
+                            val name = intent.getStringExtra("name")
+                            val email = intent.getStringExtra("email")
+                            val address = btnmap.text.toString()
+                            customReg(name, email, phone, address)
+                        }
                     }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-
-
-            })
-
+                    }
+                })
+            }
         }
     }
 

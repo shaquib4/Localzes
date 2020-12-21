@@ -102,10 +102,31 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
             startImageChooser()
         }
         updateProduct.setOnClickListener {
-            updateData()
-            val intent = Intent(this, Seller_Products::class.java)
-            startActivity(intent)
-            finish()
+            when {
+                productName.text.toString().isEmpty() -> {
+                    productName.error = "Please Enter Product Name"
+                    return@setOnClickListener
+                }
+                offerPriceUpdate.text.toString().isEmpty() -> {
+                    offerPriceUpdate.error = "Please Enter selling price of your Product"
+                    return@setOnClickListener
+                }
+                sellPriceUpdate.text.toString().isEmpty() -> {
+                    sellPriceUpdate.error = "Please Enter MRP of your Product"
+                    return@setOnClickListener
+
+                }
+                quantityUpdate.text.toString().isEmpty() -> {
+                    quantityUpdate.error = "Please Enter Quantity"
+                    return@setOnClickListener
+                }
+                else -> {
+                    updateData()
+                    val intent = Intent(this, Seller_Products::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
         }
     }
 

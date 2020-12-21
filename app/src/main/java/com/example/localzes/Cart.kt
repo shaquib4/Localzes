@@ -51,9 +51,10 @@ class Cart : AppCompatActivity() {
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var progressDialog: ProgressDialog
     private lateinit var deliveryUser: String
+    private lateinit var deliveryUserMobileNo: String
     private lateinit var deliveryAddress: TextView
     private lateinit var addAddress: TextView
-    private var boolean:Boolean=true
+    private var boolean: Boolean = true
     private lateinit var relativeCartEmpty: RelativeLayout
     private lateinit var relativeCart: RelativeLayout
     private lateinit var orderByName: String
@@ -214,9 +215,9 @@ class Cart : AppCompatActivity() {
                     val amount = totalCost.toString()
                     txtTotalAmount.text = "₹${amount}"
                     totalPayment.text = "₹${amount}"
-                      for (i in cartProducts) {
+                    for (i in cartProducts) {
                         val proId = i.productId
-                      val database =
+                        val database =
                             FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
                                 .child("Products").child(proId)
                         database.addValueEventListener(object : ValueEventListener {
@@ -227,10 +228,10 @@ class Cart : AppCompatActivity() {
                             override fun onDataChange(snapshot: DataSnapshot) {
 
 
-                                        if (snapshot.child("stock").value.toString() == "OUT") {
+                                if (snapshot.child("stock").value.toString() == "OUT") {
 
-                                            boolean=false
-                                        } /*else if (snapshot.child("stock").value.toString() == "IN"&&snapshot.child("stock").value.toString()
+                                    boolean = false
+                                } /*else if (snapshot.child("stock").value.toString() == "IN"&&snapshot.child("stock").value.toString()
                                         !=="OUT") {
                                             val intent =
                                                 Intent(this@Cart, continue_payment::class.java)
@@ -283,7 +284,7 @@ class Cart : AppCompatActivity() {
             }
         })
         btnContinue.setOnClickListener {
-            if (boolean==true){
+            if (boolean) {
                 val intent = Intent(this@Cart, continue_payment::class.java)
                 intent.putExtra("shopId", shopId)
                 intent.putExtra("totalCost", totalCost.toString())
@@ -294,8 +295,12 @@ class Cart : AppCompatActivity() {
                 intent.putExtra("orderByMobile", orderByMobile)
                 startActivity(intent)
                 finish()
-            }else if (boolean==false){
-                Toast.makeText(this, "Some Products are out of stock,Please remove", Toast.LENGTH_SHORT).show()
+            } else if (boolean == false) {
+                Toast.makeText(
+                    this,
+                    "Some Products are out of stock,Please remove",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -344,7 +349,8 @@ class Cart : AppCompatActivity() {
                         i.child("city").value.toString(),
                         i.child("pinCode").value.toString(),
                         i.child("country").value.toString(),
-                        i.child("state").value.toString()
+                        i.child("state").value.toString(),
+                        i.child("mobileNo").value.toString()
 
                     )
                     (addresses as ArrayList<ModelManageAddress>).add(obj)
@@ -355,6 +361,10 @@ class Cart : AppCompatActivity() {
                         LayoutInflater.from(this@Cart).inflate(R.layout.address_layout, null, false)
                     val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
                     val btnAddNewAddress: Button = view.findViewById(R.id.btnAddNewAddress)
+                    val txtCurrAddress: TextView = view.findViewById(R.id.txtCurrAddress)
+                    val txtCurrMobile: TextView = view.findViewById(R.id.txtCurrMobile)
+                    txtCurrAddress.text = deliveryUser
+                    txtCurrMobile.text = "Mobile No- $"
                     val layoutManager = LinearLayoutManager(this@Cart)
                     rv.layoutManager = layoutManager
                     val adapter = AdapterManageAddress(this@Cart, addresses)
@@ -367,7 +377,6 @@ class Cart : AppCompatActivity() {
                     dialog.show()
                     dialog.setCancelable(false)
                     dialog.setCanceledOnTouchOutside(true)
-
                 }
             }
         })

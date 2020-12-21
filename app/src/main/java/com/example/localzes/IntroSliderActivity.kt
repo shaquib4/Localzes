@@ -5,16 +5,12 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
 import com.example.localzes.Adapters.AdapterIntroSlide
 import com.example.localzes.Modals.IntroSlide
-import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_intro_slider.*
 
 class IntroSliderActivity : AppCompatActivity() {
@@ -38,6 +34,7 @@ class IntroSliderActivity : AppCompatActivity() {
     private lateinit var btnAnim: Animation*/
     private lateinit var btnNext: Button
     private lateinit var btnGetStarted: Button
+    private lateinit var btnAnim: Animation
     private val introSliderAdapter = AdapterIntroSlide(
         listOf(
             IntroSlide(R.drawable.register),
@@ -54,15 +51,23 @@ class IntroSliderActivity : AppCompatActivity() {
         setContentView(R.layout.activity_intro_slider)
         btnNext = findViewById(R.id.btn_next)
         btnGetStarted = findViewById(R.id.btn_get_started)
+        btnAnim = AnimationUtils.loadAnimation(applicationContext, R.anim.button_animation)
+        if (restorePrefData()) {
+            startActivity(Intent(this, SplashScreenActivity::class.java))
+            finish()
+        }
         view_pager2.adapter = introSliderAdapter
         btnNext.setOnClickListener {
             if (view_pager2.currentItem + 1 < introSliderAdapter.itemCount) {
                 view_pager2.currentItem += 1
             } else {
-                Intent(applicationContext, SplashScreenActivity::class.java).also {
-                    startActivity(it)
-                }
+                loadLastScreen()
             }
+        }
+        btnGetStarted.setOnClickListener {
+            startActivity(Intent(this, SplashScreenActivity::class.java))
+            savePrefData()
+            finish()
         }
 
         /*viewPager = findViewById(R.id.screen_viewpager)
@@ -214,6 +219,29 @@ class IntroSliderActivity : AppCompatActivity() {
         tabIndicator.visibility = View.INVISIBLE
         btnGetStarted.animation = btnAnim
     }*/
+    }
+
+    private fun savePrefData() {
+        val pref: SharedPreferences = applicationContext.getSharedPreferences(
+            "myPrefs",
+            Context.MODE_PRIVATE
+        )
+        val editor = pref.edit()
+        editor.putBoolean("isIntroOpened", true)
+        editor.apply()
+    }
+
+    private fun restorePrefData(): Boolean {
+        val pref: SharedPreferences =
+            applicationContext.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val isIntroActivityOpenedBefore = pref.getBoolean("isIntroOpened", false)
+        return isIntroActivityOpenedBefore
+    }
+
+    private fun loadLastScreen() {
+        btnNext.visibility = View.INVISIBLE
+        btnGetStarted.visibility = View.VISIBLE
+        btnGetStarted.animation = btnAnim
     }
 
 

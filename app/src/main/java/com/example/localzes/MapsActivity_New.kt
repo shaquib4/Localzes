@@ -152,6 +152,7 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
         }
         if (edtNearestLandmark_new.text.toString().isEmpty()) {
             edtNearestLandmark_new.error = "Please Provide Your Nearest Landmark for easy Delivery"
+            return
         }
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
@@ -175,39 +176,59 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
 
         })
         SaveAddress_new.setOnClickListener {
-
-            val address = btnmap_new.text.toString()
-            val city = txtCity_new.text.toString()
-            val state = txtState_new.text.toString()
-            val country = txtCountry_new.text.toString()
-            val pinCode = txtPincode_new.text.toString()
-            val locality = txtLocality_new.text.toString()
-            val locality2 = edtLocality_newr.text.toString()
-            val nearestLandmark = edtNearestLandmark_new.text.toString()
-            val houseNo = HouseNo_new.text.toString()
-            val mobNo = edtMobileNumber.text.toString()
-            userDatabase =
-                FirebaseDatabase.getInstance().reference.child("users").child(uid).child("address")
-            val userMap = HashMap<String, Any>()
-            userMap["address"] = address
-            userMap["city"] = city
-            userMap["state"] = state
-            userMap["country"] = country
-            userMap["pinCode"] = pinCode
-            userMap["locality"] = locality
-            userMap["locality2"] = locality2
-            userMap["houseBlock"] = houseNo
-            userMap["nearestLandmark"] = nearestLandmark
-            userMap["mobNo"] = mobNo
-
-            userDatabase.child(maxId.toString()).setValue(userMap).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    startActivity(Intent(this, Accounts::class.java))
-                    finish()
+            when {
+                edtMobileNumber.text.toString().isEmpty() -> {
+                    edtMobileNumber.error = "Please Enter Your Mobile Number"
+                    return@setOnClickListener
                 }
+                edtLocality_newr.text.toString().isEmpty() -> {
+                    edtLocality_newr.error = "Please Provide Your Locality Details"
+                    return@setOnClickListener
+                }
+                edtNearestLandmark_new.text.toString().isEmpty() -> {
+                    edtNearestLandmark_new.error =
+                        "Please Provide Your Nearest Landmark for easy Delivery"
+                    return@setOnClickListener
+                }
+                else -> {
+
+                    val address = btnmap_new.text.toString()
+                    val city = txtCity_new.text.toString()
+                    val state = txtState_new.text.toString()
+                    val country = txtCountry_new.text.toString()
+                    val pinCode = txtPincode_new.text.toString()
+                    val locality = txtLocality_new.text.toString()
+                    val locality2 = edtLocality_newr.text.toString()
+                    val nearestLandmark = edtNearestLandmark_new.text.toString()
+                    val houseNo = HouseNo_new.text.toString()
+                    val mobNo = edtMobileNumber.text.toString()
+                    userDatabase =
+                        FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                            .child("address")
+                    val userMap = HashMap<String, Any>()
+                    userMap["address"] = address
+                    userMap["city"] = city
+                    userMap["state"] = state
+                    userMap["country"] = country
+                    userMap["pinCode"] = pinCode
+                    userMap["locality"] = locality
+                    userMap["locality2"] = locality2
+                    userMap["houseBlock"] = houseNo
+                    userMap["nearestLandmark"] = nearestLandmark
+                    userMap["mobNo"] = mobNo
+
+                    userDatabase.child(maxId.toString()).setValue(userMap)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                startActivity(Intent(this, Accounts::class.java))
+                                finish()
+                            }
 
 
+                        }
+                }
             }
+
         }
     }
 

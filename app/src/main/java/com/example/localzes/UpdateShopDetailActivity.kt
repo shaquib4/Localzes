@@ -4,14 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
@@ -50,10 +48,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
         spinnerClose = findViewById(R.id.spinner_close)
         spinnerOpen = findViewById(R.id.spinner_open)
         spinnerClosingDay = findViewById(R.id.spinner_closing_day)
-        if(shopNameUpdate.text.toString().isEmpty()){
-            shopNameUpdate.error="Please Enter Shop Name"
-            return
-        }
+
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -75,10 +70,16 @@ class UpdateShopDetailActivity : AppCompatActivity() {
             startImageChooser()
         }
         btnUpdateDetails.setOnClickListener {
-            updateData()
-            val intent = Intent(this, Home_seller::class.java)
-            startActivity(intent)
-            finish()
+            if (shopNameUpdate.text.toString().isEmpty()) {
+                shopNameUpdate.error = "Please Enter Shop Name"
+                return@setOnClickListener
+            } else {
+                updateData()
+                val intent = Intent(this, Home_seller::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         }
     }
 

@@ -23,6 +23,7 @@ class AdapterManageAddress(
     class HolderManageAddress(view: View) : RecyclerView.ViewHolder(view) {
         val city: TextView = view.findViewById(R.id.txtHome)
         val address: TextView = view.findViewById(R.id.txtAddress)
+        val mobileNumber: TextView = view.findViewById(R.id.txtMobile)
 
     }
 
@@ -45,9 +46,10 @@ class AdapterManageAddress(
         val uid = user!!.uid
         holder.city.text = address_user.city
         holder.address.text = address_user.address
+        holder.mobileNumber.text = address_user.mobileNo
         holder.itemView.setOnClickListener {
             val builder = AlertDialog.Builder(context)
-            val show=builder.show()
+            val show = builder.show()
             builder.setTitle("Confirmation")
             builder.setMessage("Are you sure you want to set your current address as ${address_manage[position].address},${address_manage[position].city}")
             builder.setPositiveButton("Yes") { text, listener ->

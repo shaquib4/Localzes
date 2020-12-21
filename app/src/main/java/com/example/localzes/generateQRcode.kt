@@ -36,14 +36,15 @@ class generateQRcode : AppCompatActivity() {
     private lateinit var context: Context
     private lateinit var shopAuth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var storeName:TextView
+    private lateinit var storeName: TextView
     var shopName: String = ""
-    var shopId:String=""
+    var shopId: String = ""
+
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generate_q_rcode)
-        storeName=findViewById(R.id.store_Name)
+        storeName = findViewById(R.id.store_Name)
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         shopId = user!!.uid
@@ -54,7 +55,7 @@ class generateQRcode : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 shopName = snapshot.child("shop_name").value.toString()
-                storeName.text=shopName
+                storeName.text = shopName
             }
 
         })
@@ -111,7 +112,7 @@ class generateQRcode : AppCompatActivity() {
         val bytes = ByteArrayOutputStream()
         bitmapScaled?.compress(Bitmap.CompressFormat.PNG, 40, bytes)
         val filepath =
-            Environment.getExternalStorageDirectory().absolutePath + File.separator + "Cupcakes.png"
+            Environment.getExternalStorageDirectory().absolutePath + File.separator + "$shopName.png"
         val f = File(filepath)
         f.createNewFile()
         val fo = FileOutputStream(f)
@@ -154,9 +155,18 @@ class generateQRcode : AppCompatActivity() {
         }
         return allSuccess
     }
-    fun requestPermission( permissions: Array<out String>){
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this@generateQRcode, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Toast.makeText(this@generateQRcode, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+
+    fun requestPermission(permissions: Array<out String>) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(
+                this@generateQRcode,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+        ) {
+            Toast.makeText(
+                this@generateQRcode,
+                "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.",
+                Toast.LENGTH_LONG
+            ).show();
         } else {
             ActivityCompat.requestPermissions(this@generateQRcode, permissions, PERMISSION_REQUEST);
         }
@@ -189,8 +199,9 @@ class generateQRcode : AppCompatActivity() {
                     }
                 }
             }
-            if (allSuccess){
-                generateQRCode()}
+            if (allSuccess) {
+                generateQRCode()
+            }
         }
     }
 }

@@ -1,5 +1,12 @@
 package com.example.localzes.Modals
 
-class ModelManageAddress(val address:String,val city:String,val pinCode:String,val country:String,val state:String) {
-    constructor():this("","","","","")
+class ModelManageAddress(
+    val address: String,
+    val city: String,
+    val pinCode: String,
+    val country: String,
+    val state: String,
+    val mobileNo: String
+) {
+    constructor() : this("", "", "", "", "", "")
 }

@@ -55,7 +55,8 @@ class ManageAddress : AppCompatActivity() {
                         i.child("city").value.toString(),
                         i.child("pinCode").value.toString(),
                         i.child("country").value.toString(),
-                        i.child("state").value.toString()
+                        i.child("state").value.toString(),
+                        i.child("mobileNo").value.toString()
 
                     )
                     (addresses as ArrayList<ModelManageAddress>).add(obj)

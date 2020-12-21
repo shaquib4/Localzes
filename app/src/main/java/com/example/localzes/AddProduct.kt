@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
@@ -45,22 +44,6 @@ class AddProduct : AppCompatActivity() {
         setContentView(R.layout.activity_add_product)
 
         auth = FirebaseAuth.getInstance()
-        if (etTittle.text.toString().isEmpty()) {
-            etTittle.error = "Please enter product name"
-            return
-        }
-        if (etSellPrice.text.toString().isEmpty()) {
-            etSellPrice.error = "Please enter MRP of product"
-            return
-        }
-        if (etOfferPrice.text.toString().isEmpty()) {
-            etOfferPrice.error = "Please enter selling price of product"
-            return
-        }
-        if (etQuantity.text.toString().isEmpty()) {
-            etQuantity.error = "Please enter quantity"
-            return
-        }
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
@@ -78,12 +61,32 @@ class AddProduct : AppCompatActivity() {
         }
 
         btnAddProduct.setOnClickListener {
-            progressDialog.setMessage("Adding Your Product....")
-            progressDialog.show()
-            val id = radioGroup.checkedRadioButtonId
-            val radioButton = findViewById<RadioButton>(id)
-            val stock = radioButton.text
-            uploadData(stock, progressDialog)
+            when {
+                etTittle.text.toString().isEmpty() -> {
+                    etTittle.error = "Please enter product name"
+                    return@setOnClickListener
+                }
+                etSellPrice.text.toString().isEmpty() -> {
+                    etSellPrice.error = "Please enter MRP of product"
+                    return@setOnClickListener
+                }
+                etOfferPrice.text.toString().isEmpty() -> {
+                    etOfferPrice.error = "Please enter selling price of product"
+                    return@setOnClickListener
+                }
+                etQuantity.text.toString().isEmpty() -> {
+                    etQuantity.error = "Please enter quantity"
+                    return@setOnClickListener
+                }
+                else -> {
+                    progressDialog.setMessage("Adding Your Product....")
+                    progressDialog.show()
+                    val id = radioGroup.checkedRadioButtonId
+                    val radioButton = findViewById<RadioButton>(id)
+                    val stock = radioButton.text
+                    uploadData(stock, progressDialog)
+                }
+            }
         }
     }
 
@@ -233,6 +236,9 @@ class AddProduct : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
+        } else {
+            btnAddProduct.isClickable = false
+            Toast.makeText(this, "Please provide image of Your product", Toast.LENGTH_LONG).show()
         }
     }
 

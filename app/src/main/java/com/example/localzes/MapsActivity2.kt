@@ -140,47 +140,47 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        if (edtLocality_seller.text.toString().isEmpty()) {
-            edtLocality_seller.error = "Please Enter Your Locality"
-            return
-        }
-        if (edtNearestLandmark_seller.text.toString().isEmpty()) {
-            edtNearestLandmark_seller.error = "Please Enter Your Landmark"
-            return
-        }
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
         SaveAddress_seller.setOnClickListener {
-            val name = intent.getStringExtra("name")
-
-            val email = intent.getStringExtra("email")
-            val address = btnmapseller.text.toString()
-            val city = txtCity_seller.text.toString()
-            val state = txtState_seller.text.toString()
-            val country = txtCountry_seller.text.toString()
-            val pinCode = txtPincode_seller.text.toString()
-            val locality = txtLocality_seller.text.toString()
-            val locality2 = edtLocality_seller.text.toString()
-            val nearestLandmark = edtNearestLandmark_seller.text.toString()
-            val houseNo = HouseNo_seller.text.toString()
-            val intent = Intent(this, SellerShop_detail::class.java)
-            intent.putExtra("name", name)
-            intent.putExtra("email", email)
-            intent.putExtra("address", address)
-            intent.putExtra("city", city)
-            intent.putExtra("state", state)
-            intent.putExtra("country", country)
-            intent.putExtra("pinCode", pinCode)
-            intent.putExtra("locality", locality)
-            intent.putExtra("locality2", locality2)
-            intent.putExtra("nearestLandmark", nearestLandmark)
-            intent.putExtra("HouseNo", houseNo)
-
-
-
-            startActivity(intent)
-            finish()
-
+            when {
+                edtLocality_seller.text.toString().isEmpty() -> {
+                    edtLocality_seller.error = "Please Enter Your Locality"
+                    return@setOnClickListener
+                }
+                edtNearestLandmark_seller.text.toString().isEmpty() -> {
+                    edtNearestLandmark_seller.error = "Please Enter Your Landmark"
+                    return@setOnClickListener
+                }
+                else -> {
+                    val name = intent.getStringExtra("name")
+                    val email = intent.getStringExtra("email")
+                    val address = btnmapseller.text.toString()
+                    val city = txtCity_seller.text.toString()
+                    val state = txtState_seller.text.toString()
+                    val country = txtCountry_seller.text.toString()
+                    val pinCode = txtPincode_seller.text.toString()
+                    val locality = txtLocality_seller.text.toString()
+                    val locality2 = edtLocality_seller.text.toString()
+                    val nearestLandmark = edtNearestLandmark_seller.text.toString()
+                    val houseNo = HouseNo_seller.text.toString()
+                    val intent = Intent(this, SellerShop_detail::class.java)
+                    intent.putExtra("name", name)
+                    intent.putExtra("email", email)
+                    intent.putExtra("address", address)
+                    intent.putExtra("city", city)
+                    intent.putExtra("state", state)
+                    intent.putExtra("country", country)
+                    intent.putExtra("pinCode", pinCode)
+                    intent.putExtra("locality", locality)
+                    intent.putExtra("locality2", locality2)
+                    intent.putExtra("nearestLandmark", nearestLandmark)
+                    intent.putExtra("HouseNo", houseNo)
+                    startActivity(intent)
+                    finish()
+                }
+            }
         }
     }
 

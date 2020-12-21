@@ -5,64 +5,64 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardAddress"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="3dp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_120sdp">
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginHorizontal="3dp"
+        android:layout_marginTop="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:background="@drawable/bg_border"
                 android:id="@+id/imgHome"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_home"
-               android:layout_marginHorizontal="10dp"
-                android:padding="10dp"
                 android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"/>
+                android:layout_height="@dimen/_60sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/bg_border"
+                android:padding="10dp"
+                android:src="@drawable/ic_home" />
 
             <TextView
-                android:fontFamily="@font/montserrat_bold"
                 android:id="@+id/txtHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HOME"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:textColor="#000"
-                android:layout_toEndOf="@+id/imgHome"/>
+                android:layout_toEndOf="@+id/imgHome"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="HOME"
+                android:textColor="#000" />
+
             <TextView
+                android:id="@+id/txtAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtAddress"
-                android:layout_toRightOf="@id/imgHome"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:text="Mohan chauraha, Saraivika, Jaunpur UP - 222202 India"
                 android:layout_below="@+id/txtHome"
-                />
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_toRightOf="@id/imgHome"
+                android:text="Mohan chauraha, Saraivika, Jaunpur UP - 222202 India" />
+
             <TextView
                 android:id="@+id/txtMobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mobile - 7518894470"
                 android:layout_below="@+id/txtAddress"
-                android:layout_toRightOf="@id/imgHome"/>
+                android:layout_toRightOf="@id/imgHome"
+                android:text="Mobile - 7518894470" />
 
             <TextView
-                android:fontFamily="@font/montserrat_bold"
                 android:id="@+id/txtDelete"
-              android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_10ssp"
-                android:textColor="#ff0000"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_toRightOf="@id/imgHome"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="DELETE"
-                />
+                android:textColor="#ff0000"
+                android:textSize="@dimen/_10ssp" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

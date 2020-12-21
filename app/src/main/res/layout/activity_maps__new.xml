@@ -241,7 +241,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/jk"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="10dp">
 
         <EditText
@@ -275,7 +275,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/nu"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="10dp">
 
         <EditText
@@ -309,14 +309,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/io"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="10dp">
 
         <EditText
             android:id="@+id/edtMobileNumber"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center_vertical"
@@ -345,7 +345,7 @@
         android:layout_height="@dimen/_35sdp"
         android:layout_below="@id/MobileNumber"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_buttons"
         android:fontFamily="@font/montserrat_bold"
         android:text="Save And Proceed"
