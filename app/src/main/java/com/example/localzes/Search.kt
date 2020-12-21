@@ -1,12 +1,15 @@
 package com.example.localzes
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterSearchItem
@@ -16,6 +19,7 @@ import com.example.localzes.Modals.Upload
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_search.*
+import util.ConnectionManager
 
 class Search : AppCompatActivity() {
     private lateinit var mUserDatabase: DatabaseReference
@@ -130,7 +134,7 @@ class Search : AppCompatActivity() {
 
         })*/
 
-        btnLocality.setOnClickListener {
+       btnLocality.setOnClickListener {
             searchAct.visibility=View.VISIBLE
             search.visibility=View.GONE
             btnLocality.setTextColor(this.resources.getColor(R.color.white))
@@ -206,7 +210,7 @@ class Search : AppCompatActivity() {
 
     private fun searchProducts(string:String) {
         (searchProductItem as ArrayList<ModelAddProduct>).clear()
-       val userDatabases = FirebaseDatabase.getInstance().reference.child("seller")
+        if (ConnectionManager().checkConnectivity(this@Search)) {val userDatabases = FirebaseDatabase.getInstance().reference.child("seller")
         userDatabases.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
@@ -263,7 +267,21 @@ class Search : AppCompatActivity() {
                     })
                 }
             }
-        })
+        })}else{
+            val dialog = AlertDialog.Builder(this)
+            dialog.setTitle("Error")
+            dialog.setMessage("Internet Connection not Found")
+            dialog.setPositiveButton("Open Setting") { text, listener ->
+                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                startActivity(settingsIntent)
+                finish()
+            }
+            dialog.setNegativeButton("Exit") { text, listener ->
+                ActivityCompat.finishAffinity(this)
+            }
+            dialog.create()
+            dialog.show()
+        }
     }
 
     private fun searchShops(str:String){
@@ -271,7 +289,7 @@ class Search : AppCompatActivity() {
             .startAt(str)
             .endAt(str + "\uf8ff")
 
-        queryShop.addValueEventListener(object :ValueEventListener{
+        if (ConnectionManager().checkConnectivity(this@Search)){ queryShop.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -310,14 +328,29 @@ class Search : AppCompatActivity() {
                 recyclerSearchItem.adapter=searchAdapter
 
             }
-        })
+        })}else{
+            val dialog = AlertDialog.Builder(this)
+            dialog.setTitle("Error")
+            dialog.setMessage("Internet Connection not Found")
+            dialog.setPositiveButton("Open Setting") { text, listener ->
+                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                startActivity(settingsIntent)
+                finish()
+            }
+            dialog.setNegativeButton("Exit") { text, listener ->
+                ActivityCompat.finishAffinity(this)
+            }
+            dialog.create()
+            dialog.show()
+        }
+
     }
     private fun searchLocality(str:String){
         val queryShop = FirebaseDatabase.getInstance().reference.child("seller").orderByChild("locality")
             .startAt(str)
             .endAt(str + "\uf8ff")
 
-        queryShop.addValueEventListener(object :ValueEventListener{
+        if (ConnectionManager().checkConnectivity(this@Search)){queryShop.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -356,7 +389,22 @@ class Search : AppCompatActivity() {
                 recyclerSearchItem.adapter=searchAdapter
 
             }
-        })
+        })}else{
+            val dialog = AlertDialog.Builder(this)
+            dialog.setTitle("Error")
+            dialog.setMessage("Internet Connection not Found")
+            dialog.setPositiveButton("Open Setting") { text, listener ->
+                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                startActivity(settingsIntent)
+                finish()
+            }
+            dialog.setNegativeButton("Exit") { text, listener ->
+                ActivityCompat.finishAffinity(this)
+            }
+            dialog.create()
+            dialog.show()
+        }
+
     }
 
     override fun onBackPressed() {

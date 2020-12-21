@@ -1,14 +1,17 @@
 package com.example.localzes
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterUserProducts
@@ -16,6 +19,7 @@ import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.Modals.UserCartDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import util.ConnectionManager
 
 class UserProductsActivity : AppCompatActivity() {
     private var shopId: String? = "100"
@@ -72,7 +76,7 @@ class UserProductsActivity : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
         mUserProductDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
-        mUserProductDatabase.child("Products").addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this)) {mUserProductDatabase.child("Products").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -104,7 +108,22 @@ class UserProductsActivity : AppCompatActivity() {
                 recyclerUserProduct.adapter = userProductAdapter
             }
 
-        })
+        })}else{
+            val dialog = AlertDialog.Builder(this)
+            dialog.setTitle("Error")
+            dialog.setMessage("Internet Connection not Found")
+            dialog.setPositiveButton("Open Setting") { text, listener ->
+                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                startActivity(settingsIntent)
+                finish()
+            }
+            dialog.setNegativeButton("Exit") { text, listener ->
+                ActivityCompat.finishAffinity(this)
+            }
+            dialog.create()
+            dialog.show()
+
+        }
         cartDatabaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 

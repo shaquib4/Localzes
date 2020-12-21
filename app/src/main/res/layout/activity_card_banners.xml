@@ -26,19 +26,22 @@
         <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_180sdp"
+            android:layout_height="@dimen/_160sdp"
             android:background="@drawable/border">
-
+       <ImageView
+           android:layout_width="@dimen/_160sdp"
+           android:layout_height="@dimen/_120sdp"
+           android:src="@drawable/store"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Boost Your Shop"
-             android:layout_marginTop="@dimen/_100sdp"
-        android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:textColor="#fff"
-                android:textSize="@dimen/_18ssp" />
+                android:textSize="@dimen/_25ssp" />
         </RelativeLayout>
 
 
@@ -50,7 +53,7 @@
             android:layout_centerHorizontal="true" />
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="@dimen/_150sdp"
+            android:layout_marginTop="@dimen/_135sdp"
             android:id="@+id/card1"
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_160sdp"
@@ -143,7 +146,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="@dimen/_150sdp"
+            android:layout_marginTop="@dimen/_135sdp"
             android:id="@+id/card4"
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_160sdp"
