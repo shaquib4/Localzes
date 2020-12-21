@@ -193,8 +193,8 @@
                 <ImageView
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
                     android:src="@drawable/overview"/>
 
                 <TextView
