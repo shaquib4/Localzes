@@ -53,6 +53,23 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         quantityUpdate = findViewById(R.id.etQuantityUpdate)
         updateProduct = findViewById(R.id.btnUpdateProduct)
         radioGroup = findViewById(R.id.radioStockCustomer)
+        if (productName.text.toString().isEmpty()) {
+            productName.error = "Please Enter Product Name"
+            return
+        }
+        if (offerPriceUpdate.text.toString().isEmpty()) {
+            offerPriceUpdate.error = "Please Enter selling price of your Product"
+            return
+        }
+        if (sellPriceUpdate.text.toString().isEmpty()) {
+            sellPriceUpdate.error = "Please Enter MRP of your Product"
+            return
+
+        }
+        if (quantityUpdate.text.toString().isEmpty()) {
+            quantityUpdate.error = "Please Enter Quantity"
+            return
+        }
         productId = intent.getStringExtra("productId")
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         databaseRef.child("Products").child(productId.toString())

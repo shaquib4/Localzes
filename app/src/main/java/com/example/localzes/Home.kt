@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_scan_q_r_code.*
 import util.ConnectionManager
 
 class Home : AppCompatActivity() {
@@ -77,7 +76,7 @@ class Home : AppCompatActivity() {
                 }
                 R.id.nav_search -> {
 
-                    startActivity(Intent(this, generateQRcode::class.java))
+                    startActivity(Intent(this, ShopBanner::class.java))
                     overridePendingTransition(0, 0)
                     finish()
 
@@ -189,10 +188,10 @@ class Home : AppCompatActivity() {
                 if (result.contents == null) {
                     Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
                 } else {
-                    val shopId=result.contents
-                    if (shopId.isNotEmpty()){
-                        val intent=Intent(this,UserProductsActivity::class.java)
-                        intent.putExtra("shopId",shopId)
+                    val shopId = result.contents
+                    if (shopId.isNotEmpty()) {
+                        val intent = Intent(this, UserProductsActivity::class.java)
+                        intent.putExtra("shopId", shopId)
                         startActivity(intent)
                     }
                 }

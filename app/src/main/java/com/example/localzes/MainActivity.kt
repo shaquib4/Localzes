@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity() {
         if (edtmobile.text.toString().isEmpty()) {
             edtmobile.error = "please enter your phone number"
             return
-
-
         }
         val intent = Intent(this, Verify::class.java)
         intent.putExtra("phone", phone)

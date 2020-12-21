@@ -50,6 +50,10 @@ class UpdateShopDetailActivity : AppCompatActivity() {
         spinnerClose = findViewById(R.id.spinner_close)
         spinnerOpen = findViewById(R.id.spinner_open)
         spinnerClosingDay = findViewById(R.id.spinner_closing_day)
+        if(shopNameUpdate.text.toString().isEmpty()){
+            shopNameUpdate.error="Please Enter Shop Name"
+            return
+        }
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -207,7 +211,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private fun launchCropImage(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(16, 5)
+            .setAspectRatio(16, 11)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
     }

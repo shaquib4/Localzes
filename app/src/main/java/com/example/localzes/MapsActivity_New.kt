@@ -31,7 +31,9 @@ import java.io.IOException
 import java.lang.IndexOutOfBoundsException
 import java.util.*
 
-class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListener,GoogleMap.OnCameraMoveListener,GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener {
+class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListener,
+    GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveStartedListener,
+    GoogleMap.OnCameraIdleListener {
 
     private lateinit var map: GoogleMap
     private lateinit var auth: FirebaseAuth
@@ -41,7 +43,7 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
     private lateinit var userDatabase: DatabaseReference
-    var maxId:Int=0
+    var maxId: Int = 0
 
     private fun getLocationAccess() {
         if (ContextCompat.checkSelfPermission(
@@ -54,15 +56,14 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
             map.setOnCameraMoveStartedListener(this)
             map.setOnCameraIdleListener(this)
             locationRequest = LocationRequest()
-            val builder=LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
-            val settingsClient=LocationServices.getSettingsClient(this)
-            val task=settingsClient.checkLocationSettings(builder.build())
+            val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+            val settingsClient = LocationServices.getSettingsClient(this)
+            val task = settingsClient.checkLocationSettings(builder.build())
             task.addOnSuccessListener {
                 getLocationUpdates()
                 startLocationUpdates()
             }
-                .addOnFailureListener{
-                        e ->
+                .addOnFailureListener { e ->
                     if (e is ResolvableApiException)
                         try {
                             e.startResolutionForResult(this@MapsActivity_New, 51)
@@ -108,9 +109,9 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
                 map.setOnCameraMoveStartedListener(this)
                 map.setOnCameraIdleListener(this)
                 locationRequest = LocationRequest()
-                val builder=LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
-                val settingsClient=LocationServices.getSettingsClient(this)
-                val task=settingsClient.checkLocationSettings(builder.build())
+                val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+                val settingsClient = LocationServices.getSettingsClient(this)
+                val task = settingsClient.checkLocationSettings(builder.build())
                 task.addOnSuccessListener {
                     getLocationUpdates()
                     startLocationUpdates()
@@ -133,6 +134,7 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps__new)
@@ -140,17 +142,29 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        if (edtMobileNumber.text.toString().isEmpty()) {
+            edtMobileNumber.error = "Please Enter Your Mobile Number"
+            return
+        }
+        if (edtLocality_newr.text.toString().isEmpty()) {
+            edtLocality_newr.error = "Please Provide Your Locality Details"
+            return
+        }
+        if (edtNearestLandmark_new.text.toString().isEmpty()) {
+            edtNearestLandmark_new.error = "Please Provide Your Nearest Landmark for easy Delivery"
+        }
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
-        val user=auth.currentUser
-        val uid=user!!.uid
-        userDatabase=FirebaseDatabase.getInstance().reference.child("users").child(uid).child("address")
+        val user = auth.currentUser
+        val uid = user!!.uid
+        userDatabase =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid).child("address")
 
         userDatabase!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
 
-                    maxId= snapshot.childrenCount.toInt()
+                    maxId = snapshot.childrenCount.toInt()
                 }
             }
 
@@ -159,36 +173,38 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
             }
 
 
-
         })
         SaveAddress_new.setOnClickListener {
 
             val address = btnmap_new.text.toString()
-            val city=txtCity_new.text.toString()
-            val state=txtState_new.text.toString()
-            val country=txtCountry_new.text.toString()
-            val pinCode=txtPincode_new.text.toString()
-            val locality=txtLocality_new.text.toString()
-            val locality2=edtLocality_newr.text.toString()
-            val nearestLandmark=edtNearestLandmark_new.text.toString()
-            val houseNo=HouseNo_new.text.toString()
-            userDatabase=FirebaseDatabase.getInstance().reference.child("users").child(uid).child("address")
-            val userMap= HashMap<String,Any>()
-            userMap["address"]=address
-            userMap["city"]=city
-            userMap["state"]=state
-            userMap["country"]=country
-            userMap["pinCode"]=pinCode
-            userMap["locality"]=locality
-            userMap["locality2"]=locality2
-            userMap["houseBlock"]=houseNo
-            userMap["nearestLandmark"]=nearestLandmark
+            val city = txtCity_new.text.toString()
+            val state = txtState_new.text.toString()
+            val country = txtCountry_new.text.toString()
+            val pinCode = txtPincode_new.text.toString()
+            val locality = txtLocality_new.text.toString()
+            val locality2 = edtLocality_newr.text.toString()
+            val nearestLandmark = edtNearestLandmark_new.text.toString()
+            val houseNo = HouseNo_new.text.toString()
+            val mobNo = edtMobileNumber.text.toString()
+            userDatabase =
+                FirebaseDatabase.getInstance().reference.child("users").child(uid).child("address")
+            val userMap = HashMap<String, Any>()
+            userMap["address"] = address
+            userMap["city"] = city
+            userMap["state"] = state
+            userMap["country"] = country
+            userMap["pinCode"] = pinCode
+            userMap["locality"] = locality
+            userMap["locality2"] = locality2
+            userMap["houseBlock"] = houseNo
+            userMap["nearestLandmark"] = nearestLandmark
+            userMap["mobNo"] = mobNo
 
-                userDatabase.child(maxId.toString()).setValue(userMap).addOnCompleteListener{ task ->
-                    if (task.isSuccessful){
-                        startActivity(Intent(this,Accounts::class.java))
-                        finish()
-                    }
+            userDatabase.child(maxId.toString()).setValue(userMap).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    startActivity(Intent(this, Accounts::class.java))
+                    finish()
+                }
 
 
             }
@@ -224,23 +240,23 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
                         val state: String = addresses[0].adminArea
                         val pinCode: String = addresses[0].postalCode
                         val country: String = addresses[0].countryName
-                        val locality:String=addresses[0].locality
+                        val locality: String = addresses[0].locality
 
-                        btnmap_new.text="$locality, $state($city), $pinCode $country"
-                        txtCity_new.text=city
-                        txtState_new.text=state
-                        txtPincode_new.text=pinCode
-                        txtLocality_new.text=locality
-                        txtCountry_new.text=country
-                        City_new.text="($city),"
-                        State_new.text=state
-                        Pincode_new.text=" $pinCode"
+                        btnmap_new.text = "$locality, $state($city), $pinCode $country"
+                        txtCity_new.text = city
+                        txtState_new.text = state
+                        txtPincode_new.text = pinCode
+                        txtLocality_new.text = locality
+                        txtCountry_new.text = country
+                        City_new.text = "($city),"
+                        State_new.text = state
+                        Pincode_new.text = " $pinCode"
 
-                        Locality_bold_new.text=locality
-                        localit_new.text="$locality,"
+                        Locality_bold_new.text = locality
+                        localit_new.text = "$locality,"
 
 
-                    } catch (e: Exception){
+                    } catch (e: Exception) {
                         e.printStackTrace()
                     }
                     fusedLocationClient.removeLocationUpdates(locationCallback)
@@ -309,30 +325,30 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
 
         val addresses: List<Address>
         geocoder = Geocoder(applicationContext, Locale.getDefault())
-        try{
+        try {
             addresses = geocoder.getFromLocation(location!!.latitude, location!!.longitude, 1)
             val address: String = addresses[0].getAddressLine(0)
             val city: String = addresses[0].subAdminArea
             val state: String = addresses[0].adminArea
             val pinCode: String = addresses[0].postalCode
             val country: String = addresses[0].countryName
-            val locality:String=addresses[0].locality
+            val locality: String = addresses[0].locality
 
-            btnmap_new.text="$locality, $state($city), $pinCode $country"
-            txtCity_new.text=city
-            txtState_new.text=state
-            txtPincode_new.text=pinCode
-            txtLocality_new.text=locality
-            txtCountry_new.text=country
-            City_new.text="($city),"
-            State_new.text=state
-            Pincode_new.text=" $pinCode"
+            btnmap_new.text = "$locality, $state($city), $pinCode $country"
+            txtCity_new.text = city
+            txtState_new.text = state
+            txtPincode_new.text = pinCode
+            txtLocality_new.text = locality
+            txtCountry_new.text = country
+            City_new.text = "($city),"
+            State_new.text = state
+            Pincode_new.text = " $pinCode"
 
-            Locality_bold_new.text=locality
-            localit_new.text="$locality,"
+            Locality_bold_new.text = locality
+            localit_new.text = "$locality,"
 
 
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
@@ -350,31 +366,35 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback,LocationListene
 
         val addresses: List<Address>
         geocoder = Geocoder(applicationContext, Locale.getDefault())
-        try{
-            addresses = geocoder.getFromLocation(map!!.cameraPosition.target.latitude, map!!.cameraPosition.target.longitude, 1)
+        try {
+            addresses = geocoder.getFromLocation(
+                map!!.cameraPosition.target.latitude,
+                map!!.cameraPosition.target.longitude,
+                1
+            )
             val address: String = addresses[0].getAddressLine(0)
             val city: String = addresses[0].subAdminArea
             val state: String = addresses[0].adminArea
             val pinCode: String = addresses[0].postalCode
             val country: String = addresses[0].countryName
-            val locality:String=addresses[0].locality
-            btnmap_new.text="$locality, $state($city), $pinCode $country"
-            txtCity_new.text=city
-            txtState_new.text=state
-            txtPincode_new.text=pinCode
-            txtLocality_new.text=locality
-            txtCountry_new.text=country
-            City_new.text="($city),"
-            State_new.text=state
-            Pincode_new.text=" $pinCode"
+            val locality: String = addresses[0].locality
+            btnmap_new.text = "$locality, $state($city), $pinCode $country"
+            txtCity_new.text = city
+            txtState_new.text = state
+            txtPincode_new.text = pinCode
+            txtLocality_new.text = locality
+            txtCountry_new.text = country
+            City_new.text = "($city),"
+            State_new.text = state
+            Pincode_new.text = " $pinCode"
 
-            Locality_bold_new.text=locality
-            localit_new.text="$locality,"
+            Locality_bold_new.text = locality
+            localit_new.text = "$locality,"
 
 
-        } catch (e: IndexOutOfBoundsException){
+        } catch (e: IndexOutOfBoundsException) {
             e.printStackTrace()
-        } catch (e: IOException){
+        } catch (e: IOException) {
             e.printStackTrace()
         }
     }

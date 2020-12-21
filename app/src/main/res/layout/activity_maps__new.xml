@@ -1,319 +1,354 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MapsActivity_New"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    tools:context=".MapsActivity_New">
 
     <RelativeLayout
         android:id="@+id/mapRel_new"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
-        <fragment
-            xmlns:map="http://schemas.android.com/apk/res-auto"
+        <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
 
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_260sdp"
-            tools:context=".MapsActivity2"/>
+            tools:context=".MapsActivity2" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/ic_pin"
-            android:translationY="-18dp"/>
+            android:translationY="-18dp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:visibility="invisible"
             android:id="@+id/txtLocality_new"
             android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="18dp"
             android:textAllCaps="false"
             android:textColor="#000"
             android:textSize="14sp"
-            />
+            android:visibility="invisible" />
+
         <TextView
-            android:visibility="invisible"
             android:id="@+id/btnmap_new"
             android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="18dp"
             android:textAllCaps="false"
             android:textColor="#000"
             android:textSize="14sp"
-            />
+            android:visibility="invisible" />
+
         <TextView
-            android:visibility="invisible"
             android:id="@+id/txtCity_new"
             android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="18dp"
             android:textAllCaps="false"
             android:textColor="#000"
             android:textSize="14sp"
-            />
+            android:visibility="invisible" />
+
         <TextView
-            android:visibility="invisible"
             android:id="@+id/txtState_new"
             android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="18dp"
             android:textAllCaps="false"
             android:textColor="#000"
             android:textSize="14sp"
-            />
+            android:visibility="invisible" />
+
         <TextView
-            android:visibility="invisible"
             android:id="@+id/txtCountry_new"
             android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="18dp"
             android:textAllCaps="false"
             android:textColor="#000"
             android:textSize="14sp"
-            />
+            android:visibility="invisible" />
+
         <TextView
-            android:visibility="invisible"
             android:id="@+id/txtPincode_new"
             android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="18dp"
             android:textAllCaps="false"
             android:textColor="#000"
             android:textSize="14sp"
-            />
+            android:visibility="invisible" />
     </RelativeLayout>
+
     <ImageView
-        android:layout_marginStart="17dp"
         android:id="@+id/lo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/mapRel_new"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_location_pin" />
 
 
     <TextView
         android:id="@+id/Locality_bold_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/mapRel_new"
-        android:layout_toRightOf="@+id/lo"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="9dp"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="2dp"
-        android:textSize="20sp"
+        android:layout_toRightOf="@+id/lo"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Gorakhpur"
         android:textColor="#000"
-        android:fontFamily="@font/montserrat_medium"
-        android:layout_height="wrap_content"
-        android:text="Gorakhpur"/>
+        android:textSize="20sp" />
+
     <TextView
 
-        android:layout_below="@+id/lo"
         android:id="@+id/localit_new"
-        android:layout_marginTop="5dp"
-        android:textColor="#000000"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lo"
         android:layout_marginStart="20dp"
-        android:textSize="12sp"
-
-
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/montserrat_medium"
-        android:layout_height="wrap_content"
-        android:text="Haraya,"/>
+
+
+        android:text="Haraya,"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+
     <TextView
-        android:layout_below="@+id/lo"
-        android:layout_toEndOf="@+id/localit_new"
         android:id="@+id/State_new"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lo"
         android:layout_marginStart="2dp"
-        android:textSize="12sp"
-        android:textColor="#000000"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/localit_new"
         android:fontFamily="@font/montserrat_medium"
-        android:layout_height="wrap_content"
         android:text="Uttar Pradesh"
-        />
+        android:textColor="#000000"
+        android:textSize="12sp" />
+
     <TextView
 
-        android:layout_below="@+id/lo"
-        android:layout_toEndOf="@+id/State_new"
         android:id="@+id/City_new"
-        android:textColor="#000000"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
-        android:layout_marginStart="1dp"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
-        android:text="(Gorakhpur),"/>
+        android:layout_below="@+id/lo"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/State_new"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="(Gorakhpur),"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+
     <TextView
 
-        android:layout_below="@+id/lo"
-        android:layout_toEndOf="@+id/City_new"
         android:id="@+id/Pincode_new"
-        android:textColor="#000000"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
-        android:layout_marginStart="1dp"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
-        android:text="273016"/>
+        android:layout_below="@+id/lo"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/City_new"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="273016"
+        android:textColor="#000000"
+        android:textSize="12sp" />
 
     <TextView
-        android:visibility="invisible"
-        android:layout_below="@+id/lo"
-        android:layout_toEndOf="@+id/Pincode_new"
         android:id="@+id/Country"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
-        android:layout_marginStart="3dp"
-        android:textSize="15sp"
-        android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
-        android:text="India"/>
-
-
-
-
-
-
+        android:layout_below="@+id/lo"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/Pincode_new"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="India"
+        android:textSize="15sp"
+        android:visibility="invisible" />
 
 
     <RelativeLayout
-        android:layout_below="@+id/localit_new"
         android:id="@+id/jk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/localit_new"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp">
 
         <EditText
             android:id="@+id/edtLocality_newr"
 
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
-            android:textSize="13sp"
-            android:paddingStart="16dp"
-            android:padding="10dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center_vertical"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:padding="10dp"
+            android:paddingStart="16dp"
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:textSize="12sp"
-            android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="Village/Locality*"
-
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
             android:background="#fcfcfc"
+
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
-            android:layout_marginStart="16dp"
-            /></RelativeLayout>
+            android:text="Village/Locality*"
+            android:textSize="12sp" />
+    </RelativeLayout>
 
 
     <RelativeLayout
         android:id="@+id/nu"
-        android:layout_below="@+id/jk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/jk"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="13dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
 
         <EditText
             android:id="@+id/HouseNo_new"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
-            android:textSize="13sp"
-            android:paddingStart="16dp"
-            android:padding="10dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center_vertical"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:padding="10dp"
+            android:paddingStart="16dp"
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:textSize="12sp"
-            android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="House/Flat/Block No"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
             android:background="#fcfcfc"
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
-            android:layout_marginStart="16dp"
-            /></RelativeLayout>
+            android:text="House/Flat/Block No"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/io"
-        android:layout_below="@+id/nu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/nu"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="13dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
 
         <EditText
             android:id="@+id/edtNearestLandmark_new"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
-            android:textSize="13sp"
-            android:paddingStart="16dp"
-            android:padding="10dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center_vertical"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:padding="10dp"
+            android:paddingStart="16dp"
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:textSize="12sp"
-            android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="Nearest Landmark"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
             android:background="#fcfcfc"
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
+            android:text="Nearest Landmark"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/MobileNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/io"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
+
+        <EditText
+            android:id="@+id/edtMobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:paddingStart="16dp"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            /></RelativeLayout>
+            android:layout_marginTop="2dp"
+            android:background="#fcfcfc"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="Mobile Number"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
+
     <Button
         android:id="@+id/SaveAddress_new"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/io"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
+        android:layout_below="@id/MobileNumber"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/bg_buttons"
-        android:textSize="15sp"
-  android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Save And Proceed"
         android:textColor="#fff"
-        android:text="Save And Proceed"/>
+        android:textSize="15sp" />
 </RelativeLayout>

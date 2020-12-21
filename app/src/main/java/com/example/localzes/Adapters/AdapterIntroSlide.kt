@@ -1,11 +1,10 @@
 package com.example.localzes.Adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.viewpager.widget.PagerAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.IntroSlide
 import com.example.localzes.R
 
@@ -38,6 +37,7 @@ class AdapterIntroSlide(
     }
 
 }*/
+/*
 class AdapterIntroSlide(
     val context: Context, private val introSlides: List<IntroSlide>
 ) :
@@ -71,4 +71,30 @@ class AdapterIntroSlide(
         container.removeView(`object` as View)
     }
 
+}
+*/
+class AdapterIntroSlide(private var images: List<IntroSlide>) :
+    RecyclerView.Adapter<AdapterIntroSlide.Pager2ViewHolder>() {
+    inner class Pager2ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val imageSplash: ImageView = view.findViewById(R.id.imgSplash)
+        fun bind(introSlide: IntroSlide) {
+            imageSplash.setImageResource(introSlide.image)
+        }
+
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Pager2ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.slide_layout_container, parent, false)
+        return Pager2ViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return images.size
+    }
+
+    override fun onBindViewHolder(holder: Pager2ViewHolder, position: Int) {
+        holder.bind(images[position])
+    }
 }
