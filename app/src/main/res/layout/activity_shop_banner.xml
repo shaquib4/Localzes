@@ -1,9 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ShopBanner">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_25sdp"
+        android:layout_marginVertical="@dimen/_110sdp">
+        <RelativeLayout
+            android:layout_margin="5dp"
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_store">
+
+            <TextView
+                android:id="@+id/store_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_22ssp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:text="Cupcakes"
+                android:layout_centerHorizontal="true"
+                android:textColor="#000"
+                android:fontFamily="@font/montserrat_bold"/>
+            <RelativeLayout
+                android:id="@+id/rel"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/bg_buttons"
+                android:layout_marginHorizontal="@dimen/_38sdp"
+                android:layout_below="@+id/store_name">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Stay Home,Order Online"
+                /></RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_below="@+id/rel"
+            android:elevation="0dp"
+            android:id="@+id/pop"
+            app:cardCornerRadius="15dp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_25sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fafacd">
+
+                <TextView
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:id="@+id/online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#000"
+                    android:text="Now order online from"
+                    android:textSize="@dimen/_14ssp"
+                    android:fontFamily="@font/montserrat_medium"/>
+                <TextView
+                    android:id="@+id/onlineStore"
+                    android:layout_below="@id/online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#000"
+                    android:text="my online store"
+                    android:textSize="@dimen/_14ssp"
+                    android:fontFamily="@font/montserrat_medium"/>
+                <RelativeLayout
+                    android:id="@+id/ClickToOrder"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_below="@+id/onlineStore"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_28sdp"
+                    android:background="@drawable/bg_buttons"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    >
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Click to Order"
+                        /></RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+            <ImageView
+                android:id="@+id/storeImage"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_below="@+id/pop"
+                android:src="@drawable/store"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/storeImage"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="@dimen/_13ssp"
+                android:layout_centerHorizontal="true"
+                android:text="Pay using Paytm or COD"/>
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/ic_customer_btn"
+        android:layout_marginHorizontal="@dimen/_18sdp"
+        android:id="@+id/saveBanner"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="#fff"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Save your shop Banner"/>
+
+</RelativeLayout>
