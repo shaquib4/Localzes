@@ -144,18 +144,6 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         timestamp = System.currentTimeMillis().toString()
-        if (edtMobileNumber.text.toString().isEmpty()) {
-            edtMobileNumber.error = "Please Enter Your Mobile Number"
-            return
-        }
-        if (edtLocality_newr.text.toString().isEmpty()) {
-            edtLocality_newr.error = "Please Provide Your Locality Details"
-            return
-        }
-        if (edtNearestLandmark_new.text.toString().isEmpty()) {
-            edtNearestLandmark_new.error = "Please Provide Your Nearest Landmark for easy Delivery"
-            return
-        }
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser

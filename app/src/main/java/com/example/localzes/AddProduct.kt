@@ -26,7 +26,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 
 class AddProduct : AppCompatActivity() {
-    private lateinit var imagePath: Uri
+    private  var imagePath: Uri?=null
     private lateinit var progressDialog: ProgressDialog
     private lateinit var products: ModelAddProduct
     private lateinit var mCartDatabaseRef: DatabaseReference
@@ -77,7 +77,10 @@ class AddProduct : AppCompatActivity() {
                 etQuantity.text.toString().isEmpty() -> {
                     etQuantity.error = "Please enter quantity"
                     return@setOnClickListener
-                }
+                }imagePath==null -> {
+
+                Toast.makeText(this, "Please provide image of Your product", Toast.LENGTH_LONG).show()
+            }
                 else -> {
                     progressDialog.setMessage("Adding Your Product....")
                     progressDialog.show()
@@ -111,7 +114,7 @@ class AddProduct : AppCompatActivity() {
                 val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
                     imagePath = result.uri
-                    val path = File(imagePath.path.toString())
+                    val path = File(imagePath!!.path.toString())
                     try {
                         thumb_Bitmap = Compressor(this)
                             .setQuality(50)
@@ -236,9 +239,6 @@ class AddProduct : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
-        } else {
-            btnAddProduct.isClickable = false
-            Toast.makeText(this, "Please provide image of Your product", Toast.LENGTH_LONG).show()
         }
     }
 
