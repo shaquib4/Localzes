@@ -70,7 +70,7 @@ class Seller_Products : AppCompatActivity() {
                 }
                 R.id.nav_order_seller -> {
 
-                    startActivity(Intent(this, OrdersSeller::class.java))
+                    startActivity(Intent(this, cardBanners::class.java))
                     overridePendingTransition(0, 0)
                     finish()
 

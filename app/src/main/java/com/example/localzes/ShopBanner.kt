@@ -37,7 +37,7 @@ class ShopBanner : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_banner)
-        storeName = findViewById(R.id.store_Name)
+        storeName = findViewById(R.id.store_name)
         btnSave = findViewById(R.id.saveBanner)
         banner = findViewById(R.id.banner)
         shopAuth = FirebaseAuth.getInstance()
