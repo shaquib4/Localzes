@@ -31,7 +31,7 @@
         android:background="#d3d3d3" />
 
     <androidx.cardview.widget.CardView
-        android:id="@id/card1"
+        android:id="@id/cardShare"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_85sdp"
         android:layout_below="@+id/view1"
@@ -99,10 +99,10 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card2"
+        android:id="@+id/cardQR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/card1"
+        android:layout_below="@id/cardShare"
         android:layout_marginTop="@dimen/_10sdp">
 
         <RelativeLayout

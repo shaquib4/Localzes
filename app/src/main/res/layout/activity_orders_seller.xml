@@ -32,7 +32,7 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card1"
+                android:id="@+id/cardShare"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
                 android:layout_margin="@dimen/_5sdp"
@@ -75,10 +75,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card2"
+                android:id="@+id/cardQR"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
-                android:layout_below="@+id/card1"
+                android:layout_below="@+id/cardShare"
                 android:layout_margin="@dimen/_5sdp"
                 app:cardCornerRadius="@dimen/_5sdp">
 
@@ -121,7 +121,7 @@
                 android:id="@+id/card3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
-                android:layout_below="@id/card2"
+                android:layout_below="@id/cardQR"
                 android:layout_margin="@dimen/_5sdp"
                 app:cardCornerRadius="@dimen/_5sdp">
 
@@ -160,7 +160,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card4"
+                android:id="@+id/cardBanner"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
                 android:layout_below="@+id/card3"

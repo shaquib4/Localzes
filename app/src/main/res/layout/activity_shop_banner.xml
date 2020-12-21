@@ -46,20 +46,18 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Stay Home,Order Online"
                 /></RelativeLayout>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_120sdp"
-            android:layout_below="@+id/rel"
-            android:elevation="0dp"
-            android:id="@+id/pop"
-            app:cardCornerRadius="15dp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginHorizontal="@dimen/_25sdp">
+
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#fafacd">
+                android:id="@+id/pop"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_below="@+id/rel"
+                android:elevation="0dp"
+
+                android:background="@drawable/border_card"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:layout_width="match_parent">
 
                 <TextView
                     android:layout_marginTop="@dimen/_18sdp"
@@ -103,7 +101,7 @@
             </RelativeLayout>
 
 
-        </androidx.cardview.widget.CardView>
+
 
 
             <ImageView
@@ -111,7 +109,7 @@
                 android:layout_width="@dimen/_180sdp"
                 android:layout_height="@dimen/_110sdp"
                 android:layout_below="@+id/pop"
-                android:src="@drawable/store"
+                android:src="@drawable/shop_png"
                 android:layout_centerHorizontal="true"
                 />
             <TextView
