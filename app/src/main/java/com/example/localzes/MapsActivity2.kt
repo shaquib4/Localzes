@@ -28,7 +28,9 @@ import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.activity_maps2.*
 import java.util.*
 
-class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,GoogleMap.OnCameraMoveListener,GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener {
+class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
+    GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveStartedListener,
+    GoogleMap.OnCameraIdleListener {
 
 
     private lateinit var map: GoogleMap
@@ -51,22 +53,21 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
             map.setOnCameraMoveStartedListener(this)
             map.setOnCameraIdleListener(this)
             locationRequest = LocationRequest()
-            val builder=LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
-            val settingsClient=LocationServices.getSettingsClient(this)
-            val task=settingsClient.checkLocationSettings(builder.build())
+            val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+            val settingsClient = LocationServices.getSettingsClient(this)
+            val task = settingsClient.checkLocationSettings(builder.build())
             task.addOnSuccessListener {
                 getLocationUpdates()
                 startLocationUpdates()
             }
-                .addOnFailureListener{
-                        e ->
+                .addOnFailureListener { e ->
                     if (e is ResolvableApiException)
                         try {
                             e.startResolutionForResult(this@MapsActivity2, 51)
                         } catch (e1: IntentSender.SendIntentException) {
                             e1.printStackTrace()
                         }
-                    }
+                }
         } else
             ActivityCompat.requestPermissions(
                 this,
@@ -105,15 +106,14 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
                 map.setOnCameraMoveStartedListener(this)
                 map.setOnCameraIdleListener(this)
                 locationRequest = LocationRequest()
-                val builder=LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
-                val settingsClient=LocationServices.getSettingsClient(this)
-                val task=settingsClient.checkLocationSettings(builder.build())
+                val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+                val settingsClient = LocationServices.getSettingsClient(this)
+                val task = settingsClient.checkLocationSettings(builder.build())
                 task.addOnSuccessListener {
                     getLocationUpdates()
                     startLocationUpdates()
                 }
-                    .addOnFailureListener{
-                            e ->
+                    .addOnFailureListener { e ->
                         if (e is ResolvableApiException) {
                             try {
                                 e.startResolutionForResult(this@MapsActivity2, 51)
@@ -140,6 +140,14 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        if (edtLocality_seller.text.toString().isEmpty()) {
+            edtLocality_seller.error = "Please Enter Your Locality"
+            return
+        }
+        if (edtNearestLandmark_seller.text.toString().isEmpty()) {
+            edtNearestLandmark_seller.error = "Please Enter Your Landmark"
+            return
+        }
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
         SaveAddress_seller.setOnClickListener {
@@ -147,31 +155,31 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
 
             val email = intent.getStringExtra("email")
             val address = btnmapseller.text.toString()
-            val city=txtCity_seller.text.toString()
-            val state=txtState_seller.text.toString()
-            val country=txtCountry_seller.text.toString()
-            val pinCode=txtPincode_seller.text.toString()
-            val locality=txtLocality_seller.text.toString()
-            val locality2=edtLocality_seller.text.toString()
-            val nearestLandmark=edtNearestLandmark_seller.text.toString()
-            val houseNo=HouseNo_seller.text.toString()
-            val intent= Intent(this,SellerShop_detail::class.java)
-            intent.putExtra("name",name)
-            intent.putExtra("email",email)
-            intent.putExtra("address",address)
-            intent.putExtra("city",city)
-            intent.putExtra("state",state)
-            intent.putExtra("country",country)
-            intent.putExtra("pinCode",pinCode)
-            intent.putExtra("locality",locality)
-            intent.putExtra("locality2",locality2)
-            intent.putExtra("nearestLandmark",nearestLandmark)
-            intent.putExtra("HouseNo",houseNo)
+            val city = txtCity_seller.text.toString()
+            val state = txtState_seller.text.toString()
+            val country = txtCountry_seller.text.toString()
+            val pinCode = txtPincode_seller.text.toString()
+            val locality = txtLocality_seller.text.toString()
+            val locality2 = edtLocality_seller.text.toString()
+            val nearestLandmark = edtNearestLandmark_seller.text.toString()
+            val houseNo = HouseNo_seller.text.toString()
+            val intent = Intent(this, SellerShop_detail::class.java)
+            intent.putExtra("name", name)
+            intent.putExtra("email", email)
+            intent.putExtra("address", address)
+            intent.putExtra("city", city)
+            intent.putExtra("state", state)
+            intent.putExtra("country", country)
+            intent.putExtra("pinCode", pinCode)
+            intent.putExtra("locality", locality)
+            intent.putExtra("locality2", locality2)
+            intent.putExtra("nearestLandmark", nearestLandmark)
+            intent.putExtra("HouseNo", houseNo)
 
 
 
-                startActivity(intent)
-                finish()
+            startActivity(intent)
+            finish()
 
         }
     }
@@ -200,25 +208,24 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
                         val address: String = addresses[0].getAddressLine(0)
 
 
-
                         val city: String = addresses[0].subAdminArea
                         val state: String = addresses[0].adminArea
                         val pinCode: String = addresses[0].postalCode
                         val country: String = addresses[0].countryName
-                        val locality:String=addresses[0].locality
-                        btnmapseller.text="$locality, $state($city), $pinCode $country"
-                        txtCity_seller.text=city
-                        txtState_seller.text=state
-                        txtPincode_seller.text=pinCode
-                        txtLocality_seller.text=locality
-                        txtCountry_seller.text=country
-                        City_seller.text="($city),"
-                        State_seller.text=state
-                        Pincode_seller.text=" $pinCode"
+                        val locality: String = addresses[0].locality
+                        btnmapseller.text = "$locality, $state($city), $pinCode $country"
+                        txtCity_seller.text = city
+                        txtState_seller.text = state
+                        txtPincode_seller.text = pinCode
+                        txtLocality_seller.text = locality
+                        txtCountry_seller.text = country
+                        City_seller.text = "($city),"
+                        State_seller.text = state
+                        Pincode_seller.text = " $pinCode"
 
-                        Locality_bold_seller.text=locality
-                        localit_seller.text="$locality,"
-                    }catch (e:java.lang.Exception){
+                        Locality_bold_seller.text = locality
+                        localit_seller.text = "$locality,"
+                    } catch (e: java.lang.Exception) {
                         e.printStackTrace()
                     }
                     fusedLocationClient.removeLocationUpdates(locationCallback)
@@ -229,7 +236,7 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
                     if (location != null) {
                         val latLng = LatLng(location.latitude, location.longitude)
                         val markerOptions = MarkerOptions().position(latLng)
-                     //   map.addMarker(markerOptions)
+                        //   map.addMarker(markerOptions)
                         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
                     }
                 }
@@ -287,7 +294,7 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
 
         val addresses: List<Address>
 
-        try{
+        try {
             geocoder = Geocoder(applicationContext, Locale.getDefault())
             addresses = geocoder.getFromLocation(location!!.latitude, location!!.longitude, 1)
             val address: String = addresses[0].getAddressLine(0)
@@ -295,23 +302,23 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
             val state: String = addresses[0].adminArea
             val pinCode: String = addresses[0].postalCode
             val country: String = addresses[0].countryName
-            val locality:String=addresses[0].locality
+            val locality: String = addresses[0].locality
 
-            btnmapseller.text="$locality, $state($city), $pinCode $country"
-            txtCity_seller.text=city
-            txtState_seller.text=state
-            txtPincode_seller.text=pinCode
-            txtLocality_seller.text=locality
-            txtCountry_seller.text=country
-            City_seller.text="($city),"
-            State_seller.text=state
-            Pincode_seller.text=" $pinCode"
+            btnmapseller.text = "$locality, $state($city), $pinCode $country"
+            txtCity_seller.text = city
+            txtState_seller.text = state
+            txtPincode_seller.text = pinCode
+            txtLocality_seller.text = locality
+            txtCountry_seller.text = country
+            City_seller.text = "($city),"
+            State_seller.text = state
+            Pincode_seller.text = " $pinCode"
 
-            Locality_bold_seller.text=locality
-            localit_seller.text="$locality,"
+            Locality_bold_seller.text = locality
+            localit_seller.text = "$locality,"
 
 
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
@@ -329,31 +336,35 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback,LocationListener,G
 
         val addresses: List<Address>
         geocoder = Geocoder(applicationContext, Locale.getDefault())
-        try{
-            addresses = geocoder.getFromLocation(map!!.cameraPosition.target.latitude, map!!.cameraPosition.target.longitude, 1)
+        try {
+            addresses = geocoder.getFromLocation(
+                map!!.cameraPosition.target.latitude,
+                map!!.cameraPosition.target.longitude,
+                1
+            )
             val address: String = addresses[0].getAddressLine(0)
             val city: String = addresses[0].subAdminArea
             val state: String = addresses[0].adminArea
             val pinCode: String = addresses[0].postalCode
             val country: String = addresses[0].countryName
-            val locality:String=addresses[0].locality
+            val locality: String = addresses[0].locality
 
-            btnmapseller.text="$locality, $state($city), $pinCode $country"
-            txtCity_seller.text=city
-            txtState_seller.text=state
-            txtPincode_seller.text=pinCode
-            txtLocality_seller.text=locality
-            txtCountry_seller.text=country
-            City_seller.text="($city),"
-            State_seller.text=state
-            Pincode_seller.text=" $pinCode"
+            btnmapseller.text = "$locality, $state($city), $pinCode $country"
+            txtCity_seller.text = city
+            txtState_seller.text = state
+            txtPincode_seller.text = pinCode
+            txtLocality_seller.text = locality
+            txtCountry_seller.text = country
+            City_seller.text = "($city),"
+            State_seller.text = state
+            Pincode_seller.text = " $pinCode"
 
-            Locality_bold_seller.text=locality
-            localit_seller.text="$locality,"
+            Locality_bold_seller.text = locality
+            localit_seller.text = "$locality,"
 
-        } catch (e:IndexOutOfBoundsException){
+        } catch (e: IndexOutOfBoundsException) {
             e.printStackTrace()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }

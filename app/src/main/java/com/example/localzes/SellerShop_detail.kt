@@ -54,6 +54,11 @@ class SellerShop_detail : AppCompatActivity() {
         etCategory1 = findViewById(R.id.spn_category)
         upi = findViewById(R.id.edtPay)
         auth = FirebaseAuth.getInstance()
+        if (etShopName.text.toString().isEmpty()) {
+            etShopName.error = "Please Enter Your Shop Name"
+            return
+        }
+
 
         btnChooseImage.setOnClickListener {
             startFileChooser()
