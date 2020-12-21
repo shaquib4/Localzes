@@ -1,6 +1,7 @@
 package com.example.localzes.Modals
 
 class ModelManageAddress(
+    val id:String,
     val address: String,
     val city: String,
     val pinCode: String,
@@ -8,5 +9,5 @@ class ModelManageAddress(
     val state: String,
     val mobileNo: String
 ) {
-    constructor() : this("", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "","")
 }

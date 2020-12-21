@@ -43,6 +43,7 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
     private lateinit var userDatabase: DatabaseReference
+    var timestamp: String = ""
     var maxId: Int = 0
 
     private fun getLocationAccess() {
@@ -142,6 +143,7 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        timestamp = System.currentTimeMillis().toString()
         if (edtMobileNumber.text.toString().isEmpty()) {
             edtMobileNumber.error = "Please Enter Your Mobile Number"
             return
@@ -215,9 +217,10 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
                     userMap["locality2"] = locality2
                     userMap["houseBlock"] = houseNo
                     userMap["nearestLandmark"] = nearestLandmark
-                    userMap["mobNo"] = mobNo
+                    userMap["mobileNo"] = mobNo
+                    userMap["id"] = timestamp
 
-                    userDatabase.child(maxId.toString()).setValue(userMap)
+                    userDatabase.child(timestamp).setValue(userMap)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 startActivity(Intent(this, Accounts::class.java))

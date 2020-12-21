@@ -285,6 +285,7 @@ class SellerShop_detail : AppCompatActivity() {
                                 userMaps["locality2"] = locality2.toString()
                                 userMaps["nearestLandmark"] = nearestLandmark.toString()
                                 userMaps["houseBlock"] = houseNo.toString()
+                                userMaps["mobileNo"] = phone.toString()
                                 mDatabaseRef.setValue(userMaps).addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         startActivity(
