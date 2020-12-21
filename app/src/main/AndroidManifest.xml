@@ -24,7 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShopBanner"></activity>
+        <activity android:name=".cardBanners"></activity>
+        <activity android:name=".ShopBanner" />
         <activity android:name=".generateQRcode" />
         <activity android:name=".SplashScreenActivity" />
         <activity android:name=".MainActivity" />
