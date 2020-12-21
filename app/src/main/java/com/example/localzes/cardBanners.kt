@@ -52,5 +52,13 @@ class cardBanners : AppCompatActivity() {
 
             return@setOnNavigationItemSelectedListener false
         }
+        cardQR.setOnClickListener {
+            startActivity(Intent(this,generateQRcode::class.java))
+            finish()
+        }
+        cardBanner.setOnClickListener {
+            startActivity(Intent(this,ShopBanner::class.java))
+            finish()
+        }
     }
 }

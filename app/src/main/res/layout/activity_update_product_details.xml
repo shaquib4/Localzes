@@ -64,7 +64,7 @@
                 android:background="#f1f1f1" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card4"
+                android:id="@+id/cardBanner"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
                 android:layout_below="@id/imgBorder1"
@@ -92,7 +92,7 @@
                 android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/card4"
+                android:layout_below="@+id/cardBanner"
                 android:weightSum="2">
 
 

@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.cardview.widget.CardView
-import kotlinx.android.synthetic.main.activity_orders_seller.*
 
 class OrdersSeller : AppCompatActivity() {
     private lateinit var card1:CardView
@@ -14,10 +13,10 @@ class OrdersSeller : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_seller)
-        card1=findViewById(R.id.card1)
-        card2=findViewById(R.id.card2)
+        card1=findViewById(R.id.cardShare)
+        card2=findViewById(R.id.cardQR)
         card3=findViewById(R.id.card3)
-        card4=findViewById(R.id.card4)
+        card4=findViewById(R.id.cardBanner)
 
 
         card1.setOnClickListener {
