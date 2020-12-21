@@ -27,7 +27,7 @@ class SellerShop_detail : AppCompatActivity() {
     private lateinit var btnChooseImage: ImageView
     private lateinit var btnUpload: Button
     private lateinit var auth: FirebaseAuth
-    private lateinit var filepath: Uri
+    private var filepath: Uri?=null
     private lateinit var mDatabaseRef: DatabaseReference
     private lateinit var userDatabases: DatabaseReference
     private lateinit var etShopName: EditText
@@ -285,6 +285,7 @@ class SellerShop_detail : AppCompatActivity() {
                                 userMaps["locality2"] = locality2.toString()
                                 userMaps["nearestLandmark"] = nearestLandmark.toString()
                                 userMaps["houseBlock"] = houseNo.toString()
+                                userMaps["mobileNo"] = phone.toString()
                                 mDatabaseRef.setValue(userMaps).addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         startActivity(
@@ -339,7 +340,7 @@ class SellerShop_detail : AppCompatActivity() {
                     val result = CropImage.getActivityResult(data)
                     if (resultCode == Activity.RESULT_OK) {
                         filepath = result.uri
-                        val path = File(filepath.path.toString())
+                        val path = File(filepath?.path.toString())
                         try {
                             thumb_Bitmap = Compressor(this)
                                 .setQuality(75)

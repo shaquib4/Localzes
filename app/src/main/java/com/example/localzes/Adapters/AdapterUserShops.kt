@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.localzes.Home
 import com.example.localzes.Modals.Upload
 import com.example.localzes.R
 import com.example.localzes.UserProductsActivity
@@ -187,6 +188,7 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
             })*/
             intent.putExtra("shopId", shops_user.shopId)
             context.startActivity(intent)
+            (context as Home).finish()
         }
     }
 

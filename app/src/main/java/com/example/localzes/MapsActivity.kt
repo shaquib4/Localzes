@@ -213,6 +213,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                 userMaps["locality2"] = locality2
                 userMaps["houseBlock"] = houseNo
                 userMaps["nearestLandmark"] = nearestLandmark
+                userMaps["mobileNo"] = phone.toString()
                 userDatabase.setValue(userMaps).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
 

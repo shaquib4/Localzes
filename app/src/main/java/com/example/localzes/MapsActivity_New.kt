@@ -43,6 +43,7 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
     private lateinit var userDatabase: DatabaseReference
+    var timestamp: String = ""
     var maxId: Int = 0
 
     private fun getLocationAccess() {
@@ -142,18 +143,7 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        if (edtMobileNumber.text.toString().isEmpty()) {
-            edtMobileNumber.error = "Please Enter Your Mobile Number"
-            return
-        }
-        if (edtLocality_newr.text.toString().isEmpty()) {
-            edtLocality_newr.error = "Please Provide Your Locality Details"
-            return
-        }
-        if (edtNearestLandmark_new.text.toString().isEmpty()) {
-            edtNearestLandmark_new.error = "Please Provide Your Nearest Landmark for easy Delivery"
-            return
-        }
+        timestamp = System.currentTimeMillis().toString()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
@@ -215,9 +205,10 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
                     userMap["locality2"] = locality2
                     userMap["houseBlock"] = houseNo
                     userMap["nearestLandmark"] = nearestLandmark
-                    userMap["mobNo"] = mobNo
+                    userMap["mobileNo"] = mobNo
+                    userMap["id"] = timestamp
 
-                    userDatabase.child(maxId.toString()).setValue(userMap)
+                    userDatabase.child(timestamp).setValue(userMap)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 startActivity(Intent(this, Accounts::class.java))

@@ -5,12 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,10 +20,7 @@ import com.example.localzes.Modals.UserCartDetails
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_cart.*
-import kotlinx.android.synthetic.main.activity_cart.bottom_navCart
 import kotlinx.android.synthetic.main.activity_cart1.*
-import org.w3c.dom.Text
 
 class Cart : AppCompatActivity() {
     private lateinit var cartDatabase: DatabaseReference
@@ -314,6 +309,7 @@ class Cart : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 deliveryUser = snapshot.child("address").value.toString()
+                deliveryUserMobileNo = snapshot.child("mobileNo").value.toString()
                 deliveryAddress.text = deliveryUser
             }
 
@@ -345,6 +341,7 @@ class Cart : AppCompatActivity() {
                 for (i in snapshot.children) {
 
                     val obj = ModelManageAddress(
+                        i.child("id").value.toString(),
                         i.child("address").value.toString(),
                         i.child("city").value.toString(),
                         i.child("pinCode").value.toString(),
@@ -364,7 +361,7 @@ class Cart : AppCompatActivity() {
                     val txtCurrAddress: TextView = view.findViewById(R.id.txtCurrAddress)
                     val txtCurrMobile: TextView = view.findViewById(R.id.txtCurrMobile)
                     txtCurrAddress.text = deliveryUser
-                    txtCurrMobile.text = "Mobile No- $"
+                    txtCurrMobile.text = "Mobile No- ${deliveryUserMobileNo}"
                     val layoutManager = LinearLayoutManager(this@Cart)
                     rv.layoutManager = layoutManager
                     val adapter = AdapterManageAddress(this@Cart, addresses)
