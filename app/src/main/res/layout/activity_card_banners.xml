@@ -29,11 +29,14 @@
             android:layout_height="@dimen/_160sdp"
             android:background="@drawable/border">
        <ImageView
+           android:layout_alignLeft="@+id/txtBYS"
            android:layout_width="@dimen/_160sdp"
            android:layout_height="@dimen/_120sdp"
-           android:src="@drawable/store"/>
+           android:scaleType="fitXY"
+           android:src="@drawable/shop_png"/>
 
             <TextView
+                android:id="@+id/txtBYS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
@@ -134,18 +137,6 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card3"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_160sdp"
-            android:layout_below="@id/card2"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_toLeftOf="@id/viewCenter"
-            app:cardCornerRadius="10dp">
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
             android:layout_marginTop="@dimen/_135sdp"
             android:id="@+id/card4"
             android:layout_width="@dimen/_130sdp"
@@ -204,12 +195,12 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
-                    android:src="@drawable/send"/>
+                    android:src="@drawable/overview"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Scan QR code"
+                    android:text="Shop Overview"
                     android:textColor="#fff"
                     android:fontFamily="@font/montserrat_bold"
                     android:layout_centerHorizontal="true"
@@ -222,17 +213,6 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card6"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_160sdp"
-            android:layout_below="@id/card2"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_toRightOf="@id/viewCenter"
-            app:cardCornerRadius="10dp">
-
-        </androidx.cardview.widget.CardView>
 
 
     </RelativeLayout>
