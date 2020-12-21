@@ -17,10 +17,7 @@
             android:layout_height="@dimen/_40sdp">
 
 
-
         </RelativeLayout>
-
-
 
 
         <RelativeLayout
@@ -28,18 +25,19 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_160sdp"
             android:background="@drawable/border">
-       <ImageView
-           android:layout_width="@dimen/_160sdp"
-           android:layout_height="@dimen/_120sdp"
-           android:src="@drawable/store"/>
+
+            <ImageView
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:src="@drawable/store" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_100sdp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Boost Your Shop"
-                android:layout_marginTop="@dimen/_100sdp"
-                android:layout_marginStart="@dimen/_15sdp"
                 android:textColor="#fff"
                 android:textSize="@dimen/_25ssp" />
         </RelativeLayout>
@@ -53,43 +51,43 @@
             android:layout_centerHorizontal="true" />
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="@dimen/_135sdp"
             android:id="@+id/card1"
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_160sdp"
-
             android:layout_marginHorizontal="@dimen/_10sdp"
+
+            android:layout_marginTop="@dimen/_135sdp"
 
             android:layout_toLeftOf="@id/viewCenter"
             android:backgroundTint=""
             app:cardCornerRadius="10dp">
 
             <RelativeLayout
-                android:background="#008000"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#008000">
 
                 <ImageView
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:padding="@dimen/_10sdp"
-                    android:background="@drawable/disk_circle"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
-                    android:src="@drawable/share"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/disk_circle"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/share" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Share Your Shop"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:textColor="#fff"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/_15ssp"
-                    android:textAlignment="center"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/_20sdp"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Share Your Shop"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_15ssp" />
 
 
             </RelativeLayout>
@@ -104,29 +102,30 @@
             android:layout_marginVertical="@dimen/_10sdp"
             android:layout_toLeftOf="@id/viewCenter"
             app:cardCornerRadius="10dp">
+
             <RelativeLayout
-                android:background="#f156"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#f156">
 
                 <ImageView
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
-                    android:src="@drawable/qr_scan"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:src="@drawable/qr_scan" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Generate QR code"
-                    android:textColor="#fff"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/_15ssp"
-                    android:textAlignment="center"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/_30sdp"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Generate QR code"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_15ssp" />
 
 
             </RelativeLayout>
@@ -146,39 +145,40 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="@dimen/_135sdp"
             android:id="@+id/card4"
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_160sdp"
-
             android:layout_marginHorizontal="@dimen/_10sdp"
+
+            android:layout_marginTop="@dimen/_135sdp"
             android:layout_toRightOf="@id/viewCenter"
             app:cardCornerRadius="10dp">
+
             <RelativeLayout
-                android:background="#f15642"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#f15642">
 
                 <ImageView
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:padding="@dimen/_10sdp"
-                    android:background="@drawable/disk_circle"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
-                    android:src="@drawable/pdf"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/disk_circle"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/pdf" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shop Banner"
-                    android:textColor="#fff"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/_15ssp"
-                    android:textAlignment="center"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/_30sdp"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Shop Banner"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_15ssp" />
 
 
             </RelativeLayout>
@@ -194,29 +194,30 @@
             android:layout_marginVertical="@dimen/_10sdp"
             android:layout_toRightOf="@id/viewCenter"
             app:cardCornerRadius="10dp">
+
             <RelativeLayout
-                android:background="#ffce44"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#ffce44">
 
                 <ImageView
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
-                    android:src="@drawable/send"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:src="@drawable/send" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Scan QR code"
-                    android:textColor="#fff"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/_15ssp"
-                    android:textAlignment="center"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/_30sdp"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Scan QR code"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_15ssp" />
 
 
             </RelativeLayout>
