@@ -19,6 +19,7 @@ import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.Modals.UserCartDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_user_products.*
 import util.ConnectionManager
 
 class UserProductsActivity : AppCompatActivity() {
@@ -58,8 +59,14 @@ class UserProductsActivity : AppCompatActivity() {
         val uid = user!!.uid
         recyclerUserProduct = findViewById(R.id.recycler_shop_user_products)
         recyclerUserProduct.layoutManager = LinearLayoutManager(this)
+        retryUserProducts.setOnClickListener {
+            this.recreate()
+        }
 
-        search.addTextChangedListener(object : TextWatcher {
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_userProduct.visibility=View.VISIBLE
+            rl_retryUserProducts.visibility=View.GONE
+            search.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
             }
@@ -71,12 +78,18 @@ class UserProductsActivity : AppCompatActivity() {
             override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 searchUserProducts(cs.toString().toLowerCase())
             }
-        })
+        })}else{
+            rl_userProduct.visibility=View.GONE
+            rl_retryUserProducts.visibility=View.VISIBLE
+        }
         cartDatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
         mUserProductDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
-        if (ConnectionManager().checkConnectivity(this)) {mUserProductDatabase.child("Products").addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_userProduct.visibility=View.VISIBLE
+            rl_retryUserProducts.visibility=View.GONE
+            mUserProductDatabase.child("Products").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -109,22 +122,14 @@ class UserProductsActivity : AppCompatActivity() {
             }
 
         })}else{
-            val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Error")
-            dialog.setMessage("Internet Connection not Found")
-            dialog.setPositiveButton("Open Setting") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
-                startActivity(settingsIntent)
-                finish()
-            }
-            dialog.setNegativeButton("Exit") { text, listener ->
-                ActivityCompat.finishAffinity(this)
-            }
-            dialog.create()
-            dialog.show()
+            rl_userProduct.visibility=View.GONE
+            rl_retryUserProducts.visibility=View.VISIBLE
 
         }
-        cartDatabaseReference.addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_userProduct.visibility=View.VISIBLE
+            rl_retryUserProducts.visibility=View.GONE
+            cartDatabaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -175,27 +180,35 @@ class UserProductsActivity : AppCompatActivity() {
                     (cartItems as ArrayList<UserCartDetails>).add(obj)
 
                 }
-                if (cartItems.isNotEmpty()) {
+                if (ConnectionManager().checkConnectivity(this@UserProductsActivity)) {
+                    if (cartItems.isNotEmpty()) {
 
-                    cartRelativeLayout.visibility = View.VISIBLE
-                    totalItems=snapshot.childrenCount.toInt()
-                    quantityItem.text = totalItems.toString()
-                    costTotal.text = (totalCost).toString()
-                    viewCart.setOnClickListener {
-                        val intent = Intent(applicationContext, Cart::class.java)
-                        intent.putExtra("totalCost",totalCost.toString())
-                        intent.putExtra("totalOriginalPrice",totalOriginalPrice.toString())
-                        intent.putExtra("totalItems",totalItems.toString())
-                        intent.putExtra("shopUid",shopId)
-                        startActivity(intent)
-                        finish()
+                        cartRelativeLayout.visibility = View.VISIBLE
+                        totalItems = snapshot.childrenCount.toInt()
+                        quantityItem.text = totalItems.toString()
+                        costTotal.text = (totalCost).toString()
+                        viewCart.setOnClickListener {
+                            val intent = Intent(applicationContext, Cart::class.java)
+                            intent.putExtra("totalCost", totalCost.toString())
+                            intent.putExtra("totalOriginalPrice", totalOriginalPrice.toString())
+                            intent.putExtra("totalItems", totalItems.toString())
+                            intent.putExtra("shopUid", shopId)
+                            startActivity(intent)
+                            finish()
+                        }
+                        if (cartItems.isEmpty()) {
+                            cartRelativeLayout.visibility = View.GONE
+                        }
                     }
-                    if (cartItems.isEmpty()){
-                        cartRelativeLayout.visibility=View.GONE
-                    }
+                }else{
+                    rl_userProduct.visibility=View.GONE
+                    rl_retryUserProducts.visibility=View.VISIBLE
                 }
             }
-        })
+        })}else{
+            rl_userProduct.visibility=View.GONE
+            rl_retryUserProducts.visibility=View.VISIBLE
+        }
     }
 
     private fun searchUserProducts(str:String){
@@ -203,7 +216,10 @@ class UserProductsActivity : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString()).child("Products").orderByChild("title")
                 .startAt(str)
                 .endAt(str + "\uf8ff")
-        queryProduct.addValueEventListener(object:ValueEventListener{
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_userProduct.visibility=View.VISIBLE
+            rl_retryUserProducts.visibility=View.GONE
+            queryProduct.addValueEventListener(object:ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -234,7 +250,10 @@ class UserProductsActivity : AppCompatActivity() {
                     )
                 recyclerUserProduct.adapter = userProductAdapter
             }
-        })
+        })}else{
+            rl_userProduct.visibility=View.GONE
+            rl_retryUserProducts.visibility=View.VISIBLE
+        }
     }
 
     override fun onBackPressed() {

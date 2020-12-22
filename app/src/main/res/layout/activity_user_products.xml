@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProductsActivity">
+    <RelativeLayout
+        android:id="@+id/rl_userProduct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <EditText
 
@@ -111,5 +115,20 @@
 
     </RelativeLayout>
 
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_retryUserProducts"
 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/retryUserProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_buttons"
+            android:text="Retry"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="@dimen/_50sdp"/>
+
+    </RelativeLayout>
 </RelativeLayout>

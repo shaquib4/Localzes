@@ -42,6 +42,10 @@ class Search : AppCompatActivity() {
         searchItem=ArrayList<Upload>()
         searchProductItem=ArrayList<ModelAddProduct>()
 
+        retrySearch.setOnClickListener {
+            this.recreate()
+        }
+
         bottom_navSearch.selectedItemId = R.id.nav_search
         bottom_navSearch.setOnNavigationItemSelectedListener { item ->
 
@@ -134,7 +138,10 @@ class Search : AppCompatActivity() {
 
         })*/
 
-       btnLocality.setOnClickListener {
+        if (ConnectionManager().checkConnectivity(this@Search)){
+            rl_search.visibility=View.VISIBLE
+            rl_retrySearch.visibility=View.GONE
+            btnLocality.setOnClickListener {
             searchAct.visibility=View.VISIBLE
             search.visibility=View.GONE
             btnLocality.setTextColor(this.resources.getColor(R.color.white))
@@ -204,13 +211,19 @@ class Search : AppCompatActivity() {
                 }
             })
 
+        }}else{
+            rl_search.visibility=View.GONE
+            rl_retrySearch.visibility=View.VISIBLE
         }
 
     }
 
     private fun searchProducts(string:String) {
         (searchProductItem as ArrayList<ModelAddProduct>).clear()
-        if (ConnectionManager().checkConnectivity(this@Search)) {val userDatabases = FirebaseDatabase.getInstance().reference.child("seller")
+        if (ConnectionManager().checkConnectivity(this@Search)) {
+            rl_search.visibility=View.VISIBLE
+            rl_retrySearch.visibility=View.GONE
+            val userDatabases = FirebaseDatabase.getInstance().reference.child("seller")
         userDatabases.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
@@ -268,19 +281,8 @@ class Search : AppCompatActivity() {
                 }
             }
         })}else{
-            val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Error")
-            dialog.setMessage("Internet Connection not Found")
-            dialog.setPositiveButton("Open Setting") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
-                startActivity(settingsIntent)
-                finish()
-            }
-            dialog.setNegativeButton("Exit") { text, listener ->
-                ActivityCompat.finishAffinity(this)
-            }
-            dialog.create()
-            dialog.show()
+            rl_search.visibility=View.GONE
+            rl_retrySearch.visibility=View.VISIBLE
         }
     }
 
@@ -289,7 +291,11 @@ class Search : AppCompatActivity() {
             .startAt(str)
             .endAt(str + "\uf8ff")
 
-        if (ConnectionManager().checkConnectivity(this@Search)){ queryShop.addValueEventListener(object :ValueEventListener{
+        if (ConnectionManager().checkConnectivity(this@Search)){
+
+            rl_search.visibility=View.VISIBLE
+            rl_retrySearch.visibility=View.GONE
+            queryShop.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -329,19 +335,8 @@ class Search : AppCompatActivity() {
 
             }
         })}else{
-            val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Error")
-            dialog.setMessage("Internet Connection not Found")
-            dialog.setPositiveButton("Open Setting") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
-                startActivity(settingsIntent)
-                finish()
-            }
-            dialog.setNegativeButton("Exit") { text, listener ->
-                ActivityCompat.finishAffinity(this)
-            }
-            dialog.create()
-            dialog.show()
+            rl_search.visibility=View.GONE
+            rl_retrySearch.visibility=View.VISIBLE
         }
 
     }
@@ -350,7 +345,10 @@ class Search : AppCompatActivity() {
             .startAt(str)
             .endAt(str + "\uf8ff")
 
-        if (ConnectionManager().checkConnectivity(this@Search)){queryShop.addValueEventListener(object :ValueEventListener{
+        if (ConnectionManager().checkConnectivity(this@Search)){
+            rl_search.visibility=View.VISIBLE
+            rl_retrySearch.visibility=View.GONE
+            queryShop.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -390,19 +388,8 @@ class Search : AppCompatActivity() {
 
             }
         })}else{
-            val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Error")
-            dialog.setMessage("Internet Connection not Found")
-            dialog.setPositiveButton("Open Setting") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
-                startActivity(settingsIntent)
-                finish()
-            }
-            dialog.setNegativeButton("Exit") { text, listener ->
-                ActivityCompat.finishAffinity(this)
-            }
-            dialog.create()
-            dialog.show()
+            rl_search.visibility=View.GONE
+            rl_retrySearch.visibility=View.VISIBLE
         }
 
     }
