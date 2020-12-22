@@ -27,6 +27,7 @@
         android:fontFamily="@font/montserrat_bold"/>
 
     <EditText
+        android:maxLines="1"
         android:fontFamily="@font/montserrat_medium"
         android:layout_above="@id/edtregemailSeller"
         android:id="@+id/edtregNameSeller"
@@ -43,6 +44,7 @@
         android:textColorHint="#ffffff"/>
 
     <EditText
+        android:maxLines="1"
         android:fontFamily="@font/montserrat_medium"
         android:layout_above="@id/btnRegSeller"
         android:id="@+id/edtregemailSeller"
