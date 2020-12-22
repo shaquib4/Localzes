@@ -39,6 +39,7 @@ class Home : AppCompatActivity() {
     private lateinit var category7: CardView
     private lateinit var category8: CardView
     private lateinit var category9: CardView
+    private lateinit var categoryAll: CardView
     private var currentCity: String = ""
     private var backPressedTime = 0L
     private var bool = false
@@ -57,6 +58,8 @@ class Home : AppCompatActivity() {
         category7 = findViewById(R.id.cardGrocery6)
         category8 = findViewById(R.id.cardGrocery7)
         category9 = findViewById(R.id.cardGrocery8)
+        categoryAll = findViewById(R.id.cardAll)
+        categoryAll.isSelected = true
         recyclerShopUser.layoutManager = LinearLayoutManager(this)
         firebaseUser = FirebaseAuth.getInstance().currentUser
         userDatabase = FirebaseDatabase.getInstance().reference.child("seller")
@@ -74,6 +77,9 @@ class Home : AppCompatActivity() {
             }
 
         })
+        categoryAll.setOnClickListener {
+            loadAllShops()
+        }
         category1.setOnClickListener {
             loadShops("Grocery")
         }
@@ -108,7 +114,7 @@ class Home : AppCompatActivity() {
             scanner.setBeepEnabled(false)
             scanner.initiateScan()
         }
-        loadAllShops()
+        //loadAllShops()
         bottom_navProducts.selectedItemId = R.id.nav_home
         bottom_navProducts.setOnNavigationItemSelectedListener { item ->
 
