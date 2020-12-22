@@ -60,109 +60,113 @@ class continue_payment : AppCompatActivity() {
 
             val id = radioGroup!!.checkedRadioButtonId
             val radioButton = findViewById<RadioButton>(id)
-            if (radioButton.text == " Pay on Delivery") {
-                progressDialog.setMessage("Placing Your Order....")
-                progressDialog.show()
-                val dataReference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("users")
-                        .child(uid.toString()).child("Cart")
-                dataReference.addValueEventListener(object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError) {
-
-                    }
-
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        (cartProducts as ArrayList<UserCartDetails>).clear()
-                        for (i in snapshot.children) {
-                            val obj =
-                                UserCartDetails(
-                                    i.child("productId").value.toString(),
-                                    i.child("orderBy").value.toString(),
-                                    i.child("productTitle").value.toString(),
-                                    i.child("priceEach").value.toString(),
-                                    i.child("finalPrice").value.toString(),
-                                    i.child("finalQuantity").value.toString(),
-                                    i.child("orderTo").value.toString(),
-                                    i.child("productImageUrl").value.toString(),
-                                    i.child("sellingPrice").value.toString(),
-                                    i.child("finalsellingPrice").value.toString()
-                                )
-                            (cartProducts as ArrayList<UserCartDetails>).add(obj)
-                        }
-                    }
-                })
-                val timestamp = System.currentTimeMillis().toString()
-                val orderId = timestamp
-                val orderTime = timestamp
-                val orderStatus = "Pending"
-                val orderCost = totalCost.toString()
-                val orderBy = uid.toString()
-                val orderTo = shopId.toString()
-                val deliveryAddress = deliveryAddress.toString()
-                orderDetails =
-                    ModelOrderDetails(
-                        orderId,
-                        orderTime,
-                        orderStatus,
-                        orderCost,
-                        orderBy,
-                        orderTo,
-                        totalItem.toString(),
-                        deliveryAddress,
-                        "Cash on Delivery",
-                        orderByName.toString(),
-                        orderByMobile.toString()
-                    )
-
-                val ref: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
-                        .child("Orders")
-                ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
-                    val reference: DatabaseReference =
+            when (radioButton.text) {
+                " Pay on Delivery" -> {
+                    progressDialog.setMessage("Placing Your Order....")
+                    progressDialog.show()
+                    val dataReference: DatabaseReference =
                         FirebaseDatabase.getInstance().reference.child("users")
-                            .child(orderBy)
-                            .child("MyOrders")
-                    reference.child(orderId).setValue(orderDetails)
-                    for (i in 0 until cartProducts.size) {
-                        val productId = cartProducts[i].productId
-                        val orderedBy = cartProducts[i].orderBy
-                        val productTitle = cartProducts[i].productTitle
-                        val priceEach = cartProducts[i].priceEach
-                        val finalPrice = cartProducts[i].finalPrice
-                        val finalQuantity = cartProducts[i].finalQuantity
-                        val orderedTo = cartProducts[i].orderTo
-                        val sellingPrice = cartProducts[i].sellingPrice
-                        val headers = HashMap<String, String>()
-                        headers["productId"] = productId
-                        headers["orderBy"] = orderedBy
-                        headers["productTitle"] = productTitle
-                        headers["priceEach"] = priceEach
-                        headers["finalPrice"] = finalPrice
-                        headers["finalQuantity"] = finalQuantity
-                        headers["orderTo"] = orderedTo
-                        headers["sellingPrice"] = sellingPrice
-                        ref.child(timestamp).child("Items").child(productId).setValue(headers)
-                        reference.child(orderId).child("orderedItems").child(productId)
-                            .setValue(headers)
-                    }
-                    dataReference.removeValue()
-                    progressDialog.dismiss()
-                    prepareNotificationMessage(orderId)
+                            .child(uid.toString()).child("Cart")
+                    dataReference.addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(error: DatabaseError) {
 
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            (cartProducts as ArrayList<UserCartDetails>).clear()
+                            for (i in snapshot.children) {
+                                val obj =
+                                    UserCartDetails(
+                                        i.child("productId").value.toString(),
+                                        i.child("orderBy").value.toString(),
+                                        i.child("productTitle").value.toString(),
+                                        i.child("priceEach").value.toString(),
+                                        i.child("finalPrice").value.toString(),
+                                        i.child("finalQuantity").value.toString(),
+                                        i.child("orderTo").value.toString(),
+                                        i.child("productImageUrl").value.toString(),
+                                        i.child("sellingPrice").value.toString(),
+                                        i.child("finalsellingPrice").value.toString()
+                                    )
+                                (cartProducts as ArrayList<UserCartDetails>).add(obj)
+                            }
+                        }
+                    })
+                    val timestamp = System.currentTimeMillis().toString()
+                    val orderId = timestamp
+                    val orderTime = timestamp
+                    val orderStatus = "Pending"
+                    val orderCost = totalCost.toString()
+                    val orderBy = uid.toString()
+                    val orderTo = shopId.toString()
+                    val deliveryAddress = deliveryAddress.toString()
+                    orderDetails =
+                        ModelOrderDetails(
+                            orderId,
+                            orderTime,
+                            orderStatus,
+                            orderCost,
+                            orderBy,
+                            orderTo,
+                            totalItem.toString(),
+                            deliveryAddress,
+                            "Cash on Delivery",
+                            orderByName.toString(),
+                            orderByMobile.toString()
+                        )
+
+                    val ref: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
+                            .child("Orders")
+                    ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
+                        val reference: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("users")
+                                .child(orderBy)
+                                .child("MyOrders")
+                        reference.child(orderId).setValue(orderDetails)
+                        for (i in 0 until cartProducts.size) {
+                            val productId = cartProducts[i].productId
+                            val orderedBy = cartProducts[i].orderBy
+                            val productTitle = cartProducts[i].productTitle
+                            val priceEach = cartProducts[i].priceEach
+                            val finalPrice = cartProducts[i].finalPrice
+                            val finalQuantity = cartProducts[i].finalQuantity
+                            val orderedTo = cartProducts[i].orderTo
+                            val sellingPrice = cartProducts[i].sellingPrice
+                            val headers = HashMap<String, String>()
+                            headers["productId"] = productId
+                            headers["orderBy"] = orderedBy
+                            headers["productTitle"] = productTitle
+                            headers["priceEach"] = priceEach
+                            headers["finalPrice"] = finalPrice
+                            headers["finalQuantity"] = finalQuantity
+                            headers["orderTo"] = orderedTo
+                            headers["sellingPrice"] = sellingPrice
+                            ref.child(timestamp).child("Items").child(productId).setValue(headers)
+                            reference.child(orderId).child("orderedItems").child(productId)
+                                .setValue(headers)
+                        }
+                        dataReference.removeValue()
+                        progressDialog.dismiss()
+                        prepareNotificationMessage(orderId)
+
+                    }
                 }
-            } else if (radioButton.text == " Pay with Paytm") {
-                val intent = Intent(this, PaymentActivity::class.java)
-                intent.putExtra("shopId", shopId.toString())
-                intent.putExtra("totalCost", totalCost.toString())
-                intent.putExtra("orderBy", uid.toString())
-                intent.putExtra("totalItem", totalItem.toString())
-                intent.putExtra("delivery", deliveryAddress.toString())
-                intent.putExtra("orderByName", orderByName.toString())
-                intent.putExtra("orderByMobile", orderByMobile.toString())
-                startActivity(intent)
-                finish()
-            }else{
-                btnPayContinue.isClickable=false
+                " Pay with Paytm" -> {
+                    val intent = Intent(this, PaymentActivity::class.java)
+                    intent.putExtra("shopId", shopId.toString())
+                    intent.putExtra("totalCost", totalCost.toString())
+                    intent.putExtra("orderBy", uid.toString())
+                    intent.putExtra("totalItem", totalItem.toString())
+                    intent.putExtra("delivery", deliveryAddress.toString())
+                    intent.putExtra("orderByName", orderByName.toString())
+                    intent.putExtra("orderByMobile", orderByMobile.toString())
+                    startActivity(intent)
+                    finish()
+                }
+                else -> {
+                    btnPayContinue.isClickable=false
+                }
             }
         }
         productCharges.text = "₹" + totalCost.toString()

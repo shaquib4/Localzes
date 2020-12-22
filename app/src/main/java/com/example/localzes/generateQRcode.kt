@@ -3,6 +3,7 @@ package com.example.localzes
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -71,6 +72,12 @@ class generateQRcode : AppCompatActivity() {
         } else {
             generateQRCode()
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, cardBanners::class.java)
+        startActivity(intent)
+        finish()
     }
 
     @RequiresApi(Build.VERSION_CODES.R)

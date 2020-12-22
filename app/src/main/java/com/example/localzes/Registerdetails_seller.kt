@@ -10,11 +10,11 @@ import kotlinx.android.synthetic.main.activity_registerdetails_seller.*
 
 class Registerdetails_seller : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    var firebaseUser: FirebaseUser?=null
+    var firebaseUser: FirebaseUser? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registerdetails_seller)
-        auth= FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
         btnRegSeller.setOnClickListener {
             register()
 
@@ -23,29 +23,32 @@ class Registerdetails_seller : AppCompatActivity() {
     }
 
     private fun register() {
-        val name=edtregNameSeller.text.toString()
-        val email=edtregemailSeller.text.toString()
+        val name = edtregNameSeller.text.toString()
+        val email = edtregemailSeller.text.toString()
 
 
 
-        if(edtregNameSeller.text.toString().isEmpty()){
-            edtregNameSeller.error="please enter password"
+        if (edtregNameSeller.text.toString().isEmpty()) {
+            edtregNameSeller.error = "please enter password"
             return
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(edtregemailSeller.text.toString()).matches()){
-            edtregemailSeller.error="Please enter valid email"
+        if (!Patterns.EMAIL_ADDRESS.matcher(edtregemailSeller.text.toString()).matches()) {
+            edtregemailSeller.error = "Please enter valid email"
             edtregemailSeller.requestFocus()
             return
         }
-        val  intent= Intent(this,MapsActivity2::class.java)
-        intent.putExtra("name",name)
-        intent.putExtra("email",email)
+        val intent = Intent(this, MapsActivity2::class.java)
+        intent.putExtra("name", name)
+        intent.putExtra("email", email)
         startActivity(intent)
         finish()
 
     }
 
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 
 
 }

@@ -58,8 +58,9 @@ class Registerdetails : AppCompatActivity() {
 
     }
 
-
-
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 
 }
 
