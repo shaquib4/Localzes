@@ -26,7 +26,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 
 class AddProduct : AppCompatActivity() {
-    private  var imagePath: Uri?=null
+    private var imagePath: Uri? = null
     private lateinit var progressDialog: ProgressDialog
     private lateinit var products: ModelAddProduct
     private lateinit var mCartDatabaseRef: DatabaseReference
@@ -77,10 +77,20 @@ class AddProduct : AppCompatActivity() {
                 etQuantity.text.toString().isEmpty() -> {
                     etQuantity.error = "Please enter quantity"
                     return@setOnClickListener
-                }imagePath==null -> {
+                }
+                imagePath == null -> {
 
-                Toast.makeText(this, "Please provide image of Your product", Toast.LENGTH_LONG).show()
-            }
+                    Toast.makeText(this, "Please provide image of Your product", Toast.LENGTH_LONG)
+                        .show()
+                }
+                (etOfferPrice.text.toString().toDouble() > etSellPrice.text.toString()
+                    .toDouble()) -> {
+                    Toast.makeText(
+                        this,
+                        "Selling price should be less than MRP",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
                 else -> {
                     progressDialog.setMessage("Adding Your Product....")
                     progressDialog.show()

@@ -80,7 +80,7 @@ class ShopBanner : AppCompatActivity() {
         Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show()*/
         var outputStream: FileOutputStream? = null
         val file: File = Environment.getExternalStorageDirectory()
-        val dir = File(file.absolutePath + "/Download")
+        val dir = File(file.absolutePath + "/Localzes")
         dir.mkdirs()
         val filename = "$shopName Banner.png"
         val outFile = File(dir, filename)

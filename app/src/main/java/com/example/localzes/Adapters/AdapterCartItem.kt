@@ -30,6 +30,8 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         val btnIncreaseCart: Button = view.findViewById(R.id.btnIncrease)
         val removeItem: ImageView = view.findViewById(R.id.imgRemove)
         val productTotalPrice: TextView = view.findViewById(R.id.txtProductTotalPrice)
+        val btnLinear: TextView = view.findViewById(R.id.btnLinear)
+        val txtOutOfStock: TextView = view.findViewById(R.id.outOfStock)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderUserCart {
@@ -43,14 +45,18 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
     }
 
     private lateinit var mCartDatabase: DatabaseReference
+    private lateinit var mReference: DatabaseReference
     private lateinit var mAuth: FirebaseAuth
     override fun onBindViewHolder(holder: HolderUserCart, position: Int) {
         val cartDetails = cart_user[position]
+        mAuth = FirebaseAuth.getInstance()
+        val user = mAuth.currentUser
+        val uid = user!!.uid
         val quantity = cartDetails.finalQuantity
         val cost = cartDetails.finalPrice
         val costOne = cartDetails.priceEach
-        val finalSelling=cartDetails.finalsellingPrice
-        val sellingOne=cartDetails.sellingPrice
+        val finalSelling = cartDetails.finalsellingPrice
+        val sellingOne = cartDetails.sellingPrice
         Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)
         holder.productTitleCart.text = cartDetails.productTitle
         holder.productOfferPriceCart.text = "₹${cartDetails.priceEach}"
@@ -61,40 +67,55 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         holder.productOriginalPriceCart.text = spannableString
         holder.productTotalPrice.text = "₹${cartDetails.finalPrice}"
         holder.quantityCart.text = quantity
-        mAuth = FirebaseAuth.getInstance()
-        val user = mAuth.currentUser
-        val uid = user!!.uid
         mCartDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
+        mReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(cartDetails.orderTo)
+                .child("Products").child(cartDetails.productId)
+        mReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.child("stock").value.toString() == "OUT") {
+                    holder.btnLinear.visibility = View.GONE
+                    holder.txtOutOfStock.visibility = View.VISIBLE
+                } else if (snapshot.child("stock").value.toString() == "IN") {
+                    holder.txtOutOfStock.visibility = View.GONE
+                    holder.btnLinear.visibility = View.VISIBLE
+                }
+            }
+        })
         var items = quantity.toInt()
         var updatedCost = cost.toDouble()
         val oneCost = costOne.toInt()
-        var finalSell=finalSelling.toDouble()
-        val sellOne=sellingOne.toDouble()
+        var finalSell = finalSelling.toDouble()
+        val sellOne = sellingOne.toDouble()
         holder.btnDecreaseCart.setOnClickListener {
             if (items > 1) {
                 updatedCost -= oneCost
                 items--
-                finalSell-=sellOne
+                finalSell -= sellOne
                 holder.productTotalPrice.text = "₹${updatedCost}"
                 holder.quantityCart.text = items.toString()
-                val headers=HashMap<String,Any>()
-                headers["finalPrice"]=updatedCost.toString()
-                headers["finalQuantity"]=items.toString()
-                headers["finalsellingPrice"]=finalSell.toString()
+                val headers = HashMap<String, Any>()
+                headers["finalPrice"] = updatedCost.toString()
+                headers["finalQuantity"] = items.toString()
+                headers["finalsellingPrice"] = finalSell.toString()
                 mCartDatabase.child(cart_user[position].productId).updateChildren(headers)
             }
         }
         holder.btnIncreaseCart.setOnClickListener {
             updatedCost += oneCost
             items++
-            finalSell+=sellOne
+            finalSell += sellOne
             holder.productTotalPrice.text = "₹${updatedCost}"
             holder.quantityCart.text = items.toString()
-            val headers=HashMap<String,Any>()
-            headers["finalPrice"]=updatedCost.toString()
-            headers["finalQuantity"]=items.toString()
-            headers["finalsellingPrice"]=finalSell.toString()
+            val headers = HashMap<String, Any>()
+            headers["finalPrice"] = updatedCost.toString()
+            headers["finalQuantity"] = items.toString()
+            headers["finalsellingPrice"] = finalSell.toString()
             mCartDatabase.child(cart_user[position].productId).updateChildren(headers)
         }
         holder.removeItem.setOnClickListener {
