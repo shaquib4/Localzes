@@ -7,6 +7,7 @@
     tools:context=".Seller_Products">
 
     <EditText
+        android:maxLines="1"
         android:id="@+id/searchShopProduct"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"

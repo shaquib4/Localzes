@@ -209,7 +209,7 @@
 
         <EditText
             android:id="@+id/edtLocality_newr"
-
+            android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
             android:layout_marginTop="12dp"
@@ -245,6 +245,7 @@
         android:layout_marginRight="10dp">
 
         <EditText
+            android:maxLines="1"
             android:id="@+id/HouseNo_new"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
@@ -279,6 +280,7 @@
         android:layout_marginRight="10dp">
 
         <EditText
+            android:maxLines="1"
             android:id="@+id/edtNearestLandmark_new"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
@@ -313,6 +315,7 @@
         android:layout_marginRight="10dp">
 
         <EditText
+            android:maxLines="1"
             android:id="@+id/edtMobileNumber"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
