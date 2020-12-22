@@ -104,4 +104,10 @@ class ManageAddress : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, Accounts::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

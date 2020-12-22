@@ -104,18 +104,22 @@ class Accounts : AppCompatActivity() {
                 "Current Order" -> {
                     val intent = Intent(this, CurrentOrdersActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
                 "Past Orders" -> {
                     val intent = Intent(this, PastOrdersActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
                 "Manage Address" -> {
                     val intent = Intent(this, ManageAddress::class.java)
                     startActivity(intent)
+                    finish()
                 }
                 "Favourites" -> {
                     val intent = Intent(this, PagerActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
             return@setOnChildClickListener true

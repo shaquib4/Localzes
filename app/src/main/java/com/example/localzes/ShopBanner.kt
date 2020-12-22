@@ -2,6 +2,7 @@ package com.example.localzes
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -100,7 +101,7 @@ class ShopBanner : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        Toast.makeText(this,"Your Banner is saved in Downloads",Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Your Banner is saved in Downloads", Toast.LENGTH_LONG).show()
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -171,5 +172,11 @@ class ShopBanner : AppCompatActivity() {
                 saveBanner()
             }
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, cardBanners::class.java)
+        startActivity(intent)
+        finish()
     }
 }
