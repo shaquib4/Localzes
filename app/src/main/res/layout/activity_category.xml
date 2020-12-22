@@ -3,207 +3,371 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#fcfcfc"
     android:layout_height="match_parent"
+    android:background="#fcfcfc"
     tools:context=".Category">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="ScrollViewCount">
+        android:layout_height="match_parent">
 
-
-    <RelativeLayout
-        android:id="@+id/rl1"
-        android:background="@drawable/border"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Product Category"
-            android:textColor="#fff"
-            android:fontFamily="@font/montserrat_bold"
-            android:textSize="@dimen/_20ssp"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/_20sdp"/>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:background="#fcfcfc"
-        android:layout_below="@id/rl1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/viewCenter"
-            android:layout_centerHorizontal="true"/>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardL1"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_toLeftOf="@+id/viewCenter"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            app:cardCornerRadius="10dp"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <RelativeLayout
+                android:id="@+id/rl1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/_150sdp"
+                android:background="@drawable/border">
 
                 <TextView
+                    android:id="@+id/txtPC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Electronics"
-                    android:textSize="@dimen/_15ssp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="#000"
-                    android:layout_margin="@dimen/_10sdp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9 items listed"
                     android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Product Category"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_20ssp" />
 
-                    android:textSize="@dimen/_10ssp"
-                    android:fontFamily="@font/montserrat_medium"
+                <ImageView
+                    android:layout_above="@+id/txtPC"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:src="@drawable/category"
+                    android:layout_marginStart="@dimen/_20sdp"/>
 
-                    android:textColor="#000"
-                    android:layout_margin="@dimen/_10sdp"/>
 
             </RelativeLayout>
 
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardR1"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_toRightOf="@id/viewCenter"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            app:cardCornerRadius="10dp"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp">
-
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl1"
+                android:background="#fcfcfc">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Electronics"
-                    android:textSize="@dimen/_15ssp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="#000"
-                    android:layout_margin="@dimen/_10sdp"/>
+                <View
+                    android:id="@+id/viewCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerHorizontal="true" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9 items listed"
-                    android:layout_alignParentBottom="true"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardL1"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toLeftOf="@+id/viewCenter"
+                    app:cardCornerRadius="10dp">
 
-                    android:textSize="@dimen/_10ssp"
-                    android:fontFamily="@font/montserrat_medium"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    android:textColor="#000"
-                    android:layout_margin="@dimen/_10sdp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Electronics"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_15ssp" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="@dimen/_10sdp"
+
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="9 items listed"
+
+                            android:textColor="#000"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardR1"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/viewCenter"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Electronics"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_15ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="@dimen/_10sdp"
+
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="9 items listed"
+
+                            android:textColor="#000"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardL2"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_below="@+id/cardL1"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toLeftOf="@+id/viewCenter"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Electronics"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_15ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="@dimen/_10sdp"
+
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="9 items listed"
+
+                            android:textColor="#000"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardR2"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_below="@+id/cardR1"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/viewCenter"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Electronics"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_15ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="@dimen/_10sdp"
+
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="9 items listed"
+
+                            android:textColor="#000"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardL3"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_below="@+id/cardL2"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toLeftOf="@+id/viewCenter"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Electronics"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_15ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="@dimen/_10sdp"
+
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="9 items listed"
+
+                            android:textColor="#000"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardR3"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_below="@+id/cardR2"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/viewCenter"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Electronics"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_15ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="@dimen/_10sdp"
+
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="9 items listed"
+
+                            android:textColor="#000"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardL4"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_below="@+id/cardL3"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toLeftOf="@+id/viewCenter"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Electronics"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_15ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="@dimen/_10sdp"
+
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="9 items listed"
+
+                            android:textColor="#000"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardR4"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_below="@+id/cardR3"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/viewCenter"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Electronics"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_15ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="@dimen/_10sdp"
+
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="9 items listed"
+
+                            android:textColor="#000"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
             </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardL2"
-            android:layout_below="@+id/cardL1"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_toLeftOf="@+id/viewCenter"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            app:cardCornerRadius="10dp"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Electronics"
-                    android:textSize="@dimen/_15ssp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="#000"
-                    android:layout_margin="@dimen/_10sdp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9 items listed"
-                    android:layout_alignParentBottom="true"
-
-                    android:textSize="@dimen/_10ssp"
-                    android:fontFamily="@font/montserrat_medium"
-
-                    android:textColor="#000"
-                    android:layout_margin="@dimen/_10sdp"/>
-
-            </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardR2"
-            android:layout_below="@+id/cardR1"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_toRightOf="@id/viewCenter"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            app:cardCornerRadius="10dp"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Electronics"
-                    android:textSize="@dimen/_15ssp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="#000"
-                    android:layout_margin="@dimen/_10sdp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9 items listed"
-                    android:layout_alignParentBottom="true"
-
-                    android:textSize="@dimen/_10ssp"
-                    android:fontFamily="@font/montserrat_medium"
-
-                    android:textColor="#000"
-                    android:layout_margin="@dimen/_10sdp"/>
-
-            </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
+        </RelativeLayout>
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
