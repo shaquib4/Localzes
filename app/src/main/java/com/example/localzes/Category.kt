@@ -53,6 +53,7 @@ class Category : AppCompatActivity() {
 
             return@setOnNavigationItemSelectedListener false
         }
+
     }
 
     override fun onBackPressed() {

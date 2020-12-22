@@ -41,7 +41,9 @@
         android:paddingHorizontal="@dimen/_10sdp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
-        android:textSize="@dimen/_12ssp" />
+        android:textSize="@dimen/_12ssp"
+        android:maxLines="1"
+        android:inputType="text"/>
 
     <EditText
         android:maxLines="1"
@@ -58,7 +60,9 @@
         android:paddingHorizontal="@dimen/_10sdp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
-        android:textSize="@dimen/_12ssp" />
+        android:textSize="@dimen/_12ssp"
+        android:maxLines="1"
+        android:inputType="textEmailAddress"/>
 
 
     <Button

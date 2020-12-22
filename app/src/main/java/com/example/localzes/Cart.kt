@@ -290,7 +290,7 @@ class Cart : AppCompatActivity() {
                 intent.putExtra("orderByMobile", orderByMobile)
                 startActivity(intent)
                 finish()
-            } else if (boolean == false) {
+            } else if (!boolean) {
                 Toast.makeText(
                     this,
                     "Some Products are out of stock,Please remove",

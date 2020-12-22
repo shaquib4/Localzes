@@ -4,38 +4,289 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Home">
 
     <TextView
+        android:id="@+id/txtWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#de4500"
-        android:text="Welcome to Localze !"
-        android:textSize="@dimen/_13ssp"
-        android:id="@+id/txtWelcome"
         android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/_10sdp"
         android:fontFamily="@font/montserrat_bold"
-        android:layout_margin="@dimen/_10sdp"/>
+        android:text="Welcome to Localze !"
+        android:textColor="#de4500"
+        android:textSize="@dimen/_13ssp" />
+
     <ImageView
         android:id="@+id/imgScan"
         android:layout_width="@dimen/_50sdp"
-        android:layout_alignParentRight="true"
         android:layout_height="@dimen/_38sdp"
-        android:src="@drawable/stores"/>
+        android:layout_alignParentRight="true"
+        android:src="@drawable/stores" />
 
     <View
+        android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:id="@+id/view1"
         android:layout_below="@id/txtWelcome"
-        android:background="#d3d3d3"/>
+        android:background="#d3d3d3" />
+
+    <HorizontalScrollView
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_below="@id/txtWelcome"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGrocery"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#00008c">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/lanju" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGrocery"
+                    android:layout_centerHorizontal="true"
+                    android:text="Grocery" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGrocery1"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#00008c">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/lanju" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGrocery1"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Grocery"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGrocery2"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#00008c">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/lanju" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGrocery2"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Grocery"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGrocery3"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#00008c">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/lanju" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGrocery3"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Grocery"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGrocery4"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#00008c">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/lanju" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGrocery4"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Grocery"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGrocery5"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#00008c">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/lanju" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGrocery5"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Grocery"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGrocery6"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#00008c">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/lanju" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGrocery6"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Grocery"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGrocery7"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#00008c">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/lanju" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGrocery7"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Grocery"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGrocery8"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#00008c">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/lanju" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGrocery8"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Grocery"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
     <RelativeLayout
         android:id="@+id/rl_Home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navProducts"
-        android:layout_below="@id/txtWelcome"
+        android:layout_below="@id/category"
         android:visibility="visible">
 
         <ImageView
@@ -61,40 +312,40 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_shop_user"
-        android:layout_below="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/bottom_navProducts"
-        android:padding="2dp"
+        android:layout_below="@+id/view1"
         android:layout_marginTop="1dp"
+        android:padding="2dp"
+        android:visibility="gone"
         app:stackFromEnd="true"
-        tools:listitem="@layout/shop_single_customer"
-        android:visibility="gone"/>
+        tools:listitem="@layout/shop_single_customer" />
 
     <RelativeLayout
-        android:visibility="invisible"
+        android:id="@+id/progress_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fcfcfc"
-        android:id="@+id/progress_home"
-        >
+        android:visibility="invisible">
+
         <ProgressBar
-            android:indeterminateDrawable="@drawable/progress_bar2"
-            android:indeterminateDuration="@android:integer/config_longAnimTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:indeterminateDrawable="@drawable/progress_bar2"
+            android:indeterminateDuration="@android:integer/config_longAnimTime" />
 
     </RelativeLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#fff"
-        app:menu="@menu/customer_menu"
-        />
+        app:menu="@menu/customer_menu" />
 
 
 </RelativeLayout>

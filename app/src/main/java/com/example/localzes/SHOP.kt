@@ -21,8 +21,6 @@ class SHOP : Fragment() {
     lateinit var relativeShop: RelativeLayout
     lateinit var favoriteAdapter: AdapterFavoriteShops
     lateinit var databaseReference: DatabaseReference
-
-    //lateinit var v: View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

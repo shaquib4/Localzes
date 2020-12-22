@@ -25,7 +25,8 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private lateinit var databaseRef: DatabaseReference
     private lateinit var updateAuth: FirebaseAuth
     private lateinit var imageShopUpdate: ImageView
-    private lateinit var shopCategoryUpdate: Spinner
+
+    //private lateinit var shopCategoryUpdate: Spinner
     private lateinit var shopNameUpdate: EditText
     private lateinit var upiIdUpdate: EditText
     private lateinit var btnUpdateDetails: Button
@@ -41,7 +42,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
         val user = updateAuth.currentUser
         val uid = user!!.uid
         imageShopUpdate = findViewById(R.id.choose_image_update)
-        shopCategoryUpdate = findViewById(R.id.spn_category)
+        //shopCategoryUpdate = findViewById(R.id.spn_category)
         shopNameUpdate = findViewById(R.id.edtNameUpdate)
         upiIdUpdate = findViewById(R.id.edtPayUpdate)
         btnUpdateDetails = findViewById(R.id.Update)
@@ -86,7 +87,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private fun updateData() {
         if (imagePathUpdated == null) {
             val headers = HashMap<String, Any>()
-            headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
+            //headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
             headers["shop_name"] = shopNameUpdate.text.toString().trim()
             headers["upi"] = upiIdUpdate.text.toString().trim()
             headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
@@ -132,7 +133,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
             user?.updateProfile(request)?.addOnSuccessListener {
                 val headers = HashMap<String, Any>()
                 headers["imageUrl"] = imageUrl.toString()
-                headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
+                //headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
                 headers["shop_name"] = shopNameUpdate.text.toString().trim()
                 headers["upi"] = upiIdUpdate.text.toString().trim()
                 headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()

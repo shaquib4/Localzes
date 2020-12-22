@@ -123,6 +123,7 @@
                 android:hint="Product Name*"
                 android:maxLength="50"
                 android:maxLines="1"
+                android:inputType="text"
                 android:textAlignment="center" />
 
             <EditText
@@ -139,6 +140,7 @@
                 android:hint="Product Description (optional)"
                 android:maxLength="300"
                 android:maxLines="1"
+                android:inputType="text"
                 android:textAlignment="center" />
 
             <LinearLayout
