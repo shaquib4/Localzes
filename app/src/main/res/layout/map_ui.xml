@@ -130,7 +130,7 @@
 
         <EditText
             android:id="@+id/edtLocalitys"
-
+            android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_42sdp"
 
@@ -169,7 +169,7 @@
             android:id="@+id/HouseNos"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_42sdp"
-
+            android:maxLines="1"
             android:paddingStart="16dp"
             android:padding="10dp"
 
@@ -202,7 +202,7 @@
             android:id="@+id/edtNearestLandmarks"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_42sdp"
-
+            android:maxLines="1"
             android:paddingStart="16dp"
             android:padding="10dp"
 

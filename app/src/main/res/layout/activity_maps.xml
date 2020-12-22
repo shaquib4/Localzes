@@ -214,6 +214,7 @@
 
         <EditText
             android:id="@+id/edtLocality"
+            android:maxLines="1"
 
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
@@ -250,6 +251,7 @@
         android:layout_marginTop="13dp">
 
         <EditText
+            android:maxLines="1"
             android:id="@+id/HouseNo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
@@ -283,6 +285,7 @@
         android:layout_marginTop="13dp">
 
         <EditText
+            android:maxLines="1"
             android:id="@+id/edtNearestLandmark"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
