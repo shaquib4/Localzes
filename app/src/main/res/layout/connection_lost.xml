@@ -44,13 +44,14 @@
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
         android:paddingHorizontal="@dimen/_30sdp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:elevation="5dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/_10sdp"
         android:fontFamily="@font/montserrat_bold"
         android:textSize="@dimen/_15ssp"
         android:text="Retry"
-        android:textColor="#fff"
+        android:textColor="#de4500"
         android:background="@drawable/stroke"/>
 
 
