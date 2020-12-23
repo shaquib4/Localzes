@@ -115,13 +115,19 @@ class ManageAddress : AppCompatActivity() {
             rl_retryManageAddress.visibility=View.VISIBLE
         }
         imgBackManage.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, Accounts::class.java)
             startActivity(intent)
             finish()
         }
         addNewAddress.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_manageAddress.visibility= View.VISIBLE
+                rl_retryManageAddress.visibility=View.GONE
             startActivity(Intent(this, MapsActivity_New::class.java))
-            finish()
+            finish()}else{
+                rl_manageAddress.visibility= View.GONE
+                rl_retryManageAddress.visibility=View.VISIBLE
+            }
         }
     }
 

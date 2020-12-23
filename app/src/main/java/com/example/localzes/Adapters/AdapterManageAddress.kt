@@ -14,6 +14,7 @@ import com.example.localzes.Modals.ModelManageAddress
 import com.example.localzes.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import util.ConnectionManager
 
 class AdapterManageAddress(
     val context: Context,
@@ -24,6 +25,7 @@ class AdapterManageAddress(
         val address: TextView = view.findViewById(R.id.txtAddress)
         val mobileNumber: TextView = view.findViewById(R.id.txtMobile)
         val txtDelete: TextView = view.findViewById(R.id.txtDelete)
+
 
     }
 
@@ -51,6 +53,7 @@ class AdapterManageAddress(
             deleteAddress(position)
         }
         holder.itemView.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(context)){
             val builder = AlertDialog.Builder(context)
             val show = builder.show()
             builder.setTitle("Confirmation")
@@ -81,7 +84,9 @@ class AdapterManageAddress(
             builder.setNegativeButton("No") { text, listener ->
                 show.dismiss()
             }
-            builder.create().show()
+            builder.create().show()}else{
+                Toast.makeText(context,"No Internet Connection Found",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

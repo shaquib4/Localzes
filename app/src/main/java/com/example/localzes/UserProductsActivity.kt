@@ -180,7 +180,7 @@ class UserProductsActivity : AppCompatActivity() {
                     (cartItems as ArrayList<UserCartDetails>).add(obj)
 
                 }
-                if (ConnectionManager().checkConnectivity(this@UserProductsActivity)) {
+
                     if (cartItems.isNotEmpty()) {
 
                         cartRelativeLayout.visibility = View.VISIBLE
@@ -188,22 +188,24 @@ class UserProductsActivity : AppCompatActivity() {
                         quantityItem.text = totalItems.toString()
                         costTotal.text = (totalCost).toString()
                         viewCart.setOnClickListener {
-                            val intent = Intent(applicationContext, Cart::class.java)
+                            if (ConnectionManager().checkConnectivity(this@UserProductsActivity)&&1==1){
+
+                                val intent = Intent(applicationContext, Cart::class.java)
                             intent.putExtra("totalCost", totalCost.toString())
                             intent.putExtra("totalOriginalPrice", totalOriginalPrice.toString())
                             intent.putExtra("totalItems", totalItems.toString())
                             intent.putExtra("shopUid", shopId)
                             startActivity(intent)
-                            finish()
+                            finish()}else{
+                                rl_userProduct.visibility=View.GONE
+                                rl_retryUserProducts.visibility=View.VISIBLE
+                            }
                         }
                         if (cartItems.isEmpty()) {
                             cartRelativeLayout.visibility = View.GONE
                         }
                     }
-                }else{
-                    rl_userProduct.visibility=View.GONE
-                    rl_retryUserProducts.visibility=View.VISIBLE
-                }
+
             }
         })}else{
             rl_userProduct.visibility=View.GONE

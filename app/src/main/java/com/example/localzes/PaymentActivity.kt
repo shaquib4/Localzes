@@ -68,8 +68,14 @@ class PaymentActivity : AppCompatActivity() {
         upivirtualid = findViewById<View>(R.id.txtUPI) as TextView
         userDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+        retryPayment.setOnClickListener {
+            this.recreate()
+        }
 
-        userDatabase.addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_Payment.visibility=View.VISIBLE
+            rl_retryPayment.visibility=View.GONE
+            userDatabase.addValueEventListener(object : ValueEventListener {
 
 
             override fun onCancelled(error: DatabaseError) {
@@ -84,14 +90,17 @@ class PaymentActivity : AppCompatActivity() {
                 amount!!.text = totalCost
             }
 
-        })
+        })}else{
+            rl_Payment.visibility=View.GONE
+            rl_retryPayment.visibility=View.VISIBLE
+        }
 
 
 
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_Payment.visibility=View.VISIBLE
-            rl_retryPayment.visibility=View.GONE
+
             send!!.setOnClickListener { //Getting the values from the Texts
+                rl_Payment.visibility=View.VISIBLE
+                rl_retryPayment.visibility=View.GONE
             val sendf = intent.getStringExtra("send")
             amount!!.text = totalCost.toString()
             if (TextUtils.isEmpty(name!!.text.toString().trim { it <= ' ' })) {
@@ -108,15 +117,15 @@ class PaymentActivity : AppCompatActivity() {
                 Toast.makeText(this@PaymentActivity, " Amount is invalid", Toast.LENGTH_SHORT)
                     .show()
             } else {
-                payUsingUpi(
+                if (ConnectionManager().checkConnectivity(this)&&1==1){payUsingUpi(
                     name!!.text.toString(), upivirtualid!!.text.toString(),
                     note!!.text.toString(), amount!!.text.toString()
-                )
-            }
-        }}else{
-            rl_Payment.visibility=View.GONE
-            rl_retryPayment.visibility=View.VISIBLE
-        }
+                )}else{
+                    rl_Payment.visibility=View.GONE
+                    rl_retryPayment.visibility=View.VISIBLE
+                }
+
+        }}
     }
 
     fun payUsingUpi(

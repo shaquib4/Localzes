@@ -34,6 +34,9 @@ class CurrentOrdersActivity : AppCompatActivity() {
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
+        retryCurrentOrders.setOnClickListener {
+            this.recreate()
+        }
         currentOrderHistoryDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
         if (ConnectionManager().checkConnectivity(this)){

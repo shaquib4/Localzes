@@ -32,6 +32,9 @@ class PastOrdersActivity : AppCompatActivity() {
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
+        retryPastOrders.setOnClickListener {
+            this.recreate()
+        }
         mOrderedItem = ArrayList<ModelOrderDetails>()
         pastOrderHistoryDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
