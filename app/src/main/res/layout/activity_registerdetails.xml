@@ -27,6 +27,7 @@
         android:textSize="25dp" />
 
     <EditText
+        android:maxLines="1"
         android:id="@+id/edtregName"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
@@ -41,10 +42,11 @@
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
         android:textSize="@dimen/_12ssp"
-        android:maxLines="1"
+
         android:inputType="text"/>
 
     <EditText
+
         android:id="@+id/edtregemail"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"

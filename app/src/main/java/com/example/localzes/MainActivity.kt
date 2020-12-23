@@ -85,4 +85,8 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 }

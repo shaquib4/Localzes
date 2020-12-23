@@ -7,10 +7,7 @@ import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.UserCartDetails
 import com.example.localzes.R
@@ -30,7 +27,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         val btnIncreaseCart: Button = view.findViewById(R.id.btnIncrease)
         val removeItem: ImageView = view.findViewById(R.id.imgRemove)
         val productTotalPrice: TextView = view.findViewById(R.id.txtProductTotalPrice)
-        val btnLinear: TextView = view.findViewById(R.id.btnLinear)
+        val btnLinear: LinearLayout = view.findViewById(R.id.btnLinear)
         val txtOutOfStock: TextView = view.findViewById(R.id.outOfStock)
     }
 

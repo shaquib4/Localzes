@@ -27,6 +27,7 @@ class Home : AppCompatActivity() {
     private lateinit var mUserDatabase: DatabaseReference
     var firebaseUser: FirebaseUser? = null
     private lateinit var shops: List<Upload>
+    private var shopId:String?=null
     private lateinit var recyclerShopUser: RecyclerView
     private lateinit var userShopAdapter: AdapterUserShops
     private lateinit var relativeHome: RelativeLayout
@@ -41,6 +42,7 @@ class Home : AppCompatActivity() {
     private lateinit var category9: CardView
     private lateinit var categoryAll: CardView
     private var currentCity: String = ""
+    private var cate:String=""
     private var backPressedTime = 0L
     private var bool = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +61,7 @@ class Home : AppCompatActivity() {
         category8 = findViewById(R.id.cardGrocery7)
         category9 = findViewById(R.id.cardGrocery8)
         categoryAll = findViewById(R.id.cardAll)
-        categoryAll.isSelected = true
+
         recyclerShopUser.layoutManager = LinearLayoutManager(this)
         firebaseUser = FirebaseAuth.getInstance().currentUser
         userDatabase = FirebaseDatabase.getInstance().reference.child("seller")
@@ -149,7 +151,37 @@ class Home : AppCompatActivity() {
             }
             return@setOnNavigationItemSelectedListener false
         }
+
+        userDatabase.addValueEventListener(object:ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (i in snapshot.children){
+                    val shop=i.child("shopId").value.toString()
+
+                    userDatabase.child(shop).child("Categories")
+                        .addValueEventListener(object :ValueEventListener{
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                for (i in snapshot.children){
+                                    val cat=i.child("category").value.toString()
+                                    cate=cat
+                                }
+                            }
+                        })
+                }
+
+            }
+        })
+
     }
+
+
 
     private fun loadAllShops() {
         if (ConnectionManager().checkConnectivity(this)) {
@@ -228,6 +260,7 @@ class Home : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
+
                     (shops as ArrayList<Upload>).clear()
                     for (i in snapshot.children) {
 
@@ -250,11 +283,11 @@ class Home : AppCompatActivity() {
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString()
                         )
-                        if (currentCity.toLowerCase() == i.child("city").value.toString()) {
-                            if (categoryExist(proCat, i.child("shopId").value.toString())) {
-                                (shops as ArrayList<Upload>).add(obj)
-                                progress_home.visibility = View.GONE
-                            }
+                        if (currentCity.toLowerCase() == i.child("city").value.toString()&&cate==proCat.toString()) {
+
+                            (shops as ArrayList<Upload>).add(obj)
+                            progress_home.visibility = View.GONE
+
                         } else {
                             progress_home.visibility = View.GONE
                         }
@@ -269,6 +302,7 @@ class Home : AppCompatActivity() {
                             shops
                         )
                         recyclerShopUser.adapter = userShopAdapter
+
                     }
 
                 }
@@ -303,7 +337,7 @@ class Home : AppCompatActivity() {
                     for (i in snapshot.children) {
                         if (i.child("category").value.toString() == s) {
                             bool = true
-                            break
+
                         }
                     }
                 }
@@ -344,4 +378,9 @@ class Home : AppCompatActivity() {
         }
     }
 
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        loadAllShops()
+    }
 }

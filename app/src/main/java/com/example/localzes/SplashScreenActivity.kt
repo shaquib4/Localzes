@@ -15,4 +15,8 @@ class SplashScreenActivity : AppCompatActivity() {
             finish()
         }, 2000)
     }
+
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 }

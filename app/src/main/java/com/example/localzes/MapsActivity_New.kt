@@ -411,4 +411,9 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
         }
     }
 
+    override fun onBackPressed() {
+        val intent=Intent(this,ManageAddress::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

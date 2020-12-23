@@ -421,4 +421,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
             e.printStackTrace()
         }
     }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, Registerdetails::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

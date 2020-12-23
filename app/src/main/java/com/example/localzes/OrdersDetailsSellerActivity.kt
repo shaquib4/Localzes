@@ -183,7 +183,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     private fun newEditOrderStatusDialog() {
-        val options = arrayOf("Out For Delivery")
+        val options = arrayOf("Cancelled","Out For Delivery")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->

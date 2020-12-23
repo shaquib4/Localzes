@@ -369,4 +369,10 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
         }
     }
 
+    override fun onBackPressed() {
+        val intent=Intent(this,Registerdetails_seller::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

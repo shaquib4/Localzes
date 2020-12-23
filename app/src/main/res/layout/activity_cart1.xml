@@ -290,7 +290,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_margin="10dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="ADD ADDRESS"
+                android:text="CHANGE ADDRESS"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_10ssp" />
 
