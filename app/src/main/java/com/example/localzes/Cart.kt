@@ -21,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_cart1.*
+import util.ConnectionManager
 
 class Cart : AppCompatActivity() {
     private lateinit var cartDatabase: DatabaseReference
@@ -124,7 +125,14 @@ class Cart : AppCompatActivity() {
             }
             return@setOnNavigationItemSelectedListener true
         }
-        cartDatabase.addValueEventListener(object : ValueEventListener {
+
+        retryCart.setOnClickListener {
+            this.recreate()
+        }
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_cart_connection.visibility=View.VISIBLE
+            rl_retryCart.visibility=View.GONE
+            cartDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -277,8 +285,14 @@ class Cart : AppCompatActivity() {
 
 
             }
-        })
-        btnContinue.setOnClickListener {
+        })}else{
+            rl_cart_connection.visibility=View.GONE
+            rl_retryCart.visibility=View.VISIBLE
+        }
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_cart_connection.visibility=View.VISIBLE
+            rl_retryCart.visibility=View.GONE
+            btnContinue.setOnClickListener {
             if (boolean) {
                 val intent = Intent(this@Cart, continue_payment::class.java)
                 intent.putExtra("shopId", shopId)
@@ -297,9 +311,12 @@ class Cart : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        }}else{
+            rl_cart_connection.visibility=View.GONE
+            rl_retryCart.visibility=View.VISIBLE
         }
 
-        val reference: DatabaseReference =
+        if (ConnectionManager().checkConnectivity(this)) {val reference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
                 .child("current_address")
         reference.addValueEventListener(object : ValueEventListener {
@@ -326,10 +343,17 @@ class Cart : AppCompatActivity() {
                 orderByMobile = snapshot.child("phone").value.toString()
             }
 
-        })
+        })}else{
+            rl_cart_connection.visibility=View.GONE
+            rl_retryCart.visibility=View.VISIBLE
+        }
 
 
-        val mRef: DatabaseReference =
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_cart_connection.visibility=View.VISIBLE
+            rl_retryCart.visibility=View.GONE
+
+            val mRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
         mRef.child("address").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -376,7 +400,10 @@ class Cart : AppCompatActivity() {
                     dialog.setCanceledOnTouchOutside(true)
                 }
             }
-        })
+        })}else{
+            rl_cart_connection.visibility=View.GONE
+            rl_retryCart.visibility=View.VISIBLE
+        }
 
 
     }

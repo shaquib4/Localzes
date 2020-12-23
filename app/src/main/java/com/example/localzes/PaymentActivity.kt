@@ -23,6 +23,10 @@ import com.android.volley.Response
 import com.android.volley.toolbox.Volley
 import com.example.localzes.Modals.ModelOrderDetails
 import com.example.localzes.Modals.UserCartDetails
+import kotlinx.android.synthetic.main.activity_continue_payment.*
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_pay.*
+import util.ConnectionManager
 
 class PaymentActivity : AppCompatActivity() {
     var amount: TextView? = null
@@ -66,6 +70,8 @@ class PaymentActivity : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
 
         userDatabase.addValueEventListener(object : ValueEventListener {
+
+
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -82,7 +88,10 @@ class PaymentActivity : AppCompatActivity() {
 
 
 
-        send!!.setOnClickListener { //Getting the values from the Texts
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_Payment.visibility=View.VISIBLE
+            rl_retryPayment.visibility=View.GONE
+            send!!.setOnClickListener { //Getting the values from the Texts
             val sendf = intent.getStringExtra("send")
             amount!!.text = totalCost.toString()
             if (TextUtils.isEmpty(name!!.text.toString().trim { it <= ' ' })) {
@@ -104,6 +113,9 @@ class PaymentActivity : AppCompatActivity() {
                     note!!.text.toString(), amount!!.text.toString()
                 )
             }
+        }}else{
+            rl_Payment.visibility=View.GONE
+            rl_retryPayment.visibility=View.VISIBLE
         }
     }
 

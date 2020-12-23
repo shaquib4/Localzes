@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rl_Payment">
+
     <ImageView
         android:id="@+id/imgBack"
         android:layout_width="@dimen/_20sdp"
@@ -152,5 +157,21 @@
 
 
     </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_retryPayment"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/retryPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_buttons"
+            android:text="Retry"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="@dimen/_50sdp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

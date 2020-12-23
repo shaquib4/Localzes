@@ -3,6 +3,7 @@ package com.example.localzes
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,6 +14,8 @@ import com.example.localzes.Adapters.AdapterManageAddress
 import com.example.localzes.Modals.ModelManageAddress
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_manage_address.*
+import util.ConnectionManager
 
 class ManageAddress : AppCompatActivity() {
     private lateinit var userDatabase: DatabaseReference
@@ -41,7 +44,15 @@ class ManageAddress : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
         addresses = ArrayList<ModelManageAddress>()
 
-        userDatabase.child("address").addValueEventListener(object : ValueEventListener {
+        retryManageAddress.setOnClickListener {
+            this.recreate()
+        }
+
+        if (ConnectionManager().checkConnectivity(this)){
+
+            rl_manageAddress.visibility= View.VISIBLE
+            rl_retryManageAddress.visibility=View.GONE
+            userDatabase.child("address").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -71,8 +82,14 @@ class ManageAddress : AppCompatActivity() {
                 recyclerManageAddress.adapter = userAddressAdapter
             }
 
-        })
-        userDatabase.addValueEventListener(object : ValueEventListener {
+        })}else{
+            rl_manageAddress.visibility= View.GONE
+            rl_retryManageAddress.visibility=View.VISIBLE
+        }
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_manageAddress.visibility= View.VISIBLE
+            rl_retryManageAddress.visibility=View.GONE
+            userDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -93,7 +110,10 @@ class ManageAddress : AppCompatActivity() {
                 val currentAddress = snapshot.child("address").value.toString()
                 txtCurrentAddress.text = currentAddress
             }
-        })
+        })}else{
+            rl_manageAddress.visibility= View.GONE
+            rl_retryManageAddress.visibility=View.VISIBLE
+        }
         imgBackManage.setOnClickListener {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)

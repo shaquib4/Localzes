@@ -12,6 +12,8 @@ import com.example.localzes.Adapters.AdapterUserOrderHistory
 import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_current_orders.*
+import util.ConnectionManager
 
 class CurrentOrdersActivity : AppCompatActivity() {
     private lateinit var recyclerOrderDetails: RecyclerView
@@ -34,7 +36,10 @@ class CurrentOrdersActivity : AppCompatActivity() {
         val uid = user!!.uid
         currentOrderHistoryDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
-        currentOrderHistoryDatabase.addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_currentOrders.visibility=View.VISIBLE
+            rl_retryCurrentOrders.visibility=View.GONE
+            currentOrderHistoryDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -76,7 +81,10 @@ class CurrentOrdersActivity : AppCompatActivity() {
                 }
 
             }
-        })
+        })}else{
+            rl_currentOrders.visibility=View.GONE
+            rl_retryCurrentOrders.visibility=View.VISIBLE
+        }
         imgBackCurrent.setOnClickListener {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)

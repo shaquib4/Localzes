@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PastOrdersActivity">
+    <RelativeLayout
+        android:id="@+id/rl_pastOrders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ImageView
         android:id="@+id/imgBackPast"
         android:layout_width="@dimen/_20sdp"
@@ -61,6 +65,21 @@
         tools:listitem="@layout/row_order_user"
         android:layout_below="@id/view1"
         android:visibility="gone"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_retryPastOrders"
 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/retryPastOrders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_buttons"
+            android:text="Retry"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="@dimen/_50sdp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

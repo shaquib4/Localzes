@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <RelativeLayout
+
+        android:id="@+id/rl_manageAddress"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -152,4 +156,21 @@
             android:textSize="@dimen/_15ssp" />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_retryManageAddress"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/retryManageAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_buttons"
+            android:text="Retry"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="@dimen/_50sdp"/>
+
+    </RelativeLayout>
+</RelativeLayout>
+
 </ScrollView>

@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".continue_payment">
 
+    <RelativeLayout
+        android:id="@+id/rl_continuePayment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/imgBackContinue"
         android:layout_width="@dimen/_20sdp"
@@ -262,5 +267,21 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="Safe and Secure Payments. 100% Authentic products"
         android:textSize="@dimen/_8ssp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_retryContinuePayment"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/retryContinuePayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_buttons"
+            android:text="Retry"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="@dimen/_50sdp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

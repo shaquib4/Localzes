@@ -6,7 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Home">
-
+<RelativeLayout
+    android:id="@+id/rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/txtWelcome"
         android:layout_width="wrap_content"
@@ -370,6 +373,22 @@
         android:layout_alignParentBottom="true"
         android:background="#fff"
         app:menu="@menu/customer_menu" />
+</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_retry"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/retry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_buttons"
+            android:text="Retry"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="@dimen/_50sdp"/>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CurrentOrdersActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_currentOrders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ImageView
         android:id="@+id/imgBackCurrent"
         android:layout_width="@dimen/_20sdp"
@@ -60,5 +65,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/recyclerCurrentOrders"
         android:visibility="gone"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_retryCurrentOrders"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/retryCurrentOrders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_buttons"
+            android:text="Retry"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="@dimen/_50sdp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

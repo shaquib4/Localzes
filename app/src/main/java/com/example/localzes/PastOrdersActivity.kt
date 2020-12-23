@@ -12,6 +12,9 @@ import com.example.localzes.Adapters.AdapterUserOrderHistory
 import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_current_orders.*
+import kotlinx.android.synthetic.main.activity_past_orders.*
+import util.ConnectionManager
 
 class PastOrdersActivity : AppCompatActivity() {
     private lateinit var recyclerOrderDetails: RecyclerView
@@ -34,7 +37,10 @@ class PastOrdersActivity : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
         recyclerOrderDetails = findViewById(R.id.recyclerPastOrders)
         recyclerOrderDetails.layoutManager = LinearLayoutManager(this)
-        pastOrderHistoryDatabase.addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_pastOrders.visibility=View.VISIBLE
+            rl_retryPastOrders.visibility=View.GONE
+            pastOrderHistoryDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -74,7 +80,10 @@ class PastOrdersActivity : AppCompatActivity() {
                 }
 
             }
-        })
+        })}else{
+            rl_pastOrders.visibility=View.GONE
+            rl_retryPastOrders.visibility=View.VISIBLE
+        }
         imgBackPast.setOnClickListener {
             val intent=Intent(this,Accounts::class.java)
             startActivity(intent)

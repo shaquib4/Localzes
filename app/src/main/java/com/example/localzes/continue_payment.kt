@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import com.android.volley.Request
 import com.android.volley.Response
@@ -14,6 +15,7 @@ import com.example.localzes.Modals.UserCartDetails
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_continue_payment.*
 import org.json.JSONObject
+import util.ConnectionManager
 import java.util.ArrayList
 
 class continue_payment : AppCompatActivity() {
@@ -55,12 +57,19 @@ class continue_payment : AppCompatActivity() {
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
         radioGroup = findViewById(R.id.radioPayment)
+        retryContinuePayment.setOnClickListener {
+            this.recreate()
+        }
 
-        btnPayContinue.setOnClickListener {
-
+        if (ConnectionManager().checkConnectivity(this)){btnPayContinue.setOnClickListener {
+            rl_retryContinuePayment.visibility= View.GONE
+            rl_continuePayment.visibility=View.VISIBLE
             val id = radioGroup!!.checkedRadioButtonId
             val radioButton = findViewById<RadioButton>(id)
-            when (radioButton.text) {
+            if (ConnectionManager().checkConnectivity(this)&&1==1){
+                rl_retryContinuePayment.visibility= View.GONE
+                rl_continuePayment.visibility=View.VISIBLE
+                when (radioButton.text) {
                 " Pay on Delivery" -> {
                     progressDialog.setMessage("Placing Your Order....")
                     progressDialog.show()
@@ -167,6 +176,9 @@ class continue_payment : AppCompatActivity() {
                 else -> {
                     btnPayContinue.isClickable=false
                 }
+            }}else{
+                rl_retryContinuePayment.visibility= View.VISIBLE
+                rl_continuePayment.visibility=View.GONE
             }
         }
         productCharges.text = "₹" + totalCost.toString()
@@ -176,6 +188,9 @@ class continue_payment : AppCompatActivity() {
             val intent = Intent(this, Cart::class.java)
             startActivity(intent)
             finish()
+        }}else{
+            rl_retryContinuePayment.visibility= View.VISIBLE
+            rl_continuePayment.visibility=View.GONE
         }
     }
 

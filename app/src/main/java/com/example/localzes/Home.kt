@@ -61,6 +61,9 @@ class Home : AppCompatActivity() {
         category8 = findViewById(R.id.cardGrocery7)
         category9 = findViewById(R.id.cardGrocery8)
         categoryAll = findViewById(R.id.cardAll)
+        retry.setOnClickListener {
+            this.recreate()
+        }
 
         recyclerShopUser.layoutManager = LinearLayoutManager(this)
         firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -193,6 +196,8 @@ class Home : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     (shops as ArrayList<Upload>).clear()
                     for (i in snapshot.children) {
+                        rl.visibility=View.VISIBLE
+                        rl_retry.visibility=View.GONE
 
                         val obj = Upload(
                             i.child("shopId").value.toString(),
@@ -236,24 +241,15 @@ class Home : AppCompatActivity() {
 
             })
         } else {
-            val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Error")
-            dialog.setMessage("Internet Connection not Found")
-            dialog.setPositiveButton("Open Setting") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
-                startActivity(settingsIntent)
-                finish()
-            }
-            dialog.setNegativeButton("Exit") { text, listener ->
-                ActivityCompat.finishAffinity(this)
-            }
-            dialog.create()
-            dialog.show()
+            rl.visibility=View.GONE
+            rl_retry.visibility=View.VISIBLE
         }
     }
 
     private fun loadShops(proCat: String) {
         if (ConnectionManager().checkConnectivity(this)) {
+            rl.visibility=View.VISIBLE
+            rl_retry.visibility=View.GONE
             userDatabase.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -309,19 +305,8 @@ class Home : AppCompatActivity() {
 
             })
         } else {
-            val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Error")
-            dialog.setMessage("Internet Connection not Found")
-            dialog.setPositiveButton("Open Setting") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
-                startActivity(settingsIntent)
-                finish()
-            }
-            dialog.setNegativeButton("Exit") { text, listener ->
-                ActivityCompat.finishAffinity(this)
-            }
-            dialog.create()
-            dialog.show()
+            rl.visibility=View.GONE
+            rl_retry.visibility=View.VISIBLE
         }
 
     }
