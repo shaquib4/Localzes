@@ -13,6 +13,9 @@ import com.example.localzes.Adapters.AdapterFavoriteShops
 import com.example.localzes.Modals.Upload
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_one.*
+import kotlinx.android.synthetic.main.fragment_one.view.*
+import util.ConnectionManager
 
 
 class SHOP : Fragment() {
@@ -35,7 +38,10 @@ class SHOP : Fragment() {
         val uid = user!!.uid
         databaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Favorites")
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(activity as Context)){
+            view.rl_FavShop.visibility=View.VISIBLE
+           view.rl_retryFavShop.visibility=View.GONE
+            databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -77,7 +83,10 @@ class SHOP : Fragment() {
                     }
                 }
             }
-        })
+        })}else{
+           view.rl_FavShop.visibility=View.GONE
+           view.rl_retryFavShop.visibility=View.VISIBLE
+        }
         return view
     }
 

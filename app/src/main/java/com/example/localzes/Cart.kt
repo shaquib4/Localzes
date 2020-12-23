@@ -289,10 +289,12 @@ class Cart : AppCompatActivity() {
             rl_cart_connection.visibility=View.GONE
             rl_retryCart.visibility=View.VISIBLE
         }
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_cart_connection.visibility=View.VISIBLE
-            rl_retryCart.visibility=View.GONE
+
+
             btnContinue.setOnClickListener {
+                if(ConnectionManager().checkConnectivity(this)){
+                    rl_cart_connection.visibility=View.VISIBLE
+                    rl_retryCart.visibility=View.GONE
             if (boolean) {
                 val intent = Intent(this@Cart, continue_payment::class.java)
                 intent.putExtra("shopId", shopId)
@@ -310,12 +312,11 @@ class Cart : AppCompatActivity() {
                     "Some Products are out of stock,Please remove",
                     Toast.LENGTH_SHORT
                 ).show()
-            }
-        }}else{
-            rl_cart_connection.visibility=View.GONE
-            rl_retryCart.visibility=View.VISIBLE
+            }}else{
+                    rl_cart_connection.visibility=View.GONE
+                    rl_retryCart.visibility=View.VISIBLE
+                }
         }
-
         if (ConnectionManager().checkConnectivity(this)) {val reference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
                 .child("current_address")
@@ -349,9 +350,7 @@ class Cart : AppCompatActivity() {
         }
 
 
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_cart_connection.visibility=View.VISIBLE
-            rl_retryCart.visibility=View.GONE
+
 
             val mRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
@@ -377,6 +376,9 @@ class Cart : AppCompatActivity() {
                     (addresses as ArrayList<ModelManageAddress>).add(obj)
                 }
                 addAddress.setOnClickListener {
+                    rl_cart_connection.visibility=View.VISIBLE
+                    rl_retryCart.visibility=View.GONE
+                    if (ConnectionManager().checkConnectivity(this@Cart)){
                     val dialog = BottomSheetDialog(this@Cart)
                     val view =
                         LayoutInflater.from(this@Cart).inflate(R.layout.address_layout, null, false)
@@ -398,12 +400,12 @@ class Cart : AppCompatActivity() {
                     dialog.show()
                     dialog.setCancelable(false)
                     dialog.setCanceledOnTouchOutside(true)
-                }
-            }
-        })}else{
-            rl_cart_connection.visibility=View.GONE
-            rl_retryCart.visibility=View.VISIBLE
-        }
+                }else{
+                        rl_cart_connection.visibility=View.GONE
+                        rl_retryCart.visibility=View.VISIBLE
+                    }
+            }}
+        })
 
 
     }

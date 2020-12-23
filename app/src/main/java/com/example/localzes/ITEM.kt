@@ -13,6 +13,8 @@ import com.example.localzes.Adapters.AdapterFavoriteItems
 import com.example.localzes.Modals.ModelAddProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_two.view.*
+import util.ConnectionManager
 
 class ITEM : Fragment() {
     lateinit var favRecyclerItem: RecyclerView
@@ -37,7 +39,10 @@ class ITEM : Fragment() {
         val uid = user!!.uid
         databaseReference = FirebaseDatabase.getInstance().reference.child("users").child(uid)
             .child("FavoriteItems")
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(activity as Context)){
+            view.rl_FavItem.visibility=View.VISIBLE
+            view.rl_retryFavItem.visibility=View.GONE
+            databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -73,7 +78,10 @@ class ITEM : Fragment() {
                     }
                 }
             }
-        })
+        })}else{
+            view.rl_FavItem.visibility=View.GONE
+            view.rl_retryFavItem.visibility=View.VISIBLE
+        }
         return view
     }
 
