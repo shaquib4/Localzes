@@ -34,25 +34,25 @@
                     android:textSize="@dimen/_20ssp" />
 
                 <ImageView
-                    android:layout_above="@+id/txtPC"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_100sdp"
-                    android:src="@drawable/category"
-                    android:layout_marginStart="@dimen/_20sdp"/>
+                    android:layout_above="@+id/txtPC"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:src="@drawable/category" />
 
 
             </RelativeLayout>
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_margin="@dimen/_2sdp"
-                tools:listitem="@layout/category_single_row"
+                android:id="@+id/recycler_Category"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/rl1"/>
+                android:layout_below="@id/rl1"
+                android:layout_margin="@dimen/_2sdp"
+                tools:listitem="@layout/category_single_row" />
         </RelativeLayout>
     </ScrollView>
-
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -62,16 +62,17 @@
         android:layout_alignParentBottom="true"
         android:background="#fff"
         app:menu="@menu/seller_menu" />
+
     <Button
-        android:text="Add New Category"
-        android:layout_margin="@dimen/_10sdp"
-        android:textSize="@dimen/_15ssp"
-        android:textColor="#fff"
-        android:fontFamily="@font/montserrat_bold"
+        android:id="@+id/btnAddNewCategory"
         android:layout_width="match_parent"
-        android:background="@drawable/ic_seller_btn"
         android:layout_height="wrap_content"
-       android:layout_above="@id/bottom_navCategory_seller"
-        />
+        android:layout_above="@id/bottom_navCategory_seller"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/ic_seller_btn"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Add New Category"
+        android:textColor="#fff"
+        android:textSize="@dimen/_15ssp" />
 
 </RelativeLayout>

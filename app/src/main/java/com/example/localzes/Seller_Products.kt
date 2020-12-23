@@ -25,6 +25,7 @@ class Seller_Products : AppCompatActivity() {
     private lateinit var search: EditText
     private lateinit var imgBackProducts: ImageView
     private lateinit var txtAddProduct: TextView
+    private var category: String? = "400"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller__products)
@@ -33,6 +34,7 @@ class Seller_Products : AppCompatActivity() {
         // imgBackProducts=findViewById(R.id.imgBackProducts)
         //  txtAddProduct=findViewById(R.id.add)
         relativeAddProduct = findViewById(R.id.rl_Add_Products)
+        category = intent.getStringExtra("category")
         recyclerSellerProducts.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         search = findViewById(R.id.searchShopProduct)
@@ -123,7 +125,9 @@ class Seller_Products : AppCompatActivity() {
                         i.child("quantity").value.toString(),
                         i.child("stock").value.toString()
                     )
-                    (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
+                    if (i.child("productCategory").value.toString() == category.toString()) {
+                        (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
+                    }
                 }
                 if (mSellerProducts.isEmpty()) {
                     recyclerSellerProducts.visibility = View.GONE

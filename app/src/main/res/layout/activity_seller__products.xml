@@ -6,122 +6,186 @@
     android:layout_height="match_parent"
     tools:context=".Seller_Products">
 
-    <EditText
-        android:maxLines="1"
-        android:id="@+id/searchShopProduct"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_below="@id/card_view_Details"
-        android:layout_margin="@dimen/_5sdp"
-        android:background="@drawable/bg_product_shop"
-        android:hint="Search"
-        android:paddingStart="@dimen/_20sdp"
-        tools:ignore="RtlSymmetry" />
-
     <RelativeLayout
-        android:id="@+id/rl_Add_Products"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navProducts"
-        android:layout_below="@id/searchShopProduct"
-        android:visibility="visible">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imgEmpty"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_empty" />
-
-        <TextView
-            android:id="@+id/noProducts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imgEmpty"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="No products added yet!"
-            android:textColor="#696969"
-            android:textSize="@dimen/_12ssp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/noProducts"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Click + button to add your products"
-            android:textColor="#696969"
-            android:textSize="@dimen/_12ssp" />
-
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:id="@+id/card_view_Details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RelativeLayout
+        <EditText
+            android:id="@+id/searchShopProduct"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
-            android:background="#de4500">
+            android:layout_below="@id/card_view_Details"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bg_product_shop"
+            android:hint="Search"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_20sdp"
+            tools:ignore="RtlSymmetry" />
 
+        <RelativeLayout
+            android:id="@+id/rl_Add_Products"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom_navProducts"
+            android:layout_below="@id/searchShopProduct"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imgEmpty"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_empty" />
+
+            <TextView
+                android:id="@+id/noProducts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgEmpty"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="No products added yet!"
+                android:textColor="#696969"
+                android:textSize="@dimen/_12ssp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/noProducts"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="PRODUCTS"
-                android:textColor="#ffffff"
-                android:textSize="@dimen/_14ssp" />
+                android:text="Click + button to add your products"
+                android:textColor="#696969"
+                android:textSize="@dimen/_12ssp" />
 
         </RelativeLayout>
 
-        <View
+
+        <LinearLayout
+            android:id="@+id/card_view_Details"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#d3d3d3" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navProducts"
-        android:layout_below="@id/searchShopProduct">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/additem"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="#de4500">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="PRODUCTS"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_14ssp" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#d3d3d3" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom_navProducts"
+            android:layout_below="@id/searchShopProduct">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/additem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/_10sdp"
+                android:backgroundTint="#ff4500"
+                android:src="@drawable/ic_add_item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_seller_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:visibility="gone"
+                app:stackFromEnd="true"
+                tools:listitem="@layout/product_single_row" />
+        </RelativeLayout>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/_10sdp"
-            android:backgroundTint="#ff4500"
-            android:src="@drawable/ic_add_item" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_seller_products"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:visibility="gone"
-            app:stackFromEnd="true"
-            tools:listitem="@layout/product_single_row" />
+            android:background="#fff"
+            app:menu="@menu/seller_menu" />
     </RelativeLayout>
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navProducts"
+    <RelativeLayout
+        android:id="@+id/rl_Seller_Products_Internet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#fff"
-        app:menu="@menu/seller_menu" />
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:background="@drawable/lost">
+
+        <TextView
+            android:id="@+id/txtOhNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Oh No.."
+            android:textSize="@dimen/_20ssp" />
+
+
+        <TextView
+            android:id="@+id/txtLost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtOhNo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="No Internet Connection"
+            android:textSize="@dimen/_20ssp" />
+
+
+        <TextView
+            android:id="@+id/txtInternet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtLost"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Please connect to internet"
+            android:textSize="@dimen/_15ssp" />
+
+        <Button
+            android:id="@+id/sellerProductRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/stroke"
+            android:elevation="5dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:text="Retry"
+            android:textColor="#de4500"
+            android:textSize="@dimen/_15ssp" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
