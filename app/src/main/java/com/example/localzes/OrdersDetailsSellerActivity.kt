@@ -35,14 +35,15 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private lateinit var shopAuth: FirebaseAuth
     private var orderIdTv: String? = "100"
     private var orderByTv: String? = "200"
-    private var mStatus:String?=null
-    private lateinit var imgBackOrderDetails:ImageView
+    private var mStatus: String? = null
+    private var bool: Boolean = false
+    private lateinit var imgBackOrderDetails: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_seller)
         recyclerOrderedSellerItems = findViewById(R.id.recyclerOrderedSellerItem)
         mOrderDetails = ArrayList<ModelOrderedItems>()
-        imgBackOrderDetails=findViewById(R.id.imgBackOrderDetails)
+        imgBackOrderDetails = findViewById(R.id.imgBackOrderDetails)
         orderIdTv = intent.getStringExtra("orderIdTv")
         orderByTv = intent.getStringExtra("orderByTv")
         txtOrderId = findViewById(R.id.txtOrderId)
@@ -89,11 +90,11 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     }
                     "Out For Delivery" -> {
                         txtOrderStatus.setTextColor(resources.getColor(R.color.acidGreen))
-                        imgEdit.visibility=View.GONE
+                        imgEdit.visibility = View.GONE
                     }
                     "Cancelled" -> {
                         txtOrderStatus.setTextColor(resources.getColor(R.color.red))
-                        imgEdit.visibility=View.GONE
+                        imgEdit.visibility = View.GONE
                     }
                 }
                 txtOrderId.text = "OD${orderId}"
@@ -168,26 +169,29 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
 
             }
-
             override fun onDataChange(snapshot: DataSnapshot) {
-               val status=snapshot.child("orderStatus").value.toString() == "Pending"
+                val status = snapshot.child("orderStatus").value.toString() == "Pending"
             }
-
         })
-
         imgBackOrderDetails.setOnClickListener {
-            val intent= Intent(this,Home_seller::class.java)
+            val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)
             finish()
         }
     }
-
     private fun newEditOrderStatusDialog() {
-        val options = arrayOf("Cancelled","Out For Delivery")
+        val options: Array<String> = if (bool) {
+            arrayOf("Rejected", "Out For Delivery", "Payment Received")
+        } else {
+            arrayOf("Rejected", "Out For Delivery")
+        }
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
+            if (selectedItem == "Payment Received") {
+                bool = true
+            }
             editOrderStatus(selectedItem)
             dialog.dismiss()
         }
@@ -195,14 +199,18 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     private fun editOrderStatusDialog() {
-        val options = arrayOf("Accepted", "Cancelled")
+        val options: Array<String> = if (bool) {
+            arrayOf("Accepted", "Rejected", "Payment Received")
+        } else {
+            arrayOf("Accepted", "Rejected")
+        }
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
-            /*if (selectedItem == "Cancelled") {
-                imgEdit.isEnabled = false
-            }*/
+            if (selectedItem == "Payment Received") {
+                bool = true
+            }
             editOrderStatus(selectedItem)
             dialog.dismiss()
         }
@@ -268,7 +276,6 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
         sendFcmNotification(notificationJs)
-
 
 
     }
