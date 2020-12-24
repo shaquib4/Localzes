@@ -5,6 +5,20 @@
     android:layout_height="match_parent">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_42sdp"
+        android:text="CONTINUE"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="@dimen/_20ssp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#fff"
+        android:background="@drawable/border"
+        />
+
+
+
     <View
         android:layout_width="1dp"
         android:layout_height="1dp"
@@ -20,7 +34,7 @@
         android:elevation="5dp"
         android:layout_marginTop="113dp"
         android:layout_marginEnd="17dp"
-        android:background="@drawable/ic_seller_btn"
+        android:background="@drawable/proceed_to_add"
         android:fontFamily="@font/montserrat_bold"
         android:text="As Seller"
         android:textAllCaps="false"
@@ -45,7 +59,7 @@
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginStart="@dimen/_10sdp"
-        android:background="@drawable/ic_customer_btn"
+        android:background="@drawable/proceed_to_add"
         android:layout_marginTop="@dimen/_60sdp"/>
 
     <Button
@@ -57,7 +71,7 @@
         android:layout_marginEnd="17dp"
         android:elevation="5dp"
         android:layout_marginBottom="29dp"
-        android:background="@drawable/ic_seller_btn"
+        android:background="@drawable/proceed_to_add"
         android:fontFamily="@font/montserrat_bold"
         android:text="As Delivery Partner"
         android:textAllCaps="false"

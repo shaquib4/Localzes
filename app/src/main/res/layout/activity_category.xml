@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/bottom_navCategory_seller"
         android:layout_margin="@dimen/_10sdp"
-        android:background="@drawable/round2_btn"
+        android:background="@drawable/proceed_to_add"
         android:fontFamily="@font/montserrat_bold"
         android:text="Add New Category"
         android:textColor="#fff"
