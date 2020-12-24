@@ -55,12 +55,12 @@
                     android:id="@+id/cardAll"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/ic_baseline_category_24" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -80,12 +80,12 @@
                     android:id="@+id/cardGrocery"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/grocery" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -101,24 +101,24 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardGrocery1"
+                    android:id="@+id/cardFood1"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/food" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardGrocery1"
+                    android:layout_below="@id/cardFood1"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Grocery"
+                    android:text="Food"
                     android:textAlignment="center" />
             </RelativeLayout>
 
@@ -127,24 +127,24 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardGrocery2"
+                    android:id="@+id/cardElectronics2"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/electronics" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardGrocery2"
+                    android:layout_below="@id/cardElectronics2"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Grocery"
+                    android:text="Electronics"
                     android:textAlignment="center" />
             </RelativeLayout>
 
@@ -153,24 +153,24 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardGrocery3"
+                    android:id="@+id/cardFashion3"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/fashion" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardGrocery3"
+                    android:layout_below="@id/cardFashion3"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Grocery"
+                    android:text="Fashion"
                     android:textAlignment="center" />
             </RelativeLayout>
 
@@ -179,24 +179,24 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardGrocery4"
+                    android:id="@+id/cardMobiles4"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/mobiles" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardGrocery4"
+                    android:layout_below="@id/cardMobiles4"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Grocery"
+                    android:text="Mobiles"
                     android:textAlignment="center" />
             </RelativeLayout>
 
@@ -205,24 +205,24 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardGrocery5"
+                    android:id="@+id/cardHome5"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/home" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardGrocery5"
+                    android:layout_below="@id/cardHome5"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Grocery"
+                    android:text="Home"
                     android:textAlignment="center" />
             </RelativeLayout>
             <RelativeLayout
@@ -230,24 +230,24 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardGrocery6"
+                    android:id="@+id/cardBeauty6"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/beauty" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardGrocery6"
+                    android:layout_below="@id/cardBeauty6"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Grocery"
+                    android:text="Beauty"
                     android:textAlignment="center" />
             </RelativeLayout>
             <RelativeLayout
@@ -255,24 +255,24 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardGrocery7"
+                    android:id="@+id/cardAppliances7"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/appliances" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardGrocery7"
+                    android:layout_below="@id/cardAppliances7"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Grocery"
+                    android:text="Appliances"
                     android:textAlignment="center" />
             </RelativeLayout>
 
@@ -281,24 +281,207 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardGrocery8"
+                    android:id="@+id/cardToys8"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:backgroundTint="#00008c">
+                    android:backgroundTint="#fcfcfc">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/lanju" />
+                        android:background="@drawable/toys" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardGrocery8"
+                    android:layout_below="@id/cardToys8"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Grocery"
+                    android:text="Toys &amp; Kids"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSports8"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#fcfcfc">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/sports" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardSports8"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Sports"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardBooks8"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#fcfcfc">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/books" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardBooks8"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Books"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAutomobiles8"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#fcfcfc">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/automobiles" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardAutomobiles8"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Automobiles"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFitness8"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#fcfcfc">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/fitness" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardFitness8"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Fitness"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardHealthcare8"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#fcfcfc">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/health" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardHealthcare8"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Healthcare"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardTravel8"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#fcfcfc">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/travel" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardTravel8"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Travel"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardGaming8"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:backgroundTint="#fcfcfc">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gaming" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardGaming8"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Gaming"
                     android:textAlignment="center" />
             </RelativeLayout>
 
