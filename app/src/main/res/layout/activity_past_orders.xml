@@ -120,7 +120,7 @@
             android:textSize="@dimen/_15ssp"
             android:text="Retry"
             android:textColor="#de4500"
-            android:background="@drawable/stroke"/>
+            android:background="@drawable/stroke_solid_btn"/>
 
     </RelativeLayout>
 
