@@ -1,6 +1,7 @@
 package com.example.localzes
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -46,7 +47,7 @@ class Category : AppCompatActivity() {
             val new = builder.create()
             val view: View = LayoutInflater.from(this).inflate(R.layout.dialog_spinner, null, false)
             builder.setTitle("Choose a new Category")
-            val mSpinner = view.findViewById<Spinner>(R.id.choose_new_category)
+            val mSpinner = view.findViewById<Spinner>(R.id.choose_new_category) as Spinner
             val adapter = ArrayAdapter<String>(
                 this@Category,
                 android.R.layout.simple_spinner_item,
@@ -56,6 +57,7 @@ class Category : AppCompatActivity() {
             mSpinner.adapter = adapter
             builder.setPositiveButton("Ok") { text, listener ->
                 val selected = mSpinner.selectedItem.toString()
+                Toast.makeText(this@Category,selected,Toast.LENGTH_SHORT).show()
                 val headers = HashMap<String, Any>()
                 headers["categoryId"] = timestamp
                 headers["category"] = selected
@@ -126,12 +128,10 @@ class Category : AppCompatActivity() {
                     )
                     (categories as ArrayList<ModelCategory>).add(obj)
                 }
-                if (categories.isEmpty()) {
 
-                } else {
                     adapterCategory = AdapterCategory(this@Category, categories)
                     recyclerCategories.adapter = adapterCategory
-                }
+
             }
         })
     }

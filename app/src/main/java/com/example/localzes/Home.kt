@@ -27,6 +27,7 @@ class Home : AppCompatActivity() {
     private lateinit var mUserDatabase: DatabaseReference
     var firebaseUser: FirebaseUser? = null
     private lateinit var shops: List<Upload>
+    private lateinit var shopc: List<Upload>
     private var shopId: String? = null
     private lateinit var recyclerShopUser: RecyclerView
     private lateinit var userShopAdapter: AdapterUserShops
@@ -72,6 +73,7 @@ class Home : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("users").child(firebaseUser!!.uid)
                 .child("current_address")
         shops = ArrayList<Upload>()
+        shopc = ArrayList<Upload>()
         mUserDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 

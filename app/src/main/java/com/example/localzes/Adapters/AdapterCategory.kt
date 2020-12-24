@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Category
@@ -45,12 +46,15 @@ class AdapterCategory(val context: Context, val categoryList: List<ModelCategory
         val random:Random = Random
         val l1: Int = random.nextInt(3 - 0) + 0
         holder.title.text = category_List.category
-        holder.categoryCard.setBackgroundColor(Color.parseColor(colors[l1]))
+       try{ holder.categoryCard.setBackgroundColor(Color.parseColor(colors[l1]))
+       }catch (e:Exception){
+           e.printStackTrace()
+       }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, Seller_Products::class.java)
             intent.putExtra("category", category_List.category)
             context.startActivity(intent)
-            (context as Category).finish()
+           (context as Category).finish()
         }
     }
 }
