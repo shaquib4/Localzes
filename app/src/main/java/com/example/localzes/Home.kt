@@ -88,6 +88,7 @@ class Home : AppCompatActivity() {
             loadAllShops()
         }
         category1.setOnClickListener {
+
             loadShops("Groceries")
         }
         category2.setOnClickListener {
@@ -259,6 +260,7 @@ class Home : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     (shops as ArrayList<Upload>).clear()
+
                     for (i in snapshot.children) {
 
                         val obj = Upload(
@@ -280,7 +282,8 @@ class Home : AppCompatActivity() {
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString()
                         )
-                        if (currentCity.toLowerCase() == i.child("city").value.toString() && cate == proCat.toString()) {
+                        if (currentCity.toLowerCase() == i.child("city").value.toString()) {
+
 
                             (shops as ArrayList<Upload>).add(obj)
                             progress_home.visibility = View.GONE
@@ -289,18 +292,64 @@ class Home : AppCompatActivity() {
                             progress_home.visibility = View.GONE
                         }
                     }
-                    if (shops.isEmpty()) {
-                        recyclerShopUser.visibility = View.GONE
-                    } else {
-                        relativeHome.visibility = View.GONE
-                        recyclerShopUser.visibility = View.VISIBLE
-                        userShopAdapter = AdapterUserShops(
-                            this@Home,
-                            shops
+                    (shopc as ArrayList<Upload>).clear()
+                    for(i in shops){
+                        val shopId=i.shopId
+                        val phone=i.phone
+                        val name=i.name
+                        val email=i.email
+                        val address=i.address
+                        val shopName=i.shop_name
+                        val obj = Upload(
+                            i.shopId,
+                            i.phone,
+                            i.name,
+                            i.email,
+                            i.address,
+                            i.shop_name,
+                            i.imageUrl,
+                            i.category1,
+                            i.upi,
+                            i.locality,
+                            i.city,
+                            i.pinCode,
+                            i.state,
+                            i.country,
+                            i.openingTime,
+                            i.closingTime,
+                            i.closingDay
                         )
-                        recyclerShopUser.adapter = userShopAdapter
+                        userDatabase.child(shopId).child("Categories")
+                            .addValueEventListener(object :ValueEventListener{
+                                override fun onCancelled(error: DatabaseError) {
 
+                                }
+
+                                override fun onDataChange(snapshot: DataSnapshot) {
+
+                                    for (i in snapshot.children){
+                                        val cat=i.child("category").value.toString()
+                                        if (proCat==cat){
+                                            (shopc as ArrayList<Upload>).add(obj)
+                                            Toast.makeText(this@Home,cat,Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                    if (shops.isEmpty()) {
+                                        recyclerShopUser.visibility = View.GONE
+                                    } else {
+                                        relativeHome.visibility = View.GONE
+                                        recyclerShopUser.visibility = View.VISIBLE
+                                        userShopAdapter = AdapterUserShops(
+                                            this@Home,
+                                            shopc
+                                        )
+                                        recyclerShopUser.adapter = userShopAdapter
+
+                                    }
+                                }
+                            })
                     }
+
 
                 }
 
