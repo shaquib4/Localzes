@@ -125,6 +125,17 @@
                 android:text="Rs. 1099"
                 android:textSize="@dimen/_10ssp" />
 
+            <ImageView
+                android:id="@+id/imgRemoveProduct"
+                android:layout_width="@dimen/_26sdp"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_below="@id/switchStock"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_23sdp"
+                android:padding="@dimen/_1sdp"
+                android:src="@drawable/ic_remove" />
+
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

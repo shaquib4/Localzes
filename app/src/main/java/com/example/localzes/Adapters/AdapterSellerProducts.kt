@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide
 import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.R
 import com.example.localzes.UpdateProductDetailsActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
@@ -39,6 +40,7 @@ class AdapterSellerProducts(
         val imgEditUpdate: ImageView = view.findViewById(R.id.imgEditUpdate)
         val switch: SwitchCompat = view.findViewById(R.id.switchStock)
         val stock: TextView = view.findViewById(R.id.txtStock)
+        val imgRemove: ImageView = view.findViewById(R.id.imgRemoveProduct)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderProduct {
@@ -74,14 +76,15 @@ class AdapterSellerProducts(
             override fun onDataChange(snapshot: DataSnapshot) {
 
 
-
                 if (snapshot.child("stock").value.toString() == "IN"
-                    &&products.productId==snapshot.child("productId").value.toString()){
-                    holder.switch.isChecked=true
+                    && products.productId == snapshot.child("productId").value.toString()
+                ) {
+                    holder.switch.isChecked = true
                     holder.stock.text = "STOCK: IN"
-                }else if (snapshot.child("stock").value.toString() == "OUT"
-                    &&products.productId==snapshot.child("productId").value.toString()) {
-                    holder.switch.isChecked=false
+                } else if (snapshot.child("stock").value.toString() == "OUT"
+                    && products.productId == snapshot.child("productId").value.toString()
+                ) {
+                    holder.switch.isChecked = false
                     holder.stock.text = "STOCK: OUT"
 
                 }
@@ -130,5 +133,31 @@ class AdapterSellerProducts(
             intent.putExtra("productId", products.productId)
             context.startActivity(intent)
         }
+        holder.imgRemove.setOnClickListener {
+            deleteProduct(position)
+        }
+    }
+
+    private fun deleteProduct(position: Int) {
+        val userAuth: FirebaseAuth = FirebaseAuth.getInstance()
+        val user = userAuth.currentUser
+        val uid = user!!.uid
+        val productId = products_seller[position].productId
+        val database =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
+        database.orderByChild("productId").equalTo(productId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children) {
+                        i.ref.removeValue()
+                    }
+                    Toast.makeText(context, "Product Removed successfully", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
     }
 }

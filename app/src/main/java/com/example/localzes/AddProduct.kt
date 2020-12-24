@@ -38,6 +38,7 @@ class AddProduct : AppCompatActivity() {
     private lateinit var timestamp: String
     var imgUrl: String = ""
 
+
     var thumb_Bitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
