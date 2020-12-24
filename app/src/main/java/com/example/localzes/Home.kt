@@ -32,16 +32,23 @@ class Home : AppCompatActivity() {
     private lateinit var recyclerShopUser: RecyclerView
     private lateinit var userShopAdapter: AdapterUserShops
     private lateinit var relativeHome: RelativeLayout
-    private lateinit var category1: CardView
-    private lateinit var category2: CardView
-    private lateinit var category3: CardView
-    private lateinit var category4: CardView
-    private lateinit var category5: CardView
-    private lateinit var category6: CardView
-    private lateinit var category7: CardView
-    private lateinit var category8: CardView
-    private lateinit var category9: CardView
     private lateinit var categoryAll: CardView
+    private lateinit var categoryGrocery: CardView
+    private lateinit var categoryFood: CardView
+    private lateinit var categoryElectronics: CardView
+    private lateinit var categoryFashion: CardView
+    private lateinit var categoryMobiles: CardView
+    private lateinit var categoryHome: CardView
+    private lateinit var categoryBeauty: CardView
+    private lateinit var categoryAppliances: CardView
+    private lateinit var categoryToys: CardView
+    private lateinit var categorySports: CardView
+    private lateinit var categoryBooks: CardView
+    private lateinit var categoryAutomobiles: CardView
+    private lateinit var categoryFitness: CardView
+    private lateinit var categoryHealth: CardView
+    private lateinit var categoryTravel: CardView
+    private lateinit var categoryGaming: CardView
     private var currentCity: String = ""
     private var cate: String = ""
     private var backPressedTime = 0L
@@ -52,16 +59,23 @@ class Home : AppCompatActivity() {
         progress_home.visibility = View.VISIBLE
         recyclerShopUser = findViewById(R.id.recycler_shop_user)
         relativeHome = findViewById(R.id.rl_Home)
-        category1 = findViewById(R.id.cardGrocery)
-        category2 = findViewById(R.id.cardFood1)
-        category3 = findViewById(R.id.cardElectronics2)
-        category4 = findViewById(R.id.cardMobiles4)
-        category5 = findViewById(R.id.cardHome5)
-        category6 = findViewById(R.id.cardBeauty6)
-        category7 = findViewById(R.id.cardAppliances7)
-        category8 = findViewById(R.id.cardToys8)
-        category9 = findViewById(R.id.cardSports8)
-        categoryAll = findViewById(R.id.cardAll)
+        categoryGrocery = findViewById(R.id.imgGrocery)
+        categoryFood = findViewById(R.id.imgFood)
+        categoryElectronics = findViewById(R.id.imgElectronics)
+        categoryFashion = findViewById(R.id.imgFashion)
+        categoryMobiles = findViewById(R.id.imgMobiles)
+        categoryHome = findViewById(R.id.imgHome)
+        categoryBeauty = findViewById(R.id.imgBeauty)
+        categoryAppliances = findViewById(R.id.imgAppliances)
+        categoryToys = findViewById(R.id.imgToys)
+        categorySports = findViewById(R.id.imgSports)
+        categoryBooks = findViewById(R.id.imgBooks)
+        categoryAutomobiles = findViewById(R.id.imgAutomobiles)
+        categoryFitness = findViewById(R.id.imgFitness)
+        categoryHealth = findViewById(R.id.imgHealth)
+        categoryTravel = findViewById(R.id.imgTravel)
+        categoryGaming = findViewById(R.id.imgGaming)
+        categoryAll = findViewById(R.id.imgAll)
         retry.setOnClickListener {
             this.recreate()
         }
@@ -87,34 +101,41 @@ class Home : AppCompatActivity() {
         categoryAll.setOnClickListener {
             loadAllShops()
         }
-        category1.setOnClickListener {
-
+        categoryGrocery.setOnClickListener {
             loadShops("Groceries")
         }
-        category2.setOnClickListener {
+        categoryFood.setOnClickListener {
             loadShops("Food")
-
         }
-        category3.setOnClickListener {
+        categoryElectronics.setOnClickListener {
             loadShops("Electronics")
         }
-        category4.setOnClickListener {
+        categoryMobiles.setOnClickListener {
             loadShops("Mobiles")
         }
-        category5.setOnClickListener {
-            loadShops("Electronics")
+        categoryBeauty.setOnClickListener {
+            loadShops("Beauty")
         }
-        category6.setOnClickListener {
+        categoryFashion.setOnClickListener {
             loadShops("Fashion")
         }
-        category7.setOnClickListener {
-            loadShops("Digital Shop")
+        categoryBooks.setOnClickListener {
+            loadShops("Books")
         }
-        category8.setOnClickListener {
+        categoryHealth.setOnClickListener {
             loadShops("Medical")
         }
-        category9.setOnClickListener {
+        categoryAutomobiles.setOnClickListener {
             loadShops("Automobiles")
+        }
+        categoryTravel.setOnClickListener {
+            loadShops("Travel")
+        }
+        categorySports.setOnClickListener {
+            loadShops("Sports")
+        }
+        categoryFitness.setOnClickListener {
+            loadShops("Fitness")
         }
         imgScan.setOnClickListener {
             val scanner = IntentIntegrator(this)
@@ -293,13 +314,13 @@ class Home : AppCompatActivity() {
                         }
                     }
                     (shopc as ArrayList<Upload>).clear()
-                    for(i in shops){
-                        val shopId=i.shopId
-                        val phone=i.phone
-                        val name=i.name
-                        val email=i.email
-                        val address=i.address
-                        val shopName=i.shop_name
+                    for (i in shops) {
+                        val shopId = i.shopId
+                        val phone = i.phone
+                        val name = i.name
+                        val email = i.email
+                        val address = i.address
+                        val shopName = i.shop_name
                         val obj = Upload(
                             i.shopId,
                             i.phone,
@@ -320,18 +341,19 @@ class Home : AppCompatActivity() {
                             i.closingDay
                         )
                         userDatabase.child(shopId).child("Categories")
-                            .addValueEventListener(object :ValueEventListener{
+                            .addValueEventListener(object : ValueEventListener {
                                 override fun onCancelled(error: DatabaseError) {
 
                                 }
 
                                 override fun onDataChange(snapshot: DataSnapshot) {
 
-                                    for (i in snapshot.children){
-                                        val cat=i.child("category").value.toString()
-                                        if (proCat==cat){
+                                    for (i in snapshot.children) {
+                                        val cat = i.child("category").value.toString()
+                                        if (proCat == cat) {
                                             (shopc as ArrayList<Upload>).add(obj)
-                                            Toast.makeText(this@Home,cat,Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this@Home, cat, Toast.LENGTH_SHORT)
+                                                .show()
                                         }
                                     }
                                     if (shops.isEmpty()) {
