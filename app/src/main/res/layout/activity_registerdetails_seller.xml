@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/email_ui">
+    android:background="@drawable/email_ui"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,70 +14,71 @@
         android:text="Register as Seller"
         android:textColor="#de4500"
         android:textSize="@dimen/_20ssp" />
+
     <TextView
+        android:id="@+id/txtCYA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_30sdp"
         android:layout_above="@+id/edtregNameSeller"
-        android:text="@string/create_your_account"
-        android:id="@+id/txtCYA"
-        android:textSize="@dimen/_18ssp"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/create_your_account"
         android:textColor="#ffffff"
-        android:fontFamily="@font/montserrat_bold"/>
+        android:textSize="@dimen/_18ssp" />
 
     <EditText
 
-        android:fontFamily="@font/montserrat_medium"
-        android:layout_above="@id/edtregemailSeller"
         android:id="@+id/edtregNameSeller"
-        android:textSize="@dimen/_12ssp"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="@dimen/_20sdp"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_height="@dimen/_35sdp"
+        android:layout_above="@id/edtregemailSeller"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:background="@drawable/stroke"
         android:drawableLeft="@drawable/ic_outline_person_24"
-        android:paddingHorizontal="@dimen/_10sdp"
+        android:fontFamily="@font/montserrat_medium"
         android:hint=" Enter your full name"
-
         android:inputType="text"
-        android:textColorHint="#ffffff"/>
+        android:maxLines="1"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:textSize="@dimen/_12ssp" />
 
     <EditText
 
-        android:fontFamily="@font/montserrat_medium"
-        android:layout_above="@id/btnRegSeller"
         android:id="@+id/edtregemailSeller"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-       android:layout_marginBottom="@dimen/_20sdp"
-        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_above="@id/btnRegSeller"
         android:layout_centerInParent="true"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:background="@drawable/stroke"
-        android:paddingHorizontal="@dimen/_10sdp"
-        android:inputType="textEmailAddress"
         android:drawableLeft="@drawable/ic_outline_email_24"
-        android:textSize="@dimen/_12ssp"
-        android:textColor="#ffffff"
+        android:fontFamily="@font/montserrat_medium"
         android:hint="  Enter your email"
-        android:textColorHint="#ffffff"/>
-
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:textSize="@dimen/_12ssp" />
 
 
     <Button
-        android:layout_alignParentBottom="true"
         android:id="@+id/btnRegSeller"
         android:layout_width="@dimen/_160sdp"
         android:layout_height="@dimen/_32sdp"
-        android:layout_marginBottom="@dimen/_60sdp"
-        android:textAllCaps="false"
-        android:background="@drawable/round_button"
-        android:text="Proceed"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_60sdp"
+        android:background="@drawable/round_button"
         android:fontFamily="@font/montserrat_bold"
+        android:text="Proceed"
+        android:textAllCaps="false"
         android:textColor="#DE0606"
-        android:textSize="@dimen/_15ssp"/>
+        android:textSize="@dimen/_15ssp" />
 
 </RelativeLayout>

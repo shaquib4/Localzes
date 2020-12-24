@@ -66,6 +66,8 @@ class Category : AppCompatActivity() {
             builder.setNegativeButton("Dismiss") { text, listener ->
                 new.dismiss()
             }
+            builder.setView(view)
+            builder.create().show()
         }
 
         bottom_navCategory_seller.selectedItemId = R.id.nav_category_seller

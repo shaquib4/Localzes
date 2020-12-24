@@ -42,7 +42,7 @@ class AdapterCategory(val context: Context, val categoryList: List<ModelCategory
         colors.add("#f156")
         colors.add("#f15642")
         colors.add("#ffce44")
-        val random = Random
+        val random:Random = Random
         val l1: Int = random.nextInt(3 - 0) + 0
         holder.title.text = category_List.category
         holder.categoryCard.setBackgroundColor(Color.parseColor(colors[l1]))

@@ -103,47 +103,87 @@ class Seller_Products : AppCompatActivity() {
         }
         productDatabaseRef =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
-        productDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@Seller_Products, error.message, Toast.LENGTH_SHORT).show()
+        if (category != null) {
+            productDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@Seller_Products, error.message, Toast.LENGTH_SHORT).show()
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                (mSellerProducts as ArrayList<ModelAddProduct>).clear()
-                for (i in snapshot.children) {
-                    val obj = ModelAddProduct(
-                        i.child("shopId").value.toString(),
-                        i.child("productId").value.toString(),
-                        i.child("imageUrl").value.toString(),
-                        i.child("productCategory").value.toString(),
-                        i.child("title").value.toString(),
-                        i.child("description").value.toString(),
-                        i.child("sellingPrice").value.toString(),
-                        i.child("offerPrice").value.toString(),
-                        i.child("unit").value.toString(),
-                        i.child("quantity").value.toString(),
-                        i.child("stock").value.toString()
-                    )
-                    if (i.child("productCategory").value.toString() == category.toString()) {
-                        (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (mSellerProducts as ArrayList<ModelAddProduct>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModelAddProduct(
+                            i.child("shopId").value.toString(),
+                            i.child("productId").value.toString(),
+                            i.child("imageUrl").value.toString(),
+                            i.child("productCategory").value.toString(),
+                            i.child("title").value.toString(),
+                            i.child("description").value.toString(),
+                            i.child("sellingPrice").value.toString(),
+                            i.child("offerPrice").value.toString(),
+                            i.child("unit").value.toString(),
+                            i.child("quantity").value.toString(),
+                            i.child("stock").value.toString()
+                        )
+                        if (i.child("productCategory").value.toString() == category.toString()) {
+                            (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
+                        }
+                    }
+                    if (mSellerProducts.isEmpty()) {
+                        recyclerSellerProducts.visibility = View.GONE
+                    } else {
+                        relativeAddProduct.visibility = View.GONE
+                        recyclerSellerProducts.visibility = View.VISIBLE
+                        productAdapter =
+                            AdapterSellerProducts(
+                                this@Seller_Products,
+                                mSellerProducts
+                            )
+                        recyclerSellerProducts.adapter = productAdapter
                     }
                 }
-                if (mSellerProducts.isEmpty()) {
-                    recyclerSellerProducts.visibility = View.GONE
-                } else {
-                    relativeAddProduct.visibility = View.GONE
-                    recyclerSellerProducts.visibility = View.VISIBLE
-                    productAdapter =
-                        AdapterSellerProducts(
-                            this@Seller_Products,
-                            mSellerProducts
-                        )
-                    recyclerSellerProducts.adapter = productAdapter
-                }
-            }
-        })
+            })
+        } else {
+            productDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@Seller_Products, error.message, Toast.LENGTH_SHORT).show()
 
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (mSellerProducts as ArrayList<ModelAddProduct>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModelAddProduct(
+                            i.child("shopId").value.toString(),
+                            i.child("productId").value.toString(),
+                            i.child("imageUrl").value.toString(),
+                            i.child("productCategory").value.toString(),
+                            i.child("title").value.toString(),
+                            i.child("description").value.toString(),
+                            i.child("sellingPrice").value.toString(),
+                            i.child("offerPrice").value.toString(),
+                            i.child("unit").value.toString(),
+                            i.child("quantity").value.toString(),
+                            i.child("stock").value.toString()
+                        )
+                        (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
+                    }
+                    if (mSellerProducts.isEmpty()) {
+                        recyclerSellerProducts.visibility = View.GONE
+                    } else {
+                        relativeAddProduct.visibility = View.GONE
+                        recyclerSellerProducts.visibility = View.VISIBLE
+                        productAdapter =
+                            AdapterSellerProducts(
+                                this@Seller_Products,
+                                mSellerProducts
+                            )
+                        recyclerSellerProducts.adapter = productAdapter
+                    }
+                }
+            })
+        }
     }
 
     private fun searchSellerProducts(str: String) {
