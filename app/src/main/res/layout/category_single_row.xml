@@ -39,8 +39,15 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:textSize="@dimen/_12ssp" />
-
-
+            <ImageView
+                android:id="@+id/imgRemoveCategory"
+                android:layout_width="@dimen/_26sdp"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_23sdp"
+                android:padding="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:src="@drawable/ic_remove" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
