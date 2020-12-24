@@ -107,7 +107,7 @@ class Seller_Products : AppCompatActivity() {
         }
         productDatabaseRef =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
-        if (category.toString() != null) {
+        if (category != null) {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_sellerProducts.visibility = View.VISIBLE
                 rl_Seller_Products_Internet.visibility = View.GONE

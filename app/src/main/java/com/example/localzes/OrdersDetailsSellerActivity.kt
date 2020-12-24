@@ -16,7 +16,9 @@ import com.example.localzes.Adapters.AdapterOrderedItems
 import com.example.localzes.Modals.ModelOrderedItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_orders_details_seller.*
 import org.json.JSONObject
+import util.ConnectionManager
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -56,6 +58,9 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
+        retryOrdersDetails.setOnClickListener {
+            this.recreate()
+        }
         val databaseRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
                 .child(orderIdTv.toString())
@@ -75,17 +80,27 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
-                when (orderStatus) {
+                if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)){
+
+                    when (orderStatus) {
                     "Pending" -> {
                         txtOrderStatus.setTextColor(resources.getColor(R.color.colorAccent))
                         imgEdit.setOnClickListener {
-                            editOrderStatusDialog()
+                            if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)){
+                            editOrderStatusDialog()}else{
+                                rl_OrderDetails.visibility=View.GONE
+                                rl_retryOrderDetails.visibility=View.VISIBLE
+                            }
                         }
                     }
                     "Accepted" -> {
                         txtOrderStatus.setTextColor(resources.getColor(R.color.green))
                         imgEdit.setOnClickListener {
-                            newEditOrderStatusDialog()
+                            if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)){
+                            newEditOrderStatusDialog()}else{
+                                rl_OrderDetails.visibility=View.GONE
+                                rl_retryOrderDetails.visibility=View.VISIBLE
+                            }
                         }
                     }
                     "Out For Delivery" -> {
@@ -96,6 +111,9 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         txtOrderStatus.setTextColor(resources.getColor(R.color.red))
                         imgEdit.visibility = View.GONE
                     }
+                }}else{
+                    rl_OrderDetails.visibility=View.GONE
+                    rl_retryOrderDetails.visibility=View.VISIBLE
                 }
                 txtOrderId.text = "OD${orderId}"
                 txtOrderStatus.text = orderStatus
@@ -103,7 +121,10 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 txtOrderDate.text = formattedDate
             }
         })
-        databaseRef.child("Items").addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)){
+            rl_OrderDetails.visibility=View.VISIBLE
+            rl_retryOrderDetails.visibility=View.GONE
+            databaseRef.child("Items").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -132,7 +153,10 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     totalItems.text = "${snapshot.childrenCount} item"
                 }
             }
-        })
+        })}else{
+            rl_OrderDetails.visibility=View.GONE
+            rl_retryOrderDetails.visibility=View.VISIBLE
+        }
         val database: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString())
                 .child("current_address")
@@ -180,7 +204,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         }
     }
     private fun newEditOrderStatusDialog() {
-        val options: Array<String> = if (bool) {
+        val options: Array<String> = if (!bool) {
             arrayOf("Rejected", "Out For Delivery", "Payment Received")
         } else {
             arrayOf("Rejected", "Out For Delivery")
@@ -191,15 +215,15 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             val selectedItem = options[which]
             if (selectedItem == "Payment Received") {
                 bool = true
-            }
+            }else{
             editOrderStatus(selectedItem)
-            dialog.dismiss()
+            dialog.dismiss()}
         }
         builder.create().show()
     }
 
     private fun editOrderStatusDialog() {
-        val options: Array<String> = if (bool) {
+        val options: Array<String> = if (!bool) {
             arrayOf("Accepted", "Rejected", "Payment Received")
         } else {
             arrayOf("Accepted", "Rejected")
@@ -210,9 +234,9 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             val selectedItem = options[which]
             if (selectedItem == "Payment Received") {
                 bool = true
-            }
+            }else{
             editOrderStatus(selectedItem)
-            dialog.dismiss()
+            dialog.dismiss()}
         }
         builder.create().show()
     }

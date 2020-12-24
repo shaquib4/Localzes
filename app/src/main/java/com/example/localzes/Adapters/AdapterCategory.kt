@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -22,7 +23,7 @@ import kotlin.random.Random
 class AdapterCategory(val context: Context, val categoryList: List<ModelCategory>) :
     RecyclerView.Adapter<AdapterCategory.HolderCategory>() {
     class HolderCategory(view: View) : RecyclerView.ViewHolder(view) {
-        val categoryCard: CardView = view.findViewById(R.id.cardCategory)
+        val categoryCard: RelativeLayout = view.findViewById(R.id.cardCategory)
         val title: TextView = view.findViewById(R.id.txtTitle1)
         val removeCategory: ImageView = view.findViewById(R.id.imgRemoveCategory)
 

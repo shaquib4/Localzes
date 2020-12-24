@@ -12,6 +12,8 @@ import com.example.localzes.Adapters.AdapterSellerOrders
 import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_order_out_for_delivery.*
+import util.ConnectionManager
 
 class OrderOutForDeliveryActivity : AppCompatActivity() {
     private lateinit var orderAuth: FirebaseAuth
@@ -27,13 +29,19 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
+        retryDeliveryOrders.setOnClickListener {
+            this.recreate()
+        }
         ordersOutForDeliveryList = ArrayList<ModelOrderDetails>()
         recyclerOutForDelivery = findViewById(R.id.recyclerOutForDelivery)
         backOutForDelivery = findViewById(R.id.imgBackOutForDelivery)
         relativeOutForDelivery = findViewById(R.id.rl_Out_For_delivery)
         recyclerOutForDelivery.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus")
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_DeliveryOrder.visibility=View.VISIBLE
+            rl_retryDeliveryOrder.visibility=View.GONE
+            orderDatabaseReference.child("Orders").orderByChild("orderStatus")
             .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -73,7 +81,10 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
                         }
                     }
                 }
-            })
+            })}else{
+            rl_DeliveryOrder.visibility=View.GONE
+            rl_retryDeliveryOrder.visibility=View.VISIBLE
+        }
         backOutForDelivery.setOnClickListener {
             val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)

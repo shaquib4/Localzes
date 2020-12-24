@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,23 +33,23 @@ class Home : AppCompatActivity() {
     private lateinit var recyclerShopUser: RecyclerView
     private lateinit var userShopAdapter: AdapterUserShops
     private lateinit var relativeHome: RelativeLayout
-    private lateinit var categoryAll: CardView
-    private lateinit var categoryGrocery: CardView
-    private lateinit var categoryFood: CardView
-    private lateinit var categoryElectronics: CardView
-    private lateinit var categoryFashion: CardView
-    private lateinit var categoryMobiles: CardView
-    private lateinit var categoryHome: CardView
-    private lateinit var categoryBeauty: CardView
-    private lateinit var categoryAppliances: CardView
-    private lateinit var categoryToys: CardView
-    private lateinit var categorySports: CardView
-    private lateinit var categoryBooks: CardView
-    private lateinit var categoryAutomobiles: CardView
-    private lateinit var categoryFitness: CardView
-    private lateinit var categoryHealth: CardView
-    private lateinit var categoryTravel: CardView
-    private lateinit var categoryGaming: CardView
+    private lateinit var categoryAll: ImageView
+    private lateinit var categoryGrocery: ImageView
+    private lateinit var categoryFood: ImageView
+    private lateinit var categoryElectronics: ImageView
+    private lateinit var categoryFashion: ImageView
+    private lateinit var categoryMobiles: ImageView
+    private lateinit var categoryHome: ImageView
+    private lateinit var categoryBeauty: ImageView
+    private lateinit var categoryAppliances: ImageView
+    private lateinit var categoryToys: ImageView
+    private lateinit var categorySports: ImageView
+    private lateinit var categoryBooks: ImageView
+    private lateinit var categoryAutomobiles: ImageView
+    private lateinit var categoryFitness: ImageView
+    private lateinit var categoryHealth: ImageView
+    private lateinit var categoryTravel: ImageView
+    private lateinit var categoryGaming: ImageView
     private var currentCity: String = ""
     private var cate: String = ""
     private var backPressedTime = 0L

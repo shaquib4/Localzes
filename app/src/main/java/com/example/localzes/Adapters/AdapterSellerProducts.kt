@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.R
+import com.example.localzes.Seller_Products
 import com.example.localzes.UpdateProductDetailsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -157,6 +158,7 @@ class AdapterSellerProducts(
                     }
                     Toast.makeText(context, "Product Removed successfully", Toast.LENGTH_SHORT)
                         .show()
+                    (context as Seller_Products).recreate()
                 }
             })
     }

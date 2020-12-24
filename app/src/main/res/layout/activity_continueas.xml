@@ -11,7 +11,7 @@
         android:text="CONTINUE"
         android:textAlignment="center"
         android:gravity="center"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_18ssp"
         android:fontFamily="@font/montserrat_bold"
         android:textColor="#fff"
         android:background="@drawable/border"

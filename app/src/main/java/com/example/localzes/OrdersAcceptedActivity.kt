@@ -12,6 +12,8 @@ import com.example.localzes.Adapters.AdapterSellerOrders
 import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_orders_accepted.*
+import util.ConnectionManager
 
 class OrdersAcceptedActivity : AppCompatActivity() {
     private lateinit var orderAuth: FirebaseAuth
@@ -27,13 +29,19 @@ class OrdersAcceptedActivity : AppCompatActivity() {
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
+        retryAcceptedOrders.setOnClickListener {
+            this.recreate()
+        }
         ordersAcceptedList = ArrayList<ModelOrderDetails>()
         recyclerOrdersAccepted = findViewById(R.id.recyclerOrdersAccepted)
         backAccepted = findViewById(R.id.imgBackAccepted)
         orderAccepted = findViewById(R.id.rl_Accepted_Orders)
         recyclerOrdersAccepted.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_AcceptedOrder.visibility=View.VISIBLE
+            rl_retryAcceptedOrder.visibility=View.GONE
+            orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -73,7 +81,10 @@ class OrdersAcceptedActivity : AppCompatActivity() {
 
                     }
                 }
-            })
+            })}else{
+            rl_AcceptedOrder.visibility=View.GONE
+            rl_retryAcceptedOrder.visibility=View.VISIBLE
+        }
         backAccepted.setOnClickListener {
             val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)

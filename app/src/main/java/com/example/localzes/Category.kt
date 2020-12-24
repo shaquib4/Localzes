@@ -79,7 +79,7 @@ class Category : AppCompatActivity() {
                 rl_retryCategory.visibility=View.VISIBLE
             }
         }
-        
+
         categoryRetry.setOnClickListener {
             this.recreate()
         }

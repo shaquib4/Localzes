@@ -12,6 +12,8 @@ import com.example.localzes.Adapters.AdapterSellerOrders
 import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_orders_completed.*
+import util.ConnectionManager
 
 class OrdersCompletedActivity : AppCompatActivity() {
     private lateinit var orderAuth: FirebaseAuth
@@ -27,13 +29,19 @@ class OrdersCompletedActivity : AppCompatActivity() {
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
+        retryCompletedOrders.setOnClickListener {
+            this.recreate()
+        }
         ordersCompletedList = ArrayList<ModelOrderDetails>()
         orderCompleted = findViewById(R.id.rl_Completed_Orders)
         recyclerOrdersCompleted = findViewById(R.id.recyclerOrdersCompleted)
         back = findViewById(R.id.imgBackCompletedOrders)
         recyclerOrdersCompleted.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_CompletedOrder.visibility=View.VISIBLE
+            rl_retryCompletedOrder.visibility=View.GONE
+            orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -74,7 +82,10 @@ class OrdersCompletedActivity : AppCompatActivity() {
                         }
                     }
                 }
-            })
+            })}else{
+            rl_CompletedOrder.visibility=View.GONE
+            rl_retryCompletedOrder.visibility=View.VISIBLE
+        }
         back.setOnClickListener {
             val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)

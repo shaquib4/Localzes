@@ -117,7 +117,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         val channelName:CharSequence="Some Sample Text"
         val channelDescription:String="Channel Description Here"
 
-        val notificationChannel:NotificationChannel=NotificationChannel(NOTIFICATION_CHANNEL_ID,channelName,NotificationManager.IMPORTANCE_DEFAULT)
+        val notificationChannel:NotificationChannel=NotificationChannel(NOTIFICATION_CHANNEL_ID,channelName,NotificationManager.IMPORTANCE_HIGH)
         notificationChannel.description=channelDescription
         notificationChannel.enableLights(true)
         notificationChannel.lightColor=R.color.red
