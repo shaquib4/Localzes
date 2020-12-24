@@ -4,142 +4,172 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Search"
-    android:background="#fcfcfc">
-<RelativeLayout
-    android:id="@+id/rl_search"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-   <EditText
+    android:background="#fcfcfc"
+    tools:context=".Search">
 
-       android:id="@+id/search_act"
-       android:paddingStart="@dimen/_20sdp"
-       android:hint="Search"
-       android:layout_width="match_parent"
-       android:layout_height="@dimen/_35sdp"
-       android:layout_margin="5dp"
-       android:background="@drawable/bg_product_shop"/>
- <EditText
-     android:maxLines="1"
-     android:id="@+id/search"
-     android:paddingStart="@dimen/_20sdp"
-     android:hint="Search"
-     android:layout_width="match_parent"
-     android:layout_height="@dimen/_35sdp"
-     android:layout_margin="5dp"
-     android:background="@drawable/bg_product_shop"/>
-
-    <Button
-        android:fontFamily="@font/montserrat_bold"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_below="@id/search_act"
-        android:layout_toStartOf="@+id/btnLocality"
-        android:id="@+id/btnShop"
-        android:textSize="@dimen/_10ssp"
-        android:layout_width="120dp"
-        android:textAllCaps="false"
-        android:text="Shops"
-        android:background="@drawable/bg_ractangle_rounded_stroke"
-        android:layout_height="@dimen/_32sdp"/>
-    <Button
-        android:fontFamily="@font/montserrat_bold"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:textSize="@dimen/_10ssp"
-        android:layout_below="@id/search_act"
-        android:id="@+id/btnLocality"
-        android:layout_width="120dp"
-        android:textAllCaps="false"
-        android:text="Locality"
-        android:background="@drawable/bg_ractangle_rounded_stroke"
-        android:layout_height="@dimen/_32sdp"/>
-    <Button
-        android:fontFamily="@font/montserrat_bold"
-        android:layout_marginTop="5dp"
-        android:textSize="@dimen/_10ssp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_below="@id/search_act"
-        android:layout_toRightOf="@+id/btnLocality"
-        android:id="@+id/btnProduct"
-        android:layout_width="120dp"
-        android:textAllCaps="false"
-        android:text="Product"
-        android:background="@drawable/bg_ractangle_rounded_stroke"
-        android:layout_height="@dimen/_32sdp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_search_item"
-        tools:listitem="@layout/search_single_row"
+    <RelativeLayout
+        android:id="@+id/rl_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnShop"
-        android:layout_margin="5dp"/>
+        android:layout_height="match_parent">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#fff"
-        app:menu="@menu/customer_menu"
-        />
-</RelativeLayout>
-   <RelativeLayout
-       android:id="@+id/rl_retrySearch"
-       android:background="@drawable/lost"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-
-      <TextView
-          android:id="@+id/txtOhNo"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:fontFamily="@font/montserrat_bold"
-          android:text="Oh No.."
-          android:layout_centerVertical="true"
-          android:layout_marginStart="@dimen/_20sdp"
-          android:textSize="@dimen/_20ssp"/>
+        <RelativeLayout
+            android:id="@+id/rl2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border">
 
 
-      <TextView
-          android:id="@+id/txtLost"
-          android:layout_below="@+id/txtOhNo"
-          android:layout_marginTop="@dimen/_80sdp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:fontFamily="@font/montserrat_bold"
-          android:text="No Internet Connection"
-          android:layout_centerHorizontal="true"
-          android:layout_marginStart="@dimen/_20sdp"
-          android:textSize="@dimen/_20ssp"/>
+            <TextView
+                android:id="@+id/txtSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Search..."
+                android:textColor="#fff"
+                android:textSize="@dimen/_30ssp" />
+
+            <EditText
+                android:id="@+id/search_act"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_below="@+id/txtSearch"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_product_shop"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="Search"
+                android:paddingStart="@dimen/_5sdp" />
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_below="@+id/txtSearch"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_product_shop"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="Search"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_5sdp" />
+
+            <Button
+                android:id="@+id/btnShop"
+                android:layout_width="120dp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_below="@id/search_act"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_toStartOf="@+id/btnLocality"
+                android:background="@drawable/round_button"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Shops"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_10ssp" />
+
+            <Button
+                android:id="@+id/btnLocality"
+                android:layout_width="120dp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_below="@id/search_act"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_button"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Locality"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_10ssp" />
+
+            <Button
+                android:id="@+id/btnProduct"
+                android:layout_width="120dp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_below="@id/search_act"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/btnLocality"
+                android:background="@drawable/round_button"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Product"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_10ssp" />
+        </RelativeLayout>
 
 
-      <TextView
-          android:id="@+id/txtConnect"
-          android:layout_below="@+id/txtLost"
-          android:layout_centerHorizontal="true"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:fontFamily="@font/montserrat_bold"
-          android:text="Please connect to internet"
-          android:layout_marginStart="@dimen/_20sdp"
-          android:textSize="@dimen/_15ssp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_search_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl2"
+            android:layout_margin="5dp"
+            tools:listitem="@layout/search_single_row" />
 
-      <Button
-          android:id="@+id/retrySearch"
-          android:layout_width="wrap_content"
-          android:layout_centerHorizontal="true"
-          android:paddingHorizontal="@dimen/_30sdp"
-          android:layout_height="@dimen/_30sdp"
-          android:elevation="5dp"
-          android:layout_alignParentBottom="true"
-          android:layout_margin="@dimen/_10sdp"
-          android:fontFamily="@font/montserrat_bold"
-          android:textSize="@dimen/_15ssp"
-          android:text="Retry"
-          android:textColor="#de4500"
-          android:background="@drawable/stroke_solid_btn"/>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#fff"
+            app:menu="@menu/customer_menu" />
 
-   </RelativeLayout>
+       <RelativeLayout
+           android:id="@+id/rl_retrySearch"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:background="@drawable/lost"
+           android:visibility="invisible">
+
+          <TextView
+              android:id="@+id/txtOhNo"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerVertical="true"
+              android:layout_marginStart="@dimen/_20sdp"
+              android:fontFamily="@font/montserrat_bold"
+              android:text="Oh No.."
+              android:textSize="@dimen/_20ssp" />
+
+
+          <TextView
+              android:id="@+id/txtLost"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/txtOhNo"
+              android:layout_centerHorizontal="true"
+              android:layout_marginStart="@dimen/_20sdp"
+              android:layout_marginTop="@dimen/_80sdp"
+              android:fontFamily="@font/montserrat_bold"
+              android:text="No Internet Connection"
+              android:textSize="@dimen/_20ssp" />
+
+
+          <TextView
+              android:id="@+id/txtConnect"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/txtLost"
+              android:layout_centerHorizontal="true"
+              android:layout_marginStart="@dimen/_20sdp"
+              android:fontFamily="@font/montserrat_bold"
+              android:text="Please connect to internet"
+              android:textSize="@dimen/_15ssp" />
+
+          <Button
+              android:id="@+id/retrySearch"
+              android:layout_width="wrap_content"
+              android:layout_height="@dimen/_30sdp"
+              android:layout_alignParentBottom="true"
+              android:layout_centerHorizontal="true"
+              android:layout_margin="@dimen/_10sdp"
+              android:background="@drawable/stroke_solid_btn"
+              android:elevation="5dp"
+              android:fontFamily="@font/montserrat_bold"
+              android:paddingHorizontal="@dimen/_30sdp"
+              android:text="Retry"
+              android:textColor="#de4500"
+              android:textSize="@dimen/_15ssp" />
+
+       </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
