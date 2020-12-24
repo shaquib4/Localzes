@@ -27,7 +27,7 @@ class Home : AppCompatActivity() {
     private lateinit var mUserDatabase: DatabaseReference
     var firebaseUser: FirebaseUser? = null
     private lateinit var shops: List<Upload>
-    private var shopId:String?=null
+    private var shopId: String? = null
     private lateinit var recyclerShopUser: RecyclerView
     private lateinit var userShopAdapter: AdapterUserShops
     private lateinit var relativeHome: RelativeLayout
@@ -42,7 +42,7 @@ class Home : AppCompatActivity() {
     private lateinit var category9: CardView
     private lateinit var categoryAll: CardView
     private var currentCity: String = ""
-    private var cate:String=""
+    private var cate: String = ""
     private var backPressedTime = 0L
     private var bool = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,14 +52,14 @@ class Home : AppCompatActivity() {
         recyclerShopUser = findViewById(R.id.recycler_shop_user)
         relativeHome = findViewById(R.id.rl_Home)
         category1 = findViewById(R.id.cardGrocery)
-        category2 = findViewById(R.id.cardGrocery1)
-        category3 = findViewById(R.id.cardGrocery2)
-        category4 = findViewById(R.id.cardGrocery3)
-        category5 = findViewById(R.id.cardGrocery4)
-        category6 = findViewById(R.id.cardGrocery5)
-        category7 = findViewById(R.id.cardGrocery6)
-        category8 = findViewById(R.id.cardGrocery7)
-        category9 = findViewById(R.id.cardGrocery8)
+        category2 = findViewById(R.id.cardFood1)
+        category3 = findViewById(R.id.cardElectronics2)
+        category4 = findViewById(R.id.cardMobiles4)
+        category5 = findViewById(R.id.cardHome5)
+        category6 = findViewById(R.id.cardBeauty6)
+        category7 = findViewById(R.id.cardAppliances7)
+        category8 = findViewById(R.id.cardToys8)
+        category9 = findViewById(R.id.cardSports8)
         categoryAll = findViewById(R.id.cardAll)
         retry.setOnClickListener {
             this.recreate()
@@ -86,23 +86,23 @@ class Home : AppCompatActivity() {
             loadAllShops()
         }
         category1.setOnClickListener {
-            loadShops("Grocery")
+            loadShops("Groceries")
         }
         category2.setOnClickListener {
             loadShops("Food")
 
         }
         category3.setOnClickListener {
-            loadShops("Fashion")
+            loadShops("Electronics")
         }
         category4.setOnClickListener {
-            loadShops("Beauty Product")
+            loadShops("Mobiles")
         }
         category5.setOnClickListener {
             loadShops("Electronics")
         }
         category6.setOnClickListener {
-            loadShops("Internet Cafe")
+            loadShops("Fashion")
         }
         category7.setOnClickListener {
             loadShops("Digital Shop")
@@ -155,25 +155,25 @@ class Home : AppCompatActivity() {
             return@setOnNavigationItemSelectedListener false
         }
 
-        userDatabase.addValueEventListener(object:ValueEventListener{
+        userDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                for (i in snapshot.children){
-                    val shop=i.child("shopId").value.toString()
+                for (i in snapshot.children) {
+                    val shop = i.child("shopId").value.toString()
 
                     userDatabase.child(shop).child("Categories")
-                        .addValueEventListener(object :ValueEventListener{
+                        .addValueEventListener(object : ValueEventListener {
                             override fun onCancelled(error: DatabaseError) {
 
                             }
 
                             override fun onDataChange(snapshot: DataSnapshot) {
-                                for (i in snapshot.children){
-                                    val cat=i.child("category").value.toString()
-                                    cate=cat
+                                for (i in snapshot.children) {
+                                    val cat = i.child("category").value.toString()
+                                    cate = cat
                                 }
                             }
                         })
@@ -183,7 +183,6 @@ class Home : AppCompatActivity() {
         })
 
     }
-
 
 
     private fun loadAllShops() {
@@ -196,8 +195,8 @@ class Home : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     (shops as ArrayList<Upload>).clear()
                     for (i in snapshot.children) {
-                        rl.visibility=View.VISIBLE
-                        rl_retry.visibility=View.GONE
+                        rl.visibility = View.VISIBLE
+                        rl_retry.visibility = View.GONE
 
                         val obj = Upload(
                             i.child("shopId").value.toString(),
@@ -241,15 +240,15 @@ class Home : AppCompatActivity() {
 
             })
         } else {
-            rl.visibility=View.GONE
-            rl_retry.visibility=View.VISIBLE
+            rl.visibility = View.GONE
+            rl_retry.visibility = View.VISIBLE
         }
     }
 
     private fun loadShops(proCat: String) {
         if (ConnectionManager().checkConnectivity(this)) {
-            rl.visibility=View.VISIBLE
-            rl_retry.visibility=View.GONE
+            rl.visibility = View.VISIBLE
+            rl_retry.visibility = View.GONE
             userDatabase.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -279,7 +278,7 @@ class Home : AppCompatActivity() {
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString()
                         )
-                        if (currentCity.toLowerCase() == i.child("city").value.toString()&&cate==proCat.toString()) {
+                        if (currentCity.toLowerCase() == i.child("city").value.toString() && cate == proCat.toString()) {
 
                             (shops as ArrayList<Upload>).add(obj)
                             progress_home.visibility = View.GONE
@@ -305,8 +304,8 @@ class Home : AppCompatActivity() {
 
             })
         } else {
-            rl.visibility=View.GONE
-            rl_retry.visibility=View.VISIBLE
+            rl.visibility = View.GONE
+            rl_retry.visibility = View.VISIBLE
         }
 
     }
