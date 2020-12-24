@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.activity_orders_seller.*
+import util.ConnectionManager
 
 class Category : AppCompatActivity() {
     private lateinit var btnAddNewCategory: Button
@@ -43,7 +44,11 @@ class Category : AppCompatActivity() {
         databaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Categories")
         btnAddNewCategory.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_category.visibility=View.VISIBLE
+                rl_retryCategory.visibility=View.GONE
+                val builder = AlertDialog.Builder(this)
             val new = builder.create()
             val view: View = LayoutInflater.from(this).inflate(R.layout.dialog_spinner, null, false)
             builder.setTitle("Choose a new Category")
@@ -69,7 +74,14 @@ class Category : AppCompatActivity() {
                 new.dismiss()
             }
             builder.setView(view)
-            builder.create().show()
+            builder.create().show()}else{
+                rl_category.visibility=View.GONE
+                rl_retryCategory.visibility=View.VISIBLE
+            }
+        }
+        
+        categoryRetry.setOnClickListener {
+            this.recreate()
         }
 
         bottom_navCategory_seller.selectedItemId = R.id.nav_category_seller
@@ -114,7 +126,7 @@ class Category : AppCompatActivity() {
 
             return@setOnNavigationItemSelectedListener false
         }
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this)){databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -133,7 +145,10 @@ class Category : AppCompatActivity() {
                     recyclerCategories.adapter = adapterCategory
 
             }
-        })
+        })}else{
+            rl_category.visibility=View.GONE
+            rl_retryCategory.visibility=View.VISIBLE
+        }
     }
 
     override fun onBackPressed() {

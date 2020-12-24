@@ -3,6 +3,7 @@ package com.example.localzes
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_seller.*
+import util.ConnectionManager
 
 class Home_seller : AppCompatActivity() {
     private lateinit var ordersAccepted: TextView
@@ -40,6 +42,10 @@ class Home_seller : AppCompatActivity() {
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
+
+        sellerRetry.setOnClickListener {
+            this.recreate()
+        }
 
         bottom_navHome_seller.selectedItemId = R.id.nav_store_seller
         bottom_navHome_seller.setOnNavigationItemSelectedListener { item ->
@@ -129,29 +135,59 @@ class Home_seller : AppCompatActivity() {
 
             })
         OrderAcc.setOnClickListener {
-            val intent = Intent(this, OrdersAcceptedActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_HomeSeller.visibility= View.VISIBLE
+                rl_Seller_Internet.visibility=View.GONE
+                val intent = Intent(this, OrdersAcceptedActivity::class.java)
+                startActivity(intent)
+                finish()}else{
+                rl_HomeSeller.visibility= View.GONE
+                rl_Seller_Internet.visibility=View.VISIBLE
+            }
         }
         ordersCompleted.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_HomeSeller.visibility= View.VISIBLE
+                rl_Seller_Internet.visibility=View.GONE
             val intent = Intent(this, OrdersCompletedActivity::class.java)
             startActivity(intent)
-            finish()
+            finish()}else{
+                rl_HomeSeller.visibility= View.GONE
+                rl_Seller_Internet.visibility=View.VISIBLE
+            }
         }
         ordersPending.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_HomeSeller.visibility= View.VISIBLE
+                rl_Seller_Internet.visibility=View.GONE
             val intent = Intent(this, SellerOrdersActivity::class.java)
             startActivity(intent)
-            finish()
+            finish()}else{
+                rl_HomeSeller.visibility= View.GONE
+                rl_Seller_Internet.visibility=View.VISIBLE
+            }
         }
         ordersOutForDelivery.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_HomeSeller.visibility= View.VISIBLE
+                rl_Seller_Internet.visibility=View.GONE
             val intent = Intent(this, OrderOutForDeliveryActivity::class.java)
             startActivity(intent)
-            finish()
+            finish()}else{
+                rl_HomeSeller.visibility= View.GONE
+                rl_Seller_Internet.visibility=View.VISIBLE
+            }
         }
         editShopDetails.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_HomeSeller.visibility= View.VISIBLE
+                rl_Seller_Internet.visibility=View.GONE
             val intent = Intent(this, UpdateShopDetailActivity::class.java)
             startActivity(intent)
-            finish()
+            finish()}else{
+                rl_HomeSeller.visibility= View.GONE
+                rl_Seller_Internet.visibility=View.VISIBLE
+            }
         }
         orderDatabaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
