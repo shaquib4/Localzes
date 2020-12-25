@@ -161,12 +161,12 @@ class ShopBanner : AppCompatActivity() {
         val convertWidth = width.toInt()
         val document = PdfDocument()
         val pageInfo: PdfDocument.PageInfo =
-            PdfDocument.PageInfo.Builder(convertWidth, convertHeight, 1).create()
+            PdfDocument.PageInfo.Builder(banner.width, banner.height, 1).create()
         val page: PdfDocument.Page = document.startPage(pageInfo)
         val canvas: Canvas = page.canvas
         val paint = Paint()
         canvas.drawPaint(paint)
-        bitmap = Bitmap.createScaledBitmap(bitmap!!, convertWidth, convertHeight, true);
+        bitmap = Bitmap.createScaledBitmap(bitmap!!, banner.width, banner.height, true);
 
         paint.color = Color.BLUE
         canvas.drawBitmap(bitmap!!, 0f, 0f, null)
@@ -186,12 +186,12 @@ class ShopBanner : AppCompatActivity() {
         }
         document.close()
         Toast.makeText(this, "PDF is created!!!", Toast.LENGTH_SHORT).show()
-        openGeneratedPdf()
+       // openGeneratedPdf()
     }
 
     private fun openGeneratedPdf() {
         val file: File = Environment.getExternalStorageDirectory()
-        val dir = File(file.absolutePath + "/Localzes/$shopName Banner.pdf")
+        val dir = File(file.absolutePath +"/Localzes"+"/$shopName Banner.pdf")
         if (dir.exists()) {
             val intent = Intent(Intent.ACTION_VIEW)
             val uri = Uri.fromFile(dir)
