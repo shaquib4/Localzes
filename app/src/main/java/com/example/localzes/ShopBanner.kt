@@ -1,28 +1,34 @@
 package com.example.localzes
 
 import android.Manifest
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.pdf.PdfDocument
+import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.util.DisplayMetrics
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_shop_banner.*
 import util.ConnectionManager
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
@@ -36,6 +42,7 @@ class ShopBanner : AppCompatActivity() {
     private var permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private lateinit var context: Context
     var shopName: String = ""
+    private var bitmap: Bitmap? = null
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,26 +69,28 @@ class ShopBanner : AppCompatActivity() {
         context = this
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkPermission(context, permissions)) {
-                if (ConnectionManager().checkConnectivity(this)){
-                    rl_shopBanner.visibility= View.VISIBLE
-                    rl_retryShopBanner.visibility=View.GONE
-                    saveBanner()}else{
+                if (ConnectionManager().checkConnectivity(this)) {
+                    rl_shopBanner.visibility = View.VISIBLE
+                    rl_retryShopBanner.visibility = View.GONE
+                    saveBanner()
+                } else {
 
-                    rl_shopBanner.visibility= View.GONE
-                    rl_retryShopBanner.visibility=View.VISIBLE
+                    rl_shopBanner.visibility = View.GONE
+                    rl_retryShopBanner.visibility = View.VISIBLE
 
                 }
             } else {
                 requestPermission(permissions)
             }
         } else {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_shopBanner.visibility= View.VISIBLE
-                rl_retryShopBanner.visibility=View.GONE
-                saveBanner()}else{
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_shopBanner.visibility = View.VISIBLE
+                rl_retryShopBanner.visibility = View.GONE
+                saveBanner()
+            } else {
 
-                rl_shopBanner.visibility= View.GONE
-                rl_retryShopBanner.visibility=View.VISIBLE
+                rl_shopBanner.visibility = View.GONE
+                rl_retryShopBanner.visibility = View.VISIBLE
 
             }
         }
@@ -126,18 +135,78 @@ class ShopBanner : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     private fun saveBanner() {
         btnSave.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this))  {
-                rl_shopBanner.visibility= View.VISIBLE
-                rl_retryShopBanner.visibility=View.GONE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_shopBanner.visibility = View.VISIBLE
+                rl_retryShopBanner.visibility = View.GONE
                 Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
-            val b = Bitmap.createBitmap(banner.width, banner.height, Bitmap.Config.ARGB_8888)
-            val cs = Canvas(b)
-            banner.draw(cs)
-            createImageFile(b)}else{
-                rl_shopBanner.visibility= View.GONE
-                rl_retryShopBanner.visibility=View.VISIBLE
+                bitmap = Bitmap.createBitmap(banner.width, banner.height, Bitmap.Config.ARGB_8888)
+                val cs = Canvas(bitmap!!)
+                banner.draw(cs)
+                //createImageFile(b)
+                createPdf()
+            } else {
+                rl_shopBanner.visibility = View.GONE
+                rl_retryShopBanner.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun createPdf() {
+        val wm: WindowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val displayMetrics = DisplayMetrics()
+        this.windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val height: Float = displayMetrics.heightPixels.toFloat()
+        val width: Float = displayMetrics.widthPixels.toFloat()
+        val convertHeight = height.toInt()
+        val convertWidth = width.toInt()
+        val document = PdfDocument()
+        val pageInfo: PdfDocument.PageInfo =
+            PdfDocument.PageInfo.Builder(convertWidth, convertHeight, 1).create()
+        val page: PdfDocument.Page = document.startPage(pageInfo)
+        val canvas: Canvas = page.canvas
+        val paint = Paint()
+        canvas.drawPaint(paint)
+        bitmap = Bitmap.createScaledBitmap(bitmap!!, convertWidth, convertHeight, true);
+
+        paint.color = Color.BLUE
+        canvas.drawBitmap(bitmap!!, 0f, 0f, null)
+        document.finishPage(page)
+        val outputStream: FileOutputStream?
+        val file: File = Environment.getExternalStorageDirectory()
+        val dir = File(file.absolutePath + "/Localzes")
+        dir.mkdirs()
+        val filename = "$shopName Banner.pdf"
+        val outFile = File(dir, filename)
+        try {
+            outputStream = FileOutputStream(outFile)
+            document.writeTo(outputStream)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+        }
+        document.close()
+        Toast.makeText(this, "PDF is created!!!", Toast.LENGTH_SHORT).show()
+        openGeneratedPdf()
+    }
+
+    private fun openGeneratedPdf() {
+        val file: File = Environment.getExternalStorageDirectory()
+        val dir = File(file.absolutePath + "/Localzes/$shopName Banner.pdf")
+        if (dir.exists()) {
+            val intent = Intent(Intent.ACTION_VIEW)
+            val uri = Uri.fromFile(dir)
+            intent.setDataAndType(uri, "application/pdf")
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            try {
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(this, "No Application available to view pdf", Toast.LENGTH_LONG)
+                    .show()
+
+            }
+
+        }
+
     }
 
     fun checkPermission(context: Context, permissionArray: Array<String>): Boolean {

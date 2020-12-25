@@ -40,6 +40,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private var mStatus: String? = null
     private var bool: Boolean = false
     private lateinit var imgBackOrderDetails: ImageView
+    private var selectedReason: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_seller)
@@ -80,40 +81,45 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
-                if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)){
+                if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
 
                     when (orderStatus) {
-                    "Pending" -> {
-                        txtOrderStatus.setTextColor(resources.getColor(R.color.colorAccent))
-                        imgEdit.setOnClickListener {
-                            if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)){
-                            editOrderStatusDialog()}else{
-                                rl_OrderDetails.visibility=View.GONE
-                                rl_retryOrderDetails.visibility=View.VISIBLE
+                        "Pending" -> {
+                            txtOrderStatus.setTextColor(resources.getColor(R.color.colorAccent))
+                            imgEdit.setOnClickListener {
+                                if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
+                                    editOrderStatusDialog()
+                                } else {
+                                    rl_OrderDetails.visibility = View.GONE
+                                    rl_retryOrderDetails.visibility = View.VISIBLE
+                                }
                             }
                         }
-                    }
-                    "Accepted" -> {
-                        txtOrderStatus.setTextColor(resources.getColor(R.color.green))
-                        imgEdit.setOnClickListener {
-                            if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)){
-                            newEditOrderStatusDialog()}else{
-                                rl_OrderDetails.visibility=View.GONE
-                                rl_retryOrderDetails.visibility=View.VISIBLE
+                        "Accepted" -> {
+                            txtOrderStatus.setTextColor(resources.getColor(R.color.green))
+                            imgEdit.setOnClickListener {
+                                if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
+                                    newEditOrderStatusDialog()
+                                } else {
+                                    rl_OrderDetails.visibility = View.GONE
+                                    rl_retryOrderDetails.visibility = View.VISIBLE
+                                }
                             }
                         }
+                        "Out For Delivery" -> {
+                            txtOrderStatus.setTextColor(resources.getColor(R.color.acidGreen))
+                            imgEdit.setOnClickListener {
+                                afterEditOrderStatusDialog()
+                            }
+                        }
+                        "Rejected" -> {
+                            txtOrderStatus.setTextColor(resources.getColor(R.color.red))
+                            imgEdit.visibility = View.GONE
+                        }
                     }
-                    "Out For Delivery" -> {
-                        txtOrderStatus.setTextColor(resources.getColor(R.color.acidGreen))
-                        imgEdit.visibility = View.GONE
-                    }
-                    "Cancelled" -> {
-                        txtOrderStatus.setTextColor(resources.getColor(R.color.red))
-                        imgEdit.visibility = View.GONE
-                    }
-                }}else{
-                    rl_OrderDetails.visibility=View.GONE
-                    rl_retryOrderDetails.visibility=View.VISIBLE
+                } else {
+                    rl_OrderDetails.visibility = View.GONE
+                    rl_retryOrderDetails.visibility = View.VISIBLE
                 }
                 txtOrderId.text = "OD${orderId}"
                 txtOrderStatus.text = orderStatus
@@ -121,41 +127,42 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 txtOrderDate.text = formattedDate
             }
         })
-        if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)){
-            rl_OrderDetails.visibility=View.VISIBLE
-            rl_retryOrderDetails.visibility=View.GONE
+        if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
+            rl_OrderDetails.visibility = View.VISIBLE
+            rl_retryOrderDetails.visibility = View.GONE
             databaseRef.child("Items").addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                (mOrderDetails as ArrayList<ModelOrderedItems>).clear()
-                for (i in snapshot.children) {
-                    val obj = ModelOrderedItems(
-                        i.child("productId").value.toString(),
-                        i.child("productTitle").value.toString(),
-                        i.child("finalPrice").value.toString(),
-                        i.child("priceEach").value.toString(),
-                        i.child("finalQuantity").value.toString()
-                    )
-                    (mOrderDetails as ArrayList<ModelOrderedItems>).add(obj)
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (mOrderDetails as ArrayList<ModelOrderedItems>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModelOrderedItems(
+                            i.child("productId").value.toString(),
+                            i.child("productTitle").value.toString(),
+                            i.child("finalPrice").value.toString(),
+                            i.child("priceEach").value.toString(),
+                            i.child("finalQuantity").value.toString()
+                        )
+                        (mOrderDetails as ArrayList<ModelOrderedItems>).add(obj)
+                    }
+                    sellerOrdersDetails =
+                        AdapterOrderedItems(
+                            this@OrdersDetailsSellerActivity,
+                            mOrderDetails
+                        )
+                    recyclerOrderedSellerItems.adapter = sellerOrdersDetails
+                    if (snapshot.childrenCount.toInt() > 1) {
+                        totalItems.text = "${snapshot.childrenCount} items"
+                    } else {
+                        totalItems.text = "${snapshot.childrenCount} item"
+                    }
                 }
-                sellerOrdersDetails =
-                    AdapterOrderedItems(
-                        this@OrdersDetailsSellerActivity,
-                        mOrderDetails
-                    )
-                recyclerOrderedSellerItems.adapter = sellerOrdersDetails
-                if (snapshot.childrenCount.toInt() > 1) {
-                    totalItems.text = "${snapshot.childrenCount} items"
-                } else {
-                    totalItems.text = "${snapshot.childrenCount} item"
-                }
-            }
-        })}else{
-            rl_OrderDetails.visibility=View.GONE
-            rl_retryOrderDetails.visibility=View.VISIBLE
+            })
+        } else {
+            rl_OrderDetails.visibility = View.GONE
+            rl_retryOrderDetails.visibility = View.VISIBLE
         }
         val database: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString())
@@ -193,6 +200,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
 
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 val status = snapshot.child("orderStatus").value.toString() == "Pending"
             }
@@ -203,6 +211,34 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    private fun afterEditOrderStatusDialog() {
+        val options = arrayOf("Payment Received", "Rejected")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Edit Order Status")
+        builder.setSingleChoiceItems(options, -1) { dialog, which ->
+            val selectedItem = options[which]
+            if (selectedItem == "Payment Received") {
+                bool = true
+                dialog.dismiss()
+            } else {
+                dialog.dismiss()
+                val builderNew = AlertDialog.Builder(this@OrdersDetailsSellerActivity)
+                builderNew.setTitle("Choose A Reason")
+                val reasons =
+                    arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
+                builderNew.setSingleChoiceItems(reasons, -1) { dialog, which ->
+                    val selected = reasons[which]
+                    dialog.dismiss()
+                    selectedReason = selected
+                }
+                builderNew.create().show()
+                editOrderStatus("$selectedItem due to $selectedReason")
+            }
+        }
+        builder.create().show()
+    }
+
     private fun newEditOrderStatusDialog() {
         val options: Array<String> = if (!bool) {
             arrayOf("Rejected", "Out For Delivery", "Payment Received")
@@ -213,11 +249,30 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
-            if (selectedItem == "Payment Received") {
-                bool = true
-            }else{
-            editOrderStatus(selectedItem)
-            dialog.dismiss()}
+            when (selectedItem) {
+                "Payment Received" -> {
+                    bool = true
+                    dialog.dismiss()
+                }
+                "Rejected" -> {
+                    dialog.dismiss()
+                    val builderNew = AlertDialog.Builder(this@OrdersDetailsSellerActivity)
+                    builderNew.setTitle("Choose A Reason")
+                    val reasons =
+                        arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
+                    builderNew.setSingleChoiceItems(reasons, -1) { dialog, which ->
+                        val selected = reasons[which]
+                        dialog.dismiss()
+                        selectedReason = selected
+                    }
+                    builderNew.create().show()
+                    editOrderStatus("$selectedItem due to $selectedReason")
+                }
+                else -> {
+                    editOrderStatus(selectedItem)
+                    dialog.dismiss()
+                }
+            }
         }
         builder.create().show()
     }
@@ -234,9 +289,11 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             val selectedItem = options[which]
             if (selectedItem == "Payment Received") {
                 bool = true
-            }else{
-            editOrderStatus(selectedItem)
-            dialog.dismiss()}
+                dialog.dismiss()
+            } else {
+                editOrderStatus(selectedItem)
+                dialog.dismiss()
+            }
         }
         builder.create().show()
     }
@@ -277,8 +334,9 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             "Order has been Out For Delivery" -> {
                 NOTIFICATION_MESSAGE = "Your order is on the way"
             }
-            "Order has been Cancelled" -> {
-                NOTIFICATION_MESSAGE = "Sorry for the inconvenience"
+            "Order has been Rejected due to $selectedReason" -> {
+                NOTIFICATION_MESSAGE =
+                    "Sorry for the inconvenience.Your order is rejected due to $selectedReason"
             }
         }
         val NOTIFICATION_TYPE = "OrderStatusChanged"
