@@ -25,6 +25,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_shop_banner.*
@@ -186,27 +187,28 @@ class ShopBanner : AppCompatActivity() {
         }
         document.close()
         Toast.makeText(this, "PDF is created!!!", Toast.LENGTH_SHORT).show()
-       // openGeneratedPdf()
+        // openGeneratedPdf()
     }
 
     private fun openGeneratedPdf() {
         val file: File = Environment.getExternalStorageDirectory()
-        val dir = File(file.absolutePath +"/Localzes"+"/$shopName Banner.pdf")
+        val dir = File(file.absolutePath + "/Localzes" + "/$shopName Banner.pdf")
         if (dir.exists()) {
             val intent = Intent(Intent.ACTION_VIEW)
-            val uri = Uri.fromFile(dir)
+            val uri = FileProvider.getUriForFile(
+                context,
+                context.applicationContext.packageName + ".provider",
+                dir
+            )
             intent.setDataAndType(uri, "application/pdf")
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
             try {
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
                 Toast.makeText(this, "No Application available to view pdf", Toast.LENGTH_LONG)
                     .show()
-
             }
-
         }
-
     }
 
     fun checkPermission(context: Context, permissionArray: Array<String>): Boolean {
