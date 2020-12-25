@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -19,6 +20,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_shop_banner.*
+import util.ConnectionManager
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -59,12 +62,28 @@ class ShopBanner : AppCompatActivity() {
         context = this
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkPermission(context, permissions)) {
-                saveBanner()
+                if (ConnectionManager().checkConnectivity(this)){
+                    rl_shopBanner.visibility= View.VISIBLE
+                    rl_retryShopBanner.visibility=View.GONE
+                    saveBanner()}else{
+
+                    rl_shopBanner.visibility= View.GONE
+                    rl_retryShopBanner.visibility=View.VISIBLE
+
+                }
             } else {
                 requestPermission(permissions)
             }
         } else {
-            saveBanner()
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_shopBanner.visibility= View.VISIBLE
+                rl_retryShopBanner.visibility=View.GONE
+                saveBanner()}else{
+
+                rl_shopBanner.visibility= View.GONE
+                rl_retryShopBanner.visibility=View.VISIBLE
+
+            }
         }
     }
 
@@ -107,11 +126,17 @@ class ShopBanner : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     private fun saveBanner() {
         btnSave.setOnClickListener {
-            Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
+            if (ConnectionManager().checkConnectivity(this))  {
+                rl_shopBanner.visibility= View.VISIBLE
+                rl_retryShopBanner.visibility=View.GONE
+                Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
             val b = Bitmap.createBitmap(banner.width, banner.height, Bitmap.Config.ARGB_8888)
             val cs = Canvas(b)
             banner.draw(cs)
-            createImageFile(b)
+            createImageFile(b)}else{
+                rl_shopBanner.visibility= View.GONE
+                rl_retryShopBanner.visibility=View.VISIBLE
+            }
         }
     }
 

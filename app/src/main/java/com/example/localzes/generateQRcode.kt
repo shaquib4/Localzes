@@ -24,6 +24,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 import kotlinx.android.synthetic.main.activity_generate_q_rcode.*
+import util.ConnectionManager
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -65,12 +66,26 @@ class generateQRcode : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkPermission(context, permissions)) {
-                generateQRCode()
+                if (ConnectionManager().checkConnectivity(this)){
+                    rl_Qr.visibility=View.VISIBLE
+                    rl_retryQr.visibility=View.GONE
+                    generateQRCode()
+                }else{
+                    rl_Qr.visibility=View.GONE
+                    rl_retryQr.visibility=View.VISIBLE
+                }
             } else {
                 requestPermission(permissions)
             }
         } else {
-            generateQRCode()
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_Qr.visibility=View.VISIBLE
+                rl_retryQr.visibility=View.GONE
+                generateQRCode()
+            }else{
+                rl_Qr.visibility=View.GONE
+                rl_retryQr.visibility=View.VISIBLE
+            }
         }
     }
 
@@ -86,13 +101,19 @@ class generateQRcode : AppCompatActivity() {
         iv_qr_code.setImageBitmap(bitmap)
 
         qrsave.setOnClickListener {
-            Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_Qr.visibility=View.VISIBLE
+                rl_retryQr.visibility=View.GONE
+                Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
             val b = Bitmap.createBitmap(storeQr.width, storeQr.height, Bitmap.Config.ARGB_8888)
             val cs = Canvas(b)
             storeQr.draw(cs)
 
 
-            createImageFile(b)
+            createImageFile(b)}else{
+                rl_Qr.visibility=View.GONE
+                rl_retryQr.visibility=View.VISIBLE
+            }
             // val string="name,line".split(",").toTypedArray()
 
         }
