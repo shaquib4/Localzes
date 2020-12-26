@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/_1sdp"
+    android:layout_height="@dimen/_30sdp"
+   >
+
+
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1)"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:textColor="#000"
+            android:textSize="@dimen/_18ssp"/>
+        <TextView
+            android:id="@+id/Itemname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_toEndOf="@+id/num"
+            android:textSize="@dimen/_18ssp"
+            android:textColor="#000"
+            android:text="Potato Chips"/>
+        <TextView
+            android:layout_toRightOf="@+id/Itemname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/quan"
+            android:textSize="@dimen/_18ssp"
+            android:textColor="#de4500"
+            android:text="(1 Pack)"/>
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:textSize="@dimen/_18ssp"
+            android:textColor="#3498db"
+            android:text="₹2000"
+            android:layout_marginEnd="@dimen/_7sdp"/>
+
+    </RelativeLayout>
+
