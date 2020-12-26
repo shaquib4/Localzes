@@ -5,11 +5,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
+import util.ConnectionManager
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -19,14 +21,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         auth = FirebaseAuth.getInstance()
         if (restorePrefData()) {
+
             btnRegButton.setOnClickListener {
-                register()
+                if(ConnectionManager().checkConnectivity(this)){
+                    rl_main.visibility= View.VISIBLE
+                    rl_retryMain.visibility=View.GONE
+                    register()
+                }else{
+                    rl_main.visibility= View.GONE
+                    rl_retryMain.visibility=View.VISIBLE
+                }
             }
         } else {
             btnRegButton.setOnClickListener {
-                subscribeToTopic()
-                savePrefData()
-                register()
+                if(ConnectionManager().checkConnectivity(this)){
+                    rl_main.visibility= View.VISIBLE
+                    rl_retryMain.visibility=View.GONE
+                    subscribeToTopic()
+                    savePrefData()
+                    register()}else{
+                    rl_main.visibility= View.GONE
+                    rl_retryMain.visibility=View.VISIBLE
+                }
             }
         }
     }

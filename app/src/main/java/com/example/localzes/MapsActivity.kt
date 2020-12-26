@@ -10,6 +10,7 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_maps.*
+import util.ConnectionManager
 import java.io.IOException
 import java.util.*
 
@@ -142,6 +144,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        retryMapC.setOnClickListener {
+            if(ConnectionManager().checkConnectivity(this)){
+                rl_mapC.visibility= View.VISIBLE
+                rl_retryMapC.visibility=View.GONE
+                this.recreate()
+            }else{
+                rl_mapC.visibility= View.GONE
+                rl_retryMapC.visibility=View.VISIBLE
+            }
+        }
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
@@ -157,6 +170,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                 return@setOnClickListener
             } else {
 
+            if(ConnectionManager().checkConnectivity(this)) {
+                rl_mapC.visibility= View.VISIBLE
+                rl_retryMapC.visibility=View.GONE
                 suserDatabase!!.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
@@ -175,7 +191,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                     override fun onCancelled(error: DatabaseError) {
 
                     }
-                })
+                })}else{
+                rl_mapC.visibility= View.GONE
+                rl_retryMapC.visibility=View.VISIBLE
+            }
             }
         }
     }

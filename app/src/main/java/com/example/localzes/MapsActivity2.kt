@@ -9,6 +9,7 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.activity_maps2.*
+import util.ConnectionManager
 import java.util.*
 
 class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
@@ -143,6 +145,16 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         auth = FirebaseAuth.getInstance()
+        retryMapS.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_mapS.visibility= View.VISIBLE
+                rl_retryMapS.visibility=View.GONE
+                this.recreate()
+            }else{
+                rl_mapS.visibility= View.GONE
+                rl_retryMapS.visibility=View.VISIBLE
+            }
+        }
         SaveAddress_seller.setOnClickListener {
             when {
                 edtLocality_seller.text.toString().isEmpty() -> {
@@ -154,6 +166,9 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                     return@setOnClickListener
                 }
                 else -> {
+                    if (ConnectionManager().checkConnectivity(this)){
+                        rl_mapS.visibility= View.VISIBLE
+                        rl_retryMapS.visibility=View.GONE
                     val name = intent.getStringExtra("name")
                     val email = intent.getStringExtra("email")
                     val address = btnmapseller.text.toString()
@@ -178,7 +193,10 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                     intent.putExtra("nearestLandmark", nearestLandmark)
                     intent.putExtra("HouseNo", houseNo)
                     startActivity(intent)
-                    finish()
+                    finish()}else{
+                        rl_mapS.visibility= View.GONE
+                        rl_retryMapS.visibility=View.VISIBLE
+                    }
                 }
             }
         }

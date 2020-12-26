@@ -9,6 +9,7 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -27,6 +28,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.activity_maps2.*
 import kotlinx.android.synthetic.main.activity_maps__new.*
+import util.ConnectionManager
 import java.io.IOException
 import java.lang.IndexOutOfBoundsException
 import java.util.*
@@ -148,10 +150,20 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
+        retryMapN.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+               rl_mapN.visibility= View.VISIBLE
+                rl_retryMapN.visibility=View.GONE
+                this.recreate()
+            }else{
+                rl_mapN.visibility= View.GONE
+                rl_retryMapN.visibility=View.VISIBLE
+            }
+        }
         userDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("address")
 
-        userDatabase!!.addValueEventListener(object : ValueEventListener {
+       userDatabase!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
 
@@ -181,7 +193,9 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
                     return@setOnClickListener
                 }
                 else -> {
-
+                    if (ConnectionManager().checkConnectivity(this)){
+                        rl_mapN.visibility= View.VISIBLE
+                        rl_retryMapN.visibility=View.GONE
                     val address = btnmap_new.text.toString()
                     val city = txtCity_new.text.toString()
                     val state = txtState_new.text.toString()
@@ -217,6 +231,10 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
 
 
                         }
+                }else{
+                        rl_mapN.visibility= View.GONE
+                        rl_retryMapN.visibility=View.VISIBLE
+                    }
                 }
             }
 
