@@ -25,6 +25,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_shop_banner.*
@@ -211,9 +212,16 @@ class ShopBanner : AppCompatActivity() {
                 Toast.makeText(this, "No Application available to view pdf", Toast.LENGTH_LONG)
                     .show()
             }*/
-            val intentShare = Intent(Intent.ACTION_SEND)
+            val intentShare = Intent()
+            val uri = FileProvider.getUriForFile(
+                context,
+                context.applicationContext.packageName + ".provider",
+                dir
+            )
+            intentShare.action = Intent.ACTION_SEND
             intentShare.type = "application/pdf"
-            intentShare.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://$dir"))
+            intentShare.putExtra(Intent.EXTRA_STREAM, uri)
+            intentShare.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             startActivity(Intent.createChooser(intentShare, "Share the file..."))
         } else {
             Toast.makeText(this, "File doesn't exist", Toast.LENGTH_SHORT).show()
