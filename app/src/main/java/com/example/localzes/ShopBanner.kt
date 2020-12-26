@@ -1,7 +1,6 @@
 package com.example.localzes
 
 import android.Manifest
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,6 +13,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.StrictMode
 import android.provider.Settings
 import android.util.DisplayMetrics
 import android.view.View
@@ -25,7 +25,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.FileProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_shop_banner.*
@@ -40,7 +39,10 @@ class ShopBanner : AppCompatActivity() {
     private lateinit var btnSave: Button
     private lateinit var databaseReference: DatabaseReference
     private lateinit var shopAuth: FirebaseAuth
-    private var permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    private var permissions = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
     private lateinit var context: Context
     var shopName: String = ""
     private var bitmap: Bitmap? = null
@@ -241,6 +243,8 @@ class ShopBanner : AppCompatActivity() {
             ).show()
         } else {
             ActivityCompat.requestPermissions(this@ShopBanner, permissions, PERMISSION_REQUEST)
+            val builder = StrictMode.VmPolicy.Builder()
+            StrictMode.setVmPolicy(builder.build())
         }
     }
 
