@@ -145,6 +145,7 @@ class ShopBanner : AppCompatActivity() {
                 banner.draw(cs)
                 //createImageFile(b)
                 createPdf()
+                shareGeneratedPdf()
             } else {
                 rl_shopBanner.visibility = View.GONE
                 rl_retryShopBanner.visibility = View.VISIBLE
@@ -167,7 +168,7 @@ class ShopBanner : AppCompatActivity() {
         val canvas: Canvas = page.canvas
         val paint = Paint()
         canvas.drawPaint(paint)
-        bitmap = Bitmap.createScaledBitmap(bitmap!!, banner.width, banner.height, true);
+        bitmap = Bitmap.createScaledBitmap(bitmap!!, banner.width, banner.height, true)
 
         paint.color = Color.BLUE
         canvas.drawBitmap(bitmap!!, 0f, 0f, null)
@@ -190,11 +191,11 @@ class ShopBanner : AppCompatActivity() {
         // openGeneratedPdf()
     }
 
-    private fun openGeneratedPdf() {
+    private fun shareGeneratedPdf() {
         val file: File = Environment.getExternalStorageDirectory()
         val dir = File(file.absolutePath + "/Localzes" + "/$shopName Banner.pdf")
         if (dir.exists()) {
-            val intent = Intent(Intent.ACTION_VIEW)
+/*            val intent = Intent(Intent.ACTION_VIEW)
             val uri = FileProvider.getUriForFile(
                 context,
                 context.applicationContext.packageName + ".provider",
@@ -207,7 +208,13 @@ class ShopBanner : AppCompatActivity() {
             } catch (e: ActivityNotFoundException) {
                 Toast.makeText(this, "No Application available to view pdf", Toast.LENGTH_LONG)
                     .show()
-            }
+            }*/
+            val intentShare = Intent(Intent.ACTION_SEND)
+            intentShare.type = "application/pdf"
+            intentShare.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://$dir"))
+            startActivity(Intent.createChooser(intentShare, "Share the file..."))
+        } else {
+            Toast.makeText(this, "File doesn't exist", Toast.LENGTH_SHORT).show()
         }
     }
 
