@@ -12,6 +12,8 @@ import com.example.localzes.Adapters.AdapterSellerOrders
 import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_seller_orders.*
+import util.ConnectionManager
 
 class SellerOrdersActivity : AppCompatActivity() {
     private lateinit var recyclerShopOrders: RecyclerView
@@ -34,7 +36,10 @@ class SellerOrdersActivity : AppCompatActivity() {
         mSellerOrders = ArrayList<ModelOrderDetails>()
         sellerOrderDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
-        sellerOrderDatabase.addValueEventListener(object : ValueEventListener {
+        if(ConnectionManager().checkConnectivity(this)){
+            rl_pending.visibility=View.VISIBLE
+            rl_Seller_Orders_retry.visibility=View.GONE
+            sellerOrderDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -73,7 +78,10 @@ class SellerOrdersActivity : AppCompatActivity() {
                     recyclerShopOrders.adapter = sellerOrderAdapter
                 }
             }
-        })
+        })}else{
+            rl_pending.visibility=View.GONE
+            rl_Seller_Orders_retry.visibility=View.VISIBLE
+        }
         imgBackPending.setOnClickListener {
             val intent=Intent(this,Home_seller::class.java)
             startActivity(intent)

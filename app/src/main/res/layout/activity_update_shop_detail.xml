@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,7 @@
     tools:context=".UpdateShopDetailActivity">
 
     <RelativeLayout
+        android:id="@+id/rl_updateShop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
@@ -300,7 +301,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/update_Shop_Internet"
+        android:id="@+id/rl_retryUpdateShop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/lost"
@@ -357,4 +358,4 @@
             android:textSize="@dimen/_15ssp" />
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

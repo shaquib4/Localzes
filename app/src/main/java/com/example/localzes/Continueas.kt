@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_continueas.*
+import kotlinx.android.synthetic.main.activity_home.*
 import util.ConnectionManager
 import java.util.HashMap
 
@@ -28,30 +29,40 @@ class Continueas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continueas)
+       progress_continue.visibility=View.GONE
+        retryContinueAs.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_continueAs.visibility=View.VISIBLE
+                rl_retryContinueAs.visibility=View.GONE
+            this.recreate()}else{
+                rl_continueAs.visibility=View.GONE
+                rl_retryContinueAs.visibility=View.VISIBLE
+            }
+        }
 
-        if (ConnectionManager().checkConnectivity(this)) {
-            progress_continue.visibility = View.GONE
+
+
             btnCustomer.setOnClickListener {
-                customer()
+                progress_continue.visibility = View.VISIBLE
+                if (ConnectionManager().checkConnectivity(this)){
+                    rl_continueAs.visibility=View.VISIBLE
+                    rl_retryContinueAs.visibility=View.GONE
+                      customer()}else{
+                    rl_continueAs.visibility=View.GONE
+                    rl_retryContinueAs.visibility=View.VISIBLE
+                }
             }
             btnseller.setOnClickListener {
-                seller()
+                progress_continue.visibility = View.VISIBLE
+                if (ConnectionManager().checkConnectivity(this)){
+                    rl_continueAs.visibility=View.VISIBLE
+                    rl_retryContinueAs.visibility=View.GONE
+                    seller()}else{
+                    rl_continueAs.visibility=View.GONE
+                    rl_retryContinueAs.visibility=View.VISIBLE
+                }
             }
-        } else {
-            val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Error")
-            dialog.setMessage("Internet Connection not Found")
-            dialog.setPositiveButton("Open Setting") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
-                startActivity(settingsIntent)
-                finish()
-            }
-            dialog.setNegativeButton("Exit") { text, listener ->
-                ActivityCompat.finishAffinity(this)
-            }
-            dialog.create()
-            dialog.show()
-        }
+
 
     }
 

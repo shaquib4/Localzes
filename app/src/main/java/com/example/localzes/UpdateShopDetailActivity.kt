@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -17,6 +18,9 @@ import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import id.zelory.compressor.Compressor
+import kotlinx.android.synthetic.main.activity_seller_shop_detail.*
+import kotlinx.android.synthetic.main.activity_update_shop_detail.*
+import util.ConnectionManager
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -49,9 +53,15 @@ class UpdateShopDetailActivity : AppCompatActivity() {
         spinnerClose = findViewById(R.id.spinner_close)
         spinnerOpen = findViewById(R.id.spinner_open)
         spinnerClosingDay = findViewById(R.id.spinner_closing_day)
+        retryUpdateShops.setOnClickListener {
+            this.recreate()
+        }
 
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-        databaseRef.addValueEventListener(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_updateShop.visibility= View.VISIBLE
+            rl_retryUpdateShop.visibility=View.GONE
+            databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -65,7 +75,10 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                 shopNameUpdate.setText(shopName)
                 upiIdUpdate.setText(upiId)
             }
-        })
+        })}else{
+            rl_updateShop.visibility= View.GONE
+            rl_retryUpdateShop.visibility=View.VISIBLE
+        }
 
         imageShopUpdate.setOnClickListener {
             startImageChooser()
@@ -75,10 +88,16 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                 shopNameUpdate.error = "Please Enter Shop Name"
                 return@setOnClickListener
             } else {
-                updateData()
+                if (ConnectionManager().checkConnectivity(this)){
+                    rl_updateShop.visibility= View.VISIBLE
+                    rl_retryUpdateShop.visibility=View.GONE
+                    updateData()
                 val intent = Intent(this, Home_seller::class.java)
                 startActivity(intent)
-                finish()
+                finish()}else{
+                    rl_updateShop.visibility= View.GONE
+                    rl_retryUpdateShop.visibility=View.VISIBLE
+                }
             }
 
         }

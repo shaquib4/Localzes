@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -17,6 +18,9 @@ import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import id.zelory.compressor.Compressor
+import kotlinx.android.synthetic.main.activity_seller_shop_detail.*
+import kotlinx.android.synthetic.main.activity_update_product_details.*
+import util.ConnectionManager
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -53,26 +57,16 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         quantityUpdate = findViewById(R.id.etQuantityUpdate)
         updateProduct = findViewById(R.id.btnUpdateProduct)
         radioGroup = findViewById(R.id.radioStockCustomer)
-        if (productName.text.toString().isEmpty()) {
-            productName.error = "Please Enter Product Name"
-            return
+        retryUpdateProductDetail.setOnClickListener {
+            this.recreate()
         }
-        if (offerPriceUpdate.text.toString().isEmpty()) {
-            offerPriceUpdate.error = "Please Enter selling price of your Product"
-            return
-        }
-        if (sellPriceUpdate.text.toString().isEmpty()) {
-            sellPriceUpdate.error = "Please Enter MRP of your Product"
-            return
 
-        }
-        if (quantityUpdate.text.toString().isEmpty()) {
-            quantityUpdate.error = "Please Enter Quantity"
-            return
-        }
         productId = intent.getStringExtra("productId")
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-        databaseRef.child("Products").child(productId.toString())
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_retryUpdateProductDetail.visibility= View.GONE
+            rl_productDetail.visibility=View.VISIBLE
+            databaseRef.child("Products").child(productId.toString())
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -97,7 +91,10 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     offerPriceUpdate.setText(sellingPrice)
                     quantityUpdate.setText(quantity)
                 }
-            })
+            })}else{
+            rl_retryUpdateProductDetail.visibility= View.VISIBLE
+            rl_productDetail.visibility=View.GONE
+        }
         imageUpdate.setOnClickListener {
             startImageChooser()
         }
@@ -121,10 +118,18 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 else -> {
-                    updateData()
+                    if (ConnectionManager().checkConnectivity(this)){
+                        rl_retryUpdateProductDetail.visibility= View.GONE
+                        rl_productDetail.visibility=View.VISIBLE
+
+                        updateData()
                     val intent = Intent(this, Seller_Products::class.java)
                     startActivity(intent)
-                    finish()
+                    finish()}else{
+
+                        rl_retryUpdateProductDetail.visibility= View.VISIBLE
+                        rl_productDetail.visibility=View.GONE
+                    }
                 }
             }
         }

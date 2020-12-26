@@ -231,6 +231,7 @@ class continue_payment : AppCompatActivity() {
                 //after sending fcm start order details activity
                 val intent = Intent(this, NewActivity::class.java)
                 startActivity(intent)
+                finish()
 
             },
             Response.ErrorListener {

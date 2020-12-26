@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -22,6 +23,7 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.activity_add_product.*
+import util.ConnectionManager
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -60,6 +62,15 @@ class AddProduct : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        retryAddProduct.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_addProduct.visibility= View.VISIBLE
+                rl_retryAddProduct.visibility=View.GONE
+                this.recreate()}else{
+                rl_addProduct.visibility= View.GONE
+                rl_retryAddProduct.visibility=View.VISIBLE
+            }
+        }
 
         btnAddProduct.setOnClickListener {
             when {
@@ -93,12 +104,18 @@ class AddProduct : AppCompatActivity() {
                     ).show()
                 }
                 else -> {
-                    progressDialog.setMessage("Adding Your Product....")
+                    if (ConnectionManager().checkConnectivity(this)){
+                        rl_addProduct.visibility= View.VISIBLE
+                        rl_retryAddProduct.visibility=View.GONE
+                        progressDialog.setMessage("Adding Your Product....")
                     progressDialog.show()
                     val id = radioGroup.checkedRadioButtonId
                     val radioButton = findViewById<RadioButton>(id)
                     val stock = radioButton.text
-                    uploadData(stock, progressDialog)
+                    uploadData(stock, progressDialog)}else{
+                        rl_addProduct.visibility= View.GONE
+                        rl_retryAddProduct.visibility=View.VISIBLE
+                    }
                 }
             }
         }

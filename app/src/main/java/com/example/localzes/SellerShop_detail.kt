@@ -8,6 +8,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.example.localzes.Modals.ModelClass
@@ -19,6 +20,8 @@ import com.google.firebase.storage.UploadTask
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import id.zelory.compressor.Compressor
+import kotlinx.android.synthetic.main.activity_seller_shop_detail.*
+import util.ConnectionManager
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.HashMap
@@ -56,7 +59,15 @@ class SellerShop_detail : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
 
-
+        retryShopDetail.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_ShopDetail.visibility= View.VISIBLE
+                rl_retryShopDetail.visibility=View.GONE
+                this.recreate()}else{
+                rl_ShopDetail.visibility= View.VISIBLE
+                rl_retryShopDetail.visibility=View.GONE
+            }
+        }
         btnChooseImage.setOnClickListener {
             startFileChooser()
         }
@@ -71,7 +82,13 @@ class SellerShop_detail : AppCompatActivity() {
                         .show()
                 }
                 else -> {
-                    uploadFile()
+                    if (ConnectionManager().checkConnectivity(this)){
+                        rl_ShopDetail.visibility= View.VISIBLE
+                        rl_retryShopDetail.visibility=View.GONE
+                        uploadFile()}else{
+                        rl_ShopDetail.visibility= View.VISIBLE
+                        rl_retryShopDetail.visibility=View.GONE
+                    }
                 }
             }
         }
@@ -179,9 +196,6 @@ class SellerShop_detail : AppCompatActivity() {
                     }
                 }
             })
-        } else {
-            btnUpload.isClickable = false
-            Toast.makeText(this, "Please Provide Your Shop Image", Toast.LENGTH_LONG).show()
         }
     }
 
