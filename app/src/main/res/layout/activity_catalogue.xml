@@ -5,14 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CatalogueActivity">
+
     <RelativeLayout
         android:id="@+id/rl_catalogue"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/menu_single_row"/>
+        android:layout_above="@id/btnShareCatalogue">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_Catalogue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_20sdp"
+            tools:listitem="@layout/menu_single_row" />
     </RelativeLayout>
+    <Button
+        android:id="@+id/btnShareCatalogue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Save As Pdf"/>
 </RelativeLayout>
