@@ -28,8 +28,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-
-        <activity android:name=".ShopBanner"></activity>
+        <activity android:name=".CatalogueActivity" />
+        <activity android:name=".ShopBanner" />
         <activity android:name=".generateQRcode" />
         <activity android:name=".cardBanners" />
         <activity android:name=".SplashScreenActivity" />
@@ -108,6 +108,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.localzes.provider"
@@ -118,4 +119,5 @@
                 android:resource="@xml/provider_paths" />
         </provider>
     </application>
+
 </manifest>

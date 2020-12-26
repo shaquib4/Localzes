@@ -198,20 +198,6 @@ class ShopBanner : AppCompatActivity() {
         val file: File = Environment.getExternalStorageDirectory()
         val dir = File(file.absolutePath + "/Localzes" + "/$shopName Banner.pdf")
         if (dir.exists()) {
-/*            val intent = Intent(Intent.ACTION_VIEW)
-            val uri = FileProvider.getUriForFile(
-                context,
-                context.applicationContext.packageName + ".provider",
-                dir
-            )
-            intent.setDataAndType(uri, "application/pdf")
-            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-            try {
-                startActivity(intent)
-            } catch (e: ActivityNotFoundException) {
-                Toast.makeText(this, "No Application available to view pdf", Toast.LENGTH_LONG)
-                    .show()
-            }*/
             val intentShare = Intent()
             val uri = FileProvider.getUriForFile(
                 context,
