@@ -13,6 +13,7 @@ import com.google.firebase.auth.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_verify.*
+import util.ConnectionManager
 import java.util.HashMap
 import java.util.concurrent.TimeUnit
 
@@ -33,8 +34,19 @@ class Verify : AppCompatActivity() {
         val phone=  intent.getStringExtra("phone")
         val number=phone.toString()
         lastDigit.text=number.takeLast(2)
-        sendVerification("+91$phone")
-        progress_verify.visibility= View.VISIBLE
+        retryOTP.setOnClickListener {
+            this.recreate()
+        }
+        if(ConnectionManager().checkConnectivity(this)){
+            rl_OTP.visibility=View.VISIBLE
+            rl_OTP.visibility=View.GONE
+            sendVerification("+91$phone")
+            progress_verify.visibility= View.VISIBLE}else{
+            rl_OTP.visibility=View.GONE
+            rl_OTP.visibility=View.VISIBLE
+
+        }
+
 
 
 
@@ -54,8 +66,14 @@ class Verify : AppCompatActivity() {
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
             val code=credential.smsCode
             if(code!=null){
-                verifyVerification(code)
-                otp.setText(code)
+                if(ConnectionManager().checkConnectivity(this@Verify)){
+                    rl_OTP.visibility=View.VISIBLE
+                    rl_OTP.visibility=View.GONE
+                    verifyVerification(code)
+                otp.setText(code)}else{
+                    rl_OTP.visibility=View.GONE
+                    rl_OTP.visibility=View.VISIBLE
+                }
             }
         }
 

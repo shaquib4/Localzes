@@ -6,7 +6,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/otp"
     android:orientation="vertical">
-
+<RelativeLayout
+    android:id="@+id/rl_OTP"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/otp_mobile"
         android:layout_width="wrap_content"
@@ -106,4 +109,62 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"
         />
+</RelativeLayout>
+    <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/rl_retryOTP"
+        android:background="@drawable/lost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txtOhNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Oh No.."
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:textSize="@dimen/_20ssp"/>
+
+
+        <TextView
+            android:id="@+id/txtLost"
+            android:layout_below="@+id/txtOhNo"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="No Internet Connection"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:textSize="@dimen/_20ssp"/>
+
+
+        <TextView
+            android:id="@+id/txtConnect"
+            android:layout_below="@+id/txtLost"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Please connect to internet"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:textSize="@dimen/_15ssp"/>
+
+        <Button
+            android:id="@+id/retryOTP"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:elevation="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="@dimen/_15ssp"
+            android:text="Retry"
+            android:textColor="#de4500"
+            android:background="@drawable/stroke_solid_btn"/>
+
+    </RelativeLayout>
 </RelativeLayout>
