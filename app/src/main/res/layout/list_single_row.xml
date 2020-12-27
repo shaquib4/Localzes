@@ -6,6 +6,7 @@
 
     <EditText
         android:id="@+id/Item_name"
+        
         android:layout_width="@dimen/_195sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginLeft="@dimen/_3sdp"

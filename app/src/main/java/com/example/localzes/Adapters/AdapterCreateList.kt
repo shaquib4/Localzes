@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.CatalogueActivity
+import com.example.localzes.CreateList
 import com.example.localzes.Modals.ModelList
 import com.example.localzes.R
 import com.google.firebase.auth.FirebaseAuth
@@ -18,7 +19,7 @@ import com.google.firebase.database.*
 class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
     RecyclerView.Adapter<AdapterCreateList.HolderCreateList>() {
     class HolderCreateList(view: View) : RecyclerView.ViewHolder(view) {
-        val itemName: EditText = view.findViewById(R.id.Itemname)
+        val itemName: EditText = view.findViewById(R.id.Item_name)
         val itemQuantity: EditText = view.findViewById(R.id.Item_Quan)
         val itemRemove: ImageView = view.findViewById(R.id.itemRemove)
 
@@ -36,7 +37,7 @@ class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
 
     override fun onBindViewHolder(holder: HolderCreateList, position: Int) {
         val itemList = item_List[position]
-        holder.itemName.setText(itemList.itemId)
+        holder.itemName.setText(itemList.itemName)
         holder.itemQuantity.setText(itemList.itemQuantity)
         holder.itemName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -78,7 +79,7 @@ class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
         val uid = user!!.uid
         val id = item_List[position].itemId
         val databaseReference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("user").child(uid).child("OrderList")
+            FirebaseDatabase.getInstance().reference.child("users").child(uid).child("OrderList")
         databaseReference.orderByChild("itemId").equalTo(id)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -89,7 +90,7 @@ class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
                     for (i in snapshot.children) {
                         i.ref.removeValue()
                     }
-                    (context as CatalogueActivity).recreate()
+                    (context as CreateList).recreate()
                 }
             })
     }
@@ -99,7 +100,7 @@ class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
         val user = uAuth.currentUser
         val uid = user!!.uid
         val databaseReference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("user").child(uid).child("OrderList")
+            FirebaseDatabase.getInstance().reference.child("users").child(uid).child("OrderList")
                 .child(itemId)
         val headers = HashMap<String, Any>()
         headers["itemQuantity"] = s
@@ -112,7 +113,7 @@ class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
         val user = uAuth.currentUser
         val uid = user!!.uid
         val databaseReference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("user").child(uid).child("OrderList")
+            FirebaseDatabase.getInstance().reference.child("users").child(uid).child("OrderList")
                 .child(itemId)
         val headers = HashMap<String, Any>()
         headers["itemName"] = s

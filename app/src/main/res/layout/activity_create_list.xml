@@ -35,12 +35,11 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/li"
         android:layout_below="@+id/rl_create"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginBottom="@dimen/_5sdp"
         tools:listitem="@layout/list_single_row" />
 
     <LinearLayout
