@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateList">
+
     <RelativeLayout
         android:id="@+id/rl_create"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80sdp"
         android:background="@drawable/border">
+
         <TextView
             android:id="@+id/txtPC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginTop="@dimen/_28sdp"
             android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_28sdp"
 
             android:fontFamily="@font/montserrat_bold"
             android:text="Create Your List"
@@ -26,52 +28,55 @@
         <ImageView
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_80sdp"
-
             android:layout_marginStart="@dimen/_5sdp"
-            android:scaleType="fitXY"
             android:layout_toRightOf="@+id/txtPC"
-            android:src="@drawable/shop_png" /></RelativeLayout>
+            android:scaleType="fitXY"
+            android:src="@drawable/shop_png" />
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-      android:layout_above="@id/li"
-        tools:listitem="@layout/list_single_row"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_15sdp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_create"/>
+        android:layout_above="@id/li"
+        android:layout_below="@+id/rl_create"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        tools:listitem="@layout/list_single_row" />
+
     <LinearLayout
         android:id="@+id/li"
-        android:layout_marginHorizontal="@dimen/_3sdp"
-        android:layout_marginBottom="@dimen/_2sdp"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_3sdp"
+        android:layout_marginBottom="@dimen/_2sdp"
         android:orientation="horizontal"
-        >
-    <Button
-        android:layout_marginEnd="@dimen/_2sdp"
-        android:text="Add"
-        android:textColor="#fff"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_15ssp"
-        android:id="@+id/btnAdd"
-        android:layout_weight="1"
-        android:layout_height="@dimen/_32sdp"
-        android:background="@drawable/bg_buttons"
-        android:layout_width="0dp" />
-    <Button
+        android:weightSum="2">
 
-       android:layout_marginStart="@dimen/_2sdp"
-        android:text="Confirm"
-        android:textColor="#fff"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_15ssp"
-        android:layout_weight="1"
-        android:id="@+id/btnCn"
-        android:layout_height="@dimen/_32sdp"
-        android:background="@drawable/bg_buttons"
-        android:layout_width="0dp" />
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_buttons"
+            android:text="Add"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="@dimen/_15ssp" />
+
+        <Button
+
+            android:id="@+id/btnCn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_buttons"
+            android:text="Confirm"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="@dimen/_15ssp" />
 
     </LinearLayout>
 </RelativeLayout>
