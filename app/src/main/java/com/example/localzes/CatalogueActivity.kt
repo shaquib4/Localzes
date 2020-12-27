@@ -53,7 +53,7 @@ class CatalogueActivity : AppCompatActivity() {
         view = findViewById(R.id.recycler_Catalogue)
         btnShare = findViewById(R.id.btnShareCatalogue)
         view.layoutManager = LinearLayoutManager(this)
-
+       catalogueList=ArrayList<ModelAddProduct>()
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
@@ -113,6 +113,7 @@ class CatalogueActivity : AppCompatActivity() {
                 View.MeasureSpec.makeMeasureSpec(view.width, View.MeasureSpec.EXACTLY),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
             )
+
             bitmap = Bitmap.createBitmap(view.width, view.measuredHeight, Bitmap.Config.ARGB_8888)
             val cs = Canvas(bitmap!!)
             view.draw(cs)

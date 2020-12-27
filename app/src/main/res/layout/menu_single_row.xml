@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/_1sdp"
     android:layout_height="@dimen/_30sdp"
-    android:layout_marginTop="@dimen/_1sdp">
+   >
 
 
-    <TextView
-        android:id="@+id/num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:text="1)"
-        android:textColor="#000"
-        android:textSize="@dimen/_18ssp" />
 
-    <TextView
-        android:id="@+id/Itemname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_toEndOf="@+id/num"
-        android:text="Potato Chips"
-        android:textColor="#000"
-        android:textSize="@dimen/_18ssp" />
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1)"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:textColor="#000"
+            android:textSize="@dimen/_18ssp"/>
+        <TextView
+            android:id="@+id/Itemname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_1sdp"
+            android:layout_toEndOf="@+id/num"
+            android:textSize="@dimen/_16ssp"
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="#000"
+            android:text="Potato Chips"/>
+        <TextView
+            android:layout_toRightOf="@+id/Itemname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:fontFamily="@font/montserrat_medium"
+            android:id="@+id/quan"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="#de4500"
+            android:text="(1 Pack)"/>
+        <TextView
+            android:id="@+id/priceMenu"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:fontFamily="@font/montserrat_medium"
 
-    <TextView
-        android:id="@+id/quan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="#3498db"
+            android:text="₹20000"
+            android:layout_marginEnd="@dimen/_7sdp"/>
 
-        android:layout_toRightOf="@+id/Itemname"
-        android:text="(1 Pack)"
-        android:textColor="#de4500"
-        android:textSize="@dimen/_18ssp" />
-
-    <TextView
-        android:id="@+id/priceMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="@dimen/_7sdp"
-        android:text="₹2000000"
-        android:textColor="#3498db"
-        android:textSize="@dimen/_18ssp" />
-
-</RelativeLayout>
+    </RelativeLayout>
 

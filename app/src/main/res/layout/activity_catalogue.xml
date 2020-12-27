@@ -4,25 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+  android:background="@drawable/bg_store"
     tools:context=".CatalogueActivity">
-
     <RelativeLayout
-        android:id="@+id/rl_catalogue"
+        android:id="@+id/rl1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/btnShareCatalogue">
+        android:layout_height="@dimen/_80sdp"
+        android:background="@drawable/border">
+        <TextView
+            android:id="@+id/txtPC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_Catalogue"
+            android:layout_marginTop="@dimen/_28sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Shop Menu Card"
+            android:textColor="#fff"
+            android:textSize="@dimen/_20ssp" />
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_80sdp"
+
+            android:layout_marginStart="@dimen/_5sdp"
+            android:scaleType="fitXY"
+           android:layout_toRightOf="@+id/txtPC"
+            android:src="@drawable/shop_png" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_above="@id/btnShareCatalogue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_20sdp"
-            tools:listitem="@layout/menu_single_row" />
+            android:layout_height="@dimen/_500sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_90sdp"
+           android:layout_marginBottom="@dimen/_10sdp"
+            android:background="#fff"
+            android:elevation="5dp"
+            app:cardCornerRadius="10dp">
+            <RelativeLayout
+                android:id="@+id/rl_1"
+                android:background="#fafacd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:id="@+id/lio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/io"
+                    android:layout_width="@dimen/_100sdp"
+                    android:src="@drawable/shop_png"
+                    android:layout_height="@dimen/_80sdp"/>
+                <TextView
+                    android:textSize="@dimen/_18ssp"
+                    android:layout_toEndOf="@+id/io"
+                    android:layout_marginStart="@dimen/_9sdp"
+                    android:text="Cupcakes Menu"
+                    android:textColor="#000"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_marginTop="@dimen/_28sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/></RelativeLayout>
+         <androidx.recyclerview.widget.RecyclerView
+             android:background="#fafacd"
+             android:id="@+id/recycler_Catalogue"
+             android:layout_below="@id/lio"
+             android:layout_marginTop="@dimen/_5sdp"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:listitem="@layout/menu_single_row"/>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
     <Button
+        android:background="@drawable/bg_buttons"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:id="@+id/btnShareCatalogue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:textSize="@dimen/_18ssp"
         android:layout_alignParentBottom="true"
         android:text="Save As Pdf"/>
 </RelativeLayout>
