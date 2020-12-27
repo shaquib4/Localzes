@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -14,20 +15,29 @@ import kotlinx.android.synthetic.main.activity_create_list.*
 class CreateList : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var userDatabase: DatabaseReference
-    private lateinit var createListAdapter:AdapterCreateList
-    private lateinit var list:List<ModelList>
-    private lateinit var listRecycler:RecyclerView
+    private lateinit var createListAdapter: AdapterCreateList
+    private lateinit var list: List<ModelList>
+    private lateinit var listRecycler: RecyclerView
+    private lateinit var shopDatabase: DatabaseReference
+    private var shopId: String? = null
+    private var bool = true
+    private lateinit var progressDialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_list)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
-        list=ArrayList<ModelList>()
-        listRecycler=findViewById(R.id.recycler_list)
-        listRecycler.layoutManager=LinearLayoutManager(this)
+        shopId = intent.getStringExtra("ShopListId")
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Please Wait")
+        progressDialog.setCanceledOnTouchOutside(false)
+        list = ArrayList<ModelList>()
+        listRecycler = findViewById(R.id.recycler_list)
+        listRecycler.layoutManager = LinearLayoutManager(this)
         userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
-            .child("OrderList")
+        shopDatabase =
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
 
         btnAdd.setOnClickListener {
             val timestamp = System.currentTimeMillis().toString()
@@ -36,49 +46,19 @@ class CreateList : AppCompatActivity() {
             headers["itemName"] = ""
             headers["itemQuantity"] = ""
             userDatabase.child(timestamp).setValue(headers).addOnCompleteListener {
-                if (it.isSuccessful){
+                if (it.isSuccessful) {
                     this.recreate()
                 }
             }
         }
-        userDatabase.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (i in snapshot.children) {
-                    if (!(i.child("itemId").value.toString() == "" && i.child("itemName").value.toString() == "")) {
-                        btnCn.setOnClickListener {
-                            val obj = ModelList(
-                                i.child("itemId").value.toString(),
-                                i.child("itemName").value.toString(),
-                                i.child("itemQuantity").value.toString()
-                            )
-                            val shopDatabaseReference=FirebaseDatabase.getInstance().reference
-
-                        }
-                    } else if (i.child("itemId").value.toString() == "" && i.child("itemName").value.toString() == "") {
-                        btnCn.setOnClickListener {
-                            Toast.makeText(
-                                this@CreateList,
-                                "Some fields are empty",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-
-                    }
-                }
-            }
-        })
-        userDatabase.addListenerForSingleValueEvent(object :ValueEventListener{
+        userDatabase.child("OrderList").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 (list as ArrayList<ModelList>).clear()
-                for(i in snapshot.children){
+                for (i in snapshot.children) {
 
                     val obj = ModelList(
                         i.child("itemId").value.toString(),
@@ -86,10 +66,39 @@ class CreateList : AppCompatActivity() {
                         i.child("itemQuantity").value.toString()
                     )
                     (list as ArrayList<ModelList>).add(obj)
+
                 }
-                createListAdapter= AdapterCreateList(this@CreateList,list)
-                listRecycler.adapter=createListAdapter
+                createListAdapter = AdapterCreateList(this@CreateList, list)
+                listRecycler.adapter = createListAdapter
             }
         })
+        for (j in list) {
+            if (j.itemName == "" || j.itemQuantity == "") {
+                bool = false
+                break
+            }
+        }
+        btnCn.setOnClickListener {
+            if (bool) {
+                progressDialog.setMessage("Placing Your Order")
+                progressDialog.show()
+                val orderId = System.currentTimeMillis().toString()
+                for (i in 0 until list.size) {
+                    val itemName = list[i].itemName
+                    val itemQuantity = list[i].itemQuantity
+                    val headers = HashMap<String, Any>()
+                    headers["itemId"] = list[i].itemId
+                    headers["itemName"] = itemName
+                    headers["itemQuantity"] = itemQuantity
+                    shopDatabase.child("MyListOrders").child(orderId).child(list[i].itemId)
+                        .setValue(headers)
+                    userDatabase.child("MyListOrders").child(orderId).child(list[i].itemId)
+                        .setValue(headers)
+                }
+                progressDialog.dismiss()
+            } else {
+                Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

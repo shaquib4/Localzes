@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -278,22 +279,13 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     private fun editOrderStatusDialog() {
-        val options: Array<String> = if (!bool) {
-            arrayOf("Accepted", "Rejected", "Payment Received")
-        } else {
-            arrayOf("Accepted", "Rejected")
-        }
+        val options = arrayOf("Accepted", "Rejected")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
-            if (selectedItem == "Payment Received") {
-                bool = true
-                dialog.dismiss()
-            } else {
-                editOrderStatus(selectedItem)
-                dialog.dismiss()
-            }
+            editOrderStatus(selectedItem)
+            dialog.dismiss()
         }
         builder.create().show()
     }
@@ -389,5 +381,29 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
+    }
+
+    fun onCheckboxClicked(view: View) {
+        if (view is CheckBox) {
+            val checked: Boolean = view.isChecked
+            when (view.id) {
+                R.id.checkbox_Completed -> {
+                    if (checked) {
+                        val builder = AlertDialog.Builder(this)
+                        val new = builder.show()
+                        builder.setTitle("Confirmation")
+                        builder.setMessage("Are you sure your order has been successfully completed")
+                        builder.setPositiveButton("Ok") { text, listener ->
+                            view.visibility = View.GONE
+                            new.dismiss()
+                        }
+                        builder.setNegativeButton("Cancel") { text, listener ->
+                            view.isChecked = false
+                            new.dismiss()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
