@@ -45,7 +45,7 @@ class CreateList : AppCompatActivity() {
             headers["itemId"] = timestamp
             headers["itemName"] = ""
             headers["itemQuantity"] = ""
-            userDatabase.child(timestamp).setValue(headers).addOnCompleteListener {
+            userDatabase.child("OrderList").child(timestamp).setValue(headers).addOnCompleteListener {
                 if (it.isSuccessful) {
                     this.recreate()
                 }
@@ -82,23 +82,28 @@ class CreateList : AppCompatActivity() {
             if (bool) {
                 progressDialog.setMessage("Placing Your Order")
                 progressDialog.show()
-                val orderId = System.currentTimeMillis().toString()
-                for (i in 0 until list.size) {
-                    val itemName = list[i].itemName
-                    val itemQuantity = list[i].itemQuantity
-                    val headers = HashMap<String, Any>()
-                    headers["itemId"] = list[i].itemId
-                    headers["itemName"] = itemName
-                    headers["itemQuantity"] = itemQuantity
-                    shopDatabase.child("MyListOrders").child(orderId).child(list[i].itemId)
-                        .setValue(headers)
-                    userDatabase.child("MyListOrders").child(orderId).child(list[i].itemId)
-                        .setValue(headers)
+                val dataReference: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                        .child("MyOrderList")
+                val ref: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("seller")
+                        .child(shopId.toString()).child("OrdersLists")
+                val orderId=System.currentTimeMillis().toString()
+                for(i in 0 until list.size){
+                    val itemId=list[i].itemId
+                    val itemName=list[i].itemName
+                    val itemQuantity=list[i].itemQuantity
+                    val headers=HashMap<String,String>()
+                    headers["itemId"]=itemId
+                    headers["itemName"]=itemName
+                    headers["itemQuantity"]=itemQuantity
+                    ref.child(orderId).child(itemId).setValue(headers)
+                    dataReference.child(orderId).child(itemId).setValue(headers)
                 }
                 progressDialog.dismiss()
-            } else {
-                Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()
             }
         }
+
+
     }
 }
