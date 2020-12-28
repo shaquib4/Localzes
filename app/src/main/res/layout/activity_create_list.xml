@@ -39,6 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/li"
+        android:padding="2dp"
+        app:stackFromEnd="true"
         android:layout_below="@+id/rl_create"
         tools:listitem="@layout/list_single_row" />
 

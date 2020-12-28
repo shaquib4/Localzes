@@ -3,29 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/_35sdp"
     android:layout_marginTop="@dimen/_5sdp">
+<TextView
+    android:id="@+id/txtSNo"
+   android:layout_marginTop="@dimen/_5sdp"
+    android:layout_alignParentStart="true"
+    android:layout_width="wrap_content"
+    android:layout_marginBottom="@dimen/_3sdp"
+    android:layout_height="wrap_content"
+    android:text="1."
+    android:textColor="#000000"
+    android:textSize="@dimen/_14ssp"/>
 
     <EditText
+        android:layout_toEndOf="@+id/txtSNo"
         android:id="@+id/Item_name"
-        
+        android:paddingTop="@dimen/_2sdp"
         android:layout_width="@dimen/_195sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_2sdp"
+        android:layout_marginLeft="@dimen/_4sdp"
         android:fontFamily="@font/montserrat_medium"
         android:maxLines="1"
         android:textSize="@dimen/_14ssp" />
 
     <EditText
+        android:paddingTop="@dimen/_2sdp"
         android:id="@+id/Item_Quan"
         android:layout_width="@dimen/_55sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_2sdp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_17sdp"
         android:layout_toRightOf="@+id/Item_name"
         android:maxLines="1" />
 
     <ImageView
         android:id="@+id/itemRemove"
-        android:layout_width="@dimen/_25sdp"
-        android:layout_height="@dimen/_25sdp"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/_2sdp"

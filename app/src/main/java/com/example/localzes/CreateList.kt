@@ -72,12 +72,29 @@ class CreateList : AppCompatActivity() {
                 listRecycler.adapter = createListAdapter
             }
         })
-        for (j in list) {
-            if (j.itemName == "" || j.itemQuantity == "") {
-                bool = false
-                break
+        userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
             }
-        }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+               bool=true
+                for (i in snapshot.children) {
+
+
+                   val itemId= i.child("itemId").value.toString()
+                    val itemName =  i.child("itemName").value.toString()
+                    val itemQuan = i.child("itemQuantity").value.toString()
+
+                   if (itemQuan==""||itemName==""){
+                       bool=false
+
+                   }
+
+                }
+
+            }
+        })
         btnCn.setOnClickListener {
             if (bool) {
                 progressDialog.setMessage("Placing Your Order")
@@ -98,9 +115,15 @@ class CreateList : AppCompatActivity() {
                     headers["itemName"]=itemName
                     headers["itemQuantity"]=itemQuantity
                     ref.child(orderId).child(itemId).setValue(headers)
-                    dataReference.child(orderId).child(itemId).setValue(headers)
+                    dataReference.child(orderId).child(itemId).setValue(headers).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            Toast.makeText(this@CreateList,"Done",Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
                 progressDialog.dismiss()
+            }else{
+                Toast.makeText(this@CreateList,"Some fields are empty",Toast.LENGTH_LONG).show()
             }
         }
 
