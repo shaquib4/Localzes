@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrdersDetailsSellerActivity">
+
+    <LinearLayout
+        android:id="@+id/rl_ListOrderDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgBackListOrderDetails"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/txtCO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_toEndOf="@id/imgBackListOrderDetails"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Order Details"
+                android:textColor="#000000"
+                android:textSize="@dimen/_13ssp" />
+
+            <CheckBox
+                android:id="@+id/checkbox_Completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:onClick="onCheckboxClicked" />
+
+            <View
+                android:id="@id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/imgBackListOrderDetails"
+                android:background="#d3d3d3" />
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="3dp"
+            app:contentPadding="5dp">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Order Id :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/txtListOrderId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="#123456"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Date :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/txtListOrderDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="27/02/2020, 9:45 PM"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Order Status :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+
+
+                    <TextView
+                        android:id="@+id/txtListOrderStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Pending"
+                        android:textColor="#008000"
+                        android:textSize="@dimen/_10ssp" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Items :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/txtListItems"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="9"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Amount :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/txtListOrderCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="Rs. 1,209/-"
+                        android:textColor="#008000"
+                        android:textSize="@dimen/_12ssp" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Delivery Address :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/txtListOrderDeliveryAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Saraibika, Jaunpur UP - 222202"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <ImageView
+                        android:id="@+id/imgEdit"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/edit" />
+                </TableRow>
+            </TableLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#d3d3d3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="Ordered Items"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000000"
+            android:textSize="@dimen/_12ssp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#d3d3d3" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerOrderedSellerItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="true"
+            app:stackFromEnd="true"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_retryOrderDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/lost"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/txtOhNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Oh No.."
+            android:textSize="@dimen/_20ssp" />
+
+
+        <TextView
+            android:id="@+id/txtLost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtOhNo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="No Internet Connection"
+            android:textSize="@dimen/_20ssp" />
+
+
+        <TextView
+            android:id="@+id/txtConnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtLost"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Please connect to internet"
+            android:textSize="@dimen/_15ssp" />
+
+        <Button
+            android:id="@+id/retryOrdersDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/stroke"
+            android:elevation="5dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:text="Retry"
+            android:textColor="#de4500"
+            android:textSize="@dimen/_15ssp" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

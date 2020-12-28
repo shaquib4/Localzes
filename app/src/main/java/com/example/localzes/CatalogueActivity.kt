@@ -132,18 +132,16 @@ class CatalogueActivity : AppCompatActivity() {
         val width: Float = displayMetrics.widthPixels.toFloat()
         val convertHeight = height.toInt()
         val convertWidth = width.toInt()
-        view.measure(
-            View.MeasureSpec.makeMeasureSpec(view.width, View.MeasureSpec.EXACTLY),
-            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-        )
+
         val document = PdfDocument()
         val pageInfo: PdfDocument.PageInfo =
-            PdfDocument.PageInfo.Builder(view.width, view.measuredHeight, 1).create()
+            PdfDocument.PageInfo.Builder(view.width, view.height, 1).create()
+
         val page: PdfDocument.Page = document.startPage(pageInfo)
         val canvas: Canvas = page.canvas
         val paint = Paint()
         canvas.drawPaint(paint)
-        bitmap = Bitmap.createScaledBitmap(bitmap!!, view.width, view.measuredHeight, true)
+        bitmap = Bitmap.createScaledBitmap(bitmap!!, view.width, view.height, true)
 
         paint.color = Color.BLUE
         canvas.drawBitmap(bitmap!!, 0f, 0f, null)

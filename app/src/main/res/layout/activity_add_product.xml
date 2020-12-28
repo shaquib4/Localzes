@@ -319,7 +319,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:text="IN"
-                        android:checked="true"/>
+                        />
 
                     <RadioButton
                         android:layout_width="wrap_content"
