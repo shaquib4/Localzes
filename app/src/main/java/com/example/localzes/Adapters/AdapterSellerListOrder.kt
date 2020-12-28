@@ -12,10 +12,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModelList
 import com.example.localzes.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class AdapterSellerListOrder(
     val context: Context,
-    val seller_order_list: List<ModelList>
+    val seller_order_list: List<ModelList>,
+    val orderId:String
 ) :
     RecyclerView.Adapter<AdapterSellerListOrder.HolderSellerListOrder>() {
     class HolderSellerListOrder(view: View) : RecyclerView.ViewHolder(view) {
@@ -54,7 +58,7 @@ class AdapterSellerListOrder(
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
+             priceEdit(s.toString(),sellerOrderList.itemId)
             }
         })
         holder.itemRemove.setOnClickListener {
@@ -64,5 +68,14 @@ class AdapterSellerListOrder(
 
         }
 
+    }
+
+    private fun priceEdit(s: String, itemId: String) {
+        val uAuth = FirebaseAuth.getInstance()
+        val user = uAuth.currentUser
+        val uid = user!!.uid
+        val databaseReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists").child(orderId)
+                .child(itemId)
     }
 }

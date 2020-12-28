@@ -248,6 +248,7 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:reverseLayout="true"
+            tools:listitem="@layout/list_single_row_seller_order"
             app:stackFromEnd="true"
             />
     </LinearLayout>
