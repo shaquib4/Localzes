@@ -10,6 +10,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageMakeCall"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_baseline_phone_24"
+            android:layout_centerVertical="true"
+            android:padding="2dp"/>
 
         <ImageView
             android:id="@+id/imgBackOrderDetails"

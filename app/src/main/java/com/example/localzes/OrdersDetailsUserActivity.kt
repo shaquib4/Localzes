@@ -1,10 +1,16 @@
 package com.example.localzes
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.media.Image
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterOrderedItems
 import com.example.localzes.Modals.ModelOrderedItems
@@ -12,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.jar.Manifest
 import kotlin.collections.ArrayList
 
 class OrdersDetailsUserActivity : AppCompatActivity() {
@@ -31,6 +38,11 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
     private var orderItemId: String? = "100"
     private var orderToId: String? = "200"
     private lateinit var imgBackOrderDetails: ImageView
+    private lateinit var imgMakeCall: ImageView
+    private var REQUEST_CALL: Int = 1
+    private var shopMobileNumber: String = ""
+    private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_user)
@@ -46,10 +58,14 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
         shopAddress = findViewById(R.id.txtOrderShopAddressUser)
         recyclerOrderUsers = findViewById(R.id.recycler_order_users)
         imgBackOrderDetails = findViewById(R.id.imgBackOrderDetails)
+        imgMakeCall = findViewById(R.id.imageMakeCall)
         orderItemsList = ArrayList<ModelOrderedItems>()
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
+        imgMakeCall.setOnClickListener {
+            makePhoneCall()
+        }
         databaseRef =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
                 .child(orderItemId.toString())
@@ -124,6 +140,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val shop = snapshot.child("address").value.toString()
                         val shopsName = snapshot.child("shop_name").value.toString()
+                        shopMobileNumber = snapshot.child("phone").value.toString()
                         shopAddress.text = shop
                         shopNameUser.text = shopsName
                     }
@@ -150,6 +167,38 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun makePhoneCall() {
+        val number = shopMobileNumber
+        if (number.trim().isNotEmpty()) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.CALL_PHONE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(this, permissions, REQUEST_CALL)
+
+            } else {
+                val dial: String = "tel:" + number
+                startActivity(Intent(Intent.ACTION_CALL, Uri.parse(dial)))
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCall()
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     override fun onBackPressed() {

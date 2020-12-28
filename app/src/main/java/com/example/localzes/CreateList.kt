@@ -37,7 +37,7 @@ class CreateList : AppCompatActivity() {
         shopId = intent.getStringExtra("ShopListId")
         orderByName = intent.getStringExtra("orderByName")
         orderByMobile = intent.getStringExtra("orderByMobile")
-        deliveryAddress = intent.getStringExtra("deliveryAddress")
+        deliveryAddress = intent.getStringExtra("delivery")
         userId = intent.getStringExtra("userId")
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
