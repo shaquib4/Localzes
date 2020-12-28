@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.CatalogueActivity
 import com.example.localzes.CreateList
@@ -22,6 +23,7 @@ class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
         val itemName: EditText = view.findViewById(R.id.Item_name)
         val itemQuantity: EditText = view.findViewById(R.id.Item_Quan)
         val itemRemove: ImageView = view.findViewById(R.id.itemRemove)
+        val itemSNo: TextView = view.findViewById(R.id.txtSNo)
 
     }
 
@@ -39,6 +41,7 @@ class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
         val itemList = item_List[position]
         holder.itemName.setText(itemList.itemName)
         holder.itemQuantity.setText(itemList.itemQuantity)
+        holder.itemSNo.text = (position + 1).toString() + "."
         holder.itemName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 

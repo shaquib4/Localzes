@@ -41,6 +41,11 @@ class UserProductsActivity : AppCompatActivity() {
     var totalOriginalPrice: Double = 0.00
     var totalItems: Int = 0
     private lateinit var createList: FloatingActionButton
+    private lateinit var userDatabaseReference: DatabaseReference
+    private var deliveryMobileNo: String = ""
+    private var deliveryAddress: String = ""
+    private lateinit var orderByName: String
+    private lateinit var orderByMobile: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,9 +69,37 @@ class UserProductsActivity : AppCompatActivity() {
         retryUserProducts.setOnClickListener {
             this.recreate()
         }
+
+        userDatabaseReference = FirebaseDatabase.getInstance().reference.child("users").child(uid)
+
+        userDatabaseReference.child("current_address")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    deliveryAddress = snapshot.child("address").value.toString()
+                    deliveryMobileNo = snapshot.child("mobileNo").value.toString()
+                }
+            })
+        userDatabaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                orderByName = snapshot.child("name").value.toString()
+                orderByMobile = snapshot.child("phone").value.toString()
+            }
+
+        })
         createList.setOnClickListener {
             val intent = Intent(this, CreateList::class.java)
             intent.putExtra("ShopListId", shopId.toString())
+            intent.putExtra("orderByName", orderByName)
+            intent.putExtra("orderByMobile", orderByMobile)
+            intent.putExtra("delivery", deliveryAddress)
+            intent.putExtra("userId", uid)
             startActivity(intent)
             finish()
         }
