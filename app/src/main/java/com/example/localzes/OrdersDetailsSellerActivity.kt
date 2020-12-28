@@ -401,6 +401,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             view.isChecked = false
                             new.dismiss()
                         }
+                        builder.create().show()
                     }
                 }
             }

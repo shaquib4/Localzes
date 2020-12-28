@@ -55,6 +55,7 @@ class CreateList : AppCompatActivity() {
             headers["itemId"] = timestamp
             headers["itemName"] = ""
             headers["itemQuantity"] = ""
+            headers["itemCost"] = ""
             userDatabase.child("OrderList").child(timestamp).setValue(headers)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
@@ -74,7 +75,8 @@ class CreateList : AppCompatActivity() {
                     val obj = ModelList(
                         i.child("itemId").value.toString(),
                         i.child("itemName").value.toString(),
-                        i.child("itemQuantity").value.toString()
+                        i.child("itemQuantity").value.toString(),
+                        i.child("itemCost").value.toString()
                     )
                     (list as ArrayList<ModelList>).add(obj)
 
