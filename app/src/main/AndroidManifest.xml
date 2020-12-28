@@ -28,7 +28,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".CreateList"></activity>
+        <activity android:name=".ListOrderDetailSeller"></activity>
+        <activity android:name=".CreateList" />
         <activity android:name=".CatalogueActivity" />
         <activity android:name=".ShopBanner" />
         <activity android:name=".generateQRcode" />
