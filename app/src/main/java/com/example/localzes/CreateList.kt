@@ -1,17 +1,23 @@
 package com.example.localzes
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.localzes.Adapters.AdapterCreateList
 import com.example.localzes.Modals.ModalSellerOrderList
 import com.example.localzes.Modals.ModelList
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_create_list.*
+import org.json.JSONObject
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.Volley
 
 class CreateList : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -132,7 +138,9 @@ class CreateList : AppCompatActivity() {
                     orderTo,
                     deliveryAddress,
                     totalItems,
-                    listStatus
+                    listStatus,
+                    orderByName.toString(),
+                    orderByMobile.toString()
                 )
                 val dataReference: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("users").child(userId.toString())
@@ -154,6 +162,8 @@ class CreateList : AppCompatActivity() {
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
                                 Toast.makeText(this@CreateList, "Done", Toast.LENGTH_LONG).show()
+                                userDatabase.child("OrderList").removeValue()
+                                prepareNotificationMessage(orderId)
                             }
                         }
                 }
@@ -162,5 +172,56 @@ class CreateList : AppCompatActivity() {
                 Toast.makeText(this@CreateList, "Some fields are empty", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun prepareNotificationMessage(orderId: String) {
+        val NOTIFICATION_TOPIC = "/topics/PUSH_NOTIFICATIONS"
+        val NOTIFICATION_TITLE = "New List Order has been received"
+        val NOTIFICATION_MESSAGE = "Congratulations....!You received a new list order"
+        val NOTIFICATION_TYPE = "New Order"
+        val notificationJs = JSONObject()
+        val notificationBodyJs = JSONObject()
+        try {
+            notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
+            notificationBodyJs.put("buyerId", userId.toString())
+            notificationBodyJs.put("sellerUid", shopId.toString())
+            notificationBodyJs.put("orderId", orderId)
+            notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
+            notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
+            notificationJs.put("to", NOTIFICATION_TOPIC)
+            notificationJs.put("data", notificationBodyJs)
+        } catch (e: Exception) {
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+        }
+        sendFcmNotification(notificationJs)
+
+    }
+
+    private fun sendFcmNotification(notificationJs: JSONObject) {
+        val jsonObjectRequest = object : JsonObjectRequest(Request.Method.POST,
+            "https://fcm.googleapis.com/fcm/send",
+            notificationJs,
+            Response.Listener {
+
+            },
+            Response.ErrorListener {
+
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] =
+                    "key=AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D"
+                return headers
+
+            }
+        }
+        Volley.newRequestQueue(this).add(jsonObjectRequest)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, UserProductsActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

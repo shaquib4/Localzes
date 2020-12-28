@@ -9,7 +9,9 @@ class ModalSellerOrderList(
     val orderTo: String,
     val deliveryAddress: String,
     val totalItems: String,
-    val listStatus: String
+    val listStatus: String,
+    val orderByName:String,
+    val orderByMobile:String
 ) {
-    constructor() : this("", "", "", "", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "", "", "", "","","")
 }
