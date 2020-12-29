@@ -151,23 +151,35 @@ class CreateList : AppCompatActivity() {
                     FirebaseDatabase.getInstance().reference.child("seller")
                         .child(shopId.toString()).child("OrdersLists")
                 ref.child(orderId).setValue(obj)
-                for (i in 0 until list.size) {
-                    val itemId = list[i].itemId
-                    val itemName = list[i].itemName
-                    val itemQuantity = list[i].itemQuantity
-                    val itemCost = list[i].itemCost
-                    val headers = HashMap<String, String>()
-                    headers["itemId"] = itemId
-                    headers["itemName"] = itemName
-                    headers["itemQuantity"] = itemQuantity
-                    headers["itemCost"] = itemCost
-                    ref.child(orderId).child("ListItems").child(itemId).setValue(headers)
-                    dataReference.child(orderId).child("ListItems").child(itemId).setValue(headers)
+                ref.addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-                userDatabase.child("OrderList").removeValue()
-                prepareNotificationMessage(orderId)
-                progressDialog.dismiss()
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            for (i in 0 until list.size) {
+                                val itemId = list[i].itemId
+                                val itemName = list[i].itemName
+                                val itemQuantity = list[i].itemQuantity
+                                val itemCost = list[i].itemCost
+                                val headers = HashMap<String, String>()
+                                headers["itemId"] = itemId
+                                headers["itemName"] = itemName
+                                headers["itemQuantity"] = itemQuantity
+                                headers["itemCost"] = itemCost
+                                ref.child(orderId).child("ListItems").child(itemId)
+                                    .setValue(headers)
+                                dataReference.child(orderId).child("ListItems").child(itemId)
+                                    .setValue(headers)
+                            }
+                            userDatabase.child("OrderList").removeValue()
+                            prepareNotificationMessage(orderId)
+                            progressDialog.dismiss()
+                        }
+                    }
+                })
+
             } else {
                 Toast.makeText(this@CreateList, "Some fields are empty", Toast.LENGTH_LONG).show()
             }
