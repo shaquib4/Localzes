@@ -98,7 +98,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         i.child("itemId").value.toString(),
                         i.child("itemName").value.toString(),
                         i.child("itemQuantity").value.toString(),
-                        i.child("itemCost").value.toString()
+                        i.child("itemCost").value.toString(),
+                        i.child("shopId").value.toString()
                     )
                     (list as ArrayList<ModelList>).add(obj)
                 }

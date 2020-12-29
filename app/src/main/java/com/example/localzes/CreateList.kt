@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +28,9 @@ class CreateList : AppCompatActivity() {
     private lateinit var listRecycler: RecyclerView
     private lateinit var shopDatabase: DatabaseReference
     private var shopId: String? = "200"
-    private var bool = true
+    private var bool = false
+    private var fool=true
+    private var tool=false
     private lateinit var progressDialog: ProgressDialog
     private var orderByName: String? = "100"
     private var orderByMobile: String? = "300"
@@ -53,47 +56,8 @@ class CreateList : AppCompatActivity() {
         listRecycler.layoutManager = LinearLayoutManager(this)
         userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
         shopDatabase =
-            FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
-
-        btnAdd.setOnClickListener {
-            val timestamp = System.currentTimeMillis().toString()
-            val headers = HashMap<String, String>()
-            headers["itemId"] = timestamp
-            headers["itemName"] = ""
-            headers["itemQuantity"] = ""
-            headers["itemCost"] = ""
-            headers["shopId"] = shopId.toString()
-            userDatabase.child("OrderList").child(timestamp).setValue(headers)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        this.recreate()
-                    }
-                }
-        }
-        userDatabase.child("OrderList").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                (list as ArrayList<ModelList>).clear()
-                for (i in snapshot.children) {
-
-                    val obj = ModelList(
-                        i.child("itemId").value.toString(),
-                        i.child("itemName").value.toString(),
-                        i.child("itemQuantity").value.toString(),
-                        i.child("itemCost").value.toString(),
-                        i.child("shopId").value.toString()
-                    )
-                    (list as ArrayList<ModelList>).add(obj)
-
-                }
-                createListAdapter = AdapterCreateList(this@CreateList, list)
-                listRecycler.adapter = createListAdapter
-            }
-        })
-        userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
+          FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+       userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -116,10 +80,93 @@ class CreateList : AppCompatActivity() {
 
             }
         })
+
+        userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                fool=false
+                if (snapshot.exists()) {
+                    fool=true
+                }
+            }
+        })
+
+
+        userDatabase.child("OrderList").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for (i in snapshot.children) {
+
+                    val obj = ModelList(
+                        i.child("itemId").value.toString(),
+                        i.child("itemName").value.toString(),
+                        i.child("itemQuantity").value.toString(),
+                        i.child("itemCost").value.toString(),
+                        i.child("shopId").value.toString()
+                    )
+                    (list as ArrayList<ModelList>).add(obj)
+
+                }
+                createListAdapter = AdapterCreateList(this@CreateList, list)
+                listRecycler.adapter = createListAdapter
+            }
+        })
+        btnAdd.setOnClickListener {
+            val timestamp = System.currentTimeMillis().toString()
+            val headers = HashMap<String, String>()
+            headers["itemId"] = timestamp
+            headers["itemName"] = ""
+            headers["itemQuantity"] = ""
+            headers["itemCost"] = ""
+            headers["shopId"] = shopId.toString()
+            userDatabase.child("OrderList").child(timestamp).setValue(headers)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        this.recreate()
+                    }
+                }
+        }
+
         btnCn.setOnClickListener {
-            if (bool) {
-                progressDialog.setMessage("Placing Your Order")
-                progressDialog.show()
+            if (bool&&fool) {
+              /* val builder=AlertDialog.Builder(this)
+                builder.setTitle("Confirmation")
+                builder.setMessage("Are you sure this is your final list")
+                builder.setPositiveButton("OK"){text,listner->
+                    tool=true
+                    this.recreate()
+
+                }*/
+                userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        (list as ArrayList<ModelList>).clear()
+                        for (i in snapshot.children) {
+
+                            val obj = ModelList(
+                                i.child("itemId").value.toString(),
+                                i.child("itemName").value.toString(),
+                                i.child("itemQuantity").value.toString(),
+                                i.child("itemCost").value.toString(),
+                                i.child("shopId").value.toString()
+                            )
+                            (list as ArrayList<ModelList>).add(obj)
+
+                        }
+                        createListAdapter = AdapterCreateList(this@CreateList, list)
+                        listRecycler.adapter = createListAdapter
+                    }
+                })
 
                 val timestamp = System.currentTimeMillis().toString()
                 val orderId = timestamp
@@ -150,35 +197,33 @@ class CreateList : AppCompatActivity() {
                 val ref: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("seller")
                         .child(shopId.toString()).child("OrdersLists")
+
                 ref.child(orderId).setValue(obj)
-                ref.addValueEventListener(object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError) {
-
-                    }
-
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        if (snapshot.exists()) {
-                            for (i in 0 until list.size) {
-                                val itemId = list[i].itemId
-                                val itemName = list[i].itemName
-                                val itemQuantity = list[i].itemQuantity
-                                val itemCost = list[i].itemCost
-                                val headers = HashMap<String, String>()
-                                headers["itemId"] = itemId
-                                headers["itemName"] = itemName
-                                headers["itemQuantity"] = itemQuantity
-                                headers["itemCost"] = itemCost
-                                ref.child(orderId).child("ListItems").child(itemId)
-                                    .setValue(headers)
-                                dataReference.child(orderId).child("ListItems").child(itemId)
-                                    .setValue(headers)
-                            }
-                            userDatabase.child("OrderList").removeValue()
-                            prepareNotificationMessage(orderId)
-                            progressDialog.dismiss()
+                dataReference.child(orderId).setValue(obj).addOnCompleteListener {
+                    if (it.isSuccessful){
+                        for (i in 0 until list.size) {
+                            val itemId = list[i].itemId
+                            val itemName = list[i].itemName
+                            val itemQuantity = list[i].itemQuantity
+                            val itemCost = list[i].itemCost
+                            val headers = HashMap<String, String>()
+                            headers["itemId"] = itemId
+                            headers["itemName"] = itemName
+                            headers["itemQuantity"] = itemQuantity
+                            headers["itemCost"] = itemCost
+                            ref.child(orderId).child("ListItems").child(itemId)
+                                .setValue(headers)
+                            dataReference.child(orderId).child("ListItems").child(itemId)
+                                .setValue(headers)
                         }
+                        userDatabase.child("OrderList").removeValue()
+                        prepareNotificationMessage(orderId)
+
                     }
-                })
+                }
+
+
+
 
             } else {
                 Toast.makeText(this@CreateList, "Some fields are empty", Toast.LENGTH_LONG).show()
