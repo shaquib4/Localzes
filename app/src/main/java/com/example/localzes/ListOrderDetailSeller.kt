@@ -15,6 +15,7 @@ import com.example.localzes.Adapters.AdapterSellerListOrder
 import com.example.localzes.Modals.ModelList
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_list_order_detail_seller.*
 import org.json.JSONObject
 import java.util.HashMap
 
@@ -30,6 +31,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var shopAuth: FirebaseAuth
     private lateinit var imgListEdit: ImageView
     private lateinit var list:List<ModelList>
+    private var bool=true
     private var orderId=""
     private var orderBy=""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +54,38 @@ class ListOrderDetailSeller : AppCompatActivity() {
             .child("OrdersLists")
          orderId=intent.getStringExtra("orderId").toString()
          orderBy=intent.getStringExtra("orderBy").toString()
+        databaseRef.child(orderId).child("ListItems").addValueEventListener(object : ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                bool=true
+                for (i in snapshot.children){
+
+
+                    val itemC= i.child("itemCost").value.toString()
+                   if (itemC==""){
+                       bool=false
+                   }
+
+                }
+
+            }
+
+        })
+
+        acceptConfirm.setOnClickListener {
+            if (bool){
+                val headers=HashMap<String,Any>()
+                headers["listStatus"]="Confirm"
+                headers["orderStatus"]="Accepted"
+                databaseRef.child(orderId).updateChildren(headers)
+            }else{
+              Toast.makeText(this,"Some fields are empty",Toast.LENGTH_LONG).show()
+            }
+        }
         databaseRef.child(orderId).child("ListItems").addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
