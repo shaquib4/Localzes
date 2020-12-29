@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Modals.ModalSellerOrderList
 import com.example.localzes.R
 import com.example.localzes.UserListOrderDetails
+import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -58,6 +59,20 @@ class AdapterUserListOrderHistory(
         } else {
             holder.orderListStatusTv.text = userListOrderHistory.listStatus
         }
+        val databaseReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller")
+                .child(userListOrderHistory.orderTo)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                holder.orderShopTv.text = snapshot.child("shop_name").value.toString()
+                holder.orderByShopMobileTv.text = snapshot.child("phone").value.toString()
+            }
+
+        })
         holder.itemView.setOnClickListener {
             val intent = Intent(context, UserListOrderDetails::class.java)
             intent.putExtra("orderId", userListOrderHistory.orderId)
