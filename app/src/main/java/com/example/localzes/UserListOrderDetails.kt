@@ -67,7 +67,8 @@ class UserListOrderDetails : AppCompatActivity() {
                     )
                     (orderedItemList as ArrayList<ModelList>).add(obj)
                 }
-                adapteruserOrder=AdapterUserOrderList(this@UserListOrderDetails,orderedItemList)
+                adapteruserOrder=
+                    AdapterUserOrderList(this@UserListOrderDetails,orderedItemList,orderId.toString())
                 recyclerOrderList.adapter=adapteruserOrder
 
             }
