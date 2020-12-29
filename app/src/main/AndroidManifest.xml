@@ -29,7 +29,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".ListOrders"></activity>
+        <activity android:name=".UserListOrderDetails"></activity>
+        <activity android:name=".CurrentUserOrder" />
+        <activity android:name=".CartVsList" />
+        <activity android:name=".ListOrders" />
         <activity android:name=".ListOrderDetailSeller" />
         <activity android:name=".CreateList" />
         <activity android:name=".CatalogueActivity" />

@@ -62,6 +62,7 @@ class CreateList : AppCompatActivity() {
             headers["itemName"] = ""
             headers["itemQuantity"] = ""
             headers["itemCost"] = ""
+            headers["shopId"] = shopId.toString()
             userDatabase.child("OrderList").child(timestamp).setValue(headers)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
@@ -82,7 +83,8 @@ class CreateList : AppCompatActivity() {
                         i.child("itemId").value.toString(),
                         i.child("itemName").value.toString(),
                         i.child("itemQuantity").value.toString(),
-                        i.child("itemCost").value.toString()
+                        i.child("itemCost").value.toString(),
+                        i.child("shopId").value.toString()
                     )
                     (list as ArrayList<ModelList>).add(obj)
 
@@ -153,12 +155,12 @@ class CreateList : AppCompatActivity() {
                     val itemId = list[i].itemId
                     val itemName = list[i].itemName
                     val itemQuantity = list[i].itemQuantity
-                    val itemCost=list[i].itemCost
+                    val itemCost = list[i].itemCost
                     val headers = HashMap<String, String>()
                     headers["itemId"] = itemId
                     headers["itemName"] = itemName
                     headers["itemQuantity"] = itemQuantity
-                    headers["itemCost"]=itemCost
+                    headers["itemCost"] = itemCost
                     ref.child(orderId).child("ListItems").child(itemId).setValue(headers)
                     dataReference.child(orderId).child("ListItems").child(itemId).setValue(headers)
 

@@ -24,6 +24,15 @@ class Home_seller : AppCompatActivity() {
     private lateinit var shopName: TextView
     private lateinit var totalOrders: TextView
     private lateinit var totalIncome: TextView
+    private var t1: Int = 0
+    private var t2: Int = 0
+    private var t3: Int = 0
+    private var t4: Int = 0
+    private var t5: Int = 0
+    private var t6: Int = 0
+    private var t7: Int = 0
+    private var t8: Int = 0
+    private var t: Int = 0
     private var backPressedTime = 0L
 
     //private lateinit var storeViews:TextView
@@ -98,9 +107,23 @@ class Home_seller : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    ordersPending.text = snapshot.childrenCount.toString()
+                    t1 = snapshot.childrenCount.toInt()
                 }
             })
+        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Pending")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    t2 = snapshot.childrenCount.toInt()
+                    t = t1 + t2
+                    ordersPending.text = t.toString()
+
+                }
+            })
+
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -108,8 +131,22 @@ class Home_seller : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    ordersAccepted.text = snapshot.childrenCount.toString()
+                    t3 = snapshot.childrenCount.toInt()
                 }
+            })
+        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Accepted")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    t4 = snapshot.childrenCount.toInt()
+                    t = t3 + t4
+                    ordersAccepted.text = t.toString()
+
+                }
+
             })
         orderDatabaseReference.child("Orders").orderByChild("orderStatus")
             .equalTo("Out For Delivery")
@@ -119,10 +156,23 @@ class Home_seller : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    ordersOutForDelivery.text = snapshot.childrenCount.toString()
+                    t5 = snapshot.childrenCount.toInt()
                 }
 
             })
+        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus")
+            .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                t6 = snapshot.childrenCount.toInt()
+                t = t5 + t6
+                ordersOutForDelivery.text = t.toString()
+            }
+
+        })
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -130,63 +180,84 @@ class Home_seller : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    ordersCompleted.text = snapshot.childrenCount.toString()
+                    t7 = snapshot.childrenCount.toInt()
                 }
 
             })
+        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Completed")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    t8 = snapshot.childrenCount.toInt()
+                    t = t7 + t8
+                    ordersCompleted.text = t.toString()
+                }
+            })
         OrderAcc.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
-                rl_HomeSeller.visibility= View.VISIBLE
-                rl_Seller_Internet.visibility=View.GONE
-                val intent = Intent(this, OrdersAcceptedActivity::class.java)
+                rl_HomeSeller.visibility = View.VISIBLE
+                rl_Seller_Internet.visibility = View.GONE
+                val intent = Intent(this, CartVsList::class.java)
+                intent.putExtra("orderType", "Accepted")
                 startActivity(intent)
-                finish()}else{
-                rl_HomeSeller.visibility= View.GONE
-                rl_Seller_Internet.visibility=View.VISIBLE
+                finish()
+            } else {
+                rl_HomeSeller.visibility = View.GONE
+                rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
         ordersCompleted.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_HomeSeller.visibility= View.VISIBLE
-                rl_Seller_Internet.visibility=View.GONE
-            val intent = Intent(this, OrdersCompletedActivity::class.java)
-            startActivity(intent)
-            finish()}else{
-                rl_HomeSeller.visibility= View.GONE
-                rl_Seller_Internet.visibility=View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_HomeSeller.visibility = View.VISIBLE
+                rl_Seller_Internet.visibility = View.GONE
+                val intent = Intent(this, CartVsList::class.java)
+                intent.putExtra("orderType", "Completed")
+                startActivity(intent)
+                finish()
+            } else {
+                rl_HomeSeller.visibility = View.GONE
+                rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
         ordersPending.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_HomeSeller.visibility= View.VISIBLE
-                rl_Seller_Internet.visibility=View.GONE
-            val intent = Intent(this, SellerOrdersActivity::class.java)
-            startActivity(intent)
-            finish()}else{
-                rl_HomeSeller.visibility= View.GONE
-                rl_Seller_Internet.visibility=View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_HomeSeller.visibility = View.VISIBLE
+                rl_Seller_Internet.visibility = View.GONE
+                val intent = Intent(this, CartVsList::class.java)
+                intent.putExtra("orderType", "Pending")
+                startActivity(intent)
+                finish()
+            } else {
+                rl_HomeSeller.visibility = View.GONE
+                rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
         ordersOutForDelivery.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_HomeSeller.visibility= View.VISIBLE
-                rl_Seller_Internet.visibility=View.GONE
-            val intent = Intent(this, OrderOutForDeliveryActivity::class.java)
-            startActivity(intent)
-            finish()}else{
-                rl_HomeSeller.visibility= View.GONE
-                rl_Seller_Internet.visibility=View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_HomeSeller.visibility = View.VISIBLE
+                rl_Seller_Internet.visibility = View.GONE
+                val intent = Intent(this, CartVsList::class.java)
+                intent.putExtra("orderType", "Pending")
+                startActivity(intent)
+                finish()
+            } else {
+                rl_HomeSeller.visibility = View.GONE
+                rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
         editShopDetails.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_HomeSeller.visibility= View.VISIBLE
-                rl_Seller_Internet.visibility=View.GONE
-            val intent = Intent(this, UpdateShopDetailActivity::class.java)
-            startActivity(intent)
-            finish()}else{
-                rl_HomeSeller.visibility= View.GONE
-                rl_Seller_Internet.visibility=View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_HomeSeller.visibility = View.VISIBLE
+                rl_Seller_Internet.visibility = View.GONE
+                val intent = Intent(this, UpdateShopDetailActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                rl_HomeSeller.visibility = View.GONE
+                rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
         orderDatabaseReference.addValueEventListener(object : ValueEventListener {

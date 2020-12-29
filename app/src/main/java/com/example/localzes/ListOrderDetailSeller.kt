@@ -26,12 +26,12 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var amountTv: TextView
     private lateinit var deliveryAddressTv: TextView
     private lateinit var recyclerOrderedList: RecyclerView
-    private lateinit var adapterListOrder:AdapterSellerListOrder
+    private lateinit var adapterListOrder: AdapterSellerListOrder
     private lateinit var shopAuth: FirebaseAuth
     private lateinit var imgListEdit: ImageView
-    private lateinit var list:List<ModelList>
-    private var orderId=""
-    private var orderBy=""
+    private lateinit var list: List<ModelList>
+    private var orderId = ""
+    private var orderBy = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_order_detail_seller)
@@ -43,35 +43,39 @@ class ListOrderDetailSeller : AppCompatActivity() {
         deliveryAddressTv = findViewById(R.id.txtListOrderDeliveryAddress)
         recyclerOrderedList = findViewById(R.id.recyclerOrderedSellerItem)
         imgListEdit = findViewById(R.id.imgListEdit)
-        list=ArrayList<ModelList>()
+        list = ArrayList<ModelList>()
         recyclerOrderedList.layoutManager = LinearLayoutManager(this)
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
-        val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-            .child("OrdersLists")
-         orderId=intent.getStringExtra("orderId").toString()
-         orderBy=intent.getStringExtra("orderBy").toString()
-        databaseRef.child(orderId).child("ListItems").addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
+        val databaseRef: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                .child("OrdersLists")
+        orderId = intent.getStringExtra("orderId").toString()
+        orderBy = intent.getStringExtra("orderBy").toString()
+        databaseRef.child(orderId).child("ListItems")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                (list as ArrayList<ModelList>).clear()
-                for (i in snapshot.children){
-                    val obj=ModelList(
-                        i.child("itemId").value.toString(),
-                        i.child("itemName").value.toString(),
-                        i.child("itemQuantity").value.toString(),
-                        i.child("itemCost").value.toString()
-                    )
-                    (list as ArrayList<ModelList>).add(obj)
                 }
-                adapterListOrder=AdapterSellerListOrder(this@ListOrderDetailSeller,list,orderId,orderBy)
-                recyclerOrderedList.adapter=adapterListOrder
-            }
-        })
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (list as ArrayList<ModelList>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModelList(
+                            i.child("itemId").value.toString(),
+                            i.child("itemName").value.toString(),
+                            i.child("itemQuantity").value.toString(),
+                            i.child("itemCost").value.toString(),
+                            i.child("shopId").value.toString()
+                        )
+                        (list as ArrayList<ModelList>).add(obj)
+                    }
+                    adapterListOrder =
+                        AdapterSellerListOrder(this@ListOrderDetailSeller, list, orderId, orderBy)
+                    recyclerOrderedList.adapter = adapterListOrder
+                }
+            })
 
     }
 
@@ -80,8 +84,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
+            val selectedItem = options[which]
 
         }
+        builder.create().show()
     }
 
     private fun editOrderStatusDialog() {
@@ -91,8 +97,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
             editOrderStatus(selectedItem)
-
+            dialog.dismiss()
         }
+        builder.create().show()
     }
 
     private fun editOrderStatus(selectedItem: String) {

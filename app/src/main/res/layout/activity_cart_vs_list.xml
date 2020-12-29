@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartVsList">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCarts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/green">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cart Orders"
+            android:textSize="@dimen/_20ssp"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat_bold"/>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardListOrders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimary"
+        android:layout_below="@id/cardCarts"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List Orders"
+            android:textSize="@dimen/_20ssp"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat_bold"/>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
