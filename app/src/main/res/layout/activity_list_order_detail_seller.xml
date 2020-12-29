@@ -7,6 +7,8 @@
     tools:context=".OrdersDetailsSellerActivity">
 
     <LinearLayout
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_above="@+id/acceptConfirm"
         android:id="@+id/rl_ListOrderDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -250,7 +252,21 @@
             app:reverseLayout="true"
             tools:listitem="@layout/list_single_row_seller_order"
             app:stackFromEnd="true" />
+
     </LinearLayout>
+    <Button
+        android:id="@+id/acceptConfirm"
+        android:text="Accept and Confirm"
+        android:textColor="#fff"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_16ssp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:background="@drawable/bg_buttons"
+        />
 
     <RelativeLayout
         android:id="@+id/rl_retryOrderDetails"

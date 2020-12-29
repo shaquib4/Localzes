@@ -87,6 +87,7 @@ class AdapterSellerListOrder(
             userDatabase.updateChildren(userMap)
             holder.itemRemove.visibility=View.VISIBLE
             holder.itemRevive.visibility=View.GONE
+            holder.edtPrice.setText("")
         }
         val uAuth = FirebaseAuth.getInstance()
         val user = uAuth.currentUser
@@ -104,13 +105,47 @@ class AdapterSellerListOrder(
                 val itemCost=snapshot.child("itemCost").value.toString()
 
                 if (itemCost=="0"){
-                    holder.itemRemove.visibility=View.GONE
-                    holder.itemRevive.visibility=View.VISIBLE
+
                     holder.edtPrice.isEnabled=false
                     holder.edtPrice.setText("0")
 
                 }else{
-                    holder.edtPrice.setText("")
+                    holder.edtPrice.addTextChangedListener(object :TextWatcher{
+                        override fun afterTextChanged(s: Editable?) {
+
+                        }
+
+                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                        }
+
+                        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                            priceEdit(s.toString(),sellerOrderList.itemId)
+                        }
+                    })
+                }
+            }
+        })
+        val databaseReferences: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists").child(orderId)
+                .child("ListItems").child(sellerOrderList.itemId)
+        databaseReferences.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                holder.edtPrice.isEnabled=true
+                val itemCost=snapshot.child("itemCost").value.toString()
+
+                if (itemCost=="0"){
+                    holder.edtPrice.isEnabled=false
+                    holder.itemRemove.visibility=View.GONE
+                    holder.itemRevive.visibility=View.VISIBLE
+                    holder.edtPrice.setText("0")
+
+                }else{
+                    holder.edtPrice.setText(sellerOrderList.itemCost)
                     holder.itemRemove.visibility=View.VISIBLE
                     holder.itemRevive.visibility=View.GONE
                     holder.edtPrice.addTextChangedListener(object :TextWatcher{
