@@ -153,20 +153,18 @@ class CreateList : AppCompatActivity() {
                     val itemId = list[i].itemId
                     val itemName = list[i].itemName
                     val itemQuantity = list[i].itemQuantity
+                    val itemCost=list[i].itemCost
                     val headers = HashMap<String, String>()
                     headers["itemId"] = itemId
                     headers["itemName"] = itemName
                     headers["itemQuantity"] = itemQuantity
+                    headers["itemCost"]=itemCost
                     ref.child(orderId).child("ListItems").child(itemId).setValue(headers)
                     dataReference.child(orderId).child("ListItems").child(itemId).setValue(headers)
-                        .addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                Toast.makeText(this@CreateList, "Done", Toast.LENGTH_LONG).show()
-                                userDatabase.child("OrderList").removeValue()
-                                prepareNotificationMessage(orderId)
-                            }
-                        }
+
                 }
+                userDatabase.child("OrderList").removeValue()
+                prepareNotificationMessage(orderId)
                 progressDialog.dismiss()
             } else {
                 Toast.makeText(this@CreateList, "Some fields are empty", Toast.LENGTH_LONG).show()

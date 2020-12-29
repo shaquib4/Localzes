@@ -2,6 +2,7 @@ package com.example.localzes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterListOrder
 import com.example.localzes.Modals.ModalSellerOrderList
@@ -21,7 +22,9 @@ class ListOrders : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_orders)
         listOrders=ArrayList<ModalSellerOrderList>()
+
         recycler=findViewById(R.id.recyclerOrders)
+        recycler.layoutManager=LinearLayoutManager(this)
         uAuth = FirebaseAuth.getInstance()
         val user = uAuth.currentUser
         val uid = user!!.uid
@@ -44,7 +47,10 @@ class ListOrders : AppCompatActivity() {
                            i.child("orderTo").value.toString(),
                            i.child("deliveryAddress").value.toString(),
                            i.child("totalItems").value.toString(),
-                           i.child("listStatus").value.toString()
+                           i.child("listStatus").value.toString(),
+                           i.child("orderByName").value.toString(),
+                           i.child("orderByMobile").value.toString()
+
 
                        )
                        (listOrders as ArrayList<ModalSellerOrderList>).add(obj)

@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.localzes.Adapters.AdapterSellerListOrder
+import com.example.localzes.Modals.ModelList
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import org.json.JSONObject
 import java.util.HashMap
 
@@ -25,8 +26,12 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var amountTv: TextView
     private lateinit var deliveryAddressTv: TextView
     private lateinit var recyclerOrderedList: RecyclerView
+    private lateinit var adapterListOrder:AdapterSellerListOrder
     private lateinit var shopAuth: FirebaseAuth
     private lateinit var imgListEdit: ImageView
+    private lateinit var list:List<ModelList>
+    private var orderId=""
+    private var orderBy=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_order_detail_seller)
@@ -38,11 +43,35 @@ class ListOrderDetailSeller : AppCompatActivity() {
         deliveryAddressTv = findViewById(R.id.txtListOrderDeliveryAddress)
         recyclerOrderedList = findViewById(R.id.recyclerOrderedSellerItem)
         imgListEdit = findViewById(R.id.imgListEdit)
+        list=ArrayList<ModelList>()
         recyclerOrderedList.layoutManager = LinearLayoutManager(this)
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
-        val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().reference
+        val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+            .child("OrdersLists")
+         orderId=intent.getStringExtra("orderId").toString()
+         orderBy=intent.getStringExtra("orderBy").toString()
+        databaseRef.child(orderId).child("ListItems").addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (list as ArrayList<ModelList>).clear()
+                for (i in snapshot.children){
+                    val obj=ModelList(
+                        i.child("itemId").value.toString(),
+                        i.child("itemName").value.toString(),
+                        i.child("itemQuantity").value.toString(),
+                        i.child("itemCost").value.toString()
+                    )
+                    (list as ArrayList<ModelList>).add(obj)
+                }
+                adapterListOrder=AdapterSellerListOrder(this@ListOrderDetailSeller,list,orderId,orderBy)
+                recyclerOrderedList.adapter=adapterListOrder
+            }
+        })
 
     }
 

@@ -19,7 +19,8 @@ import com.google.firebase.database.FirebaseDatabase
 class AdapterSellerListOrder(
     val context: Context,
     val seller_order_list: List<ModelList>,
-    val orderId:String
+    val orderId:String,
+    val orderBy:String
 ) :
     RecyclerView.Adapter<AdapterSellerListOrder.HolderSellerListOrder>() {
     class HolderSellerListOrder(view: View) : RecyclerView.ViewHolder(view) {
@@ -76,6 +77,14 @@ class AdapterSellerListOrder(
         val uid = user!!.uid
         val databaseReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists").child(orderId)
-                .child(itemId)
+                .child("ListItems").child(itemId)
+        val headers = HashMap<String, Any>()
+        headers["itemCost"] = s
+        databaseReference.updateChildren(headers)
+        val userDatabase:DatabaseReference=FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
+            .child("MyOrderList").child(orderId).child("ListItems").child(itemId)
+        val userMap = HashMap<String, Any>()
+        userMap["itemCost"] = s
+        userDatabase.updateChildren(userMap)
     }
 }
