@@ -108,9 +108,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     itemsTv.text = snapshot.childrenCount.toString()
                     val headers = HashMap<String, Any>()
                     headers["orderCost"] = totalCost
-                    databaseRef.child(orderId).child("ListItems").updateChildren(headers).addOnSuccessListener {
-                        ref.child(orderId).child("ListItems").updateChildren(headers)
-                    }
+                    databaseRef.child(orderId).child("ListItems").updateChildren(headers)
+                        .addOnSuccessListener {
+                            ref.child(orderId).child("ListItems").updateChildren(headers)
+                        }
                 }
             })
         databaseRef.child(orderId).addValueEventListener(object : ValueEventListener {
@@ -247,12 +248,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     newBuilder.setTitle("Choose A Reason")
                     val reasons =
                         arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
-                    builder.setSingleChoiceItems(reasons, -1) { dialog, which ->
+                    newBuilder.setSingleChoiceItems(reasons, -1) { dialog, which ->
                         val selected = reasons[which]
                         dialog.dismiss()
                         selectedReason = selected
                     }
-                    builder.create().show()
+                    newBuilder.create().show()
+                    editOrderStatus("$selectedItem due to $selectedReason")
                 }
                 "Payment Received" -> {
                     newBool = true
@@ -288,12 +290,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     newBuilder.setTitle("Choose A Reason")
                     val reasons =
                         arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
-                    builder.setSingleChoiceItems(reasons, -1) { dialog, which ->
+                    newBuilder.setSingleChoiceItems(reasons, -1) { dialog, which ->
                         val selected = reasons[which]
                         dialog.dismiss()
                         selectedReason = selected
                     }
-                    builder.create().show()
+                    newBuilder.create().show()
+                    editOrderStatus("$selectedItem due to $selectedReason")
                 }
                 else -> {
                     editOrderStatus(selectedItem)
