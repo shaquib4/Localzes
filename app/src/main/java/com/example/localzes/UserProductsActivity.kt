@@ -93,16 +93,21 @@ class UserProductsActivity : AppCompatActivity() {
             }
 
         })
-        createList.setOnClickListener {
-            val intent = Intent(this, CreateList::class.java)
-            intent.putExtra("ShopListId", shopId.toString())
-            intent.putExtra("orderByName", orderByName)
-            intent.putExtra("orderByMobile", orderByMobile)
-            intent.putExtra("delivery", deliveryAddress)
-            intent.putExtra("userId", uid)
-            startActivity(intent)
-            finish()
+        try {
+            createList.setOnClickListener {
+                val intent = Intent(this, CreateList::class.java)
+                intent.putExtra("ShopListId", shopId.toString())
+                intent.putExtra("orderByName", orderByName)
+                intent.putExtra("orderByMobile", orderByMobile)
+                intent.putExtra("delivery", deliveryAddress)
+                intent.putExtra("userId", uid)
+                startActivity(intent)
+                finish()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+
 
         if (ConnectionManager().checkConnectivity(this)) {
             rl_userProduct.visibility = View.VISIBLE

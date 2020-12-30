@@ -17,7 +17,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_list_order_detail_seller.*
 import org.json.JSONObject
-import java.util.HashMap
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var orderIdTv: TextView
@@ -27,13 +29,15 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var amountTv: TextView
     private lateinit var deliveryAddressTv: TextView
     private lateinit var recyclerOrderedList: RecyclerView
-    private lateinit var adapterListOrder:AdapterSellerListOrder
+    private lateinit var adapterListOrder: AdapterSellerListOrder
     private lateinit var shopAuth: FirebaseAuth
     private lateinit var imgListEdit: ImageView
-    private lateinit var list:List<ModelList>
-    private var bool=true
-    private var orderId=""
-    private var orderBy=""
+    private lateinit var list: List<ModelList>
+    private lateinit var totalListCost: TextView
+    private var bool = true
+    private var orderId = ""
+    private var orderBy = ""
+    var totalCost: Double = 0.00
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_order_detail_seller)
@@ -45,68 +49,123 @@ class ListOrderDetailSeller : AppCompatActivity() {
         deliveryAddressTv = findViewById(R.id.txtListOrderDeliveryAddress)
         recyclerOrderedList = findViewById(R.id.recyclerOrderedSellerItem)
         imgListEdit = findViewById(R.id.imgListEdit)
-        list=ArrayList<ModelList>()
+        totalListCost = findViewById(R.id.totalListCost)
+        list = ArrayList<ModelList>()
         recyclerOrderedList.layoutManager = LinearLayoutManager(this)
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
-        val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-            .child("OrdersLists")
-         orderId=intent.getStringExtra("orderId").toString()
-         orderBy=intent.getStringExtra("orderBy").toString()
-        databaseRef.child(orderId).child("ListItems").addValueEventListener(object : ValueEventListener{
+        val databaseRef: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                .child("OrdersLists")
+        orderId = intent.getStringExtra("orderId").toString()
+        orderBy = intent.getStringExtra("orderBy").toString()
+        orderIdTv.text = "OD${orderId}"
+        databaseRef.child(orderId).child("ListItems")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    bool = true
+                    var finalPriceList = arrayListOf<Double>()
+                    totalCost = 0.0
+                    for (i in snapshot.children) {
+                        val itemC = i.child("itemCost").value.toString()
+                        if (itemC == "") {
+                            bool = false
+                        }
+                        finalPriceList.clear()
+                        val itemId = i.child("itemId").value.toString()
+                        val itemCost = i.child("itemCost").value.toString()
+                        val itemName = i.child("itemName").value.toString()
+                        val itemQuantity = i.child("itemQuantity").value.toString()
+                        finalPriceList.add(itemCost.toDouble())
+                        for (j in finalPriceList) {
+                            totalCost += j
+                        }
+                    }
+                    amountTv.text = "₹${totalCost}"
+                    totalListCost.text = "₹${totalCost}"
+                    itemsTv.text = snapshot.childrenCount.toString()
+
+                }
+            })
+        databaseRef.child(orderId).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-
-                bool=true
-                for (i in snapshot.children){
-
-
-                    val itemC= i.child("itemCost").value.toString()
-                   if (itemC==""){
-                       bool=false
-                   }
-
-                }
-
+                orderStatusTv.text = snapshot.child("orderStatus").value.toString()
+                val orderTime = snapshot.child("orderTime").value.toString()
+                val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
+                val date = Date(orderTime.toLong())
+                val formattedDate = sdf.format(date)
+                orderDateTv.text = formattedDate
+                deliveryAddressTv.text = snapshot.child("deliveryAddress").value.toString()
             }
 
         })
+/*        databaseRef.child(orderId).child("ListItems")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var finalPriceList = arrayListOf<Double>()
+                    totalCost = 0.0
+                    for (i in snapshot.children) {
+                        finalPriceList.clear()
+                        val itemId = i.child("itemId").value.toString()
+                        val itemCost = i.child("itemCost").value.toString()
+                        val itemName = i.child("itemName").value.toString()
+                        val itemQuantity = i.child("itemQuantity").value.toString()
+                        finalPriceList.add(itemCost.toDouble())
+                        for (j in finalPriceList) {
+                            totalCost += j
+                        }
+                    }
+                    amountTv.text = totalCost.toString()
+                    itemsTv.text=snapshot.childrenCount.toString()
+                }
+            })*/
 
         acceptConfirm.setOnClickListener {
-            if (bool){
-                val headers=HashMap<String,Any>()
-                headers["listStatus"]="Confirm"
-                headers["orderStatus"]="Accepted"
+            if (bool) {
+                val headers = HashMap<String, Any>()
+                headers["listStatus"] = "Confirm"
+                headers["orderStatus"] = "Accepted"
                 databaseRef.child(orderId).updateChildren(headers)
-            }else{
-              Toast.makeText(this,"Some fields are empty",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
             }
         }
-        databaseRef.child(orderId).child("ListItems").addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
+        databaseRef.child(orderId).child("ListItems")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                (list as ArrayList<ModelList>).clear()
-                for (i in snapshot.children){
-                    val obj=ModelList(
-                        i.child("itemId").value.toString(),
-                        i.child("itemName").value.toString(),
-                        i.child("itemQuantity").value.toString(),
-                        i.child("itemCost").value.toString(),
-                        i.child("shopId").value.toString()
-                    )
-                    (list as ArrayList<ModelList>).add(obj)
                 }
-                adapterListOrder=AdapterSellerListOrder(this@ListOrderDetailSeller,list,orderId,orderBy)
-                recyclerOrderedList.adapter=adapterListOrder
-            }
-        })
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (list as ArrayList<ModelList>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModelList(
+                            i.child("itemId").value.toString(),
+                            i.child("itemName").value.toString(),
+                            i.child("itemQuantity").value.toString(),
+                            i.child("itemCost").value.toString(),
+                            i.child("shopId").value.toString()
+                        )
+                        (list as ArrayList<ModelList>).add(obj)
+                    }
+                    adapterListOrder =
+                        AdapterSellerListOrder(this@ListOrderDetailSeller, list, orderId, orderBy)
+                    recyclerOrderedList.adapter = adapterListOrder
+                }
+            })
 
     }
 

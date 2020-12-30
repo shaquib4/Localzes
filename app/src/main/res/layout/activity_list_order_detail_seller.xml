@@ -7,11 +7,11 @@
     tools:context=".OrdersDetailsSellerActivity">
 
     <LinearLayout
-        android:layout_marginBottom="@dimen/_4sdp"
-        android:layout_above="@+id/acceptConfirm"
         android:id="@+id/rl_ListOrderDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/rlAcceptConfirm"
+        android:layout_marginBottom="@dimen/_4sdp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -250,23 +250,42 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:reverseLayout="true"
-            tools:listitem="@layout/list_single_row_seller_order"
-            app:stackFromEnd="true" />
+            app:stackFromEnd="true"
+            tools:listitem="@layout/list_single_row_seller_order" />
 
     </LinearLayout>
-    <Button
-        android:id="@+id/acceptConfirm"
-        android:text="Accept and Confirm"
-        android:textColor="#fff"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_16ssp"
+
+    <LinearLayout
+        android:id="@+id/rlAcceptConfirm"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_32sdp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/_3sdp"
         android:layout_marginHorizontal="@dimen/_5sdp"
-        android:background="@drawable/bg_buttons"
-        />
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/totalListCost"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Rs.53"
+
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/acceptConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_buttons"
+            android:text="Accept and Confirm"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="@dimen/_16ssp" />
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rl_retryOrderDetails"
