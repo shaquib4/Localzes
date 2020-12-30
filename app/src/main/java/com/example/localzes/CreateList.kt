@@ -241,7 +241,7 @@ class CreateList : AppCompatActivity() {
         val NOTIFICATION_TOPIC = "/topics/PUSH_NOTIFICATIONS"
         val NOTIFICATION_TITLE = "New List Order has been received"
         val NOTIFICATION_MESSAGE = "Congratulations....!You received a new list order"
-        val NOTIFICATION_TYPE = "New Order"
+        val NOTIFICATION_TYPE = "New Order List"
         val notificationJs = JSONObject()
         val notificationBodyJs = JSONObject()
         try {

@@ -338,7 +338,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 NOTIFICATION_MESSAGE = "Your order has been confirmed by seller"
             }
         }
-        val NOTIFICATION_TYPE = "OrderStatusChanged"
+        val NOTIFICATION_TYPE = "OrderListStatusChanged"
         val notificationJs = JSONObject()
         val notificationBodyJs = JSONObject()
         try {
