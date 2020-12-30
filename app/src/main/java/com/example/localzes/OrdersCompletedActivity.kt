@@ -166,4 +166,9 @@ class OrdersCompletedActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    override fun onStart() {
+        super.onStart()
+        completedCartOrders()
+    }
 }
