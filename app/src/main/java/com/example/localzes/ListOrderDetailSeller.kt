@@ -2,6 +2,7 @@ package com.example.localzes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -37,7 +38,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private var bool = true
     private var orderId = ""
     private var orderBy = ""
+    private var newBool: Boolean = false
     var totalCost: Double = 0.00
+    private var selectedReason: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_order_detail_seller)
@@ -58,8 +61,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val databaseRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                 .child("OrdersLists")
-        val ref:DatabaseReference= FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
-            .child("MyOrderList")
+        val ref: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
+                .child("MyOrderList")
         orderId = intent.getStringExtra("orderId").toString()
         orderBy = intent.getStringExtra("orderBy").toString()
         orderIdTv.text = "OD${orderId}"
@@ -83,9 +87,11 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         val itemCost = i.child("itemCost").value.toString()
                         val itemName = i.child("itemName").value.toString()
                         val itemQuantity = i.child("itemQuantity").value.toString()
-                       try{ finalPriceList.add(itemCost.toDouble())}catch (e:Exception){
-                           e.printStackTrace()
-                       }
+                        try {
+                            finalPriceList.add(itemCost.toDouble())
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
 
                         for (j in finalPriceList) {
                             totalCost += j
@@ -103,11 +109,36 @@ class ListOrderDetailSeller : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                orderStatusTv.text = snapshot.child("orderStatus").value.toString()
+                val orderStatus = snapshot.child("orderStatus").value.toString()
                 val orderTime = snapshot.child("orderTime").value.toString()
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
+                when (orderStatus) {
+                    "Pending" -> {
+                        orderStatusTv.setTextColor(resources.getColor(R.color.colorAccent))
+                        imgListEdit.visibility = View.GONE
+                    }
+                    "Accepted" -> {
+                        orderStatusTv.setTextColor(resources.getColor(R.color.acidGreen))
+                        imgListEdit.visibility = View.VISIBLE
+                        imgListEdit.setOnClickListener {
+                            editOrderStatusDialog()
+                        }
+                    }
+                    "Rejected" -> {
+                        orderStatusTv.setTextColor(resources.getColor(R.color.red))
+                        imgListEdit.visibility = View.GONE
+
+                    }
+                    "Out For Delivery" -> {
+                        orderStatusTv.setTextColor(resources.getColor(R.color.green))
+                        imgListEdit.visibility = View.VISIBLE
+                        imgListEdit.setOnClickListener {
+                            newEditOrderStatusDialog()
+                        }
+                    }
+                }
                 orderDateTv.text = formattedDate
                 deliveryAddressTv.text = snapshot.child("deliveryAddress").value.toString()
             }
@@ -180,24 +211,87 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
-
+            val selectedItem = options[which]
+            when (selectedItem) {
+                "Rejected" -> {
+                    dialog.dismiss()
+                    val newBuilder = AlertDialog.Builder(this)
+                    newBuilder.setTitle("Choose A Reason")
+                    val reasons =
+                        arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
+                    builder.setSingleChoiceItems(reasons, -1) { dialog, which ->
+                        val selected = reasons[which]
+                        dialog.dismiss()
+                        selectedReason = selected
+                    }
+                    builder.create().show()
+                }
+                "Payment Received" -> {
+                    newBool = true
+                    dialog.dismiss()
+                }
+                else -> {
+                    editOrderStatus(selectedItem)
+                    dialog.dismiss()
+                }
+            }
         }
+        builder.create().show()
     }
 
     private fun editOrderStatusDialog() {
-        val options = arrayOf("Rejected", "Out For Delivery", "Payment Received")
+        val options = if (!newBool) {
+            arrayOf("Rejected", "Out For Delivery", "Payment Received")
+        } else {
+            arrayOf("Rejected", "Out For Delivery")
+        }
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
-            editOrderStatus(selectedItem)
-
+            when (selectedItem) {
+                "Payment Received" -> {
+                    newBool = true
+                    dialog.dismiss()
+                }
+                "Rejected" -> {
+                    dialog.dismiss()
+                    val newBuilder = AlertDialog.Builder(this)
+                    newBuilder.setTitle("Choose A Reason")
+                    val reasons =
+                        arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
+                    builder.setSingleChoiceItems(reasons, -1) { dialog, which ->
+                        val selected = reasons[which]
+                        dialog.dismiss()
+                        selectedReason = selected
+                    }
+                    builder.create().show()
+                }
+                else -> {
+                    editOrderStatus(selectedItem)
+                    dialog.dismiss()
+                }
+            }
         }
+        builder.create().show()
     }
 
     private fun editOrderStatus(selectedItem: String) {
         val headers = hashMapOf<String, Any>()
         headers["orderStatus"] = selectedItem
+        shopAuth = FirebaseAuth.getInstance()
+        val user = shopAuth.currentUser
+        val uid = user!!.uid
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("seller")
+        ref.child(uid).child("OrdersLists").child(orderId).updateChildren(headers)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Order has been $selectedItem", Toast.LENGTH_SHORT).show()
+                val message = "Order has been $selectedItem"
+                val reference: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                reference.child("MyOrderList").child(orderId).updateChildren(headers)
+                prepareNotificationMessage(orderId, message)
+            }
     }
 
     private fun prepareNotificationMessage(orderId: String, message: String) {
@@ -207,6 +301,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
         when (message) {
             "Order has been Accepted" -> {
                 NOTIFICATION_MESSAGE = "Yay! Your order has been accepted"
+            }
+            "Order has been Rejected due to $selectedReason" -> {
+                NOTIFICATION_MESSAGE =
+                    "Sorry for the inconvenience.Your order is rejected due to $selectedReason"
             }
         }
         val NOTIFICATION_TYPE = "OrderStatusChanged"
