@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -35,6 +36,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var imgListEdit: ImageView
     private lateinit var list: List<ModelList>
     private lateinit var totalListCost: TextView
+    private lateinit var progressDialog: ProgressDialog
     private var bool = true
     private var orderId = ""
     private var orderBy = ""
@@ -53,6 +55,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
         recyclerOrderedList = findViewById(R.id.recyclerOrderedSellerItem)
         imgListEdit = findViewById(R.id.imgListEdit)
         totalListCost = findViewById(R.id.totalListCost)
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Please Wait")
+        progressDialog.setCanceledOnTouchOutside(false)
         list = ArrayList<ModelList>()
         recyclerOrderedList.layoutManager = LinearLayoutManager(this)
         shopAuth = FirebaseAuth.getInstance()
@@ -139,6 +144,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         }
                     }
                 }
+                orderStatusTv.text = orderStatus
                 orderDateTv.text = formattedDate
                 deliveryAddressTv.text = snapshot.child("deliveryAddress").value.toString()
             }
@@ -170,15 +176,29 @@ class ListOrderDetailSeller : AppCompatActivity() {
             })*/
 
         acceptConfirm.setOnClickListener {
-            if (bool) {
-                val headers = HashMap<String, Any>()
-                headers["listStatus"] = "Confirm"
-                headers["orderStatus"] = "Accepted"
-                databaseRef.child(orderId).updateChildren(headers)
-                ref.child(orderId).updateChildren(headers)
-            } else {
-                Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
+            val builder = AlertDialog.Builder(this)
+            val dialog = builder.show()
+            builder.setTitle("Confirmation")
+            builder.setMessage("Are you sure to confirm this list Order")
+            builder.setPositiveButton("Yes") { text, listener ->
+                progressDialog.setMessage("Processing.....")
+                progressDialog.show()
+                if (bool) {
+                    val headers = HashMap<String, Any>()
+                    headers["listStatus"] = "Confirm"
+                    headers["orderStatus"] = "Accepted"
+                    databaseRef.child(orderId).updateChildren(headers)
+                    ref.child(orderId).updateChildren(headers)
+
+                } else {
+                    Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
+                }
+                progressDialog.dismiss()
             }
+            builder.setNegativeButton("No") { text, listener ->
+                dialog.dismiss()
+            }
+            builder.create().show()
         }
         databaseRef.child(orderId).child("ListItems")
             .addListenerForSingleValueEvent(object : ValueEventListener {

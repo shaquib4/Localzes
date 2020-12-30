@@ -29,8 +29,8 @@ class CreateList : AppCompatActivity() {
     private lateinit var shopDatabase: DatabaseReference
     private var shopId: String? = "200"
     private var bool = false
-    private var fool=true
-    private var tool=false
+    private var fool = true
+    private var tool = false
     private lateinit var progressDialog: ProgressDialog
     private var orderByName: String? = "100"
     private var orderByMobile: String? = "300"
@@ -56,8 +56,8 @@ class CreateList : AppCompatActivity() {
         listRecycler.layoutManager = LinearLayoutManager(this)
         userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
         shopDatabase =
-          FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
-       userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+        userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -87,9 +87,9 @@ class CreateList : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                fool=false
+                fool = false
                 if (snapshot.exists()) {
-                    fool=true
+                    fool = true
                 }
             }
         })
@@ -135,99 +135,103 @@ class CreateList : AppCompatActivity() {
         }
 
         btnCn.setOnClickListener {
-            if (bool&&fool) {
-              /* val builder=AlertDialog.Builder(this)
-                builder.setTitle("Confirmation")
-                builder.setMessage("Are you sure this is your final list")
-                builder.setPositiveButton("OK"){text,listner->
-                    tool=true
-                    this.recreate()
+            val builder = AlertDialog.Builder(this)
+            val dialog = builder.show()
+            builder.setTitle("Confirmation")
+            builder.setMessage("Are you sure your list is complete.Please click Yes to continue")
+            builder.setPositiveButton("Yes") { text, listener ->
+                if (bool && fool) {
+                    progressDialog.setMessage("Placing Your Order....")
+                    progressDialog.show()
+                    userDatabase.child("OrderList")
+                        .addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError) {
 
-                }*/
-                userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError) {
+                            }
 
-                    }
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                (list as ArrayList<ModelList>).clear()
+                                for (i in snapshot.children) {
 
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        (list as ArrayList<ModelList>).clear()
-                        for (i in snapshot.children) {
+                                    val obj = ModelList(
+                                        i.child("itemId").value.toString(),
+                                        i.child("itemName").value.toString(),
+                                        i.child("itemQuantity").value.toString(),
+                                        i.child("itemCost").value.toString(),
+                                        i.child("shopId").value.toString()
+                                    )
+                                    (list as ArrayList<ModelList>).add(obj)
 
-                            val obj = ModelList(
-                                i.child("itemId").value.toString(),
-                                i.child("itemName").value.toString(),
-                                i.child("itemQuantity").value.toString(),
-                                i.child("itemCost").value.toString(),
-                                i.child("shopId").value.toString()
-                            )
-                            (list as ArrayList<ModelList>).add(obj)
+                                }
+                                createListAdapter = AdapterCreateList(this@CreateList, list)
+                                listRecycler.adapter = createListAdapter
+                            }
+                        })
 
+                    val timestamp = System.currentTimeMillis().toString()
+                    val orderId = timestamp
+                    val orderTime = timestamp
+                    val orderStatus = "Pending"
+                    val orderCost = ""
+                    val orderBy = userId.toString()
+                    val orderTo = shopId.toString()
+                    val deliveryAddress = deliveryAddress.toString()
+                    val totalItems = list.size.toString()
+                    val listStatus = ""
+                    val obj = ModalSellerOrderList(
+                        orderId,
+                        orderTime,
+                        orderStatus,
+                        orderCost,
+                        orderBy,
+                        orderTo,
+                        deliveryAddress,
+                        totalItems,
+                        listStatus,
+                        orderByName.toString(),
+                        orderByMobile.toString()
+                    )
+                    val dataReference: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("users")
+                            .child(userId.toString())
+                            .child("MyOrderList")
+                    val ref: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("seller")
+                            .child(shopId.toString()).child("OrdersLists")
+
+                    ref.child(orderId).setValue(obj)
+                    dataReference.child(orderId).setValue(obj).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            for (i in 0 until list.size) {
+                                val itemId = list[i].itemId
+                                val itemName = list[i].itemName
+                                val itemQuantity = list[i].itemQuantity
+                                val itemCost = list[i].itemCost
+                                val headers = HashMap<String, String>()
+                                headers["itemId"] = itemId
+                                headers["itemName"] = itemName
+                                headers["itemQuantity"] = itemQuantity
+                                headers["itemCost"] = itemCost
+                                ref.child(orderId).child("ListItems").child(itemId)
+                                    .setValue(headers)
+                                dataReference.child(orderId).child("ListItems").child(itemId)
+                                    .setValue(headers)
+                            }
+                            userDatabase.child("OrderList").removeValue()
+                            prepareNotificationMessage(orderId)
                         }
-                        createListAdapter = AdapterCreateList(this@CreateList, list)
-                        listRecycler.adapter = createListAdapter
                     }
-                })
 
-                val timestamp = System.currentTimeMillis().toString()
-                val orderId = timestamp
-                val orderTime = timestamp
-                val orderStatus = "Pending"
-                val orderCost = ""
-                val orderBy = userId.toString()
-                val orderTo = shopId.toString()
-                val deliveryAddress = deliveryAddress.toString()
-                val totalItems = list.size.toString()
-                val listStatus = ""
-                val obj = ModalSellerOrderList(
-                    orderId,
-                    orderTime,
-                    orderStatus,
-                    orderCost,
-                    orderBy,
-                    orderTo,
-                    deliveryAddress,
-                    totalItems,
-                    listStatus,
-                    orderByName.toString(),
-                    orderByMobile.toString()
-                )
-                val dataReference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("users").child(userId.toString())
-                        .child("MyOrderList")
-                val ref: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("seller")
-                        .child(shopId.toString()).child("OrdersLists")
-
-                ref.child(orderId).setValue(obj)
-                dataReference.child(orderId).setValue(obj).addOnCompleteListener {
-                    if (it.isSuccessful){
-                        for (i in 0 until list.size) {
-                            val itemId = list[i].itemId
-                            val itemName = list[i].itemName
-                            val itemQuantity = list[i].itemQuantity
-                            val itemCost = list[i].itemCost
-                            val headers = HashMap<String, String>()
-                            headers["itemId"] = itemId
-                            headers["itemName"] = itemName
-                            headers["itemQuantity"] = itemQuantity
-                            headers["itemCost"] = itemCost
-                            ref.child(orderId).child("ListItems").child(itemId)
-                                .setValue(headers)
-                            dataReference.child(orderId).child("ListItems").child(itemId)
-                                .setValue(headers)
-                        }
-                        userDatabase.child("OrderList").removeValue()
-                        prepareNotificationMessage(orderId)
-
-                    }
+                } else {
+                    Toast.makeText(this@CreateList, "Some fields are empty", Toast.LENGTH_LONG)
+                        .show()
                 }
-
-
-
-
-            } else {
-                Toast.makeText(this@CreateList, "Some fields are empty", Toast.LENGTH_LONG).show()
+                progressDialog.dismiss()
             }
+            builder.setNegativeButton("No") { text, listener ->
+                dialog.dismiss()
+            }
+            builder.create().show()
         }
     }
 
