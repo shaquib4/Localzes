@@ -58,6 +58,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val databaseRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                 .child("OrdersLists")
+        val ref:DatabaseReference= FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
+            .child("MyOrderList")
         orderId = intent.getStringExtra("orderId").toString()
         orderBy = intent.getStringExtra("orderBy").toString()
         orderIdTv.text = "OD${orderId}"
@@ -81,7 +83,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         val itemCost = i.child("itemCost").value.toString()
                         val itemName = i.child("itemName").value.toString()
                         val itemQuantity = i.child("itemQuantity").value.toString()
-                        finalPriceList.add(itemCost.toDouble())
+                       try{ finalPriceList.add(itemCost.toDouble())}catch (e:Exception){
+                           e.printStackTrace()
+                       }
+
                         for (j in finalPriceList) {
                             totalCost += j
                         }
@@ -139,6 +144,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 headers["listStatus"] = "Confirm"
                 headers["orderStatus"] = "Accepted"
                 databaseRef.child(orderId).updateChildren(headers)
+                ref.child(orderId).updateChildren(headers)
             } else {
                 Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
             }
