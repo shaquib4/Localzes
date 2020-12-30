@@ -200,7 +200,7 @@ class Home_seller : AppCompatActivity() {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
-                val intent = Intent(this, CartVsList::class.java)
+                val intent = Intent(this, OrdersAcceptedActivity::class.java)
                 intent.putExtra("orderType", "Accepted")
                 startActivity(intent)
                 finish()
@@ -226,7 +226,7 @@ class Home_seller : AppCompatActivity() {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
-                val intent = Intent(this, CartVsList::class.java)
+                val intent = Intent(this, SellerOrdersActivity::class.java)
                 intent.putExtra("orderType", "Pending")
                 startActivity(intent)
                 finish()

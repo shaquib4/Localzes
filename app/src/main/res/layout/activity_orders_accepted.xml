@@ -114,7 +114,7 @@
                 android:textSize="@dimen/_14ssp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:text="Cart Orders"/>
+                android:text="List Orders"/>
             <TextView
                 android:layout_toEndOf="@+id/txtlistAccepted"
                 android:layout_width="wrap_content"

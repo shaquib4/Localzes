@@ -42,6 +42,7 @@
                 android:layout_below="@id/imgBackPending"
                 android:background="#d3d3d3" />
             <LinearLayout
+
                 android:layout_below="@+id/v1"
                 android:orientation="horizontal"
                 android:id="@+id/rl_create"
@@ -98,7 +99,7 @@
                         android:textSize="@dimen/_14ssp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:text="Cart Orders"/>
+                        android:text="List Orders"/>
                     <TextView
                         android:layout_toEndOf="@+id/txtlistPending"
                         android:layout_width="wrap_content"
