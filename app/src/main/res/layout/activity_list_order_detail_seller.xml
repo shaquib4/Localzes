@@ -264,6 +264,8 @@
         android:layout_marginBottom="@dimen/_3sdp"
         android:weightSum="2">
 
+        
+
         <TextView
             android:id="@+id/totalListCost"
             android:layout_width="0dp"
