@@ -124,6 +124,8 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                 FirebaseStorage.getInstance().reference.child(
                     "uploads/" + uid
                             + ".jpg"
+
+
                 )
             shopRef.putFile(imagePathUpdated!!).addOnSuccessListener {
                 shopRef.downloadUrl.addOnSuccessListener {
