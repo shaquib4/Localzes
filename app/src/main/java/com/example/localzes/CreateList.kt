@@ -141,6 +141,7 @@ class CreateList : AppCompatActivity() {
             builder.setMessage("Are you sure your list is complete.Please click Yes to continue")
             builder.setPositiveButton("Yes") { text, listener ->
                 if (bool && fool) {
+                    dialog.dismiss()
                     progressDialog.setMessage("Placing Your Order....")
                     progressDialog.show()
                     userDatabase.child("OrderList")
@@ -223,6 +224,7 @@ class CreateList : AppCompatActivity() {
                     }
 
                 } else {
+                    dialog.dismiss()
                     Toast.makeText(this@CreateList, "Some fields are empty", Toast.LENGTH_LONG)
                         .show()
                 }

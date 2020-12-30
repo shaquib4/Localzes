@@ -23,8 +23,8 @@ class UserListOrderDetails : AppCompatActivity() {
     private lateinit var deliveryAddressOrder: TextView
     private lateinit var shopAddressOrder: TextView
     private lateinit var orderedItemList: List<ModelList>
-    private lateinit var recyclerOrderList:RecyclerView
-    private lateinit var adapteruserOrder:AdapterUserOrderList
+    private lateinit var recyclerOrderList: RecyclerView
+    private lateinit var adapteruserOrder: AdapterUserOrderList
     private var orderId: String? = "200"
     private var orderToId: String? = "300"
     private lateinit var userAuth: FirebaseAuth
@@ -39,8 +39,8 @@ class UserListOrderDetails : AppCompatActivity() {
         amountOrderList = findViewById(R.id.txtOrderListCostUser)
         deliveryAddressOrder = findViewById(R.id.txtOrderListDeliveryAddressUser)
         shopAddressOrder = findViewById(R.id.txtOrderListShopAddressUser)
-        recyclerOrderList=findViewById(R.id.recycler_order_list_users)
-        recyclerOrderList.layoutManager=LinearLayoutManager(this)
+        recyclerOrderList = findViewById(R.id.recycler_order_list_users)
+        recyclerOrderList.layoutManager = LinearLayoutManager(this)
         orderedItemList = ArrayList<ModelList>()
         orderId = intent.getStringExtra("orderId")
         orderToId = intent.getStringExtra("orderTo")
@@ -67,9 +67,13 @@ class UserListOrderDetails : AppCompatActivity() {
                     )
                     (orderedItemList as ArrayList<ModelList>).add(obj)
                 }
-                adapteruserOrder=
-                    AdapterUserOrderList(this@UserListOrderDetails,orderedItemList,orderId.toString())
-                recyclerOrderList.adapter=adapteruserOrder
+                adapteruserOrder =
+                    AdapterUserOrderList(
+                        this@UserListOrderDetails,
+                        orderedItemList,
+                        orderId.toString()
+                    )
+                recyclerOrderList.adapter = adapteruserOrder
 
             }
 
@@ -86,6 +90,7 @@ class UserListOrderDetails : AppCompatActivity() {
                 val orderCost: String = snapshot.child("orderCost").value.toString()
                 val orderBy = snapshot.child("order").value.toString()
                 val orderTo = snapshot.child("orderTo").value.toString()
+                val listStatus = snapshot.child("listStatus").value.toString()
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
@@ -105,7 +110,11 @@ class UserListOrderDetails : AppCompatActivity() {
                 }
                 orderListIdUser.text = "OD${orderId}"
                 orderStatusListUser.text = orderStatus
-                amountOrderList.text = "₹${orderCost}"
+                if(listStatus=="Confirm"){
+                    amountOrderList.text = "₹${orderCost}"
+                }else{
+                    amountOrderList.text="Order amount will be updated soon"
+                }
                 orderDateListUser.text = formattedDate
                 val reference: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("seller")

@@ -22,6 +22,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var orderIdTv: TextView
@@ -105,7 +106,11 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     amountTv.text = "₹${totalCost}"
                     totalListCost.text = "₹${totalCost}"
                     itemsTv.text = snapshot.childrenCount.toString()
-
+                    val headers = HashMap<String, Any>()
+                    headers["orderCost"] = totalCost
+                    databaseRef.child(orderId).child("ListItems").updateChildren(headers).addOnSuccessListener {
+                        ref.child(orderId).child("ListItems").updateChildren(headers)
+                    }
                 }
             })
         databaseRef.child(orderId).addValueEventListener(object : ValueEventListener {
@@ -181,6 +186,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
             builder.setTitle("Confirmation")
             builder.setMessage("Are you sure to confirm this list Order")
             builder.setPositiveButton("Yes") { text, listener ->
+                dialog.dismiss()
                 progressDialog.setMessage("Processing.....")
                 progressDialog.show()
                 if (bool) {
@@ -189,8 +195,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     headers["orderStatus"] = "Accepted"
                     databaseRef.child(orderId).updateChildren(headers)
                     ref.child(orderId).updateChildren(headers)
+                    prepareNotificationMessage(orderId, "Order has been Confirmed")
 
                 } else {
+                    dialog.dismiss()
                     Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
                 }
                 progressDialog.dismiss()
@@ -325,6 +333,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
             "Order has been Rejected due to $selectedReason" -> {
                 NOTIFICATION_MESSAGE =
                     "Sorry for the inconvenience.Your order is rejected due to $selectedReason"
+            }
+            "Order has been Confirmed" -> {
+                NOTIFICATION_MESSAGE = "Your order has been confirmed by seller"
             }
         }
         val NOTIFICATION_TYPE = "OrderStatusChanged"
