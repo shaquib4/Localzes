@@ -41,6 +41,77 @@
                 android:layout_height="1dp"
                 android:layout_below="@id/imgBackPending"
                 android:background="#d3d3d3" />
+            <LinearLayout
+                android:layout_below="@+id/v1"
+                android:orientation="horizontal"
+                android:id="@+id/rl_create"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:weightSum="2"
+                android:background="@drawable/border">
+                <RelativeLayout
+                    android:layout_marginStart="2sp"
+                    android:id="@+id/rl_cartPending"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/_33sdp"
+                    android:background="@drawable/stroke_solid_btn"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/txtCartPending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_14ssp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Cart Orders"/>
+                    <TextView
+                        android:layout_toEndOf="@+id/txtCartPending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cartPendingNo"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_14ssp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_2sdp"
+
+                        android:text="(1000)"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:id="@+id/rl_listPending"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/_33sdp"
+                    android:background="@drawable/stroke_solid_btn"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/txtlistPending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_14ssp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Cart Orders"/>
+                    <TextView
+                        android:layout_toEndOf="@+id/txtlistPending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listPendingNo"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_14ssp"
+                        android:layout_centerVertical="true"
+
+                        android:text="(1000)"/>
+                </RelativeLayout>
+            </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout

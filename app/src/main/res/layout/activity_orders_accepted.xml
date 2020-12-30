@@ -133,7 +133,7 @@
         android:id="@+id/recyclerOrdersAccepted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view1"
+       android:layout_below="@id/rl_create"
         android:visibility="gone"
         tools:listitem="@layout/row_order_seller" />
 </RelativeLayout>
