@@ -57,6 +57,77 @@
             android:textColor="#696969"
             android:textSize="@dimen/_15ssp" />
     </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@+id/view1"
+        android:orientation="horizontal"
+        android:id="@+id/rl_create"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:weightSum="2"
+        android:background="@drawable/border">
+<RelativeLayout
+    android:layout_marginStart="2sp"
+    android:id="@+id/rl_cartAccepted"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:layout_height="@dimen/_33sdp"
+    android:background="@drawable/stroke_solid_btn"
+    android:layout_weight="1">
+    <TextView
+        android:id="@+id/txtCartAccepted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#000"
+        android:textSize="@dimen/_14ssp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:text="Cart Orders"/>
+    <TextView
+        android:layout_toEndOf="@+id/txtCartAccepted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cartAcceptedNo"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#000"
+        android:textSize="@dimen/_14ssp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/_2sdp"
+
+        android:text="(1000)"/>
+</RelativeLayout>
+        <RelativeLayout
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:id="@+id/rl_listAccepted"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="@dimen/_33sdp"
+            android:background="@drawable/stroke_solid_btn"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/txtlistAccepted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="#000"
+                android:textSize="@dimen/_14ssp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Cart Orders"/>
+            <TextView
+                android:layout_toEndOf="@+id/txtlistAccepted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listAcceptedNo"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="#000"
+                android:textSize="@dimen/_14ssp"
+                android:layout_centerVertical="true"
+
+                android:text="(1000)"/>
+        </RelativeLayout>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerOrdersAccepted"
