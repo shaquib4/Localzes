@@ -115,7 +115,7 @@ class OrdersAcceptedActivity : AppCompatActivity() {
         if (ConnectionManager().checkConnectivity(this)){
             rl_AcceptedOrder.visibility=View.VISIBLE
             rl_retryAcceptedOrder.visibility=View.GONE
-            orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
+            orderDatabaseReference.child("Orders")
                 .addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 
@@ -138,10 +138,12 @@ class OrdersAcceptedActivity : AppCompatActivity() {
                                     i.child("orderByName").value.toString(),
                                     i.child("orderByMobile").value.toString()
                                 )
-                                (ordersAcceptedList as ArrayList<ModelOrderDetails>).add(obj)
+                                if (i.child("orderStatus").value.toString() == "Accepted"){
+                                (ordersAcceptedList as ArrayList<ModelOrderDetails>).add(obj)}
                             }
                             if (ordersAcceptedList.isEmpty()) {
                                 recyclerOrdersAccepted.visibility = View.GONE
+                                orderAccepted.visibility=View.VISIBLE
                             } else {
                                 orderAccepted.visibility=View.GONE
                                 recyclerOrdersAccepted.visibility=View.VISIBLE
