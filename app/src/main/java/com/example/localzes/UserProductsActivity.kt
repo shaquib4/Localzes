@@ -171,6 +171,7 @@ class UserProductsActivity : AppCompatActivity() {
                                 builder.setNegativeButton("No") { text, listener ->
                                     dialog.dismiss()
                                 }
+                                builder.create().show()
                             }
                         } else {
                             val intent = Intent(this@UserProductsActivity, CreateList::class.java)
