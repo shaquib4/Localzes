@@ -1,6 +1,7 @@
 package com.example.localzes
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -64,14 +65,14 @@ class ListOrderDetailSeller : AppCompatActivity() {
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
+        orderId = intent.getStringExtra("orderId").toString()
+        orderBy = intent.getStringExtra("orderBy").toString()
         val databaseRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                 .child("OrdersLists")
         val ref: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
                 .child("MyOrderList")
-        orderId = intent.getStringExtra("orderId").toString()
-        orderBy = intent.getStringExtra("orderBy").toString()
         orderIdTv.text = "OD${orderId}"
         databaseRef.child(orderId).child("ListItems")
             .addValueEventListener(object : ValueEventListener {
@@ -108,9 +109,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     itemsTv.text = snapshot.childrenCount.toString()
                     val headers = HashMap<String, Any>()
                     headers["orderCost"] = totalCost
-                    databaseRef.child(orderId).child("ListItems").updateChildren(headers)
+                    databaseRef.child(orderId).updateChildren(headers)
                         .addOnSuccessListener {
-                            ref.child(orderId).child("ListItems").updateChildren(headers)
+                            ref.child(orderId).updateChildren(headers)
                         }
                 }
             })
@@ -137,7 +138,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                             editOrderStatusDialog()
                         }
                     }
-                    "Rejected" -> {
+                    "Rejected due to $selectedReason" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.red))
                         imgListEdit.visibility = View.GONE
 
@@ -156,31 +157,6 @@ class ListOrderDetailSeller : AppCompatActivity() {
             }
 
         })
-/*        databaseRef.child(orderId).child("ListItems")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    var finalPriceList = arrayListOf<Double>()
-                    totalCost = 0.0
-                    for (i in snapshot.children) {
-                        finalPriceList.clear()
-                        val itemId = i.child("itemId").value.toString()
-                        val itemCost = i.child("itemCost").value.toString()
-                        val itemName = i.child("itemName").value.toString()
-                        val itemQuantity = i.child("itemQuantity").value.toString()
-                        finalPriceList.add(itemCost.toDouble())
-                        for (j in finalPriceList) {
-                            totalCost += j
-                        }
-                    }
-                    amountTv.text = totalCost.toString()
-                    itemsTv.text=snapshot.childrenCount.toString()
-                }
-            })*/
-
         acceptConfirm.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val dialog = builder.show()
@@ -346,7 +322,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val notificationBodyJs = JSONObject()
         try {
             notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
-            notificationBodyJs.put("buyerId", "")
+            notificationBodyJs.put("buyerId", orderBy)
             notificationBodyJs.put("sellerUid", (shopAuth.currentUser)!!.uid)
             notificationBodyJs.put("orderId", orderId)
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
@@ -376,5 +352,11 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 }
             }
         Volley.newRequestQueue(this).add(jsonObjectRequest)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, Home_seller::class.java)
+        startActivity(intent)
+        finish()
     }
 }

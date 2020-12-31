@@ -44,6 +44,28 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         relativeOutForDelivery = findViewById(R.id.rl_Out_For_delivery)
         recyclerOutForDelivery.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        orderDatabaseReference.child("Orders").orderByChild("orderStatus")
+            .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    cartOutNo.text="(${snapshot.childrenCount})"
+
+                }
+
+            })
+        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Out For Delivery").addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listOutNo.text="(${snapshot.childrenCount})"
+            }
+
+        })
         rl_listOut.setOnClickListener {
             listOutForDeliveryOrders()
         }
