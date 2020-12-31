@@ -21,26 +21,15 @@
         android:id="@+id/txtItem_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="4.6"
+        android:layout_weight="5.8"
         android:layout_marginStart="@dimen/_2sdp"
         android:layout_gravity="center"
-        android:textAlignment="center"
-        android:text="Aloo"
+
+        android:text="AlooX8kg"
         android:textColor="#000"
         android:fontFamily="@font/montserrat_medium"
         android:textSize="@dimen/_16ssp"/>
-    <TextView
-        android:id="@+id/txtQuan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.2"
-        android:layout_marginStart="@dimen/_2sdp"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:text="X8kg"
-        android:textColor="#000"
-        android:fontFamily="@font/montserrat_medium"
-        android:textSize="@dimen/_16ssp"/>
+
     <EditText
         android:id="@+id/edtPrice"
         android:layout_width="wrap_content"
