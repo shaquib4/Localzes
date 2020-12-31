@@ -11,6 +11,10 @@ import com.example.localzes.ListOrderDetailSeller
 import com.example.localzes.Modals.ModalSellerOrderList
 import com.example.localzes.OrdersDetailsSellerActivity
 import com.example.localzes.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -41,9 +45,29 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
 
     override fun onBindViewHolder(holder: HolderListOrder, position: Int) {
         val sellerOrder = modelSellerList[position]
-        holder.totalItem.text = sellerOrder.totalItems
-        holder.totalCost.text = sellerOrder.orderCost
-        holder.oderBy.text = sellerOrder.orderBy
+        val ref=FirebaseDatabase.getInstance().reference.child("users").child(sellerOrder.orderBy)
+            .child("current_address").addValueEventListener(object :ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    holder.cuMobileNum.text=snapshot.child("mobileNo").value.toString()
+                }
+            })
+
+        if (sellerOrder.totalItems.toInt() > 1) {
+            holder.totalItem.text = "${sellerOrder.totalItems} items"
+        } else {
+            holder.totalItem.text = "${sellerOrder.totalItems} item"
+        }
+        if (sellerOrder.orderCost==""){
+            holder.totalCost.text="Amount will be updated by seller "
+        }else{
+            holder.totalCost.text = "₹${sellerOrder.orderCost}"
+        }
+
+        holder.oderBy.text = sellerOrder.orderByName
         holder.orderId.text = sellerOrder.orderId
         holder.orderStatus.text = sellerOrder.orderStatus
         val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
