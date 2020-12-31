@@ -33,7 +33,7 @@
             android:layout_marginTop="@dimen/_1sdp"
 
             android:fontFamily="@font/montserrat_bold"
-            android:text="Cupcakes"
+            android:text=""
             android:textColor="#fff"
             android:textSize="@dimen/_17ssp" />
         <TextView
@@ -45,7 +45,7 @@
             android:layout_marginTop="@dimen/_1sdp"
 
             android:fontFamily="@font/montserrat_bold"
-            android:text="Mobile:-8875309289"
+            android:text=""
             android:textColor="#fff"
             android:textSize="@dimen/_15ssp" />
 
@@ -93,7 +93,7 @@
             android:textSize="@dimen/_10ssp" />
 
         <TextView
-            android:id="@+id/txtTimeList"
+            android:id="@+id/txtPhoneList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtAreaList"

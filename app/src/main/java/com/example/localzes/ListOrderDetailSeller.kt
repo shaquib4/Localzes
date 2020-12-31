@@ -161,6 +161,12 @@ class ListOrderDetailSeller : AppCompatActivity() {
             }
 
         })
+        if (oStatus!="Pending"){
+            acceptConfirm.visibility=View.GONE
+            totalListCost.visibility=View.GONE
+        }else{
+            totalListCost.visibility=View.VISIBLE
+            acceptConfirm.visibility=View.VISIBLE
         acceptConfirm.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val dialog = builder.show()
@@ -195,7 +201,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 dialog.dismiss()
             }
             builder.create().show()
-        }
+        }}
         databaseRef.child(orderId).child("ListItems")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {

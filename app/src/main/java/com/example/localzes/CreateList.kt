@@ -5,6 +5,10 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +23,11 @@ import org.json.JSONObject
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.example.localzes.Adapters.AdapterManageAddress
+import com.example.localzes.Modals.ModelManageAddress
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.activity_cart1.*
+import util.ConnectionManager
 
 class CreateList : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -26,7 +35,10 @@ class CreateList : AppCompatActivity() {
     private lateinit var createListAdapter: AdapterCreateList
     private lateinit var list: List<ModelList>
     private lateinit var listRecycler: RecyclerView
+    private lateinit var addresses: List<ModelManageAddress>
     private lateinit var shopDatabase: DatabaseReference
+    private lateinit var deliveryUser: String
+    private lateinit var deliveryUserMobileNo: String
     private var shopId: String? = "200"
     private var bool = false
     private var fool = true
@@ -43,6 +55,7 @@ class CreateList : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
+        addresses=ArrayList<ModelManageAddress>()
         shopId = intent.getStringExtra("ShopListId")
         orderByName = intent.getStringExtra("orderByName")
         orderByMobile = intent.getStringExtra("orderByMobile")
@@ -65,8 +78,24 @@ class CreateList : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val shopName = snapshot.child("shop_name").value.toString()
                 val mobileNo = snapshot.child("phone").value.toString()
+                txtShops_name.text=shopName
+                txtShops_phone.text="Mobile:-$mobileNo"
             }
 
+        })
+        userDatabase.child("current_address").addValueEventListener(object:ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val address=snapshot.child("address").value.toString()
+                val phone=snapshot.child("mobileNo").value.toString()
+                txtAreaList.text=address
+                txtPhoneList.text=phone
+                deliveryUser=address
+                deliveryUserMobileNo=phone
+            }
         })
         userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -246,6 +275,59 @@ class CreateList : AppCompatActivity() {
             }
             builder.create().show()
         }
+
+
+        val mRef: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+        mRef.child("address").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (addresses as ArrayList<ModelManageAddress>).clear()
+                for (i in snapshot.children) {
+
+                    val obj = ModelManageAddress(
+                        i.child("id").value.toString(),
+                        i.child("address").value.toString(),
+                        i.child("city").value.toString(),
+                        i.child("pinCode").value.toString(),
+                        i.child("country").value.toString(),
+                        i.child("state").value.toString(),
+                        i.child("mobileNo").value.toString()
+
+                    )
+                    (addresses as ArrayList<ModelManageAddress>).add(obj)
+                }
+                txtAddAddressList.setOnClickListener {
+
+                    if (ConnectionManager().checkConnectivity(this@CreateList)){
+                        val dialog = BottomSheetDialog(this@CreateList)
+                        val view =
+                            LayoutInflater.from(this@CreateList).inflate(R.layout.address_layout, null, false)
+                        val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
+                        val btnAddNewAddress: Button = view.findViewById(R.id.btnAddNewAddress)
+                        val txtCurrAddress: TextView = view.findViewById(R.id.txtCurrAddress)
+                        val txtCurrMobile: TextView = view.findViewById(R.id.txtCurrMobile)
+                        txtCurrAddress.text = deliveryUser
+                        txtCurrMobile.text = "Mobile No- ${deliveryUserMobileNo}"
+                        val layoutManager = LinearLayoutManager(this@CreateList)
+                        rv.layoutManager = layoutManager
+                        val adapter = AdapterManageAddress(this@CreateList, addresses)
+                        rv.adapter = adapter
+                        btnAddNewAddress.setOnClickListener {
+                            startActivity(Intent(this@CreateList, MapsActivity_New::class.java))
+                            finish()
+                        }
+                        dialog.setContentView(view)
+                        dialog.show()
+                        dialog.setCancelable(false)
+                        dialog.setCanceledOnTouchOutside(true)
+                    }
+                }}
+        })
+
     }
 
     private fun prepareNotificationMessage(orderId: String) {
