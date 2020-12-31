@@ -18,12 +18,36 @@
             android:layout_height="wrap_content"
 
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_2sdp"
 
             android:fontFamily="@font/montserrat_bold"
             android:text="Create Your List"
             android:textColor="#fff"
             android:textSize="@dimen/_20ssp" />
+        <TextView
+            android:id="@+id/txtShops_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPC"
+            android:layout_marginStart="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Cupcakes"
+            android:textColor="#fff"
+            android:textSize="@dimen/_17ssp" />
+        <TextView
+            android:id="@+id/txtShops_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtShops_name"
+            android:layout_marginStart="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Mobile:-8875309289"
+            android:textColor="#fff"
+            android:textSize="@dimen/_15ssp" />
 
         <ImageView
             android:layout_width="@dimen/_100sdp"
@@ -38,11 +62,70 @@
         android:id="@+id/recycler_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/li"
+        android:layout_above="@id/rlAddress"
         android:padding="2dp"
         app:stackFromEnd="true"
         android:layout_below="@+id/rl_create"
         tools:listitem="@layout/list_single_row" />
+    <RelativeLayout
+        android:id="@+id/rlAddress"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_above="@+id/li">
+
+        <ImageView
+            android:id="@+id/imgHomeList"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@drawable/bg_border"
+            android:padding="10dp"
+            android:src="@drawable/ic_home" />
+
+        <TextView
+            android:id="@+id/txtAreaList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtHomeList"
+            android:layout_toEndOf="@+id/imgHomeList"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Saraibika"
+            android:textSize="@dimen/_10ssp" />
+
+        <TextView
+            android:id="@+id/txtTimeList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtAreaList"
+            android:layout_toEndOf="@+id/imgHomeList"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="21 mins"
+            android:textColor="#000"
+            android:textSize="@dimen/_10ssp" />
+
+        <TextView
+            android:id="@+id/txtHomeList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/imgHomeList"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Deliver to Home"
+            android:textColor="#000000"
+            android:textSize="@dimen/_11ssp" />
+
+        <TextView
+            android:id="@+id/txtAddAddressList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="CHANGE ADDRESS"
+            android:textColor="#de4500"
+            android:textSize="@dimen/_10ssp" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/li"
