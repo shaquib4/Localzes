@@ -162,17 +162,17 @@ class Home_seller : AppCompatActivity() {
             })
         orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus")
             .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                t6 = snapshot.childrenCount.toInt()
-                t = t5 + t6
-                ordersOutForDelivery.text = t.toString()
-            }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    t6 = snapshot.childrenCount.toInt()
+                    t = t5 + t6
+                    ordersOutForDelivery.text = t.toString()
+                }
 
-        })
+            })
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -201,7 +201,6 @@ class Home_seller : AppCompatActivity() {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
                 val intent = Intent(this, OrdersAcceptedActivity::class.java)
-                intent.putExtra("orderType", "Accepted")
                 startActivity(intent)
                 finish()
             } else {
@@ -213,8 +212,7 @@ class Home_seller : AppCompatActivity() {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
-                val intent = Intent(this, CartVsList::class.java)
-                intent.putExtra("orderType", "Completed")
+                val intent = Intent(this, OrdersCompletedActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
@@ -227,7 +225,6 @@ class Home_seller : AppCompatActivity() {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
                 val intent = Intent(this, SellerOrdersActivity::class.java)
-                intent.putExtra("orderType", "Pending")
                 startActivity(intent)
                 finish()
             } else {
@@ -239,8 +236,7 @@ class Home_seller : AppCompatActivity() {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
-                val intent = Intent(this, CartVsList::class.java)
-                intent.putExtra("orderType", "Pending")
+                val intent = Intent(this, OrderOutForDeliveryActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
