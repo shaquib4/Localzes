@@ -82,8 +82,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
             this.recreate()
         }
         if (ConnectionManager().checkConnectivity(this)) {
-            rl_ListSeller.visibility = View.VISIBLE
-            rl_ListOrderDetails.visibility = View.GONE
+            //rl_ListSeller.visibility = View.VISIBLE
+           // rl_ListOrderDetails.visibility = View.GONE
             databaseRef.child(orderId).child("ListItems")
                 .addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
@@ -126,8 +126,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     }
                 })
         } else {
-            rl_ListSeller.visibility = View.GONE
-            rl_ListOrderDetails.visibility = View.VISIBLE
+          //  rl_ListSeller.visibility = View.GONE
+          //  rl_ListOrderDetails.visibility = View.VISIBLE
         }
         databaseRef.child(orderId).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -184,8 +184,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
             acceptConfirm.setOnClickListener {
                 if (ConnectionManager().checkConnectivity(this)) {
-                    rl_ListSeller.visibility = View.VISIBLE
-                    rl_ListOrderDetails.visibility = View.GONE
+                  //  rl_ListSeller.visibility = View.VISIBLE
+                  //  rl_ListOrderDetails.visibility = View.GONE
                     val builder = AlertDialog.Builder(this)
                     val dialog = builder.show()
                     builder.setTitle("Confirmation")
@@ -221,14 +221,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     }
                     builder.create().show()
                 } else {
-                    rl_ListSeller.visibility = View.GONE
-                    rl_ListOrderDetails.visibility = View.VISIBLE
+                  //  rl_ListSeller.visibility = View.GONE
+                  //  rl_ListOrderDetails.visibility = View.VISIBLE
                 }
             }
-        }
         if (ConnectionManager().checkConnectivity(this)) {
-            rl_ListSeller.visibility = View.VISIBLE
-            rl_ListOrderDetails.visibility = View.GONE
+          //  rl_ListSeller.visibility = View.VISIBLE
+          //  rl_ListOrderDetails.visibility = View.GONE
             databaseRef.child(orderId).child("ListItems")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
@@ -259,11 +258,14 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     }
                 })
         } else {
-            rl_ListSeller.visibility = View.GONE
-            rl_ListOrderDetails.visibility = View.VISIBLE
+          //  rl_ListSeller.visibility = View.GONE
+           // rl_ListOrderDetails.visibility = View.VISIBLE
         }
 
     }
+
+
+
 
     private fun newEditOrderStatusDialog() {
         val options = arrayOf("Rejected", "Payment Received")
