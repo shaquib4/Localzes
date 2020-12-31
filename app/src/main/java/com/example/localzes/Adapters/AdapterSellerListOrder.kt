@@ -19,7 +19,8 @@ class AdapterSellerListOrder(
     val context: Context,
     val seller_order_list: List<ModelList>,
     val orderId:String,
-    val orderBy:String
+    val orderBy:String,
+    val orderStatus:String
 ) :
     RecyclerView.Adapter<AdapterSellerListOrder.HolderSellerListOrder>() {
     class HolderSellerListOrder(view: View) : RecyclerView.ViewHolder(view) {
@@ -48,7 +49,93 @@ class AdapterSellerListOrder(
         holder.txtSNo.text = (position + 1).toString() + "."
         holder.txtItem_Name.text=sellerOrderList.itemName
         holder.txtQuan.text=sellerOrderList.itemQuantity
+        val uAuths = FirebaseAuth.getInstance()
+        val users = uAuths.currentUser
+        val uids = users!!.uid
+      if (orderStatus!="Pending"){
+          holder.edtPrice.setText(sellerOrderList.itemCost)
+          holder.edtPrice.isEnabled=false
+          holder.itemRevive.visibility=View.GONE
+          holder.itemRemove.visibility=View.GONE
+      }else{
+          val uAuth = FirebaseAuth.getInstance()
+          val user = uAuth.currentUser
+          val uid = user!!.uid
 
+          val databaseReference: DatabaseReference =
+              FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists").child(orderId)
+                  .child("ListItems").child(sellerOrderList.itemId)
+          databaseReference.addValueEventListener(object :ValueEventListener{
+              override fun onCancelled(error: DatabaseError) {
+
+              }
+
+              override fun onDataChange(snapshot: DataSnapshot) {
+
+                  val itemCost=snapshot.child("itemCost").value.toString()
+
+                  if (itemCost=="0"){
+
+                      holder.edtPrice.isEnabled=false
+                      holder.edtPrice.setText("0")
+
+                  }else{
+                      holder.edtPrice.addTextChangedListener(object :TextWatcher{
+                          override fun afterTextChanged(s: Editable?) {
+
+                          }
+
+                          override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                          }
+
+                          override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                              priceEdit(s.toString(),sellerOrderList.itemId)
+                          }
+                      })
+                  }
+              }
+          })
+          val databaseReferences: DatabaseReference =
+              FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists").child(orderId)
+                  .child("ListItems").child(sellerOrderList.itemId)
+          databaseReferences.addListenerForSingleValueEvent(object :ValueEventListener{
+              override fun onCancelled(error: DatabaseError) {
+
+              }
+
+              override fun onDataChange(snapshot: DataSnapshot) {
+
+                  val itemCost=snapshot.child("itemCost").value.toString()
+
+                  if (itemCost=="0"){
+                      holder.edtPrice.setText("0")
+                      holder.edtPrice.isEnabled=false
+                      holder.itemRemove.visibility=View.GONE
+                      holder.itemRevive.visibility=View.VISIBLE
+
+
+                  }else{
+                      holder.edtPrice.setText(sellerOrderList.itemCost)
+                      holder.itemRemove.visibility=View.VISIBLE
+                      holder.itemRevive.visibility=View.GONE
+                      holder.edtPrice.addTextChangedListener(object :TextWatcher{
+                          override fun afterTextChanged(s: Editable?) {
+
+                          }
+
+                          override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                          }
+
+                          override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                              priceEdit(s.toString(),sellerOrderList.itemId)
+                          }
+                      })
+                  }
+              }
+          })
+      }
 
         holder.itemRemove.setOnClickListener {
             val uAuth = FirebaseAuth.getInstance()
@@ -68,6 +155,8 @@ class AdapterSellerListOrder(
 
             holder.itemRemove.visibility=View.GONE
             holder.itemRevive.visibility=View.VISIBLE
+            holder.edtPrice.setText("0")
+            holder.edtPrice.isEnabled=false
 
         }
         holder.itemRevive.setOnClickListener {
@@ -88,82 +177,9 @@ class AdapterSellerListOrder(
             holder.itemRemove.visibility=View.VISIBLE
             holder.itemRevive.visibility=View.GONE
             holder.edtPrice.setText("")
+            holder.edtPrice.isEnabled=true
         }
-        val uAuth = FirebaseAuth.getInstance()
-        val user = uAuth.currentUser
-        val uid = user!!.uid
-        val databaseReference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists").child(orderId)
-                .child("ListItems").child(sellerOrderList.itemId)
-        databaseReference.addValueEventListener(object :ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
 
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                holder.edtPrice.isEnabled=true
-                val itemCost=snapshot.child("itemCost").value.toString()
-
-                if (itemCost=="0"){
-
-                    holder.edtPrice.isEnabled=false
-                    holder.edtPrice.setText("0")
-
-                }else{
-                    holder.edtPrice.addTextChangedListener(object :TextWatcher{
-                        override fun afterTextChanged(s: Editable?) {
-
-                        }
-
-                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-                        }
-
-                        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                            priceEdit(s.toString(),sellerOrderList.itemId)
-                        }
-                    })
-                }
-            }
-        })
-        val databaseReferences: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists").child(orderId)
-                .child("ListItems").child(sellerOrderList.itemId)
-        databaseReferences.addListenerForSingleValueEvent(object :ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                holder.edtPrice.isEnabled=true
-                val itemCost=snapshot.child("itemCost").value.toString()
-
-                if (itemCost=="0"){
-                    holder.edtPrice.isEnabled=false
-                    holder.itemRemove.visibility=View.GONE
-                    holder.itemRevive.visibility=View.VISIBLE
-                    holder.edtPrice.setText("0")
-
-                }else{
-                    holder.edtPrice.setText(sellerOrderList.itemCost)
-                    holder.itemRemove.visibility=View.VISIBLE
-                    holder.itemRevive.visibility=View.GONE
-                    holder.edtPrice.addTextChangedListener(object :TextWatcher{
-                        override fun afterTextChanged(s: Editable?) {
-
-                        }
-
-                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-                        }
-
-                        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                            priceEdit(s.toString(),sellerOrderList.itemId)
-                        }
-                    })
-                }
-            }
-        })
 
     }
 
