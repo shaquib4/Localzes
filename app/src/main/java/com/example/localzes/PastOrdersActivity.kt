@@ -69,18 +69,27 @@ class PastOrdersActivity : AppCompatActivity() {
         recyclerOrderDetails = findViewById(R.id.recyclerPastOrders)
         recyclerOrderDetails.layoutManager = LinearLayoutManager(this)
         rl_cartPast.setOnClickListener {
-            cartPastOrders()
+
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_pastOrders.visibility = View.VISIBLE
+                rl_retryPastOrders.visibility = View.GONE
+                cartPastOrders()
+            } else {
+                rl_pastOrders.visibility = View.GONE
+                rl_retryPastOrders.visibility = View.VISIBLE
+            }
         }
         rl_listPast.setOnClickListener {
-            listPastOrders()
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_pastOrders.visibility = View.VISIBLE
+                rl_retryPastOrders.visibility = View.GONE
+                listPastOrders()
+            } else {
+                rl_pastOrders.visibility = View.GONE
+                rl_retryPastOrders.visibility = View.VISIBLE
+            }
         }
-        if (ConnectionManager().checkConnectivity(this)) {
-            rl_pastOrders.visibility = View.VISIBLE
-            rl_retryPastOrders.visibility = View.GONE
-        } else {
-            rl_pastOrders.visibility = View.GONE
-            rl_retryPastOrders.visibility = View.VISIBLE
-        }
+
         imgBackPast.setOnClickListener {
             val intent = Intent(this, Accounts::class.java)
             startActivity(intent)
@@ -185,7 +194,14 @@ class PastOrdersActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        cartPastOrders()
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_pastOrders.visibility = View.VISIBLE
+            rl_retryPastOrders.visibility = View.GONE
+            cartPastOrders()
+        } else {
+            rl_pastOrders.visibility = View.GONE
+            rl_retryPastOrders.visibility = View.VISIBLE
+        }
     }
 
     override fun onBackPressed() {
