@@ -268,8 +268,24 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
             val selectedItem = options[which]
-            editOrderStatus(selectedItem)
-            dialog.dismiss()
+            if (selectedItem == "Rejected") {
+                dialog.dismiss()
+                val newBuilder = AlertDialog.Builder(this)
+                newBuilder.setTitle("Choose a Reason")
+                val reasons =
+                    arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
+                newBuilder.setSingleChoiceItems(reasons, -1) { dialog, which ->
+                    val selected = reasons[which]
+                    selectedReason = selected
+                    editOrderStatus("$selectedItem due to $selectedReason")
+                    dialog.dismiss()
+                }
+                newBuilder.create().show()
+            } else {
+                editOrderStatus(selectedItem)
+                dialog.dismiss()
+            }
+
         }
         builder.create().show()
     }
@@ -368,7 +384,8 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     fun onCheckboxClicked(view: View) {
-        val databaseReference:DatabaseReference=FirebaseDatabase.getInstance().reference.child("Seller")
+        val databaseReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("Seller")
         if (view is CheckBox) {
             val checked: Boolean = view.isChecked
             when (view.id) {

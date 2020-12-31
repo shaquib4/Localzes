@@ -66,17 +66,19 @@ class OrdersAcceptedActivity : AppCompatActivity() {
             })
 
         rl_listAccepted.setOnClickListener {
-          if (ConnectionManager().checkConnectivity(this)) {
-              rl_AcceptedOrder.visibility = View.VISIBLE
-              rl_retryAcceptedOrder.visibility = View.GONE
-              acceptedListOrder()}else{
-              rl_AcceptedOrder.visibility = View.GONE
-              rl_retryAcceptedOrder.visibility = View.VISIBLE
-          }
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_AcceptedOrder.visibility = View.VISIBLE
+                rl_retryAcceptedOrder.visibility = View.GONE
+                acceptedListOrder()
+            } else {
+                rl_AcceptedOrder.visibility = View.GONE
+                rl_retryAcceptedOrder.visibility = View.VISIBLE
+            }
         }
         rl_cartAccepted.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-            acceptedCartOrder()}else{
+            if (ConnectionManager().checkConnectivity(this)) {
+                acceptedCartOrder()
+            } else {
                 rl_AcceptedOrder.visibility = View.GONE
                 rl_retryAcceptedOrder.visibility = View.VISIBLE
             }
@@ -207,7 +209,8 @@ class OrdersAcceptedActivity : AppCompatActivity() {
         if (ConnectionManager().checkConnectivity(this)) {
             rl_AcceptedOrder.visibility = View.VISIBLE
             rl_retryAcceptedOrder.visibility = View.GONE
-            acceptedCartOrder() }else{
+            acceptedCartOrder()
+        } else {
             rl_AcceptedOrder.visibility = View.GONE
             rl_retryAcceptedOrder.visibility = View.VISIBLE
         }

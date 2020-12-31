@@ -51,26 +51,41 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    cartOutNo.text="(${snapshot.childrenCount})"
+                    cartOutNo.text = "(${snapshot.childrenCount})"
 
                 }
 
             })
-        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Out For Delivery").addValueEventListener(object :ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
+        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus")
+            .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                listOutNo.text="(${snapshot.childrenCount})"
-            }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    listOutNo.text = "(${snapshot.childrenCount})"
+                }
 
-        })
+            })
         rl_listOut.setOnClickListener {
-            listOutForDeliveryOrders()
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_Out_For_delivery.visibility = View.VISIBLE
+                rl_retryDeliveryOrder.visibility = View.GONE
+                listOutForDeliveryOrders()
+            } else {
+                rl_Out_For_delivery.visibility = View.GONE
+                rl_retryDeliveryOrder.visibility = View.VISIBLE
+            }
+
         }
         rl_cartOut.setOnClickListener {
-            cartOutForDeliveryOrders()
+            if (ConnectionManager().checkConnectivity(this)) {
+                cartOutForDeliveryOrders()
+            } else {
+                rl_DeliveryOrder.visibility = View.GONE
+                rl_retryDeliveryOrder.visibility = View.VISIBLE
+            }
+
         }
         if (ConnectionManager().checkConnectivity(this)) {
             rl_DeliveryOrder.visibility = View.VISIBLE

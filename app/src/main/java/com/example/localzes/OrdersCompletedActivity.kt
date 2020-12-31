@@ -14,6 +14,7 @@ import com.example.localzes.Modals.ModalSellerOrderList
 import com.example.localzes.Modals.ModelOrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_orders_accepted.*
 import kotlinx.android.synthetic.main.activity_orders_completed.*
 import kotlinx.android.synthetic.main.activity_seller_orders.*
 import util.ConnectionManager
@@ -62,14 +63,26 @@ class OrdersCompletedActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    listCompletedNo.text="(${snapshot.childrenCount})"
+                    listCompletedNo.text = "(${snapshot.childrenCount})"
                 }
             })
         rl_cartCompleted.setOnClickListener {
-            completedCartOrders()
+            if (ConnectionManager().checkConnectivity(this)) {
+                completedCartOrders()
+            } else {
+                rl_CompletedOrder.visibility = View.GONE
+                rl_retryCompletedOrder.visibility = View.VISIBLE
+            }
         }
         rl_listCompleted.setOnClickListener {
-            completedListOrders()
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_CompletedOrder.visibility = View.VISIBLE
+                rl_retryAcceptedOrder.visibility = View.GONE
+                completedListOrders()
+            } else {
+                rl_CompletedOrder.visibility = View.GONE
+                rl_retryAcceptedOrder.visibility = View.VISIBLE
+            }
         }
 
         back.setOnClickListener {

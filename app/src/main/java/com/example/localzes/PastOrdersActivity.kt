@@ -44,6 +44,28 @@ class PastOrdersActivity : AppCompatActivity() {
         mOrderedItemList = ArrayList<ModalSellerOrderList>()
         pastOrderHistoryDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
+        pastOrderHistoryDatabase.child("MyOrders")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    cartPastNo.text = "(${snapshot.childrenCount})"
+                }
+
+            })
+        pastOrderHistoryDatabase.child("MyOrderList")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    listPastNo.text = "(${snapshot.childrenCount})"
+                }
+
+            })
         recyclerOrderDetails = findViewById(R.id.recyclerPastOrders)
         recyclerOrderDetails.layoutManager = LinearLayoutManager(this)
         rl_cartPast.setOnClickListener {

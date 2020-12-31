@@ -25,6 +25,8 @@ import util.ConnectionManager
 
 class UserProductsActivity : AppCompatActivity() {
     private var shopId: String? = "100"
+    private var listShopId: String = ""
+    private var listShopName: String = ""
     private lateinit var mUserProductDatabase: DatabaseReference
     private lateinit var mUserProducts: List<ModelAddProduct>
     private lateinit var recyclerUserProduct: RecyclerView
@@ -40,6 +42,7 @@ class UserProductsActivity : AppCompatActivity() {
     var totalCost: Double = 0.00
     var totalOriginalPrice: Double = 0.00
     var totalItems: Int = 0
+    var shop_Name: String = ""
     private lateinit var createList: FloatingActionButton
     private lateinit var userDatabaseReference: DatabaseReference
     private var deliveryMobileNo: String = ""
@@ -71,6 +74,20 @@ class UserProductsActivity : AppCompatActivity() {
         }
 
         userDatabaseReference = FirebaseDatabase.getInstance().reference.child("users").child(uid)
+        val sellerDatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+        sellerDatabaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val shopName = snapshot.child("shop_name").value.toString()
+                shop_Name = shopName
+
+            }
+
+        })
 
         userDatabaseReference.child("current_address")
             .addValueEventListener(object : ValueEventListener {
@@ -95,14 +112,78 @@ class UserProductsActivity : AppCompatActivity() {
         })
         try {
             createList.setOnClickListener {
-                val intent = Intent(this, CreateList::class.java)
-                intent.putExtra("ShopListId", shopId.toString())
-                intent.putExtra("orderByName", orderByName)
-                intent.putExtra("orderByMobile", orderByMobile)
-                intent.putExtra("delivery", deliveryAddress)
-                intent.putExtra("userId", uid)
-                startActivity(intent)
-                finish()
+                val dataReference: DatabaseReference =
+                    FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                        .child("OrderList")
+                dataReference.addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            for (i in snapshot.children) {
+                                listShopId = i.child("shopId").value.toString()
+                                val databaseReference =
+                                    FirebaseDatabase.getInstance().reference.child("seller")
+                                        .child(listShopId)
+                                databaseReference.addValueEventListener(object :
+                                    ValueEventListener {
+                                    override fun onCancelled(error: DatabaseError) {
+
+                                    }
+
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        listShopName = snapshot.child("shop_name").value.toString()
+                                    }
+
+                                })
+                            }
+                            if (listShopId == shopId.toString()) {
+                                val intent =
+                                    Intent(this@UserProductsActivity, CreateList::class.java)
+                                intent.putExtra("ShopListId", shopId.toString())
+                                intent.putExtra("orderByName", orderByName)
+                                intent.putExtra("orderByMobile", orderByMobile)
+                                intent.putExtra("delivery", deliveryAddress)
+                                intent.putExtra("userId", uid)
+                                startActivity(intent)
+                                finish()
+
+                            } else {
+                                val builder = AlertDialog.Builder(this@UserProductsActivity)
+                                val dialog = builder.show()
+                                builder.setTitle("Alert")
+                                builder.setMessage("Your list contains items from $listShopName shop.Do you want to discard the selection and list items from the $shop_Name shop")
+                                builder.setPositiveButton("Yes") { text, listener ->
+                                    dataReference.removeValue()
+                                    val intent =
+                                        Intent(this@UserProductsActivity, CreateList::class.java)
+                                    intent.putExtra("ShopListId", shopId.toString())
+                                    intent.putExtra("orderByName", orderByName)
+                                    intent.putExtra("orderByMobile", orderByMobile)
+                                    intent.putExtra("delivery", deliveryAddress)
+                                    intent.putExtra("userId", uid)
+                                    startActivity(intent)
+                                    finish()
+                                    dialog.dismiss()
+                                }
+                                builder.setNegativeButton("No") { text, listener ->
+                                    dialog.dismiss()
+                                }
+                            }
+                        } else {
+                            val intent = Intent(this@UserProductsActivity, CreateList::class.java)
+                            intent.putExtra("ShopListId", shopId.toString())
+                            intent.putExtra("orderByName", orderByName)
+                            intent.putExtra("orderByMobile", orderByMobile)
+                            intent.putExtra("delivery", deliveryAddress)
+                            intent.putExtra("userId", uid)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                })
             }
         } catch (e: Exception) {
             e.printStackTrace()

@@ -81,53 +81,53 @@ class ListOrderDetailSeller : AppCompatActivity() {
         retryListOrdersDetails.setOnClickListener {
             this.recreate()
         }
-        if (ConnectionManager().checkConnectivity(this))
-        {
-            rl_ListSeller.visibility=View.VISIBLE
-            rl_ListOrderDetails.visibility=View.GONE
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_ListSeller.visibility = View.VISIBLE
+            rl_ListOrderDetails.visibility = View.GONE
             databaseRef.child(orderId).child("ListItems")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    bool = true
-                    var finalPriceList = arrayListOf<Double>()
-                    totalCost = 0.0
-                    for (i in snapshot.children) {
-                        val itemC = i.child("itemCost").value.toString()
-                        if (itemC == "") {
-                            bool = false
-                        }
-                        finalPriceList.clear()
-                        val itemId = i.child("itemId").value.toString()
-                        val itemCost = i.child("itemCost").value.toString()
-                        val itemName = i.child("itemName").value.toString()
-                        val itemQuantity = i.child("itemQuantity").value.toString()
-                        try {
-                            finalPriceList.add(itemCost.toDouble())
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-
-                        for (j in finalPriceList) {
-                            totalCost += j
-                        }
                     }
-                    amountTv.text = "₹${totalCost}"
-                    totalListCost.text = "₹${totalCost}"
-                    itemsTv.text = snapshot.childrenCount.toString()
-                    val headers = HashMap<String, Any>()
-                    headers["orderCost"] = totalCost
-                    databaseRef.child(orderId).updateChildren(headers)
-                        .addOnSuccessListener {
-                            ref.child(orderId).updateChildren(headers)
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        bool = true
+                        var finalPriceList = arrayListOf<Double>()
+                        totalCost = 0.0
+                        for (i in snapshot.children) {
+                            val itemC = i.child("itemCost").value.toString()
+                            if (itemC == "") {
+                                bool = false
+                            }
+                            finalPriceList.clear()
+                            val itemId = i.child("itemId").value.toString()
+                            val itemCost = i.child("itemCost").value.toString()
+                            val itemName = i.child("itemName").value.toString()
+                            val itemQuantity = i.child("itemQuantity").value.toString()
+                            try {
+                                finalPriceList.add(itemCost.toDouble())
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+
+                            for (j in finalPriceList) {
+                                totalCost += j
+                            }
                         }
-                }
-            })}else{
-            rl_ListSeller.visibility=View.GONE
-            rl_ListOrderDetails.visibility=View.VISIBLE
+                        amountTv.text = "₹${totalCost}"
+                        totalListCost.text = "₹${totalCost}"
+                        itemsTv.text = snapshot.childrenCount.toString()
+                        val headers = HashMap<String, Any>()
+                        headers["orderCost"] = totalCost
+                        databaseRef.child(orderId).updateChildren(headers)
+                            .addOnSuccessListener {
+                                ref.child(orderId).updateChildren(headers)
+                            }
+                    }
+                })
+        } else {
+            rl_ListSeller.visibility = View.GONE
+            rl_ListOrderDetails.visibility = View.VISIBLE
         }
         databaseRef.child(orderId).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -140,15 +140,19 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
-                oStatus=orderStatus
+                oStatus = orderStatus
                 when (orderStatus) {
                     "Pending" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.colorAccent))
                         imgListEdit.visibility = View.GONE
+                        totalListCost.visibility = View.VISIBLE
+                        acceptConfirm.visibility = View.VISIBLE
                     }
                     "Accepted" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.acidGreen))
                         imgListEdit.visibility = View.VISIBLE
+                        acceptConfirm.visibility = View.GONE
+                        totalListCost.visibility = View.GONE
                         imgListEdit.setOnClickListener {
                             editOrderStatusDialog()
                         }
@@ -156,11 +160,15 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     "Rejected due to $selectedReason" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.red))
                         imgListEdit.visibility = View.GONE
+                        acceptConfirm.visibility = View.GONE
+                        totalListCost.visibility = View.GONE
 
                     }
                     "Out For Delivery" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.green))
                         imgListEdit.visibility = View.VISIBLE
+                        acceptConfirm.visibility = View.GONE
+                        totalListCost.visibility = View.GONE
                         imgListEdit.setOnClickListener {
                             newEditOrderStatusDialog()
                         }
@@ -172,81 +180,87 @@ class ListOrderDetailSeller : AppCompatActivity() {
             }
 
         })
-        if (oStatus!="Pending"){
-            acceptConfirm.visibility=View.GONE
-            totalListCost.visibility=View.GONE
-        }else{
-            totalListCost.visibility=View.VISIBLE
-            acceptConfirm.visibility=View.VISIBLE
-        acceptConfirm.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_ListSeller.visibility=View.VISIBLE
-                rl_ListOrderDetails.visibility=View.GONE
-            val builder = AlertDialog.Builder(this)
-            val dialog = builder.show()
-            builder.setTitle("Confirmation")
-            builder.setMessage("Are you sure to confirm this list Order")
-            builder.setPositiveButton("Yes") { text, listener ->
-                dialog.dismiss()
-                progressDialog.setMessage("Processing.....")
-                progressDialog.show()
-                if (bool) {
-                    val headers = HashMap<String, Any>()
-                    headers["listStatus"] = "Confirm"
-                    headers["orderStatus"] = "Accepted"
 
-                    ref.child(orderId).updateChildren(headers).addOnCompleteListener {
-                        if (it.isSuccessful){
-                            prepareNotificationMessage(orderId, "Order has been Confirmed")
-                            databaseRef.child(orderId).updateChildren(headers).addOnCompleteListener {
-                                this.recreate()
+
+            acceptConfirm.setOnClickListener {
+                if (ConnectionManager().checkConnectivity(this)) {
+                    rl_ListSeller.visibility = View.VISIBLE
+                    rl_ListOrderDetails.visibility = View.GONE
+                    val builder = AlertDialog.Builder(this)
+                    val dialog = builder.show()
+                    builder.setTitle("Confirmation")
+                    builder.setMessage("Are you sure to confirm this list Order")
+                    builder.setPositiveButton("Yes") { text, listener ->
+                        dialog.dismiss()
+                        progressDialog.setMessage("Processing.....")
+                        progressDialog.show()
+                        if (bool) {
+                            val headers = HashMap<String, Any>()
+                            headers["listStatus"] = "Confirm"
+                            headers["orderStatus"] = "Accepted"
+
+                            ref.child(orderId).updateChildren(headers).addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    prepareNotificationMessage(orderId, "Order has been Confirmed")
+                                    databaseRef.child(orderId).updateChildren(headers)
+                                        .addOnCompleteListener {
+                                            this.recreate()
+                                        }
+                                }
                             }
+
+
+                        } else {
+                            dialog.dismiss()
+                            Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
                         }
+                        progressDialog.dismiss()
                     }
-
-
+                    builder.setNegativeButton("No") { text, listener ->
+                        dialog.dismiss()
+                    }
+                    builder.create().show()
                 } else {
-                    dialog.dismiss()
-                    Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
+                    rl_ListSeller.visibility = View.GONE
+                    rl_ListOrderDetails.visibility = View.VISIBLE
                 }
-                progressDialog.dismiss()
             }
-            builder.setNegativeButton("No") { text, listener ->
-                dialog.dismiss()
-            }
-            builder.create().show()}else{
-                rl_ListSeller.visibility=View.GONE
-                rl_ListOrderDetails.visibility=View.VISIBLE
-            }
-        }}
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_ListSeller.visibility=View.VISIBLE
-            rl_ListOrderDetails.visibility=View.GONE
+        }
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_ListSeller.visibility = View.VISIBLE
+            rl_ListOrderDetails.visibility = View.GONE
             databaseRef.child(orderId).child("ListItems")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    (list as ArrayList<ModelList>).clear()
-                    for (i in snapshot.children) {
-                        val obj = ModelList(
-                            i.child("itemId").value.toString(),
-                            i.child("itemName").value.toString(),
-                            i.child("itemQuantity").value.toString(),
-                            i.child("itemCost").value.toString(),
-                            i.child("shopId").value.toString()
-                        )
-                        (list as ArrayList<ModelList>).add(obj)
                     }
-                    adapterListOrder =
-                        AdapterSellerListOrder(this@ListOrderDetailSeller, list, orderId, orderBy,oStatus)
-                    recyclerOrderedList.adapter = adapterListOrder
-                }
-            })}else{
-            rl_ListSeller.visibility=View.GONE
-            rl_ListOrderDetails.visibility=View.VISIBLE
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        (list as ArrayList<ModelList>).clear()
+                        for (i in snapshot.children) {
+                            val obj = ModelList(
+                                i.child("itemId").value.toString(),
+                                i.child("itemName").value.toString(),
+                                i.child("itemQuantity").value.toString(),
+                                i.child("itemCost").value.toString(),
+                                i.child("shopId").value.toString()
+                            )
+                            (list as ArrayList<ModelList>).add(obj)
+                        }
+                        adapterListOrder =
+                            AdapterSellerListOrder(
+                                this@ListOrderDetailSeller,
+                                list,
+                                orderId,
+                                orderBy,
+                                oStatus
+                            )
+                        recyclerOrderedList.adapter = adapterListOrder
+                    }
+                })
+        } else {
+            rl_ListSeller.visibility = View.GONE
+            rl_ListOrderDetails.visibility = View.VISIBLE
         }
 
     }
@@ -310,11 +324,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         val selected = reasons[which]
                         selectedReason = selected
                         editOrderStatus("$selectedItem due to $selectedReason")
-                        Toast.makeText(this,selected,Toast.LENGTH_LONG).show()
                         dialog.dismiss()
                     }
                     newBuilder.create().show()
-
                 }
                 else -> {
                     editOrderStatus(selectedItem)

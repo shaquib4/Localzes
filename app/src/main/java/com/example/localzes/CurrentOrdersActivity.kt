@@ -48,6 +48,27 @@ class CurrentOrdersActivity : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrderList")
         currentOrderHistoryDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
+        currentOrderHistoryDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                cartCurrentNo.text = "(${snapshot.childrenCount})"
+            }
+
+        })
+        currentListOrderDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listCurrentNo.text = "(${snapshot.childrenCount})"
+
+            }
+
+        })
         rl_cartCurrent.setOnClickListener {
             currentCartOrder()
         }
@@ -113,9 +134,9 @@ class CurrentOrdersActivity : AppCompatActivity() {
         cartCurrentNo.setTextColor(this.resources.getColor(R.color.colorPrimary))
         txtlistCurrent.setTextColor(this.resources.getColor(R.color.black))
         listCurrentNo.setTextColor(this.resources.getColor(R.color.black))
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_currentOrders.visibility=View.VISIBLE
-            rl_retryCurrentOrders.visibility=View.GONE
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_currentOrders.visibility = View.VISIBLE
+            rl_retryCurrentOrders.visibility = View.GONE
             currentOrderHistoryDatabase.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -158,9 +179,10 @@ class CurrentOrdersActivity : AppCompatActivity() {
                     }
 
                 }
-            })}else{
-            rl_currentOrders.visibility=View.GONE
-            rl_retryCurrentOrders.visibility=View.VISIBLE
+            })
+        } else {
+            rl_currentOrders.visibility = View.GONE
+            rl_retryCurrentOrders.visibility = View.VISIBLE
         }
     }
 
