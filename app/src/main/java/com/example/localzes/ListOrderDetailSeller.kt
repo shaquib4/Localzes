@@ -175,11 +175,15 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     headers["listStatus"] = "Confirm"
                     headers["orderStatus"] = "Accepted"
 
-                    ref.child(orderId).updateChildren(headers)
-                    prepareNotificationMessage(orderId, "Order has been Confirmed")
-                    databaseRef.child(orderId).updateChildren(headers).addOnCompleteListener {
-                        this.recreate()
+                    ref.child(orderId).updateChildren(headers).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            prepareNotificationMessage(orderId, "Order has been Confirmed")
+                            databaseRef.child(orderId).updateChildren(headers).addOnCompleteListener {
+                                this.recreate()
+                            }
+                        }
                     }
+
 
                 } else {
                     dialog.dismiss()
@@ -276,10 +280,12 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     newBuilder.setSingleChoiceItems(reasons, -1) { dialog, which ->
                         val selected = reasons[which]
                         selectedReason = selected
+                        editOrderStatus("$selectedItem due to $selectedReason")
+                        Toast.makeText(this,selected,Toast.LENGTH_LONG).show()
                         dialog.dismiss()
                     }
                     newBuilder.create().show()
-                    editOrderStatus("$selectedItem due to $selectedReason")
+
                 }
                 else -> {
                     editOrderStatus(selectedItem)
@@ -334,8 +340,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
             notificationBodyJs.put("orderId", orderId)
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
             notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
-            notificationBodyJs.put("to", NOTIFICATION_TOPIC)
-            notificationBodyJs.put("data", notificationBodyJs)
+            notificationJs.put("to", NOTIFICATION_TOPIC)
+            notificationJs.put("data", notificationBodyJs)
         } catch (e: Exception) {
             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
