@@ -66,10 +66,20 @@ class OrdersAcceptedActivity : AppCompatActivity() {
             })
 
         rl_listAccepted.setOnClickListener {
-            acceptedListOrder()
+          if (ConnectionManager().checkConnectivity(this)) {
+              rl_AcceptedOrder.visibility = View.VISIBLE
+              rl_retryAcceptedOrder.visibility = View.GONE
+              acceptedListOrder()}else{
+              rl_AcceptedOrder.visibility = View.GONE
+              rl_retryAcceptedOrder.visibility = View.VISIBLE
+          }
         }
         rl_cartAccepted.setOnClickListener {
-            acceptedCartOrder()
+            if (ConnectionManager().checkConnectivity(this)){
+            acceptedCartOrder()}else{
+                rl_AcceptedOrder.visibility = View.GONE
+                rl_retryAcceptedOrder.visibility = View.VISIBLE
+            }
         }
 
         backAccepted.setOnClickListener {
@@ -194,6 +204,12 @@ class OrdersAcceptedActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        acceptedCartOrder()
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_AcceptedOrder.visibility = View.VISIBLE
+            rl_retryAcceptedOrder.visibility = View.GONE
+            acceptedCartOrder() }else{
+            rl_AcceptedOrder.visibility = View.GONE
+            rl_retryAcceptedOrder.visibility = View.VISIBLE
+        }
     }
 }
