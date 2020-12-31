@@ -1,6 +1,7 @@
 package com.example.localzes
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -41,7 +42,6 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private var bool = true
     private var orderId = ""
     private var orderBy = ""
-    private var oStatus=""
     private var newBool: Boolean = false
     var totalCost: Double = 0.00
     private var selectedReason: String = ""
@@ -65,16 +65,15 @@ class ListOrderDetailSeller : AppCompatActivity() {
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
+        orderId = intent.getStringExtra("orderId").toString()
+        orderBy = intent.getStringExtra("orderBy").toString()
         val databaseRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                 .child("OrdersLists")
-
-        orderId = intent.getStringExtra("orderId").toString()
-        orderBy = intent.getStringExtra("orderBy").toString()
-        orderIdTv.text = "OD${orderId}"
         val ref: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
                 .child("MyOrderList")
+        orderIdTv.text = "OD${orderId}"
         databaseRef.child(orderId).child("ListItems")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -122,13 +121,11 @@ class ListOrderDetailSeller : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 val orderStatus = snapshot.child("orderStatus").value.toString()
                 val orderTime = snapshot.child("orderTime").value.toString()
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
-                oStatus=orderStatus
                 when (orderStatus) {
                     "Pending" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.colorAccent))
@@ -141,7 +138,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                             editOrderStatusDialog()
                         }
                     }
-                    "Rejected" -> {
+                    "Rejected due to $selectedReason" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.red))
                         imgListEdit.visibility = View.GONE
 
@@ -160,31 +157,6 @@ class ListOrderDetailSeller : AppCompatActivity() {
             }
 
         })
-/*        databaseRef.child(orderId).child("ListItems")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    var finalPriceList = arrayListOf<Double>()
-                    totalCost = 0.0
-                    for (i in snapshot.children) {
-                        finalPriceList.clear()
-                        val itemId = i.child("itemId").value.toString()
-                        val itemCost = i.child("itemCost").value.toString()
-                        val itemName = i.child("itemName").value.toString()
-                        val itemQuantity = i.child("itemQuantity").value.toString()
-                        finalPriceList.add(itemCost.toDouble())
-                        for (j in finalPriceList) {
-                            totalCost += j
-                        }
-                    }
-                    amountTv.text = totalCost.toString()
-                    itemsTv.text=snapshot.childrenCount.toString()
-                }
-            })*/
-
         acceptConfirm.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val dialog = builder.show()
@@ -198,14 +170,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     val headers = HashMap<String, Any>()
                     headers["listStatus"] = "Confirm"
                     headers["orderStatus"] = "Accepted"
+                    databaseRef.child(orderId).updateChildren(headers)
                     ref.child(orderId).updateChildren(headers)
                     prepareNotificationMessage(orderId, "Order has been Confirmed")
-                    databaseRef.child(orderId).updateChildren(headers).addOnCompleteListener {
-                        if (it.isSuccessful){
-                            this.recreate()
-                        }
-                    }
-
 
                 } else {
                     dialog.dismiss()
@@ -237,7 +204,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         (list as ArrayList<ModelList>).add(obj)
                     }
                     adapterListOrder =
-                        AdapterSellerListOrder(this@ListOrderDetailSeller, list, orderId, orderBy,oStatus)
+                        AdapterSellerListOrder(this@ListOrderDetailSeller, list, orderId, orderBy)
                     recyclerOrderedList.adapter = adapterListOrder
                 }
             })
@@ -355,7 +322,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val notificationBodyJs = JSONObject()
         try {
             notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
-            notificationBodyJs.put("buyerId", "")
+            notificationBodyJs.put("buyerId", orderBy)
             notificationBodyJs.put("sellerUid", (shopAuth.currentUser)!!.uid)
             notificationBodyJs.put("orderId", orderId)
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
@@ -385,5 +352,11 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 }
             }
         Volley.newRequestQueue(this).add(jsonObjectRequest)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, Home_seller::class.java)
+        startActivity(intent)
+        finish()
     }
 }

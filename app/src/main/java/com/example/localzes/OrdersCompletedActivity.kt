@@ -27,7 +27,7 @@ class OrdersCompletedActivity : AppCompatActivity() {
     private lateinit var orderCompleted: RelativeLayout
     private lateinit var back: ImageView
     private lateinit var listAdapter: AdapterListOrder
-    private lateinit var listOrders:List<ModalSellerOrderList>
+    private lateinit var listOrders: List<ModalSellerOrderList>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_completed)
@@ -37,13 +37,34 @@ class OrdersCompletedActivity : AppCompatActivity() {
         retryCompletedOrders.setOnClickListener {
             this.recreate()
         }
-        listOrders=ArrayList<ModalSellerOrderList>()
+        listOrders = ArrayList<ModalSellerOrderList>()
         ordersCompletedList = ArrayList<ModelOrderDetails>()
         orderCompleted = findViewById(R.id.rl_Completed_Orders)
         recyclerOrdersCompleted = findViewById(R.id.recyclerOrdersCompleted)
         back = findViewById(R.id.imgBackCompletedOrders)
         recyclerOrdersCompleted.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    cartCompletedNo.text = "(${snapshot.childrenCount})"
+                }
+            })
+        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Completed")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    listCompletedNo.text="(${snapshot.childrenCount})"
+                }
+            })
         rl_cartCompleted.setOnClickListener {
             completedCartOrders()
         }
@@ -63,19 +84,19 @@ class OrdersCompletedActivity : AppCompatActivity() {
         cartCompletedNo.setTextColor(this.resources.getColor(R.color.black))
         txtlistCompleted.setTextColor(this.resources.getColor(R.color.colorPrimary))
         listCompletedNo.setTextColor(this.resources.getColor(R.color.colorPrimary))
-        val user =orderAuth.currentUser
+        val user = orderAuth.currentUser
         val uid = user!!.uid
 
         FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
-            .addValueEventListener(object :ValueEventListener{
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     (listOrders as ArrayList<ModalSellerOrderList>).clear()
-                    for (i in snapshot.children){
-                        val obj=ModalSellerOrderList(
+                    for (i in snapshot.children) {
+                        val obj = ModalSellerOrderList(
                             i.child("orderId").value.toString(),
                             i.child("orderTime").value.toString(),
                             i.child("orderStatus").value.toString(),
@@ -90,16 +111,18 @@ class OrdersCompletedActivity : AppCompatActivity() {
 
 
                         )
-                        if (i.child("orderStatus").value.toString() == "Pending"){
-                            (listOrders as ArrayList<ModalSellerOrderList>).add(obj)}
+                        if (i.child("orderStatus").value.toString() == "Pending") {
+                            (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
+                        }
                     }
-                    if (listOrders.isEmpty()){
-                        recyclerShopOrders.visibility= View.GONE
-                    }else{
-                        orderCompleted.visibility=View.GONE
-                        recyclerOrdersCompleted.visibility=View.VISIBLE
-                        listAdapter= AdapterListOrder(this@OrdersCompletedActivity,listOrders)
-                        recyclerOrdersCompleted.adapter=listAdapter}
+                    if (listOrders.isEmpty()) {
+                        recyclerShopOrders.visibility = View.GONE
+                    } else {
+                        orderCompleted.visibility = View.GONE
+                        recyclerOrdersCompleted.visibility = View.VISIBLE
+                        listAdapter = AdapterListOrder(this@OrdersCompletedActivity, listOrders)
+                        recyclerOrdersCompleted.adapter = listAdapter
+                    }
                 }
 
             })
@@ -110,9 +133,9 @@ class OrdersCompletedActivity : AppCompatActivity() {
         cartCompletedNo.setTextColor(this.resources.getColor(R.color.colorPrimary))
         txtlistCompleted.setTextColor(this.resources.getColor(R.color.black))
         listCompletedNo.setTextColor(this.resources.getColor(R.color.black))
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_CompletedOrder.visibility=View.VISIBLE
-            rl_retryCompletedOrder.visibility=View.GONE
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_CompletedOrder.visibility = View.VISIBLE
+            rl_retryCompletedOrder.visibility = View.GONE
             orderDatabaseReference.child("Orders")
                 .addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
@@ -137,8 +160,9 @@ class OrdersCompletedActivity : AppCompatActivity() {
                                         i.child("orderByName").value.toString(),
                                         i.child("orderByMobile").value.toString()
                                     )
-                                if (i.child("orderStatus").value.toString()=="Completed"){
-                                (ordersCompletedList as ArrayList<ModelOrderDetails>).add(obj)}
+                                if (i.child("orderStatus").value.toString() == "Completed") {
+                                    (ordersCompletedList as ArrayList<ModelOrderDetails>).add(obj)
+                                }
 
                             }
                             if (ordersCompletedList.isEmpty()) {
@@ -155,9 +179,10 @@ class OrdersCompletedActivity : AppCompatActivity() {
                             }
                         }
                     }
-                })}else{
-            rl_CompletedOrder.visibility=View.GONE
-            rl_retryCompletedOrder.visibility=View.VISIBLE
+                })
+        } else {
+            rl_CompletedOrder.visibility = View.GONE
+            rl_retryCompletedOrder.visibility = View.VISIBLE
         }
     }
 

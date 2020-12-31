@@ -27,7 +27,7 @@ class OrdersAcceptedActivity : AppCompatActivity() {
     private lateinit var backAccepted: ImageView
     private lateinit var orderAccepted: RelativeLayout
     private lateinit var listAdapter: AdapterListOrder
-    private lateinit var listOrders:List<ModalSellerOrderList>
+    private lateinit var listOrders: List<ModalSellerOrderList>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_accepted)
@@ -42,14 +42,33 @@ class OrdersAcceptedActivity : AppCompatActivity() {
         recyclerOrdersAccepted = findViewById(R.id.recyclerOrdersAccepted)
         backAccepted = findViewById(R.id.imgBackAccepted)
         orderAccepted = findViewById(R.id.rl_Accepted_Orders)
-        listOrders=ArrayList<ModalSellerOrderList>()
+        listOrders = ArrayList<ModalSellerOrderList>()
         recyclerOrdersAccepted.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    cartAcceptedNo.text = "(${snapshot.childrenCount})"
+                }
+
+            })
+        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Accepted")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    listAcceptedNo.text = "(${snapshot.childrenCount})"
+                }
+            })
 
         rl_listAccepted.setOnClickListener {
             acceptedListOrder()
         }
-        rl_cartAccepted.setOnClickListener{
+        rl_cartAccepted.setOnClickListener {
             acceptedCartOrder()
         }
 
@@ -65,19 +84,19 @@ class OrdersAcceptedActivity : AppCompatActivity() {
         cartAcceptedNo.setTextColor(this.resources.getColor(R.color.black))
         txtlistAccepted.setTextColor(this.resources.getColor(R.color.colorPrimary))
         listAcceptedNo.setTextColor(this.resources.getColor(R.color.colorPrimary))
-        val user =orderAuth.currentUser
+        val user = orderAuth.currentUser
         val uid = user!!.uid
 
         FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
-            .addValueEventListener(object :ValueEventListener{
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     (listOrders as ArrayList<ModalSellerOrderList>).clear()
-                    for (i in snapshot.children){
-                        val obj=ModalSellerOrderList(
+                    for (i in snapshot.children) {
+                        val obj = ModalSellerOrderList(
                             i.child("orderId").value.toString(),
                             i.child("orderTime").value.toString(),
                             i.child("orderStatus").value.toString(),
@@ -92,16 +111,18 @@ class OrdersAcceptedActivity : AppCompatActivity() {
 
 
                         )
-                        if (i.child("orderStatus").value.toString() == "Accepted"){
-                            (listOrders as ArrayList<ModalSellerOrderList>).add(obj)}
+                        if (i.child("orderStatus").value.toString() == "Accepted") {
+                            (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
+                        }
                     }
-                    if (listOrders.isEmpty()){
-                        recyclerShopOrders.visibility= View.GONE
-                    }else{
-                        orderAccepted.visibility=View.GONE
-                        recyclerOrdersAccepted.visibility=View.VISIBLE
-                        listAdapter= AdapterListOrder(this@OrdersAcceptedActivity,listOrders)
-                        recyclerOrdersAccepted.adapter=listAdapter}
+                    if (listOrders.isEmpty()) {
+                        recyclerShopOrders.visibility = View.GONE
+                    } else {
+                        orderAccepted.visibility = View.GONE
+                        recyclerOrdersAccepted.visibility = View.VISIBLE
+                        listAdapter = AdapterListOrder(this@OrdersAcceptedActivity, listOrders)
+                        recyclerOrdersAccepted.adapter = listAdapter
+                    }
                 }
 
             })
@@ -112,9 +133,9 @@ class OrdersAcceptedActivity : AppCompatActivity() {
         cartAcceptedNo.setTextColor(this.resources.getColor(R.color.colorPrimary))
         txtlistAccepted.setTextColor(this.resources.getColor(R.color.black))
         listAcceptedNo.setTextColor(this.resources.getColor(R.color.black))
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_AcceptedOrder.visibility=View.VISIBLE
-            rl_retryAcceptedOrder.visibility=View.GONE
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_AcceptedOrder.visibility = View.VISIBLE
+            rl_retryAcceptedOrder.visibility = View.GONE
             orderDatabaseReference.child("Orders")
                 .addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
@@ -138,15 +159,16 @@ class OrdersAcceptedActivity : AppCompatActivity() {
                                     i.child("orderByName").value.toString(),
                                     i.child("orderByMobile").value.toString()
                                 )
-                                if (i.child("orderStatus").value.toString() == "Accepted"){
-                                (ordersAcceptedList as ArrayList<ModelOrderDetails>).add(obj)}
+                                if (i.child("orderStatus").value.toString() == "Accepted") {
+                                    (ordersAcceptedList as ArrayList<ModelOrderDetails>).add(obj)
+                                }
                             }
                             if (ordersAcceptedList.isEmpty()) {
                                 recyclerOrdersAccepted.visibility = View.GONE
-                                orderAccepted.visibility=View.VISIBLE
+                                orderAccepted.visibility = View.VISIBLE
                             } else {
-                                orderAccepted.visibility=View.GONE
-                                recyclerOrdersAccepted.visibility=View.VISIBLE
+                                orderAccepted.visibility = View.GONE
+                                recyclerOrdersAccepted.visibility = View.VISIBLE
                                 adapterOrderAccepted =
                                     AdapterSellerOrders(
                                         this@OrdersAcceptedActivity,
@@ -157,14 +179,15 @@ class OrdersAcceptedActivity : AppCompatActivity() {
 
                         }
                     }
-                })}else{
-            rl_AcceptedOrder.visibility=View.GONE
-            rl_retryAcceptedOrder.visibility=View.VISIBLE
+                })
+        } else {
+            rl_AcceptedOrder.visibility = View.GONE
+            rl_retryAcceptedOrder.visibility = View.VISIBLE
         }
     }
 
     override fun onBackPressed() {
-        val intent=Intent(this,Home_seller::class.java)
+        val intent = Intent(this, Home_seller::class.java)
         startActivity(intent)
         finish()
     }

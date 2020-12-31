@@ -113,7 +113,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                                 afterEditOrderStatusDialog()
                             }
                         }
-                        "Rejected" -> {
+                        "Rejected due to $selectedReason" -> {
                             txtOrderStatus.setTextColor(resources.getColor(R.color.red))
                             imgEdit.visibility = View.GONE
                         }
@@ -181,22 +181,6 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         val reference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("Seller").child(uid).child("Orders")
                 .child(orderIdTv.toString())
-        /*imgEdit.setOnClickListener {
-            reference.addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                   *//* if (snapshot.child("orderStatus").value.toString() == "Pending") {
-                        editOrderStatusDialog()
-                    } else if (snapshot.child("orderStatus").value.toString() == "Accepted") {
-                        newEditOrderStatusDialog()
-                    }*//*
-                }
-            })
-
-        }*/
         reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -384,6 +368,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     fun onCheckboxClicked(view: View) {
+        val databaseReference:DatabaseReference=FirebaseDatabase.getInstance().reference.child("Seller")
         if (view is CheckBox) {
             val checked: Boolean = view.isChecked
             when (view.id) {
@@ -396,6 +381,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         builder.setPositiveButton("Ok") { text, listener ->
                             view.visibility = View.GONE
                             new.dismiss()
+
                         }
                         builder.setNegativeButton("Cancel") { text, listener ->
                             view.isChecked = false

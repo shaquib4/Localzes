@@ -57,6 +57,17 @@ class CreateList : AppCompatActivity() {
         userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
         shopDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+        shopDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val shopName = snapshot.child("shop_name").value.toString()
+                val mobileNo = snapshot.child("phone").value.toString()
+            }
+
+        })
         userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 

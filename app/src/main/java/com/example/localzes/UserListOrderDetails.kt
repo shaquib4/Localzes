@@ -1,8 +1,15 @@
 package com.example.localzes
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterUserOrderList
@@ -28,6 +35,10 @@ class UserListOrderDetails : AppCompatActivity() {
     private var orderId: String? = "200"
     private var orderToId: String? = "300"
     private lateinit var userAuth: FirebaseAuth
+    private var REQUEST_CALL = 1
+    private var shopMobileNumber: String = ""
+    private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
+    private lateinit var imgMakePhone: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_list_order_details)
@@ -40,6 +51,7 @@ class UserListOrderDetails : AppCompatActivity() {
         deliveryAddressOrder = findViewById(R.id.txtOrderListDeliveryAddressUser)
         shopAddressOrder = findViewById(R.id.txtOrderListShopAddressUser)
         recyclerOrderList = findViewById(R.id.recycler_order_list_users)
+        imgMakePhone = findViewById(R.id.imageMakeCallList)
         recyclerOrderList.layoutManager = LinearLayoutManager(this)
         orderedItemList = ArrayList<ModelList>()
         orderId = intent.getStringExtra("orderId")
@@ -50,6 +62,9 @@ class UserListOrderDetails : AppCompatActivity() {
         val databaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrderList")
                 .child(orderId.toString())
+        imgMakePhone.setOnClickListener {
+            makePhoneCall()
+        }
         databaseReference.child("ListItems").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -110,10 +125,10 @@ class UserListOrderDetails : AppCompatActivity() {
                 }
                 orderListIdUser.text = "OD${orderId}"
                 orderStatusListUser.text = orderStatus
-                if(listStatus=="Confirm"){
+                if (listStatus == "Confirm") {
                     amountOrderList.text = "₹${orderCost}"
-                }else{
-                    amountOrderList.text="Order amount will be updated soon"
+                } else {
+                    amountOrderList.text = "Order amount will be updated soon"
                 }
                 orderDateListUser.text = formattedDate
                 val reference: DatabaseReference =
@@ -129,6 +144,7 @@ class UserListOrderDetails : AppCompatActivity() {
                         val shopsName = snapshot.child("shop_name").value.toString()
                         shopNameOrderList.text = shopsName
                         shopAddressOrder.text = shop
+                        shopMobileNumber = snapshot.child("phone").value.toString()
                     }
                 })
                 val dataReference: DatabaseReference =
@@ -147,5 +163,35 @@ class UserListOrderDetails : AppCompatActivity() {
                 })
             }
         })
+    }
+
+    private fun makePhoneCall() {
+        val number = shopMobileNumber
+        if (number.trim().isNotEmpty()) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.CALL_PHONE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(this, permissions, REQUEST_CALL)
+            } else {
+                val dial: String = "tel:" + number
+                startActivity(Intent(Intent.ACTION_CALL, Uri.parse(dial)))
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCall()
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
