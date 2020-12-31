@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OrdersDetailsSellerActivity">
+    <RelativeLayout
+        android:id="@+id/rl_ListSeller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/rl_ListOrderDetails"
@@ -288,9 +292,9 @@
             android:textColor="#fff"
             android:textSize="@dimen/_16ssp" />
     </LinearLayout>
-
+    </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/rl_retryOrderDetails"
+        android:id="@+id/rl_retryListOrderDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/lost"
@@ -332,7 +336,7 @@
             android:textSize="@dimen/_15ssp" />
 
         <Button
-            android:id="@+id/retryOrdersDetails"
+            android:id="@+id/retryListOrdersDetails"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
             android:layout_alignParentBottom="true"

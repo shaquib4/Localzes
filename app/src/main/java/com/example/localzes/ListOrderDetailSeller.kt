@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_list_order_detail_seller.*
 import org.json.JSONObject
+import util.ConnectionManager
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -77,7 +78,14 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val ref: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
                 .child("MyOrderList")
-        databaseRef.child(orderId).child("ListItems")
+        retryListOrdersDetails.setOnClickListener {
+            this.recreate()
+        }
+        if (ConnectionManager().checkConnectivity(this))
+        {
+            rl_ListSeller.visibility=View.VISIBLE
+            rl_ListOrderDetails.visibility=View.GONE
+            databaseRef.child(orderId).child("ListItems")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -117,7 +125,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
                             ref.child(orderId).updateChildren(headers)
                         }
                 }
-            })
+            })}else{
+            rl_ListSeller.visibility=View.GONE
+            rl_ListOrderDetails.visibility=View.VISIBLE
+        }
         databaseRef.child(orderId).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -168,6 +179,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
             totalListCost.visibility=View.VISIBLE
             acceptConfirm.visibility=View.VISIBLE
         acceptConfirm.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_ListSeller.visibility=View.VISIBLE
+                rl_ListOrderDetails.visibility=View.GONE
             val builder = AlertDialog.Builder(this)
             val dialog = builder.show()
             builder.setTitle("Confirmation")
@@ -200,9 +214,15 @@ class ListOrderDetailSeller : AppCompatActivity() {
             builder.setNegativeButton("No") { text, listener ->
                 dialog.dismiss()
             }
-            builder.create().show()
+            builder.create().show()}else{
+                rl_ListSeller.visibility=View.GONE
+                rl_ListOrderDetails.visibility=View.VISIBLE
+            }
         }}
-        databaseRef.child(orderId).child("ListItems")
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_ListSeller.visibility=View.VISIBLE
+            rl_ListOrderDetails.visibility=View.GONE
+            databaseRef.child(orderId).child("ListItems")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -224,7 +244,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         AdapterSellerListOrder(this@ListOrderDetailSeller, list, orderId, orderBy,oStatus)
                     recyclerOrderedList.adapter = adapterListOrder
                 }
-            })
+            })}else{
+            rl_ListSeller.visibility=View.GONE
+            rl_ListOrderDetails.visibility=View.VISIBLE
+        }
 
     }
 

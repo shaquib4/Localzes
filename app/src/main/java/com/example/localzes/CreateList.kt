@@ -70,7 +70,13 @@ class CreateList : AppCompatActivity() {
         userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
         shopDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
-        shopDatabase.addValueEventListener(object : ValueEventListener {
+        retryCreateList.setOnClickListener {
+            this.recreate()
+        }
+       if(ConnectionManager().checkConnectivity(this)){
+           rl_createList.visibility=View.VISIBLE
+           rl_retryCreateList.visibility=View.GONE
+           shopDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -82,7 +88,10 @@ class CreateList : AppCompatActivity() {
                 txtShops_phone.text="Mobile:-$mobileNo"
             }
 
-        })
+        })}else{
+           rl_createList.visibility=View.GONE
+           rl_retryCreateList.visibility=View.VISIBLE
+       }
         userDatabase.child("current_address").addValueEventListener(object:ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
@@ -135,7 +144,10 @@ class CreateList : AppCompatActivity() {
         })
 
 
-        userDatabase.child("OrderList").addListenerForSingleValueEvent(object : ValueEventListener {
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_createList.visibility=View.VISIBLE
+            rl_retryCreateList.visibility=View.GONE
+            userDatabase.child("OrderList").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -157,9 +169,16 @@ class CreateList : AppCompatActivity() {
                 createListAdapter = AdapterCreateList(this@CreateList, list)
                 listRecycler.adapter = createListAdapter
             }
-        })
+        })}else{
+            rl_createList.visibility=View.GONE
+            rl_retryCreateList.visibility=View.VISIBLE
+        }
         btnAdd.setOnClickListener {
-            val timestamp = System.currentTimeMillis().toString()
+            if (ConnectionManager().checkConnectivity(this))
+            {
+                rl_createList.visibility=View.VISIBLE
+                rl_retryCreateList.visibility=View.GONE
+                val timestamp = System.currentTimeMillis().toString()
             val headers = HashMap<String, String>()
             headers["itemId"] = timestamp
             headers["itemName"] = ""
@@ -171,11 +190,17 @@ class CreateList : AppCompatActivity() {
                     if (it.isSuccessful) {
                         this.recreate()
                     }
-                }
+                }}else{
+                rl_createList.visibility=View.GONE
+                rl_retryCreateList.visibility=View.VISIBLE
+            }
         }
 
         btnCn.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_createList.visibility=View.VISIBLE
+                rl_retryCreateList.visibility=View.GONE
+                val builder = AlertDialog.Builder(this)
             val dialog = builder.show()
             builder.setTitle("Confirmation")
             builder.setMessage("Are you sure your list is complete.Please click Yes to continue")
@@ -273,7 +298,10 @@ class CreateList : AppCompatActivity() {
             builder.setNegativeButton("No") { text, listener ->
                 dialog.dismiss()
             }
-            builder.create().show()
+            builder.create().show()}else{
+                rl_createList.visibility=View.GONE
+                rl_retryCreateList.visibility=View.VISIBLE
+            }
         }
 
 
@@ -303,6 +331,8 @@ class CreateList : AppCompatActivity() {
                 txtAddAddressList.setOnClickListener {
 
                     if (ConnectionManager().checkConnectivity(this@CreateList)){
+                        rl_createList.visibility=View.VISIBLE
+                        rl_retryCreateList.visibility=View.GONE
                         val dialog = BottomSheetDialog(this@CreateList)
                         val view =
                             LayoutInflater.from(this@CreateList).inflate(R.layout.address_layout, null, false)
@@ -324,6 +354,9 @@ class CreateList : AppCompatActivity() {
                         dialog.show()
                         dialog.setCancelable(false)
                         dialog.setCanceledOnTouchOutside(true)
+                    }else{
+                        rl_createList.visibility=View.GONE
+                        rl_retryCreateList.visibility=View.VISIBLE
                     }
                 }}
         })

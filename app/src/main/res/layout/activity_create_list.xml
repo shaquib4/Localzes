@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateList">
-
+<RelativeLayout
+    android:id="@+id/rl_createList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/rl_create"
         android:layout_width="match_parent"
@@ -162,5 +165,63 @@
             android:textColor="#fff"
             android:textSize="@dimen/_15ssp" />
 
-    </LinearLayout>
+    </LinearLayout></RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_retryCreateList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/lost"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/txtOhNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Oh No.."
+            android:textSize="@dimen/_20ssp" />
+
+
+        <TextView
+            android:id="@+id/txtLost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtOhNo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="No Internet Connection"
+            android:textSize="@dimen/_20ssp" />
+
+
+        <TextView
+            android:id="@+id/txtConnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtLost"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Please connect to internet"
+            android:textSize="@dimen/_15ssp" />
+
+        <Button
+            android:id="@+id/retryCreateList"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/stroke_solid_btn"
+            android:elevation="5dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:text="Retry"
+            android:textColor="#de4500"
+            android:textSize="@dimen/_15ssp" />
+
+    </RelativeLayout>
 </RelativeLayout>

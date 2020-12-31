@@ -62,7 +62,7 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
             holder.totalItem.text = "${sellerOrder.totalItems} item"
         }
         if (sellerOrder.orderCost==""){
-            holder.totalCost.text="Amount will be updated by seller "
+            holder.totalCost.text="Please update total Amount"
         }else{
             holder.totalCost.text = "₹${sellerOrder.orderCost}"
         }
