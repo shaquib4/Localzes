@@ -70,10 +70,20 @@ class CurrentOrdersActivity : AppCompatActivity() {
 
         })
         rl_cartCurrent.setOnClickListener {
-            currentCartOrder()
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_currentOrders.visibility=View.VISIBLE
+                rl_retryCurrentOrders.visibility=View.GONE
+                currentCartOrder()}else{
+                rl_currentOrders.visibility=View.GONE
+                rl_retryCurrentOrders.visibility=View.VISIBLE
+            }
         }
         rl_listCurrent.setOnClickListener {
-            currentListOrder()
+            if (ConnectionManager().checkConnectivity(this)){
+                currentListOrder()}else{
+                rl_currentOrders.visibility=View.GONE
+                rl_retryCurrentOrders.visibility=View.VISIBLE
+            }
         }
 
 
@@ -194,6 +204,12 @@ class CurrentOrdersActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        currentCartOrder()
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_currentOrders.visibility=View.VISIBLE
+            rl_retryCurrentOrders.visibility=View.GONE
+            currentCartOrder()}else{
+            rl_currentOrders.visibility=View.GONE
+            rl_retryCurrentOrders.visibility=View.VISIBLE
+        }
     }
 }

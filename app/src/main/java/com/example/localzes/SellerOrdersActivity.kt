@@ -64,10 +64,22 @@ class SellerOrdersActivity : AppCompatActivity() {
                 }
             })
         rl_cartPending.setOnClickListener {
-            pendingCartOrder()
+            if (ConnectionManager().checkConnectivity(this)){
+                rl_pending.visibility = View.VISIBLE
+                rl_Seller_Orders_retry.visibility = View.GONE
+            pendingCartOrder()}else{
+                rl_pending.visibility = View.GONE
+                rl_Seller_Orders_retry.visibility = View.VISIBLE
+            }
         }
         rl_listPending.setOnClickListener {
-            pendingListOrder()
+            rl_pending.visibility = View.VISIBLE
+            rl_Seller_Orders_retry.visibility = View.GONE
+            if (ConnectionManager().checkConnectivity(this)){
+                   pendingListOrder() }else{
+                rl_pending.visibility = View.GONE
+                rl_Seller_Orders_retry.visibility = View.VISIBLE
+            }
         }
 
 
@@ -188,6 +200,12 @@ class SellerOrdersActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        pendingCartOrder()
+        if (ConnectionManager().checkConnectivity(this)){
+            rl_pending.visibility = View.VISIBLE
+            rl_Seller_Orders_retry.visibility = View.GONE
+            pendingCartOrder()}else{
+            rl_pending.visibility = View.GONE
+            rl_Seller_Orders_retry.visibility = View.VISIBLE
+        }
     }
 }
