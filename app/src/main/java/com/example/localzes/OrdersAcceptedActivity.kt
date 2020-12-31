@@ -116,7 +116,7 @@ class OrdersAcceptedActivity : AppCompatActivity() {
                         }
                     }
                     if (listOrders.isEmpty()) {
-                        recyclerShopOrders.visibility = View.GONE
+                        recyclerOrdersAccepted.visibility = View.GONE
                     } else {
                         orderAccepted.visibility = View.GONE
                         recyclerOrdersAccepted.visibility = View.VISIBLE

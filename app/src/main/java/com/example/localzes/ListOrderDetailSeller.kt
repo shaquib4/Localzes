@@ -70,12 +70,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val databaseRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                 .child("OrdersLists")
-        val ref: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
-                .child("MyOrderList")
+
         orderId = intent.getStringExtra("orderId").toString()
         orderBy = intent.getStringExtra("orderBy").toString()
         orderIdTv.text = "OD${orderId}"
+        val ref: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
+                .child("MyOrderList")
         databaseRef.child(orderId).child("ListItems")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -232,8 +233,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
                     newBuilder.setSingleChoiceItems(reasons, -1) { dialog, which ->
                         val selected = reasons[which]
-                        dialog.dismiss()
                         selectedReason = selected
+                        dialog.dismiss()
                     }
                     newBuilder.create().show()
                     editOrderStatus("$selectedItem due to $selectedReason")
@@ -274,8 +275,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
                     newBuilder.setSingleChoiceItems(reasons, -1) { dialog, which ->
                         val selected = reasons[which]
-                        dialog.dismiss()
                         selectedReason = selected
+                        dialog.dismiss()
                     }
                     newBuilder.create().show()
                     editOrderStatus("$selectedItem due to $selectedReason")
