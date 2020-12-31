@@ -41,6 +41,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private var bool = true
     private var orderId = ""
     private var orderBy = ""
+    private var oStatus=""
     private var newBool: Boolean = false
     var totalCost: Double = 0.00
     private var selectedReason: String = ""
@@ -67,12 +68,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val databaseRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                 .child("OrdersLists")
-        val ref: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
-                .child("MyOrderList")
+
         orderId = intent.getStringExtra("orderId").toString()
         orderBy = intent.getStringExtra("orderBy").toString()
         orderIdTv.text = "OD${orderId}"
+        val ref: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
+                .child("MyOrderList")
         databaseRef.child(orderId).child("ListItems")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -108,9 +110,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     itemsTv.text = snapshot.childrenCount.toString()
                     val headers = HashMap<String, Any>()
                     headers["orderCost"] = totalCost
-                    databaseRef.child(orderId).child("ListItems").updateChildren(headers)
+                    databaseRef.child(orderId).updateChildren(headers)
                         .addOnSuccessListener {
-                            ref.child(orderId).child("ListItems").updateChildren(headers)
+                            ref.child(orderId).updateChildren(headers)
                         }
                 }
             })
@@ -120,11 +122,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
+
                 val orderStatus = snapshot.child("orderStatus").value.toString()
                 val orderTime = snapshot.child("orderTime").value.toString()
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
+                oStatus=orderStatus
                 when (orderStatus) {
                     "Pending" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.colorAccent))
@@ -194,9 +198,14 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     val headers = HashMap<String, Any>()
                     headers["listStatus"] = "Confirm"
                     headers["orderStatus"] = "Accepted"
-                    databaseRef.child(orderId).updateChildren(headers)
                     ref.child(orderId).updateChildren(headers)
                     prepareNotificationMessage(orderId, "Order has been Confirmed")
+                    databaseRef.child(orderId).updateChildren(headers).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            this.recreate()
+                        }
+                    }
+
 
                 } else {
                     dialog.dismiss()
@@ -228,7 +237,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         (list as ArrayList<ModelList>).add(obj)
                     }
                     adapterListOrder =
-                        AdapterSellerListOrder(this@ListOrderDetailSeller, list, orderId, orderBy)
+                        AdapterSellerListOrder(this@ListOrderDetailSeller, list, orderId, orderBy,oStatus)
                     recyclerOrderedList.adapter = adapterListOrder
                 }
             })
