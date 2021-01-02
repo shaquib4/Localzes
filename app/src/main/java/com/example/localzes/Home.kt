@@ -157,7 +157,7 @@ class Home : AppCompatActivity() {
                 }
                 R.id.nav_search -> {
 
-                    startActivity(Intent(this, ListOrders::class.java))
+                    startActivity(Intent(this, Search::class.java))
                     overridePendingTransition(0, 0)
                     finish()
 

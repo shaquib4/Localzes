@@ -192,7 +192,7 @@ class AdapterSellerListOrder(
 
         }
         holder.itemRevive.setOnClickListener {
-            holder.txtItem_Name.text = "${sellerOrderList.itemName}X${sellerOrderList.itemQuantity}"
+            holder.txtItem_Name.text = "${sellerOrderList.itemName}  X ${sellerOrderList.itemQuantity}"
             val uAuth = FirebaseAuth.getInstance()
             val user = uAuth.currentUser
             val uid = user!!.uid

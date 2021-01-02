@@ -115,7 +115,7 @@ class UserProductsActivity : AppCompatActivity() {
                 val dataReference: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("users").child(uid)
                         .child("OrderList")
-                dataReference.addValueEventListener(object : ValueEventListener {
+                dataReference.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 
                     }
@@ -127,7 +127,7 @@ class UserProductsActivity : AppCompatActivity() {
                                 val databaseReference =
                                     FirebaseDatabase.getInstance().reference.child("seller")
                                         .child(listShopId)
-                                databaseReference.addValueEventListener(object :
+                                databaseReference.addListenerForSingleValueEvent(object :
                                     ValueEventListener {
                                     override fun onCancelled(error: DatabaseError) {
 
