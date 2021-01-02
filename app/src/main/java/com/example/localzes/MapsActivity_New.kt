@@ -1,6 +1,7 @@
 package com.example.localzes
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
@@ -241,6 +242,16 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 51) {
+            if (resultCode == Activity.RESULT_OK) {
+                getLocationUpdates()
+                startLocationUpdates()
+            }
+        }
+    }
+
 
     public fun getLocationUpdates() {
         locationRequest = LocationRequest()
@@ -296,8 +307,8 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
 
                     if (location != null) {
                         val latLng = LatLng(location.latitude, location.longitude)
-                        val markerOptions = MarkerOptions().position(latLng)
-                        map.addMarker(markerOptions)
+                      //  val markerOptions = MarkerOptions().position(latLng)
+                       // map.addMarker(markerOptions)
                         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
                     }
                 }

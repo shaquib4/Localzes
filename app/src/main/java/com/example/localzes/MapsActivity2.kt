@@ -1,6 +1,7 @@
 package com.example.localzes
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
@@ -202,7 +203,15 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
         }
     }
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 51) {
+            if (resultCode == Activity.RESULT_OK) {
+                getLocationUpdates()
+                startLocationUpdates()
+            }
+        }
+    }
     public fun getLocationUpdates() {
         locationRequest = LocationRequest()
         locationRequest.interval = 30000
