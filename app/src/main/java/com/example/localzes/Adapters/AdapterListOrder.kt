@@ -45,25 +45,25 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
 
     override fun onBindViewHolder(holder: HolderListOrder, position: Int) {
         val sellerOrder = modelSellerList[position]
-        val ref=FirebaseDatabase.getInstance().reference.child("users").child(sellerOrder.orderBy)
-            .child("current_address").addValueEventListener(object :ValueEventListener{
-                override fun onCancelled(error: DatabaseError) {
+        /*       val ref=FirebaseDatabase.getInstance().reference.child("users").child(sellerOrder.orderBy)
+                   .child("current_address").addValueEventListener(object :ValueEventListener{
+                       override fun onCancelled(error: DatabaseError) {
 
-                }
+                       }
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    holder.cuMobileNum.text=snapshot.child("mobileNo").value.toString()
-                }
-            })
-
+                       override fun onDataChange(snapshot: DataSnapshot) {
+                           holder.cuMobileNum.text=snapshot.child("mobileNo").value.toString()
+                       }
+                   })*/
+        holder.cuMobileNum.text = sellerOrder.orderByMobile
         if (sellerOrder.totalItems.toInt() > 1) {
             holder.totalItem.text = "${sellerOrder.totalItems} items"
         } else {
             holder.totalItem.text = "${sellerOrder.totalItems} item"
         }
-        if (sellerOrder.orderCost==""){
-            holder.totalCost.text="Please update total Amount"
-        }else{
+        if (sellerOrder.orderCost == "") {
+            holder.totalCost.text = "Please update total Amount"
+        } else {
             holder.totalCost.text = "₹${sellerOrder.orderCost}"
         }
 

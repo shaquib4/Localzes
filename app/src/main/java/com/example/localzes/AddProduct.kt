@@ -63,30 +63,31 @@ class AddProduct : AppCompatActivity() {
             finish()
         }
         retryAddProduct.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_addProduct.visibility= View.VISIBLE
-                rl_retryAddProduct.visibility=View.GONE
-                this.recreate()}else{
-                rl_addProduct.visibility= View.GONE
-                rl_retryAddProduct.visibility=View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_addProduct.visibility = View.VISIBLE
+                rl_retryAddProduct.visibility = View.GONE
+                this.recreate()
+            } else {
+                rl_addProduct.visibility = View.GONE
+                rl_retryAddProduct.visibility = View.VISIBLE
             }
         }
 
         btnAddProduct.setOnClickListener {
             when {
-                etTittle.text.toString().isEmpty() -> {
+                etTittle.text.trim().toString().isEmpty() -> {
                     etTittle.error = "Please enter product name"
                     return@setOnClickListener
                 }
-                etSellPrice.text.toString().isEmpty() -> {
+                etSellPrice.text.trim().toString().isEmpty() -> {
                     etSellPrice.error = "Please enter MRP of product"
                     return@setOnClickListener
                 }
-                etOfferPrice.text.toString().isEmpty() -> {
+                etOfferPrice.text.trim().toString().isEmpty() -> {
                     etOfferPrice.error = "Please enter selling price of product"
                     return@setOnClickListener
                 }
-                etQuantity.text.toString().isEmpty() -> {
+                etQuantity.text.trim().toString().isEmpty() -> {
                     etQuantity.error = "Please enter quantity"
                     return@setOnClickListener
                 }
@@ -95,7 +96,7 @@ class AddProduct : AppCompatActivity() {
                     Toast.makeText(this, "Please provide image of Your product", Toast.LENGTH_LONG)
                         .show()
                 }
-                (etOfferPrice.text.toString().toDouble() > etSellPrice.text.toString()
+                (etOfferPrice.text.trim().toString().toDouble() > etSellPrice.text.trim().toString()
                     .toDouble()) -> {
                     Toast.makeText(
                         this,
@@ -104,17 +105,18 @@ class AddProduct : AppCompatActivity() {
                     ).show()
                 }
                 else -> {
-                    if (ConnectionManager().checkConnectivity(this)){
-                        rl_addProduct.visibility= View.VISIBLE
-                        rl_retryAddProduct.visibility=View.GONE
+                    if (ConnectionManager().checkConnectivity(this)) {
+                        rl_addProduct.visibility = View.VISIBLE
+                        rl_retryAddProduct.visibility = View.GONE
                         progressDialog.setMessage("Adding Your Product....")
-                    progressDialog.show()
-                    val id = radioGroup.checkedRadioButtonId
-                    val radioButton = findViewById<RadioButton>(id)
-                    val stock = radioButton.text
-                    uploadData(stock, progressDialog)}else{
-                        rl_addProduct.visibility= View.GONE
-                        rl_retryAddProduct.visibility=View.VISIBLE
+                        progressDialog.show()
+                        val id = radioGroup.checkedRadioButtonId
+                        val radioButton = findViewById<RadioButton>(id)
+                        val stock = radioButton.text
+                        uploadData(stock, progressDialog)
+                    } else {
+                        rl_addProduct.visibility = View.GONE
+                        rl_retryAddProduct.visibility = View.VISIBLE
                     }
                 }
             }
@@ -187,7 +189,8 @@ class AddProduct : AppCompatActivity() {
     }
 
     private fun uploadData(stock: CharSequence, progressDialog: ProgressDialog) {
-        if (imagePath != null) {
+        try {
+            if (imagePath != null) {
 /*
             val productRef =
                 FirebaseStorage.getInstance().reference.child("uploads/$timestamp.jpg")
@@ -238,35 +241,39 @@ class AddProduct : AppCompatActivity() {
                     val progress = (100.0 * p0.bytesTransferred / p0.totalByteCount)
 
                 }*/
-            val user = auth.currentUser
-            val uid = user!!.uid
-            products = ModelAddProduct(
-                uid,
-                timestamp,
-                imgUrl,
-                sp_spinner_add.selectedItem.toString(),
-                etTittle.text.toString().trim().toLowerCase(),
-                etDescription.text.toString().trim(),
-                etSellPrice.text.toString().trim(),
-                etOfferPrice.text.toString().trim(),
-                sp_unit.selectedItem.toString(),
-                etQuantity.text.toString().trim(),
-                stock.toString()
-            )
-            mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller")
-            mCartDatabaseRef.child(uid).child("Products").child(timestamp)
-                .setValue(products).addOnSuccessListener {
-                    progressDialog.dismiss()
-                    Toast.makeText(
-                        this,
-                        "Product Added Successfully",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
-                    val intent = Intent(this, Home_seller::class.java)
-                    startActivity(intent)
-                    finish()
-                }
+                val user = auth.currentUser
+                val uid = user!!.uid
+                products = ModelAddProduct(
+                    uid,
+                    timestamp,
+                    imgUrl,
+                    sp_spinner_add.selectedItem.toString(),
+                    etTittle.text.toString().trim().toLowerCase(),
+                    etDescription.text.toString().trim(),
+                    etSellPrice.text.toString().trim(),
+                    etOfferPrice.text.toString().trim(),
+                    sp_unit.selectedItem.toString(),
+                    etQuantity.text.toString().trim(),
+                    stock.toString()
+                )
+                mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller")
+                mCartDatabaseRef.child(uid).child("Products").child(timestamp)
+                    .setValue(products).addOnSuccessListener {
+                        progressDialog.dismiss()
+                        Toast.makeText(
+                            this,
+                            "Product Added Successfully",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        val intent = Intent(this, Home_seller::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this,"Please Try Again",Toast.LENGTH_SHORT).show()
         }
     }
 

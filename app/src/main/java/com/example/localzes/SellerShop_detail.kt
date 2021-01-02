@@ -60,12 +60,13 @@ class SellerShop_detail : AppCompatActivity() {
 
 
         retryShopDetail.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_ShopDetail.visibility= View.VISIBLE
-                rl_retryShopDetail.visibility=View.GONE
-                this.recreate()}else{
-                rl_ShopDetail.visibility= View.VISIBLE
-                rl_retryShopDetail.visibility=View.GONE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_ShopDetail.visibility = View.VISIBLE
+                rl_retryShopDetail.visibility = View.GONE
+                this.recreate()
+            } else {
+                rl_ShopDetail.visibility = View.VISIBLE
+                rl_retryShopDetail.visibility = View.GONE
             }
         }
         btnChooseImage.setOnClickListener {
@@ -73,7 +74,7 @@ class SellerShop_detail : AppCompatActivity() {
         }
         btnUpload.setOnClickListener {
             when {
-                etShopName.text.toString().isEmpty() -> {
+                etShopName.text.trim().toString().isEmpty() -> {
                     etShopName.error = "Please Enter Your Shop Name"
                     return@setOnClickListener
                 }
@@ -82,12 +83,13 @@ class SellerShop_detail : AppCompatActivity() {
                         .show()
                 }
                 else -> {
-                    if (ConnectionManager().checkConnectivity(this)){
-                        rl_ShopDetail.visibility= View.VISIBLE
-                        rl_retryShopDetail.visibility=View.GONE
-                        uploadFile()}else{
-                        rl_ShopDetail.visibility= View.VISIBLE
-                        rl_retryShopDetail.visibility=View.GONE
+                    if (ConnectionManager().checkConnectivity(this)) {
+                        rl_ShopDetail.visibility = View.VISIBLE
+                        rl_retryShopDetail.visibility = View.GONE
+                        uploadFile()
+                    } else {
+                        rl_ShopDetail.visibility = View.VISIBLE
+                        rl_retryShopDetail.visibility = View.GONE
                     }
                 }
             }
@@ -95,108 +97,114 @@ class SellerShop_detail : AppCompatActivity() {
     }
 
     private fun uploadFile() {
-        if (filepath != null) {
-            val pd = ProgressDialog(this)
-            pd.setTitle("Uploading")
-            pd.show()
-            val user = auth.currentUser
-            val uid = user!!.uid
-            userDatabases =
-                FirebaseDatabase.getInstance().reference.child("customers").child(uid)
-            userDatabases.addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
+        try {
+            if (filepath != null) {
+                val pd = ProgressDialog(this)
+                pd.setTitle("Uploading")
+                pd.show()
+                val user = auth.currentUser
+                val uid = user!!.uid
+                userDatabases =
+                    FirebaseDatabase.getInstance().reference.child("customers").child(uid)
+                userDatabases.addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
+                    }
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        val users: ModelClass? = snapshot.getValue(
-                            ModelClass::class.java
-                        )
-                        val phone: String? = users!!.getPhone()
-                        val downloadUrl = imgUrl
-                        val name = intent.getStringExtra("name")
-                        val email = intent.getStringExtra("email")
-                        val address = intent.getStringExtra("address")
-                        val city = intent.getStringExtra("city")
-                        val state = intent.getStringExtra("state")
-                        val country = intent.getStringExtra("country")
-                        val pinCode = intent.getStringExtra("pinCode")
-                        val locality = intent.getStringExtra("locality")
-                        val locality2 = intent.getStringExtra("locality2")
-                        val nearestLandmark = intent.getStringExtra("nearestLandmark")
-                        val houseNo = intent.getStringExtra("HouseNo")
-                        upload = Upload(
-                            uid,
-                            phone.toString().trim(),
-                            name!!.toString().trim(),
-                            email!!.toString().trim(),
-                            address!!.toString().trim(),
-                            etShopName.text.toString().trim().toLowerCase(),
-                            downloadUrl,
-                            etCategory1.selectedItem.toString(),
-                            upi.text.toString().trim(),
-                            locality!!.toString().trim().toLowerCase(),
-                            city!!.toString().trim().toLowerCase(),
-                            pinCode!!.toString().trim(),
-                            state!!.toString().trim(),
-                            country!!.toString().trim(),
-                            openingTime.selectedItem.toString(),
-                            closingTime.selectedItem.toString(),
-                            closingDay.selectedItem.toString()
-                        )
-                        mDatabaseRef =
-                            FirebaseDatabase.getInstance().reference.child("seller")
-                                .child(uid)
-                        mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                val timestamp = System.currentTimeMillis().toString()
-                                val categoryMap = HashMap<String, Any>()
-                                categoryMap["categoryId"] = timestamp
-                                categoryMap["category"] = etCategory1.selectedItem.toString()
-                                mDatabaseRef.child("Categories").child(timestamp)
-                                    .setValue(categoryMap)
-                                mDatabaseRef.child("StoreStatus").setValue("OPEN")
-                                mDatabaseRef =
-                                    FirebaseDatabase.getInstance().reference.child("seller")
-                                        .child(uid).child("current_address")
-                                val userMaps = HashMap<String, Any>()
-                                userMaps["address"] = address.toString()
-                                userMaps["city"] = city.toString()
-                                userMaps["state"] = state.toString()
-                                userMaps["country"] = country.toString()
-                                userMaps["pinCode"] = pinCode.toString()
-                                userMaps["locality2"] = locality2.toString()
-                                userMaps["nearestLandmark"] = nearestLandmark.toString()
-                                userMaps["houseBlock"] = houseNo.toString()
-                                userMaps["mobileNo"] = phone.toString()
-                                mDatabaseRef.setValue(userMaps).addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        startActivity(
-                                            Intent(
-                                                this@SellerShop_detail,
-                                                AddProduct::class.java
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            val users: ModelClass? = snapshot.getValue(
+                                ModelClass::class.java
+                            )
+                            val phone: String? = users!!.getPhone()
+                            val downloadUrl = imgUrl
+                            val name = intent.getStringExtra("name")
+                            val email = intent.getStringExtra("email")
+                            val address = intent.getStringExtra("address")
+                            val city = intent.getStringExtra("city")
+                            val state = intent.getStringExtra("state")
+                            val country = intent.getStringExtra("country")
+                            val pinCode = intent.getStringExtra("pinCode")
+                            val locality = intent.getStringExtra("locality")
+                            val locality2 = intent.getStringExtra("locality2")
+                            val nearestLandmark = intent.getStringExtra("nearestLandmark")
+                            val houseNo = intent.getStringExtra("HouseNo")
+                            upload = Upload(
+                                uid,
+                                phone.toString().trim(),
+                                name!!.toString().trim(),
+                                email!!.toString().trim(),
+                                address!!.toString().trim(),
+                                etShopName.text.toString().trim().toLowerCase(),
+                                downloadUrl,
+                                etCategory1.selectedItem.toString(),
+                                upi.text.toString().trim(),
+                                locality!!.toString().trim().toLowerCase(),
+                                city!!.toString().trim().toLowerCase(),
+                                pinCode!!.toString().trim(),
+                                state!!.toString().trim(),
+                                country!!.toString().trim(),
+                                openingTime.selectedItem.toString(),
+                                closingTime.selectedItem.toString(),
+                                closingDay.selectedItem.toString()
+                            )
+                            mDatabaseRef =
+                                FirebaseDatabase.getInstance().reference.child("seller")
+                                    .child(uid)
+                            mDatabaseRef.setValue(upload).addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    val timestamp = System.currentTimeMillis().toString()
+                                    val categoryMap = HashMap<String, Any>()
+                                    categoryMap["categoryId"] = timestamp
+                                    categoryMap["category"] = etCategory1.selectedItem.toString()
+                                    mDatabaseRef.child("Categories").child(timestamp)
+                                        .setValue(categoryMap)
+                                    mDatabaseRef.child("StoreStatus").setValue("OPEN")
+                                    mDatabaseRef =
+                                        FirebaseDatabase.getInstance().reference.child("seller")
+                                            .child(uid).child("current_address")
+                                    val userMaps = HashMap<String, Any>()
+                                    userMaps["address"] = address.toString()
+                                    userMaps["city"] = city.toString()
+                                    userMaps["state"] = state.toString()
+                                    userMaps["country"] = country.toString()
+                                    userMaps["pinCode"] = pinCode.toString()
+                                    userMaps["locality2"] = locality2.toString()
+                                    userMaps["nearestLandmark"] = nearestLandmark.toString()
+                                    userMaps["houseBlock"] = houseNo.toString()
+                                    userMaps["mobileNo"] = phone.toString()
+                                    mDatabaseRef.setValue(userMaps).addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            startActivity(
+                                                Intent(
+                                                    this@SellerShop_detail,
+                                                    AddProduct::class.java
+                                                )
                                             )
-                                        )
-                                        finish()
-                                        Toast.makeText(
-                                            applicationContext,
-                                            "Uploaded Successfully",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    } else {
-                                        Toast.makeText(
-                                            baseContext, "Failed",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                            finish()
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "Uploaded Successfully",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        } else {
+                                            Toast.makeText(
+                                                baseContext, "Failed",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
-            })
+                })
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this,"Please Try Again",Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun startFileChooser() {
@@ -224,10 +232,10 @@ class SellerShop_detail : AppCompatActivity() {
                         val path = File(filepath?.path.toString())
                         try {
                             thumb_Bitmap = Compressor(this)
-                                .setQuality(75)
+                                .setQuality(55)
                                 .compressToBitmap(path)
                             val baos = ByteArrayOutputStream()
-                            thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 75, baos)
+                            thumb_Bitmap?.compress(Bitmap.CompressFormat.JPEG, 55, baos)
                             val compressedImage = baos.toByteArray()
                             val user = auth.currentUser
                             val uid = user!!.uid
@@ -283,5 +291,9 @@ class SellerShop_detail : AppCompatActivity() {
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
 
+    }
+
+    override fun onBackPressed() {
+        finishAffinity()
     }
 }

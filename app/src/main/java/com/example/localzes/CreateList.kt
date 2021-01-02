@@ -55,7 +55,7 @@ class CreateList : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
-        addresses=ArrayList<ModelManageAddress>()
+        addresses = ArrayList<ModelManageAddress>()
         shopId = intent.getStringExtra("ShopListId")
         orderByName = intent.getStringExtra("orderByName")
         orderByMobile = intent.getStringExtra("orderByMobile")
@@ -70,31 +70,41 @@ class CreateList : AppCompatActivity() {
         userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
         shopDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
-        shopDatabase.addValueEventListener(object : ValueEventListener {
+        retryCreateList.setOnClickListener {
+            this.recreate()
+        }
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_createList.visibility = View.VISIBLE
+            rl_retryCreateList.visibility = View.GONE
+            shopDatabase.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val shopName = snapshot.child("shop_name").value.toString()
+                    val mobileNo = snapshot.child("phone").value.toString()
+                    txtShops_name.text = shopName
+                    txtShops_phone.text = "Mobile:-$mobileNo"
+                }
+
+            })
+        } else {
+            rl_createList.visibility = View.GONE
+            rl_retryCreateList.visibility = View.VISIBLE
+        }
+        userDatabase.child("current_address").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val shopName = snapshot.child("shop_name").value.toString()
-                val mobileNo = snapshot.child("phone").value.toString()
-                txtShops_name.text=shopName
-                txtShops_phone.text="Mobile:-$mobileNo"
-            }
-
-        })
-        userDatabase.child("current_address").addValueEventListener(object:ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val address=snapshot.child("address").value.toString()
-                val phone=snapshot.child("mobileNo").value.toString()
-                txtAreaList.text=address
-                txtPhoneList.text=phone
-                deliveryUser=address
-                deliveryUserMobileNo=phone
+                val address = snapshot.child("address").value.toString()
+                val phone = snapshot.child("mobileNo").value.toString()
+                txtAreaList.text = address
+                txtPhoneList.text = phone
+                deliveryUser = address
+                deliveryUserMobileNo = phone
             }
         })
         userDatabase.child("OrderList").addValueEventListener(object : ValueEventListener {
@@ -135,145 +145,168 @@ class CreateList : AppCompatActivity() {
         })
 
 
-        userDatabase.child("OrderList").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_createList.visibility = View.VISIBLE
+            rl_retryCreateList.visibility = View.GONE
+            userDatabase.child("OrderList")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                for (i in snapshot.children) {
-
-                    val obj = ModelList(
-                        i.child("itemId").value.toString(),
-                        i.child("itemName").value.toString(),
-                        i.child("itemQuantity").value.toString(),
-                        i.child("itemCost").value.toString(),
-                        i.child("shopId").value.toString()
-                    )
-                    (list as ArrayList<ModelList>).add(obj)
-
-                }
-                createListAdapter = AdapterCreateList(this@CreateList, list)
-                listRecycler.adapter = createListAdapter
-            }
-        })
-        btnAdd.setOnClickListener {
-            val timestamp = System.currentTimeMillis().toString()
-            val headers = HashMap<String, String>()
-            headers["itemId"] = timestamp
-            headers["itemName"] = ""
-            headers["itemQuantity"] = ""
-            headers["itemCost"] = ""
-            headers["shopId"] = shopId.toString()
-            userDatabase.child("OrderList").child(timestamp).setValue(headers)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        this.recreate()
                     }
-                }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+
+                        for (i in snapshot.children) {
+
+                            val obj = ModelList(
+                                i.child("itemId").value.toString(),
+                                i.child("itemName").value.toString(),
+                                i.child("itemQuantity").value.toString(),
+                                i.child("itemCost").value.toString(),
+                                i.child("shopId").value.toString()
+                            )
+                            (list as ArrayList<ModelList>).add(obj)
+
+                        }
+                        createListAdapter = AdapterCreateList(this@CreateList, list)
+                        listRecycler.adapter = createListAdapter
+                    }
+                })
+        } else {
+            rl_createList.visibility = View.GONE
+            rl_retryCreateList.visibility = View.VISIBLE
+        }
+        btnAdd.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_createList.visibility = View.VISIBLE
+                rl_retryCreateList.visibility = View.GONE
+                val timestamp = System.currentTimeMillis().toString()
+                val headers = HashMap<String, String>()
+                headers["itemId"] = timestamp
+                headers["itemName"] = ""
+                headers["itemQuantity"] = ""
+                headers["itemCost"] = ""
+                headers["shopId"] = shopId.toString()
+                userDatabase.child("OrderList").child(timestamp).setValue(headers)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            this.recreate()
+                        }
+                    }
+            } else {
+                rl_createList.visibility = View.GONE
+                rl_retryCreateList.visibility = View.VISIBLE
+            }
         }
 
         btnCn.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            val dialog = builder.show()
-            builder.setTitle("Confirmation")
-            builder.setMessage("Are you sure your list is complete.Please click Yes to continue")
-            builder.setPositiveButton("Yes") { text, listener ->
-                if (bool && fool) {
-                    dialog.dismiss()
-                    progressDialog.setMessage("Placing Your Order....")
-                    progressDialog.show()
-                    userDatabase.child("OrderList")
-                        .addValueEventListener(object : ValueEventListener {
-                            override fun onCancelled(error: DatabaseError) {
-
-                            }
-
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                (list as ArrayList<ModelList>).clear()
-                                for (i in snapshot.children) {
-
-                                    val obj = ModelList(
-                                        i.child("itemId").value.toString(),
-                                        i.child("itemName").value.toString(),
-                                        i.child("itemQuantity").value.toString(),
-                                        i.child("itemCost").value.toString(),
-                                        i.child("shopId").value.toString()
-                                    )
-                                    (list as ArrayList<ModelList>).add(obj)
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_createList.visibility = View.VISIBLE
+                rl_retryCreateList.visibility = View.GONE
+                val builder = AlertDialog.Builder(this)
+                val dialog = builder.show()
+                builder.setTitle("Confirmation")
+                builder.setMessage("Are you sure your list is complete.Please click Yes to continue")
+                builder.setPositiveButton("Yes") { text, listener ->
+                    if (bool && fool) {
+                        dialog.dismiss()
+                        progressDialog.setMessage("Placing Your Order....")
+                        progressDialog.show()
+                        userDatabase.child("OrderList")
+                            .addValueEventListener(object : ValueEventListener {
+                                override fun onCancelled(error: DatabaseError) {
 
                                 }
-                                createListAdapter = AdapterCreateList(this@CreateList, list)
-                                listRecycler.adapter = createListAdapter
-                            }
-                        })
 
-                    val timestamp = System.currentTimeMillis().toString()
-                    val orderId = timestamp
-                    val orderTime = timestamp
-                    val orderStatus = "Pending"
-                    val orderCost = ""
-                    val orderBy = userId.toString()
-                    val orderTo = shopId.toString()
-                    val deliveryAddress = deliveryAddress.toString()
-                    val totalItems = list.size.toString()
-                    val listStatus = ""
-                    val obj = ModalSellerOrderList(
-                        orderId,
-                        orderTime,
-                        orderStatus,
-                        orderCost,
-                        orderBy,
-                        orderTo,
-                        deliveryAddress,
-                        totalItems,
-                        listStatus,
-                        orderByName.toString(),
-                        orderByMobile.toString()
-                    )
-                    val dataReference: DatabaseReference =
-                        FirebaseDatabase.getInstance().reference.child("users")
-                            .child(userId.toString())
-                            .child("MyOrderList")
-                    val ref: DatabaseReference =
-                        FirebaseDatabase.getInstance().reference.child("seller")
-                            .child(shopId.toString()).child("OrdersLists")
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    (list as ArrayList<ModelList>).clear()
+                                    for (i in snapshot.children) {
 
-                    ref.child(orderId).setValue(obj)
-                    dataReference.child(orderId).setValue(obj).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            for (i in 0 until list.size) {
-                                val itemId = list[i].itemId
-                                val itemName = list[i].itemName
-                                val itemQuantity = list[i].itemQuantity
-                                val itemCost = list[i].itemCost
-                                val headers = HashMap<String, String>()
-                                headers["itemId"] = itemId
-                                headers["itemName"] = itemName
-                                headers["itemQuantity"] = itemQuantity
-                                headers["itemCost"] = itemCost
-                                ref.child(orderId).child("ListItems").child(itemId)
-                                    .setValue(headers)
-                                dataReference.child(orderId).child("ListItems").child(itemId)
-                                    .setValue(headers)
+                                        val obj = ModelList(
+                                            i.child("itemId").value.toString(),
+                                            i.child("itemName").value.toString(),
+                                            i.child("itemQuantity").value.toString(),
+                                            i.child("itemCost").value.toString(),
+                                            i.child("shopId").value.toString()
+                                        )
+                                        (list as ArrayList<ModelList>).add(obj)
+
+                                    }
+                                    createListAdapter = AdapterCreateList(this@CreateList, list)
+                                    listRecycler.adapter = createListAdapter
+                                }
+                            })
+
+                        val timestamp = System.currentTimeMillis().toString()
+                        val orderId = timestamp
+                        val orderTime = timestamp
+                        val orderStatus = "Pending"
+                        val orderCost = ""
+                        val orderBy = userId.toString()
+                        val orderTo = shopId.toString()
+                        val deliveryAddress = deliveryAddress.toString()
+                        val totalItems = list.size.toString()
+                        val listStatus = ""
+                        val obj = ModalSellerOrderList(
+                            orderId,
+                            orderTime,
+                            orderStatus,
+                            orderCost,
+                            orderBy,
+                            orderTo,
+                            deliveryAddress,
+                            totalItems,
+                            listStatus,
+                            orderByName.toString(),
+                            orderByMobile.toString()
+                        )
+                        val dataReference: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("users")
+                                .child(userId.toString())
+                                .child("MyOrderList")
+                        val ref: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("seller")
+                                .child(shopId.toString()).child("OrdersLists")
+
+                        ref.child(orderId).setValue(obj)
+                        dataReference.child(orderId).setValue(obj).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                for (i in 0 until list.size) {
+                                    val itemId = list[i].itemId
+                                    val itemName = list[i].itemName
+                                    val itemQuantity = list[i].itemQuantity
+                                    val itemCost = list[i].itemCost
+                                    val headers = HashMap<String, String>()
+                                    headers["itemId"] = itemId
+                                    headers["itemName"] = itemName
+                                    headers["itemQuantity"] = itemQuantity
+                                    headers["itemCost"] = itemCost
+                                    ref.child(orderId).child("ListItems").child(itemId)
+                                        .setValue(headers)
+                                    dataReference.child(orderId).child("ListItems").child(itemId)
+                                        .setValue(headers)
+                                }
+                                userDatabase.child("OrderList").removeValue()
+                                progressDialog.dismiss()
+                                prepareNotificationMessage(orderId)
                             }
-                            userDatabase.child("OrderList").removeValue()
-                            prepareNotificationMessage(orderId)
                         }
+
+                    } else {
+                        dialog.dismiss()
+                        Toast.makeText(this@CreateList, "Some fields are empty", Toast.LENGTH_LONG)
+                            .show()
                     }
 
-                } else {
-                    dialog.dismiss()
-                    Toast.makeText(this@CreateList, "Some fields are empty", Toast.LENGTH_LONG)
-                        .show()
                 }
-                progressDialog.dismiss()
+                builder.setNegativeButton("No") { text, listener ->
+                    dialog.dismiss()
+                }
+                builder.create().show()
+            } else {
+                rl_createList.visibility = View.GONE
+                rl_retryCreateList.visibility = View.VISIBLE
             }
-            builder.setNegativeButton("No") { text, listener ->
-                dialog.dismiss()
-            }
-            builder.create().show()
         }
 
 
@@ -302,10 +335,13 @@ class CreateList : AppCompatActivity() {
                 }
                 txtAddAddressList.setOnClickListener {
 
-                    if (ConnectionManager().checkConnectivity(this@CreateList)){
+                    if (ConnectionManager().checkConnectivity(this@CreateList)) {
+                        rl_createList.visibility = View.VISIBLE
+                        rl_retryCreateList.visibility = View.GONE
                         val dialog = BottomSheetDialog(this@CreateList)
                         val view =
-                            LayoutInflater.from(this@CreateList).inflate(R.layout.address_layout, null, false)
+                            LayoutInflater.from(this@CreateList)
+                                .inflate(R.layout.address_layout, null, false)
                         val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
                         val btnAddNewAddress: Button = view.findViewById(R.id.btnAddNewAddress)
                         val txtCurrAddress: TextView = view.findViewById(R.id.txtCurrAddress)
@@ -324,8 +360,12 @@ class CreateList : AppCompatActivity() {
                         dialog.show()
                         dialog.setCancelable(false)
                         dialog.setCanceledOnTouchOutside(true)
+                    } else {
+                        rl_createList.visibility = View.GONE
+                        rl_retryCreateList.visibility = View.VISIBLE
                     }
-                }}
+                }
+            }
         })
 
     }
@@ -358,6 +398,9 @@ class CreateList : AppCompatActivity() {
             "https://fcm.googleapis.com/fcm/send",
             notificationJs,
             Response.Listener {
+                val intent = Intent(this, NewActivity::class.java)
+                startActivity(intent)
+                finish()
 
             },
             Response.ErrorListener {

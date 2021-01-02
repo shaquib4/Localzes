@@ -194,4 +194,10 @@ class UserListOrderDetails : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        val intent=Intent(this,AccountsSeller::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

@@ -29,39 +29,42 @@ class Continueas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continueas)
-       progress_continue.visibility=View.GONE
+        progress_continue.visibility = View.GONE
         retryContinueAs.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_continueAs.visibility=View.VISIBLE
-                rl_retryContinueAs.visibility=View.GONE
-            this.recreate()}else{
-                rl_continueAs.visibility=View.GONE
-                rl_retryContinueAs.visibility=View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_continueAs.visibility = View.VISIBLE
+                rl_retryContinueAs.visibility = View.GONE
+                this.recreate()
+            } else {
+                rl_continueAs.visibility = View.GONE
+                rl_retryContinueAs.visibility = View.VISIBLE
             }
         }
 
 
 
-            btnCustomer.setOnClickListener {
-                progress_continue.visibility = View.VISIBLE
-                if (ConnectionManager().checkConnectivity(this)){
-                    rl_continueAs.visibility=View.VISIBLE
-                    rl_retryContinueAs.visibility=View.GONE
-                      customer()}else{
-                    rl_continueAs.visibility=View.GONE
-                    rl_retryContinueAs.visibility=View.VISIBLE
-                }
+        btnCustomer.setOnClickListener {
+            progress_continue.visibility = View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_continueAs.visibility = View.VISIBLE
+                rl_retryContinueAs.visibility = View.GONE
+                customer()
+            } else {
+                rl_continueAs.visibility = View.GONE
+                rl_retryContinueAs.visibility = View.VISIBLE
             }
-            btnseller.setOnClickListener {
-                progress_continue.visibility = View.VISIBLE
-                if (ConnectionManager().checkConnectivity(this)){
-                    rl_continueAs.visibility=View.VISIBLE
-                    rl_retryContinueAs.visibility=View.GONE
-                    seller()}else{
-                    rl_continueAs.visibility=View.GONE
-                    rl_retryContinueAs.visibility=View.VISIBLE
-                }
+        }
+        btnseller.setOnClickListener {
+            progress_continue.visibility = View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_continueAs.visibility = View.VISIBLE
+                rl_retryContinueAs.visibility = View.GONE
+                seller()
+            } else {
+                rl_continueAs.visibility = View.GONE
+                rl_retryContinueAs.visibility = View.VISIBLE
             }
+        }
 
 
     }

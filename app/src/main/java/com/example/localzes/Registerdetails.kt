@@ -49,17 +49,17 @@ class Registerdetails : AppCompatActivity() {
     fun register(){
 
 
-        val name=edtregName.text.toString()
-        val email=edtregemail.text.toString()
+        val name=edtregName.text.trim().toString()
+        val email=edtregemail.text.trim().toString()
         val phone=intent.getStringExtra("phone2")
 
 
-        if(edtregName.text.toString().isEmpty()){
+        if(edtregName.text.trim().toString().isEmpty()){
             edtregName.error="please enter password"
             return
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(edtregemail.text.toString()).matches()){
+        if(!Patterns.EMAIL_ADDRESS.matcher(edtregemail.text.trim().toString()).matches()){
             edtregemail.error="Please enter valid email"
             edtregemail.requestFocus()
             return
