@@ -47,6 +47,14 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true"
                 android:onClick="onCheckboxClicked" />
+            <ImageView
+                android:id="@+id/imageMakeCallCustomer"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignEnd="@id/checkbox_Completed"
+                android:src="@drawable/ic_baseline_phone_24"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_3sdp"/>
 
             <View
                 android:id="@id/view1"

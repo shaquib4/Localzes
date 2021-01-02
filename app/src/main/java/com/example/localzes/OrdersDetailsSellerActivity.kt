@@ -2,6 +2,7 @@ package com.example.localzes
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -42,6 +44,10 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private var bool: Boolean = false
     private lateinit var imgBackOrderDetails: ImageView
     private var selectedReason: String = ""
+    private var REQUEST_CALL: Int = 1
+    private var customerMobileNo: String = ""
+    private lateinit var imgMakeCallCustomer: ImageView
+    private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_seller)
@@ -51,6 +57,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         orderIdTv = intent.getStringExtra("orderIdTv")
         orderByTv = intent.getStringExtra("orderByTv")
         txtOrderId = findViewById(R.id.txtOrderId)
+        imgMakeCallCustomer = findViewById(R.id.imgMakeCallCustomer)
         txtOrderDate = findViewById(R.id.txtOrderDate)
         txtOrderStatus = findViewById(R.id.txtOrderStatus)
         totalItems = findViewById(R.id.txtItems)
@@ -63,6 +70,22 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         retryOrdersDetails.setOnClickListener {
             this.recreate()
         }
+        val newReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString())
+        newReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                customerMobileNo = snapshot.child("phone").value.toString()
+            }
+
+        })
+        imgMakeCallCustomer.setOnClickListener {
+            makePhoneCallCustomer()
+        }
+
         val databaseRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
                 .child(orderIdTv.toString())
@@ -194,6 +217,19 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)
             finish()
+        }
+    }
+
+    private fun makePhoneCallCustomer() {
+        val number = customerMobileNo
+        if (number.trim().isNotEmpty()) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.CALL_PHONE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+
+            }
         }
     }
 

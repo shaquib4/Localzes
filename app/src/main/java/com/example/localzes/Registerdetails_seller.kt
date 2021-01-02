@@ -42,17 +42,17 @@ class Registerdetails_seller : AppCompatActivity() {
     }
 
     private fun register() {
-        val name = edtregNameSeller.text.toString()
-        val email = edtregemailSeller.text.toString()
+        val name = edtregNameSeller.text.trim().toString()
+        val email = edtregemailSeller.text.trim().toString()
 
 
 
-        if (edtregNameSeller.text.toString().isEmpty()) {
+        if (edtregNameSeller.text.trim().toString().isEmpty()) {
             edtregNameSeller.error = "please enter password"
             return
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(edtregemailSeller.text.toString()).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(edtregemailSeller.text.trim().toString()).matches()) {
             edtregemailSeller.error = "Please enter valid email"
             edtregemailSeller.requestFocus()
             return

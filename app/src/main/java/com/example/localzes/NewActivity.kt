@@ -6,20 +6,20 @@ import android.os.Bundle
 import android.widget.Button
 
 class NewActivity : AppCompatActivity() {
-    private lateinit var btnContinueShopping:Button
+    private lateinit var btnContinueShopping: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new)
-        btnContinueShopping=findViewById(R.id.btnContinueShopping)
+        btnContinueShopping = findViewById(R.id.btnContinueShopping)
         btnContinueShopping.setOnClickListener {
-            val intent=Intent(this,Home::class.java)
+            val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
         }
     }
 
     override fun onBackPressed() {
-        val intent=Intent(this,Home::class.java)
+        val intent = Intent(this, Home::class.java)
         startActivity(intent)
         finish()
     }

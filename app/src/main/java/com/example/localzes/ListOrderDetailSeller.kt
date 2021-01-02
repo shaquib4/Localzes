@@ -2,6 +2,8 @@ package com.example.localzes
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +11,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
@@ -47,6 +51,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private var newBool: Boolean = false
     var totalCost: Double = 0.00
     private var selectedReason: String = ""
+    private var REQUEST_CALL: Int = 1
+    private var customerMobileNo: String = ""
+    private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
+    private lateinit var imgMakeCustomerCall: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_order_detail_seller)
@@ -57,6 +65,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         amountTv = findViewById(R.id.txtListOrderCost)
         deliveryAddressTv = findViewById(R.id.txtListOrderDeliveryAddress)
         recyclerOrderedList = findViewById(R.id.recyclerOrderedSellerItem)
+        imgMakeCustomerCall = findViewById(R.id.imageMakeCallCustomer)
         imgListEdit = findViewById(R.id.imgListEdit)
         totalListCost = findViewById(R.id.totalListCost)
         progressDialog = ProgressDialog(this)
@@ -68,12 +77,27 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val user = shopAuth.currentUser
         val uid = user!!.uid
 
+
         val databaseRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                 .child("OrdersLists")
 
         orderId = intent.getStringExtra("orderId").toString()
         orderBy = intent.getStringExtra("orderBy").toString()
+        val newRef = FirebaseDatabase.getInstance().reference.child("users").child("orderBy")
+        newRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                customerMobileNo = snapshot.child("phone").value.toString()
+            }
+
+        })
+        imgMakeCustomerCall.setOnClickListener {
+            makePhoneCallCustomer()
+        }
         orderIdTv.text = "OD${orderId}"
         val ref: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
@@ -83,7 +107,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         }
         if (ConnectionManager().checkConnectivity(this)) {
             //rl_ListSeller.visibility = View.VISIBLE
-           // rl_ListOrderDetails.visibility = View.GONE
+            // rl_ListOrderDetails.visibility = View.GONE
             databaseRef.child(orderId).child("ListItems")
                 .addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
@@ -126,8 +150,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     }
                 })
         } else {
-          //  rl_ListSeller.visibility = View.GONE
-          //  rl_ListOrderDetails.visibility = View.VISIBLE
+            //  rl_ListSeller.visibility = View.GONE
+            //  rl_ListOrderDetails.visibility = View.VISIBLE
         }
         databaseRef.child(orderId).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -182,52 +206,52 @@ class ListOrderDetailSeller : AppCompatActivity() {
         })
 
 
-            acceptConfirm.setOnClickListener {
-                if (ConnectionManager().checkConnectivity(this)) {
-                  //  rl_ListSeller.visibility = View.VISIBLE
-                  //  rl_ListOrderDetails.visibility = View.GONE
-                    val builder = AlertDialog.Builder(this)
-                    val dialog = builder.show()
-                    builder.setTitle("Confirmation")
-                    builder.setMessage("Are you sure to confirm this list Order")
-                    builder.setPositiveButton("Yes") { text, listener ->
-                        dialog.dismiss()
-                        progressDialog.setMessage("Processing.....")
-                        progressDialog.show()
-                        if (bool) {
-                            val headers = HashMap<String, Any>()
-                            headers["listStatus"] = "Confirm"
-                            headers["orderStatus"] = "Accepted"
+        acceptConfirm.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)) {
+                //  rl_ListSeller.visibility = View.VISIBLE
+                //  rl_ListOrderDetails.visibility = View.GONE
+                val builder = AlertDialog.Builder(this)
+                val dialog = builder.show()
+                builder.setTitle("Confirmation")
+                builder.setMessage("Are you sure to confirm this list Order")
+                builder.setPositiveButton("Yes") { text, listener ->
+                    dialog.dismiss()
+                    progressDialog.setMessage("Processing.....")
+                    progressDialog.show()
+                    if (bool) {
+                        val headers = HashMap<String, Any>()
+                        headers["listStatus"] = "Confirm"
+                        headers["orderStatus"] = "Accepted"
 
-                            ref.child(orderId).updateChildren(headers).addOnCompleteListener {
-                                if (it.isSuccessful) {
-                                    prepareNotificationMessage(orderId, "Order has been Confirmed")
-                                    databaseRef.child(orderId).updateChildren(headers)
-                                        .addOnCompleteListener {
-                                            this.recreate()
-                                        }
-                                }
+                        ref.child(orderId).updateChildren(headers).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                prepareNotificationMessage(orderId, "Order has been Confirmed")
+                                databaseRef.child(orderId).updateChildren(headers)
+                                    .addOnCompleteListener {
+                                        this.recreate()
+                                    }
                             }
-
-
-                        } else {
-                            dialog.dismiss()
-                            Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
                         }
-                        progressDialog.dismiss()
-                    }
-                    builder.setNegativeButton("No") { text, listener ->
+
+
+                    } else {
                         dialog.dismiss()
+                        Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
                     }
-                    builder.create().show()
-                } else {
-                  //  rl_ListSeller.visibility = View.GONE
-                  //  rl_ListOrderDetails.visibility = View.VISIBLE
+                    progressDialog.dismiss()
                 }
+                builder.setNegativeButton("No") { text, listener ->
+                    dialog.dismiss()
+                }
+                builder.create().show()
+            } else {
+                //  rl_ListSeller.visibility = View.GONE
+                //  rl_ListOrderDetails.visibility = View.VISIBLE
             }
+        }
         if (ConnectionManager().checkConnectivity(this)) {
-          //  rl_ListSeller.visibility = View.VISIBLE
-          //  rl_ListOrderDetails.visibility = View.GONE
+            //  rl_ListSeller.visibility = View.VISIBLE
+            //  rl_ListOrderDetails.visibility = View.GONE
             databaseRef.child(orderId).child("ListItems")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
@@ -258,13 +282,41 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     }
                 })
         } else {
-          //  rl_ListSeller.visibility = View.GONE
-           // rl_ListOrderDetails.visibility = View.VISIBLE
+            //  rl_ListSeller.visibility = View.GONE
+            // rl_ListOrderDetails.visibility = View.VISIBLE
         }
 
     }
 
+    private fun makePhoneCallCustomer() {
+        val number = customerMobileNo
+        if (number.trim().isNotEmpty()) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.CALL_PHONE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(this, permissions, REQUEST_CALL)
+            } else {
+                val dial: String = "tel:" + number
+                startActivity(Intent(Intent.ACTION_CALL, Uri.parse(dial)))
+            }
+        }
+    }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCallCustomer()
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
 
     private fun newEditOrderStatusDialog() {
@@ -395,6 +447,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val jsonObjectRequest =
             object : JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationJs,
                 Response.Listener {
+                    val intent=Intent(this,Home_seller::class.java)
+                    startActivity(intent)
+                    finish()
 
                 }, Response.ErrorListener {
 

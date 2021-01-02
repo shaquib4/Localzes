@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun register() {
-        val phone = edtmobile.text.toString()
-        if (edtmobile.text.toString().isEmpty()) {
+        val phone = edtmobile.text.trim().toString()
+        if (edtmobile.text.trim().toString().isEmpty()) {
             edtmobile.error = "please enter your phone number"
             return
         }
