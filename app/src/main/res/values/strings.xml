@@ -28,12 +28,22 @@
     </string-array>
 
     <string-array name="Spinner_Item1">
-        <item><font fontfamily="@font/montserrat_medium" size="14">Mobile</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Laptop</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Fan</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">AC</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Television</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Refrigerator</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Grocery</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Food</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Electronics</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Fashion</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Mobiles</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Home</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Beauty</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Appliances</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Toys &amp; Kids</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Sports</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Books</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Automobiles</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Fitness</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Health Care</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Travel</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Gaming</font></item>
     </string-array>
 
     <string-array name="Spinner_Category">
