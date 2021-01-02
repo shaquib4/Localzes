@@ -190,7 +190,30 @@ class CreateList : AppCompatActivity() {
                 userDatabase.child("OrderList").child(timestamp).setValue(headers)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            this.recreate()
+                            userDatabase.child("OrderList")
+                                .addValueEventListener(object : ValueEventListener {
+                                    override fun onCancelled(error: DatabaseError) {
+
+                                    }
+
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        (list as ArrayList<ModelList>).clear()
+                                        for (i in snapshot.children) {
+
+                                            val obj = ModelList(
+                                                i.child("itemId").value.toString(),
+                                                i.child("itemName").value.toString(),
+                                                i.child("itemQuantity").value.toString(),
+                                                i.child("itemCost").value.toString(),
+                                                i.child("shopId").value.toString()
+                                            )
+                                            (list as ArrayList<ModelList>).add(obj)
+
+                                        }
+                                        createListAdapter = AdapterCreateList(this@CreateList, list)
+                                        listRecycler.adapter = createListAdapter
+                                    }
+                                })
                         }
                     }
             } else {
