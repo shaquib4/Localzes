@@ -37,15 +37,22 @@
     </string-array>
 
     <string-array name="Spinner_Category">
+        <item><font fontfamily="@font/montserrat_medium" size="14">Grocery</font></item>
         <item><font fontfamily="@font/montserrat_medium" size="14">Food</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Mobile</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Groceries</font></item>
         <item><font fontfamily="@font/montserrat_medium" size="14">Electronics</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Beauty Product</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Medical</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Fashion</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Mobiles</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Home</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Beauty</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Appliances</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Toys &amp; Kids</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Sports</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Books</font></item>
         <item><font fontfamily="@font/montserrat_medium" size="14">Automobiles</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Internet Cafe</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14">Digital Shop</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Fitness</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Health Care</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Travel</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Gaming</font></item>
     </string-array>
     <string-array name="Spinner_Days">
         <item><font fontfamily="@font/montserrat_medium" size="16">None</font></item>
