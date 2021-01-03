@@ -353,8 +353,7 @@ class Home : AppCompatActivity() {
                                         val cat = i.child("category").value.toString()
                                         if (proCat == cat) {
                                             (shopc as ArrayList<Upload>).add(obj)
-                                            Toast.makeText(this@Home, cat, Toast.LENGTH_SHORT)
-                                                .show()
+
                                         }
                                     }
                                     if (shops.isEmpty()) {

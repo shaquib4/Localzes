@@ -81,7 +81,6 @@ class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
         val user = uAuth.currentUser
         val uid = user!!.uid
         val id = item_List[position].itemId
-        val list=ArrayList<ModelList>()
         val databaseReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("OrderList")
         databaseReference.orderByChild("itemId").equalTo(id)
@@ -94,30 +93,7 @@ class AdapterCreateList(val context: Context, val item_List: List<ModelList>) :
                     for (i in snapshot.children) {
                         i.ref.removeValue()
                     }
-                  val  userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
-                    userDatabase.child("OrderList")
-                        .addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onCancelled(error: DatabaseError) {
-
-                            }
-
-                            override fun onDataChange(snapshot: DataSnapshot) {
-
-                                for (i in snapshot.children) {
-
-                                    val obj = ModelList(
-                                        i.child("itemId").value.toString(),
-                                        i.child("itemName").value.toString(),
-                                        i.child("itemQuantity").value.toString(),
-                                        i.child("itemCost").value.toString(),
-                                        i.child("shopId").value.toString()
-                                    )
-                                    (list as ArrayList<ModelList>).add(obj)
-
-                                }
-
-                            }
-                        })
+                    (context as CreateList).recreate()
                 }
             })
     }
