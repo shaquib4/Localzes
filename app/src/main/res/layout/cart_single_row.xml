@@ -51,9 +51,10 @@
                 android:id="@+id/imgRemove"
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
-                android:layout_below="@+id/btnLinear"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_3sdp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/_23sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
                 android:padding="@dimen/_1sdp"
                 android:src="@drawable/ic_remove" />
 
