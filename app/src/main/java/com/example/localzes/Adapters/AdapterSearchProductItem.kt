@@ -15,6 +15,7 @@ import com.example.localzes.Modals.ModelAddProduct
 import com.example.localzes.R
 import com.example.localzes.UserProductsActivity
 import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 class AdapterSearchProductItem(val context: Context, private val searchProduct:List<ModelAddProduct>): RecyclerView.Adapter<AdapterSearchProductItem.HolderSearchProductItem>() {
     class HolderSearchProductItem(view: View) : RecyclerView.ViewHolder(view) {
@@ -40,7 +41,7 @@ class AdapterSearchProductItem(val context: Context, private val searchProduct:L
        val products=searchProduct[position]
         holder.productName.text=products.title.substring(0,1).toUpperCase()+products.title.substring(1)
         holder.productPrice.text=products.offerPrice
-        when (products.stock) {
+        try{when (products.stock) {
             "IN" -> {
                 Glide.with(context).load(products.imageUrl).into(holder.productImage)
                 holder.itemView.setOnClickListener{
@@ -60,8 +61,12 @@ class AdapterSearchProductItem(val context: Context, private val searchProduct:L
                 holder.itemView.isClickable=false
 
             }
+        }}catch (e:Exception){
+            e.printStackTrace()
         }
-        Picasso.get().load(products.imageUrl).into(holder.productImage)
+       try{ Picasso.get().load(products.imageUrl).into(holder.productImage)}catch (e:Exception){
+           e.printStackTrace()
+       }
 
 
     }

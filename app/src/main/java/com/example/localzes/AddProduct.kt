@@ -258,17 +258,20 @@ class AddProduct : AppCompatActivity() {
                 )
                 mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller")
                 mCartDatabaseRef.child(uid).child("Products").child(timestamp)
-                    .setValue(products).addOnSuccessListener {
-                        progressDialog.dismiss()
-                        Toast.makeText(
-                            this,
-                            "Product Added Successfully",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                        val intent = Intent(this, Home_seller::class.java)
-                        startActivity(intent)
-                        finish()
+                    .setValue(products).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            progressDialog.dismiss()
+                            Toast.makeText(
+                                this,
+                                "Product Added Successfully",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            val intent = Intent(this, Home_seller::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+
                     }
             }
         } catch (e: Exception) {

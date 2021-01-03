@@ -28,6 +28,7 @@ import com.example.localzes.UpdateProductDetailsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 class AdapterSellerProducts(
     val context: Context,
@@ -58,7 +59,10 @@ class AdapterSellerProducts(
 
     override fun onBindViewHolder(holder: HolderProduct, position: Int) {
         val products = products_seller[position]
-        Glide.with(context).load(products.imageUrl).into(holder.imgProduct)
+       try{ Glide.with(context).load(products.imageUrl).into(holder.imgProduct)}
+       catch (e:Exception){
+           e.printStackTrace()
+       }
         holder.txtProductTitle.text =
             products.title.substring(0, 1).toUpperCase() + products.title.substring(1)
         holder.txtProductPrice.text = "₹${products.offerPrice}"

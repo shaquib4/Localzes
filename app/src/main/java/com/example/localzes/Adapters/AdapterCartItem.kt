@@ -54,7 +54,9 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         val costOne = cartDetails.priceEach
         val finalSelling = cartDetails.finalsellingPrice
         val sellingOne = cartDetails.sellingPrice
-        Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)
+       try{ Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)}catch (e:Exception){
+           e.printStackTrace()
+       }
         holder.productTitleCart.text = cartDetails.productTitle
         holder.productOfferPriceCart.text = "₹${cartDetails.priceEach}"
         val mString = "Rs. ${cartDetails.sellingPrice}"
