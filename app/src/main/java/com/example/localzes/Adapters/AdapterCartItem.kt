@@ -54,12 +54,14 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         val costOne = cartDetails.priceEach
         val finalSelling = cartDetails.finalsellingPrice
         val sellingOne = cartDetails.sellingPrice
-       try{ Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)}catch (e:Exception){
-           e.printStackTrace()
-       }
+        try {
+            Picasso.get().load(cartDetails.productImageUrl).into(holder.productImageCart)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         holder.productTitleCart.text = cartDetails.productTitle
         holder.productOfferPriceCart.text = "₹${cartDetails.priceEach}"
-        val mString = "Rs. ${cartDetails.sellingPrice}"
+        val mString = "₹${cartDetails.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
         spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)

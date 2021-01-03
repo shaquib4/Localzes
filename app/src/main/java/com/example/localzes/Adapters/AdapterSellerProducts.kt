@@ -66,7 +66,7 @@ class AdapterSellerProducts(
         holder.txtProductTitle.text =
             products.title.substring(0, 1).toUpperCase() + products.title.substring(1)
         holder.txtProductPrice.text = "₹${products.offerPrice}"
-        val mString = "Rs. ${products.sellingPrice}"
+        val mString = "₹${products.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
         spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
