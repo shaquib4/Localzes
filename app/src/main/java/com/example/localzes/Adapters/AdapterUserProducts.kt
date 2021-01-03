@@ -45,7 +45,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val mUser = uAuth.currentUser
         val mUid = mUser!!.uid
 
-        Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
+       try{ Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)}catch (e:Exception){
+           e.printStackTrace()
+       }
         holder.productTitle.text =
             userProducts.title.substring(0, 1).toUpperCase() + userProducts.title.substring(1)
         holder.productPrice.text = "₹${userProducts.offerPrice}"
@@ -61,7 +63,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
              }
 
          })*/
-        when (userProducts.stock) {
+        try{when (userProducts.stock) {
             "IN" -> {
                 Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
                 holder.stock.text == "STOCK: IN"
@@ -76,6 +78,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
 
 
             }
+        }}catch (e:Exception){
+            e.printStackTrace()
         }
 
         /*val ref =

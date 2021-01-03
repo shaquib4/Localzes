@@ -67,7 +67,11 @@ class AdapterFavoriteShops(val context: Context, val favList: List<Upload>) :
             }
 
         })
-        holder.txtShopName.text = fav_shops.shop_name
+        try {
+            holder.txtShopName.text = fav_shops.shop_name
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
         holder.txtShopAddress.text = fav_shops.address
         Glide.with(context).load(fav_shops.imageUrl).into(holder.imgItem)
         holder.imgFavorite.setOnClickListener {

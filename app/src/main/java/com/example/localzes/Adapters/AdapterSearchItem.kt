@@ -71,7 +71,9 @@ class AdapterSearchItem(val context: Context,private val search:List<Upload>):Re
             }
         })
 
-        Picasso.get().load(searchItem.imageUrl).into(holder.shopImage)
+      try{  Picasso.get().load(searchItem.imageUrl).into(holder.shopImage)}catch (e:java.lang.Exception){
+          e.printStackTrace()
+      }
         holder.itemView.setOnClickListener{
             val intent= Intent(context,
                 UserProductsActivity::class.java)

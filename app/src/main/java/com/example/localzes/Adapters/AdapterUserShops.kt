@@ -51,7 +51,9 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
         val shops_user = shopsUser[position]
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user!!.uid
-        Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)
+     try{   Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)}catch (e:Exception){
+         e.printStackTrace()
+     }
 
         holder.shopName.text =
             shops_user.shop_name.substring(0, 1).toUpperCase() + shops_user.shop_name.substring(1)

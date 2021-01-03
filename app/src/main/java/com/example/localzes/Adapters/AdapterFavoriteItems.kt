@@ -93,7 +93,11 @@ class AdapterFavoriteItems(val context: Context, val favList: List<ModelAddProdu
 
 
 
-        Glide.with(context).load(favItems.imageUrl).into(holder.imgItem)
+      try {
+
+       Glide.with(context).load(favItems.imageUrl).into(holder.imgItem)}catch (e:Exception){
+          e.printStackTrace()
+      }
         holder.itemName.text = favItems.title
         holder.itemOriginalCost.text = "₹${favItems.sellingPrice}"
         holder.itemSellingCost.text = "₹${favItems.offerPrice}"
