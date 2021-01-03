@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -29,7 +30,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".UserListOrderDetails"></activity>
+        <activity android:name=".RegisterDetailDelivery"></activity>
+        <activity android:name=".UserListOrderDetails" />
         <activity android:name=".CurrentUserOrder" />
         <activity android:name=".CartVsList" />
         <activity android:name=".ListOrders" />

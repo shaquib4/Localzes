@@ -3,6 +3,7 @@ package com.example.localzes
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
@@ -25,6 +27,7 @@ import util.ConnectionManager
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class OrdersDetailsSellerActivity : AppCompatActivity() {
     private lateinit var recyclerOrderedSellerItems: RecyclerView
@@ -228,7 +231,10 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     android.Manifest.permission.CALL_PHONE
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-
+                ActivityCompat.requestPermissions(this, permissions, REQUEST_CALL)
+            } else {
+                val dial: String = "tel:" + number
+                startActivity(Intent(Intent.ACTION_CALL, Uri.parse(dial)))
             }
         }
     }
@@ -250,11 +256,11 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
                 builderNew.setSingleChoiceItems(reasons, -1) { dialog, which ->
                     val selected = reasons[which]
-                    dialog.dismiss()
                     selectedReason = selected
+                    editOrderStatus("$selectedItem due to $selectedReason")
+                    dialog.dismiss()
                 }
                 builderNew.create().show()
-                editOrderStatus("$selectedItem due to $selectedReason")
             }
         }
         builder.create().show()
@@ -283,11 +289,11 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
                     builderNew.setSingleChoiceItems(reasons, -1) { dialog, which ->
                         val selected = reasons[which]
-                        dialog.dismiss()
                         selectedReason = selected
+                        editOrderStatus("$selectedItem due to $selectedReason")
+                        dialog.dismiss()
                     }
                     builderNew.create().show()
-                    editOrderStatus("$selectedItem due to $selectedReason")
                 }
                 else -> {
                     editOrderStatus(selectedItem)
@@ -414,6 +420,21 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCallCustomer()
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
@@ -432,9 +453,16 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         builder.setTitle("Confirmation")
                         builder.setMessage("Are you sure your order has been successfully completed")
                         builder.setPositiveButton("Ok") { text, listener ->
+                            val user = shopAuth.currentUser
+                            val uid = user!!.uid
+                            val userMap = HashMap<String, Any>()
+                            userMap["orderStatus"] = "Completed"
+                            val databaseNewReference: DatabaseReference =
+                                FirebaseDatabase.getInstance().reference.child("Seller")
+                            databaseNewReference.child(uid).child(orderIdTv.toString())
+                                .updateChildren(userMap)
                             view.visibility = View.GONE
                             new.dismiss()
-
                         }
                         builder.setNegativeButton("Cancel") { text, listener ->
                             view.isChecked = false

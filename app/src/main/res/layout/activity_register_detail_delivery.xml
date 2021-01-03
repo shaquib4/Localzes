@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterDetailDelivery">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_Your_Details"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/border">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Your Details"
+                android:textColor="#fff"
+                android:textSize="@dimen/_20ssp" />
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/your_profile_image"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_below="@id/rl_Your_Details"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_60sdp">
+
+            <ImageView
+                android:id="@+id/imageBoy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_add_image"
+                android:scaleType="fitXY"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/your_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/your_profile_image"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:hint="Enter Your Full Name"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="Name*"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/your_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/your_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:hint="Age should be greater or equal to 18"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="Age*"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/permanentAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/your_age"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:hint="Enter Your Permanent Address"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="Permanent Address*"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/your_profile_image"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:hint="Enter Your Full Name"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="Name"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/temporaryAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/permanentAddress"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:hint="Enter Your Temporary Address"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="Temporary Address"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/alternateMobileNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/temporaryAddress"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:hint="Enter Your Alternative Mobile No"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="Alternate Mobile No*"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/saveDeliveryDetails"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/alternateMobileNo"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="@dimen/_35sdp"
+            android:background="@drawable/bg_buttons"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Save and Proceed"
+            android:textColor="#fff"
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

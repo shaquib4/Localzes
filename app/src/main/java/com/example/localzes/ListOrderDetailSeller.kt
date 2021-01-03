@@ -447,7 +447,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val jsonObjectRequest =
             object : JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationJs,
                 Response.Listener {
-                    val intent=Intent(this,Home_seller::class.java)
+                    val intent = Intent(this, Home_seller::class.java)
                     startActivity(intent)
                     finish()
 

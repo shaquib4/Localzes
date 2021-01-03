@@ -28,9 +28,6 @@ class AccountsSeller : AppCompatActivity() {
     private lateinit var deliveryAvailibility: TextView
     private lateinit var switchStoreStatus: SwitchCompat
     private lateinit var switchDelivery: SwitchCompat
-    private lateinit var sharedPreferences: SharedPreferences
-    private var IsChecked: Boolean = true
-    private lateinit var spEditor: SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accounts_seller)
@@ -42,27 +39,38 @@ class AccountsSeller : AppCompatActivity() {
         switchStoreStatus = findViewById(R.id.switchOpen)
         switchDelivery = findViewById(R.id.switchDelivery)
         logOut = findViewById(R.id.txtaccEdit)
-        sharedPreferences = getSharedPreferences("SETTINGS", Context.MODE_PRIVATE)
-        IsChecked = sharedPreferences.getBoolean("IN", true)
-        switchStoreStatus.isChecked = IsChecked
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
         databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
+                    switchStoreStatus.isChecked = true
+                    storeStatus.text = snapshot.child("StoreStatus").value.toString()
+                } else if (snapshot.child("StoreStatus").value.toString() == "CLOSED") {
+                    switchStoreStatus.isChecked = false
+                    storeStatus.text = snapshot.child("StoreStatus").value.toString()
+                }
+            }
+        })
         switchStoreStatus.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                databaseReference.child("StoreStatus").setValue("OPEN")
-                storeStatus.text = "OPEN"
-                spEditor = sharedPreferences.edit()
-                spEditor.putBoolean("IN", true)
-                spEditor.apply()
-
+                val headers = HashMap<String, Any>()
+                headers["StoreStatus"] = "IN"
+                val reference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                reference.updateChildren(headers)
+                storeStatus.text = "IN"
             } else {
-                databaseReference.child("StoreStatus").setValue("CLOSED")
-                storeStatus.text = "CLOSED"
-                spEditor = sharedPreferences.edit()
-                spEditor.putBoolean("IN", false)
-                spEditor.apply()
+                val headers = HashMap<String, Any>()
+                headers["StoreStatus"] = "OUT"
+                val reference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                reference.updateChildren(headers)
+                storeStatus.text = "OUT"
             }
         }
         databaseReference.addValueEventListener(object : ValueEventListener {
