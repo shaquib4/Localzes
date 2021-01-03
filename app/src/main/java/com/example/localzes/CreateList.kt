@@ -191,7 +191,7 @@ class CreateList : AppCompatActivity() {
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             userDatabase.child("OrderList")
-                                .addValueEventListener(object : ValueEventListener {
+                                .addListenerForSingleValueEvent(object : ValueEventListener {
                                     override fun onCancelled(error: DatabaseError) {
 
                                     }

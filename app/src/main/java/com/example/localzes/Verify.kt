@@ -33,19 +33,15 @@ class Verify : AppCompatActivity() {
         firebaseUser= FirebaseAuth.getInstance().currentUser
         val phone=  intent.getStringExtra("phone")
         val number=phone.toString()
-        lastDigit.text=number.takeLast(2)
+        lastDigit.text=number
         retryOTP.setOnClickListener {
             this.recreate()
         }
-        if(ConnectionManager().checkConnectivity(this)){
-            rl_OTP.visibility=View.VISIBLE
-            rl_OTP.visibility=View.GONE
-            sendVerification("+91$phone")
-            progress_verify.visibility= View.VISIBLE}else{
-            rl_OTP.visibility=View.GONE
-            rl_OTP.visibility=View.VISIBLE
 
-        }
+
+            sendVerification("+91$phone")
+            progress_verify.visibility= View.VISIBLE
+
 
 
 
@@ -66,14 +62,9 @@ class Verify : AppCompatActivity() {
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
             val code=credential.smsCode
             if(code!=null){
-                if(ConnectionManager().checkConnectivity(this@Verify)){
-                    rl_OTP.visibility=View.VISIBLE
-                    rl_OTP.visibility=View.GONE
+
                     verifyVerification(code)
-                otp.setText(code)}else{
-                    rl_OTP.visibility=View.GONE
-                    rl_OTP.visibility=View.VISIBLE
-                }
+                otp.setText(code)
             }
         }
 
