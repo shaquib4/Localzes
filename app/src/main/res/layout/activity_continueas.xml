@@ -22,21 +22,16 @@
 
 
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:id="@+id/view1"
-        android:layout_marginTop="@dimen/_80sdp"/>
 
     <Button
+        android:layout_above="@+id/view"
         android:id="@+id/btnseller"
-        android:layout_width="@dimen/_195sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:layout_below="@id/view1"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_35sdp"
         android:layout_alignParentEnd="true"
         android:elevation="5dp"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="17dp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_50sdp"
         android:background="@drawable/proceed_to_add"
         android:fontFamily="@font/montserrat_bold"
         android:text="As Seller"
@@ -53,33 +48,19 @@
     <Button
         android:id="@+id/btnCustomer"
         android:text="As Customer"
+        android:layout_below="@id/view"
         android:textAllCaps="false"
         android:elevation="5dp"
         android:textSize="@dimen/_14ssp"
         android:fontFamily="@font/montserrat_bold"
         android:textColor="#fff"
-        android:layout_below="@id/view"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:background="@drawable/proceed_to_add"
-        android:layout_marginTop="@dimen/_60sdp"/>
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_35sdp"
+android:layout_marginTop="@dimen/_50sdp"
+        android:background="@drawable/proceed_to_add" />
 
-    <Button
-        android:id="@+id/deliver_btn"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="17dp"
-        android:elevation="5dp"
-        android:layout_marginBottom="29dp"
-        android:background="@drawable/proceed_to_add"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="As Delivery Partner"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="@dimen/_14ssp" />
+
     <ProgressBar
         android:layout_centerInParent="true"
         android:indeterminateDrawable="@drawable/progress_bar2"
