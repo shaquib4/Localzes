@@ -38,6 +38,9 @@
         android:layout_marginBottom="@dimen/_2sdp"
         android:layout_toRightOf="@+id/Item_name"
         android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:inputType="text"
         android:paddingTop="@dimen/_2sdp" />
 
     <ImageView
