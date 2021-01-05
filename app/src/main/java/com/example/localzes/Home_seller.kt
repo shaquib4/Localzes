@@ -39,10 +39,6 @@ class Home_seller : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_seller)
-        ordersAccepted = findViewById(R.id.txtItemAccepted)
-        ordersCompleted = findViewById(R.id.txtItemActive)
-        ordersOutForDelivery = findViewById(R.id.txtItemOFD)
-        ordersPending = findViewById(R.id.txtItemPending)
         editShopDetails = findViewById(R.id.editShopDetails)
         shopName = findViewById(R.id.txtShopName)
         totalOrders = findViewById(R.id.txtTO)
@@ -208,7 +204,7 @@ class Home_seller : AppCompatActivity() {
                 rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
-        ordersCompleted.setOnClickListener {
+        orderCom.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
@@ -220,7 +216,7 @@ class Home_seller : AppCompatActivity() {
                 rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
-        ordersPending.setOnClickListener {
+        orderPen.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
@@ -232,7 +228,7 @@ class Home_seller : AppCompatActivity() {
                 rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
-        ordersOutForDelivery.setOnClickListener {
+        orderOFD.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
