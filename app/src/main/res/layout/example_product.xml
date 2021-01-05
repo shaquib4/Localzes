@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:layout_width="0dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="@dimen/_20sdp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_height="@dimen/_25sdp">
+
+                <ImageView
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_favourite"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <ImageView
+                android:id="@+id/img1"
+                android:src="@drawable/beauty"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_140sdp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="5dp"
+                android:background="#d3d3d3"
+                android:layout_below="@id/img1"
+                android:id="@+id/v1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/v1"
+                android:id="@+id/txt1"
+                android:text="Beauty Product"
+                android:layout_margin="5dp"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt1"
+                android:id="@+id/txtPrice1"
+                android:text="Rs. 499"
+                android:layout_marginStart="5dp"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#de4500"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtPrice11"
+                android:layout_alignBottom="@id/txtPrice1"
+                android:text="599"
+                android:paddingHorizontal="5dp"
+                android:layout_toRightOf="@id/txtPrice1"
+                android:layout_marginStart="5dp"
+                android:textColor="#d3d3d3"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_medium" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_alignRight="@id/txtPrice11"
+                android:layout_alignBottom="@id/txtPrice1"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:layout_alignLeft="@id/txtPrice11"
+                android:background="#d3d3d3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_below="@+id/txtPrice1"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Stock In"
+                android:textColor="#1500ff"/>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/txtPrice1"
+                android:id="@+id/btnLinear"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="#ffffff"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <Button
+                    android:id="@+id/btnDecrease_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.4"
+                    android:background="@drawable/add_item_decrease"
+                    android:onClick="countDe"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/txtCounter"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/add_item_quantity"
+                    android:gravity="center"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="1"
+                    android:layout_gravity="center"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_12ssp" />
+
+                <Button
+                    android:id="@+id/btnIncrease_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.4"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="@drawable/add_item_increase"
+                    android:onClick="countIn"
+                    android:text="+"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgRating_customer"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_alignTop="@+id/txt1"
+                android:layout_toStartOf="@+id/txtRatingShop_customer"
+                android:src="@drawable/ic_rating" />
+
+            <TextView
+                android:id="@+id/txtRatingShop_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+              android:layout_alignTop="@+id/txt1"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:padding="2dp"
+                android:text="4.5/5"
+                android:textColor="#de4500"
+                android:textSize="@dimen/_10ssp" />
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="10dp"
+            android:layout_width="0dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="@dimen/_20sdp"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_height="@dimen/_25sdp">
+
+                    <ImageView
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_favourite"/>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:src="@drawable/gaming"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_140sdp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="#d3d3d3"
+                    android:layout_below="@id/img2"
+                    android:id="@+id/v2"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/v2"
+                    android:id="@+id/txt2"
+                    android:text="Gaming Zone"
+                    android:layout_margin="5dp"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt2"
+                    android:id="@+id/txtPrice2"
+                    android:text="Rs. 499"
+                    android:layout_marginStart="5dp"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="#de4500"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtPrice12"
+                    android:layout_alignBottom="@id/txtPrice2"
+                    android:text="599"
+                    android:paddingHorizontal="5dp"
+                    android:layout_toRightOf="@id/txtPrice2"
+                    android:layout_marginStart="5dp"
+                    android:textColor="#d3d3d3"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="@font/montserrat_medium" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_alignRight="@id/txtPrice12"
+                    android:layout_alignBottom="@id/txtPrice2"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:layout_alignLeft="@id/txtPrice12"
+                    android:background="#d3d3d3"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtPrice2"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Stock Out"
+                    android:textColor="#ff0000"/>
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/txtPrice2"
+                    android:id="@+id/btnLinear1"
+                    android:layout_width="80dp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="#ffffff"
+                    android:orientation="horizontal"
+                    android:weightSum="8">
+
+                    <Button
+                        android:id="@+id/btnDecrease_new1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.4"
+                        android:background="@drawable/add_item_decrease"
+                        android:onClick="countDe"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="#de4500"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/txtCounter1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:background="@drawable/add_item_quantity"
+                        android:gravity="center"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="1"
+                        android:layout_gravity="center"
+                        android:textColor="#de4500"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <Button
+                        android:id="@+id/btnIncrease_new1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.4"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/add_item_increase"
+                        android:onClick="countIn"
+                        android:text="+"
+                        android:textColor="#de4500"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imgRating_customer1"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_alignTop="@+id/txt2"
+                    android:layout_toStartOf="@+id/txtRatingShop_customer1"
+                    android:src="@drawable/ic_rating" />
+
+                <TextView
+                    android:id="@+id/txtRatingShop_customer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/txt2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:padding="2dp"
+                    android:text="4.5/5"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_10ssp" />
+                <Button
+                    android:id="@+id/btnAddItem"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/txtPrice2"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_add_item"
+                    android:elevation="0dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Add +"
+                    android:textAllCaps="false"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_10ssp" />
+
+            </RelativeLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

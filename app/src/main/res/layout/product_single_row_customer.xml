@@ -6,10 +6,11 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
         android:id="@+id/card1_customer"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_140sdp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_margin="5dp"
         android:background="@drawable/bg_product_shop">
 
         <RelativeLayout
@@ -18,44 +19,40 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnFavoriteItem"
-                app:borderWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_margin="5dp"
                 android:backgroundTint="#ffffff"
-                android:layout_margin="@dimen/_10sdp"
                 android:src="@drawable/ic_baseline_favorite_border_24"
+                app:borderWidth="0dp"
                 tools:ignore="RelativeOverlap" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnFavoriteItem1"
-                app:borderWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
                 android:layout_alignParentEnd="true"
+                android:layout_margin="5dp"
                 android:backgroundTint="#ffffff"
                 android:src="@drawable/ic_favourite"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                app:borderWidth="0dp" />
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardImage"
+            <ImageView
+                android:id="@+id/imgProduct_customer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
-                android:elevation="0dp"
-                app:cardCornerRadius="@dimen/_5sdp">
+                android:layout_height="@dimen/_140sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/lanju" />
 
-                <ImageView
-                    android:id="@+id/imgProduct_customer"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_160sdp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/lanju" />
-
-
-            </androidx.cardview.widget.CardView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/v1"
+                android:layout_below="@id/imgProduct_customer"
+                android:background="#d3d3d3"/>
 
             <TextView
                 android:id="@+id/txtStock_customer"
@@ -63,18 +60,18 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtProductOfferPrice"
                 android:layout_alignStart="@id/txtProductPrice_customer"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Stock: IN "
                 android:textColor="#3498db"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <ImageView
                 android:id="@+id/imgRating_customer"
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_below="@id/cardImage"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_below="@id/imgProduct_customer"
                 android:layout_toStartOf="@+id/txtRatingShop_customer"
                 android:src="@drawable/ic_rating" />
 
@@ -84,39 +81,41 @@
                 android:layout_height="@dimen/_18sdp"
                 android:layout_alignTop="@+id/txtProductTitle_customer"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:padding="2dp"
                 android:text="4.5/5"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <Button
                 android:id="@+id/btnAddItem"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_22sdp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_16sdp"
                 android:layout_alignTop="@+id/txtStock_customer"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginEnd="5dp"
                 android:background="@drawable/bg_add_item"
                 android:elevation="0dp"
                 android:fontFamily="@font/montserrat_medium"
+                android:gravity="center"
                 android:text="Add +"
                 android:textAllCaps="false"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_10ssp"
+                />
 
 
             <TextView
                 android:id="@+id/txtProductTitle_customer"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cardImage"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/montserrat_medium"
+                android:layout_below="@+id/v1"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Elecronics Accessories"
                 android:textColor="#000"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_10ssp" />
 
 
             <TextView
@@ -124,20 +123,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtProductTitle_customer"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="5dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Rs. 699"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_12ssp" />
 
             <View
-                android:layout_width="@dimen/_50sdp"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_alignLeft="@id/txtProductOfferPrice"
                 android:layout_alignTop="@id/txtProductOfferPrice"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_toRightOf="@id/txtProductPrice_customer"
-                android:background="#696969" />
+                android:layout_toRightOf="@id/txtProductOfferPrice"
+                android:background="#d3d3d3" />
 
             <TextView
                 android:id="@+id/txtProductOfferPrice"
@@ -148,55 +146,61 @@
                 android:layout_toEndOf="@id/txtProductPrice_customer"
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingVertical="@dimen/_2sdp"
-                android:text="Rs. 1099"
+                android:text="1099"
                 android:textSize="@dimen/_10ssp" />
 
 
             <LinearLayout
+                android:visibility="invisible"
                 android:id="@+id/btnLinear"
-                android:layout_width="100dp"
-                android:layout_height="@dimen/_22sdp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_16sdp"
                 android:layout_alignTop="@id/txtStock_customer"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="#ffffff"
                 android:orientation="horizontal"
-                android:visibility="invisible"
                 android:weightSum="8">
 
                 <Button
                     android:id="@+id/btnDecrease_new"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_weight="2.4"
                     android:background="@drawable/add_item_decrease"
+                    android:gravity="center"
                     android:onClick="countDe"
                     android:text="-"
                     android:textColor="#de4500"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/txtCounter"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_weight="3"
                     android:background="@drawable/add_item_quantity"
+                    android:fontFamily="@font/montserrat_medium"
                     android:gravity="center"
                     android:text="1"
                     android:textColor="#de4500"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <Button
                     android:id="@+id/btnIncrease_new"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_weight="2.4"
                     android:background="@drawable/add_item_increase"
+                    android:gravity="center"
                     android:onClick="countIn"
                     android:text="+"
                     android:textColor="#de4500"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textSize="@dimen/_12ssp" />
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
