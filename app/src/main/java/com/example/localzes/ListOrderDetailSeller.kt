@@ -56,6 +56,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private var customerMobileNo: String = ""
     private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
     private lateinit var imgMakeCustomerCall: ImageView
+    private lateinit var checkboxListComplete: CheckBox
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_order_detail_seller)
@@ -67,6 +68,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         deliveryAddressTv = findViewById(R.id.txtListOrderDeliveryAddress)
         recyclerOrderedList = findViewById(R.id.recyclerOrderedSellerItem)
         imgMakeCustomerCall = findViewById(R.id.imageMakeCallCustomer)
+        checkboxListComplete = findViewById(R.id.checkbox_List_Completed)
         imgListEdit = findViewById(R.id.imgListEdit)
         totalListCost = findViewById(R.id.totalListCost)
         progressDialog = ProgressDialog(this)
@@ -170,12 +172,14 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 oStatus = orderStatus
                 when (orderStatus) {
                     "Pending" -> {
+                        checkboxListComplete.visibility = View.GONE
                         orderStatusTv.setTextColor(resources.getColor(R.color.colorAccent))
                         imgListEdit.visibility = View.GONE
                         totalListCost.visibility = View.VISIBLE
                         acceptConfirm.visibility = View.VISIBLE
                     }
                     "Accepted" -> {
+                        checkboxListComplete.visibility = View.VISIBLE
                         orderStatusTv.setTextColor(resources.getColor(R.color.acidGreen))
                         imgListEdit.visibility = View.VISIBLE
                         acceptConfirm.visibility = View.GONE
@@ -185,6 +189,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         }
                     }
                     "Rejected due to $selectedReason" -> {
+                        checkboxListComplete.visibility = View.GONE
                         orderStatusTv.setTextColor(resources.getColor(R.color.red))
                         imgListEdit.visibility = View.GONE
                         acceptConfirm.visibility = View.GONE
@@ -192,6 +197,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
                     }
                     "Out For Delivery" -> {
+                        checkboxListComplete.visibility = View.VISIBLE
                         orderStatusTv.setTextColor(resources.getColor(R.color.green))
                         imgListEdit.visibility = View.VISIBLE
                         acceptConfirm.visibility = View.GONE
@@ -199,6 +205,12 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         imgListEdit.setOnClickListener {
                             newEditOrderStatusDialog()
                         }
+                    }
+                    "Completed" -> {
+                        orderStatusTv.setTextColor(resources.getColor(R.color.green))
+                        imgListEdit.visibility = View.GONE
+                        acceptConfirm.visibility = View.GONE
+                        totalListCost.visibility = View.GONE
                     }
                 }
                 orderStatusTv.text = orderStatus

@@ -51,6 +51,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private var customerMobileNo: String = ""
     private lateinit var imgMakeCallCustomer: ImageView
     private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
+    private lateinit var checkboxComplete: CheckBox
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_seller)
@@ -60,6 +61,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         orderIdTv = intent.getStringExtra("orderIdTv")
         orderByTv = intent.getStringExtra("orderByTv")
         txtOrderId = findViewById(R.id.txtOrderId)
+        checkboxComplete = findViewById(R.id.checkbox_Completed)
         imgMakeCallCustomer = findViewById(R.id.imgMakeCallCustomer)
         txtOrderDate = findViewById(R.id.txtOrderDate)
         txtOrderStatus = findViewById(R.id.txtOrderStatus)
@@ -114,6 +116,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     when (orderStatus) {
                         "Pending" -> {
                             txtOrderStatus.setTextColor(resources.getColor(R.color.colorAccent))
+                            checkboxComplete.visibility=View.GONE
                             imgEdit.setOnClickListener {
                                 if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
                                     editOrderStatusDialog()
@@ -124,6 +127,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             }
                         }
                         "Accepted" -> {
+                            checkboxComplete.visibility=View.VISIBLE
                             txtOrderStatus.setTextColor(resources.getColor(R.color.green))
                             imgEdit.setOnClickListener {
                                 if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
@@ -135,14 +139,20 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             }
                         }
                         "Out For Delivery" -> {
+                            checkboxComplete.visibility=View.VISIBLE
                             txtOrderStatus.setTextColor(resources.getColor(R.color.acidGreen))
                             imgEdit.setOnClickListener {
                                 afterEditOrderStatusDialog()
                             }
                         }
                         "Rejected due to $selectedReason" -> {
+                            checkboxComplete.visibility=View.GONE
                             txtOrderStatus.setTextColor(resources.getColor(R.color.red))
                             imgEdit.visibility = View.GONE
+                        }
+                        "Completed"->{
+                            txtOrderStatus.setTextColor(resources.getColor(R.color.green))
+                            imgEdit.visibility=View.GONE
                         }
                     }
                 } else {
@@ -458,7 +468,8 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             userMap["orderStatus"] = "Completed"
                             val databaseNewReference: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("seller")
-                            databaseNewReference.child(uid).child("Orders").child(orderIdTv.toString())
+                            databaseNewReference.child(uid).child("Orders")
+                                .child(orderIdTv.toString())
                                 .updateChildren(userMap)
                             view.visibility = View.GONE
                             new.dismiss()

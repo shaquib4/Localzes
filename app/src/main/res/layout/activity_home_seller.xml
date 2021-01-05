@@ -173,6 +173,7 @@
                             android:layout_weight="1">
 
                             <ImageView
+                                android:id="@+id/orderOFD"
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"
                                 android:layout_centerInParent="true"
@@ -197,6 +198,7 @@
                             android:layout_weight="1">
 
                             <ImageView
+                                android:id="@+id/orderCom"
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"
                                 android:layout_centerInParent="true"
@@ -222,6 +224,7 @@
                             android:layout_weight="1">
 
                             <ImageView
+                                android:id="@+id/orderPen"
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"
                                 android:layout_centerInParent="true"

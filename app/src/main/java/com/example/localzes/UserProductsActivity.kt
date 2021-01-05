@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterUserProducts
@@ -68,7 +69,7 @@ class UserProductsActivity : AppCompatActivity() {
         val user = auth.currentUser
         val uid = user!!.uid
         recyclerUserProduct = findViewById(R.id.recycler_shop_user_products)
-        recyclerUserProduct.layoutManager = LinearLayoutManager(this)
+        recyclerUserProduct.layoutManager = GridLayoutManager(this, 2)
         retryUserProducts.setOnClickListener {
             this.recreate()
         }
