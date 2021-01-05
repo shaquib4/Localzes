@@ -130,111 +130,112 @@ class Cart : AppCompatActivity() {
             this.recreate()
         }
         if (ConnectionManager().checkConnectivity(this)) {
-            rl_cart_connection.visibility=View.VISIBLE
-            rl_retryCart.visibility=View.GONE
+            rl_cart_connection.visibility = View.VISIBLE
+            rl_retryCart.visibility = View.GONE
             cartDatabase.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var finalPriceList = arrayListOf<Double>()
-                var finalQuantityList = arrayListOf<Int>()
-                var sellingPriceList = arrayListOf<Double>()
-                (cartProducts as ArrayList<UserCartDetails>).clear()
-                totalOriginalPrice = 0.0
-                totalCost = 0.0
-
-                for (i in snapshot.children) {
-                    finalPriceList.clear()
-                    sellingPriceList.clear()
-
-                    val productId = i.child("productId").value.toString()
-                    val orderBy = i.child("orderBy").value.toString()
-                    val productTitle = i.child("productTitle").value.toString()
-                    val priceEach = i.child("priceEach").value.toString()
-                    val finalPrice = i.child("finalPrice").value.toString()
-                    val finalQuantity = i.child("finalQuantity").value.toString()
-                    val orderTo = i.child("orderTo").value.toString()
-                    val productImageUrl = i.child("productImageUrl").value.toString()
-                    val sellingPrice = i.child("sellingPrice").value.toString()
-                    val finalsellingPrice = i.child("finalsellingPrice").value.toString()
-                    val obj = UserCartDetails(
-                        productId,
-                        orderBy,
-                        productTitle,
-                        priceEach,
-                        finalPrice,
-                        finalQuantity,
-                        orderTo,
-                        productImageUrl,
-                        sellingPrice,
-                        finalsellingPrice
-                    )
-                    finalPriceList.add(finalPrice.toDouble())
-                    sellingPriceList.add(finalsellingPrice.toDouble())
-                    shopId = orderTo
-                    pId = productId
-                    orderByuid = orderBy
-                    for (j in finalPriceList) {
-                        totalCost += j
-                    }
-                    for (k in sellingPriceList) {
-                        totalOriginalPrice += k
-                    }
-
-                    (cartProducts as ArrayList<UserCartDetails>).add(obj)
+                override fun onCancelled(error: DatabaseError) {
 
                 }
-                if (cartProducts.isEmpty()) {
-                    relativeCart.visibility = View.GONE
-                    btnShopNow.setOnClickListener {
-                        val intent = Intent(this@Cart, Home::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
 
-                } else {
-                    relativeCartEmpty.visibility = View.GONE
-                    relativeCart.visibility = View.VISIBLE
-                    userCartAdapter = AdapterCartItem(
-                        this@Cart,
-                        cartProducts
-                    )
-                    recyclerCartProduct.adapter = userCartAdapter
-                    totalItem = snapshot.childrenCount.toInt()
-                    totalItems.text = "Total Item :- ${snapshot.childrenCount}"
-                    txtPrice.text = "₹${totalOriginalPrice}"
-                    discountAmount =
-                        ((totalOriginalPrice.toString()).toDouble() - (totalCost.toString()
-                            .toDouble()))
-                    txtDiscountPrice.text = "₹${discountAmount}"
-                    if (snapshot.childrenCount > 1) {
-                        txtTotalPrice.text = "Price(${snapshot.childrenCount} items)"
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var finalPriceList = arrayListOf<Double>()
+                    var finalQuantityList = arrayListOf<Int>()
+                    var sellingPriceList = arrayListOf<Double>()
+                    (cartProducts as ArrayList<UserCartDetails>).clear()
+                    totalOriginalPrice = 0.0
+                    totalCost = 0.0
+
+                    for (i in snapshot.children) {
+                        finalPriceList.clear()
+                        sellingPriceList.clear()
+
+                        val productId = i.child("productId").value.toString()
+                        val orderBy = i.child("orderBy").value.toString()
+                        val productTitle = i.child("productTitle").value.toString()
+                        val priceEach = i.child("priceEach").value.toString()
+                        val finalPrice = i.child("finalPrice").value.toString()
+                        val finalQuantity = i.child("finalQuantity").value.toString()
+                        val orderTo = i.child("orderTo").value.toString()
+                        val productImageUrl = i.child("productImageUrl").value.toString()
+                        val sellingPrice = i.child("sellingPrice").value.toString()
+                        val finalsellingPrice = i.child("finalsellingPrice").value.toString()
+                        val obj = UserCartDetails(
+                            productId,
+                            orderBy,
+                            productTitle,
+                            priceEach,
+                            finalPrice,
+                            finalQuantity,
+                            orderTo,
+                            productImageUrl,
+                            sellingPrice,
+                            finalsellingPrice
+                        )
+                        finalPriceList.add(finalPrice.toDouble())
+                        sellingPriceList.add(finalsellingPrice.toDouble())
+                        shopId = orderTo
+                        pId = productId
+                        orderByuid = orderBy
+                        for (j in finalPriceList) {
+                            totalCost += j
+                        }
+                        for (k in sellingPriceList) {
+                            totalOriginalPrice += k
+                        }
+
+                        (cartProducts as ArrayList<UserCartDetails>).add(obj)
+
+                    }
+                    if (cartProducts.isEmpty()) {
+                        relativeCart.visibility = View.GONE
+                        btnShopNow.setOnClickListener {
+                            val intent = Intent(this@Cart, Home::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+
                     } else {
-                        txtTotalPrice.text = "Price(${snapshot.childrenCount} item)"
-                    }
+                        relativeCartEmpty.visibility = View.GONE
+                        relativeCart.visibility = View.VISIBLE
+                        userCartAdapter = AdapterCartItem(
+                            this@Cart,
+                            cartProducts
+                        )
+                        recyclerCartProduct.adapter = userCartAdapter
+                        totalItem = snapshot.childrenCount.toInt()
+                        totalItems.text = "Total Item :- ${snapshot.childrenCount}"
+                        txtPrice.text = "₹${totalOriginalPrice}"
+                        discountAmount =
+                            ((totalOriginalPrice.toString()).toDouble() - (totalCost.toString()
+                                .toDouble()))
+                        txtDiscountPrice.text = "₹${discountAmount}"
+                        if (snapshot.childrenCount > 1) {
+                            txtTotalPrice.text = "Price(${snapshot.childrenCount} items)"
+                        } else {
+                            txtTotalPrice.text = "Price(${snapshot.childrenCount} item)"
+                        }
 
-                    val amount = totalCost.toString()
-                    txtTotalAmount.text = "₹${amount}"
-                    totalPayment.text = "₹${amount}"
-                    for (i in cartProducts) {
-                        val proId = i.productId
-                        val database =
-                            FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
-                                .child("Products").child(proId)
-                        database.addValueEventListener(object : ValueEventListener {
-                            override fun onCancelled(error: DatabaseError) {
+                        val amount = totalCost.toString()
+                        txtTotalAmount.text = "₹${amount}"
+                        totalPayment.text = "₹${amount}"
+                        for (i in cartProducts) {
+                            val proId = i.productId
+                            val database =
+                                FirebaseDatabase.getInstance().reference.child("seller")
+                                    .child(shopId)
+                                    .child("Products").child(proId)
+                            database.addValueEventListener(object : ValueEventListener {
+                                override fun onCancelled(error: DatabaseError) {
 
-                            }
+                                }
 
-                            override fun onDataChange(snapshot: DataSnapshot) {
+                                override fun onDataChange(snapshot: DataSnapshot) {
 
 
-                                if (snapshot.child("stock").value.toString() == "OUT") {
+                                    if (snapshot.child("stock").value.toString() == "OUT") {
 
-                                    boolean = false
-                                } /*else if (snapshot.child("stock").value.toString() == "IN"&&snapshot.child("stock").value.toString()
+                                        boolean = false
+                                    } /*else if (snapshot.child("stock").value.toString() == "IN"&&snapshot.child("stock").value.toString()
                                         !=="OUT") {
                                             val intent =
                                                 Intent(this@Cart, continue_payment::class.java)
@@ -250,9 +251,9 @@ class Cart : AppCompatActivity() {
                                         }*/
 
 
-                            }
-                        })
-                    }
+                                }
+                            })
+                        }
 /*
                     val database=FirebaseDatabase.getInstance().reference.child("seller")
                         .child(shopId).child("Products").child(pId)
@@ -281,78 +282,81 @@ class Cart : AppCompatActivity() {
 
                         }
                     })*/
+                    }
+
+
+                }
+            })
+        } else {
+            rl_cart_connection.visibility = View.GONE
+            rl_retryCart.visibility = View.VISIBLE
+        }
+
+
+
+        if (ConnectionManager().checkConnectivity(this)) {
+            val reference: DatabaseReference =
+                FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                    .child("current_address")
+            reference.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
                 }
 
-
-            }
-        })}else{
-            rl_cart_connection.visibility=View.GONE
-            rl_retryCart.visibility=View.VISIBLE
-        }
-
-
-            btnContinue.setOnClickListener {
-                if(ConnectionManager().checkConnectivity(this)){
-                    rl_cart_connection.visibility=View.VISIBLE
-                    rl_retryCart.visibility=View.GONE
-            if (boolean) {
-                val intent = Intent(this@Cart, continue_payment::class.java)
-                intent.putExtra("shopId", shopId)
-                intent.putExtra("totalCost", totalCost.toString())
-                intent.putExtra("orderBy", orderByuid)
-                intent.putExtra("totalItem", totalItem.toString())
-                intent.putExtra("delivery", deliveryUser)
-                intent.putExtra("orderByName", orderByName)
-                intent.putExtra("orderByMobile", orderByMobile)
-                startActivity(intent)
-                finish()
-            } else if (!boolean) {
-                Toast.makeText(
-                    this,
-                    "Some Products are out of stock,Please remove",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }}else{
-                    rl_cart_connection.visibility=View.GONE
-                    rl_retryCart.visibility=View.VISIBLE
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    deliveryUser = snapshot.child("address").value.toString()
+                    deliveryUserMobileNo = snapshot.child("mobileNo").value.toString()
+                    deliveryAddress.text = deliveryUser
                 }
+
+            })
+            val ref: DatabaseReference =
+                FirebaseDatabase.getInstance().reference.child("users").child(uid)
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    orderByName = snapshot.child("name").value.toString()
+                    orderByMobile = snapshot.child("phone").value.toString()
+                }
+
+            })
+        } else {
+            rl_cart_connection.visibility = View.GONE
+            rl_retryCart.visibility = View.VISIBLE
         }
-        if (ConnectionManager().checkConnectivity(this)) {val reference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("users").child(uid)
-                .child("current_address")
-        reference.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
+        btnContinue.setOnClickListener {
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_cart_connection.visibility = View.VISIBLE
+                rl_retryCart.visibility = View.GONE
+                if (boolean) {
+                    val intent = Intent(this@Cart, continue_payment::class.java)
+                    intent.putExtra("shopId", shopId)
+                    intent.putExtra("totalCost", totalCost.toString())
+                    intent.putExtra("orderBy", orderByuid)
+                    intent.putExtra("totalItem", totalItem.toString())
+                    intent.putExtra("delivery", deliveryUser)
+                    intent.putExtra("orderByName", orderByName)
+                    intent.putExtra("orderByMobile", deliveryUserMobileNo)
+                    startActivity(intent)
+                    finish()
+                } else if (!boolean) {
+                    Toast.makeText(
+                        this,
+                        "Some Products are out of stock,Please remove",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                rl_cart_connection.visibility = View.GONE
+                rl_retryCart.visibility = View.VISIBLE
             }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                deliveryUser = snapshot.child("address").value.toString()
-                deliveryUserMobileNo = snapshot.child("mobileNo").value.toString()
-                deliveryAddress.text = deliveryUser
-            }
-
-        })
-        val ref: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("users").child(uid)
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                orderByName = snapshot.child("name").value.toString()
-                orderByMobile = snapshot.child("phone").value.toString()
-            }
-
-        })}else{
-            rl_cart_connection.visibility=View.GONE
-            rl_retryCart.visibility=View.VISIBLE
         }
 
 
-
-
-            val mRef: DatabaseReference =
+        val mRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
         mRef.child("address").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -376,35 +380,37 @@ class Cart : AppCompatActivity() {
                     (addresses as ArrayList<ModelManageAddress>).add(obj)
                 }
                 addAddress.setOnClickListener {
-                    rl_cart_connection.visibility=View.VISIBLE
-                    rl_retryCart.visibility=View.GONE
-                    if (ConnectionManager().checkConnectivity(this@Cart)){
-                    val dialog = BottomSheetDialog(this@Cart)
-                    val view =
-                        LayoutInflater.from(this@Cart).inflate(R.layout.address_layout, null, false)
-                    val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
-                    val btnAddNewAddress: Button = view.findViewById(R.id.btnAddNewAddress)
-                    val txtCurrAddress: TextView = view.findViewById(R.id.txtCurrAddress)
-                    val txtCurrMobile: TextView = view.findViewById(R.id.txtCurrMobile)
-                    txtCurrAddress.text = deliveryUser
-                    txtCurrMobile.text = "Mobile No- ${deliveryUserMobileNo}"
-                    val layoutManager = LinearLayoutManager(this@Cart)
-                    rv.layoutManager = layoutManager
-                    val adapter = AdapterManageAddress(this@Cart, addresses)
-                    rv.adapter = adapter
-                    btnAddNewAddress.setOnClickListener {
-                        startActivity(Intent(this@Cart, MapsActivity_New::class.java))
-                        finish()
+                    rl_cart_connection.visibility = View.VISIBLE
+                    rl_retryCart.visibility = View.GONE
+                    if (ConnectionManager().checkConnectivity(this@Cart)) {
+                        val dialog = BottomSheetDialog(this@Cart)
+                        val view =
+                            LayoutInflater.from(this@Cart)
+                                .inflate(R.layout.address_layout, null, false)
+                        val rv: RecyclerView = view.findViewById(R.id.recycler_Address_dialog)
+                        val btnAddNewAddress: Button = view.findViewById(R.id.btnAddNewAddress)
+                        val txtCurrAddress: TextView = view.findViewById(R.id.txtCurrAddress)
+                        val txtCurrMobile: TextView = view.findViewById(R.id.txtCurrMobile)
+                        txtCurrAddress.text = deliveryUser
+                        txtCurrMobile.text = "Mobile No- ${deliveryUserMobileNo}"
+                        val layoutManager = LinearLayoutManager(this@Cart)
+                        rv.layoutManager = layoutManager
+                        val adapter = AdapterManageAddress(this@Cart, addresses)
+                        rv.adapter = adapter
+                        btnAddNewAddress.setOnClickListener {
+                            startActivity(Intent(this@Cart, MapsActivity_New::class.java))
+                            finish()
+                        }
+                        dialog.setContentView(view)
+                        dialog.show()
+                        dialog.setCancelable(false)
+                        dialog.setCanceledOnTouchOutside(true)
+                    } else {
+                        rl_cart_connection.visibility = View.GONE
+                        rl_retryCart.visibility = View.VISIBLE
                     }
-                    dialog.setContentView(view)
-                    dialog.show()
-                    dialog.setCancelable(false)
-                    dialog.setCanceledOnTouchOutside(true)
-                }else{
-                        rl_cart_connection.visibility=View.GONE
-                        rl_retryCart.visibility=View.VISIBLE
-                    }
-            }}
+                }
+            }
         })
 
 

@@ -74,14 +74,15 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             this.recreate()
         }
         val newReference =
-            FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString())
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+                .child(orderByTv.toString())
         newReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                customerMobileNo = snapshot.child("phone").value.toString()
+                customerMobileNo = snapshot.child("orderByMobile").value.toString()
             }
 
         })

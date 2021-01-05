@@ -61,16 +61,16 @@ class AccountsSeller : AppCompatActivity() {
         switchStoreStatus.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 val headers = HashMap<String, Any>()
-                headers["StoreStatus"] = "IN"
+                headers["StoreStatus"] = "OPEN"
                 val reference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                 reference.updateChildren(headers)
-                storeStatus.text = "IN"
+                storeStatus.text = "OPEN"
             } else {
                 val headers = HashMap<String, Any>()
-                headers["StoreStatus"] = "OUT"
+                headers["StoreStatus"] = "CLOSED"
                 val reference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                 reference.updateChildren(headers)
-                storeStatus.text = "OUT"
+                storeStatus.text = "CLOSED"
             }
         }
         databaseReference.addValueEventListener(object : ValueEventListener {

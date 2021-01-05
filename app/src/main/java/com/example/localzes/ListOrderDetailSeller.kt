@@ -84,14 +84,14 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
         orderId = intent.getStringExtra("orderId").toString()
         orderBy = intent.getStringExtra("orderBy").toString()
-        val newRef = FirebaseDatabase.getInstance().reference.child("users").child("orderBy")
+        val newRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists").child(orderId)
         newRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                customerMobileNo = snapshot.child("phone").value.toString()
+                customerMobileNo = snapshot.child("orderByMobile").value.toString()
             }
 
         })
