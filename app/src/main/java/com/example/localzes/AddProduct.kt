@@ -52,6 +52,7 @@ class AddProduct : AppCompatActivity() {
         image_view.setOnClickListener {
             startImageChooser()
         }
+        categorySelected = intent.getStringExtra("categoryAdd")
         /*thumb_reference = FirebaseStorage.getInstance().reference.child("thumb_images")*/
         imgBackAdd = findViewById(R.id.imgBackAdd)
         radioGroup = findViewById(R.id.radioStock)
