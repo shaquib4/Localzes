@@ -141,9 +141,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/montserrat_bold"
                         android:text="Pending"
-                        android:textColor="#008000"
+                        android:textColor="#de4500"
                         android:textSize="@dimen/_10ssp" />
 
                 </TableRow>
@@ -191,6 +191,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_bold"
                         android:text="Rs. 1,209/-"
                         android:textColor="#008000"
                         android:textSize="@dimen/_12ssp" />
