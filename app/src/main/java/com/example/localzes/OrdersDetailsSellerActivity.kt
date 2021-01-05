@@ -442,8 +442,6 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     fun onCheckboxClicked(view: View) {
-        val databaseReference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("Seller")
         if (view is CheckBox) {
             val checked: Boolean = view.isChecked
             when (view.id) {
@@ -459,8 +457,8 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             val userMap = HashMap<String, Any>()
                             userMap["orderStatus"] = "Completed"
                             val databaseNewReference: DatabaseReference =
-                                FirebaseDatabase.getInstance().reference.child("Seller")
-                            databaseNewReference.child(uid).child(orderIdTv.toString())
+                                FirebaseDatabase.getInstance().reference.child("seller")
+                            databaseNewReference.child(uid).child("Orders").child(orderIdTv.toString())
                                 .updateChildren(userMap)
                             view.visibility = View.GONE
                             new.dismiss()

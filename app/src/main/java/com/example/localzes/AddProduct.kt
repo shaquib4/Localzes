@@ -7,10 +7,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.localzes.Modals.ModelAddProduct
@@ -38,8 +35,9 @@ class AddProduct : AppCompatActivity() {
 
     /*private lateinit var thumb_reference: StorageReference*/
     private lateinit var timestamp: String
+    private var categorySelected: String? = "200"
     var imgUrl: String = ""
-
+    private var spinnerItem: String = ""
 
     var thumb_Bitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +55,12 @@ class AddProduct : AppCompatActivity() {
         /*thumb_reference = FirebaseStorage.getInstance().reference.child("thumb_images")*/
         imgBackAdd = findViewById(R.id.imgBackAdd)
         radioGroup = findViewById(R.id.radioStock)
+        spinnerItem = if (categorySelected.toString() == null) {
+            sp_spinner_add.selectedItem.toString()
+        } else {
+            sp_spinner_add.setSelection(getIndex(sp_spinner_add, categorySelected.toString()))
+                .toString()
+        }
         imgBackAdd.setOnClickListener {
             val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)
@@ -121,6 +125,15 @@ class AddProduct : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun getIndex(mySpinner: Spinner, myValue: String): Int {
+        for (i in 0 until mySpinner.count) {
+            if (mySpinner.getItemAtPosition(i).toString().equals(myValue, ignoreCase = true)) {
+                return i
+            }
+        }
+        return 0
     }
 
     private fun startImageChooser() {
@@ -259,7 +272,7 @@ class AddProduct : AppCompatActivity() {
                 mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller")
                 mCartDatabaseRef.child(uid).child("Products").child(timestamp)
                     .setValue(products).addOnCompleteListener {
-                        if (it.isSuccessful){
+                        if (it.isSuccessful) {
                             progressDialog.dismiss()
                             Toast.makeText(
                                 this,
@@ -276,7 +289,7 @@ class AddProduct : AppCompatActivity() {
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Toast.makeText(this,"Please Try Again",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please Try Again", Toast.LENGTH_SHORT).show()
         }
     }
 

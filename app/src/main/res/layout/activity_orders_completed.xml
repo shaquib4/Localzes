@@ -6,140 +6,147 @@
     android:layout_height="match_parent"
     tools:context=".OrdersCompletedActivity">
 
-   <RelativeLayout
-       android:id="@+id/rl_CompletedOrder"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imgBackCompletedOrders"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:src="@drawable/ic_back" />
-
-    <TextView
-        android:id="@+id/txtOFD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/_10sdp"
-        android:layout_toRightOf="@id/imgBackCompletedOrders"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Completed Orders"
-        android:textColor="#000000"
-        android:textSize="@dimen/_13ssp" />
-
-    <View
-        android:id="@id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/imgBackCompletedOrders"
-        android:background="#d3d3d3" />
-
     <RelativeLayout
-        android:id="@+id/rl_Completed_Orders"
+        android:id="@+id/rl_CompletedOrder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imgEmpty"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_empty" />
+            android:id="@+id/imgBackCompletedOrders"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_back" />
 
         <TextView
+            android:id="@+id/txtOFD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imgEmpty"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_toRightOf="@id/imgBackCompletedOrders"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No orders completed yet!"
-            android:textColor="#696969"
-            android:textSize="@dimen/_12ssp" />
+            android:text="Completed Orders"
+            android:textColor="#000000"
+            android:textSize="@dimen/_13ssp" />
+
+        <View
+            android:id="@id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/imgBackCompletedOrders"
+            android:background="#d3d3d3" />
+
+        <RelativeLayout
+            android:id="@+id/rl_Completed_Orders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imgEmpty"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_empty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgEmpty"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="No orders completed yet!"
+                android:textColor="#696969"
+                android:textSize="@dimen/_12ssp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/rl_create"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_below="@+id/view1"
+            android:background="@drawable/border"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:id="@+id/rl_cartCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="2sp"
+                android:layout_weight="1"
+                android:background="@drawable/stroke_solid_btn">
+
+                <TextView
+                    android:id="@+id/txtCartCompleted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Cart Orders"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/cartCompletedNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_toEndOf="@+id/txtCartCompleted"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="(1000)"
+                    android:textColor="#000"
+
+                    android:textSize="@dimen/_14ssp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_listCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:background="@drawable/stroke_solid_btn">
+
+                <TextView
+                    android:id="@+id/txtlistCompleted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="List Orders"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/listCompletedNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/txtlistCompleted"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="(1000)"
+                    android:textColor="#000"
+
+                    android:textSize="@dimen/_14ssp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerOrdersCompleted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view1"
+            android:visibility="gone"
+            tools:listitem="@layout/row_order_seller" />
     </RelativeLayout>
-       <LinearLayout
-           android:layout_below="@+id/view1"
-           android:orientation="horizontal"
-           android:id="@+id/rl_create"
-           android:layout_width="match_parent"
-           android:layout_height="@dimen/_45sdp"
-           android:weightSum="2"
-           android:background="@drawable/border">
-           <RelativeLayout
-               android:layout_marginStart="2sp"
-               android:id="@+id/rl_cartCompleted"
-               android:layout_width="wrap_content"
-               android:layout_gravity="center"
-               android:layout_height="@dimen/_33sdp"
-               android:background="@drawable/stroke_solid_btn"
-               android:layout_weight="1">
-               <TextView
-                   android:id="@+id/txtCartCompleted"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:fontFamily="@font/montserrat_medium"
-                   android:textColor="#000"
-                   android:textSize="@dimen/_14ssp"
-                   android:layout_centerVertical="true"
-                   android:layout_marginStart="@dimen/_10sdp"
-                   android:text="Cart Orders"/>
-               <TextView
-                   android:layout_toEndOf="@+id/txtCartCompleted"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:id="@+id/cartCompletedNo"
-                   android:fontFamily="@font/montserrat_medium"
-                   android:textColor="#000"
-                   android:textSize="@dimen/_14ssp"
-                   android:layout_centerVertical="true"
-                   android:layout_marginEnd="@dimen/_2sdp"
-
-                   android:text="(1000)"/>
-           </RelativeLayout>
-           <RelativeLayout
-               android:layout_marginStart="@dimen/_2sdp"
-               android:layout_marginEnd="@dimen/_2sdp"
-               android:id="@+id/rl_listCompleted"
-               android:layout_width="wrap_content"
-               android:layout_gravity="center"
-               android:layout_height="@dimen/_33sdp"
-               android:background="@drawable/stroke_solid_btn"
-               android:layout_weight="1">
-               <TextView
-                   android:id="@+id/txtlistCompleted"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:fontFamily="@font/montserrat_medium"
-                   android:textColor="#000"
-                   android:textSize="@dimen/_14ssp"
-                   android:layout_centerVertical="true"
-                   android:layout_marginStart="@dimen/_10sdp"
-                   android:text="Cart Orders"/>
-               <TextView
-                   android:layout_toEndOf="@+id/txtlistCompleted"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:id="@+id/listCompletedNo"
-                   android:fontFamily="@font/montserrat_medium"
-                   android:textColor="#000"
-                   android:textSize="@dimen/_14ssp"
-                   android:layout_centerVertical="true"
-
-                   android:text="(1000)"/>
-           </RelativeLayout>
-       </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerOrdersCompleted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view1"
-        android:visibility="gone"
-        tools:listitem="@layout/row_order_seller" />
-   </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_retryCompletedOrder"
