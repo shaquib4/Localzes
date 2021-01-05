@@ -74,14 +74,15 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             this.recreate()
         }
         val newReference =
-            FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString())
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+                .child(orderByTv.toString())
         newReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                customerMobileNo = snapshot.child("phone").value.toString()
+                customerMobileNo = snapshot.child("orderByMobile").value.toString()
             }
 
         })
@@ -441,8 +442,6 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     fun onCheckboxClicked(view: View) {
-        val databaseReference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("Seller")
         if (view is CheckBox) {
             val checked: Boolean = view.isChecked
             when (view.id) {
@@ -458,8 +457,8 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             val userMap = HashMap<String, Any>()
                             userMap["orderStatus"] = "Completed"
                             val databaseNewReference: DatabaseReference =
-                                FirebaseDatabase.getInstance().reference.child("Seller")
-                            databaseNewReference.child(uid).child(orderIdTv.toString())
+                                FirebaseDatabase.getInstance().reference.child("seller")
+                            databaseNewReference.child(uid).child("Orders").child(orderIdTv.toString())
                                 .updateChildren(userMap)
                             view.visibility = View.GONE
                             new.dismiss()

@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -84,14 +85,16 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
         orderId = intent.getStringExtra("orderId").toString()
         orderBy = intent.getStringExtra("orderBy").toString()
-        val newRef = FirebaseDatabase.getInstance().reference.child("users").child("orderBy")
+        val newRef =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+                .child(orderId)
         newRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                customerMobileNo = snapshot.child("phone").value.toString()
+                customerMobileNo = snapshot.child("orderByMobile").value.toString()
             }
 
         })
@@ -465,9 +468,43 @@ class ListOrderDetailSeller : AppCompatActivity() {
         Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
 
+
     override fun onBackPressed() {
         val intent = Intent(this, Home_seller::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun onListCheckboxClicked(view: View) {
+        if (view is CheckBox) {
+            val checked: Boolean = view.isChecked
+            when (view.id) {
+                R.id.checkbox_List_Completed -> {
+                    if (checked) {
+                        val builder = android.app.AlertDialog.Builder(this)
+                        val new = builder.show()
+                        builder.setTitle("Confirmation")
+                        builder.setMessage("Are you sure your order has been successfully completed")
+                        builder.setPositiveButton("Ok") { text, listener ->
+                            val user = shopAuth.currentUser
+                            val uid = user!!.uid
+                            val userMap = HashMap<String, Any>()
+                            userMap["orderStatus"] = "Completed"
+                            val databaseNewReference: DatabaseReference =
+                                FirebaseDatabase.getInstance().reference.child("seller")
+                            databaseNewReference.child(uid).child("OrdersLists").child(orderId)
+                                .updateChildren(userMap)
+                            view.visibility = View.GONE
+                            new.dismiss()
+                        }
+                        builder.setNegativeButton("Cancel") { text, listener ->
+                            view.isChecked = false
+                            new.dismiss()
+                        }
+                        builder.create().show()
+                    }
+                }
+            }
+        }
     }
 }

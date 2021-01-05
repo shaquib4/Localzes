@@ -5,335 +5,302 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OrdersDetailsSellerActivity">
-
     <RelativeLayout
         android:id="@+id/rl_ListSeller"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/rl_ListOrderDetails"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/rlAcceptConfirm"
-            android:layout_marginBottom="@dimen/_4sdp"
-            android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/rl_ListOrderDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rlAcceptConfirm"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:orientation="vertical">
 
-            <RelativeLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgBackListOrderDetails"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/txtCO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_toEndOf="@id/imgBackListOrderDetails"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Order Details"
+                android:textColor="#000000"
+                android:textSize="@dimen/_13ssp" />
+
+            <CheckBox
+                android:id="@+id/checkbox_Completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:onClick="onCheckboxClicked" />
+            <ImageView
+                android:id="@+id/imageMakeCallCustomer"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_25sdp"
+               android:layout_toRightOf="@+id/txtCO"
+                android:src="@drawable/ic_baseline_phone_24"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_3sdp"/>
+
+            <View
+                android:id="@id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/imgBackListOrderDetails"
+                android:background="#d3d3d3" />
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="3dp"
+            app:contentPadding="5dp">
+
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imgBackListOrderDetails"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:src="@drawable/ic_back" />
+                <TableRow>
 
-                <TextView
-                    android:id="@+id/txtCO"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:layout_toEndOf="@id/imgBackListOrderDetails"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Order Details"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_13ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Order Id :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
 
-                <CheckBox
-                    android:id="@+id/checkbox_Completed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:onClick="onCheckboxClicked" />
+                    <TextView
+                        android:id="@+id/txtListOrderId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="#123456"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
+                </TableRow>
 
-                <View
-                    android:id="@id/view1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/imgBackListOrderDetails"
-                    android:background="#d3d3d3" />
-            </RelativeLayout>
+                <TableRow>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="3dp"
-                app:contentPadding="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Date :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TableRow>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:text="Order Id :"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/_12ssp" />
-
-                        <TextView
-                            android:id="@+id/txtListOrderId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="#123456"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/_11ssp" />
-
-                        <ImageView
-                            android:id="@+id/imgListEdit"
-                            android:layout_width="@dimen/_25sdp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:src="@drawable/edit" />
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="Date :"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/_11ssp" />
-
-                        <TextView
-                            android:id="@+id/txtListOrderDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="27/02/2020, 9:45 PM"
-                            android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/txtListOrderDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="27/02/2020, 9:45 PM"
+                        android:textSize="@dimen/_10ssp" />
 
 
-                    </TableRow>
+                </TableRow>
 
-                    <TableRow>
+                <TableRow>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="Order Status :"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/_11ssp" />
-
-
-                        <TextView
-                            android:id="@+id/txtListOrderStatus"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="Pending"
-                            android:textColor="#008000"
-                            android:textSize="@dimen/_10ssp" />
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="Items :"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/_11ssp" />
-
-                        <TextView
-                            android:id="@+id/txtListItems"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="9"
-                            android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Order Status :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
 
-                    </TableRow>
+                    <TextView
+                        android:id="@+id/txtListOrderStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Pending"
+                        android:textColor="#008000"
+                        android:textSize="@dimen/_10ssp" />
 
-                    <TableRow>
+                </TableRow>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="Amount :"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/_11ssp" />
+                <TableRow>
 
-                        <TextView
-                            android:id="@+id/txtListOrderCost"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:text="Rs. 1,209/-"
-                            android:textColor="#008000"
-                            android:textSize="@dimen/_12ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Items :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="Delivery Address :"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/_11ssp"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/txtListOrderDeliveryAddress"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="Saraibika, Jaunpur UP - 222202"
-                            android:textSize="@dimen/_10ssp" />
-
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="5dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="Contact :"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/_11ssp"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/txtMobileNumber"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="(Call now)"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/_12ssp" />
+                    <TextView
+                        android:id="@+id/txtListItems"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="9"
+                        android:textSize="@dimen/_10ssp" />
 
 
-                        <ImageView
-                            android:id="@+id/imageMakeCallCustomer"
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="@dimen/_3sdp"
-                            android:src="@drawable/ic_baseline_phone_24" />
+                </TableRow>
 
+                <TableRow>
 
-                    </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Amount :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-                </TableLayout>
+                    <TextView
+                        android:id="@+id/txtListOrderCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="Rs. 1,209/-"
+                        android:textColor="#008000"
+                        android:textSize="@dimen/_12ssp" />
 
-            </androidx.cardview.widget.CardView>
+                </TableRow>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#d3d3d3" />
+                <TableRow>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center"
-                android:paddingVertical="@dimen/_8sdp"
-                android:text="Ordered Items"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000000"
-                android:textSize="@dimen/_12ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Delivery Address :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp"
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#d3d3d3" />
+                        />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerOrderedSellerItem"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:reverseLayout="true"
-                app:stackFromEnd="true"
-                tools:listitem="@layout/list_single_row_seller_order" />
+                    <TextView
+                        android:id="@+id/txtListOrderDeliveryAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Saraibika, Jaunpur UP - 222202"
+                        android:textSize="@dimen/_10ssp" />
 
-        </LinearLayout>
+                    <ImageView
+                        android:id="@+id/imgListEdit"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/edit" />
+                </TableRow>
+            </TableLayout>
 
-        <LinearLayout
-            android:id="@+id/rlAcceptConfirm"
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#d3d3d3" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginHorizontal="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_3sdp"
-            android:weightSum="2">
+            android:background="#ffffff"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="Ordered Items"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000000"
+            android:textSize="@dimen/_12ssp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#d3d3d3" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerOrderedSellerItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="true"
+            app:stackFromEnd="true"
+            tools:listitem="@layout/list_single_row_seller_order" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rlAcceptConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:weightSum="2">
 
 
-            <TextView
-                android:id="@+id/totalListCost"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_32sdp"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Rs.53"
 
-                android:textAlignment="center"
-                android:textSize="22sp" />
+        <TextView
+            android:id="@+id/totalListCost"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Rs.53"
 
-            <Button
-                android:id="@+id/acceptConfirm"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_32sdp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_buttons"
-                android:text="Accept and Confirm"
-                android:textAllCaps="false"
-                android:textColor="#fff"
-                android:textSize="@dimen/_16ssp" />
-        </LinearLayout>
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/acceptConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_buttons"
+            android:text="Accept and Confirm"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="@dimen/_16ssp" />
+    </LinearLayout>
     </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/rl_retryListOrderDetails"
         android:layout_width="match_parent"
