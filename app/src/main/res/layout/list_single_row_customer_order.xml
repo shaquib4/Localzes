@@ -16,7 +16,7 @@
         android:text="1."
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="@dimen/_16ssp" />
+        android:textSize="@dimen/_14ssp" />
 
     <TextView
         android:id="@+id/txtItem_NameCustomer"
@@ -28,8 +28,8 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="Aloo"
         android:textAlignment="center"
-        android:textColor="#000"
-        android:textSize="@dimen/_16ssp" />
+        android:textColor="#008000"
+        android:textSize="@dimen/_14ssp" />
 
     <TextView
         android:id="@+id/txtQuanCustomer"
@@ -41,8 +41,8 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="X8kg"
         android:textAlignment="center"
-        android:textColor="#000"
-        android:textSize="@dimen/_16ssp" />
+        android:textColor="#1589b6"
+        android:textSize="@dimen/_14ssp" />
 
     <TextView
         android:id="@+id/txtPriceCustomer"
@@ -54,8 +54,8 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="200"
         android:textAlignment="center"
-        android:textColor="#000"
-        android:textSize="@dimen/_16ssp" />
+        android:textColor="#de4500"
+        android:textSize="@dimen/_14ssp" />
 
 
 </LinearLayout>
