@@ -494,6 +494,31 @@
                             android:textColor="#0f0f0f"
                             android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp">
+
+
+                        <ImageView
+                            android:id="@+id/imgOthers"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:background="@drawable/ic_baseline_devices_other_24" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/imgOthers"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:gravity="center"
+                            android:text="Others"
+                            android:textAlignment="center"
+                            android:textColor="#0f0f0f"
+                            android:textSize="@dimen/_10ssp" />
+                    </RelativeLayout>
 
 
                 </LinearLayout>

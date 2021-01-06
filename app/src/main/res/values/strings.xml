@@ -44,6 +44,7 @@
         <item><font fontfamily="@font/montserrat_medium" size="14">Health Care</font></item>
         <item><font fontfamily="@font/montserrat_medium" size="14">Travel</font></item>
         <item><font fontfamily="@font/montserrat_medium" size="14">Gaming</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Others</font></item>
     </string-array>
 
     <string-array name="Spinner_Category">
@@ -63,6 +64,7 @@
         <item><font fontfamily="@font/montserrat_medium" size="14">Health Care</font></item>
         <item><font fontfamily="@font/montserrat_medium" size="14">Travel</font></item>
         <item><font fontfamily="@font/montserrat_medium" size="14">Gaming</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Others</font></item>
     </string-array>
     <string-array name="Spinner_Days">
         <item><font fontfamily="@font/montserrat_medium" size="16">None</font></item>
