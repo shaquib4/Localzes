@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="5dp"
         android:id="@+id/card1_customer"
-        android:layout_width="@dimen/_140sdp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/bg_product_shop">
