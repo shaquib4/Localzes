@@ -66,9 +66,14 @@ class Category : AppCompatActivity() {
                 val headers = HashMap<String, Any>()
                 headers["categoryId"] = timestamp
                 headers["category"] = selected
-                databaseReference.child(timestamp).setValue(headers)
-                Toast.makeText(this, "New Category Added", Toast.LENGTH_SHORT).show()
-                new.dismiss()
+                databaseReference.child(timestamp).setValue(headers).addOnCompleteListener {
+                    if(it.isSuccessful){
+                        Toast.makeText(this, "New Category Added", Toast.LENGTH_SHORT).show()
+                        new.dismiss()
+                        this.recreate()
+                    }
+                }
+
             }
             builder.setNegativeButton("Dismiss") { text, listener ->
                 new.dismiss()
