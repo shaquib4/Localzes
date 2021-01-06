@@ -77,11 +77,11 @@ class OrdersCompletedActivity : AppCompatActivity() {
         rl_listCompleted.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_CompletedOrder.visibility = View.VISIBLE
-                rl_retryAcceptedOrder.visibility = View.GONE
+                rl_retryCompletedOrder.visibility = View.GONE
                 completedListOrders()
             } else {
                 rl_CompletedOrder.visibility = View.GONE
-                rl_retryAcceptedOrder.visibility = View.VISIBLE
+                rl_retryCompletedOrder.visibility = View.VISIBLE
             }
         }
 
@@ -129,7 +129,7 @@ class OrdersCompletedActivity : AppCompatActivity() {
                         }
                     }
                     if (listOrders.isEmpty()) {
-                        recyclerShopOrders.visibility = View.GONE
+                        recyclerOrdersCompleted.visibility = View.GONE
                     } else {
                         orderCompleted.visibility = View.GONE
                         recyclerOrdersCompleted.visibility = View.VISIBLE

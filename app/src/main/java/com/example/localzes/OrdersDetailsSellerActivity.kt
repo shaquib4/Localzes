@@ -77,7 +77,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         }
         val newReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
-                .child(orderByTv.toString())
+                .child(orderIdTv.toString())
         newReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
