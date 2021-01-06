@@ -103,7 +103,7 @@ class Home : AppCompatActivity() {
             loadAllShops()
         }
         categoryGrocery.setOnClickListener {
-            loadShops("Groceries")
+            loadShops("Grocery")
         }
         categoryFood.setOnClickListener {
             loadShops("Food")

@@ -316,7 +316,6 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                             cPDB.toDouble(),
                                             finalPDB.toDouble(),
                                             finalQDB.toInt(),
-                                            holder.rating,
                                             holder.txtCounter,
                                             holder.addItem,
                                             sPDB.toDouble(),
@@ -346,7 +345,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                                 cost,
                                                 finalCost,
                                                 quantity,
-                                                holder.rating,
+
                                                 holder.txtCounter,
                                                 holder.addItem,
                                                 sellingP,
@@ -383,7 +382,6 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                                     cost,
                                                     finalCost,
                                                     quantity,
-                                                    holder.rating,
                                                     holder.txtCounter,
                                                     holder.addItem,
                                                     sellingP,
@@ -422,7 +420,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                 cost,
                                 finalCost,
                                 quantity,
-                                holder.rating,
+
                                 holder.txtCounter,
                                 holder.addItem,
                                 sellingP,
@@ -459,7 +457,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                     cost,
                                     finalCost,
                                     quantity,
-                                    holder.rating,
+
                                     holder.txtCounter,
                                     holder.addItem,
                                     sellingP,
@@ -572,7 +570,6 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         cost: Double,
         finalCost: Double,
         quantity: Int,
-        rating: TextView,
         txtCounter: TextView,
         addItem: Button,
         sellingP: Double,
@@ -689,7 +686,6 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         cost: Double,
         finalCost: Double,
         quantity: Int,
-        rating: TextView,
         txtCounter: TextView,
         addItem: Button,
         sellingP: Double,
@@ -740,7 +736,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val btnIncrease: Button = view.findViewById(R.id.btnIncrease_new)
         val btnDecrease: Button = view.findViewById(R.id.btnDecrease_new)
         val btnLinear: LinearLayout = view.findViewById(R.id.btnLinear)
-        val rating: TextView = view.findViewById(R.id.txtRatingShop_customer)
+    //    val rating: TextView = view.findViewById(R.id.txtRatingShop_customer)
         val txtCounter: TextView = view.findViewById(R.id.txtCounter)
         val stock: TextView = view.findViewById(R.id.txtStock_customer)
         val unfavorite: FloatingActionButton = view.findViewById(R.id.btnFavoriteItem)
