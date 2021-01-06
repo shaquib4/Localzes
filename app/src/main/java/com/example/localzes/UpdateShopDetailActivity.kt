@@ -34,6 +34,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private lateinit var shopNameUpdate: EditText
     private lateinit var upiIdUpdate: EditText
     private lateinit var btnUpdateDetails: Button
+    private lateinit var shopsCategory: Spinner
     private lateinit var spinnerOpen: Spinner
     private lateinit var spinnerClose: Spinner
     private lateinit var spinnerClosingDay: Spinner
@@ -53,31 +54,34 @@ class UpdateShopDetailActivity : AppCompatActivity() {
         spinnerClose = findViewById(R.id.spinner_close)
         spinnerOpen = findViewById(R.id.spinner_open)
         spinnerClosingDay = findViewById(R.id.spinner_closing_day)
+        shopsCategory = findViewById(R.id.spn_category)
         retryUpdateShops.setOnClickListener {
             this.recreate()
         }
 
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_updateShop.visibility= View.VISIBLE
-            rl_retryUpdateShop.visibility=View.GONE
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_updateShop.visibility = View.VISIBLE
+            rl_retryUpdateShop.visibility = View.GONE
             databaseRef.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val imageUrl = snapshot.child("imageUrl").value.toString()
-                val shopName = snapshot.child("shop_name").value.toString()
-                val shopCategory = snapshot.child("category1").value.toString()
-                val upiId = snapshot.child("upi").value.toString()
-                Picasso.get().load(imageUrl).into(imageShopUpdate)
-                shopNameUpdate.setText(shopName)
-                upiIdUpdate.setText(upiId)
-            }
-        })}else{
-            rl_updateShop.visibility= View.GONE
-            rl_retryUpdateShop.visibility=View.VISIBLE
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val imageUrl = snapshot.child("imageUrl").value.toString()
+                    val shopName = snapshot.child("shop_name").value.toString()
+                    val shopCategory = snapshot.child("category1").value.toString()
+                    val upiId = snapshot.child("upi").value.toString()
+                    Picasso.get().load(imageUrl).into(imageShopUpdate)
+                    shopNameUpdate.setText(shopName)
+                    upiIdUpdate.setText(upiId)
+                    shopsCategory.setSelection(getIndex(shopsCategory, shopCategory))
+                }
+            })
+        } else {
+            rl_updateShop.visibility = View.GONE
+            rl_retryUpdateShop.visibility = View.VISIBLE
         }
 
         imageShopUpdate.setOnClickListener {
@@ -88,15 +92,16 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                 shopNameUpdate.error = "Please Enter Shop Name"
                 return@setOnClickListener
             } else {
-                if (ConnectionManager().checkConnectivity(this)){
-                    rl_updateShop.visibility= View.VISIBLE
-                    rl_retryUpdateShop.visibility=View.GONE
+                if (ConnectionManager().checkConnectivity(this)) {
+                    rl_updateShop.visibility = View.VISIBLE
+                    rl_retryUpdateShop.visibility = View.GONE
                     updateData()
-                val intent = Intent(this, Home_seller::class.java)
-                startActivity(intent)
-                finish()}else{
-                    rl_updateShop.visibility= View.GONE
-                    rl_retryUpdateShop.visibility=View.VISIBLE
+                    val intent = Intent(this, Home_seller::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    rl_updateShop.visibility = View.GONE
+                    rl_retryUpdateShop.visibility = View.VISIBLE
                 }
             }
 
@@ -237,6 +242,15 @@ class UpdateShopDetailActivity : AppCompatActivity() {
             .setAspectRatio(16, 11)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
+    }
+
+    private fun getIndex(mySpinner: Spinner, myValue: String): Int {
+        for (i in 0 until mySpinner.count) {
+            if (mySpinner.getItemAtPosition(i).toString().equals(myValue, ignoreCase = true)) {
+                return i
+            }
+        }
+        return 0
     }
 
     override fun onBackPressed() {

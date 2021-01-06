@@ -239,7 +239,8 @@ class UserProductsActivity : AppCompatActivity() {
                                 i.child("offerPrice").value.toString(),
                                 i.child("unit").value.toString(),
                                 i.child("quantity").value.toString(),
-                                i.child("stock").value.toString()
+                                i.child("stock").value.toString(),
+                                i.child("sizeAvailable").value.toString()
                             )
                             (mUserProducts as ArrayList<ModelAddProduct>).add(obj)
 
@@ -375,7 +376,8 @@ class UserProductsActivity : AppCompatActivity() {
                             i.child("offerPrice").value.toString(),
                             i.child("unit").value.toString(),
                             i.child("quantity").value.toString(),
-                            i.child("stock").value.toString()
+                            i.child("stock").value.toString(),
+                            i.child("sizeAvailable").value.toString()
                         )
                         (mUserProducts as ArrayList<ModelAddProduct>).add(obj)
 

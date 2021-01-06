@@ -38,7 +38,9 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     private lateinit var quantityUpdate: EditText
     private lateinit var unitUpdate: Spinner
     private lateinit var updateProduct: Button
-    private lateinit var radioGroup: RadioGroup
+    private lateinit var etSizesAvailable: EditText
+    private var categorySelect: String? = "120"
+    private lateinit var llSizes: LinearLayout
     var thumb_Bitmap: Bitmap? = null
     var imgUrl: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,44 +58,62 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         unitUpdate = findViewById(R.id.sp_unit_update)
         quantityUpdate = findViewById(R.id.etQuantityUpdate)
         updateProduct = findViewById(R.id.btnUpdateProduct)
-        radioGroup = findViewById(R.id.radioStockCustomer)
+        etSizesAvailable = findViewById(R.id.etAvailableSizes)
+        llSizes = findViewById(R.id.linearLayout5)
+        llSizes.visibility = View.GONE
         retryUpdateProductDetail.setOnClickListener {
             this.recreate()
         }
-
         productId = intent.getStringExtra("productId")
+/*        categorySelect=intent.getStringExtra("")
+        if (categoryUpdate.selectedItem == "Fashion") {
+
+
+        }*/
+
         databaseRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_retryUpdateProductDetail.visibility= View.GONE
-            rl_productDetail.visibility=View.VISIBLE
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_retryUpdateProductDetail.visibility = View.GONE
+            rl_productDetail.visibility = View.VISIBLE
             databaseRef.child("Products").child(productId.toString())
-            .addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val imageUrl = snapshot.child("imageUrl").value.toString()
-                    val title = snapshot.child("title").value.toString()
-                    val description = snapshot.child("description").value.toString()
-                    val mrp = snapshot.child("sellingPrice").value.toString()
-                    val sellingPrice = snapshot.child("offerPrice").value.toString()
-                    val unit = snapshot.child("unit").value.toString()
-                    val quantity = snapshot.child("quantity").value.toString()
-                    Picasso.get().load(imageUrl).into(imageUpdate)
-                    productName.setText(title)
-                    if (description != null) {
-                        descriptionUpdate.setText(description)
-                    } else {
-                        descriptionUpdate.setText("")
                     }
-                    sellPriceUpdate.setText(mrp)
-                    offerPriceUpdate.setText(sellingPrice)
-                    quantityUpdate.setText(quantity)
-                }
-            })}else{
-            rl_retryUpdateProductDetail.visibility= View.VISIBLE
-            rl_productDetail.visibility=View.GONE
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val imageUrl = snapshot.child("imageUrl").value.toString()
+                        val title = snapshot.child("title").value.toString()
+                        val description = snapshot.child("description").value.toString()
+                        val mrp = snapshot.child("sellingPrice").value.toString()
+                        val sellingPrice = snapshot.child("offerPrice").value.toString()
+                        val unit = snapshot.child("unit").value.toString()
+                        val quantity = snapshot.child("quantity").value.toString()
+                        val categoryGiven = snapshot.child("productCategory").value.toString()
+                        val availableSize = snapshot.child("sizeAvailable").value.toString()
+                        Picasso.get().load(imageUrl).into(imageUpdate)
+                        productName.setText(title)
+                        if (description != null) {
+                            descriptionUpdate.setText(description)
+                        } else {
+                            descriptionUpdate.setText("")
+                        }
+                        if (categoryGiven == "Fashion") {
+                            llSizes.visibility = View.VISIBLE
+                            categoryUpdate.setSelection(getIndex(categoryUpdate, categoryGiven))
+                            etSizesAvailable.setText(availableSize)
+                        } else {
+                            llSizes.visibility = View.GONE
+                            categoryUpdate.setSelection(getIndex(categoryUpdate, categoryGiven))
+                        }
+                        sellPriceUpdate.setText(mrp)
+                        offerPriceUpdate.setText(sellingPrice)
+                        quantityUpdate.setText(quantity)
+                    }
+                })
+        } else {
+            rl_retryUpdateProductDetail.visibility = View.VISIBLE
+            rl_productDetail.visibility = View.GONE
         }
         imageUpdate.setOnClickListener {
             startImageChooser()
@@ -118,17 +138,18 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 else -> {
-                    if (ConnectionManager().checkConnectivity(this)){
-                        rl_retryUpdateProductDetail.visibility= View.GONE
-                        rl_productDetail.visibility=View.VISIBLE
+                    if (ConnectionManager().checkConnectivity(this)) {
+                        rl_retryUpdateProductDetail.visibility = View.GONE
+                        rl_productDetail.visibility = View.VISIBLE
 
                         updateData()
-                    val intent = Intent(this, Seller_Products::class.java)
-                    startActivity(intent)
-                    finish()}else{
+                        val intent = Intent(this, Seller_Products::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
 
-                        rl_retryUpdateProductDetail.visibility= View.VISIBLE
-                        rl_productDetail.visibility=View.GONE
+                        rl_retryUpdateProductDetail.visibility = View.VISIBLE
+                        rl_productDetail.visibility = View.GONE
                     }
                 }
             }
@@ -210,6 +231,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
             headers["title"] = productName.text.toString().trim()
             headers["unit"] = unitUpdate.selectedItem.toString().trim()
             headers["description"] = descriptionUpdate.text.toString().trim()
+            headers["sizeAvailable"] = etSizesAvailable.text.toString().trim()
             databaseRef.child("Products").child(productId.toString()).updateChildren(headers)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Item Updated Successfully", Toast.LENGTH_SHORT)
@@ -274,6 +296,15 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     }
             }
         }
+    }
+
+    private fun getIndex(mySpinner: Spinner, myValue: String): Int {
+        for (i in 0 until mySpinner.count) {
+            if (mySpinner.getItemAtPosition(i).toString().equals(myValue, ignoreCase = true)) {
+                return i
+            }
+        }
+        return 0
     }
 
     override fun onBackPressed() {
