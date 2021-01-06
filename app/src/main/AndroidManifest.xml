@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -30,39 +30,102 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".RegisterDetailDelivery"></activity>
-        <activity android:name=".UserListOrderDetails" />
-        <activity android:name=".CurrentUserOrder" />
-        <activity android:name=".CartVsList" />
-        <activity android:name=".ListOrders" />
-        <activity android:name=".ListOrderDetailSeller" />
-        <activity android:name=".CreateList" />
-        <activity android:name=".CatalogueActivity" />
-        <activity android:name=".ShopBanner" />
-        <activity android:name=".generateQRcode" />
-        <activity android:name=".cardBanners" />
-        <activity android:name=".SplashScreenActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".continue_payment" />
-        <activity android:name=".Category" />
-        <activity android:name=".OrdersSeller" />
-        <activity android:name=".PagerActivity" />
-        <activity android:name=".AccountsSeller" />
-        <activity android:name=".OrdersDetailsUserActivity" />
-        <activity android:name=".UpdateShopDetailActivity" />
-        <activity android:name=".UpdateProductDetailsActivity" />
-        <activity android:name=".NewActivity" />
-        <activity android:name=".PaymentActivity" />
-        <activity android:name=".CurrentOrdersActivity" />
-        <activity android:name=".OrdersCompletedActivity" />
-        <activity android:name=".OrderOutForDeliveryActivity" />
-        <activity android:name=".OrdersAcceptedActivity" />
-        <activity android:name=".PastOrdersActivity" />
-        <activity android:name=".OrdersDetailsSellerActivity" />
-        <activity android:name=".SellerOrdersActivity" />
-        <activity android:name=".ManageAddress" />
+        <activity
+            android:name=".RegisterDetailDelivery"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserListOrderDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CurrentUserOrder"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CartVsList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListOrders"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListOrderDetailSeller"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreateList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CatalogueActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ShopBanner"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".generateQRcode"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".cardBanners"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".continue_payment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Category"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrdersSeller"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AccountsSeller"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrdersDetailsUserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UpdateShopDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UpdateProductDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CurrentOrdersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrdersCompletedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrderOutForDeliveryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrdersAcceptedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PastOrdersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrdersDetailsSellerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SellerOrdersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ManageAddress"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -78,31 +141,62 @@
 
         <activity
             android:name=".MapsActivity_New"
-            android:label="@string/title_activity_maps__new" />
-        <activity android:name=".UserProductsActivity" />
-        <activity android:name=".Seller_Products" />
-        <activity android:name=".AddProduct" />
-        <activity android:name=".SellerShop_detail" />
+            android:label="@string/title_activity_maps__new"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserProductsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Seller_Products"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddProduct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SellerShop_detail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MapsActivity2"
-            android:label="@string/title_activity_maps2" />
-        <activity android:name=".Home_seller" />
-        <activity android:name=".Registerdetails_seller" />
-        <activity android:name=".Registerdetails" />
-        <activity android:name=".Accounts" />
-        <activity android:name=".Search" />
-        <activity android:name=".Cart" />
-        <activity android:name=".Home" />
-        <activity android:name=".Continueas" />
-        <activity android:name=".Verify" />
+            android:label="@string/title_activity_maps2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Home_seller"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Registerdetails_seller"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Registerdetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Accounts"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Search"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Cart"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Continueas"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Verify"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity android:name=".IntroSliderActivity">
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".IntroSliderActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

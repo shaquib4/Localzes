@@ -59,10 +59,11 @@ class AdapterSellerProducts(
 
     override fun onBindViewHolder(holder: HolderProduct, position: Int) {
         val products = products_seller[position]
-       try{ Glide.with(context).load(products.imageUrl).into(holder.imgProduct)}
-       catch (e:Exception){
-           e.printStackTrace()
-       }
+        try {
+            Glide.with(context).load(products.imageUrl).into(holder.imgProduct)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         holder.txtProductTitle.text =
             products.title.substring(0, 1).toUpperCase() + products.title.substring(1)
         holder.txtProductPrice.text = "₹${products.offerPrice}"
@@ -137,6 +138,7 @@ class AdapterSellerProducts(
             )
             intent.putExtra("productId", products.productId)
             context.startActivity(intent)
+            (context as Seller_Products).finish()
         }
         holder.imgRemove.setOnClickListener {
             deleteProduct(position)
