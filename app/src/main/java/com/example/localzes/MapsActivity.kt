@@ -165,7 +165,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                 edtLocality.error = "Please Enter Your Locality"
                 return@setOnClickListener
             }
-            if (edtNearestLandmark.text.toString().isEmpty()) {
+            else if (edtNearestLandmark.text.toString().isEmpty()) {
                 edtNearestLandmark.error = "Please Enter Your nearest Landmark"
                 return@setOnClickListener
             } else {
