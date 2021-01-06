@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrdersDetailsSellerActivity">
+    tools:context=".ListOrderDetailSeller">
     <RelativeLayout
         android:id="@+id/rl_ListSeller"
         android:layout_width="match_parent"
@@ -41,12 +41,12 @@
                 android:textSize="@dimen/_13ssp" />
 
             <CheckBox
-                android:id="@+id/checkbox_Completed"
+                android:id="@+id/checkbox_List_Completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:onClick="onCheckboxClicked" />
+                android:onClick="onListCheckboxClicked" />
 
 
             <View
@@ -232,7 +232,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Cantact seller :"
+                        android:text="Contact customer :"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp"
 

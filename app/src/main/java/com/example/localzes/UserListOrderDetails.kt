@@ -3,11 +3,11 @@ package com.example.localzes
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +38,7 @@ class UserListOrderDetails : AppCompatActivity() {
     private var REQUEST_CALL = 1
     private var shopMobileNumber: String = ""
     private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
+    private lateinit var imgBackListUser:ImageView
     private lateinit var imgMakePhone: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,7 @@ class UserListOrderDetails : AppCompatActivity() {
         shopAddressOrder = findViewById(R.id.txtOrderListShopAddressUser)
         recyclerOrderList = findViewById(R.id.recycler_order_list_users)
         imgMakePhone = findViewById(R.id.imageMakeCallList)
+        imgBackListUser=findViewById(R.id.imgListBackOrderDetails)
         recyclerOrderList.layoutManager = LinearLayoutManager(this)
         orderedItemList = ArrayList<ModelList>()
         orderId = intent.getStringExtra("orderId")
@@ -64,6 +66,11 @@ class UserListOrderDetails : AppCompatActivity() {
                 .child(orderId.toString())
         imgMakePhone.setOnClickListener {
             makePhoneCall()
+        }
+        imgBackListUser.setOnClickListener {
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+            finish()
         }
         databaseReference.child("ListItems").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
