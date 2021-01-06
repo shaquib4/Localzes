@@ -172,15 +172,23 @@
                     android:textSize="@dimen/_10ssp" />
 
 
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/textview_border"
+                    android:layout_height="wrap_content">
                 <Spinner
                     android:id="@+id/sp_spinner_add"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/_32sdp"
-                    android:layout_marginEnd="20dp"
+
                     android:layout_weight="1"
-                    android:background="@drawable/textview_border"
+
                     android:entries="@array/Spinner_Item1"
                     android:textAlignment="center" />
+                </RelativeLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -292,41 +300,26 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="Stock"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/_12ssp" />
-                </RelativeLayout>
-
-                <RadioGroup
-                    android:id="@+id/radioStock"
+                <TextView
+                    android:layout_marginStart="20dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:text="IN"
-                        />
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:text="OUT" />
-                </RadioGroup>
+                    android:text="Size"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_10ssp"/>
+                <EditText
+                    android:layout_weight="1"
+                    android:hint="Example: XS,S,M,L..."
+                    android:textSize="@dimen/_10ssp"
+                    android:textAlignment="center"
+                    android:paddingHorizontal="5dp"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/textview_border"
+                    android:layout_height="@dimen/_32sdp"
+                    />
 
             </LinearLayout>
 
