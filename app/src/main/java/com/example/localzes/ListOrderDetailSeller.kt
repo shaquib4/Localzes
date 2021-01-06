@@ -40,6 +40,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var deliveryAddressTv: TextView
     private lateinit var recyclerOrderedList: RecyclerView
     private lateinit var adapterListOrder: AdapterSellerListOrder
+    private lateinit var imgBackList: ImageView
     private lateinit var shopAuth: FirebaseAuth
     private lateinit var imgListEdit: ImageView
     private lateinit var list: List<ModelList>
@@ -70,6 +71,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         imgMakeCustomerCall = findViewById(R.id.imageMakeCallCustomer)
         checkboxListComplete = findViewById(R.id.checkbox_List_Completed)
         imgListEdit = findViewById(R.id.imgListEdit)
+        imgBackList = findViewById(R.id.imgBackListOrderDetails)
         totalListCost = findViewById(R.id.totalListCost)
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
@@ -100,6 +102,11 @@ class ListOrderDetailSeller : AppCompatActivity() {
             }
 
         })
+        imgBackList.setOnClickListener {
+            val intent = Intent(this, Home_seller::class.java)
+            startActivity(intent)
+            finish()
+        }
         imgMakeCustomerCall.setOnClickListener {
             makePhoneCallCustomer()
         }

@@ -41,14 +41,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:onClick="onCheckboxClicked" />
-            <ImageView
-                android:layout_centerVertical="true"
-                android:id="@+id/imgMakeCallCustomer"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:src="@drawable/ic_baseline_phone_24"
-                android:layout_toRightOf="@id/txtCO"
-                android:layout_marginRight="@dimen/_3sdp"/>
 
             <View
                 android:id="@id/view1"
@@ -222,6 +214,40 @@
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp"
                         android:src="@drawable/edit" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Contact customer :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/txtCallNow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="(Call Now)"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <ImageView
+                        android:id="@+id/imgMakeCallCustomer"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/ic_baseline_phone_24" />
+
                 </TableRow>
             </TableLayout>
 

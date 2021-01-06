@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.*
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterSellerProducts
@@ -36,7 +37,7 @@ class Seller_Products : AppCompatActivity() {
         //  txtAddProduct=findViewById(R.id.add)
         relativeAddProduct = findViewById(R.id.rl_Add_Products)
         category = intent.getStringExtra("category")
-        recyclerSellerProducts.layoutManager = LinearLayoutManager(this)
+        recyclerSellerProducts.layoutManager = GridLayoutManager(this, 2)
         auth = FirebaseAuth.getInstance()
         search = findViewById(R.id.searchShopProduct)
         val user = auth.currentUser
