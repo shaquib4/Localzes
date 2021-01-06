@@ -91,7 +91,6 @@
                 android:textSize="@dimen/_10ssp" />-->
 
             <Button
-                android:visibility="invisible"
                 android:id="@+id/btnAddItem"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_20sdp"
@@ -161,6 +160,7 @@
 
 
             <LinearLayout
+                android:visibility="invisible"
 
                 android:id="@+id/btnLinear"
                 android:layout_below="@id/txtProductPrice_customer"
