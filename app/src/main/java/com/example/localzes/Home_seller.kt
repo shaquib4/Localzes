@@ -2,7 +2,6 @@ package com.example.localzes
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -44,6 +43,10 @@ class Home_seller : AppCompatActivity() {
         totalOrders = findViewById(R.id.txtTO)
         totalIncome = findViewById(R.id.txtTI)
         // storeViews=findViewById(R.id.txtSV)
+        ordersAccepted = findViewById(R.id.txtItemAccepted)
+        ordersOutForDelivery = findViewById(R.id.txtItemOFD)
+        ordersCompleted = findViewById(R.id.txtItemActive)
+        ordersPending = findViewById(R.id.txtItemPending)
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
