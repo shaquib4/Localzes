@@ -45,12 +45,14 @@ class Seller_Products : AppCompatActivity() {
         if (category.toString() == null) {
             additem.setOnClickListener {
                 startActivity(Intent(this, AddProduct::class.java))
+                finish()
             }
         } else {
             additem.setOnClickListener {
                 val intent = Intent(this, AddProduct::class.java)
                 intent.putExtra("categoryAdd", category.toString())
                 startActivity(intent)
+                finish()
             }
         }
 
