@@ -43,8 +43,8 @@
             <ImageView
                 android:id="@+id/imgProduct_customer"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_140sdp"
-                android:scaleType="fitXY"
+                android:layout_height="@dimen/_130sdp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/lanju" />
 
             <View
@@ -58,16 +58,17 @@
                 android:id="@+id/txtStock_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtProductOfferPrice"
-                android:layout_alignStart="@id/txtProductPrice_customer"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_alignParentEnd="true"
+              android:layout_alignTop="@id/txtProductPrice_customer"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Stock: IN "
                 android:textColor="#3498db"
                 android:textSize="@dimen/_10ssp" />
 
-            <ImageView
+
+
+           <!-- <ImageView
                 android:id="@+id/imgRating_customer"
                 android:layout_marginTop="5dp"
                 android:layout_width="@dimen/_15sdp"
@@ -87,20 +88,21 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="4.5/5"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_10ssp" />-->
 
             <Button
+                android:visibility="invisible"
                 android:id="@+id/btnAddItem"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_alignTop="@+id/txtStock_customer"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_below="@id/txtProductPrice_customer"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/bg_add_item"
                 android:elevation="0dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
-                android:layout_marginBottom="5dp"
+
+                android:layout_margin="10dp"
                 android:text="Add +"
                 android:textAllCaps="false"
                 android:textColor="#de4500"
@@ -109,9 +111,8 @@
 
 
             <TextView
-                android:layout_toLeftOf="@id/imgRating_customer"
                 android:id="@+id/txtProductTitle_customer"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/v1"
@@ -145,11 +146,12 @@
 
             <TextView
                 android:paddingHorizontal="5dp"
+                android:layout_toLeftOf="@id/txtStock_customer"
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/txtProductPrice_customer"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="2dp"
                 android:layout_toEndOf="@id/txtProductPrice_customer"
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingVertical="@dimen/_2sdp"
@@ -159,14 +161,13 @@
 
 
             <LinearLayout
-                android:visibility="invisible"
+
                 android:id="@+id/btnLinear"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_alignTop="@id/txtStock_customer"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_below="@id/txtProductPrice_customer"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+              android:layout_margin="10dp"
                 android:background="#ffffff"
                 android:orientation="horizontal"
                 android:weightSum="8">
