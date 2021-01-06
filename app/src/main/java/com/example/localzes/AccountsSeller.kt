@@ -1,18 +1,20 @@
 package com.example.localzes
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.example.localzes.Adapters.ExpandableListViewAdapterSeller
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_accounts.expand
 import kotlinx.android.synthetic.main.activity_accounts_seller.*
-import java.util.ArrayList
+import java.util.*
+import kotlin.collections.HashMap
+import kotlin.collections.List
+import kotlin.collections.MutableList
+import kotlin.collections.set
 
 class AccountsSeller : AppCompatActivity() {
     private lateinit var listViewAdapter: ExpandableListViewAdapterSeller
