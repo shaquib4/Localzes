@@ -3,7 +3,10 @@ package com.example.localzes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +30,8 @@ class SellerOrdersActivity : AppCompatActivity() {
     private lateinit var relativeOrders: RelativeLayout
     private lateinit var listAdapter: AdapterListOrder
     private lateinit var listOrders: List<ModalSellerOrderList>
+    private lateinit var rl_search_Pending: EditText
+    private lateinit var rl_search_Pending1: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_orders)
@@ -34,13 +39,41 @@ class SellerOrdersActivity : AppCompatActivity() {
         imgBackPending = findViewById(R.id.imgBackPending)
         relativeOrders = findViewById(R.id.rl_Pending_Orders)
         listOrders = ArrayList<ModalSellerOrderList>()
-
-
+        rl_search_Pending = findViewById(R.id.search_act_Pending)
+        rl_search_Pending1 = findViewById(R.id.search_act_Pending1)
         recyclerShopOrders.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
         mSellerOrders = ArrayList<ModelOrderDetails>()
+        rl_search_Pending.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchCartOrders(s.toString())
+            }
+
+        })
+        rl_search_Pending1.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchListOrders(s.toString())
+            }
+
+        })
         sellerOrderDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
         sellerOrderDatabase.child("Orders").orderByChild("orderStatus").equalTo("Pending")
@@ -64,10 +97,11 @@ class SellerOrdersActivity : AppCompatActivity() {
                 }
             })
         rl_cartPending.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
+            if (ConnectionManager().checkConnectivity(this)) {
                 rl_pending.visibility = View.VISIBLE
                 rl_Seller_Orders_retry.visibility = View.GONE
-            pendingCartOrder()}else{
+                pendingCartOrder()
+            } else {
                 rl_pending.visibility = View.GONE
                 rl_Seller_Orders_retry.visibility = View.VISIBLE
             }
@@ -75,19 +109,56 @@ class SellerOrdersActivity : AppCompatActivity() {
         rl_listPending.setOnClickListener {
             rl_pending.visibility = View.VISIBLE
             rl_Seller_Orders_retry.visibility = View.GONE
-            if (ConnectionManager().checkConnectivity(this)){
-                   pendingListOrder() }else{
+            if (ConnectionManager().checkConnectivity(this)) {
+                pendingListOrder()
+            } else {
                 rl_pending.visibility = View.GONE
                 rl_Seller_Orders_retry.visibility = View.VISIBLE
             }
         }
-
 
         imgBackPending.setOnClickListener {
             val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun searchListOrders(str: String) {
+        val user = auth.currentUser
+        val uid = user!!.uid
+        val querySellerDatabase =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+                .orderByChild("orderId").startAt(str).endAt(str + "\uf8ff")
+        querySellerDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (listOrders as ArrayList<ModalSellerOrderList>).clear()
+                for (i in snapshot.children) {
+                    val obj = ModalSellerOrderList(
+                        i.child("orderId").value.toString(),
+                        i.child("orderTime").value.toString(),
+                        i.child("orderStatus").value.toString(),
+                        i.child("orderCost").value.toString(),
+                        i.child("orderBy").value.toString(),
+                        i.child("orderTo").value.toString(),
+                        i.child("deliveryAddress").value.toString(),
+                        i.child("totalItems").value.toString(),
+                        i.child("listStatus").value.toString(),
+                        i.child("orderByName").value.toString(),
+                        i.child("orderByMobile").value.toString()
+                    )
+                    if (i.child("orderStatus").value.toString() == "Pending") {
+                        (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
+                    }
+                }
+                listAdapter = AdapterListOrder(this@SellerOrdersActivity, listOrders)
+                recyclerShopOrders.adapter = listAdapter
+            }
+        })
     }
 
     private fun pendingListOrder() {
@@ -192,6 +263,48 @@ class SellerOrdersActivity : AppCompatActivity() {
         }
     }
 
+    private fun searchCartOrders(str: String) {
+        val user = auth.currentUser
+        val uid = user!!.uid
+        val querySellerDatabase =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+                .orderByChild("orderId").startAt(str).endAt(str + "\uf8ff")
+        querySellerDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (listOrders as ArrayList<ModalSellerOrderList>).clear()
+                for (i in snapshot.children) {
+                    val obj = ModalSellerOrderList(
+                        i.child("orderId").value.toString(),
+                        i.child("orderTime").value.toString(),
+                        i.child("orderStatus").value.toString(),
+                        i.child("orderCost").value.toString(),
+                        i.child("orderBy").value.toString(),
+                        i.child("orderTo").value.toString(),
+                        i.child("deliveryAddress").value.toString(),
+                        i.child("totalItems").value.toString(),
+                        i.child("listStatus").value.toString(),
+                        i.child("orderByName").value.toString(),
+                        i.child("orderByMobile").value.toString()
+                    )
+                    if (i.child("orderStatus").value.toString() == "Pending") {
+                        (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
+                    }
+                }
+                sellerOrderAdapter =
+                    AdapterSellerOrders(
+                        this@SellerOrdersActivity,
+                        mSellerOrders
+                    )
+                recyclerShopOrders.adapter = sellerOrderAdapter
+            }
+
+        })
+    }
+
     override fun onBackPressed() {
         val intent = Intent(this, Home_seller::class.java)
         startActivity(intent)
@@ -200,10 +313,11 @@ class SellerOrdersActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (ConnectionManager().checkConnectivity(this)){
+        if (ConnectionManager().checkConnectivity(this)) {
             rl_pending.visibility = View.VISIBLE
             rl_Seller_Orders_retry.visibility = View.GONE
-            pendingCartOrder()}else{
+            pendingCartOrder()
+        } else {
             rl_pending.visibility = View.GONE
             rl_Seller_Orders_retry.visibility = View.VISIBLE
         }
