@@ -137,6 +137,7 @@ class AdapterSellerProducts(
                 UpdateProductDetailsActivity::class.java
             )
             intent.putExtra("productId", products.productId)
+            intent.putExtra("productCat",products.productCategory)
             context.startActivity(intent)
             (context as Seller_Products).finish()
         }

@@ -50,6 +50,7 @@ class Home : AppCompatActivity() {
     private lateinit var categoryHealth: ImageView
     private lateinit var categoryTravel: ImageView
     private lateinit var categoryGaming: ImageView
+    private lateinit var categoryOthers: ImageView
     private var currentCity: String = ""
     private var cate: String = ""
     private var backPressedTime = 0L
@@ -77,6 +78,7 @@ class Home : AppCompatActivity() {
         categoryTravel = findViewById(R.id.imgTravel)
         categoryGaming = findViewById(R.id.imgGaming)
         categoryAll = findViewById(R.id.imgAll)
+        categoryOthers = findViewById(R.id.imgOthers)
         retry.setOnClickListener {
             this.recreate()
         }
@@ -137,6 +139,19 @@ class Home : AppCompatActivity() {
         }
         categoryFitness.setOnClickListener {
             loadShops("Fitness")
+        }
+        categoryHealth.setOnClickListener {
+            loadShops("Health")
+
+        }
+        categoryTravel.setOnClickListener {
+            loadShops("Travel")
+        }
+        categoryGaming.setOnClickListener {
+            loadShops("Gaming")
+        }
+        categoryOthers.setOnClickListener {
+            loadShops("Others")
         }
         imgScan.setOnClickListener {
             val scanner = IntentIntegrator(this)
