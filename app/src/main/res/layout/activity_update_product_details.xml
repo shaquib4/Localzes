@@ -307,6 +307,7 @@
                             android:textAlignment="center"
                             android:paddingHorizontal="5dp"
                             android:layout_width="0dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginEnd="20dp"
                             android:background="@drawable/textview_border"
                             android:layout_height="@dimen/_32sdp"

@@ -18,6 +18,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgShop"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
@@ -43,7 +44,7 @@
                 android:layout_below="@+id/view_customer"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Elecronics Accessoies"
+                android:text="@string/electronics_accessories"
                 android:textColor="#000"
                 android:textSize="@dimen/_12ssp" />
 
@@ -56,7 +57,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Stock: IN "
+                android:text="@string/stock_in"
                 android:textColor="#3498db"
                 android:textSize="@dimen/_10ssp" />
 
@@ -67,17 +68,18 @@
                 android:layout_below="@+id/txtShop_name"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Rs. 699"
+                android:text="@string/rs_699"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_12ssp" />
 
-            <ImageView
+           <!-- <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgRating_customer"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
                 android:layout_below="@id/imgShop"
                 android:layout_marginTop="15dp"
-                android:layout_toLeftOf="@+id/txtRatingShop_customer"
+                android:layout_toStartOf="@+id/txtRatingShop_customer"
                 android:src="@drawable/ic_rating" />
 
             <TextView
@@ -88,9 +90,9 @@
                 android:layout_alignTop="@+id/imgRating_customer"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
-                android:text="4.5/5"
+                android:text="@string/_4_5_5"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_11ssp" />-->
 
             <TextView
                 android:fontFamily="@font/montserrat_medium"
@@ -98,7 +100,7 @@
                 android:layout_height="@dimen/_12sdp"
                 android:layout_toEndOf="@+id/txtCategory"
                 android:layout_alignBottom="@+id/txtCategory"
-                android:text="Rs. 1099"
+                android:text="@string/rs_1099"
                 android:layout_marginBottom="@dimen/_2sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:textSize="@dimen/_10ssp" />
@@ -109,7 +111,7 @@
            android:layout_alignBottom="@id/txtCategory"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_marginBottom="@dimen/_6sdp"
-             android:layout_toRightOf="@+id/txtCategory"
+             android:layout_toEndOf="@+id/txtCategory"
                 android:background="#696969" />
 
         </RelativeLayout>

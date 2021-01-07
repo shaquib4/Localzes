@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="vertical"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,41 +16,43 @@
             android:id="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" "
+            android:text="@string/space"
             android:textAllCaps="true"
             android:textSize="@dimen/_15ssp"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            tools:ignore="RelativeOverlap" />
         <TextView
             android:id="@+id/txtaccEdit"
             android:layout_marginTop="@dimen/_22sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LOG OUT"
+            android:text="@string/log_out"
             android:textAllCaps="true"
             android:textSize="@dimen/_12ssp"
             android:layout_marginEnd="12dp"
             android:layout_alignParentEnd="true"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="#D64500"/>
+            android:textColor="#D64500"
+            tools:ignore="RelativeOverlap" />
         <TextView
             android:id="@+id/txtaccmobile"
             android:layout_below="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:textSize="@dimen/_10ssp"
             android:fontFamily="@font/montserrat_regular"
             android:layout_marginTop="3dp"
-            android:text=" "/>
+            android:text="@string/space"/>
         <TextView
             android:layout_marginStart="@dimen/_5sdp"
             android:id="@+id/txtaccEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtaccName"
-            android:text=" "
+            android:text="@string/space"
             android:layout_toEndOf="@+id/txtaccmobile"
             android:layout_marginTop="3dp"
             android:textSize="@dimen/_10ssp"
@@ -67,7 +70,7 @@
             android:id="@+id/storeStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Store Status :"
+            android:text="@string/store_status"
             android:layout_marginStart="20dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:textSize="@dimen/_10sdp"
@@ -77,17 +80,18 @@
             android:layout_alignTop="@id/storeStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OPEN"
+            android:text="@string/open"
             android:layout_toEndOf="@id/storeStatus"
-            android:layout_marginLeft="15dp"
-            android:fontFamily="@font/montserrat_bold"/>
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/montserrat_bold"
+            tools:ignore="RelativeOverlap" />
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchOpen"
             android:layout_alignTop="@id/storeOpen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_6sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_6sdp"
             android:track="@drawable/rectangle_track"
             android:thumb="@drawable/rectangle_thumb"
             android:theme="@style/SwitchTheme"/>
@@ -95,7 +99,7 @@
             android:id="@+id/storeDelivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delivery :"
+            android:text="@string/delivery"
             android:layout_marginStart="20dp"
             android:layout_marginTop="@dimen/_5sdp"
             android:textSize="@dimen/_10sdp"
@@ -106,10 +110,10 @@
             android:layout_alignTop="@id/storeDelivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AVAILABLE"
+            android:text="@string/available"
             android:layout_below="@id/storeStatus"
             android:layout_toEndOf="@id/storeDelivery"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/montserrat_bold"/>
         <androidx.appcompat.widget.SwitchCompat
             android:layout_alignTop="@id/storeDelivery"
@@ -117,8 +121,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/switchOpen"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_6sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_6sdp"
             android:track="@drawable/rectangle_track"
             android:thumb="@drawable/rectangle_thumb"
             android:theme="@style/SwitchTheme"/>
@@ -143,7 +147,7 @@
             android:outlineSpotShadowColor="#d60606"
             android:textDirection="ltr"
 
-            />
+            tools:targetApi="p" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

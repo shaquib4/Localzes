@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fcfcfc"
@@ -15,11 +16,11 @@
             android:id="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_margin="@dimen/_10sdp"
-            android:layout_toLeftOf="@id/txtaccEdit"
+            android:layout_toStartOf="@id/txtaccEdit"
             android:fontFamily="@font/montserrat_bold"
-            android:text=" "
+            android:text="@string/space"
             android:textAllCaps="true"
             android:textColor="#000000"
             android:textSize="@dimen/_12ssp" />
@@ -32,7 +33,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="12dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="LOG OUT"
+            android:text="@string/log_out"
             android:textAllCaps="true"
             android:textColor="#D64500"
             android:textSize="@dimen/_12ssp" />
@@ -42,9 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtaccName"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_medium"
-            android:text=" "
+            android:text="@string/space"
             android:textSize="@dimen/_10ssp" />
 
         <TextView
@@ -55,7 +56,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_toEndOf="@+id/txtaccmobile"
             android:fontFamily="@font/montserrat_medium"
-            android:text=" "
+            android:text="@string/space"
             android:textSize="@dimen/_10ssp"
 
             />
@@ -79,7 +80,7 @@
             android:outlineSpotShadowColor="#d60606"
             android:textDirection="ltr"
 
-            />
+            tools:targetApi="p" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

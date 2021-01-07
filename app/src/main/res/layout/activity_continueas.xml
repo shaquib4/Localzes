@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_42sdp"
-        android:text="CONTINUE"
+        android:text="@string/continue_1"
         android:textAlignment="center"
         android:gravity="center"
         android:textSize="@dimen/_18ssp"
@@ -34,7 +34,7 @@
         android:layout_marginBottom="@dimen/_50sdp"
         android:background="@drawable/proceed_to_add"
         android:fontFamily="@font/montserrat_bold"
-        android:text="As Seller"
+        android:text="@string/as_seller"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="@dimen/_14ssp" />
@@ -47,7 +47,7 @@
 
     <Button
         android:id="@+id/btnCustomer"
-        android:text="As Customer"
+        android:text="@string/as_customer"
         android:layout_below="@id/view"
         android:textAllCaps="false"
         android:elevation="5dp"
@@ -85,8 +85,8 @@ android:layout_marginTop="@dimen/_50sdp"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/oh_no"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -98,8 +98,8 @@ android:layout_marginTop="@dimen/_50sdp"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -110,7 +110,7 @@ android:layout_marginTop="@dimen/_50sdp"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -124,7 +124,7 @@ android:layout_marginTop="@dimen/_50sdp"
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

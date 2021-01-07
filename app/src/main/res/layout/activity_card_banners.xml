@@ -24,9 +24,10 @@
             <ImageView
                 android:layout_width="@dimen/_160sdp"
                 android:layout_height="@dimen/_120sdp"
-                android:layout_alignLeft="@+id/txtBYS"
+                android:layout_alignStart="@+id/txtBYS"
                 android:scaleType="fitXY"
-                android:src="@drawable/shop_png" />
+                android:src="@drawable/shop_png"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:id="@+id/txtBYS"
@@ -35,7 +36,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_100sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Boost Your Shop"
+                android:text="@string/boost_your_shop"
                 android:textColor="#fff"
                 android:textSize="@dimen/_25ssp" />
         </RelativeLayout>
@@ -56,7 +57,7 @@
 
             android:layout_marginTop="@dimen/_135sdp"
 
-            android:layout_toLeftOf="@id/viewCenter"
+            android:layout_toStartOf="@id/viewCenter"
             app:cardCornerRadius="10dp">
 
             <RelativeLayout
@@ -71,7 +72,8 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/disk_circle"
                     android:padding="@dimen/_10sdp"
-                    android:src="@drawable/share" />
+                    android:src="@drawable/share"
+                    android:contentDescription="@string/todo" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -81,7 +83,7 @@
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Share Your Shop"
+                    android:text="@string/share_your_shop"
                     android:textAlignment="center"
                     android:textColor="#fff"
                     android:textSize="@dimen/_15ssp" />
@@ -97,7 +99,7 @@
             android:layout_below="@id/cardShare"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_toLeftOf="@id/viewCenter"
+            android:layout_toStartOf="@id/viewCenter"
             app:cardCornerRadius="10dp">
 
             <RelativeLayout
@@ -110,7 +112,8 @@
                     android:layout_height="@dimen/_60sdp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:src="@drawable/qr_scan" />
+                    android:src="@drawable/qr_scan"
+                    android:contentDescription="@string/todo" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -119,7 +122,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Generate QR code"
+                    android:text="@string/generate_qr_code"
                     android:textAlignment="center"
                     android:textColor="#fff"
                     android:textSize="@dimen/_15ssp" />
@@ -136,7 +139,7 @@
             android:layout_marginHorizontal="@dimen/_10sdp"
 
             android:layout_marginTop="@dimen/_135sdp"
-            android:layout_toRightOf="@id/viewCenter"
+            android:layout_toEndOf="@id/viewCenter"
             app:cardCornerRadius="10dp">
 
             <RelativeLayout
@@ -151,7 +154,8 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/disk_circle"
                     android:padding="@dimen/_10sdp"
-                    android:src="@drawable/pdf" />
+                    android:src="@drawable/pdf"
+                    android:contentDescription="@string/todo" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -160,7 +164,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Shop Banner"
+                    android:text="@string/shop_banner"
                     android:textAlignment="center"
                     android:textColor="#fff"
                     android:textSize="@dimen/_15ssp" />
@@ -177,7 +181,7 @@
             android:layout_below="@id/cardShare"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_toRightOf="@id/viewCenter"
+            android:layout_toEndOf="@id/viewCenter"
             app:cardCornerRadius="10dp">
 
             <RelativeLayout
@@ -186,6 +190,7 @@
                 android:background="#ffce44">
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/imgOverview"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
@@ -200,7 +205,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Shop Overview"
+                    android:text="@string/shop_overview"
                     android:textAlignment="center"
                     android:textColor="#fff"
                     android:textSize="@dimen/_15ssp" />

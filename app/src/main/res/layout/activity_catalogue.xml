@@ -20,17 +20,18 @@
             android:layout_marginStart="@dimen/_10sdp"
 
             android:fontFamily="@font/montserrat_bold"
-            android:text="Shop Menu Card"
+            android:text="@string/shop_menu_card"
             android:textColor="#fff"
             android:textSize="@dimen/_20ssp" />
 
         <ImageView
+            android:contentDescription="@string/todo"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_80sdp"
 
             android:layout_marginStart="@dimen/_5sdp"
             android:scaleType="fitXY"
-           android:layout_toRightOf="@+id/txtPC"
+           android:layout_toEndOf="@+id/txtPC"
             android:src="@drawable/shop_png" />
     </RelativeLayout>
     <RelativeLayout
@@ -57,6 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/io"
                     android:layout_width="@dimen/_100sdp"
                     android:src="@drawable/shop_png"
@@ -65,7 +67,7 @@
                     android:textSize="@dimen/_18ssp"
                     android:layout_toEndOf="@+id/io"
                     android:layout_marginStart="@dimen/_9sdp"
-                    android:text="Cupcakes Menu"
+                    android:text="@string/cupcakes_menu"
                     android:textColor="#000"
                     android:fontFamily="@font/montserrat_medium"
                     android:layout_marginTop="@dimen/_28sdp"
@@ -93,5 +95,5 @@
         android:textColor="#fff"
         android:textSize="@dimen/_18ssp"
         android:layout_alignParentBottom="true"
-        android:text="Save As Pdf"/>
+        android:text="@string/save_as_pdf"/>
 </RelativeLayout>

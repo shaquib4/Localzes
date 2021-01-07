@@ -14,6 +14,7 @@
         android:visibility="invisible">
 
         <ImageView
+            android:contentDescription="@string/todo"
             android:id="@+id/imgCart"
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_130sdp"
@@ -28,7 +29,7 @@
             android:layout_below="@id/imgCart"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/montserrat_medium"
-            android:text="No Item in your cart !"
+            android:text="@string/no_item_in_your_cart"
             android:textColor="#000"
             android:textSize="@dimen/_15ssp" />
 
@@ -40,7 +41,7 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/round2_btn"
             android:fontFamily="@font/montserrat_medium"
-            android:text="Shop Now"
+            android:text="@string/shop_now"
             android:textAllCaps="false"
             android:textColor="#fcfcfc"
             android:textSize="@dimen/_15ssp" />
@@ -69,7 +70,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Total Item :- 9"
+                android:text="@string/total_item_9"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#000000"
                 android:textSize="@dimen/_13ssp" />
@@ -104,7 +105,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
 
                     <TextView
                         android:id="@+id/TotalPayment"
@@ -113,7 +115,7 @@
                         android:layout_centerInParent="true"
                         android:background="#ffffff"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Rs.530"
+                        android:text="@string/rs_350"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/_13ssp" />
                 </RelativeLayout>
@@ -127,7 +129,7 @@
                 android:layout_weight="1.8"
                 android:background="#ff4500"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Continue"
+                android:text="@string/continue_1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/_12ssp" />
@@ -141,7 +143,8 @@
             <RelativeLayout
                 android:id="@+id/details"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="UselessParent">
 
                 <TextView
                     android:id="@+id/txtPriceDetails"
@@ -150,7 +153,7 @@
                     android:fontFamily="@font/montserrat_medium"
                     android:gravity="start"
                     android:padding="5dp"
-                    android:text="Price Details"
+                    android:text="@string/price_details"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textSize="@dimen/_15ssp" />
 
@@ -175,7 +178,7 @@
                         android:layout_weight="4"
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="5dp"
-                        android:text="Price(1 item)"
+                        android:text="@string/price_1_item"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="@dimen/_10ssp" />
 
@@ -186,7 +189,7 @@
                         android:layout_weight="4"
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="5dp"
-                        android:text="Rs.600 "
+                        android:text="@string/rs_600"
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="@dimen/_10ssp" />
@@ -206,7 +209,7 @@
                         android:layout_weight="4"
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="5dp"
-                        android:text="Discount"
+                        android:text="@string/discount"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="@dimen/_10ssp" />
 
@@ -217,7 +220,7 @@
                         android:layout_weight="4"
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="5dp"
-                        android:text="- Rs.80 "
+                        android:text="@string/rs_80"
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="@dimen/_10ssp" />
@@ -238,7 +241,7 @@
                         android:layout_weight="4"
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="5dp"
-                        android:text="Delivery Charge"
+                        android:text="@string/delivery_charge"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="@dimen/_10ssp" />
 
@@ -249,7 +252,7 @@
                         android:layout_weight="4"
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="5dp"
-                        android:text="Rs.10 "
+                        android:text="@string/rs_10"
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="@dimen/_10ssp" />
@@ -270,7 +273,7 @@
                         android:layout_weight="4"
                         android:fontFamily="@font/montserrat_bold"
                         android:padding="5dp"
-                        android:text="Total Amount"
+                        android:text="@string/total_amount"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
                         android:textSize="@dimen/_12ssp" />
@@ -282,11 +285,12 @@
                         android:layout_weight="4"
                         android:fontFamily="@font/montserrat_bold"
                         android:paddingEnd="10dp"
-                        android:text="Rs.530"
+                        android:text="@string/rs_350"
                         android:textAlignment="viewEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_12ssp"
+                        tools:ignore="RtlSymmetry" />
                 </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>

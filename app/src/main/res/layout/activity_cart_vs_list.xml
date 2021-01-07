@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cart Orders"
+            android:text="@string/cart_orders"
             android:textSize="@dimen/_20ssp"
             android:gravity="center"
             android:fontFamily="@font/montserrat_bold"/>
@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="List Orders"
+            android:text="@string/list_orders"
             android:textSize="@dimen/_20ssp"
             android:gravity="center"
             android:fontFamily="@font/montserrat_bold"/>
