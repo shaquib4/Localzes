@@ -14,7 +14,7 @@
         <RelativeLayout
             android:id="@+id/rl_create"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_height="wrap_content"
             android:background="@drawable/border">
 
             <TextView
@@ -51,6 +51,7 @@
                 android:layout_marginStart="@dimen/_11sdp"
                 android:layout_marginTop="@dimen/_1sdp"
 
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text=""
                 android:textColor="#fff"
@@ -146,6 +147,7 @@
             android:weightSum="2">
 
             <Button
+                android:fontFamily="@font/montserrat_bold"
                 android:id="@+id/btnAdd"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_32sdp"
@@ -158,6 +160,7 @@
                 android:textSize="@dimen/_15ssp" />
 
             <Button
+                android:fontFamily="@font/montserrat_bold"
 
                 android:id="@+id/btnCn"
                 android:layout_width="0dp"
