@@ -61,7 +61,8 @@ class ITEM : Fragment() {
                         i.child("offerPrice").value.toString(),
                         i.child("unit").value.toString(),
                         i.child("quantity").value.toString(),
-                        i.child("stock").value.toString()
+                        i.child("stock").value.toString(),
+                        i.child("sizeAvailable").value.toString()
                     )
                     (favItems as ArrayList<ModelAddProduct>).add(obj)
                 }

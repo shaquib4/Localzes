@@ -320,6 +320,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/_10ssp"/>
                 <EditText
+                    android:id="@+id/sizeAvailable"
                     android:layout_weight="1"
                     android:hint="@string/example_xs_s_m_l"
                     android:textSize="@dimen/_10ssp"

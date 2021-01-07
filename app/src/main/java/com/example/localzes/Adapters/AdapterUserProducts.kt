@@ -183,7 +183,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                             userProducts.offerPrice,
                             userProducts.unit,
                             userProducts.quantity,
-                            userProducts.stock
+                            userProducts.stock,
+                            userProducts.sizeAvailable
                         )
                         favItemReference.child(userProducts.productId).setValue(obj)
                             .addOnSuccessListener {
@@ -507,7 +508,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             userProducts.offerPrice,
             userProducts.unit,
             userProducts.quantity,
-            userProducts.stock
+            userProducts.stock,
+            userProducts.sizeAvailable
         )
         val favItemReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(mUid)
@@ -540,7 +542,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             userProducts.offerPrice,
             userProducts.unit,
             userProducts.quantity,
-            userProducts.stock
+            userProducts.stock,
+            userProducts.sizeAvailable
         )
         val favItemReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(mUid)

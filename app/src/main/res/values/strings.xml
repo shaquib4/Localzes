@@ -186,7 +186,7 @@
     <string name="shipping_charges">Shipping Charges</string>
     <string name="free">FREE</string>
     <string name="total">Total</string>
-    <string name="rs_14_999" tools:ignore="DuplicateDefinition">Rs. 14,999</string>
+    <string name="rs_14_99" tools:ignore="DuplicateDefinition">Rs. 14,999</string>
     <string name="safe_and_secure_payments_100_authentic_products">Safe and Secure Payments. 100% Authentic products</string>
     <string name="rextry">Rextry</string>
     <string name="continue_payment">Continue Payment</string>
