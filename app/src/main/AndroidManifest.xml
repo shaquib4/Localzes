@@ -30,6 +30,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
+        <activity android:name=".PaymentRazorpay"></activity>
         <activity
             android:name=".RegisterDetailDelivery"
             android:screenOrientation="portrait" />
@@ -221,6 +222,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_R6HTjF0RkZszKt" />
     </application>
 
 </manifest>
