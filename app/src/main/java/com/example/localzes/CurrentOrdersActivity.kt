@@ -3,7 +3,10 @@ package com.example.localzes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +32,8 @@ class CurrentOrdersActivity : AppCompatActivity() {
     private lateinit var mOrderedItem: List<ModelOrderDetails>
     private lateinit var relativeCurrent: RelativeLayout
     private lateinit var imgBackCurrent: ImageView
+    private lateinit var searchLayoutCart: EditText
+    private lateinit var searchLayoutList: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_current_orders)
@@ -37,6 +42,8 @@ class CurrentOrdersActivity : AppCompatActivity() {
         recyclerOrderDetails = findViewById(R.id.recyclerCurrentOrders)
         relativeCurrent = findViewById(R.id.rl_Current_orders)
         imgBackCurrent = findViewById(R.id.imgBackCurrent)
+        searchLayoutCart = findViewById(R.id.searchCurrentOrders)
+        searchLayoutList = findViewById(R.id.searchListCurrentOrders)
         recyclerOrderDetails.layoutManager = LinearLayoutManager(this)
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
@@ -44,6 +51,34 @@ class CurrentOrdersActivity : AppCompatActivity() {
         retryCurrentOrders.setOnClickListener {
             this.recreate()
         }
+        searchLayoutCart.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchCartOrders(s.toString())
+            }
+
+        })
+        searchLayoutList.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchListOrders(s.toString())
+            }
+
+        })
         currentListOrderDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrderList")
         currentOrderHistoryDatabase =
@@ -70,19 +105,21 @@ class CurrentOrdersActivity : AppCompatActivity() {
 
         })
         rl_cartCurrent.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_currentOrders.visibility=View.VISIBLE
-                rl_retryCurrentOrders.visibility=View.GONE
-                currentCartOrder()}else{
-                rl_currentOrders.visibility=View.GONE
-                rl_retryCurrentOrders.visibility=View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_currentOrders.visibility = View.VISIBLE
+                rl_retryCurrentOrders.visibility = View.GONE
+                currentCartOrder()
+            } else {
+                rl_currentOrders.visibility = View.GONE
+                rl_retryCurrentOrders.visibility = View.VISIBLE
             }
         }
         rl_listCurrent.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                currentListOrder()}else{
-                rl_currentOrders.visibility=View.GONE
-                rl_retryCurrentOrders.visibility=View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                currentListOrder()
+            } else {
+                rl_currentOrders.visibility = View.GONE
+                rl_retryCurrentOrders.visibility = View.VISIBLE
             }
         }
 
@@ -91,6 +128,15 @@ class CurrentOrdersActivity : AppCompatActivity() {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun searchListOrders(str: String) {
+
+    }
+
+    private fun searchCartOrders(str: String) {
+
+
     }
 
     private fun currentListOrder() {
@@ -204,12 +250,13 @@ class CurrentOrdersActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_currentOrders.visibility=View.VISIBLE
-            rl_retryCurrentOrders.visibility=View.GONE
-            currentCartOrder()}else{
-            rl_currentOrders.visibility=View.GONE
-            rl_retryCurrentOrders.visibility=View.VISIBLE
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_currentOrders.visibility = View.VISIBLE
+            rl_retryCurrentOrders.visibility = View.GONE
+            currentCartOrder()
+        } else {
+            rl_currentOrders.visibility = View.GONE
+            rl_retryCurrentOrders.visibility = View.VISIBLE
         }
     }
 }

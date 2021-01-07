@@ -58,77 +58,105 @@
                 android:textColor="#696969"
                 android:textSize="@dimen/_15ssp" />
         </RelativeLayout>
+
         <LinearLayout
-            android:layout_below="@+id/view1"
-            android:orientation="horizontal"
             android:id="@+id/rl_create"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
-            android:weightSum="2"
-            android:background="@drawable/border">
+            android:layout_below="@+id/view1"
+            android:background="@drawable/border"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
             <RelativeLayout
-                android:layout_marginStart="2sp"
                 android:id="@+id/rl_cartCurrent"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
                 android:layout_height="@dimen/_33sdp"
-                android:background="@drawable/stroke_solid_btn"
-                android:layout_weight="1">
+                android:layout_gravity="center"
+                android:layout_marginStart="2sp"
+                android:layout_weight="1"
+                android:background="@drawable/stroke_solid_btn">
+
                 <TextView
                     android:id="@+id/txtCartCurrent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_14ssp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="Cart Orders"/>
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Cart Orders"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_14ssp" />
+
                 <TextView
-                    android:layout_toEndOf="@+id/txtCartCurrent"
+                    android:id="@+id/cartCurrentNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cartCurrentNo"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_14ssp"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/_2sdp"
-
-                    android:text="(1000)"/>
+                    android:layout_toEndOf="@+id/txtCartCurrent"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="(1000)"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_14ssp" />
             </RelativeLayout>
+
             <RelativeLayout
-                android:layout_marginStart="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_2sdp"
                 android:id="@+id/rl_listCurrent"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
                 android:layout_height="@dimen/_33sdp"
-                android:background="@drawable/stroke_solid_btn"
-                android:layout_weight="1">
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:background="@drawable/stroke_solid_btn">
+
                 <TextView
                     android:id="@+id/txtlistCurrent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_14ssp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="List Orders"/>
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="List Orders"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_14ssp" />
+
                 <TextView
-                    android:layout_toEndOf="@+id/txtlistCurrent"
+                    android:id="@+id/listCurrentNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/listCurrentNo"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_14ssp"
                     android:layout_centerVertical="true"
-
-                    android:text="(1000)"/>
+                    android:layout_toEndOf="@+id/txtlistCurrent"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="(1000)"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_14ssp" />
             </RelativeLayout>
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/searchCurrentOrders"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/rl_create"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bg_product_shop"
+            android:hint="Search"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_20sdp"
+            tools:ignore="RtlSymmetry" />
+        <EditText
+            android:id="@+id/searchListCurrentOrders"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/rl_create"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bg_product_shop"
+            android:hint="Search"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_20sdp"
+            tools:ignore="RtlSymmetry" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerCurrentOrders"

@@ -21,7 +21,7 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultListener {
         Checkout.preload(applicationContext)
 
         if (amount.isEmpty()){
-            Toast.makeText(this,"amount is missing",Toast.LENGTH_LONG)
+            Toast.makeText(this,"amount is missing",Toast.LENGTH_LONG).show()
         }else{
           startPayment()
         }
@@ -64,8 +64,8 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultListener {
     }
 
     override fun onPaymentSuccess(s: String?) {
-        Log.e("Done", " payment successfull "+ s.toString());
-        Toast.makeText(this, "Payment successfully done! " +s, Toast.LENGTH_SHORT).show();
+        Log.e("Done", " payment successful "+ s.toString());
+        Toast.makeText(this, "Payment successfully done! $s", Toast.LENGTH_SHORT).show();
         startActivity(Intent(this,NewActivity::class.java))
         finish()
     }
