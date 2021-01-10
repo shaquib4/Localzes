@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_20ssp"
-        android:text="Favourites"
+        android:text="@string/favourites"
         android:fontFamily="@font/montserrat_bold"
         android:textColor="#fff"/>
 

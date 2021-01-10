@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:contentDescription="@string/todo"
         android:scaleType="fitXY"
         android:id="@+id/imgSplash"
         android:layout_width="match_parent"

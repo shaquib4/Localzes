@@ -8,7 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:id="@+id/rl_Your_Details"
@@ -22,7 +23,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Your Details"
+                android:text="@string/your_details"
                 android:textColor="#fff"
                 android:textSize="@dimen/_20ssp" />
 
@@ -38,6 +39,7 @@
             app:cardCornerRadius="@dimen/_60sdp">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imageBoy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -63,10 +65,13 @@
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical"
-                android:hint="Enter Your Full Name"
+                android:hint="@string/enter_your_full_name"
                 android:padding="10dp"
                 android:paddingStart="16dp"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:inputType="text"
+                tools:ignore="RtlSymmetry"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,7 +82,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingStart="2dp"
                 android:paddingEnd="2dp"
-                android:text="Name*"
+                android:text="@string/name"
                 android:textSize="12sp" />
 
         </RelativeLayout>
@@ -98,10 +103,13 @@
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical"
-                android:hint="Age should be greater or equal to 18"
+                android:hint="@string/age_should_be_greater_or_equal_to_18"
                 android:padding="10dp"
                 android:paddingStart="16dp"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:inputType="text"
+                tools:ignore="RtlSymmetry"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -112,7 +120,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingStart="2dp"
                 android:paddingEnd="2dp"
-                android:text="Age*"
+                android:text="@string/age"
                 android:textSize="12sp" />
 
         </RelativeLayout>
@@ -133,10 +141,13 @@
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical"
-                android:hint="Enter Your Permanent Address"
+                android:hint="@string/enter_your_permanent_address"
                 android:padding="10dp"
                 android:paddingStart="16dp"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:inputType="text"
+                tools:ignore="RtlSymmetry"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -147,7 +158,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingStart="2dp"
                 android:paddingEnd="2dp"
-                android:text="Permanent Address*"
+                android:text="@string/permanent_address"
                 android:textSize="12sp" />
 
         </RelativeLayout>
@@ -167,10 +178,13 @@
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical"
-                android:hint="Enter Your Full Name"
+                android:hint="@string/enter_your_full_name"
                 android:padding="10dp"
                 android:paddingStart="16dp"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:inputType="text"
+                tools:ignore="RtlSymmetry"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -181,7 +195,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingStart="2dp"
                 android:paddingEnd="2dp"
-                android:text="Name"
+                android:text="@string/name"
                 android:textSize="12sp" />
 
         </RelativeLayout>
@@ -202,10 +216,13 @@
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical"
-                android:hint="Enter Your Temporary Address"
+                android:hint="@string/enter_your_temporary_address"
                 android:padding="10dp"
                 android:paddingStart="16dp"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:inputType="text"
+                android:importantForAutofill="no"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -216,7 +233,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingStart="2dp"
                 android:paddingEnd="2dp"
-                android:text="Temporary Address"
+                android:text="@string/temporary_address"
                 android:textSize="12sp" />
 
         </RelativeLayout>
@@ -237,10 +254,13 @@
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical"
-                android:hint="Enter Your Alternative Mobile No"
+                android:hint="@string/enter_your_alternative_mobile_no"
                 android:padding="10dp"
                 android:paddingStart="16dp"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:inputType="text"
+                tools:ignore="RtlSymmetry"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -251,7 +271,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingStart="2dp"
                 android:paddingEnd="2dp"
-                android:text="Alternate Mobile No*"
+                android:text="@string/alternate_mobile_no"
                 android:textSize="12sp" />
         </RelativeLayout>
 
@@ -266,7 +286,7 @@
             android:layout_marginBottom="@dimen/_35sdp"
             android:background="@drawable/bg_buttons"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Save and Proceed"
+            android:text="@string/save_and_proceed"
             android:textColor="#fff"
             android:textSize="15sp" />
 

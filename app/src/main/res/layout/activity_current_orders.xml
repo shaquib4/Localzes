@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:contentDescription="@string/todo"
             android:id="@+id/imgBackCurrent"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
@@ -22,9 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_toRightOf="@id/imgBackCurrent"
+            android:layout_toEndOf="@id/imgBackCurrent"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Current Orders"
+            android:text="@string/current_orders_"
             android:textColor="#000000"
             android:textSize="@dimen/_13ssp" />
 
@@ -41,6 +42,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgEmpty"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
@@ -54,7 +56,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="No current orders yet!"
+                android:text="@string/no_current_orders_yet"
                 android:textColor="#696969"
                 android:textSize="@dimen/_15ssp" />
         </RelativeLayout>
@@ -66,7 +68,8 @@
             android:layout_below="@+id/view1"
             android:background="@drawable/border"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:baselineAligned="false">
 
             <RelativeLayout
                 android:id="@+id/rl_cartCurrent"
@@ -84,7 +87,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Cart Orders"
+                    android:text="@string/cart_orders"
                     android:textColor="#000"
                     android:textSize="@dimen/_14ssp" />
 
@@ -96,7 +99,7 @@
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:layout_toEndOf="@+id/txtCartCurrent"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="(1000)"
+                    android:text="@string/_1000"
                     android:textColor="#000"
                     android:textSize="@dimen/_14ssp" />
             </RelativeLayout>
@@ -118,7 +121,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="List Orders"
+                    android:text="@string/list_orders"
                     android:textColor="#000"
                     android:textSize="@dimen/_14ssp" />
 
@@ -129,7 +132,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/txtlistCurrent"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="(1000)"
+                    android:text="@string/_1000"
                     android:textColor="#000"
                     android:textSize="@dimen/_14ssp" />
             </RelativeLayout>
@@ -142,10 +145,11 @@
             android:layout_below="@id/rl_create"
             android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/bg_product_shop"
-            android:hint="Search"
+            android:hint="@string/search"
             android:maxLines="1"
             android:paddingStart="@dimen/_20sdp"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="Autofill,RtlSymmetry"
+            android:inputType="text" />
         <EditText
             android:id="@+id/searchListCurrentOrders"
             android:layout_width="match_parent"
@@ -153,10 +157,11 @@
             android:layout_below="@id/rl_create"
             android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/bg_product_shop"
-            android:hint="Search"
+            android:hint="@string/search"
             android:maxLines="1"
             android:paddingStart="@dimen/_20sdp"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="Autofill,RtlSymmetry"
+            android:inputType="text" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerCurrentOrders"
@@ -181,8 +186,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/oh_no"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -194,8 +199,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -206,7 +211,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -220,7 +225,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

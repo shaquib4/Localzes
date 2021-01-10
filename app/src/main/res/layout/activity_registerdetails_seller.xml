@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_70sdp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Register as Seller"
+        android:text="@string/register_as_seller"
         android:textColor="#de4500"
         android:textSize="@dimen/_20ssp" />
 
@@ -39,15 +39,16 @@
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_20sdp"
         android:background="@drawable/stroke"
-        android:drawableLeft="@drawable/ic_outline_person_24"
+        android:drawableStart="@drawable/ic_outline_person_24"
         android:fontFamily="@font/montserrat_medium"
-        android:hint=" Enter your full name"
+        android:hint="@string/enter_your_full_name"
         android:inputType="text"
         android:maxLines="1"
         android:paddingHorizontal="@dimen/_10sdp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
-        android:textSize="@dimen/_12ssp" />
+        android:textSize="@dimen/_12ssp"
+        android:importantForAutofill="no" />
 
     <EditText
 
@@ -59,15 +60,16 @@
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_20sdp"
         android:background="@drawable/stroke"
-        android:drawableLeft="@drawable/ic_outline_email_24"
+        android:drawableStart="@drawable/ic_outline_email_24"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="  Enter your email"
+        android:hint="@string/enter_your_email"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:paddingHorizontal="@dimen/_10sdp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
-        android:textSize="@dimen/_12ssp" />
+        android:textSize="@dimen/_12ssp"
+        android:importantForAutofill="no" />
 
 
     <Button
@@ -79,7 +81,7 @@
         android:layout_marginBottom="@dimen/_60sdp"
         android:background="@drawable/round_button"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Proceed"
+        android:text="@string/proceed"
         android:textAllCaps="false"
         android:textColor="#DE0606"
         android:textSize="@dimen/_15ssp" />
@@ -98,7 +100,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:textSize="@dimen/_20ssp" />
 
 
@@ -111,8 +113,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -123,7 +125,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -137,7 +139,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

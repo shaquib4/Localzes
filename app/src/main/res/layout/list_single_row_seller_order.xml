@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_35sdp"
     android:orientation="horizontal"
@@ -13,7 +14,7 @@
         android:layout_marginStart="@dimen/_2sdp"
         android:layout_weight="0.2"
         android:fontFamily="@font/montserrat_medium"
-        android:text="1."
+        android:text="@string/_1_1"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="@dimen/_14ssp" />
@@ -26,7 +27,7 @@
         android:layout_marginStart="@dimen/_2sdp"
         android:layout_weight="5.8"
         android:fontFamily="@font/montserrat_medium"
-        android:text="AlooX8kg"
+        android:text="@string/aloox8kg"
         android:textColor="#000"
         android:textSize="@dimen/_14ssp" />
 
@@ -44,7 +45,9 @@
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:textColor="#000"
-        android:textSize="@dimen/_14ssp" />
+        android:textSize="@dimen/_14ssp"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -53,6 +56,7 @@
         android:layout_weight="0.6">
 
         <ImageView
+            android:contentDescription="@string/todo"
             android:id="@+id/itemRemove"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
@@ -60,6 +64,7 @@
             android:src="@drawable/ic_baseline_clear_24" />
 
         <ImageView
+            android:contentDescription="@string/todo"
             android:id="@+id/itemRevive"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"

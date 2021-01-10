@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <ImageView
+        android:contentDescription="@string/todo"
         android:id="@+id/imgBackPast"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
@@ -21,9 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/_10sdp"
-        android:layout_toRightOf="@id/imgBackPast"
+        android:layout_toEndOf="@id/imgBackPast"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Past Orders"
+        android:text="@string/past_orders"
         android:textColor="#000000"
         android:textSize="@dimen/_13ssp" />
 
@@ -40,6 +40,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:contentDescription="@string/todo"
             android:id="@+id/imgEmpty"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
@@ -53,7 +54,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No past orders yet!"
+            android:text="@string/no_past_orders_yet"
             android:textColor="#696969"
             android:textSize="@dimen/_15ssp" />
     </RelativeLayout>
@@ -64,7 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:weightSum="2"
-            android:background="@drawable/border">
+            android:background="@drawable/border"
+            android:baselineAligned="false">
             <RelativeLayout
                 android:layout_marginStart="2sp"
                 android:id="@+id/rl_cartPast"
@@ -82,7 +84,7 @@
                     android:textSize="@dimen/_14ssp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="Cart Orders"/>
+                    android:text="@string/cart_orders"/>
                 <TextView
                     android:layout_toEndOf="@+id/txtCartPast"
                     android:layout_width="wrap_content"
@@ -94,7 +96,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/_2sdp"
 
-                    android:text="(1000)"/>
+                    android:text="@string/_1000"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_marginStart="@dimen/_2sdp"
@@ -114,7 +116,7 @@
                     android:textSize="@dimen/_14ssp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="List Orders"/>
+                    android:text="@string/list_orders"/>
                 <TextView
                     android:layout_toEndOf="@+id/txtlistPast"
                     android:layout_width="wrap_content"
@@ -125,7 +127,7 @@
                     android:textSize="@dimen/_14ssp"
                     android:layout_centerVertical="true"
 
-                    android:text="(1000)"/>
+                    android:text="@string/_1000"/>
             </RelativeLayout>
         </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
@@ -147,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:textSize="@dimen/_20ssp"/>
@@ -160,10 +162,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
+            android:text="@string/no_internet_connection"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
-            android:textSize="@dimen/_20ssp"/>
+            android:textSize="@dimen/_15ssp"/>
 
 
         <TextView
@@ -173,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:layout_marginStart="@dimen/_20sdp"
             android:textSize="@dimen/_15ssp"/>
 
@@ -188,7 +190,7 @@
             android:layout_margin="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_bold"
             android:textSize="@dimen/_15ssp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:background="@drawable/stroke_solid_btn"/>
 

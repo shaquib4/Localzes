@@ -42,6 +42,7 @@
 
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgShop"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_170sdp"
@@ -64,7 +65,7 @@
                 android:layout_below="@+id/view1"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Khan Shops"
+                android:text="@string/khan_shops"
                 android:textColor="#000"
                 android:textSize="@dimen/_13ssp" />
 
@@ -76,17 +77,18 @@
                 android:layout_below="@+id/txtShop_name"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Foods"
+                android:text="@string/foods"
                 android:textSize="@dimen/_11ssp" />
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgRating_customer"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
                 android:layout_below="@id/view1"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_toLeftOf="@+id/txtRatingShop_customer"
+                android:layout_toStartOf="@+id/txtRatingShop_customer"
                 android:src="@drawable/ic_rating" />
 
             <TextView
@@ -94,10 +96,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_18sdp"
                 android:layout_alignTop="@+id/imgRating_customer"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="4.5/5"
+                android:text="@string/_4_5_5"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_11ssp" />
 
@@ -105,10 +107,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_12sdp"
                 android:layout_below="@+id/txtCategory"
-                android:layout_alignLeft="@+id/txtCategory"
+
+                android:layout_alignStart="@+id/txtCategory"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_semibold"
-                android:text="8:00 am to 9:00 pm"
+                android:text="@string/_8_00_am_to_9_00_pm"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_9ssp" />
         </RelativeLayout>

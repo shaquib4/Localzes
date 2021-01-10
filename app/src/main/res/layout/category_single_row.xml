@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Coffee"
+                android:text="@string/coffee"
                 android:textColor="#000"
                 android:textSize="@dimen/_15ssp" />
 
@@ -30,10 +30,11 @@
                 android:id="@+id/imgRemoveCategory"
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ic_remove" />
+                android:src="@drawable/ic_remove"
+                android:contentDescription="@string/todo" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

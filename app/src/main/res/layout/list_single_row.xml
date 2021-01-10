@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_35sdp"
     android:layout_marginTop="@dimen/_5sdp">
@@ -11,7 +12,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_3sdp"
-        android:text="1."
+        android:text="@string/_1_1"
         android:textColor="#000000"
         android:textSize="@dimen/_14ssp" />
 
@@ -19,7 +20,7 @@
         android:id="@+id/Item_name"
         android:layout_width="@dimen/_195sdp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/_4sdp"
+        android:layout_marginStart="@dimen/_4sdp"
         android:layout_marginBottom="@dimen/_2sdp"
         android:layout_toEndOf="@+id/txtSNo"
         android:fontFamily="@font/montserrat_medium"
@@ -28,7 +29,9 @@
         android:scrollHorizontally="true"
         android:textSize="@dimen/_14ssp"
         android:singleLine="true"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
 
     <EditText
         android:id="@+id/Item_Quan"
@@ -36,19 +39,21 @@
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/_17sdp"
         android:layout_marginBottom="@dimen/_2sdp"
-        android:layout_toRightOf="@+id/Item_name"
+        android:layout_toEndOf="@+id/Item_name"
         android:maxLines="1"
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:inputType="text"
-        android:paddingTop="@dimen/_2sdp" />
+        android:paddingTop="@dimen/_2sdp"
+        android:importantForAutofill="no" />
 
     <ImageView
+        android:contentDescription="@string/todo"
         android:id="@+id/itemRemove"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/_2sdp"
+        android:layout_marginStart="@dimen/_2sdp"
         android:src="@drawable/ic_baseline_clear_24" />
 </RelativeLayout>

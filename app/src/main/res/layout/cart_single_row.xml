@@ -19,6 +19,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgProduct_customer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
@@ -43,11 +44,12 @@
                 android:layout_below="@+id/view_customer"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Elecronics Accessories"
+                android:text="@string/electronics_accessories"
                 android:textColor="#000"
                 android:textSize="@dimen/_13ssp" />
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgRemove"
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
@@ -64,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtProductTitle_customer"
                 android:layout_marginStart="10dp"
-                android:text="Rs. 699"
+                android:text="@string/rs_699"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_12ssp" />
 
@@ -76,7 +78,7 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:layout_toEndOf="@id/txtProductPrice_customer"
-                android:text="Rs. 1099"
+                android:text="@string/rs_1099"
                 android:textSize="@dimen/_10ssp" />
 
 
@@ -86,7 +88,7 @@
                 android:layout_height="@dimen/_12sdp"
                 android:layout_below="@+id/txtProductPrice_customer"
                 android:layout_alignStart="@+id/txtProductPrice_customer"
-                android:text="Rs. 1099"
+                android:text="@string/rs_1099"
                 android:textSize="@dimen/_10ssp" />
 
             <TextView
@@ -97,7 +99,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_margin="5dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Out Of Stock"
+                android:text="@string/out_of_stock"
                 android:textColor="#00008b"
                 android:textSize="14sp"
                 android:visibility="invisible" />
@@ -120,7 +122,7 @@
                     android:layout_weight="2.4"
                     android:background="@drawable/add_item_decrease"
                     android:onClick="countDe"
-                    android:text="-"
+                    android:text="@string/minus"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_15ssp" />
 
@@ -131,7 +133,7 @@
                     android:layout_weight="3"
                     android:background="@drawable/add_item_quantity"
                     android:gravity="center"
-                    android:text="1"
+                    android:text="@string/_1"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_15ssp" />
 
@@ -143,7 +145,7 @@
                     android:layout_weight="2.4"
                     android:background="@drawable/add_item_increase"
                     android:onClick="countIn"
-                    android:text="+"
+                    android:text="@string/plus"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_15ssp" />
             </LinearLayout>

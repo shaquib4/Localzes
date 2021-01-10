@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fcfcfc"
@@ -11,13 +12,14 @@
     <RelativeLayout
         android:id="@+id/rl_productDetail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fcfcfc"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -30,7 +32,7 @@
                     android:background="#ffffff"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text="EDIT PRODUCT DETAILS"
+                    android:text="@string/edit_product_details"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold" />
@@ -49,11 +51,12 @@
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/montserrat_bold"
                     android:padding="10dp"
-                    android:text="PRODUCT DETAILS"
+                    android:text="@string/product_details"
                     android:textColor="#000000"
                     android:textSize="@dimen/_12ssp" />
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/imgBorder1"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -62,6 +65,7 @@
                     android:background="#f1f1f1" />
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/imgBorder2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -81,6 +85,7 @@
                     app:cardCornerRadius="10dp">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imageHintUpdate"
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="@dimen/_80sdp"
@@ -88,6 +93,7 @@
                         android:src="@drawable/ic_add_image" />
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/image_view_update"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -111,7 +117,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="10dp"
-                        android:text="Add product images*"
+                        android:text="@string/add_product_images"
                         android:textColor="#a0a0a0"
                         android:textSize="@dimen/_8ssp" />
                 </LinearLayout>
@@ -126,12 +132,13 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/textview_border"
                     android:fontFamily="@font/montserrat_medium"
-                    android:hint="Product Name*"
+                    android:hint="@string/product_name"
                     android:inputType="text"
                     android:maxLength="50"
                     android:maxLines="1"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_10ssp"
+                    android:importantForAutofill="no" />
 
                 <EditText
                     android:id="@+id/etDescriptionUpdate"
@@ -143,12 +150,13 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/textview_border"
                     android:fontFamily="@font/montserrat_medium"
-                    android:hint="Product Description (optional)"
+                    android:hint="@string/product_description_optional"
                     android:inputType="text"
                     android:maxLength="300"
                     android:maxLines="1"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_10ssp"
+                    android:importantForAutofill="no" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
@@ -165,7 +173,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Choose Category"
+                        android:text="@string/choose_category"
                         android:textColor="#a0a0a0"
                         android:textSize="@dimen/_10ssp" />
 
@@ -199,13 +207,14 @@
                         android:layout_weight="1"
                         android:background="@drawable/textview_border"
                         android:fontFamily="@font/montserrat_medium"
-                        android:hint="MRP*"
+                        android:hint="@string/mrp"
                         android:inputType="number"
                         android:maxLength="10"
                         android:maxLines="1"
                         android:textAlignment="center"
                         android:textColor="#de4500"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_10ssp"
+                        android:importantForAutofill="no" />
 
                     <EditText
                         android:id="@+id/etOfferPriceUpdate"
@@ -217,14 +226,15 @@
                         android:layout_weight="1"
                         android:background="@drawable/textview_border"
                         android:fontFamily="@font/montserrat_medium"
-                        android:hint="Selling Price*"
+                        android:hint="@string/selling_price"
 
                         android:inputType="number"
                         android:maxLength="10"
                         android:maxLines="1"
                         android:textAlignment="center"
                         android:textColor="#3498db"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_10ssp"
+                        android:importantForAutofill="no" />
                 </LinearLayout>
 
                 <Button
@@ -237,7 +247,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/proceed_to_add"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="UPDATE PRODUCT"
+                    android:text="@string/update_product"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/_12ssp" />
 
@@ -272,12 +282,13 @@
                         android:layout_weight="1"
                         android:background="@drawable/textview_border"
                         android:fontFamily="@font/montserrat_medium"
-                        android:hint="Quantity"
+                        android:hint="@string/quantity"
                         android:inputType="number"
                         android:maxLength="5"
                         android:maxLines="1"
                         android:textAlignment="center"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_10ssp"
+                        android:importantForAutofill="no" />
 
                 </LinearLayout>
 
@@ -296,14 +307,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Size"
+                            android:text="@string/size"
                             android:fontFamily="@font/montserrat_medium"
                             android:textAlignment="center"
                             android:textSize="@dimen/_10ssp"/>
                         <EditText
                             android:id="@+id/etAvailableSizes"
                             android:layout_weight="1"
-                            android:hint="Example: XS,S,M,L..."
+                            android:hint="@string/example_xs_s_m_l"
                             android:textSize="@dimen/_10ssp"
                             android:textAlignment="center"
                             android:paddingHorizontal="5dp"
@@ -311,7 +322,8 @@
                             android:layout_marginEnd="20dp"
                             android:background="@drawable/textview_border"
                             android:layout_height="@dimen/_32sdp"
-                            />
+                            android:importantForAutofill="no"
+                            android:inputType="text" />
 
                 </LinearLayout>
 
@@ -334,7 +346,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:textSize="@dimen/_20ssp" />
 
 
@@ -347,8 +359,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -359,7 +371,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -373,7 +385,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

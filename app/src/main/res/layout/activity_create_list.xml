@@ -26,7 +26,7 @@
                 android:layout_marginTop="@dimen/_2sdp"
 
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Create Your List"
+                android:text="@string/create_your_list"
                 android:textColor="#fff"
                 android:textSize="@dimen/_20ssp" />
 
@@ -61,9 +61,10 @@
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:layout_toRightOf="@+id/txtPC"
+                android:layout_toEndOf="@+id/txtPC"
                 android:scaleType="fitXY"
-                android:src="@drawable/shop_png" />
+                android:src="@drawable/shop_png"
+                android:contentDescription="@string/todo" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -83,6 +84,7 @@
             android:layout_above="@+id/li">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgHomeList"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
@@ -98,7 +100,7 @@
                 android:layout_below="@+id/txtHomeList"
                 android:layout_toEndOf="@+id/imgHomeList"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Saraibika"
+                android:text="@string/saraibika"
                 android:textSize="@dimen/_10ssp" />
 
             <TextView
@@ -108,7 +110,7 @@
                 android:layout_below="@+id/txtAreaList"
                 android:layout_toEndOf="@+id/imgHomeList"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="21 mins"
+                android:text="@string/_21_mins"
                 android:textColor="#000"
                 android:textSize="@dimen/_10ssp" />
 
@@ -119,7 +121,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@+id/imgHomeList"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Deliver to Home"
+                android:text="@string/deliver_to_home"
                 android:textColor="#000000"
                 android:textSize="@dimen/_11ssp" />
 
@@ -130,9 +132,10 @@
                 android:layout_alignParentEnd="true"
                 android:layout_margin="10dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="CHANGE ADDRESS"
+                android:text="@string/change_address"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_10ssp"
+                tools:ignore="RelativeOverlap" />
 
         </RelativeLayout>
 
@@ -154,10 +157,11 @@
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_buttons"
-                android:text="Add"
+                android:text="@string/add"
                 android:textAllCaps="false"
                 android:textColor="#fff"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_15ssp"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:fontFamily="@font/montserrat_bold"
@@ -168,10 +172,11 @@
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_buttons"
-                android:text="Confirm"
+                android:text="@string/confirm"
                 android:textAllCaps="false"
                 android:textColor="#fff"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_15ssp"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -190,7 +195,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:textSize="@dimen/_20ssp" />
 
 
@@ -203,8 +208,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -215,7 +220,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -229,7 +234,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

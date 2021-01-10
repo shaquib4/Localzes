@@ -6,7 +6,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,9 +21,10 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:paddingVertical="@dimen/_10sdp"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Choose a delivery address"
+                android:text="@string/choose_a_delivery_address"
                 android:textColor="#696969"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_12ssp"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/txtCurrentAddress"
@@ -33,9 +35,10 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:paddingVertical="@dimen/_10sdp"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Current Address"
+                android:text="@string/current_address"
                 android:textColor="#696969"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_12ssp"
+                tools:ignore="RtlSymmetry" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardAddress"
@@ -50,6 +53,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgHome"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_60sdp"
@@ -66,7 +70,7 @@
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_toEndOf="@+id/imgHome"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="HOME"
+                        android:text="@string/home"
                         android:textColor="#000"
                         android:textSize="@dimen/_10ssp" />
 
@@ -76,9 +80,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txtHome"
                         android:layout_marginEnd="@dimen/_15sdp"
-                        android:layout_toRightOf="@id/imgHome"
+                        android:layout_toEndOf="@id/imgHome"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Mohan chauraha, Saraivika, Jaunpur UP - 222202 India"
+                        android:text="@string/mohan_chauraha_saraivika_jaunpur_up_222202_india"
                         android:textSize="@dimen/_8ssp" />
 
                     <TextView
@@ -86,9 +90,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txtCurrAddress"
-                        android:layout_toRightOf="@id/imgHome"
+                        android:layout_toEndOf="@id/imgHome"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Mobile - 7518894470"
+                        android:text="@string/mobile_7518894470"
                         android:textSize="@dimen/_9ssp" />
 
                     <TextView
@@ -98,9 +102,9 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
-                        android:layout_toRightOf="@id/imgHome"
+                        android:layout_toEndOf="@id/imgHome"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="DELETE"
+                        android:text="@string/delete"
                         android:textColor="#ff0000"
                         android:textSize="@dimen/_10ssp" />
                 </RelativeLayout>
@@ -115,10 +119,10 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:paddingVertical="@dimen/_10sdp"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Saved Addresses"
+                android:text="@string/saved_addresses"
                 android:textColor="#696969"
                 android:textSize="@dimen/_12ssp"
-                />
+                tools:ignore="RtlSymmetry" />
 
             <androidx.recyclerview.widget.RecyclerView
 
@@ -137,7 +141,7 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/bg_border"
                 android:elevation="0dp"
-                android:text="ADD NEW ADDRESS"
+                android:text="@string/add_new_address"
                 android:textColor="#008000"
                 android:textSize="@dimen/_13ssp" />
         </RelativeLayout>

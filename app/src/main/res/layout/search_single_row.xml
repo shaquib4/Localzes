@@ -19,7 +19,7 @@
 
 
             <ImageView
-
+                android:contentDescription="@string/todo"
                 android:id="@+id/productImage"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_95sdp"
@@ -40,7 +40,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Shop name"
+                    android:text="@string/shop_name"
                     android:textColor="#000000"
                     android:textSize="@dimen/_13ssp" />
 
@@ -52,7 +52,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Shop Address"
+                    android:text="@string/shop_name"
                     android:textSize="@dimen/_10ssp" />
 
                 <TextView
@@ -63,7 +63,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="(Shop Address)"
+                    android:text="@string/shop_address_"
                     android:textSize="@dimen/_10ssp" />
 
             </RelativeLayout>

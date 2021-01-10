@@ -32,7 +32,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Cupcakes"
+                    android:text="@string/cupcakes"
                     android:textColor="#000"
                     android:textSize="@dimen/_22ssp" />
 
@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Stay Home,Order Online"
+                        android:text="@string/stay_home_order_online"
                         android:textColor="#fff" />
                 </RelativeLayout>
 
@@ -74,7 +74,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_18sdp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Now order online from"
+                        android:text="@string/now_order_online_from"
                         android:textColor="#000"
                         android:textSize="@dimen/_14ssp" />
 
@@ -85,7 +85,7 @@
                         android:layout_below="@id/online"
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="my online store"
+                        android:text="@string/my_online_store"
                         android:textColor="#000"
                         android:textSize="@dimen/_14ssp" />
 
@@ -104,7 +104,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Click to Order"
+                            android:text="@string/click_to_order"
                             android:textColor="#fff" />
                     </RelativeLayout>
 
@@ -112,6 +112,7 @@
 
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/storeImage"
                     android:layout_width="@dimen/_180sdp"
                     android:layout_height="@dimen/_110sdp"
@@ -125,7 +126,7 @@
                     android:layout_below="@+id/storeImage"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Pay using Paytm or COD"
+                    android:text="@string/pay_using_paytm_or_cod"
                     android:textSize="@dimen/_13ssp" />
 
             </RelativeLayout>
@@ -142,7 +143,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/ic_customer_btn"
             android:fontFamily="@font/montserrat_medium"
-            android:text="Save your shop Banner"
+            android:text="@string/save_your_shop_banner"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="@dimen/_15ssp"
@@ -163,7 +164,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:textSize="@dimen/_20ssp" />
 
 
@@ -176,8 +177,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -188,7 +189,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -202,7 +203,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

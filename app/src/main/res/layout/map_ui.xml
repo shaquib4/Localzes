@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
@@ -16,8 +17,10 @@
         app:cardCornerRadius="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_250sdp"
-        android:layout_below="@+id/view1">
+        android:layout_below="@+id/view1"
+        tools:ignore="UnknownIdInLayout">
         <ImageView
+            android:contentDescription="@string/todo"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,6 +29,7 @@
 
 
     <ImageView
+        android:contentDescription="@string/todo"
         android:layout_marginStart="18dp"
         android:id="@+id/lo"
         android:layout_width="wrap_content"
@@ -38,7 +42,7 @@
    <TextView
        android:id="@+id/Locality_bolds"
        android:layout_below="@+id/cardMap"
-       android:layout_toRightOf="@+id/lo"
+       android:layout_toEndOf="@+id/lo"
        android:layout_marginTop="6dp"
        android:layout_width="wrap_content"
        android:layout_marginStart="2dp"
@@ -47,7 +51,7 @@
        android:textStyle="bold"
        android:fontFamily="@font/montserrat_medium"
        android:layout_height="wrap_content"
-       android:text="Gorakhpur"/>
+       android:text="@string/gorakhpur"/>
     <TextView
 
         android:layout_below="@+id/lo"
@@ -61,7 +65,7 @@
 
         android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
-        android:text="Haraya,"/>
+        android:text="@string/haraya"/>
     <TextView
         android:layout_below="@+id/lo"
         android:layout_toEndOf="@+id/localitys"
@@ -72,7 +76,7 @@
         android:textSize="14sp"
         android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
-        android:text="Uttar Pradesh"
+        android:text="@string/uttar_pradesh"
 />
     <TextView
 
@@ -85,7 +89,7 @@
         android:textSize="14sp"
         android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
-        android:text="(Gorakhpur),"/>
+        android:text="@string/gorakhpur_1"/>
     <TextView
 
         android:layout_below="@+id/lo"
@@ -97,7 +101,7 @@
         android:textSize="14sp"
         android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
-        android:text="273016"/>
+        android:text="@string/_273016"/>
 
     <TextView
 
@@ -110,7 +114,7 @@
         android:textSize="15sp"
         android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
-        android:text="India"/>
+        android:text="@string/india"/>
 
 
 
@@ -139,14 +143,17 @@
 
             android:gravity="center_vertical"
             android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:background="@drawable/bg_rectangle"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor,RtlSymmetry" />
 
         <TextView
             android:layout_width="wrap_content"
             android:textSize="14sp"
             android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="Village/Locality*"
+            android:text="@string/village_locality"
 
             android:background="#fcfcfc"
             android:fontFamily="@font/montserrat_medium"
@@ -175,14 +182,17 @@
 
             android:gravity="center_vertical"
             android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:background="@drawable/bg_rectangle"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor,RtlSymmetry" />
 
         <TextView
             android:layout_width="wrap_content"
             android:textSize="14sp"
             android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="House/Flat/Block No"
+            android:text="@string/house_flat_block_no"
             android:background="#fcfcfc"
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
@@ -208,14 +218,17 @@
 
             android:gravity="center_vertical"
             android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:background="@drawable/bg_rectangle"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor,RtlSymmetry" />
 
         <TextView
             android:layout_width="wrap_content"
             android:textSize="14sp"
             android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="Nearest Landmark"
+            android:text="@string/nearest_landmark"
             android:background="#fcfcfc"
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
@@ -233,7 +246,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#fff"
-        android:text="Save And Proceed"/>
+        android:text="@string/save_and_proceed"/>
 
 
 </RelativeLayout>

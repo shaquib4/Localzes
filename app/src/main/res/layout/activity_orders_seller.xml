@@ -14,7 +14,7 @@
         android:background="#de4500"
         android:fontFamily="@font/montserrat_bold"
         android:paddingVertical="@dimen/_8sdp"
-        android:text="ORDERS"
+        android:text="@string/orders"
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="@dimen/_13ssp" />
@@ -43,6 +43,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgOC"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
@@ -54,9 +55,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:layout_toRightOf="@id/imgOC"
+                        android:layout_toEndOf="@id/imgOC"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Completed"
+                        android:text="@string/completed"
                         android:textColor="#000000"
                         android:textSize="@dimen/_12ssp" />
 
@@ -87,6 +88,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgOA"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
@@ -99,9 +101,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:layout_toRightOf="@id/imgOA"
+                        android:layout_toEndOf="@id/imgOA"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Accepted"
+                        android:text="@string/accepted"
                         android:textColor="#000000"
                         android:textSize="@dimen/_12ssp" />
 
@@ -130,6 +132,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgOS"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
@@ -142,9 +145,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:layout_toRightOf="@id/imgOS"
+                        android:layout_toEndOf="@id/imgOS"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Out For Delivery"
+                        android:text="@string/out_for_delivery"
                         android:textColor="#000000"
                         android:textSize="@dimen/_12ssp" />
 
@@ -172,6 +175,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgOP"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
@@ -183,9 +187,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:layout_toRightOf="@id/imgOP"
+                        android:layout_toEndOf="@id/imgOP"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Pending"
+                        android:text="@string/pending"
                         android:textColor="#000000"
                         android:textSize="@dimen/_12ssp" />
 

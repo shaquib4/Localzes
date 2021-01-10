@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_130sdp"
             android:padding="2dp"
-            android:weightSum="8">
+            android:weightSum="8"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -31,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:text="Nachos and dips"
+                    android:text="@string/nachos_and_dips"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#000000"
                     android:textSize="@dimen/_12ssp" />
@@ -41,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:text="Seller:Khan Baba"
+                    android:text="@string/seller_khan_baba"
                     android:textSize="@dimen/_10ssp" />
 
                 <LinearLayout
@@ -58,7 +59,7 @@
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_weight="1"
-                        android:text="Rs.1000"
+                        android:text="@string/rs_1000"
                         android:textSize="@dimen/_12ssp" />
 
                     <TextView
@@ -69,7 +70,7 @@
                         android:layout_marginStart="@dimen/_6sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_weight="1"
-                        android:text="Rs.1000"
+                        android:text="@string/rs_1000"
                         android:textSize="@dimen/_12ssp" />
                 </LinearLayout>
 
@@ -78,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:text="Rs.850"
+                    android:text="@string/rs_850"
                     android:fontFamily="@font/montserrat_bold"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_15ssp" />
@@ -92,6 +93,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/ProductImage"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_90sdp"
@@ -113,7 +115,7 @@
                         android:layout_weight="2.4"
                         android:background="@drawable/add_item_decrease"
                         android:onClick="countDe"
-                        android:text="-"
+                        android:text="@string/minus"
                         android:textColor="#de4500"
                         android:textSize="@dimen/_15ssp" />
 
@@ -124,7 +126,7 @@
                         android:layout_weight="3"
                         android:background="@drawable/add_item_quantity"
                         android:gravity="center"
-                        android:text="1"
+                        android:text="@string/_1"
                         android:textColor="#de4500"
                         android:textSize="@dimen/_15ssp" />
 
@@ -136,7 +138,7 @@
                         android:layout_weight="2.4"
                         android:background="@drawable/add_item_increase"
                         android:onClick="countIn"
-                        android:text="+"
+                        android:text="@string/plus"
                         android:textColor="#de4500"
                         android:textSize="@dimen/_15ssp" />
                 </LinearLayout>
@@ -152,7 +154,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/_8sdp"
         android:background="#de4500"
-        android:text="Add To Cart"
+        android:text="@string/add_to_cart"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="@dimen/_15ssp" />

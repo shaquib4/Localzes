@@ -26,6 +26,7 @@
                 app:cardCornerRadius="@dimen/_5sdp">
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/imgItem"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -42,7 +43,7 @@
                 android:layout_toStartOf="@+id/cardFavourite"
                 android:layout_toEndOf="@+id/cardImage"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Electronics Shop"
+                android:text="@string/electronics_shop"
                 android:textColor="#666666"
                 android:textSize="@dimen/_11ssp" />
 
@@ -56,7 +57,7 @@
                 android:layout_toStartOf="@+id/cardFavourite"
                 android:layout_toEndOf="@+id/cardImage"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="47/118B Durgakund, Gaziabad UP - 228800"
+                android:text="@string/_47_118b_durgakund_gaziabad_up_228800"
                 android:textColor="#d1d1d1"
                 android:textSize="@dimen/_10ssp" />
 
@@ -75,6 +76,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgFavourite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -41,6 +41,7 @@
 
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgProduct_customer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_130sdp"
@@ -62,7 +63,7 @@
               android:layout_alignTop="@id/txtProductPrice_customer"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Stock: IN "
+                android:text="@string/stock_in"
                 android:textColor="#3498db"
                 android:textSize="@dimen/_10ssp" />
 
@@ -102,7 +103,7 @@
                 android:gravity="center"
 
                 android:layout_margin="10dp"
-                android:text="Add +"
+                android:text="@string/add_"
                 android:textAllCaps="false"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_10ssp"
@@ -117,7 +118,7 @@
                 android:layout_below="@+id/v1"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Elecronics Accessories"
+                android:text="@string/electronics_accessories"
                 android:textColor="#000"
                 android:textSize="@dimen/_10ssp" />
 
@@ -129,7 +130,7 @@
                 android:layout_below="@+id/txtProductTitle_customer"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Rs. 699"
+                android:text="@string/rs_699"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_12ssp" />
 
@@ -137,15 +138,15 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_alignRight="@id/txtProductOfferPrice"
-                android:layout_alignLeft="@id/txtProductOfferPrice"
+                android:layout_alignEnd="@id/txtProductOfferPrice"
+                android:layout_alignStart="@id/txtProductOfferPrice"
                 android:layout_alignTop="@id/txtProductOfferPrice"
-                android:layout_toRightOf="@id/txtProductOfferPrice"
+                android:layout_toEndOf="@id/txtProductOfferPrice"
                 android:background="#d3d3d3" />
 
             <TextView
                 android:paddingHorizontal="5dp"
-                android:layout_toLeftOf="@id/txtStock_customer"
+                android:layout_toStartOf="@id/txtStock_customer"
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -154,7 +155,7 @@
                 android:layout_toEndOf="@id/txtProductPrice_customer"
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingVertical="@dimen/_2sdp"
-                android:text="1099"
+                android:text="@string/_1099"
                 android:textColor="#d3d3d3"
                 android:textSize="@dimen/_10ssp" />
 
@@ -181,7 +182,7 @@
                     android:background="@drawable/add_item_decrease"
                     android:gravity="center"
                     android:onClick="countDe"
-                    android:text="-"
+                    android:text="@string/minus"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_12ssp" />
 
@@ -194,7 +195,7 @@
                     android:background="@drawable/add_item_quantity"
                     android:fontFamily="@font/montserrat_medium"
                     android:gravity="center"
-                    android:text="1"
+                    android:text="@string/_1"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_12ssp" />
 
@@ -207,7 +208,7 @@
                     android:background="@drawable/add_item_increase"
                     android:gravity="center"
                     android:onClick="countIn"
-                    android:text="+"
+                    android:text="@string/plus"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_12ssp" />
             </LinearLayout>

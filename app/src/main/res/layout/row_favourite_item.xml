@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,6 +17,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgItem"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
@@ -29,9 +31,9 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/txtItemMRP"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/imgItem"
+                android:layout_toEndOf="@+id/imgItem"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Aaloo Chat"
+                android:text="@string/aaloo_chat"
                 android:textColor="#666666"
                 android:textSize="@dimen/_12ssp" />
 
@@ -41,11 +43,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/imgItem"
+                android:layout_toEndOf="@+id/imgItem"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Rs. 1,499"
+                android:text="@string/rs_1_499"
                 android:textColor="#d1d1d1"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_10ssp"
+                tools:ignore="RelativeOverlap" />
 
             <TextView
                 android:id="@+id/txtItemPrice"
@@ -53,9 +56,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtItemMRP"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/imgItem"
+                android:layout_toEndOf="@+id/imgItem"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Rs. 526/-"
+                android:text="@string/rs_526"
                 android:textColor="#008000"
                 android:textSize="@dimen/_14ssp" />
 
@@ -73,6 +76,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgFavourite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

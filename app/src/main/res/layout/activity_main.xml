@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +19,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="@dimen/_30sdp"
             android:background="@drawable/stroke"
-            android:drawableLeft="@drawable/ic_baseline_phone_iphone_24"
+            android:drawableStart="@drawable/ic_baseline_phone_iphone_24"
             android:fontFamily="@font/montserrat_medium"
             android:hint="@string/mobile_number"
             android:inputType="phone"
@@ -29,7 +28,8 @@
             android:paddingHorizontal="@dimen/_10sdp"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_12ssp"
+            android:importantForAutofill="no" />
 
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_30sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Login or Sign Up with your Mobile number"
+            android:text="@string/login_or_sign_up_with_your_mobile_number"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="@dimen/_13ssp" />
@@ -55,7 +55,7 @@
             android:background="@drawable/round_button"
             android:fontFamily="@font/l_r"
             android:padding="7dp"
-            android:text="Login | Sign Up"
+            android:text="@string/login_sign_up"
             android:textAllCaps="false"
             android:textColor="#DE0606"
             android:textSize="@dimen/_12ssp" />
@@ -76,8 +76,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/oh_no"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -89,8 +89,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -101,7 +101,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -115,7 +115,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 
