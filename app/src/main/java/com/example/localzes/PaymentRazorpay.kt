@@ -35,15 +35,17 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
             val orderRequest = JSONObject()
             try {
                
-                orderRequest.put("amount", 50000) // amount in the smallest currency unit
+                orderRequest.put("amount", amo.toDouble()*100) // amount in the smallest currency unit
                 orderRequest.put("currency", "INR")
                 orderRequest.put("receipt", "order_rcptid_11")
-                
+                orderRequest.put("payment_capture", 1)
+               // orderRequest.put("order_id",PaymentData().orderId)
+                order(orderRequest)
             } catch (e: Exception) {
                 // Handle Exception
                 println(e.printStackTrace())
             }
-          order(orderRequest)
+
         }
 
     }
@@ -56,6 +58,7 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
             Response.Listener {
                 //after sending fcm start order details activity
                 startPayment()
+
 
             },
             Response.ErrorListener {
@@ -118,7 +121,7 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
 
     override fun onPaymentSuccess(s: String?, p1: PaymentData?) {
         Log.e("Done", " payment successful "+ s.toString());
-        Toast.makeText(this, "Payment successfully done! $s", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, p1?.orderId, Toast.LENGTH_SHORT).show();
         startActivity(Intent(this,NewActivity::class.java))
         finish()
     }
