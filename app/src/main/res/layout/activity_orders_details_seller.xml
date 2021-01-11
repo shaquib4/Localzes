@@ -17,6 +17,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgBackOrderDetails"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
@@ -28,17 +29,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10sdp"
-                android:layout_toRightOf="@id/imgBackOrderDetails"
+                android:layout_toEndOf="@id/imgBackOrderDetails"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Order Details"
+                android:text="@string/order_details"
                 android:textColor="#000000"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_13ssp"
+                tools:ignore="RelativeOverlap" />
 
             <CheckBox
                 android:id="@+id/checkbox_Completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:onClick="onCheckboxClicked" />
 
@@ -68,7 +70,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Order Id :"
+                        android:text="@string/order_id"
                         android:textColor="#000000"
                         android:textSize="@dimen/_12ssp" />
 
@@ -79,7 +81,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="#123456"
+                        android:text="@string/_123456"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp" />
 
@@ -93,7 +95,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Date :"
+                        android:text="@string/date"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp" />
 
@@ -104,7 +106,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="27/02/2020, 9:45 PM"
+                        android:text="@string/_27_02_2020_9_45_pm"
                         android:textSize="@dimen/_10ssp" />
 
 
@@ -118,7 +120,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Order Status :"
+                        android:text="@string/order_status"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp" />
 
@@ -130,7 +132,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Pending"
+                        android:text="@string/pending"
                         android:textColor="#008000"
                         android:textSize="@dimen/_10ssp" />
 
@@ -144,7 +146,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Items :"
+                        android:text="@string/items"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp" />
 
@@ -155,7 +157,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="9"
+                        android:text="@string/_9"
                         android:textSize="@dimen/_10ssp" />
 
 
@@ -169,7 +171,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Amount :"
+                        android:text="@string/amount"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp" />
 
@@ -179,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:text="Rs. 1,209/-"
+                        android:text="@string/rs_1_209"
                         android:textColor="#008000"
                         android:textSize="@dimen/_12ssp" />
 
@@ -193,7 +195,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Delivery Address :"
+                        android:text="@string/delivery_address"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp"
 
@@ -206,10 +208,11 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Saraibika, Jaunpur UP - 222202"
+                        android:text="@string/saraibika_jaunpur_up_222202"
                         android:textSize="@dimen/_10ssp" />
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgEdit"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp"
@@ -224,7 +227,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Contact customer :"
+                        android:text="@string/contact_customer"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp"
 
@@ -237,11 +240,12 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="(Call Now)"
+                        android:text="@string/call_now"
                         android:textAlignment="center"
                         android:textSize="@dimen/_10ssp" />
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgMakeCallCustomer"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_20sdp"
@@ -265,7 +269,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:paddingVertical="@dimen/_8sdp"
-            android:text="Ordered Items"
+            android:text="@string/ordered_items"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000000"
@@ -300,7 +304,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:textSize="@dimen/_20ssp" />
 
 
@@ -313,8 +317,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_60sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -325,7 +329,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -339,7 +343,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

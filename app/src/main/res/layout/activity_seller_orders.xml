@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,6 +16,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgBackPending"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
@@ -28,9 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/imgBackPending"
-                android:layout_toRightOf="@+id/imgBackPending"
+                android:layout_toEndOf="@+id/imgBackPending"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Pending Orders"
+                android:text="@string/pending_orders"
                 android:textColor="#000000"
                 android:textSize="@dimen/_13ssp" />
 
@@ -50,7 +50,8 @@
                 android:layout_below="@+id/v1"
                 android:background="@drawable/border"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:baselineAligned="false">
 
                 <RelativeLayout
                     android:id="@+id/rl_cartPending"
@@ -68,7 +69,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Cart Orders"
+                        android:text="@string/cart_orders"
                         android:textColor="#000"
                         android:textSize="@dimen/_14ssp" />
 
@@ -80,7 +81,7 @@
                         android:layout_marginEnd="@dimen/_2sdp"
                         android:layout_toEndOf="@+id/txtCartPending"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="(1000)"
+                        android:text="@string/_1000"
                         android:textColor="#000"
 
                         android:textSize="@dimen/_14ssp" />
@@ -103,7 +104,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="List Orders"
+                        android:text="@string/list_orders"
                         android:textColor="#000"
                         android:textSize="@dimen/_14ssp" />
 
@@ -114,7 +115,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/txtlistPending"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="(1000)"
+                        android:text="@string/_1000"
                         android:textColor="#000"
                         android:textSize="@dimen/_14ssp" />
                 </RelativeLayout>
@@ -129,8 +130,11 @@
             android:layout_margin="5dp"
             android:background="@drawable/bg_product_shop"
             android:drawableStart="@drawable/ic_search"
-            android:hint="Search"
-            android:paddingStart="@dimen/_5sdp" />
+            android:hint="@string/search"
+            android:paddingStart="@dimen/_5sdp"
+            tools:ignore="RtlSymmetry"
+            android:inputType="text"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/search_act_Pending1"
@@ -140,8 +144,11 @@
             android:layout_margin="5dp"
             android:background="@drawable/bg_product_shop"
             android:drawableStart="@drawable/ic_search"
-            android:hint="Search"
-            android:paddingStart="@dimen/_5sdp" />
+            android:hint="@string/search"
+            android:paddingStart="@dimen/_5sdp"
+            tools:ignore="RtlSymmetry"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <RelativeLayout
             android:id="@+id/rl_Pending_Orders"
@@ -149,6 +156,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgEmpty"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
@@ -162,7 +170,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="No orders pending yet!"
+                android:text="@string/no_orders_pending_yet"
                 android:textColor="#696969"
                 android:textSize="@dimen/_15ssp" />
         </RelativeLayout>
@@ -191,7 +199,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:textSize="@dimen/_20ssp" />
 
 
@@ -204,8 +212,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -216,7 +224,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -230,7 +238,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

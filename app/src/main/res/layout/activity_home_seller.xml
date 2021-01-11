@@ -32,19 +32,22 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgBar"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_250sdp"
                         android:background="@drawable/localze_shop" />
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/editShopDetails"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_margin="@dimen/_10sdp"
                         android:src="@drawable/edit" />
 
@@ -57,7 +60,8 @@
                         android:padding="10dp"
                         android:text="@string/shop_name"
                         android:textColor="#fff"
-                        android:textSize="@dimen/_20ssp" />
+                        android:textSize="@dimen/_20ssp"
+                        tools:ignore="RelativeOverlap" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardShare"
@@ -127,7 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/cardShare"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:padding="10dp"
                         android:text="@string/orders"
@@ -140,7 +144,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txtOrders"
                         android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:weightSum="4"
+                        android:baselineAligned="false">
 
                         <RelativeLayout
                             android:layout_width="0dp"
@@ -148,6 +153,7 @@
                             android:layout_weight="1">
 
                             <ImageView
+                                android:contentDescription="@string/todo"
                                 android:id="@+id/OrderAcc"
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"
@@ -160,7 +166,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:fontFamily="@font/montserrat_medium"
-                                android:text="0"
+                                android:text="@string/_0"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10ssp" />
@@ -177,7 +183,8 @@
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"
                                 android:layout_centerInParent="true"
-                                android:src="@drawable/circle" />
+                                android:src="@drawable/circle"
+                                android:contentDescription="@string/todo" />
 
                             <TextView
                                 android:id="@+id/txtItemOFD"
@@ -185,7 +192,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:fontFamily="@font/montserrat_medium"
-                                android:text="0"
+                                android:text="@string/_0"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10ssp" />
@@ -198,6 +205,7 @@
                             android:layout_weight="1">
 
                             <ImageView
+                                android:contentDescription="@string/todo"
                                 android:id="@+id/orderCom"
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"
@@ -210,7 +218,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:fontFamily="@font/montserrat_medium"
-                                android:text="0"
+                                android:text="@string/_0"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10ssp" />
@@ -224,6 +232,7 @@
                             android:layout_weight="1">
 
                             <ImageView
+                                android:contentDescription="@string/todo"
                                 android:id="@+id/orderPen"
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"
@@ -236,7 +245,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:fontFamily="@font/montserrat_medium"
-                                android:text="0"
+                                android:text="@string/_0"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10ssp" />
@@ -270,7 +279,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="Out For Delivery"
+                            android:text="@string/out_for_delivery"
                             android:textAlignment="center"
                             android:textSize="@dimen/_9ssp" />
 
@@ -301,7 +310,6 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/linearLayoutTittle"
                         android:layout_marginStart="10dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:padding="10dp"
@@ -315,7 +323,8 @@
                         android:layout_height="@dimen/_45sdp"
                         android:layout_below="@+id/txtOverview"
                         android:orientation="horizontal"
-                        android:weightSum="3">
+                        android:weightSum="3"
+                        android:baselineAligned="false">
 
                         <RelativeLayout
                             android:layout_width="0dp"
@@ -330,7 +339,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:fontFamily="@font/montserrat_medium"
-                                android:text="Total Orders"
+                                android:text="@string/total_orders"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_9ssp" />
@@ -343,7 +352,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginVertical="@dimen/_5sdp"
                                 android:fontFamily="@font/montserrat_bold"
-                                android:text="0"
+                                android:text="@string/_0"
                                 android:textSize="@dimen/_10ssp" />
 
                         </RelativeLayout>
@@ -361,7 +370,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:fontFamily="@font/montserrat_medium"
-                                android:text="Total Income"
+                                android:text="@string/total_income"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_9ssp" />
 
@@ -373,7 +382,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginVertical="@dimen/_5sdp"
                                 android:fontFamily="@font/montserrat_bold"
-                                android:text="0"
+                                android:text="@string/_0"
                                 android:textSize="@dimen/_10ssp" />
                         </RelativeLayout>
 
@@ -391,7 +400,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:fontFamily="@font/montserrat_medium"
-                                android:text="Store Views"
+                                android:text="@string/store_views"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_9ssp" />
 
@@ -403,7 +412,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginVertical="@dimen/_5sdp"
                                 android:fontFamily="@font/montserrat_bold"
-                                android:text="0"
+                                android:text="@string/_0"
                                 android:textSize="@dimen/_10ssp" />
                         </RelativeLayout>
                     </LinearLayout>
@@ -426,8 +435,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/oh_no"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -439,8 +448,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -451,7 +460,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -465,7 +474,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
     </RelativeLayout>

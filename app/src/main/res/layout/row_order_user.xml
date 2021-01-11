@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fcfcfc"
@@ -14,7 +15,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
 
             <androidx.cardview.widget.CardView
@@ -32,6 +34,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgProduct1"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_60sdp"
@@ -40,6 +43,7 @@
                         android:src="@drawable/lanju" />
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/imgBorder1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -54,9 +58,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        android:layout_toRightOf="@+id/imgProduct1"
+                        android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="5 items"
+                        android:text="@string/_5_items"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
@@ -65,9 +69,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/totalItemsCustomerTv"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_toRightOf="@+id/imgProduct1"
+                        android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Rs. 499/-"
+                        android:text="@string/rs_1_499"
                         android:textColor="#de4500"
                         android:textSize="@dimen/_15ssp" />
 
@@ -80,7 +84,7 @@
                         android:layout_toStartOf="@+id/txtCod1"
                         android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Ratnakar Chaurasiya"
+                        android:text="@string/ratnakar_chaurasiya"
                         android:textSize="@dimen/_11ssp" />
 
                     <TextView
@@ -92,20 +96,21 @@
                         android:layout_toStartOf="@+id/txtCod1"
                         android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="+91 7518894470"
+                        android:text="@string/_91_7518894470"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
                         android:id="@+id/orderIdCustomerTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginEnd="10dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:padding="5dp"
-                        android:text="Order Id #142197"
+                        android:text="@string/order_id_142197"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_12ssp"
+                        tools:ignore="RelativeOverlap" />
 
                     <TextView
                         android:id="@+id/txtCod1"
@@ -117,7 +122,7 @@
                         android:background="@drawable/bg_add_item"
                         android:fontFamily="@font/montserrat_bold"
                         android:padding="5dp"
-                        android:text="COD"
+                        android:text="@string/cod"
                         android:textColor="#de4500"
                         android:textSize="@dimen/_13ssp" />
 
@@ -130,7 +135,7 @@
                         android:layout_margin="10dp"
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="5dp"
-                        android:text="01/01/2021, 3:45 PM"
+                        android:text="@string/_01_01_2021_3_45_pm"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
@@ -142,7 +147,7 @@
                         android:background="@drawable/rectangle_box"
                         android:fontFamily="@font/montserrat_medium"
                         android:padding="5dp"
-                        android:text="IN PROGRESS"
+                        android:text="@string/in_progress"
                         android:textColor="#08B000"
                         android:textSize="@dimen/_10ssp" />
                 </RelativeLayout>

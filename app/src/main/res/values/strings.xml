@@ -140,13 +140,12 @@
     <string name="add_product">ADD PRODUCT</string>
     <string name="quantity">Quantity</string>
     <string name="size">Size</string>
-    <string name="example_xs_s_m_l">Example: XS,S,M,L...</string>
+    <string name="example_xs_s_m_l">Example: XS,S,M,L…</string>
     <string name="boost_your_shop">Boost Your Shop</string>
     <string name="share_your_shop">Share Your Shop</string>
     <string name="generate_qr_code">Generate QR code</string>
     <string name="shop_banner">Shop Banner</string>
     <string name="shop_overview">Shop Overview</string>
-    <string name="electronics_accessories">Electronics Accessories</string>
     <string name="stock_in">Stock: IN</string>
     <string name="rs_699">Rs. 699</string>
     <string name="rs_1099">Rs. 1099</string>
@@ -194,4 +193,233 @@
     <string name="as_customer">As Customer</string>
     <string name="pay_with_razor_pay">Pay with Razor Pay</string>
     <string name="rs_350">Rs. 350</string>
+    <string name="create_your_list">Create Your List</string>
+    <string name="add">Add</string>
+    <string name="confirm">Confirm</string>
+    <string name="cupcakes">Cupcakes</string>
+    <string name="scan_to_order">Scan to order</string>
+    <string name="scan_using_localze_mobile_app">Scan using localze mobile app</string>
+    <string name="save_qr">Save QR</string>
+    <string name="welcome_to_localze">Welcome to Localze !</string>
+    <string name="all">All</string>
+    <string name="grocery">Grocery</string>
+    <string name="food">Food</string>
+    <string name="electronics">Electronics</string>
+    <string name="fashion">Fashion</string>
+    <string name="mobiles">Mobiles</string>
+    <string name="home">Home</string>
+    <string name="beauty">Beauty</string>
+    <string name="appliances">Appliances</string>
+    <string name="toys_amp_kids"><![CDATA[Toys & Kids]]></string>
+    <string name="sports">Sports</string>
+    <string name="books">Books</string>
+    <string name="automobiles">Automobiles</string>
+    <string name="fitness">Fitness</string>
+    <string name="healthcare">Healthcare</string>
+    <string name="travel">Travel</string>
+    <string name="gaming">Gaming</string>
+    <string name="others">Others</string>
+    <string name="sorry_no_shops_found_in_your_city">Sorry! No shops found in your city</string>
+    <string name="_0">0</string>
+    <string name="out_for_delivery">Out For Delivery</string>
+    <string name="total_orders">Total Orders</string>
+    <string name="total_income">Total Income</string>
+    <string name="store_views">Store Views</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="order_details">Order Details</string>
+    <string name="order_id">Order Id :</string>
+    <string name="_123456">#123456</string>
+    <string name="date">Date :</string>
+    <string name="_27_02_2020_9_45_pm">27/02/2020, 9:45 PM</string>
+    <string name="order_status">Order Status :</string>
+    <string name="items">Items :</string>
+    <string name="_9">9</string>
+    <string name="amount">Amount :</string>
+    <string name="rs_1_209">Rs. 1,209/-</string>
+    <string name="delivery_address">Delivery Address :</string>
+    <string name="saraibika_jaunpur_up_222202">Saraibika, Jaunpur UP - 222202</string>
+    <string name="contact_customer">Contact customer :</string>
+    <string name="call_now">(Call Now)</string>
+    <string name="ordered_items">Ordered Items</string>
+    <string name="rs_53">Rs.53</string>
+    <string name="accept_and_confirm">Accept and Confirm</string>
+    <string name="no_orders_yet">No orders yet!</string>
+    <string name="login_or_sign_up_with_your_mobile_number">Login or Sign Up with your Mobile number</string>
+    <string name="login_sign_up">Login | Sign Up</string>
+    <string name="manage_addresses">MANAGE ADDRESSES</string>
+    <string name="current_address">Current Address</string>
+    <string name="mohan_chauraha_saraivika_jaunpur_up_222202_india">Mohan chauraha, Saraivika, Jaunpur UP - 222202 India</string>
+    <string name="mobile_7518894470">Mobile - 7518894470</string>
+    <string name="delete">DELETE</string>
+    <string name="saved_addresses">Saved Addresses</string>
+    <string name="add_new_address">ADD NEW ADDRESS</string>
+    <string name="gorakhpur">Gorakhpur</string>
+    <string name="haraya">Haraya,</string>
+    <string name="uttar_pradesh">Uttar Pradesh</string>
+    <string name="gorakhpur_1">(Gorakhpur),</string>
+
+    <string name="thank_you_for_shopping">Thank You For Shopping !</string>
+    <string name="continue_shopping">Continue Shopping</string>
+    <string name="your_order_has_been_successfully_placed">Your Order has been Successfully Placed</string>
+
+    <string name="no_orders_out_for_delivery_yet">No orders out for delivery yet!</string>
+
+    <string name="accepted_orders">Accepted Orders</string>
+    <string name="no_orders_accepted_yet">No orders accepted yet!</string>
+
+    <string name="completed_orders">Completed Orders</string>
+    <string name="no_orders_completed_yet">No orders completed yet!</string>
+
+    <string name="in_progress">In Progress</string>
+    <string name="abc_shop">ABC Shop</string>
+    <string name="shop_address">Shop Address :</string>
+
+    <string name="completed">Completed</string>
+    <string name="past_orders">Past Orders</string>
+    <string name="no_past_orders_yet">No past orders yet!</string>
+    <string name="payment">PAYMENT</string>
+    <string name="shop">Shop</string>
+    <string name="digital_electronics">Digital Electronics</string>
+    <string name="upi">UPI</string>
+    <string name="katappamama_paytm">katappamama@paytm</string>
+    <string name="message">Message</string>
+    <string name="paymet_for_localze">Paymet for Localze</string>
+    <string name="rs_199">Rs. 199/-</string>
+
+    <string name="rs_40">Rs. 40/-</string>
+    <string name="total_amount_1">Total Amount :</string>
+    <string name="rs_239_00">Rs. 239.00</string>
+    <string name="pay_now">PAY NOW</string>
+    <string name="your_details">Your Details</string>
+    <string name="enter_your_full_name">Enter Your Full Name</string>
+    <string name="name">Name*</string>
+    <string name="age_should_be_greater_or_equal_to_18">Age should be greater or equal to 18</string>
+    <string name="age">Age*</string>
+    <string name="enter_your_permanent_address">Enter Your Permanent Address</string>
+    <string name="permanent_address">Permanent Address*</string>
+    <string name="enter_your_temporary_address">Enter Your Temporary Address</string>
+    <string name="temporary_address">Temporary Address</string>
+    <string name="enter_your_alternative_mobile_no">Enter Your Alternative Mobile No</string>
+    <string name="alternate_mobile_no">Alternate Mobile No*</string>
+    <string name="register_as_customer">Register as Customer</string>
+
+    <string name="register_as_seller">Register as Seller</string>
+
+    <string name="search">Search…</string>
+    <string name="shops">Shops</string>
+    <string name="locality">Locality</string>
+    <string name="product">Product</string>
+    <string name="locality2">Locality2</string>
+    <string name="no_products_added_yet">No products added yet!</string>
+    <string name="click_button_to_add_your_products">Click + button to add your products</string>
+    <string name="products">PRODUCTS</string>
+    <string name="pending_orders">Pending Orders</string>
+
+    <string name="no_orders_pending_yet">No orders pending yet!</string>
+    <string name="add_shop_image_optional">Add shop image (optional)</string>
+    <string name="choose_shop_category">Choose shop category</string>
+    <string name="upi_id_optional">UPI ID (optional)</string>
+    <string name="upload">Upload</string>
+    <string name="select_shop_s_activity_hours">Select Shop\'s Activity Hours</string>
+    <string name="close">Close</string>
+    <string name="select_shop_s_closing_day">Select Shop\'s Closing Day</string>
+
+    <string name="stay_home_order_online">Stay Home,Order Online</string>
+    <string name="now_order_online_from">Now order online from</string>
+    <string name="my_online_store">my online store</string>
+    <string name="click_to_order">Click to Order</string>
+    <string name="pay_using_paytm_or_cod">Pay using Paytm or COD</string>
+    <string name="save_your_shop_banner">Save your shop Banner</string>
+    <string name="edit_product_details">EDIT PRODUCT DETAILS</string>
+
+    <string name="product_description_optional">Product Description (optional)</string>
+
+    <string name="update_product">UPDATE PRODUCT</string>
+
+    <string name="edit_shop_details">EDIT SHOP DETAILS</string>
+
+    <string name="update_details">Update Details</string>
+
+    <string name="_1">1</string>
+    <string name="item">item</string>
+    <string name="full_stop">|</string>
+    <string name="_200">200</string>
+    <string name="view_cart">VIEW CART</string>
+    <string name="an_otp_has_been_sent_to_mobile_number">An OTP has been sent to mobile number</string>
+    <string name="_91">+91</string>
+    <string name="_8933959659">8933959659</string>
+    <string name="verifying">Verifying</string>
+    <string name="otp_verification">OTP verification</string>
+    <string name="nachos_and_dips">Nachos and dips</string>
+    <string name="seller_khan_baba">Seller:Khan Baba</string>
+    <string name="rs_850">Rs.850</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="choose_a_delivery_address">Choose a delivery address</string>
+
+    <string name="out_of_stock">Out Of Stock</string>
+    <string name="coffee">Coffee</string>
+    <string name="as_delivery_partner">As Delivery Partner</string>
+    <string name="adding_new_item">Adding New Item</string>
+    <string name="adding_a_new_product_from_new_shop_will_clear_your_cart">Adding a new product from new shop will clear your cart</string>
+    <string name="do_you_still_want_to_continue">Do you still want to continue ?</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="no_shops_added_in_favorites_yet">No shops added in favorites yet!</string>
+    <string name="no_items_added_in_favorites_yet">No items added in favorites yet!</string>
+    <string name="_1_1">1.</string>
+    <string name="aloo">Aloo</string>
+    <string name="x8kg">X8kg</string>
+    <string name="aloox8kg">AlooX8kg</string>
+
+    <string name="menu_item">Menu Item</string>
+    <string name="_11">1)</string>
+    <string name="potato_chips">Potato Chips</string>
+    <string name="_1_pack">(1 Pack)</string>
+    <string name="_20000">₹20000</string>
+
+    <string name="pani_puri">Pani Puri</string>
+
+    <string name="add_">Add +</string>
+
+    <string name="_1099">1099</string>
+    <string name="aaloo_chat">Aaloo Chat</string>
+    <string name="rs_1_499">Rs. 1,499</string>
+    <string name="rs_526">Rs. 526/-</string>
+    <string name="electronics_shop">Electronics Shop</string>
+    <string name="_47_118b_durgakund_gaziabad_up_228800">47/118B Durgakund, Gaziabad UP - 228800</string>
+
+    <string name="cod">COD</string>
+
+    <string name="rs_499">Rs. 499</string>
+
+    <string name="paid">PAID</string>
+
+    <string name="ratnakar_chaurasiya">Ratnakar Chaurasiya</string>
+    <string name="_91_7518894470">+91 7518894470</string>
+    <string name="order_id_142197">Order Id #142197</string>
+    <string name="_01_01_2021_3_45_pm">01/01/2021, 3:45 PM</string>
+    <string name="american_tourister">American Tourister</string>
+
+    <string name="_5_items">5 items</string>
+    <string name="rs_6_045_00">Rs. 6,045.00</string>
+    <string name="shop_address_">(Shop Address)</string>
+    <string name="khan_shops">Khan Shops</string>
+    <string name="foods">Foods</string>
+    <string name="_8_00_am_to_9_00_pm">8:00 am to 9:00 pm</string>
+    <string name="favourites">Favourites</string>
+    <string name="current_orders_">Current Orders</string>
+    <string name="no_current_orders_yet">No current orders yet!</string>
+    <string name="_1000">1000</string>
+    <string name="_273016">273016</string>
+    <string name="india">India</string>
+    <string name="village_locality">Village locality</string>
+    <string name="house_flat_block_no">House flat block no</string>
+    <string name="nearest_landmark">Nearest landmark</string>
+    <string name="save_and_proceed">Save and Proceed</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="proceed">Proceed</string>
+    <string name="rs_1000">Rs. 1000</string>
+    <string name="electronics_accessories">Electronics Accessories</string>
 </resources>

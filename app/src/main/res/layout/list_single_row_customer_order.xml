@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/_2sdp"
         android:layout_weight="0.2"
         android:fontFamily="@font/montserrat_medium"
-        android:text="1."
+        android:text="@string/_1_1"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="@dimen/_14ssp" />
@@ -26,7 +26,7 @@
         android:layout_marginStart="@dimen/_2sdp"
         android:layout_weight="4.6"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Aloo"
+        android:text="@string/aloo"
         android:textAlignment="center"
         android:textColor="#008000"
         android:textSize="@dimen/_14ssp" />
@@ -39,7 +39,7 @@
         android:layout_marginStart="@dimen/_2sdp"
         android:layout_weight="1.2"
         android:fontFamily="@font/montserrat_medium"
-        android:text="X8kg"
+        android:text="@string/x8kg"
         android:textAlignment="center"
         android:textColor="#1589b6"
         android:textSize="@dimen/_14ssp" />
@@ -52,7 +52,7 @@
         android:layout_marginStart="@dimen/_2sdp"
         android:layout_weight="2"
         android:fontFamily="@font/montserrat_medium"
-        android:text="200"
+        android:text="@string/_200"
         android:textAlignment="center"
         android:textColor="#de4500"
         android:textSize="@dimen/_14ssp" />

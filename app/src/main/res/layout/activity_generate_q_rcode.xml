@@ -31,6 +31,7 @@
                 android:background="#fff">
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/store_image"
                     android:layout_width="@dimen/_75sdp"
                     android:layout_height="@dimen/_60sdp"
@@ -44,9 +45,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_22sdp"
-                    android:layout_toRightOf="@id/store_image"
+                    android:layout_toEndOf="@id/store_image"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Cupcakes"
+                    android:text="@string/cupcakes"
                     android:textColor="#000"
                     android:textSize="@dimen/_17ssp" />
 
@@ -62,11 +63,12 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Scan to order"
+                        android:text="@string/scan_to_order"
                         android:textColor="#fff"
                         android:textSize="@dimen/_21ssp" />
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/iv_qr_code"
                         android:layout_width="@dimen/_160sdp"
                         android:layout_height="@dimen/_160sdp"
@@ -80,12 +82,13 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Scan using localze mobile app"
+                        android:text="@string/scan_using_localze_mobile_app"
                         android:textColor="#000"
                         android:textSize="@dimen/_11ssp" />
                 </RelativeLayout>
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:layout_width="@dimen/_165sdp"
                     android:layout_height="@dimen/_38sdp"
                     android:layout_below="@+id/bg_QR"
@@ -106,7 +109,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/ic_customer_btn"
             android:fontFamily="@font/montserrat_medium"
-            android:text="Save QR"
+            android:text="@string/save_qr"
             android:textColor="#fff"
             android:textSize="@dimen/_14ssp"
             tools:ignore="MissingConstraints" />
@@ -127,8 +130,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/oh_no"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -140,8 +143,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -152,7 +155,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -166,7 +169,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

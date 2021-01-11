@@ -14,8 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <fragment
 
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -24,6 +23,7 @@
             tools:context=".MapsActivity2" />
 
         <ImageView
+            android:contentDescription="@string/todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -109,6 +109,7 @@
     </RelativeLayout>
 
     <ImageView
+        android:contentDescription="@string/todo"
         android:id="@+id/lo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,9 +126,9 @@
         android:layout_below="@+id/mapRel_new"
         android:layout_marginStart="2dp"
         android:layout_marginTop="9dp"
-        android:layout_toRightOf="@+id/lo"
+        android:layout_toEndOf="@+id/lo"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Gorakhpur"
+        android:text="@string/gorakhpur"
         android:textColor="#000"
         android:textSize="20sp" />
 
@@ -142,7 +143,7 @@
         android:fontFamily="@font/montserrat_medium"
 
 
-        android:text="Haraya,"
+        android:text="@string/haraya"
         android:textColor="#000000"
         android:textSize="12sp" />
 
@@ -155,7 +156,7 @@
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/localit_new"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Uttar Pradesh"
+        android:text="@string/uttar_pradesh"
         android:textColor="#000000"
         android:textSize="12sp" />
 
@@ -169,7 +170,7 @@
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/State_new"
         android:fontFamily="@font/montserrat_medium"
-        android:text="(Gorakhpur),"
+        android:text="@string/gorakhpur_1"
         android:textColor="#000000"
         android:textSize="12sp" />
 
@@ -183,7 +184,7 @@
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/City_new"
         android:fontFamily="@font/montserrat_medium"
-        android:text="273016"
+        android:text="@string/_273016"
         android:textColor="#000000"
         android:textSize="12sp" />
 
@@ -196,7 +197,7 @@
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/Pincode_new"
         android:fontFamily="@font/montserrat_medium"
-        android:text="India"
+        android:text="@string/india"
         android:textSize="15sp"
         android:visibility="invisible" />
 
@@ -221,7 +222,10 @@
             android:gravity="center_vertical"
             android:padding="10dp"
             android:paddingStart="16dp"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:inputType="text"
+            tools:ignore="LabelFor,RtlSymmetry"
+            android:importantForAutofill="no" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -233,7 +237,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
-            android:text="Village/Locality*"
+            android:text="@string/village_locality"
             android:textSize="12sp" />
     </RelativeLayout>
 
@@ -258,7 +262,10 @@
             android:gravity="center_vertical"
             android:padding="10dp"
             android:paddingStart="16dp"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:inputType="text"
+            tools:ignore="LabelFor,RtlSymmetry"
+            android:importantForAutofill="no" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -269,7 +276,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
-            android:text="House/Flat/Block No"
+            android:text="@string/house_flat_block_no"
             android:textSize="12sp" />
     </RelativeLayout>
 
@@ -293,7 +300,10 @@
             android:gravity="center_vertical"
             android:padding="10dp"
             android:paddingStart="16dp"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:inputType="text"
+            tools:ignore="LabelFor,RtlSymmetry"
+            android:importantForAutofill="no" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -304,7 +314,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
-            android:text="Nearest Landmark"
+            android:text="@string/nearest_landmark"
             android:textSize="12sp" />
     </RelativeLayout>
 
@@ -328,7 +338,10 @@
             android:gravity="center_vertical"
             android:padding="10dp"
             android:paddingStart="16dp"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor,RtlSymmetry,TextFields"
+            android:inputType="text" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -339,7 +352,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
             android:paddingEnd="2dp"
-            android:text="Mobile Number"
+            android:text="@string/mobile_number"
             android:textSize="12sp" />
 
 
@@ -354,7 +367,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_buttons"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Save And Proceed"
+        android:text="@string/save_and_proceed"
         android:textColor="#fff"
         android:textSize="15sp" />
 </RelativeLayout>
@@ -372,7 +385,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:textSize="@dimen/_20ssp" />
 
 
@@ -385,8 +398,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -397,7 +410,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -411,7 +424,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

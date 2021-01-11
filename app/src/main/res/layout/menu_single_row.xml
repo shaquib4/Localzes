@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/_30sdp"
     android:background="#fafacd"
    >
@@ -11,8 +13,8 @@
             android:id="@+id/num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1)"
-            android:layout_marginLeft="@dimen/_5sdp"
+            android:text="@string/_11"
+            android:layout_marginStart="@dimen/_5sdp"
             android:textColor="#000"
             android:textSize="@dimen/_18ssp"/>
         <TextView
@@ -24,26 +26,28 @@
             android:textSize="@dimen/_16ssp"
             android:fontFamily="@font/montserrat_medium"
             android:textColor="#000"
-            android:text="Potato Chips"/>
+            android:text="@string/potato_chips"/>
         <TextView
-            android:layout_toRightOf="@+id/Itemname"
+            android:layout_toEndOf="@+id/Itemname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"
             android:id="@+id/quan"
             android:textSize="@dimen/_16ssp"
             android:textColor="#de4500"
-            android:text="(1 Pack)"/>
+            android:text="@string/_1_pack"/>
         <TextView
             android:id="@+id/priceMenu"
-            android:layout_alignParentRight="true"
+
+            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"
             android:textSize="@dimen/_16ssp"
             android:textColor="#3498db"
-            android:text="₹20000"
-            android:layout_marginEnd="@dimen/_7sdp"/>
+            android:text="@string/_20000"
+            android:layout_marginEnd="@dimen/_7sdp"
+            tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>
 

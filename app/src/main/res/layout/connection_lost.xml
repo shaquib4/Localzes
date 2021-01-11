@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Oh No.."
+        android:text="@string/oh_no"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/_20sdp"
         android:textSize="@dimen/_20ssp"/>
@@ -22,10 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="No Internet Connection"
+        android:text="@string/no_internet_connection"
        android:layout_centerHorizontal="true"
         android:layout_marginStart="@dimen/_20sdp"
-        android:textSize="@dimen/_20ssp"/>
+        android:textSize="@dimen/_15ssp"/>
 
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Please connect to internet"
+        android:text="@string/please_connect_to_internet"
         android:layout_marginStart="@dimen/_20sdp"
         android:textSize="@dimen/_15ssp"/>
 
@@ -50,7 +50,7 @@
         android:layout_margin="@dimen/_10sdp"
         android:fontFamily="@font/montserrat_bold"
         android:textSize="@dimen/_15ssp"
-        android:text="Retry"
+        android:text="@string/retry"
         android:textColor="#de4500"
         android:background="@drawable/stroke_solid_btn"/>
 

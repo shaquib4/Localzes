@@ -10,6 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:contentDescription="@string/todo"
             android:id="@+id/imgBack"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
@@ -21,9 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_toRightOf="@id/imgBack"
+            android:layout_toEndOf="@id/imgBack"
             android:fontFamily="@font/montserrat_bold"
-            android:text="PAYMENT"
+            android:text="@string/payment"
             android:textColor="#000000"
             android:textSize="@dimen/_13ssp" />
 
@@ -39,7 +40,8 @@
             android:layout_height="@dimen/_120sdp"
             android:layout_below="@id/view1"
             android:scaleType="fitXY"
-            android:src="@drawable/border" />
+            android:src="@drawable/border"
+            android:contentDescription="@string/todo" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardPay"
@@ -61,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Shop"
+                    android:text="@string/shop"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
@@ -69,9 +71,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtShop"
-                    android:layout_alignLeft="@+id/txtShop"
+                    android:layout_alignStart="@+id/txtShop"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Digital Electronics"
+                    android:text="@string/digital_electronics"
                     android:textColor="#000000"
                     android:textSize="@dimen/_16ssp" />
 
@@ -80,11 +82,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtSellerName"
-                    android:layout_alignLeft="@+id/txtShop"
+                    android:layout_alignStart="@+id/txtShop"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:textSize="@dimen/_12ssp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="UPI" />
+                    android:text="@string/upi" />
 
                 <TextView
                     android:id="@+id/txtUPI"
@@ -93,7 +95,7 @@
                     android:layout_below="@+id/txtUpi"
                     android:layout_alignStart="@+id/txtSellerName"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="katappamama@paytm "
+                    android:text="@string/katappamama_paytm"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_14ssp" />
 
@@ -105,18 +107,18 @@
                     android:layout_alignStart="@+id/txtSellerName"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Message"
+                    android:text="@string/message"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtReason"
-                    android:text="Paymet for Localze"
+                    android:text="@string/paymet_for_localze"
                     android:id="@+id/reason"
                     android:textColor="#000000"
                     android:textSize="@dimen/_13ssp"
-                    android:layout_alignLeft="@id/txtReason"
+                    android:layout_alignStart="@id/txtReason"
                     android:fontFamily="@font/montserrat_medium"
                     />
 
@@ -128,7 +130,7 @@
                     android:layout_alignStart="@+id/txtSellerName"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Price Details"
+                    android:text="@string/price_details"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
@@ -136,10 +138,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtPriceDetails"
-                    android:text="Rs. 199/-"
+                    android:text="@string/rs_199"
                     android:textColor="#008000"
                     android:textSize="@dimen/_14ssp"
-                    android:layout_alignLeft="@id/txtReason"
+                    android:layout_alignStart="@id/txtReason"
                     android:fontFamily="@font/montserrat_bold"
                     />
 
@@ -152,7 +154,7 @@
                   android:layout_alignParentEnd="true"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Delivery Charge"
+                    android:text="@string/delivery_charge"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:textSize="@dimen/_12ssp" />
 
@@ -160,11 +162,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtPriceDetails"
-                    android:text="Rs. 40/-"
+                    android:text="@string/rs_40"
                     android:id="@+id/charge"
                     android:textColor="#008000"
                     android:textSize="@dimen/_14ssp"
-                    android:layout_alignLeft="@id/txtDeliveryPrice"
+                    android:layout_alignStart="@id/txtDeliveryPrice"
                     android:fontFamily="@font/montserrat_bold"
                     />
 
@@ -180,21 +182,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Amount :"
+                    android:text="@string/total_amount_1"
                     android:layout_below="@+id/view3"
                     android:fontFamily="@font/montserrat_bold"
-                    android:layout_alignLeft="@id/txtShop"
+                    android:layout_alignStart="@id/txtShop"
                     android:textSize="@dimen/_15ssp"
                     android:layout_marginBottom="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/view3"
-                    android:text="Rs. 239.00"
+                    android:text="@string/rs_239_00"
                     android:id="@+id/TxtTotalPrice"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_16ssp"
-                    android:layout_alignLeft="@id/txtDeliveryPrice"
+                    android:layout_alignStart="@id/txtDeliveryPrice"
                     android:fontFamily="@font/montserrat_bold"
                     />
 
@@ -219,7 +221,7 @@
             android:layout_margin="@dimen/_10sdp"
             android:background="@drawable/proceed_to_add"
             android:fontFamily="@font/montserrat_bold"
-            android:text="PAY NOW"
+            android:text="@string/pay_now"
             android:textColor="#fff"
             android:textSize="@dimen/_13ssp" />
 
@@ -240,7 +242,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:textSize="@dimen/_20ssp" />
 
 
@@ -253,8 +255,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -265,7 +267,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -279,7 +281,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

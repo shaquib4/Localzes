@@ -18,6 +18,7 @@
 
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/productImage"
                     android:layout_width="0dp"
                     android:layout_margin="8dp"
@@ -39,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13ssp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Product Name"/>
+                    android:text="@string/product_name"/>
                 <TextView
                     android:layout_below="@+id/productName"
                     android:id="@+id/price"
@@ -50,7 +51,7 @@
                     android:textSize="@dimen/_13ssp"
                     android:textColor="#de4500"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Rs. 199/-"/>
+                    android:text="@string/rs_199"/>
 
             </RelativeLayout>
 

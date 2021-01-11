@@ -22,7 +22,7 @@
         android:elevation="5dp"
         android:background="@drawable/ic_seller_btn"
         android:fontFamily="@font/montserrat_bold"
-        android:text="As Seller"
+        android:text="@string/as_seller"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="@dimen/_18ssp" />
@@ -35,7 +35,7 @@
 
     <Button
         android:id="@+id/btnCustomer"
-        android:text="As Customer"
+        android:text="@string/as_customer"
         android:textAllCaps="false"
         android:textSize="@dimen/_18ssp"
         android:fontFamily="@font/montserrat_bold"
@@ -59,7 +59,7 @@
         android:layout_marginBottom="29dp"
         android:background="@drawable/ic_seller_btn"
         android:fontFamily="@font/montserrat_bold"
-        android:text="As Delivery Partner"
+        android:text="@string/as_delivery_partner"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="@dimen/_16ssp" />

@@ -10,7 +10,8 @@
     <RelativeLayout
         android:id="@+id/rl_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:id="@+id/rl2"
@@ -25,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Search..."
+                android:text="@string/search"
                 android:textColor="#fff"
                 android:textSize="@dimen/_30ssp" />
 
@@ -37,8 +38,11 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/bg_product_shop"
                 android:drawableStart="@drawable/ic_search"
-                android:hint="Search"
-                android:paddingStart="@dimen/_5sdp" />
+                android:hint="@string/search"
+                android:paddingStart="@dimen/_5sdp"
+                android:inputType="text"
+                tools:ignore="RtlSymmetry"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/search"
@@ -48,9 +52,12 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/bg_product_shop"
                 android:drawableStart="@drawable/ic_search"
-                android:hint="Search"
+                android:hint="@string/search"
                 android:maxLines="1"
-                android:paddingStart="@dimen/_5sdp" />
+                android:paddingStart="@dimen/_5sdp"
+                tools:ignore="RtlSymmetry"
+                android:inputType="text"
+                android:importantForAutofill="no" />
 
             <HorizontalScrollView
                 android:layout_marginTop="@dimen/_3sdp"
@@ -76,7 +83,7 @@
                             android:layout_marginTop="5dp"
                             android:background="@drawable/round_button"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Shops"
+                            android:text="@string/shops"
                             android:textAllCaps="false"
                             android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
@@ -92,7 +99,7 @@
                             android:layout_marginTop="5dp"
                             android:background="@drawable/round_button"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Locality"
+                            android:text="@string/locality"
                             android:textAllCaps="false"
                             android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
@@ -109,7 +116,7 @@
                             android:layout_marginTop="5dp"
                             android:background="@drawable/round_button"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Product"
+                            android:text="@string/product"
                             android:textAllCaps="false"
                             android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
@@ -125,7 +132,7 @@
                             android:layout_marginTop="5dp"
                             android:background="@drawable/round_button"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Locality2"
+                            android:text="@string/locality2"
                             android:textAllCaps="false"
                             android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
@@ -164,7 +171,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Oh No.."
+                android:text="@string/oh_no"
                 android:textSize="@dimen/_20ssp" />
 
 
@@ -177,8 +184,8 @@
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_80sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="No Internet Connection"
-                android:textSize="@dimen/_20ssp" />
+                android:text="@string/no_internet_connection"
+                android:textSize="@dimen/_15ssp" />
 
 
             <TextView
@@ -189,7 +196,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Please connect to internet"
+                android:text="@string/please_connect_to_internet"
                 android:textSize="@dimen/_15ssp" />
 
             <Button
@@ -203,7 +210,7 @@
                 android:elevation="5dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:paddingHorizontal="@dimen/_30sdp"
-                android:text="Retry"
+                android:text="@string/retry"
                 android:textColor="#de4500"
                 android:textSize="@dimen/_15ssp" />
 

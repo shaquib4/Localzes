@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,8 +7,10 @@
     <RelativeLayout
         android:id="@+id/rl_AcceptedOrder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
         <ImageView
+            android:contentDescription="@string/todo"
             android:id="@+id/imgBackOrders"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
@@ -21,9 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_toRightOf="@id/imgBackOrders"
+            android:layout_toEndOf="@id/imgBackOrders"
             android:fontFamily="@font/montserrat_bold"
-            android:text=" Orders"
+            android:text="@string/orders"
             android:textColor="#000000"
             android:textSize="@dimen/_13ssp" />
 
@@ -41,6 +42,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgEmpty"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
@@ -54,7 +56,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="No orders  yet!"
+                android:text="@string/no_orders_yet"
                 android:textColor="#696969"
                 android:textSize="@dimen/_15ssp" />
         </RelativeLayout>

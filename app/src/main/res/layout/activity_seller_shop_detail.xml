@@ -30,7 +30,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Welcome to localze"
+                    android:text="@string/welcome_to_localze"
                     android:textColor="#De4500"
                     android:textSize="@dimen/_15ssp"
 
@@ -61,6 +61,7 @@
                     app:cardCornerRadius="10dp">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
 
                         android:layout_width="@dimen/_120sdp"
                         android:layout_height="@dimen/_120sdp"
@@ -68,6 +69,7 @@
                         android:src="@drawable/ic_add_image" />
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/choose_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -84,7 +86,7 @@
                     android:layout_below="@+id/card"
                     android:layout_margin="@dimen/_7sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Add shop image (optional)"
+                    android:text="@string/add_shop_image_optional"
                     android:textSize="@dimen/_8ssp" />
 
 
@@ -106,21 +108,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_13sdp"
-                    android:layout_marginLeft="10dp"
+
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Choose shop category"
+                    android:text="@string/choose_shop_category"
                     android:textSize="@dimen/_10ssp" />
 
                 <Spinner
                     android:id="@+id/spn_category"
                     android:layout_width="@dimen/_110sdp"
                     android:layout_height="@dimen/_32sdp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_7sdp"
-                    android:layout_marginRight="@dimen/_7sdp"
-                    android:layout_toRightOf="@+id/txtChooseCategory"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:layout_toEndOf="@+id/txtChooseCategory"
                     android:background="@drawable/bg_ractangle_rounded_stroke"
                     android:entries="@array/Spinner_Category"
                     android:textAlignment="center" />
@@ -136,13 +138,15 @@
                     android:background="@drawable/bg_ractangle_rounded_stroke"
                     android:fontFamily="@font/montserrat_medium"
                     android:gravity="center_vertical"
-                    android:hint="Shop Name"
+                    android:hint="@string/shop_name"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:padding="@dimen/_7sdp"
                     android:paddingStart="@dimen/_12sdp"
                     android:singleLine="true"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_12ssp"
+                    android:importantForAutofill="no"
+                    tools:ignore="RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/edtPay"
@@ -154,13 +158,15 @@
                     android:background="@drawable/bg_ractangle_rounded_stroke"
                     android:fontFamily="@font/montserrat_medium"
                     android:gravity="center_vertical"
-                    android:hint="UPI ID (optional)"
+                    android:hint="@string/upi_id_optional"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:padding="@dimen/_7sdp"
                     android:paddingStart="@dimen/_12sdp"
                     android:singleLine="true"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_12ssp"
+                    tools:ignore="RtlSymmetry"
+                    android:importantForAutofill="no" />
 
                 <Button
                     android:id="@+id/upload"
@@ -172,7 +178,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/round2_btn"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Upload"
+                    android:text="@string/upload"
                     android:textAllCaps="false"
                     android:textColor="#fcfcfc"
                     android:textSize="@dimen/_12ssp"
@@ -183,10 +189,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtPay"
-                    android:layout_alignLeft="@+id/txtChooseCategory"
+                    android:layout_alignStart="@+id/txtChooseCategory"
                     android:layout_marginVertical="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Select Shop's Activity Hours"
+                    android:text="@string/select_shop_s_activity_hours"
                     android:textSize="@dimen/_10ssp" />
 
 
@@ -195,10 +201,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtTime"
-                    android:layout_alignLeft="@id/txtChooseCategory"
+                    android:layout_alignStart="@id/txtChooseCategory"
                     android:layout_marginEnd="@dimen/_7sdp"
                     android:orientation="horizontal"
-                    android:weightSum="4">
+                    android:weightSum="4"
+                    android:baselineAligned="false">
 
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -210,7 +217,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="Open"
+                            android:text="@string/open"
                             android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
 
@@ -241,7 +248,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="Close"
+                            android:text="@string/close"
                             android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
 
@@ -265,11 +272,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll1"
-                    android:layout_alignLeft="@id/txtChooseCategory"
+                    android:layout_alignStart="@id/txtChooseCategory"
                     android:layout_marginVertical="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_7sdp"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:baselineAligned="false">
 
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -281,7 +289,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="Select Shop's Closing Day"
+                            android:text="@string/select_shop_s_closing_day"
                             android:textSize="@dimen/_8ssp" />
                     </RelativeLayout>
 
@@ -322,7 +330,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
+            android:text="@string/oh_no"
             android:textSize="@dimen/_20ssp" />
 
 
@@ -335,8 +343,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -347,7 +355,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -361,7 +369,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

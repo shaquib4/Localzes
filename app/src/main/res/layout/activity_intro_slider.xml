@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -69,7 +68,7 @@
         android:layout_margin="20dp"
         android:background="@drawable/round_button"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Next"
+        android:text="@string/next"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_14ssp" />
 
@@ -83,7 +82,7 @@
         android:background="@drawable/gradient"
         android:fontFamily="@font/montserrat_bold"
         android:paddingHorizontal="20dp"
-        android:text="Get Started"
+        android:text="@string/get_started"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="@dimen/_14ssp"

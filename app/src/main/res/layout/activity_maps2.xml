@@ -17,15 +17,14 @@
         >
 
         <fragment
-            xmlns:map="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
 
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_260sdp"
-            tools:context=".MapsActivity2"/>
+            tools:context=".MapsActivity2" />
         <ImageView
+            android:contentDescription="@string/todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -110,6 +109,7 @@
             />
     </RelativeLayout>
     <ImageView
+        android:contentDescription="@string/todo"
         android:layout_marginStart="17dp"
         android:id="@+id/lo"
         android:layout_width="wrap_content"
@@ -122,7 +122,7 @@
     <TextView
         android:id="@+id/Locality_bold_seller"
         android:layout_below="@+id/mapRel_seller"
-        android:layout_toRightOf="@+id/lo"
+        android:layout_toEndOf="@+id/lo"
         android:layout_marginTop="9dp"
         android:layout_width="wrap_content"
         android:layout_marginStart="2dp"
@@ -196,7 +196,7 @@
         android:textSize="15sp"
         android:fontFamily="@font/montserrat_medium"
         android:layout_height="wrap_content"
-        android:text="India"/>
+        android:text="@string/india"/>
 
 
 
@@ -225,14 +225,17 @@
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center_vertical"
             android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:background="@drawable/bg_rectangle"
+            android:inputType="text"
+            tools:ignore="LabelFor,RtlSymmetry"
+            android:importantForAutofill="no" />
 
         <TextView
             android:layout_width="wrap_content"
             android:textSize="12sp"
             android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="Village/Locality*"
+            android:text="@string/village_locality"
 
             android:background="#fcfcfc"
             android:fontFamily="@font/montserrat_medium"
@@ -262,14 +265,17 @@
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center_vertical"
             android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:background="@drawable/bg_rectangle"
+            android:inputType="text"
+            tools:ignore="LabelFor,RtlSymmetry"
+            android:importantForAutofill="no" />
 
         <TextView
             android:layout_width="wrap_content"
             android:textSize="12sp"
             android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="House/Flat/Block No"
+            android:text="@string/house_flat_block_no"
             android:background="#fcfcfc"
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
@@ -296,14 +302,17 @@
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center_vertical"
             android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:background="@drawable/bg_rectangle"
+            android:inputType="text"
+            tools:ignore="LabelFor,RtlSymmetry"
+            android:importantForAutofill="no" />
 
         <TextView
             android:layout_width="wrap_content"
             android:textSize="12sp"
             android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="Nearest Landmark"
+            android:text="@string/nearest_landmark"
             android:background="#fcfcfc"
             android:fontFamily="@font/montserrat_medium"
             android:paddingStart="2dp"
@@ -321,7 +330,7 @@
         android:textSize="15sp"
         android:fontFamily="@font/montserrat_bold"
         android:textColor="#fff"
-        android:text="Save And Proceed"/>
+        android:text="@string/save_and_proceed"/>
 </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_retryMapS"
@@ -337,8 +346,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Oh No.."
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/oh_no"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -350,8 +359,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No Internet Connection"
-            android:textSize="@dimen/_20ssp" />
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -362,7 +371,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Please connect to internet"
+            android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -376,7 +385,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 

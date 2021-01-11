@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"
-            android:text="American Tourister"
+            android:text="@string/american_tourister"
             android:textColor="#000000"/>
         <TextView
           android:fontFamily="@font/montserrat_bold"
@@ -28,13 +28,13 @@
             android:layout_below="@id/itemTitle"
             android:textSize="@dimen/_12ssp"
             android:textColor="#008000"
-            android:text="Rs. 1,209/-"/>
+            android:text="@string/rs_1_209"/>
         <TextView
             android:layout_marginTop="@dimen/_2sdp"
             android:id="@+id/totalQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5 items"
+            android:text="@string/_5_items"
             android:textSize="@dimen/_10ssp"
             android:layout_below="@id/itemPrice"/>
         <TextView
@@ -42,7 +42,7 @@
             android:id="@+id/totalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rs. 6,045.00"
+            android:text="@string/rs_6_045_00"
             android:textColor="#de4500"
             android:fontFamily="@font/montserrat_bold"
             android:textSize="@dimen/_13ssp"
