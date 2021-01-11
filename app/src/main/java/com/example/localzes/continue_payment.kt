@@ -71,7 +71,7 @@ class continue_payment : AppCompatActivity() {
                     rl_retryContinuePayment.visibility = View.GONE
                     rl_continuePayment.visibility = View.VISIBLE
                     when (radioButton.text) {
-                        " Pay on Delivery" -> {
+                        "Pay on Delivery" -> {
                             progressDialog.setMessage("Placing Your Order....")
                             progressDialog.show()
                             val dataReference: DatabaseReference =
@@ -164,7 +164,7 @@ class continue_payment : AppCompatActivity() {
 
                             }
                         }
-                        " Pay with Paytm" -> {
+                        "Pay with Paytm" -> {
                             val intent = Intent(this, PaymentActivity::class.java)
                             intent.putExtra("shopId", shopId.toString())
                             intent.putExtra("totalCost", totalCost.toString())
