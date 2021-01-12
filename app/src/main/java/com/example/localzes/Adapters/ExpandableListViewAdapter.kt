@@ -43,16 +43,16 @@ class ExpandableListViewAdapter internal constructor(private val context: Contex
 
         menuTv.text=menuTitle
         if (menuTitle=="Account"){
-            menuitem.text = "Addresses, Favourites, Offers, Referrals"
+            menuitem.text = "Addresses, Favourites"
 
         }else if (menuTitle=="Refunds & Payments"){
-            menuitem.text = "Refund status, Payment modes, Transaction history"
+            menuitem.text = "Refund status, Payment modes"
         }
         else if (menuTitle=="My Order"){
             menuitem.text = "Current orders,Past orders"
         }
         else if (menuTitle=="Help"){
-            menuitem.text = "FAQs, Contact us"
+            menuitem.text = "Contact us"
         }
         return convertView
     }
@@ -94,22 +94,22 @@ class ExpandableListViewAdapter internal constructor(private val context: Contex
   }else if (itemTitles=="Favourites"&& menuTitle=="Account")
   {
       img.setImageResource(R.drawable.ic_favorite_black_24dp)
-  }else if (itemTitles=="Offers"&& menuTitle=="Account")
+  }/*else if (itemTitles=="Offers"&& menuTitle=="Account")
   {
       img.setImageResource(R.drawable.ic_offer_vc)
   }else if (itemTitles=="Referrals"&& menuTitle=="Account")
   {
       img.setImageResource(R.drawable.ic_referrals)
-  }else if (itemTitles=="Refund Status"&& menuTitle=="Refunds & Payments")
+  }*/else if (itemTitles=="Refund Status"&& menuTitle=="Refunds & Payments")
   {
       img.setImageResource(R.drawable.ic_refundstatus)
   }else if (itemTitles=="Payment Modes"&& menuTitle=="Refunds & Payments")
   {
       img.setImageResource(R.drawable.ic_paymentmode)
-  }else if (itemTitles=="Transaction History"&& menuTitle=="Refunds & Payments")
+  }/*else if (itemTitles=="Transaction History"&& menuTitle=="Refunds & Payments")
   {
       img.setImageResource(R.drawable.ic_refundstatus)
-  }else if (itemTitles=="Current Order"&& menuTitle=="My Order")
+  }*/else if (itemTitles=="Current Order"&& menuTitle=="My Order")
   {
       img.setImageResource(R.drawable.ic_shopping_cart_black_24dp)
   }else if (itemTitles=="Past Orders"&& menuTitle=="My Order")

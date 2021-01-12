@@ -57,7 +57,8 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
             orderRequest,
             Response.Listener {
                 //after sending fcm start order details activity
-                startPayment()
+                val orderId=it.get("id")
+                startPayment(orderId.toString())
 
 
             },
@@ -82,7 +83,7 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
         Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
 
-    private fun startPayment() {
+    private fun startPayment(orderId:String) {
         val activity: Activity = this
         val co = Checkout()
 
@@ -94,7 +95,7 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
             options.put("image","https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
             options.put("theme.color", "#3399cc");
             options.put("currency","INR");
-            options.put("order_id", PaymentData().orderId);
+            options.put("order_id", orderId);
             options.put("amount",amo.toDouble()*100)//pass amount in currency subunits
 
             val prefill = JSONObject()

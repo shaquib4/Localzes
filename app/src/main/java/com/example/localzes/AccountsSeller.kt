@@ -174,26 +174,26 @@ class AccountsSeller : AppCompatActivity() {
         menu = ArrayList()
         item = HashMap()
 
-        (menu as ArrayList<String>).add("Account")
+       // (menu as ArrayList<String>).add("Account")
         (menu as ArrayList<String>).add("Refunds & Payments")
         (menu as ArrayList<String>).add("Help")
 
+      //  val item1: MutableList<String> = ArrayList()
+        //item1.add("Offers")
+        //item1.add("Referrals")
+
         val item1: MutableList<String> = ArrayList()
-        item1.add("Offers")
-        item1.add("Referrals")
+        item1.add("Refunds Initiated")
+        item1.add("Transaction History")
 
         val item2: MutableList<String> = ArrayList()
-        item2.add("Refunds Initiated")
-        item2.add("Transaction History")
-
-        val item3: MutableList<String> = ArrayList()
-        item3.add("FAQs")
-        item3.add("Contact Us")
+        //item2.add("FAQs")
+        item2.add("Contact Us")
 
 
+        //item[menu[0]] = item1
         item[menu[0]] = item1
         item[menu[1]] = item2
-        item[menu[2]] = item3
 
     }
 

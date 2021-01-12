@@ -42,10 +42,9 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
         val menuitem=convertView!!.findViewById<TextView>(R.id.txtitemmenu)
 
         menuTv.text=menuTitle
-        if (menuTitle=="Account"){
-            menuitem.text = "Offers, Referrals"
+/*            menuitem.text = "Offers, Referrals"
 
-        }else if (menuTitle=="Refunds & Payments"){
+        }*/if (menuTitle=="Refunds & Payments"){
             menuitem.text = "Refund Initiated, Transaction history"
         }
 
@@ -87,21 +86,21 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
         var img=convertView!!.findViewById<ImageView>(R.id.imgitem)
 
         itemTv.text = itemTitles
-         if (itemTitles=="Offers"&& menuTitle=="Account")
+       /*  if (itemTitles=="Offers"&& menuTitle=="Account")
         {
             img.setImageResource(R.drawable.ic_offer_vc)
         }else if (itemTitles=="Referrals"&& menuTitle=="Account")
         {
             img.setImageResource(R.drawable.ic_referrals)
-        }else if (itemTitles=="Refund Initiated"&& menuTitle=="Refunds & Payments")
+        }*/ if (itemTitles=="Refund Initiated"&& menuTitle=="Refunds & Payments")
         {
             img.setImageResource(R.drawable.ic_refundstatus)
         }else if (itemTitles=="Transaction History"&& menuTitle=="Refunds & Payments")
         {
             img.setImageResource(R.drawable.ic_refundstatus)
-        }else if (itemTitles=="FAQs"&& menuTitle=="Help"){
+        }/*else if (itemTitles=="FAQs"&& menuTitle=="Help"){
              img.setImageResource(R.drawable.ic_offer_vc)
-         }else if(itemTitles=="Contact Us"&& menuTitle=="Help"){
+         }*/else if(itemTitles=="Contact Us"&& menuTitle=="Help"){
              img.setImageResource(R.drawable.ic_referrals)
          }
 
