@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpSectionActivity">
+
+    <TextView
+        android:id="@+id/contactUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:padding="2dp"
+        android:text="Contact Us"
+        android:textSize="@dimen/_28ssp" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/contactUs"
+        android:background="@color/black" />
+
+    <TextView
+        android:id="@+id/contactNumbers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view6"
+        android:text="Contact At : +91 (8528436997),+91 (7518894470),+91 (7317544896)"
+        android:textSize="@dimen/_18ssp" />
+
+    <TextView
+        android:id="@+id/emailIds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contactNumbers"
+        android:text="Email At : (khanShaquib21@gmail.com) , (ratnakarchaurasiya8@gmail.com) , (ekagraagrawal49@gmail.com)"
+        android:textSize="@dimen/_18ssp" />
+
+</RelativeLayout>

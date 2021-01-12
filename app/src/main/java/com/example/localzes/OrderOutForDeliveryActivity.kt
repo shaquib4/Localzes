@@ -3,7 +3,10 @@ package com.example.localzes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,12 +31,15 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
     private lateinit var relativeOutForDelivery: RelativeLayout
     private lateinit var adapterOutForDeliveryList: AdapterListOrder
     private lateinit var listOrders: List<ModalSellerOrderList>
+    private lateinit var searchCartOFD: EditText
+    private lateinit var searchListOFD: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_out_for_delivery)
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
+
         retryDeliveryOrders.setOnClickListener {
             this.recreate()
         }
@@ -42,7 +48,10 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         recyclerOutForDelivery = findViewById(R.id.recyclerOutForDelivery)
         backOutForDelivery = findViewById(R.id.imgBackOutForDelivery)
         relativeOutForDelivery = findViewById(R.id.rl_Out_For_delivery)
+        searchCartOFD = findViewById(R.id.searchCartOFD)
+        searchListOFD = findViewById(R.id.searchListOFD)
         recyclerOutForDelivery.layoutManager = LinearLayoutManager(this)
+        searchListOFD.visibility = View.GONE
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         orderDatabaseReference.child("Orders").orderByChild("orderStatus")
             .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
@@ -68,6 +77,7 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
 
             })
         rl_listOut.setOnClickListener {
+
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_Out_For_delivery.visibility = View.VISIBLE
                 rl_retryDeliveryOrder.visibility = View.GONE
@@ -79,6 +89,7 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
 
         }
         rl_cartOut.setOnClickListener {
+
             if (ConnectionManager().checkConnectivity(this)) {
                 cartOutForDeliveryOrders()
             } else {
@@ -87,6 +98,34 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
             }
 
         }
+        searchCartOFD.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchCartOrdersOFD(s.toString())
+            }
+
+        })
+        searchListOFD.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchListOrdersOFD(s.toString())
+            }
+
+        })
         if (ConnectionManager().checkConnectivity(this)) {
             rl_DeliveryOrder.visibility = View.VISIBLE
             rl_retryDeliveryOrder.visibility = View.GONE
@@ -102,7 +141,89 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         }
     }
 
+    private fun searchListOrdersOFD(s: String) {
+        val user = orderAuth.currentUser
+        val uid = user!!.uid
+        val querySellerDatabase =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+                .orderByChild("orderId").startAt(s).endAt(s + "\uF8FF")
+        querySellerDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (listOrders as ArrayList<ModalSellerOrderList>).clear()
+                for (i in snapshot.children) {
+                    val obj = ModalSellerOrderList(
+                        i.child("orderId").value.toString(),
+                        i.child("orderTime").value.toString(),
+                        i.child("orderStatus").value.toString(),
+                        i.child("orderCost").value.toString(),
+                        i.child("orderBy").value.toString(),
+                        i.child("orderTo").value.toString(),
+                        i.child("deliveryAddress").value.toString(),
+                        i.child("totalItems").value.toString(),
+                        i.child("listStatus").value.toString(),
+                        i.child("orderByName").value.toString(),
+                        i.child("orderByMobile").value.toString()
+                    )
+                    if (i.child("orderStatus").value.toString() == "Out For Delivery") {
+                        (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
+                    }
+                }
+                adapterOutForDeliveryList =
+                    AdapterListOrder(this@OrderOutForDeliveryActivity, listOrders)
+                recyclerOutForDelivery.adapter = adapterOutForDeliveryList
+            }
+        })
+    }
+
+    private fun searchCartOrdersOFD(s: String) {
+        val user = orderAuth.currentUser
+        val uid = user!!.uid
+        val querySellerDatabase =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+                .orderByChild("orderId").startAt(s).endAt(s + "\uF8FF")
+        querySellerDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).clear()
+                for (i in snapshot.children) {
+                    val obj = ModelOrderDetails(
+                        i.child("orderId").value.toString(),
+                        i.child("orderTime").value.toString(),
+                        i.child("orderStatus").value.toString(),
+                        i.child("orderCost").value.toString(),
+                        i.child("orderBy").value.toString(),
+                        i.child("orderTo").value.toString(),
+                        i.child("orderQuantity").value.toString(),
+                        i.child("deliveryAddress").value.toString(),
+                        i.child("paymentMode").value.toString(),
+                        i.child("orderByName").value.toString(),
+                        i.child("orderByMobile").value.toString()
+                    )
+                    if (i.child("orderStatus").value.toString() == "Out For Delivery") {
+                        (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).add(obj)
+                    }
+                }
+                adapterOutForDelivery =
+                    AdapterSellerOrders(
+                        this@OrderOutForDeliveryActivity,
+                        ordersOutForDeliveryList
+                    )
+                recyclerOutForDelivery.adapter = adapterOutForDelivery
+            }
+
+        })
+    }
+
     private fun cartOutForDeliveryOrders() {
+        searchListOFD.visibility = View.GONE
+        searchCartOFD.visibility = View.VISIBLE
         txtCartOut.setTextColor(resources.getColor(R.color.colorPrimary))
         cartOutNo.setTextColor(resources.getColor(R.color.colorPrimary))
         txtlistOut.setTextColor(resources.getColor(R.color.black))
@@ -153,6 +274,8 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
     }
 
     private fun listOutForDeliveryOrders() {
+        searchCartOFD.visibility = View.GONE
+        searchListOFD.visibility = View.VISIBLE
         txtCartOut.setTextColor(resources.getColor(R.color.black))
         cartOutNo.setTextColor(resources.getColor(R.color.black))
         txtlistOut.setTextColor(resources.getColor(R.color.colorPrimary))
@@ -192,8 +315,9 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
                         recyclerOutForDelivery.visibility = View.VISIBLE
                         adapterOutForDeliveryList =
                             AdapterListOrder(this@OrderOutForDeliveryActivity, listOrders)
+                        recyclerOutForDelivery.adapter = adapterOutForDeliveryList
                     }
-                    recyclerOutForDelivery.adapter = adapterOutForDeliveryList
+
                 }
             })
 

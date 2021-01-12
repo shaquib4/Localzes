@@ -5,138 +5,173 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OrdersAcceptedActivity">
-<RelativeLayout
-    android:id="@+id/rl_AcceptedOrder"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/imgBackAccepted"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:src="@drawable/ic_back" />
-
-    <TextView
-        android:id="@+id/txtOFD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/_10sdp"
-        android:layout_toRightOf="@id/imgBackAccepted"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Accepted Orders"
-        android:textColor="#000000"
-        android:textSize="@dimen/_13ssp" />
-
-    <View
-        android:id="@id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/imgBackAccepted"
-        android:background="#d3d3d3" />
 
     <RelativeLayout
-        android:id="@+id/rl_Accepted_Orders"
+        android:id="@+id/rl_AcceptedOrder"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imgEmpty"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_empty" />
+            android:id="@+id/imgBackAccepted"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_back" />
 
         <TextView
+            android:id="@+id/txtOFD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgEmpty"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_toRightOf="@id/imgBackAccepted"
             android:fontFamily="@font/montserrat_bold"
-            android:text="No orders accepted yet!"
-            android:textColor="#696969"
-            android:textSize="@dimen/_15ssp" />
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_below="@+id/view1"
-        android:orientation="horizontal"
-        android:id="@+id/rl_create"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:weightSum="2"
-        android:background="@drawable/border">
-<RelativeLayout
-    android:layout_marginStart="2sp"
-    android:id="@+id/rl_cartAccepted"
-    android:layout_width="wrap_content"
-    android:layout_gravity="center"
-    android:layout_height="@dimen/_33sdp"
-    android:background="@drawable/stroke_solid_btn"
-    android:layout_weight="1">
-    <TextView
-        android:id="@+id/txtCartAccepted"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_medium"
-        android:textColor="#000"
-        android:textSize="@dimen/_14ssp"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:text="Cart Orders"/>
-    <TextView
-        android:layout_toEndOf="@+id/txtCartAccepted"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cartAcceptedNo"
-        android:fontFamily="@font/montserrat_medium"
-        android:textColor="#000"
-        android:textSize="@dimen/_14ssp"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/_2sdp"
+            android:text="Accepted Orders"
+            android:textColor="#000000"
+            android:textSize="@dimen/_13ssp" />
 
-        android:text="(1000)"/>
-</RelativeLayout>
+        <View
+            android:id="@id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/imgBackAccepted"
+            android:background="#d3d3d3" />
+
         <RelativeLayout
-            android:layout_marginStart="@dimen/_2sdp"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:id="@+id/rl_listAccepted"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_height="@dimen/_33sdp"
-            android:background="@drawable/stroke_solid_btn"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/txtlistAccepted"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="#000"
-                android:textSize="@dimen/_14ssp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:text="List Orders"/>
-            <TextView
-                android:layout_toEndOf="@+id/txtlistAccepted"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/listAcceptedNo"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="#000"
-                android:textSize="@dimen/_14ssp"
-                android:layout_centerVertical="true"
+            android:id="@+id/rl_Accepted_Orders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                android:text="(1000)"/>
+            <ImageView
+                android:id="@+id/imgEmpty"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_empty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgEmpty"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="No orders accepted yet!"
+                android:textColor="#696969"
+                android:textSize="@dimen/_15ssp" />
         </RelativeLayout>
-    </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerOrdersAccepted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       android:layout_below="@id/rl_create"
-        android:visibility="gone"
-        tools:listitem="@layout/row_order_seller" />
-</RelativeLayout>
+        <LinearLayout
+            android:id="@+id/rl_create"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_below="@+id/view1"
+            android:background="@drawable/border"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:baselineAligned="false">
+
+            <RelativeLayout
+                android:id="@+id/rl_cartAccepted"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="2sp"
+                android:layout_weight="1"
+                android:background="@drawable/stroke_solid_btn">
+
+                <TextView
+                    android:id="@+id/txtCartAccepted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Cart Orders"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/cartAcceptedNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_toEndOf="@+id/txtCartAccepted"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="(1000)"
+                    android:textColor="#000"
+
+                    android:textSize="@dimen/_14ssp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_listAccepted"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:background="@drawable/stroke_solid_btn">
+
+                <TextView
+                    android:id="@+id/txtlistAccepted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="List Orders"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/listAcceptedNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/txtlistAccepted"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="(1000)"
+                    android:textColor="#000"
+
+                    android:textSize="@dimen/_14ssp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/searchCartAccepted"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/rl_create"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bg_product_shop"
+            android:hint="Search"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_20sdp"
+            tools:ignore="RtlSymmetry" />
+
+        <EditText
+            android:id="@+id/searchListAccepted"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/rl_create"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bg_product_shop"
+            android:hint="Search"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_20sdp"
+            tools:ignore="RtlSymmetry" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerOrdersAccepted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_create"
+            android:visibility="gone"
+            tools:listitem="@layout/row_order_seller" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_retryAcceptedOrder"

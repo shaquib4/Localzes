@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localzes.Adapters.AdapterUserShops
 import com.example.localzes.Modals.Upload
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -51,6 +53,7 @@ class Home : AppCompatActivity() {
     private lateinit var categoryTravel: ImageView
     private lateinit var categoryGaming: ImageView
     private lateinit var categoryOthers: ImageView
+    private lateinit var switchButton: ExtendedFloatingActionButton
     private var currentCity: String = ""
     private var cate: String = ""
     private var backPressedTime = 0L
@@ -79,6 +82,12 @@ class Home : AppCompatActivity() {
         categoryGaming = findViewById(R.id.imgGaming)
         categoryAll = findViewById(R.id.imgAll)
         categoryOthers = findViewById(R.id.imgOthers)
+        switchButton = findViewById(R.id.switchButtonHome)
+        switchButton.setOnClickListener {
+            val intent = Intent(this, Continueas::class.java)
+            startActivity(intent)
+            finish()
+        }
         retry.setOnClickListener {
             this.recreate()
         }

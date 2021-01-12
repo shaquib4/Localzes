@@ -176,7 +176,7 @@ class continue_payment : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         }
-                        "Pay with Razor Pay" -> {
+/*                        "Pay with Razor Pay" -> {
                             val intent=Intent(this,PaymentRazorpay::class.java)
                             intent.putExtra("shopId", shopId.toString())
                             intent.putExtra("totalCost", totalCost.toString())
@@ -187,7 +187,7 @@ class continue_payment : AppCompatActivity() {
                             intent.putExtra("orderByMobile", orderByMobile.toString())
                             startActivity(intent)
                             finish()
-                        }
+                        }*/
                         else -> {
                             btnPayContinue.isClickable = false
                         }

@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_seller.*
@@ -23,6 +24,7 @@ class Home_seller : AppCompatActivity() {
     private lateinit var shopName: TextView
     private lateinit var totalOrders: TextView
     private lateinit var totalIncome: TextView
+    private lateinit var switchButton: ExtendedFloatingActionButton
     private var t1: Int = 0
     private var t2: Int = 0
     private var t3: Int = 0
@@ -47,10 +49,15 @@ class Home_seller : AppCompatActivity() {
         ordersOutForDelivery = findViewById(R.id.txtItemOFD)
         ordersCompleted = findViewById(R.id.txtItemActive)
         ordersPending = findViewById(R.id.txtItemPending)
+        switchButton = findViewById(R.id.switchButtonHomeSeller)
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
-
+        switchButton.setOnClickListener {
+            val intent = Intent(this, Continueas::class.java)
+            startActivity(intent)
+            finish()
+        }
         sellerRetry.setOnClickListener {
             this.recreate()
         }

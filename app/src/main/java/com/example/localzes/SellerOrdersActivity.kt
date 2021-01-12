@@ -41,6 +41,7 @@ class SellerOrdersActivity : AppCompatActivity() {
         listOrders = ArrayList<ModalSellerOrderList>()
         rl_search_Pending = findViewById(R.id.search_act_Pending)
         rl_search_Pending1 = findViewById(R.id.search_act_Pending1)
+        rl_search_Pending1.visibility = View.GONE
         recyclerShopOrders.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
@@ -162,6 +163,8 @@ class SellerOrdersActivity : AppCompatActivity() {
     }
 
     private fun pendingListOrder() {
+        rl_search_Pending.visibility = View.GONE
+        rl_search_Pending1.visibility = View.VISIBLE
         txtCartPending.setTextColor(this.resources.getColor(R.color.black))
         cartPendingNo.setTextColor(this.resources.getColor(R.color.black))
         txtlistPending.setTextColor(this.resources.getColor(R.color.colorPrimary))
@@ -211,6 +214,8 @@ class SellerOrdersActivity : AppCompatActivity() {
     }
 
     private fun pendingCartOrder() {
+        rl_search_Pending1.visibility = View.GONE
+        rl_search_Pending.visibility = View.VISIBLE
         txtCartPending.setTextColor(this.resources.getColor(R.color.colorPrimary))
         cartPendingNo.setTextColor(this.resources.getColor(R.color.colorPrimary))
         txtlistPending.setTextColor(this.resources.getColor(R.color.black))
@@ -264,6 +269,7 @@ class SellerOrdersActivity : AppCompatActivity() {
     }
 
     private fun searchCartOrders(str: String) {
+
         val user = auth.currentUser
         val uid = user!!.uid
         val querySellerDatabase =

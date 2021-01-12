@@ -25,12 +25,12 @@
             tools:ignore="RelativeOverlap" />
 
         <ImageView
-            android:contentDescription="@string/todo"
             android:id="@+id/imgScan"
-            android:layout_margin="5dp"
             android:layout_width="@dimen/_38sdp"
             android:layout_height="@dimen/_38sdp"
             android:layout_alignParentEnd="true"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/qr_scan" />
 
         <View
@@ -64,11 +64,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgAll"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/ic_baseline_category_24" />
+                            android:background="@drawable/ic_baseline_category_24"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -90,11 +90,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgGrocery"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/grocery" />
+                            android:background="@drawable/grocery"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -115,11 +115,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgFood"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/food" />
+                            android:background="@drawable/food"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -142,11 +142,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgElectronics"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/electronics" />
+                            android:background="@drawable/electronics"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -169,11 +169,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgFashion"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/fashion" />
+                            android:background="@drawable/fashion"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -196,11 +196,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgMobiles"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/mobiles" />
+                            android:background="@drawable/mobiles"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -223,11 +223,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgHome"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/home" />
+                            android:background="@drawable/home"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -250,11 +250,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgBeauty"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/beauty" />
+                            android:background="@drawable/beauty"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -277,11 +277,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgAppliances"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/appliances" />
+                            android:background="@drawable/appliances"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -304,11 +304,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgToys"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/toys" />
+                            android:background="@drawable/toys"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -332,11 +332,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgSports"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/sports" />
+                            android:background="@drawable/sports"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -359,11 +359,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgBooks"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/books" />
+                            android:background="@drawable/books"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -386,11 +386,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgAutomobiles"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/automobiles" />
+                            android:background="@drawable/automobiles"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -413,11 +413,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgFitness"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/fitness" />
+                            android:background="@drawable/fitness"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -440,11 +440,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgHealth"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/health" />
+                            android:background="@drawable/health"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -467,11 +467,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgTravel"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/travel" />
+                            android:background="@drawable/travel"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -494,11 +494,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgGaming"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/gaming" />
+                            android:background="@drawable/gaming"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -513,6 +513,7 @@
                             android:textColor="#0f0f0f"
                             android:textSize="@dimen/_10ssp" />
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -520,11 +521,11 @@
 
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/imgOthers"
                             android:layout_width="@dimen/_60sdp"
                             android:layout_height="@dimen/_60sdp"
-                            android:background="@drawable/ic_baseline_devices_other_24" />
+                            android:background="@drawable/ic_baseline_devices_other_24"
+                            android:contentDescription="@string/todo" />
 
 
                         <TextView
@@ -555,11 +556,11 @@
             android:visibility="visible">
 
             <ImageView
-                android:contentDescription="@string/todo"
                 android:id="@+id/imgEmpty"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/ic_empty" />
 
             <TextView
@@ -604,6 +605,20 @@
                 android:indeterminateDuration="@android:integer/config_longAnimTime" />
 
         </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:id="@+id/switchButtonHome"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bottom_navProducts"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="#ff4500"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="3dp"
+            android:text="Switch"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_13ssp" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navProducts"
