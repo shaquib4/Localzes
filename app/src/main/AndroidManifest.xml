@@ -30,7 +30,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".HelpSectionActivity"></activity>
+        <activity android:name=".PaymentModes"></activity>
         <activity android:name=".PaymentRazorpay" />
         <activity
             android:name=".RegisterDetailDelivery"
