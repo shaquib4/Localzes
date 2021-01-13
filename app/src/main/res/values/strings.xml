@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Localzes</string>
+    <string name="app_name">Localze</string>
     <string name="title_activity_maps">Map</string>
     <string name="password"><font fontfamily="@font/l_r" size="16">Password</font></string>
     <string name="mobile_number"><font fontfamily="@font/l_r" size="16">Enter your mobile number</font></string>
