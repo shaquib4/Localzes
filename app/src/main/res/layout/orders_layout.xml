@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/border"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp">
+
+        <TextView
+            android:id="@+id/txtOrders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORDERS"
+      android:layout_below="@+id/imgBack"
+            android:layout_margin="@dimen/_10sdp"
+            android:textColor="#fff"
+            android:textSize="@dimen/_30ssp"
+            android:fontFamily="@font/montserrat_bold"
+            />
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_back_white"
+            android:id="@+id/imgBack"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:contentDescription="@string/todo"
+            android:layout_marginStart="@dimen/_10sdp"/>
+
+        <LinearLayout
+           android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnAccepted"
+                android:layout_marginHorizontal="5dp"
+                android:text="Accepted"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#de4500"
+                android:background="@drawable/stroke_solid_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnCompleted"
+                android:layout_marginHorizontal="5dp"
+                android:text="Completed"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#de4500"
+                android:background="@drawable/stroke_solid_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnIncoming"
+                android:layout_marginHorizontal="5dp"
+                android:text="Incoming"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#de4500"
+                android:background="@drawable/stroke_solid_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
