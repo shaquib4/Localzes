@@ -83,13 +83,13 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 )
             }
         }
-        if (notificationType.equals("OrderListStatusChanged")) {
+        if (notificationType.equals("PaymentMethod")) {
             val buyerUid = remoteMessage.data["buyerId"]
             val sellerUid = remoteMessage.data["sellerUid"]
             val orderId = remoteMessage.data["orderId"]
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
-            if (firebaseUser != null && currentAuth!!.uid == buyerUid.toString()) {
+            if (firebaseUser != null && currentAuth!!.uid == sellerUid.toString()) {
                 showNotification(
                     orderId.toString(),
                     sellerUid.toString(),
@@ -100,6 +100,67 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 )
             }
         }
+        if (notificationType.equals("OrderListStatusChanged")) {
+            val buyerUid = remoteMessage.data["buyerId"]
+            val sellerUid = remoteMessage.data["sellerUid"]
+            val orderId = remoteMessage.data["orderId"]
+            val notificationTitle = remoteMessage.data["notificationTitle"]
+            val notificationDescription = remoteMessage.data["notificationMessage"]
+            val totalCost = remoteMessage.data["totalCost"]
+            if (firebaseUser != null && currentAuth!!.uid == buyerUid.toString()) {
+                showNotification1(
+                    orderId.toString(),
+                    sellerUid.toString(),
+                    buyerUid.toString(),
+                    notificationTitle.toString(),
+                    notificationDescription.toString(),
+                    notificationType.toString(),
+                    totalCost.toString()
+                )
+            }
+        }
+    }
+
+    private fun showNotification1(
+        orderId: String,
+        sellerUid: String,
+        buyerId: String,
+        notificationTitle: String,
+        notificationDescription: String,
+        notificationType: String,
+        totalCost: String
+    ) {
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationId = Random.nextInt(3000)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setUpNotificationChannel(notificationManager)
+        }
+        if (notificationType == "OrderListStatusChanged") {
+            intent = Intent(this, UserListOrderDetails::class.java)
+            intent.putExtra("orderId", orderId)
+            intent.putExtra("orderTo", sellerUid)
+            intent.putExtra("totalCost", totalCost)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.localze_shop)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+
+        notificationManager.notify(notificationId, notificationBuilder.build())
+
     }
 
     private fun showNotification(
@@ -139,10 +200,10 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             }
-            "OrderListStatusChanged" -> {
-                intent = Intent(this, UserListOrderDetails::class.java)
+            "PaymentMethod" -> {
+                intent = Intent(this, ListOrderDetailSeller::class.java)
                 intent.putExtra("orderId", orderId)
-                intent.putExtra("orderTo", sellerUid)
+                intent.putExtra("orderBy", buyerId)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             }

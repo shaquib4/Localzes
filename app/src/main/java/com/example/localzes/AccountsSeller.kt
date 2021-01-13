@@ -118,6 +118,9 @@ class AccountsSeller : AppCompatActivity() {
                 "FAQs" -> {
                 }
                 "Contact Us" -> {
+                    val intent = Intent(this, HelpSectionActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
             return@setOnChildClickListener true
@@ -174,11 +177,11 @@ class AccountsSeller : AppCompatActivity() {
         menu = ArrayList()
         item = HashMap()
 
-       // (menu as ArrayList<String>).add("Account")
+        // (menu as ArrayList<String>).add("Account")
         (menu as ArrayList<String>).add("Refunds & Payments")
         (menu as ArrayList<String>).add("Help")
 
-      //  val item1: MutableList<String> = ArrayList()
+        //  val item1: MutableList<String> = ArrayList()
         //item1.add("Offers")
         //item1.add("Referrals")
 

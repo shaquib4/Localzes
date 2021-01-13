@@ -444,7 +444,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     "Sorry for the inconvenience.Your order is rejected due to $selectedReason"
             }
             "Order has been Confirmed" -> {
-                NOTIFICATION_MESSAGE = "Your order has been confirmed by seller"
+                NOTIFICATION_MESSAGE = "Your order costs only ₹${totalCost}"
             }
         }
         val NOTIFICATION_TYPE = "OrderListStatusChanged"
@@ -455,6 +455,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
             notificationBodyJs.put("buyerId", orderBy)
             notificationBodyJs.put("sellerUid", (shopAuth.currentUser)!!.uid)
             notificationBodyJs.put("orderId", orderId)
+            notificationBodyJs.put("totalCost", totalCost.toString())
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
             notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
             notificationJs.put("to", NOTIFICATION_TOPIC)

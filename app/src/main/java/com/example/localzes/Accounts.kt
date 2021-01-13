@@ -121,6 +121,11 @@ class Accounts : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
+                "Contact Us" -> {
+                    val intent = Intent(this, HelpSectionActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
             return@setOnChildClickListener true
         }
@@ -139,18 +144,19 @@ class Accounts : AppCompatActivity() {
         val item1: MutableList<String> = ArrayList()
         item1.add("Manage Address")
         item1.add("Favourites")
-       // item1.add("Offers")
-       // item1.add("Referrals")
+        // item1.add("Offers")
+        // item1.add("Referrals")
 
         val item2: MutableList<String> = ArrayList()
         item2.add("Refund Status")
         item2.add("Payment Modes")
-       // item2.add("Transaction History")
+        // item2.add("Transaction History")
 
         val item3: MutableList<String> = ArrayList()
         item3.add("Current Order")
         item3.add("Past Orders")
         val item4: MutableList<String> = ArrayList()
+        item4.add("Contact Us")
 
         item[menu[0]] = item1
         item[menu[1]] = item2

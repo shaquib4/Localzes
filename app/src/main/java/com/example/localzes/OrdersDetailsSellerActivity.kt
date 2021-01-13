@@ -116,7 +116,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     when (orderStatus) {
                         "Pending" -> {
                             txtOrderStatus.setTextColor(resources.getColor(R.color.colorAccent))
-                            checkboxComplete.visibility=View.GONE
+                            checkboxComplete.visibility = View.GONE
                             imgEdit.setOnClickListener {
                                 if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
                                     editOrderStatusDialog()
@@ -127,7 +127,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             }
                         }
                         "Accepted" -> {
-                            checkboxComplete.visibility=View.VISIBLE
+                            checkboxComplete.visibility = View.VISIBLE
                             txtOrderStatus.setTextColor(resources.getColor(R.color.green))
                             imgEdit.setOnClickListener {
                                 if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
@@ -139,20 +139,20 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             }
                         }
                         "Out For Delivery" -> {
-                            checkboxComplete.visibility=View.VISIBLE
+                            checkboxComplete.visibility = View.VISIBLE
                             txtOrderStatus.setTextColor(resources.getColor(R.color.acidGreen))
                             imgEdit.setOnClickListener {
                                 afterEditOrderStatusDialog()
                             }
                         }
                         "Rejected due to $selectedReason" -> {
-                            checkboxComplete.visibility=View.GONE
+                            checkboxComplete.visibility = View.GONE
                             txtOrderStatus.setTextColor(resources.getColor(R.color.red))
                             imgEdit.visibility = View.GONE
                         }
-                        "Completed"->{
+                        "Completed" -> {
                             txtOrderStatus.setTextColor(resources.getColor(R.color.green))
-                            imgEdit.visibility=View.GONE
+                            imgEdit.visibility = View.GONE
                         }
                     }
                 } else {
@@ -202,18 +202,31 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             rl_OrderDetails.visibility = View.GONE
             rl_retryOrderDetails.visibility = View.VISIBLE
         }
+        /* val database: DatabaseReference =
+             FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString())
+                 .child("current_address")
+         database.addValueEventListener(object : ValueEventListener {
+             override fun onCancelled(error: DatabaseError) {
+
+             }
+
+             override fun onDataChange(snapshot: DataSnapshot) {
+                 val address = snapshot.child("address").value.toString()
+                 deliveryAddress.text = address
+             }
+         })*/
         val database: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString())
-                .child("current_address")
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+                .child(orderIdTv.toString())
         database.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val address = snapshot.child("address").value.toString()
-                deliveryAddress.text = address
+                deliveryAddress.text = snapshot.child("deliveryAddress").value.toString()
             }
+
         })
         val reference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("Seller").child(uid).child("Orders")

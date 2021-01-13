@@ -33,14 +33,12 @@ class AddProduct : AppCompatActivity() {
     private lateinit var imgBackAdd: ImageView
 
     private lateinit var sizeAvailable: EditText
-    private var sizes: String = ""
 
     /*private lateinit var thumb_reference: StorageReference*/
     private lateinit var timestamp: String
     private var categorySelected: String? = "200"
     var imgUrl: String = ""
     private var spinnerItem: String = ""
-    private lateinit var llSize: LinearLayout
     var thumb_Bitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +49,6 @@ class AddProduct : AppCompatActivity() {
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
         timestamp = System.currentTimeMillis().toString()
-        llSize = findViewById(R.id.linearLayout5)
-        llSize.visibility = View.GONE
         sizeAvailable = findViewById(R.id.sizeAvailable)
         image_view.setOnClickListener {
             startImageChooser()
@@ -66,13 +62,13 @@ class AddProduct : AppCompatActivity() {
             sp_spinner_add.setSelection(getIndex(sp_spinner_add, categorySelected.toString()))
                 .toString()
         }
-        if (sp_spinner_add.selectedItem == "Fashion") {
+        /*if (sp_spinner_add.selectedItem == "Fashion") {
             llSize.visibility = View.VISIBLE
             sizes = sizeAvailable.text.toString()
         } else {
             llSize.visibility = View.GONE
             sizes = ""
-        }
+        }*/
         imgBackAdd.setOnClickListener {
             val intent = Intent(this, Home_seller::class.java)
             startActivity(intent)
@@ -276,7 +272,7 @@ class AddProduct : AppCompatActivity() {
                     etOfferPrice.text.toString().trim(),
                     sp_unit.selectedItem.toString(),
                     etQuantity.text.toString().trim(),
-                    "IN", sizes
+                    "IN"
                 )
                 mCartDatabaseRef = FirebaseDatabase.getInstance().reference.child("seller")
                 mCartDatabaseRef.child(uid).child("Products").child(timestamp)

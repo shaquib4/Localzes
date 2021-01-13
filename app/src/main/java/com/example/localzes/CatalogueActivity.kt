@@ -87,8 +87,7 @@ class CatalogueActivity : AppCompatActivity() {
                         i.child("offerPrice").value.toString(),
                         i.child("unit").value.toString(),
                         i.child("quantity").value.toString(),
-                        i.child("stock").value.toString(),
-                        i.child("sizeAvailable").value.toString()
+                        i.child("stock").value.toString()
                     )
                     (catalogueList as ArrayList<ModelAddProduct>).add(obj)
                 }

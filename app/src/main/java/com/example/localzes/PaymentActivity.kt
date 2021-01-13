@@ -42,6 +42,7 @@ class PaymentActivity : AppCompatActivity() {
     private var deliveryAddress: String? = "500"
     private var orderByName: String? = "600"
     private var orderByMobile: String? = "700"
+    private var orderId: String? = "800"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
@@ -60,6 +61,7 @@ class PaymentActivity : AppCompatActivity() {
         deliveryAddress = intent.getStringExtra("delivery")
         orderByName = intent.getStringExtra("orderByName")
         orderByMobile = intent.getStringExtra("orderByMobile")
+        orderId = intent.getStringExtra("orderId")
         cartProducts = ArrayList<UserCartDetails>()
         send = findViewById<View>(R.id.btnPayNow) as Button
         amount = findViewById<View>(R.id.txtPayAmount) as TextView
@@ -72,35 +74,36 @@ class PaymentActivity : AppCompatActivity() {
             this.recreate()
         }
 
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_Payment.visibility=View.VISIBLE
-            rl_retryPayment.visibility=View.GONE
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_Payment.visibility = View.VISIBLE
+            rl_retryPayment.visibility = View.GONE
             userDatabase.addValueEventListener(object : ValueEventListener {
 
 
-            override fun onCancelled(error: DatabaseError) {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val names = snapshot.child("shop_name").value.toString()
-                val upiId = snapshot.child("upi").value.toString()
-                name!!.text = names
-                upivirtualid!!.text = upiId
-                amount!!.text = totalCost
-            }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val names = snapshot.child("shop_name").value.toString()
+                    val upiId = snapshot.child("upi").value.toString()
+                    name!!.text = names
+                    upivirtualid!!.text = upiId
+                    amount!!.text = totalCost
+                }
 
-        })}else{
-            rl_Payment.visibility=View.GONE
-            rl_retryPayment.visibility=View.VISIBLE
+            })
+        } else {
+            rl_Payment.visibility = View.GONE
+            rl_retryPayment.visibility = View.VISIBLE
         }
 
 
 
 
-            send!!.setOnClickListener { //Getting the values from the Texts
-                rl_Payment.visibility=View.VISIBLE
-                rl_retryPayment.visibility=View.GONE
+        send!!.setOnClickListener { //Getting the values from the Texts
+            rl_Payment.visibility = View.VISIBLE
+            rl_retryPayment.visibility = View.GONE
             val sendf = intent.getStringExtra("send")
             amount!!.text = totalCost.toString()
             if (TextUtils.isEmpty(name!!.text.toString().trim { it <= ' ' })) {
@@ -117,15 +120,18 @@ class PaymentActivity : AppCompatActivity() {
                 Toast.makeText(this@PaymentActivity, " Amount is invalid", Toast.LENGTH_SHORT)
                     .show()
             } else {
-                if (ConnectionManager().checkConnectivity(this)&&1==1){payUsingUpi(
-                    name!!.text.toString(), upivirtualid!!.text.toString(),
-                    note!!.text.toString(), amount!!.text.toString()
-                )}else{
-                    rl_Payment.visibility=View.GONE
-                    rl_retryPayment.visibility=View.VISIBLE
+                if (ConnectionManager().checkConnectivity(this) && 1 == 1) {
+                    payUsingUpi(
+                        name!!.text.toString(), upivirtualid!!.text.toString(),
+                        note!!.text.toString(), amount!!.text.toString()
+                    )
+                } else {
+                    rl_Payment.visibility = View.GONE
+                    rl_retryPayment.visibility = View.VISIBLE
                 }
 
-        }}
+            }
+        }
     }
 
     fun payUsingUpi(
@@ -222,112 +228,138 @@ class PaymentActivity : AppCompatActivity() {
                     paymentCancel = "Payment cancelled by user."
                 }
             }
-            if (status == "success") {
-                //Code to handle successful transaction here.
-                progressDialog.setMessage("Placing Your Order....")
-                progressDialog.show()
-                val dataReference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("users")
-                        .child(uid.toString()).child("Cart")
-                dataReference.addValueEventListener(object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError) {
+            when {
+                status == "success" -> {
+                    if (orderId == null) {
+                        //Code to handle successful transaction here.
+                        progressDialog.setMessage("Placing Your Order....")
+                        progressDialog.show()
+                        val dataReference: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("users")
+                                .child(uid.toString()).child("Cart")
+                        dataReference.addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError) {
 
-                    }
+                            }
 
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        (cartProducts as ArrayList<UserCartDetails>).clear()
-                        for (i in snapshot.children) {
-                            val obj =
-                                UserCartDetails(
-                                    i.child("productId").value.toString(),
-                                    i.child("orderBy").value.toString(),
-                                    i.child("productTitle").value.toString(),
-                                    i.child("priceEach").value.toString(),
-                                    i.child("finalPrice").value.toString(),
-                                    i.child("finalQuantity").value.toString(),
-                                    i.child("orderTo").value.toString(),
-                                    i.child("productImageUrl").value.toString(),
-                                    i.child("sellingPrice").value.toString(),
-                                    i.child("finalsellingPrice").value.toString()
-                                )
-                            (cartProducts as ArrayList<UserCartDetails>).add(obj)
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                (cartProducts as ArrayList<UserCartDetails>).clear()
+                                for (i in snapshot.children) {
+                                    val obj =
+                                        UserCartDetails(
+                                            i.child("productId").value.toString(),
+                                            i.child("orderBy").value.toString(),
+                                            i.child("productTitle").value.toString(),
+                                            i.child("priceEach").value.toString(),
+                                            i.child("finalPrice").value.toString(),
+                                            i.child("finalQuantity").value.toString(),
+                                            i.child("orderTo").value.toString(),
+                                            i.child("productImageUrl").value.toString(),
+                                            i.child("sellingPrice").value.toString(),
+                                            i.child("finalsellingPrice").value.toString()
+                                        )
+                                    (cartProducts as ArrayList<UserCartDetails>).add(obj)
+                                }
+                            }
+                        })
+                        val timestamp = System.currentTimeMillis().toString()
+                        val orderId = timestamp
+                        val orderTime = timestamp
+                        val orderStatus = "Pending"
+                        val orderCost = totalCost.toString()
+                        val orderBy = uid.toString()
+                        val orderTo = shopId.toString()
+                        val deliveryAddress = deliveryAddress.toString()
+                        orderDetails =
+                            ModelOrderDetails(
+                                orderId,
+                                orderTime,
+                                orderStatus,
+                                orderCost,
+                                orderBy,
+                                orderTo,
+                                totalItem.toString(),
+                                deliveryAddress,
+                                "Paytm",
+                                orderByName.toString(),
+                                orderByMobile.toString()
+                            )
+
+                        val ref: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
+                                .child("Orders")
+                        ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
+                            val reference: DatabaseReference =
+                                FirebaseDatabase.getInstance().reference.child("users")
+                                    .child(orderBy)
+                                    .child("MyOrders")
+                            reference.child(orderId).setValue(orderDetails)
+                            for (i in 0 until cartProducts.size) {
+                                val productId = cartProducts[i].productId
+                                val orderedBy = cartProducts[i].orderBy
+                                val productTitle = cartProducts[i].productTitle
+                                val priceEach = cartProducts[i].priceEach
+                                val finalPrice = cartProducts[i].finalPrice
+                                val finalQuantity = cartProducts[i].finalQuantity
+                                val orderedTo = cartProducts[i].orderTo
+                                val sellingPrice = cartProducts[i].sellingPrice
+                                val headers = HashMap<String, String>()
+                                headers["productId"] = productId
+                                headers["orderBy"] = orderedBy
+                                headers["productTitle"] = productTitle
+                                headers["priceEach"] = priceEach
+                                headers["finalPrice"] = finalPrice
+                                headers["finalQuantity"] = finalQuantity
+                                headers["orderTo"] = orderedTo
+                                headers["sellingPrice"] = sellingPrice
+                                ref.child(timestamp).child("Items").child(productId)
+                                    .setValue(headers)
+                                reference.child(orderId).child("orderedItems").child(productId)
+                                    .setValue(headers)
+                            }
+                            dataReference.removeValue()
+                            progressDialog.dismiss()
+                            prepareNotificationMessage(orderId)
+                        }
+                    } else {
+                        progressDialog.setMessage("Placing Your Order....")
+                        progressDialog.show()
+                        val dataX: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("seller")
+                                .child(shopId.toString()).child("OrdersLists")
+                                .child(orderId.toString())
+                        val usersMap = HashMap<String, Any>()
+                        usersMap["paymentMode"] = "Paytm"
+                        dataX.updateChildren(usersMap).addOnCompleteListener {
+                            val userData: DatabaseReference =
+                                FirebaseDatabase.getInstance().reference.child("users")
+                                    .child(uid.toString()).child("MyOrderList")
+                                    .child(orderId.toString())
+                            userData.updateChildren(usersMap).addOnCompleteListener {
+                                progressDialog.dismiss()
+                                prepareNewNotificationMessage(orderId.toString())
+                            }
                         }
                     }
-                })
-                val timestamp = System.currentTimeMillis().toString()
-                val orderId = timestamp
-                val orderTime = timestamp
-                val orderStatus = "Pending"
-                val orderCost = totalCost.toString()
-                val orderBy = uid.toString()
-                val orderTo = shopId.toString()
-                val deliveryAddress = deliveryAddress.toString()
-                orderDetails =
-                    ModelOrderDetails(
-                        orderId,
-                        orderTime,
-                        orderStatus,
-                        orderCost,
-                        orderBy,
-                        orderTo,
-                        totalItem.toString(),
-                        deliveryAddress,
-                        "Paytm",
-                        orderByName.toString(),
-                        orderByMobile.toString()
-                    )
-
-                val ref: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
-                        .child("Orders")
-                ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
-                    val reference: DatabaseReference =
-                        FirebaseDatabase.getInstance().reference.child("users")
-                            .child(orderBy)
-                            .child("MyOrders")
-                    reference.child(orderId).setValue(orderDetails)
-                    for (i in 0 until cartProducts.size) {
-                        val productId = cartProducts[i].productId
-                        val orderedBy = cartProducts[i].orderBy
-                        val productTitle = cartProducts[i].productTitle
-                        val priceEach = cartProducts[i].priceEach
-                        val finalPrice = cartProducts[i].finalPrice
-                        val finalQuantity = cartProducts[i].finalQuantity
-                        val orderedTo = cartProducts[i].orderTo
-                        val sellingPrice = cartProducts[i].sellingPrice
-                        val headers = HashMap<String, String>()
-                        headers["productId"] = productId
-                        headers["orderBy"] = orderedBy
-                        headers["productTitle"] = productTitle
-                        headers["priceEach"] = priceEach
-                        headers["finalPrice"] = finalPrice
-                        headers["finalQuantity"] = finalQuantity
-                        headers["orderTo"] = orderedTo
-                        headers["sellingPrice"] = sellingPrice
-                        ref.child(timestamp).child("Items").child(productId).setValue(headers)
-                        reference.child(orderId).child("orderedItems").child(productId)
-                            .setValue(headers)
-                    }
-                    dataReference.removeValue()
-                    progressDialog.dismiss()
-                    prepareNotificationMessage(orderId)
+                    Log.e("UPI", "payment successful: $approvalRefNo")
                 }
-                Log.e("UPI", "payment successful: $approvalRefNo")
-            } else if ("Payment cancelled by user." == paymentCancel) {
-                Toast.makeText(
-                    this@PaymentActivity,
-                    "Payment cancelled by user.",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-                Log.e("UPI", "Cancelled by user: $approvalRefNo")
-            } else {
-                Toast.makeText(
-                    this@PaymentActivity,
-                    "Transaction failed.Please try again",
-                    Toast.LENGTH_SHORT
-                ).show()
-                Log.e("UPI", "failed payment: $approvalRefNo")
+                "Payment cancelled by user." == paymentCancel -> {
+                    Toast.makeText(
+                        this@PaymentActivity,
+                        "Payment cancelled by user.",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    Log.e("UPI", "Cancelled by user: $approvalRefNo")
+                }
+                else -> {
+                    Toast.makeText(
+                        this@PaymentActivity,
+                        "Transaction failed.Please try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Log.e("UPI", "failed payment: $approvalRefNo")
+                }
             }
         } else {
             Log.e("UPI", "Internet issue: ")
@@ -354,6 +386,29 @@ class PaymentActivity : AppCompatActivity() {
             }
             return false
         }
+    }
+
+    private fun prepareNewNotificationMessage(orderId: String) {
+        val NOTIFICATION_TOPIC = "/topics/PUSH_NOTIFICATIONS"
+        val NOTIFICATION_TITLE = "New Payment has been received"
+        val NOTIFICATION_MESSAGE = "Amount of ₹${totalCost.toString()} received"
+        val NOTIFICATION_TYPE = "PaymentMethod"
+        val notificationJs = JSONObject()
+        val notificationBodyJs = JSONObject()
+        try {
+            notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
+            notificationBodyJs.put("buyerId", uid.toString())
+            notificationBodyJs.put("sellerUid", shopId.toString())
+            notificationBodyJs.put("orderId", orderId)
+            notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
+            notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
+            //where to send
+            notificationJs.put("to", NOTIFICATION_TOPIC)//to all who subscribed this topic
+            notificationJs.put("data", notificationBodyJs)
+        } catch (e: Exception) {
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+        }
+        sendFcmNotification(notificationJs, orderId)
     }
 
     private fun prepareNotificationMessage(orderId: String) {

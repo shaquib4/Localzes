@@ -49,16 +49,14 @@ class ListOrders : AppCompatActivity() {
                             i.child("totalItems").value.toString(),
                             i.child("listStatus").value.toString(),
                             i.child("orderByName").value.toString(),
-                            i.child("orderByMobile").value.toString()
-
-
+                            i.child("orderByMobile").value.toString(),
+                            i.child("paymentMode").value.toString()
                         )
                         (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
                     }
                     listAdapter = AdapterListOrder(this@ListOrders, listOrders)
                     recycler.adapter = listAdapter
                 }
-
             })
     }
 }

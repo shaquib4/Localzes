@@ -12,17 +12,16 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:contentDescription="@string/todo"
             android:id="@+id/imageMakeCallList"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:contentDescription="@string/todo"
             android:padding="2dp"
             android:src="@drawable/ic_baseline_phone_24" />
 
         <ImageView
-            android:contentDescription="@string/todo"
             android:id="@+id/imgListBackOrderDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,6 +29,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_back" />
 
         <TextView
@@ -212,6 +212,16 @@
                     android:textColor="#008000"
                     android:textSize="@dimen/_12ssp" />
 
+                <Button
+                    android:id="@+id/btnPay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_buttons"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Pay Now"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_12ssp" />
+
             </TableRow>
 
             <TableRow>
@@ -292,7 +302,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:reverseLayout="true"
         app:stackFromEnd="true"
-        tools:listitem="@layout/row_ordered_items" />
+        tools:listitem="@layout/list_single_row_customer_order" />
 
 
 </LinearLayout>

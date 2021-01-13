@@ -11,8 +11,7 @@ class ModelAddProduct(
     val offerPrice: String,
     val unit: String,
     val quantity: String,
-    val stock: String,
-    val sizeAvailable: String
+    val stock: String
 ) {
-    constructor() : this("", "", "", "", "", "", "", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "", "", "", "", "", "")
 }

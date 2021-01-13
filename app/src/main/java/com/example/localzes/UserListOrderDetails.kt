@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -34,12 +35,14 @@ class UserListOrderDetails : AppCompatActivity() {
     private lateinit var adapteruserOrder: AdapterUserOrderList
     private var orderId: String? = "200"
     private var orderToId: String? = "300"
+    private var totalCost: String? = "400"
     private lateinit var userAuth: FirebaseAuth
     private var REQUEST_CALL = 1
     private var shopMobileNumber: String = ""
     private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
-    private lateinit var imgBackListUser:ImageView
+    private lateinit var imgBackListUser: ImageView
     private lateinit var imgMakePhone: ImageView
+    private lateinit var btnPay: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_list_order_details)
@@ -53,17 +56,28 @@ class UserListOrderDetails : AppCompatActivity() {
         shopAddressOrder = findViewById(R.id.txtOrderListShopAddressUser)
         recyclerOrderList = findViewById(R.id.recycler_order_list_users)
         imgMakePhone = findViewById(R.id.imageMakeCallList)
-        imgBackListUser=findViewById(R.id.imgListBackOrderDetails)
+        imgBackListUser = findViewById(R.id.imgListBackOrderDetails)
+        btnPay = findViewById(R.id.btnPay)
         recyclerOrderList.layoutManager = LinearLayoutManager(this)
         orderedItemList = ArrayList<ModelList>()
         orderId = intent.getStringExtra("orderId")
         orderToId = intent.getStringExtra("orderTo")
+        totalCost = intent.getStringExtra("totalCost")
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
         val databaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrderList")
                 .child(orderId.toString())
+        btnPay.setOnClickListener {
+            val intent = Intent(this, continue_payment::class.java)
+            intent.putExtra("shopId", orderToId.toString())
+            intent.putExtra("totalCost", totalCost.toString())
+            intent.putExtra("orderId", orderId.toString())
+            intent.putExtra("orderBy", uid)
+            startActivity(intent)
+            finish()
+        }
         imgMakePhone.setOnClickListener {
             makePhoneCall()
         }
@@ -131,9 +145,10 @@ class UserListOrderDetails : AppCompatActivity() {
                     }
                 }
                 orderListIdUser.text = "OD${orderId}"
+                itemsOrderList.text = "${snapshot.childrenCount} items"
                 orderStatusListUser.text = orderStatus
                 if (listStatus == "Confirm") {
-                    amountOrderList.text = "₹${orderCost}"
+                    amountOrderList.text = "₹${totalCost}"
                 } else {
                     amountOrderList.text = "Order amount will be updated soon"
                 }
@@ -203,7 +218,7 @@ class UserListOrderDetails : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent=Intent(this,AccountsSeller::class.java)
+        val intent = Intent(this, AccountsSeller::class.java)
         startActivity(intent)
         finish()
     }

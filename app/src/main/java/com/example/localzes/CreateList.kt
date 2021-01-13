@@ -223,19 +223,21 @@ class CreateList : AppCompatActivity() {
         }
 
         btnCn.setOnClickListener {
-            userDatabase.child("OrderList").addListenerForSingleValueEvent(object :ValueEventListener{
-                override fun onCancelled(error: DatabaseError) {
+            userDatabase.child("OrderList")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
+                    }
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                   if (snapshot.exists()){
-                       confirm()
-                   }else{
-                       Toast.makeText(this@CreateList,"No item added",Toast.LENGTH_LONG).show()
-                   }
-                }
-            })
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            confirm()
+                        } else {
+                            Toast.makeText(this@CreateList, "No item added", Toast.LENGTH_LONG)
+                                .show()
+                        }
+                    }
+                })
 
         }
 
@@ -359,7 +361,8 @@ class CreateList : AppCompatActivity() {
                         totalItems,
                         listStatus,
                         orderByName.toString(),
-                        orderByMobile.toString()
+                        orderByMobile.toString(),
+                        ""
                     )
                     val dataReference: DatabaseReference =
                         FirebaseDatabase.getInstance().reference.child("users")

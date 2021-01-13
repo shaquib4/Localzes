@@ -19,60 +19,58 @@ import java.util.concurrent.TimeUnit
 
 class Verify : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private lateinit var lastDigit:TextView
-    var userDatabase: DatabaseReference?=null
-    lateinit var  storedVerificationId:String
+    private lateinit var lastDigit: TextView
+    var userDatabase: DatabaseReference? = null
+    lateinit var storedVerificationId: String
     private lateinit var suserDatabase: DatabaseReference
-    lateinit var  resendToken: PhoneAuthProvider.ForceResendingToken
-    var firebaseUser: FirebaseUser?=null
+    lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    var firebaseUser: FirebaseUser? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verify)
         auth = FirebaseAuth.getInstance()
-        lastDigit=findViewById(R.id.lastNumber)
-        firebaseUser= FirebaseAuth.getInstance().currentUser
-        val phone=  intent.getStringExtra("phone")
-        val number=phone.toString()
-        lastDigit.text=number
+        lastDigit = findViewById(R.id.lastNumber)
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+        val phone = intent.getStringExtra("phone")
+        val number = phone.toString()
+        lastDigit.text = number
         retryOTP.setOnClickListener {
             this.recreate()
         }
 
 
-            sendVerification("+91$phone")
-            progress_verify.visibility= View.VISIBLE
-
-
-
+        sendVerification("+91$phone")
+        progress_verify.visibility = View.VISIBLE
 
 
     }
 
-    private fun sendVerification(phone:String){
+    private fun sendVerification(phone: String) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             phone,
             60, // Timeout duration
             TimeUnit.SECONDS, // Unit of timeout
             TaskExecutors.MAIN_THREAD,
-            callbacks)
+            callbacks
+        )
     }
 
     var callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-            val code=credential.smsCode
-            if(code!=null){
+            val code = credential.smsCode
+            if (code != null) {
 
-                    verifyVerification(code)
+                verifyVerification(code)
                 otp.setText(code)
             }
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
             if (e is FirebaseAuthInvalidCredentialsException) {
-                Toast.makeText(applicationContext,""+e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "" + e.message, Toast.LENGTH_SHORT).show()
             } else if (e is FirebaseTooManyRequestsException) {
-                Toast.makeText(applicationContext,""+e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "" + e.message, Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -91,34 +89,34 @@ class Verify : AppCompatActivity() {
     }
 
 
-
-    private fun verifyVerification(codeUser:String){
+    private fun verifyVerification(codeUser: String) {
         val credential = PhoneAuthProvider.getCredential(storedVerificationId, codeUser)
         signUp(credential)
     }
 
-    private fun signUp(credential: PhoneAuthCredential){
+    private fun signUp(credential: PhoneAuthCredential) {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = task.result?.user
-                    progress_verify.visibility= View.GONE
-                    auth= FirebaseAuth.getInstance()
+                    progress_verify.visibility = View.GONE
+                    auth = FirebaseAuth.getInstance()
                     val users = auth.currentUser
-                    var uid=users!!.uid
-                    suserDatabase = FirebaseDatabase.getInstance().reference.child("customers").child(uid)
+                    var uid = users!!.uid
+                    suserDatabase =
+                        FirebaseDatabase.getInstance().reference.child("customers").child(uid)
 
-                    val userMap= HashMap<String,Any>()
-                    val phone=  intent.getStringExtra("phone")
-                    val intent= Intent(this,Continueas::class.java)
-                    intent.putExtra("phone1",phone)
-                    userMap["uid"]=uid
-                    userMap["phone"]=phone.toString()
+                    val userMap = HashMap<String, Any>()
+                    val phone = intent.getStringExtra("phone")
+                    val intent = Intent(this, Continueas::class.java)
+                    intent.putExtra("phone1", phone)
+                    userMap["uid"] = uid
+                    userMap["phone"] = phone.toString()
                     suserDatabase.setValue(userMap).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             startActivity(intent)
                             finish()
-                        }else{
+                        } else {
                             Toast.makeText(
                                 baseContext, "Failed",
                                 Toast.LENGTH_SHORT
@@ -132,7 +130,8 @@ class Verify : AppCompatActivity() {
 
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
-                        Toast.makeText(applicationContext,"Invalid Code", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "Invalid Code", Toast.LENGTH_SHORT)
+                            .show()
                         otp.setText("")
                     }
                 }

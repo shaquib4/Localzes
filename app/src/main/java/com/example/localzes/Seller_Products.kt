@@ -144,8 +144,7 @@ class Seller_Products : AppCompatActivity() {
                                 i.child("offerPrice").value.toString(),
                                 i.child("unit").value.toString(),
                                 i.child("quantity").value.toString(),
-                                i.child("stock").value.toString(),
-                                i.child("sizeAvailable").value.toString()
+                                i.child("stock").value.toString()
                             )
                             if (i.child("productCategory").value.toString() == category.toString()) {
                                 (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
@@ -194,8 +193,7 @@ class Seller_Products : AppCompatActivity() {
                                 i.child("offerPrice").value.toString(),
                                 i.child("unit").value.toString(),
                                 i.child("quantity").value.toString(),
-                                i.child("stock").value.toString(),
-                                i.child("sizeAvailable").value.toString()
+                                i.child("stock").value.toString()
                             )
                             (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
                         }
@@ -251,8 +249,7 @@ class Seller_Products : AppCompatActivity() {
                             i.child("offerPrice").value.toString(),
                             i.child("unit").value.toString(),
                             i.child("quantity").value.toString(),
-                            i.child("stock").value.toString(),
-                            i.child("sizeAvailable").value.toString()
+                            i.child("stock").value.toString()
                         )
                         (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
 

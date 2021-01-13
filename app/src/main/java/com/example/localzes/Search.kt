@@ -300,8 +300,7 @@ class Search : AppCompatActivity() {
                                             i.child("offerPrice").value.toString(),
                                             i.child("unit").value.toString(),
                                             i.child("quantity").value.toString(),
-                                            i.child("stock").value.toString(),
-                                            i.child("sizeAvailable").value.toString()
+                                            i.child("stock").value.toString()
 
                                         )
                                     if (city.toLowerCase() == currentCity.toLowerCase() && status == "OPEN") {

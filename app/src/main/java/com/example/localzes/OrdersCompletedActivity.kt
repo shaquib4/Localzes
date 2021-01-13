@@ -194,7 +194,8 @@ class OrdersCompletedActivity : AppCompatActivity() {
                         i.child("totalItems").value.toString(),
                         i.child("listStatus").value.toString(),
                         i.child("orderByName").value.toString(),
-                        i.child("orderByMobile").value.toString()
+                        i.child("orderByMobile").value.toString(),
+                        i.child("paymentMode").value.toString()
                     )
                     if (i.child("orderStatus").value.toString() == "Completed") {
                         (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
@@ -236,7 +237,8 @@ class OrdersCompletedActivity : AppCompatActivity() {
                             i.child("totalItems").value.toString(),
                             i.child("listStatus").value.toString(),
                             i.child("orderByName").value.toString(),
-                            i.child("orderByMobile").value.toString()
+                            i.child("orderByMobile").value.toString(),
+                            i.child("paymentMode").value.toString()
 
 
                         )

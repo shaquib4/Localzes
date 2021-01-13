@@ -43,12 +43,12 @@ class AdapterUserListOrderHistory(
 
     override fun onBindViewHolder(holder: HolderUserListOrderHistory, position: Int) {
         val userListOrderHistory = order_List_History[position]
-        holder.totalListItemsTv.text = userListOrderHistory.totalItems
-        if (userListOrderHistory.orderCost == "") {
+        holder.totalListItemsTv.text = "${userListOrderHistory.totalItems} items"
+/*        if (userListOrderHistory.orderCost == "") {
             holder.totalOrderCostTv.text = "Amount will be updated by seller soon"
         } else {
             holder.totalOrderCostTv.text = userListOrderHistory.orderCost
-        }
+        }*/
         holder.orderListIdTv.text = "OD${userListOrderHistory.orderId}"
         val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
         val date = Date(userListOrderHistory.orderTime.toLong())
@@ -56,8 +56,10 @@ class AdapterUserListOrderHistory(
         holder.orderDateTv.text = formattedDate
         if (userListOrderHistory.listStatus == "") {
             holder.orderListStatusTv.text = "In Progress"
+            holder.totalOrderCostTv.text = "Amount will be updated by seller soon"
         } else {
             holder.orderListStatusTv.text = userListOrderHistory.listStatus
+            holder.totalOrderCostTv.text = "₹${userListOrderHistory.orderCost}"
         }
         val databaseReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller")
