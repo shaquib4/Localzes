@@ -53,7 +53,7 @@ class Home : AppCompatActivity() {
     private lateinit var categoryTravel: ImageView
     private lateinit var categoryGaming: ImageView
     private lateinit var categoryOthers: ImageView
-    private lateinit var switchButton: ExtendedFloatingActionButton
+    private lateinit var switchButton: Button
     private var currentCity: String = ""
     private var cate: String = ""
     private var backPressedTime = 0L

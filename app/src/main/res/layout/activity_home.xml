@@ -606,7 +606,8 @@
 
         </RelativeLayout>
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        <Button
+            android:elevation="@dimen/_20sdp"
             android:layout_width="wrap_content"
             android:id="@+id/switchButtonHome"
             android:layout_height="wrap_content"

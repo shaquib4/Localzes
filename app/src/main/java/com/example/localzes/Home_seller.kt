@@ -3,6 +3,7 @@ package com.example.localzes
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -24,7 +25,7 @@ class Home_seller : AppCompatActivity() {
     private lateinit var shopName: TextView
     private lateinit var totalOrders: TextView
     private lateinit var totalIncome: TextView
-    private lateinit var switchButton: ExtendedFloatingActionButton
+    private lateinit var switchButton: Button
     private var t1: Int = 0
     private var t2: Int = 0
     private var t3: Int = 0
