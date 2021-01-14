@@ -38,9 +38,6 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     private lateinit var quantityUpdate: EditText
     private lateinit var unitUpdate: Spinner
     private lateinit var updateProduct: Button
-    private lateinit var etSizesAvailable: EditText
-    private var categorySelect: String? = "120"
-    private lateinit var llSizes: LinearLayout
     var thumb_Bitmap: Bitmap? = null
     var imgUrl: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,9 +55,6 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         unitUpdate = findViewById(R.id.sp_unit_update)
         quantityUpdate = findViewById(R.id.etQuantityUpdate)
         updateProduct = findViewById(R.id.btnUpdateProduct)
-        etSizesAvailable = findViewById(R.id.etAvailableSizes)
-        llSizes = findViewById(R.id.linearLayout5)
-        llSizes.visibility = View.GONE
         retryUpdateProductDetail.setOnClickListener {
             this.recreate()
         }
@@ -89,22 +83,12 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                         val sellingPrice = snapshot.child("offerPrice").value.toString()
                         val unit = snapshot.child("unit").value.toString()
                         val quantity = snapshot.child("quantity").value.toString()
-                        val categoryGiven = snapshot.child("productCategory").value.toString()
-                        val availableSize = snapshot.child("sizeAvailable").value.toString()
                         Picasso.get().load(imageUrl).into(imageUpdate)
                         productName.setText(title)
                         if (description != null) {
                             descriptionUpdate.setText(description)
                         } else {
                             descriptionUpdate.setText("")
-                        }
-                        if (categoryGiven == "Fashion") {
-                            llSizes.visibility = View.VISIBLE
-                            categoryUpdate.setSelection(getIndex(categoryUpdate, categoryGiven))
-                            etSizesAvailable.setText(availableSize)
-                        } else {
-                            llSizes.visibility = View.GONE
-                            categoryUpdate.setSelection(getIndex(categoryUpdate, categoryGiven))
                         }
                         sellPriceUpdate.setText(mrp)
                         offerPriceUpdate.setText(sellingPrice)
@@ -231,7 +215,6 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
             headers["title"] = productName.text.toString().trim()
             headers["unit"] = unitUpdate.selectedItem.toString().trim()
             headers["description"] = descriptionUpdate.text.toString().trim()
-            headers["sizeAvailable"] = etSizesAvailable.text.toString().trim()
             databaseRef.child("Products").child(productId.toString()).updateChildren(headers)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Item Updated Successfully", Toast.LENGTH_SHORT)
@@ -298,14 +281,14 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun getIndex(mySpinner: Spinner, myValue: String): Int {
+    /*private fun getIndex(mySpinner: Spinner, myValue: String): Int {
         for (i in 0 until mySpinner.count) {
             if (mySpinner.getItemAtPosition(i).toString().equals(myValue, ignoreCase = true)) {
                 return i
             }
         }
         return 0
-    }
+    }*/
 
     override fun onBackPressed() {
         val intent = Intent(this, Seller_Products::class.java)

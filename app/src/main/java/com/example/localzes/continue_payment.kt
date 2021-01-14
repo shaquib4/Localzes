@@ -214,37 +214,39 @@ class continue_payment : AppCompatActivity() {
                 rl_continuePayment.visibility = View.GONE
             }
         } else {
-            val id = radioGroup!!.checkedRadioButtonId
-            val radioButton = findViewById<RadioButton>(id)
-            when (radioButton.text) {
-                "Pay on Delivery" -> {
-                    progressDialog.setMessage("Processing Your Request")
-                    progressDialog.show()
-                    val dataReference: DatabaseReference =
-                        FirebaseDatabase.getInstance().reference.child("seller")
-                            .child(shopId.toString())
-                            .child("OrdersLists").child(orderId.toString())
-                    val headers = HashMap<String, Any>()
-                    headers["paymentMode"] = "Cash on Delivery"
-                    dataReference.updateChildren(headers).addOnCompleteListener {
-                        val userData: DatabaseReference =
-                            FirebaseDatabase.getInstance().reference.child("users")
-                                .child(uid.toString()).child("MyOrderList")
-                                .child(orderId.toString())
-                        userData.updateChildren(headers).addOnCompleteListener {
-                            progressDialog.dismiss()
-                            prepareNewNotificationMessage(orderId.toString())
+            btnPayContinue.setOnClickListener {
+                val id = radioGroup!!.checkedRadioButtonId
+                val radioButton = findViewById<RadioButton>(id)
+                when (radioButton.text) {
+                    "Pay on Delivery" -> {
+                        progressDialog.setMessage("Processing Your Request")
+                        progressDialog.show()
+                        val dataReference: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("seller")
+                                .child(shopId.toString())
+                                .child("OrdersLists").child(orderId.toString())
+                        val headers = HashMap<String, Any>()
+                        headers["paymentMode"] = "Cash on Delivery"
+                        dataReference.updateChildren(headers).addOnCompleteListener {
+                            val userData: DatabaseReference =
+                                FirebaseDatabase.getInstance().reference.child("users")
+                                    .child(uid.toString()).child("MyOrderList")
+                                    .child(orderId.toString())
+                            userData.updateChildren(headers).addOnCompleteListener {
+                                progressDialog.dismiss()
+                                prepareNewNotificationMessage(orderId.toString())
+                            }
                         }
                     }
-                }
-                "Pay with Paytm" -> {
-                    val intent = Intent(this, PaymentActivity::class.java)
-                    intent.putExtra("shopId", shopId.toString())
-                    intent.putExtra("totalCost", totalCost.toString())
-                    intent.putExtra("orderId", orderId.toString())
-                    intent.putExtra("orderBy", uid.toString())
-                    startActivity(intent)
-                    finish()
+                    "Pay with Paytm" -> {
+                        val intent = Intent(this, PaymentActivity::class.java)
+                        intent.putExtra("shopId", shopId.toString())
+                        intent.putExtra("totalCost", totalCost.toString())
+                        intent.putExtra("orderId", orderId.toString())
+                        intent.putExtra("orderBy", uid.toString())
+                        startActivity(intent)
+                        finish()
+                    }
                 }
             }
         }

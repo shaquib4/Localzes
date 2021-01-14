@@ -29,6 +29,7 @@ class Category : AppCompatActivity() {
     private var timestamp: String = ""
     private lateinit var adapterCategory: AdapterCategory
     private lateinit var categories: List<ModelCategory>
+    private var bool: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,43 +46,68 @@ class Category : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Categories")
         btnAddNewCategory.setOnClickListener {
 
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_category.visibility=View.VISIBLE
-                rl_retryCategory.visibility=View.GONE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_category.visibility = View.VISIBLE
+                rl_retryCategory.visibility = View.GONE
                 val builder = AlertDialog.Builder(this)
-            val new = builder.create()
-            val view: View = LayoutInflater.from(this).inflate(R.layout.dialog_spinner, null, false)
-            builder.setTitle("Choose a new Category")
-            val mSpinner = view.findViewById<Spinner>(R.id.choose_new_category) as Spinner
-            val adapter = ArrayAdapter<String>(
-                this@Category,
-                android.R.layout.simple_spinner_item,
-                resources.getStringArray(R.array.Spinner_Category)
-            )
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            mSpinner.adapter = adapter
-            builder.setPositiveButton("Ok") { text, listener ->
-                val selected = mSpinner.selectedItem.toString()
-                Toast.makeText(this@Category,selected,Toast.LENGTH_SHORT).show()
-                val headers = HashMap<String, Any>()
-                headers["categoryId"] = timestamp
-                headers["category"] = selected
-                databaseReference.child(timestamp).setValue(headers).addOnCompleteListener {
-                    if(it.isSuccessful){
-                        Toast.makeText(this, "New Category Added", Toast.LENGTH_SHORT).show()
-                        new.dismiss()
-                        this.recreate()
+                val new = builder.create()
+                val view: View =
+                    LayoutInflater.from(this).inflate(R.layout.dialog_spinner, null, false)
+                builder.setTitle("Choose a new Category")
+                val mSpinner = view.findViewById<Spinner>(R.id.choose_new_category) as Spinner
+                val adapter = ArrayAdapter<String>(
+                    this@Category,
+                    android.R.layout.simple_spinner_item,
+                    resources.getStringArray(R.array.Spinner_Category)
+                )
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                mSpinner.adapter = adapter
+                builder.setPositiveButton("Ok") { text, listener ->
+                    val selected = mSpinner.selectedItem.toString()
+                    val sellerData =
+                        FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                            .child("Categories")
+                    sellerData.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onCancelled(error: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            for (i in snapshot.children) {
+                                if (i.child("category").value.toString() == selected) {
+                                    bool = true
+                                    Toast.makeText(
+                                        this@Category,
+                                        "This category already exists",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        }
+                    })
+                    if (!bool) {
+                        Toast.makeText(this@Category, selected, Toast.LENGTH_SHORT).show()
+                        val headers = HashMap<String, Any>()
+                        headers["categoryId"] = timestamp
+                        headers["category"] = selected
+                        databaseReference.child(timestamp).setValue(headers).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(this, "New Category Added", Toast.LENGTH_SHORT)
+                                    .show()
+                                new.dismiss()
+                                this.recreate()
+                            }
+                        }
                     }
                 }
-
-            }
-            builder.setNegativeButton("Dismiss") { text, listener ->
-                new.dismiss()
-            }
-            builder.setView(view)
-            builder.create().show()}else{
-                rl_category.visibility=View.GONE
-                rl_retryCategory.visibility=View.VISIBLE
+                builder.setNegativeButton("Dismiss") { text, listener ->
+                    new.dismiss()
+                }
+                builder.setView(view)
+                builder.create().show()
+            } else {
+                rl_category.visibility = View.GONE
+                rl_retryCategory.visibility = View.VISIBLE
             }
         }
 
@@ -131,28 +157,30 @@ class Category : AppCompatActivity() {
 
             return@setOnNavigationItemSelectedListener false
         }
-        if (ConnectionManager().checkConnectivity(this)){databaseReference.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+        if (ConnectionManager().checkConnectivity(this)) {
+            databaseReference.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                (categories as ArrayList<ModelCategory>).clear()
-                for (i in snapshot.children) {
-                    val obj = ModelCategory(
-                        i.child("categoryId").value.toString(),
-                        i.child("category").value.toString()
-                    )
-                    (categories as ArrayList<ModelCategory>).add(obj)
                 }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (categories as ArrayList<ModelCategory>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModelCategory(
+                            i.child("categoryId").value.toString(),
+                            i.child("category").value.toString()
+                        )
+                        (categories as ArrayList<ModelCategory>).add(obj)
+                    }
 
                     adapterCategory = AdapterCategory(this@Category, categories)
                     recyclerCategories.adapter = adapterCategory
 
-            }
-        })}else{
-            rl_category.visibility=View.GONE
-            rl_retryCategory.visibility=View.VISIBLE
+                }
+            })
+        } else {
+            rl_category.visibility = View.GONE
+            rl_retryCategory.visibility = View.VISIBLE
         }
     }
 
