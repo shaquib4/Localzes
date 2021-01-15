@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContinuePaymentListActivity">
+    <RelativeLayout
+        android:id="@+id/rl_continuePaymentList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgBackContinueList"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/txtCP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_toEndOf="@id/imgBackContinueList"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/continue_payment"
+            android:textColor="#000000"
+            android:textSize="@dimen/_13ssp" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/txtCP"
+            android:background="#d3d3d3" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@id/cardShare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view1"
+            android:layout_marginTop="@dimen/_5sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:id="@+id/radioPaymentList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RelativeOverlap">
+
+                    <RadioButton
+                        android:id="@+id/rbCODList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:checked="true"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/pay_on_delivery"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <RadioButton
+                        android:id="@+id/rbPWPList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/pay_with_paytm"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <!--<RadioButton
+                        android:id="@+id/rbRazorPay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/pay_with_razor_pay"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />-->
+                </RadioGroup>
+
+                <ImageView
+                    android:id="@+id/imgCard"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_cod_pay" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/imgCard"
+                    android:background="#d3d3d3" />
+
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/imgPaytm"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:contentDescription="@string/todo"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/paytm" />
+                
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardShare"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtPS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/price_summary"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/txtPP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtPS"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/product_charges"
+                    android:textSize="@dimen/_10ssp" />
+
+                <TextView
+                    android:id="@+id/txtPCPriceList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtPS"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/rs_14_99"
+                    android:textSize="@dimen/_10ssp" />
+
+                <TextView
+                    android:id="@+id/txtSCList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtPP"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/shipping_charges"
+                    android:textSize="@dimen/_10ssp" />
+
+                <TextView
+                    android:id="@+id/txtSCPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtPP"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/free"
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_10ssp" />
+
+                <View
+                    android:id="@id/view1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/txtSCList"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="#d3d3d3" />
+
+                <TextView
+                    android:id="@+id/txtTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view1"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/total"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/txtTotalPayPriceList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view1"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/rs_14_99"
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_12ssp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_alignParentBottom="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtPriceList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/rs_14_99"
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_13ssp"
+                    tools:ignore="RelativeOverlap" />
+
+                <View
+                    android:id="@+id/viewVertical"
+                    android:layout_width="1dp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_centerHorizontal="true"
+                    android:background="#d3d3d3" />
+
+                <Button
+                    android:id="@+id/btnPayContinueList"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/proceed_to_add"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/continue_1"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_12ssp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/imgSecure"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_alignTop="@+id/txtSecure"
+            android:layout_marginStart="@dimen/_60sdp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_secure" />
+
+        <TextView
+            android:id="@+id/txtSecure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/card3"
+            android:layout_marginEnd="@dimen/_60sdp"
+            android:layout_marginBottom="@dimen/_80sdp"
+            android:layout_toEndOf="@id/imgSecure"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/safe_and_secure_payments_100_authentic_products"
+            android:textSize="@dimen/_8ssp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_retryContinuePaymentList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/lost"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/txtOhNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/oh_no"
+            android:textSize="@dimen/_15ssp" />
+
+
+        <TextView
+            android:id="@+id/txtLost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtOhNo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15ssp" />
+
+
+        <TextView
+            android:id="@+id/txtConnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtLost"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/please_connect_to_internet"
+            android:textSize="@dimen/_15ssp" />
+
+        <Button
+            android:id="@+id/retryContinuePaymentList"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/stroke"
+            android:elevation="5dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:text="@string/rextry"
+            android:textColor="#de4500"
+            android:textSize="@dimen/_15ssp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
