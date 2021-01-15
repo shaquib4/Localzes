@@ -249,7 +249,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/call_now"
-                        android:textAlignment="center"
+
                         android:textSize="@dimen/_10ssp" />
 
                     <ImageView
@@ -330,7 +330,7 @@
             android:text="@string/accept_and_confirm"
             android:textAllCaps="false"
             android:textColor="#fff"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="@dimen/_12ssp" />
     </LinearLayout>
     </RelativeLayout>
     <RelativeLayout

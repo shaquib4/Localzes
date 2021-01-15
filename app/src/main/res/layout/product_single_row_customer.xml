@@ -132,12 +132,12 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/rs_699"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_alignEnd="@id/txtProductOfferPrice"
                 android:layout_alignStart="@id/txtProductOfferPrice"
                 android:layout_alignTop="@id/txtProductOfferPrice"
@@ -146,7 +146,6 @@
 
             <TextView
                 android:paddingHorizontal="5dp"
-                android:layout_toStartOf="@id/txtStock_customer"
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -157,7 +156,7 @@
                 android:paddingVertical="@dimen/_2sdp"
                 android:text="@string/_1099"
                 android:textColor="#d3d3d3"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_8ssp" />
 
 
             <LinearLayout

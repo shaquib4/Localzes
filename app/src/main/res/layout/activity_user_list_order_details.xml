@@ -219,8 +219,10 @@
                     android:background="@drawable/bg_buttons"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Pay Now"
+                    android:layout_margin="5dp"
+                    android:paddingHorizontal="@dimen/_10sdp"
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
             </TableRow>
 

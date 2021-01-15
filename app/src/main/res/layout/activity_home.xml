@@ -612,14 +612,14 @@
             android:id="@+id/switchButtonHome"
             android:layout_height="wrap_content"
             android:layout_above="@id/bottom_navProducts"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:backgroundTint="#ff4500"
             android:fontFamily="@font/montserrat_bold"
-            android:padding="3dp"
+            android:paddingHorizontal="3dp"
             android:text="Switch"
             android:textAllCaps="false"
             android:textColor="#ffffff"
-            android:textSize="@dimen/_13ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navProducts"

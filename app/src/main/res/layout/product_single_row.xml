@@ -56,7 +56,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/rs_699"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <TextView
                 android:id="@+id/txtStock"
@@ -135,7 +135,7 @@
                 android:paddingHorizontal="5dp"
                 android:textColor="#d3d3d3"
                 android:text="@string/_1099"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_8ssp" />
 
             <ImageView
                 android:contentDescription="@string/todo"
