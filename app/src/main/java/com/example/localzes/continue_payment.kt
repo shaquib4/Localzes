@@ -33,7 +33,7 @@ class continue_payment : AppCompatActivity() {
     private var deliveryAddress: String? = "500"
     private var orderByName: String? = "600"
     private var orderByMobile: String? = "700"
-    private var orderID: String? = "800"
+    private var orderId: String? = "800"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var cartProducts: List<UserCartDetails>
     private lateinit var orderDetails: ModelOrderDetails
@@ -53,7 +53,7 @@ class continue_payment : AppCompatActivity() {
         deliveryAddress = intent.getStringExtra("delivery")
         orderByName = intent.getStringExtra("orderByName")
         orderByMobile = intent.getStringExtra("orderByMobile")
-        orderID = intent.getStringExtra("orderID")
+        orderId = intent.getStringExtra("orderId")
         cartProducts = ArrayList<UserCartDetails>()
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
@@ -62,7 +62,7 @@ class continue_payment : AppCompatActivity() {
         retryContinuePayment.setOnClickListener {
             this.recreate()
         }
-        if (orderID.toString() == "800") {
+        if (orderId.toString() == "800") {
 
             if (ConnectionManager().checkConnectivity(this)) {
                 btnPayContinue.setOnClickListener {
@@ -224,17 +224,17 @@ class continue_payment : AppCompatActivity() {
                         val dataReference: DatabaseReference =
                             FirebaseDatabase.getInstance().reference.child("seller")
                                 .child(shopId.toString())
-                                .child("OrdersLists").child(orderID.toString())
+                                .child("OrdersLists").child(orderId.toString())
                         val headers = HashMap<String, Any>()
                         headers["paymentMode"] = "Cash on Delivery"
                         dataReference.updateChildren(headers).addOnCompleteListener {
                             val userData: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("users")
                                     .child(uid.toString()).child("MyOrderList")
-                                    .child(orderID.toString())
+                                    .child(orderId.toString())
                             userData.updateChildren(headers).addOnCompleteListener {
                                 progressDialog.dismiss()
-                                prepareNewNotificationMessage(orderID.toString())
+                                prepareNewNotificationMessage(orderId.toString())
                             }
                         }
                     }
@@ -242,7 +242,7 @@ class continue_payment : AppCompatActivity() {
                         val intent = Intent(this, PaymentActivity::class.java)
                         intent.putExtra("shopId", shopId.toString())
                         intent.putExtra("totalCost", totalCost.toString())
-                        intent.putExtra("orderID", orderID.toString())
+                        intent.putExtra("orderId", orderId.toString())
                         intent.putExtra("orderBy", uid.toString())
                         startActivity(intent)
                         finish()
@@ -263,7 +263,7 @@ class continue_payment : AppCompatActivity() {
             notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
             notificationBodyJs.put("buyerId", uid.toString())
             notificationBodyJs.put("sellerUid", shopId.toString())
-            notificationBodyJs.put("orderID", orderId)
+            notificationBodyJs.put("orderId", orderId)
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
             notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
             notificationJs.put("to", NOTIFICATION_TOPIC)//to all who subscribed this topic

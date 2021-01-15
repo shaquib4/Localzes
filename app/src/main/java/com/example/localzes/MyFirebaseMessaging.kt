@@ -86,7 +86,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         if (notificationType.equals("PaymentMethod")) {
             val buyerUid = remoteMessage.data["buyerId"]
             val sellerUid = remoteMessage.data["sellerUid"]
-            val orderId = remoteMessage.data["orderID"]
+            val orderId = remoteMessage.data["orderId"]
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
             if (firebaseUser != null && currentAuth!!.uid == sellerUid.toString()) {
