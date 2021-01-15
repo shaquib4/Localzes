@@ -42,7 +42,7 @@ class PaymentActivity : AppCompatActivity() {
     private var deliveryAddress: String? = "500"
     private var orderByName: String? = "600"
     private var orderByMobile: String? = "700"
-    private var orderId: String? = "800"
+    private var orderID: String? = "800"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
@@ -61,7 +61,7 @@ class PaymentActivity : AppCompatActivity() {
         deliveryAddress = intent.getStringExtra("delivery")
         orderByName = intent.getStringExtra("orderByName")
         orderByMobile = intent.getStringExtra("orderByMobile")
-        orderId = intent.getStringExtra("orderId")
+        orderID = intent.getStringExtra("orderID")
         cartProducts = ArrayList<UserCartDetails>()
         send = findViewById<View>(R.id.btnPayNow) as Button
         amount = findViewById<View>(R.id.txtPayAmount) as TextView
@@ -230,7 +230,7 @@ class PaymentActivity : AppCompatActivity() {
             }
             when {
                 status == "success" -> {
-                    if (orderId == null) {
+                    if (orderID.toString() == "800") {
                         //Code to handle successful transaction here.
                         progressDialog.setMessage("Placing Your Order....")
                         progressDialog.show()
@@ -327,17 +327,17 @@ class PaymentActivity : AppCompatActivity() {
                         val dataX: DatabaseReference =
                             FirebaseDatabase.getInstance().reference.child("seller")
                                 .child(shopId.toString()).child("OrdersLists")
-                                .child(orderId.toString())
+                                .child(orderID.toString())
                         val usersMap = HashMap<String, Any>()
                         usersMap["paymentMode"] = "Paytm"
                         dataX.updateChildren(usersMap).addOnCompleteListener {
                             val userData: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("users")
                                     .child(uid.toString()).child("MyOrderList")
-                                    .child(orderId.toString())
+                                    .child(orderID.toString())
                             userData.updateChildren(usersMap).addOnCompleteListener {
                                 progressDialog.dismiss()
-                                prepareNewNotificationMessage(orderId.toString())
+                                prepareNewNotificationMessage(orderID.toString())
                             }
                         }
                     }

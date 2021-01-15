@@ -125,11 +125,8 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     if (ConnectionManager().checkConnectivity(this)) {
                         rl_retryUpdateProductDetail.visibility = View.GONE
                         rl_productDetail.visibility = View.VISIBLE
-
                         updateData()
-                        val intent = Intent(this, Seller_Products::class.java)
-                        startActivity(intent)
-                        finish()
+
                     } else {
 
                         rl_retryUpdateProductDetail.visibility = View.VISIBLE
@@ -219,6 +216,9 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     Toast.makeText(this, "Item Updated Successfully", Toast.LENGTH_SHORT)
                         .show()
+                    val intent = Intent(this, Seller_Products::class.java)
+                    startActivity(intent)
+                    finish()
                 }
 
         } else {
@@ -277,6 +277,9 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             )
                                 .show()
+                            val intent = Intent(this, Seller_Products::class.java)
+                            startActivity(intent)
+                            finish()
                         }
                 }
             } else {
