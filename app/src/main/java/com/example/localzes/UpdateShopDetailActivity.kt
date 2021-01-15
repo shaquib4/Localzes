@@ -96,9 +96,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     rl_updateShop.visibility = View.VISIBLE
                     rl_retryUpdateShop.visibility = View.GONE
                     updateData()
-                    val intent = Intent(this, Home_seller::class.java)
-                    startActivity(intent)
-                    finish()
+
                 } else {
                     rl_updateShop.visibility = View.GONE
                     rl_retryUpdateShop.visibility = View.VISIBLE
@@ -118,6 +116,9 @@ class UpdateShopDetailActivity : AppCompatActivity() {
             headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
             headers["closingDay"] = spinnerClosingDay.selectedItem.toString().trim()
             databaseRef.updateChildren(headers).addOnSuccessListener {
+                val intent = Intent(this, Home_seller::class.java)
+                startActivity(intent)
+                finish()
                 Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT).show()
             }
 
@@ -153,23 +154,33 @@ class UpdateShopDetailActivity : AppCompatActivity() {
 
                 }
             }*/
-            val user = FirebaseAuth.getInstance().currentUser
-            val imageUrl = imgUri
-            val request = UserProfileChangeRequest.Builder().setPhotoUri(imageUrl).build()
-            user?.updateProfile(request)?.addOnSuccessListener {
-                val headers = HashMap<String, Any>()
-                headers["imageUrl"] = imageUrl.toString()
-                //headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
-                headers["shop_name"] = shopNameUpdate.text.toString().trim()
-                headers["upi"] = upiIdUpdate.text.toString().trim()
-                headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
-                headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
-                headers["closingDay"] = spinnerClosingDay.selectedItem.toString().trim()
-                databaseRef.updateChildren(headers).addOnSuccessListener {
-                    Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT)
-                        .show()
+            if (imgUri==null){
+                Toast.makeText(this,"Slow Internet,Please press Update again",Toast.LENGTH_SHORT).show()
+
+        }else{
+                val user = FirebaseAuth.getInstance().currentUser
+                val imageUrl = imgUri
+                val request = UserProfileChangeRequest.Builder().setPhotoUri(imageUrl).build()
+                user?.updateProfile(request)?.addOnSuccessListener {
+                    val headers = HashMap<String, Any>()
+                    headers["imageUrl"] = imageUrl.toString()
+                    //headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
+                    headers["shop_name"] = shopNameUpdate.text.toString().trim()
+                    headers["upi"] = upiIdUpdate.text.toString().trim()
+                    headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
+                    headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
+                    headers["closingDay"] = spinnerClosingDay.selectedItem.toString().trim()
+                    databaseRef.updateChildren(headers).addOnSuccessListener {
+                        val intent = Intent(this, Home_seller::class.java)
+                        startActivity(intent)
+                        finish()
+                        Toast.makeText(this, "Shop Updated Successfully", Toast.LENGTH_SHORT)
+                            .show()
+
+                    }
                 }
             }
+
         }
     }
 
@@ -216,6 +227,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                             val imageUri = taskSnapshot.storage.downloadUrl
                             imageUri.addOnSuccessListener {
                                 imgUri = it
+                               
                             }
                         }
 
