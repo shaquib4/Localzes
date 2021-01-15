@@ -51,7 +51,7 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         searchCartOFD = findViewById(R.id.searchCartOFD)
         searchListOFD = findViewById(R.id.searchListOFD)
         recyclerOutForDelivery.layoutManager = LinearLayoutManager(this)
-        searchListOFD.visibility = View.GONE
+
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         orderDatabaseReference.child("Orders").orderByChild("orderStatus")
             .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
