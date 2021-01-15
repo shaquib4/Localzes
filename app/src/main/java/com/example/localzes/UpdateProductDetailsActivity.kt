@@ -255,28 +255,32 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     }
                 }
             }*/
-            val users = FirebaseAuth.getInstance().currentUser
-            val imageUrl = imgUrl
-            val request = UserProfileChangeRequest.Builder().setPhotoUri(imgUrl).build()
-            users?.updateProfile(request)?.addOnSuccessListener {
-                val headers = HashMap<String, Any>()
-                headers["imageUrl"] = imageUrl.toString()
-                headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
-                headers["productCategory"] = categoryUpdate.selectedItem.toString().trim()
-                headers["quantity"] = quantityUpdate.text.toString().trim()
-                headers["sellingPrice"] = sellPriceUpdate.text.toString().trim()
-                headers["title"] = productName.text.toString().trim()
-                headers["unit"] = unitUpdate.selectedItem.toString().trim()
-                headers["description"] = descriptionUpdate.text.toString().trim()
-                databaseRef.child("Products").child(productId.toString())
-                    .updateChildren(headers).addOnSuccessListener {
-                        Toast.makeText(
-                            this,
-                            "Item Updated Successfully",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                    }
+            if (imgUrl != null) {
+                val users = FirebaseAuth.getInstance().currentUser
+                val imageUrl = imgUrl
+                val request = UserProfileChangeRequest.Builder().setPhotoUri(imgUrl).build()
+                users?.updateProfile(request)?.addOnSuccessListener {
+                    val headers = HashMap<String, Any>()
+                    headers["imageUrl"] = imageUrl.toString()
+                    headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
+                    headers["productCategory"] = categoryUpdate.selectedItem.toString().trim()
+                    headers["quantity"] = quantityUpdate.text.toString().trim()
+                    headers["sellingPrice"] = sellPriceUpdate.text.toString().trim()
+                    headers["title"] = productName.text.toString().trim()
+                    headers["unit"] = unitUpdate.selectedItem.toString().trim()
+                    headers["description"] = descriptionUpdate.text.toString().trim()
+                    databaseRef.child("Products").child(productId.toString())
+                        .updateChildren(headers).addOnSuccessListener {
+                            Toast.makeText(
+                                this,
+                                "Item Updated Successfully",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                }
+            } else {
+                Toast.makeText(this, "Slow Internet,Press Update Again", Toast.LENGTH_SHORT).show()
             }
         }
     }

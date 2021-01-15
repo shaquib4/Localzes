@@ -208,7 +208,7 @@ class AddProduct : AppCompatActivity() {
 
     private fun uploadData(progressDialog: ProgressDialog) {
         try {
-            if (imagePath != null) {
+            if (imgUrl != "") {
 /*
             val productRef =
                 FirebaseStorage.getInstance().reference.child("uploads/$timestamp.jpg")
@@ -291,6 +291,12 @@ class AddProduct : AppCompatActivity() {
                         }
 
                     }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Slow Internet,Please press add again",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         } catch (e: Exception) {
             e.printStackTrace()
