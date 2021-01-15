@@ -70,7 +70,7 @@ class UserListOrderDetails : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrderList")
                 .child(orderId.toString())
         btnPay.setOnClickListener {
-            val intent = Intent(this, continue_payment::class.java)
+            val intent = Intent(this, ContinuePaymentListActivity::class.java)
             intent.putExtra("shopId", orderToId.toString())
             intent.putExtra("totalCost", totalCost.toString())
             intent.putExtra("orderId", orderId.toString())
