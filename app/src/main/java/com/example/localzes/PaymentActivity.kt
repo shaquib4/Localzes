@@ -37,12 +37,9 @@ class PaymentActivity : AppCompatActivity() {
     var TAG = "main"
     private var shopId: String? = "100"
     private var totalCost: String? = "200"
-    private var totalItem: String? = "300"
     private var uid: String? = "400"
-    private var deliveryAddress: String? = "500"
-    private var orderByName: String? = "600"
-    private var orderByMobile: String? = "700"
     private var orderId: String? = "800"
+    private var mode: String? = "900"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
@@ -54,14 +51,11 @@ class PaymentActivity : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
-        totalItem = intent.getStringExtra("totalItem")
         shopId = intent.getStringExtra("shopId")
         totalCost = intent.getStringExtra("totalCost")
         uid = intent.getStringExtra("orderBy")
-        deliveryAddress = intent.getStringExtra("delivery")
-        orderByName = intent.getStringExtra("orderByName")
-        orderByMobile = intent.getStringExtra("orderByMobile")
         orderId = intent.getStringExtra("orderId")
+        mode = intent.getStringExtra("platform")
         cartProducts = ArrayList<UserCartDetails>()
         send = findViewById<View>(R.id.btnPayNow) as Button
         amount = findViewById<View>(R.id.txtPayAmount) as TextView
@@ -230,7 +224,48 @@ class PaymentActivity : AppCompatActivity() {
             }
             when {
                 status == "success" -> {
-                    if (orderId.toString() == "800") {
+                    if (mode.toString() == "Cart") {
+                        progressDialog.setMessage("Processing Your Request....")
+                        progressDialog.show()
+                        val dataReference: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("seller")
+                                .child(shopId.toString()).child("Orders").child(orderId.toString())
+                        val headers = HashMap<String, Any>()
+                        headers["paymentMode"] = "Pay with Paytm"
+                        dataReference.updateChildren(headers).addOnSuccessListener {
+                            val userData: DatabaseReference =
+                                FirebaseDatabase.getInstance().reference.child("users")
+                                    .child(uid.toString()).child("MyOrders")
+                                    .child(orderId.toString())
+                            userData.updateChildren(headers).addOnSuccessListener {
+                                progressDialog.dismiss()
+                                prepareNotificationMessage(orderId.toString())
+                            }
+                        }
+                    } else if (mode.toString() == "List") {
+                        progressDialog.setMessage("Processing Your Request....")
+                        progressDialog.show()
+                        val dataReference: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("seller")
+                                .child(shopId.toString()).child("OrdersLists")
+                                .child(orderId.toString())
+                        val headers = HashMap<String, Any>()
+                        headers["paymentMode"] = "Pay with Paytm"
+                        dataReference.updateChildren(headers).addOnSuccessListener {
+                            val userData: DatabaseReference =
+                                FirebaseDatabase.getInstance().reference.child("users")
+                                    .child(uid.toString()).child("MyOrderList")
+                                    .child(orderId.toString())
+                            userData.updateChildren(headers).addOnSuccessListener {
+                                progressDialog.dismiss()
+                                prepareNewNotificationMessage(orderId.toString())
+                            }
+                        }
+
+
+                    }
+
+                    /*if (orderId.toString() == "800") {
                         //Code to handle successful transaction here.
                         progressDialog.setMessage("Placing Your Order....")
                         progressDialog.show()
@@ -340,7 +375,7 @@ class PaymentActivity : AppCompatActivity() {
                                 prepareNewNotificationMessage(orderId.toString())
                             }
                         }
-                    }
+                    }*/
                     Log.e("UPI", "payment successful: $approvalRefNo")
                 }
                 "Payment cancelled by user." == paymentCancel -> {
@@ -416,8 +451,8 @@ class PaymentActivity : AppCompatActivity() {
         //prepare data for notification
         val NOTIFICATION_TOPIC =
             "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
-        val NOTIFICATION_TITLE = "New order has been received"
-        val NOTIFICATION_MESSAGE = "Congrats....!You received a new order"
+        val NOTIFICATION_TITLE = "New payment has been received"
+        val NOTIFICATION_MESSAGE = "Amount of ₹${totalCost.toString()} received"
         val NOTIFICATION_TYPE = "New Order"
         //prepare json(what to send and where to send)
         val notificationJs = JSONObject()

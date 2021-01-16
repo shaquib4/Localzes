@@ -72,6 +72,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                 }
                 "Pay with Paytm" -> {
                     val intent = Intent(this, PaymentActivity::class.java)
+                    intent.putExtra("platform","List")
                     intent.putExtra("shopId", shopId.toString())
                     intent.putExtra("totalCost", totalCost.toString())
                     intent.putExtra("orderId", orderId.toString())

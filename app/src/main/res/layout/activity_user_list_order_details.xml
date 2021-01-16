@@ -216,13 +216,58 @@
                     android:id="@+id/btnPay"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_22sdp"
+                    android:layout_margin="5dp"
                     android:background="@drawable/bg_buttons"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Pay Now"
-                    android:layout_margin="5dp"
                     android:paddingHorizontal="@dimen/_10sdp"
+                    android:text="Pay Now"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/_10ssp" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Fee :"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_11ssp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_11ssp"
+                    android:text="0"/>
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Status :"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_11ssp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_11ssp"
+                    android:text="Unpaid "/>
 
             </TableRow>
 

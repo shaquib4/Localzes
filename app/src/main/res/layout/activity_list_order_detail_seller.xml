@@ -5,334 +5,390 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListOrderDetailSeller">
+
     <RelativeLayout
         android:id="@+id/rl_ListSeller"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/rl_ListOrderDetails"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/rlAcceptConfirm"
-        android:layout_marginBottom="@dimen/_4sdp"
-        android:orientation="vertical">
-
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/rl_ListOrderDetails"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rlAcceptConfirm"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:orientation="vertical">
 
-            <ImageView
-                android:contentDescription="@string/todo"
-                android:id="@+id/imgBackListOrderDetails"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_margin="@dimen/_10sdp"
-                android:src="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/txtCO"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_10sdp"
-                android:layout_toEndOf="@id/imgBackListOrderDetails"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/order_details"
-                android:textColor="#000000"
-                android:textSize="@dimen/_13ssp"
-                tools:ignore="RelativeOverlap" />
-
-            <CheckBox
-                android:id="@+id/checkbox_List_Completed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:onClick="onListCheckboxClicked" />
-
-
-            <View
-                android:id="@id/view1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/imgBackListOrderDetails"
-                android:background="#d3d3d3" />
-        </RelativeLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="3dp"
-            app:contentPadding="5dp">
-
-            <TableLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TableRow>
+                <ImageView
+                    android:id="@+id/imgBackListOrderDetails"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_back" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="@string/order_id"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_12ssp" />
+                <TextView
+                    android:id="@+id/txtCO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_toEndOf="@id/imgBackListOrderDetails"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/order_details"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_13ssp"
+                    tools:ignore="RelativeOverlap" />
 
-                    <TextView
-                        android:id="@+id/txtListOrderId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/_123456"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_11ssp" />
-                    <ImageView
-                        android:contentDescription="@string/todo"
-                        android:id="@+id/imgListEdit"
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:src="@drawable/edit" />
-
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/date"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_11ssp" />
-
-                    <TextView
-                        android:id="@+id/txtListOrderDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/_27_02_2020_9_45_pm"
-                        android:textSize="@dimen/_10ssp" />
+                <CheckBox
+                    android:id="@+id/checkbox_List_Completed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:onClick="onListCheckboxClicked" />
 
 
-                </TableRow>
+                <View
+                    android:id="@id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/imgBackListOrderDetails"
+                    android:background="#d3d3d3" />
+            </RelativeLayout>
 
-                <TableRow>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="3dp"
+                app:contentPadding="5dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/order_status"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_11ssp" />
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <TableRow>
 
-                    <TextView
-                        android:id="@+id/txtListOrderStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="@string/pending"
-                        android:textColor="#de4500"
-                        android:textSize="@dimen/_10ssp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="@string/order_id"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_12ssp" />
 
-                </TableRow>
+                        <TextView
+                            android:id="@+id/txtListOrderId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/_123456"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp" />
 
-                <TableRow>
+                        <ImageView
+                            android:id="@+id/imgListEdit"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:contentDescription="@string/todo"
+                            android:src="@drawable/edit" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/items"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_11ssp" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/txtListItems"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/_9"
-                        android:textSize="@dimen/_10ssp" />
+                    <TableRow>
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/date"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp" />
 
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/amount"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_11ssp" />
-
-                    <TextView
-                        android:id="@+id/txtListOrderCost"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="@string/rs_1_209"
-                        android:textColor="#008000"
-                        android:textSize="@dimen/_12ssp" />
-
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/delivery_address"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_11ssp"
-
-                        />
-
-                    <TextView
-                        android:id="@+id/txtListOrderDeliveryAddress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/saraibika_jaunpur_up_222202"
-                        android:textSize="@dimen/_10ssp" />
+                        <TextView
+                            android:id="@+id/txtListOrderDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/_27_02_2020_9_45_pm"
+                            android:textSize="@dimen/_10ssp" />
 
 
-                </TableRow>
-                <TableRow>
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/contact_customer"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_11ssp"
+                    <TableRow>
 
-                        />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/order_status"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp" />
 
-                    <TextView
-                        android:id="@+id/txtCallNow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/call_now"
 
-                        android:textSize="@dimen/_10ssp" />
+                        <TextView
+                            android:id="@+id/txtListOrderStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="@string/pending"
+                            android:textColor="#de4500"
+                            android:textSize="@dimen/_10ssp" />
 
-                    <ImageView
-                        android:contentDescription="@string/todo"
-                        android:layout_marginTop="5dp"
-                        android:id="@+id/imageMakeCallCustomer"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:src="@drawable/ic_baseline_phone_24" />
+                    </TableRow>
 
-                </TableRow>
-            </TableLayout>
+                    <TableRow>
 
-        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/items"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#d3d3d3" />
+                        <TextView
+                            android:id="@+id/txtListItems"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/_9"
+                            android:textSize="@dimen/_10ssp" />
 
-        <TextView
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/amount"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp" />
+
+                        <TextView
+                            android:id="@+id/txtListOrderCost"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="@string/rs_1_209"
+                            android:textColor="#008000"
+                            android:textSize="@dimen/_12ssp" />
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Delivery Fee :"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="0"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Payment Status :"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Unpaid(Cash on Delivery)"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp" />
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/delivery_address"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/txtListOrderDeliveryAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/saraibika_jaunpur_up_222202"
+                            android:textSize="@dimen/_10ssp" />
+
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/contact_customer"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_11ssp"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/txtCallNow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="@string/call_now"
+
+                            android:textSize="@dimen/_10ssp" />
+
+                        <ImageView
+                            android:id="@+id/imageMakeCallCustomer"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginTop="5dp"
+                            android:contentDescription="@string/todo"
+                            android:src="@drawable/ic_baseline_phone_24" />
+
+                    </TableRow>
+                </TableLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#d3d3d3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_8sdp"
+                android:text="@string/ordered_items"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="@dimen/_12ssp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#d3d3d3" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerOrderedSellerItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:reverseLayout="true"
+                app:stackFromEnd="true"
+                tools:listitem="@layout/list_single_row_seller_order" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rlAcceptConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
-            android:paddingVertical="@dimen/_8sdp"
-            android:text="@string/ordered_items"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="@dimen/_12ssp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#d3d3d3" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerOrderedSellerItem"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:reverseLayout="true"
-            app:stackFromEnd="true"
-            tools:listitem="@layout/list_single_row_seller_order" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rlAcceptConfirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="@dimen/_5sdp"
-        android:layout_marginBottom="@dimen/_3sdp"
-        android:weightSum="2">
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:weightSum="2">
 
 
+            <!-- <TextView
+                 android:id="@+id/totalListCost"
+                 android:layout_width="0dp"
+                 android:layout_height="@dimen/_32sdp"
+                 android:layout_weight="1"
+                 android:fontFamily="@font/montserrat_bold"
+                 android:text="@string/rs_53"
 
-        <TextView
-            android:id="@+id/totalListCost"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_32sdp"
-            android:layout_weight="1"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/rs_53"
+                 android:textAlignment="center"
+                 android:textSize="22sp" />-->
+            <EditText
+                android:id="@+id/etDeliveryChargeList"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_weight="1"
+                android:hint="Enter Delivery Charge " />
 
-            android:textAlignment="center"
-            android:textSize="22sp" />
-
-        <Button
-            android:id="@+id/acceptConfirm"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_32sdp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_buttons"
-            android:text="@string/accept_and_confirm"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="@dimen/_12ssp" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/acceptConfirm"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_buttons"
+                android:text="@string/accept_and_confirm"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="@dimen/_12ssp" />
+        </LinearLayout>
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_retryListOrderDetails"
         android:layout_width="match_parent"

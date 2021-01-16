@@ -229,6 +229,29 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
+                        android:text="Payment Status :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Unpaid(Cash On Delivery)"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
                         android:text="@string/delivery_address"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp"

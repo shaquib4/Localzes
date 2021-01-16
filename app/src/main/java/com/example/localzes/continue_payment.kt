@@ -28,11 +28,7 @@ class continue_payment : AppCompatActivity() {
     private lateinit var totalChargesTv: TextView
     private var shopId: String? = "100"
     private var totalCost: String? = "200"
-    private var totalItem: String? = "300"
     private var uid: String? = "400"
-    private var deliveryAddress: String? = "500"
-    private var orderByName: String? = "600"
-    private var orderByMobile: String? = "700"
     private var orderId: String? = "800"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var cartProducts: List<UserCartDetails>
@@ -48,18 +44,49 @@ class continue_payment : AppCompatActivity() {
         imgBackContinue = findViewById(R.id.imgBackContinue)
         shopId = intent.getStringExtra("shopId")
         totalCost = intent.getStringExtra("totalCost")
-        totalItem = intent.getStringExtra("totalItem")
         uid = intent.getStringExtra("orderBy")
-        deliveryAddress = intent.getStringExtra("delivery")
-        orderByName = intent.getStringExtra("orderByName")
-        orderByMobile = intent.getStringExtra("orderByMobile")
         orderId = intent.getStringExtra("orderId")
         cartProducts = ArrayList<UserCartDetails>()
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
         radioGroup = findViewById(R.id.radioPayment)
-        retryContinuePayment.setOnClickListener {
+        btnPayContinue.setOnClickListener {
+            val id = radioGroup!!.checkedRadioButtonId
+            val radioButton = findViewById<RadioButton>(id)
+            when (radioButton.text) {
+                "Pay on Delivery" -> {
+                    progressDialog.setMessage("Processing Your Request...")
+                    progressDialog.show()
+                    val dataReference: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("seller")
+                            .child(shopId.toString()).child("Orders").child(orderId.toString())
+                    val headers = HashMap<String, Any>()
+                    headers["paymentMode"] = "Pay on Delivery"
+                    dataReference.updateChildren(headers).addOnSuccessListener {
+                        val userRef: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("users")
+                                .child(uid.toString()).child("MyOrders").child(orderId.toString())
+                        userRef.updateChildren(headers).addOnSuccessListener {
+                            progressDialog.dismiss()
+                            prepareNotificationMessage(orderId.toString())
+                        }
+                    }
+
+                }
+                "Pay with Paytm" -> {
+                    val intent = Intent(this, PaymentActivity::class.java)
+                    intent.putExtra("platform","Cart")
+                    intent.putExtra("shopId", shopId.toString())
+                    intent.putExtra("totalCost", totalCost.toString())
+                    intent.putExtra("orderId", orderId.toString())
+                    intent.putExtra("orderBy", uid.toString())
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        }
+/*        retryContinuePayment.setOnClickListener {
             this.recreate()
         }
         if (ConnectionManager().checkConnectivity(this)) {
@@ -177,7 +204,7 @@ class continue_payment : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         }
-/*                        "Pay with Razor Pay" -> {
+*//*                        "Pay with Razor Pay" -> {
                             val intent=Intent(this,PaymentRazorpay::class.java)
                             intent.putExtra("shopId", shopId.toString())
                             intent.putExtra("totalCost", totalCost.toString())
@@ -188,7 +215,7 @@ class continue_payment : AppCompatActivity() {
                             intent.putExtra("orderByMobile", orderByMobile.toString())
                             startActivity(intent)
                             finish()
-                        }*/
+                        }*//*
                         else -> {
                             btnPayContinue.isClickable = false
                         }
@@ -206,10 +233,10 @@ class continue_payment : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        } else {
+        }*/ /*else {
             rl_retryContinuePayment.visibility = View.VISIBLE
             rl_continuePayment.visibility = View.GONE
-        }
+        }*/
     }
 
     private fun prepareNotificationMessage(orderId: String) {
