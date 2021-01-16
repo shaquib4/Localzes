@@ -103,6 +103,7 @@ class UserListOrderDetails : AppCompatActivity() {
                         i.child("shopId").value.toString()
                     )
                     (orderedItemList as ArrayList<ModelList>).add(obj)
+                    itemsOrderList.text = "${snapshot.childrenCount} items"
                 }
                 adapteruserOrder =
                     AdapterUserOrderList(
@@ -138,6 +139,7 @@ class UserListOrderDetails : AppCompatActivity() {
                     }
                     "Accepted" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.green))
+                        btnPay.visibility=View.VISIBLE
                     }
                     "Out For Delivery" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.acidGreen))
@@ -149,7 +151,7 @@ class UserListOrderDetails : AppCompatActivity() {
                     }
                 }
                 orderListIdUser.text = "OD${orderId}"
-                itemsOrderList.text = "${snapshot.childrenCount} items"
+
                 orderStatusListUser.text = orderStatus
                 if (listStatus == "Confirm") {
                     amountOrderList.text = "₹${totalCost}"

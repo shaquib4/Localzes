@@ -79,6 +79,7 @@ class AdapterUserListOrderHistory(
             val intent = Intent(context, UserListOrderDetails::class.java)
             intent.putExtra("orderId", userListOrderHistory.orderId)
             intent.putExtra("orderTo", userListOrderHistory.orderTo)
+            intent.putExtra("totalCost",userListOrderHistory.orderCost)
             context.startActivity(intent)
         }
     }

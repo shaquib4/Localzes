@@ -117,13 +117,13 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
                 when (orderStatus) {
-                    "In Progress" -> {
+                    "Pending" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.colorAccent))
                         btnPayCart.visibility = View.GONE
                     }
                     "Accepted" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.green))
-                        btnPayCart.visibility = View.GONE
+                        btnPayCart.visibility = View.VISIBLE
                     }
                     "Out For Delivery" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.acidGreen))
@@ -176,7 +176,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        btnPayNow.setOnClickListener {
+        btnPayCart.setOnClickListener {
             val intent = Intent(this, continue_payment::class.java)
             intent.putExtra("shopId", orderToId.toString())
             intent.putExtra("totalCost", totalCost.toString())

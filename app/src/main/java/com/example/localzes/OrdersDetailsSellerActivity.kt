@@ -108,7 +108,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 val orderCost = snapshot.child("orderCost").value.toString()
                 val orderBy = snapshot.child("orderBy").value.toString()
                 val orderTo = snapshot.child("orderTo").value.toString()
-
+                val deliveryCharge=snapshot.child("deliveryFee").value.toString()
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
@@ -117,6 +117,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     when (orderStatus) {
                         "Pending" -> {
                             txtOrderStatus.setTextColor(resources.getColor(R.color.colorAccent))
+                            etDelivery.isEnabled=true
                             checkboxComplete.visibility = View.GONE
                             imgEdit.setOnClickListener {
                                 if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
@@ -129,6 +130,9 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         }
                         "Accepted" -> {
                             checkboxComplete.visibility = View.VISIBLE
+                            etDelivery.setText("₹$deliveryCharge")
+                            etDelivery.setTextColor(resources.getColor(R.color.green))
+                            etDelivery.isEnabled=false
                             txtOrderStatus.setTextColor(resources.getColor(R.color.green))
                             imgEdit.setOnClickListener {
                                 if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
@@ -141,6 +145,10 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         }
                         "Out For Delivery" -> {
                             checkboxComplete.visibility = View.VISIBLE
+
+                            etDelivery.setText("₹$deliveryCharge")
+                            etDelivery.setTextColor(resources.getColor(R.color.green))
+                            etDelivery.isEnabled=false
                             txtOrderStatus.setTextColor(resources.getColor(R.color.acidGreen))
                             imgEdit.setOnClickListener {
                                 afterEditOrderStatusDialog()
@@ -148,10 +156,18 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         }
                         "Rejected due to $selectedReason" -> {
                             checkboxComplete.visibility = View.GONE
+
+                            etDelivery.setText("₹$deliveryCharge")
+                            etDelivery.setTextColor(resources.getColor(R.color.green))
+                            etDelivery.isEnabled=false
                             txtOrderStatus.setTextColor(resources.getColor(R.color.red))
                             imgEdit.visibility = View.GONE
                         }
                         "Completed" -> {
+                            etDelivery.isEnabled=false
+
+                            etDelivery.setText("₹$deliveryCharge")
+                            etDelivery.setTextColor(resources.getColor(R.color.green))
                             txtOrderStatus.setTextColor(resources.getColor(R.color.green))
                             imgEdit.visibility = View.GONE
                         }
