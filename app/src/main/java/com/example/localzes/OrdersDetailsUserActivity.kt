@@ -40,6 +40,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
     private lateinit var userAuth: FirebaseAuth
     private var orderItemId: String? = "100"
     private var orderToId: String? = "200"
+    private var totalCost: String? = "300"
     private lateinit var imgBackOrderDetails: ImageView
     private lateinit var imgMakeCall: ImageView
     private var REQUEST_CALL: Int = 1
@@ -51,6 +52,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_orders_details_user)
         orderItemId = intent.getStringExtra("orderId")
         orderToId = intent.getStringExtra("orderTo")
+        totalCost = intent.getStringExtra("totalAmount")
         orderIdUser = findViewById(R.id.txtOrderIdUser)
         orderDateUser = findViewById(R.id.txtOrderDateUser)
         orderStatusUser = findViewById(R.id.txtOrderStatusUser)
@@ -117,19 +119,19 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 when (orderStatus) {
                     "In Progress" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.colorAccent))
-                        btnPayCart.visibility= View.GONE
+                        btnPayCart.visibility = View.GONE
                     }
                     "Accepted" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.green))
-                        btnPayCart.visibility= View.GONE
+                        btnPayCart.visibility = View.GONE
                     }
                     "Out For Delivery" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.acidGreen))
-                        btnPayCart.visibility= View.GONE
+                        btnPayCart.visibility = View.GONE
                     }
                     "Cancelled" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.red))
-                        btnPayCart.visibility= View.GONE
+                        btnPayCart.visibility = View.GONE
                     }
                 }
                 orderIdUser.text = "OD${orderId}"
@@ -175,7 +177,12 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
             finish()
         }
         btnPayNow.setOnClickListener {
-            startActivity(Intent(this,continue_payment::class.java))
+            val intent = Intent(this, continue_payment::class.java)
+            intent.putExtra("shopId", orderToId.toString())
+            intent.putExtra("totalCost", totalCost.toString())
+            intent.putExtra("orderId", orderItemId.toString())
+            intent.putExtra("orderBy", uid)
+            startActivity(intent)
             finish()
         }
     }

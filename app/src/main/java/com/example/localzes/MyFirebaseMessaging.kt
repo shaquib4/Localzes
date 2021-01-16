@@ -53,16 +53,18 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             val buyerUid = remoteMessage.data["buyerId"]
             val sellerUid = remoteMessage.data["sellerUid"]
             val orderId = remoteMessage.data["orderId"]
+            val totalCost = remoteMessage.data["totalAmount"]
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
             if (firebaseUser != null && currentAuth!!.uid == buyerUid.toString()) {
-                showNotification(
+                showNotification1(
                     orderId.toString(),
                     sellerUid.toString(),
                     buyerUid.toString(),
                     notificationTitle.toString(),
                     notificationDescription.toString(),
-                    notificationType.toString()
+                    notificationType.toString(),
+                    totalCost.toString()
                 )
             }
         }
@@ -144,6 +146,14 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
+        if (notificationType == "OrderStatusChanged") {
+            intent = Intent(this, OrdersDetailsUserActivity::class.java)
+            intent.putExtra("orderId", orderId)
+            intent.putExtra("orderTo", sellerUid)
+            intent.putExtra("totalAmount", totalCost)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
         val pendingIntent: PendingIntent =
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.localze_shop)
@@ -183,13 +193,6 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 intent = Intent(this, OrdersDetailsSellerActivity::class.java)
                 intent.putExtra("orderIdTv", orderId)
                 intent.putExtra("orderByTv", buyerId)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            }
-            "OrderStatusChanged" -> {
-                intent = Intent(this, OrdersDetailsUserActivity::class.java)
-                intent.putExtra("orderId", orderId)
-                intent.putExtra("orderTo", sellerUid)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             }
