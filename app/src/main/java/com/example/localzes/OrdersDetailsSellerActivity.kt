@@ -7,10 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -52,6 +49,8 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private lateinit var imgMakeCallCustomer: ImageView
     private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
     private lateinit var checkboxComplete: CheckBox
+    private lateinit var etDelivery: EditText
+    private var totalCost: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_seller)
@@ -61,6 +60,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         orderIdTv = intent.getStringExtra("orderIdTv")
         orderByTv = intent.getStringExtra("orderByTv")
         txtOrderId = findViewById(R.id.txtOrderId)
+        etDelivery = findViewById(R.id.etDeliveryCharge)
         checkboxComplete = findViewById(R.id.checkbox_Completed)
         imgMakeCallCustomer = findViewById(R.id.imgMakeCallCustomer)
         txtOrderDate = findViewById(R.id.txtOrderDate)
@@ -161,6 +161,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 }
                 txtOrderId.text = "OD${orderId}"
                 txtOrderStatus.text = orderStatus
+                totalCost = orderCost.toDouble()
                 totalAmount.text = "₹${orderCost}"
                 txtOrderDate.text = formattedDate
             }
@@ -281,7 +282,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 builderNew.setSingleChoiceItems(reasons, -1) { dialog, which ->
                     val selected = reasons[which]
                     selectedReason = selected
-                    editOrderStatus("$selectedItem due to $selectedReason")
+                    editOrderStatus("$selectedItem due to $selectedReason", totalCost)
                     dialog.dismiss()
                 }
                 builderNew.create().show()
@@ -314,13 +315,13 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     builderNew.setSingleChoiceItems(reasons, -1) { dialog, which ->
                         val selected = reasons[which]
                         selectedReason = selected
-                        editOrderStatus("$selectedItem due to $selectedReason")
+                        editOrderStatus("$selectedItem due to $selectedReason", totalCost)
                         dialog.dismiss()
                     }
                     builderNew.create().show()
                 }
                 else -> {
-                    editOrderStatus(selectedItem)
+                    editOrderStatus(selectedItem, totalCost)
                     dialog.dismiss()
                 }
             }
@@ -329,7 +330,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     private fun editOrderStatusDialog() {
-        val options = arrayOf("Accepted", "Rejected")
+        val options = arrayOf("Accept & Send Bill", "Rejected")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
@@ -343,22 +344,28 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 newBuilder.setSingleChoiceItems(reasons, -1) { dialog, which ->
                     val selected = reasons[which]
                     selectedReason = selected
-                    editOrderStatus("$selectedItem due to $selectedReason")
+                    editOrderStatus("$selectedItem due to $selectedReason", totalCost)
                     dialog.dismiss()
                 }
                 newBuilder.create().show()
             } else {
-                editOrderStatus(selectedItem)
-                dialog.dismiss()
-            }
+                try {
+                    val totalAmount = totalCost + etDelivery.text.toString().toDouble()
+                    editOrderStatus("Accepted", totalAmount)
+                    dialog.dismiss()
 
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
         builder.create().show()
     }
 
-    private fun editOrderStatus(selectedItem: String) {
+    private fun editOrderStatus(selectedItem: String, totalAmount: Double) {
         val headers = hashMapOf<String, Any>()
         headers["orderStatus"] = selectedItem
+        headers["orderCost"] = totalAmount.toString()
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
