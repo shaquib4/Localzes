@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card1_customer"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_225sdp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="2dp"
@@ -16,7 +16,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:contentDescription="@string/todo"
@@ -53,7 +53,7 @@
                 android:id="@+id/imgRemove"
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
-                android:layout_alignParentBottom="true"
+               android:layout_alignTop="@id/txtProductTotalPrice"
                 android:layout_marginBottom="@dimen/_3sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/_25sdp"
@@ -62,7 +62,7 @@
 
             <TextView
                 android:fontFamily="@font/montserrat_bold"
-                android:id="@+id/txtProductPrice_customer"
+                android:id="@+id/txtProductOfferPrice2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtProductTitle_customer"
@@ -72,27 +72,29 @@
                 android:textSize="@dimen/_12ssp" />
 
             <TextView
+                android:id="@+id/txtProductPrice_customer"
                 android:fontFamily="@font/montserrat_medium"
-                android:id="@+id/txtProductOfferPrice2"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_12sdp"
-                android:layout_alignTop="@id/txtProductPrice_customer"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom= "@id/txtProductOfferPrice2"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_1sdp"
-                android:layout_toEndOf="@id/txtProductPrice_customer"
+
+                android:layout_toEndOf="@id/txtProductOfferPrice2"
                 android:text="@string/rs_1099"
                 android:textSize="@dimen/_10ssp" />
 
 
             <TextView
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/montserrat_bold"
                 android:id="@+id/txtProductTotalPrice"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_12sdp"
-                android:layout_below="@+id/txtProductPrice_customer"
-                android:layout_alignStart="@+id/txtProductPrice_customer"
+                android:layout_height="wrap_content"
+                android:textColor="#008000"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/txtProductOfferPrice2"
+                android:layout_alignStart="@+id/txtProductOfferPrice2"
                 android:text="@string/rs_1099"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_14ssp" />
 
             <TextView
                 android:id="@+id/outOfStock"

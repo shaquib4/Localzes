@@ -20,17 +20,19 @@
             app:menu="@menu/seller_menu" />
 
         <Button
+            android:layout_margin="5dp"
             android:id="@+id/switchButtonHomeSeller"
             android:elevation="@dimen/_20sdp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_height="@dimen/_25sdp"
             android:layout_above="@id/bottom_navHome_seller"
-            android:layout_alignParentRight="true"
-            android:backgroundTint="#ff4500"
-            android:text="Switch"
+            android:layout_alignParentEnd="true"
+       android:background="@drawable/round2_btn"
+            android:text="@string/switch_screen"
             android:textAllCaps="false"
             android:textColor="#ffffff"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <ScrollView
             android:id="@+id/SV"

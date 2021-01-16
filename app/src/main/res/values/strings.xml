@@ -422,4 +422,6 @@
     <string name="proceed">Proceed</string>
     <string name="rs_1000">Rs. 1000</string>
     <string name="electronics_accessories">Electronics Accessories</string>
+    <string name="switch">Switch</string>
+    <string name="switch_screen">Switch</string>
 </resources>

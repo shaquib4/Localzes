@@ -124,11 +124,14 @@
             android:id="@+id/createList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/rl_cart_details"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/_5sdp"
+           android:layout_marginBottom="@dimen/_40sdp"
             android:layout_alignParentEnd="true"
-            android:backgroundTint="#ff4500"
+            android:backgroundTint="#de4500"
             android:padding="@dimen/_5sdp"
-            android:src="@drawable/ic_baseline_article_24" />
+            android:src="@drawable/ic_baseline_article_24"
+            tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>
 

@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rl_cart_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -54,11 +55,12 @@
         </RelativeLayout>
 
         <RelativeLayout
+
             android:id="@+id/rl_cart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/bottom_navCarts"
-            android:visibility="gone">
+            >
 
             <TextView
                 android:id="@+id/txtTotalItems"
@@ -184,7 +186,7 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
+                          <!--  <LinearLayout
                                 android:id="@+id/llDelivery"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -217,13 +219,13 @@
                                     android:textSize="@dimen/_10ssp" />
 
                             </LinearLayout>
-
+-->
 
                             <View
                                 android:id="@+id/view4"
                                 android:layout_width="match_parent"
                                 android:layout_height="5dp"
-                                android:layout_below="@id/llDelivery"
+                                android:layout_below="@id/llDiscount"
                                 android:layout_marginTop="6dp"
                                 android:layout_marginBottom="6dp"
                                 android:background="@drawable/dashed_line"

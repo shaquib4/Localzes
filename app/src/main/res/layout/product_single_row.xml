@@ -8,7 +8,7 @@
         android:id="@+id/card1_customer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_margin="5dp"
+       android:layout_margin="2dp"
         android:background="@drawable/bg_product_shop"
         app:cardCornerRadius="10dp">
 
@@ -42,7 +42,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/view_customer"
                 android:layout_marginStart="5dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/pani_puri"
                 android:textColor="#000"
                 android:textSize="@dimen/_10ssp" />
@@ -67,7 +67,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/stock_in"
                 android:textColor="#1589ff"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_8ssp" />
 
 
 
