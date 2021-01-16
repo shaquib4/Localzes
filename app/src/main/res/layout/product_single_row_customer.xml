@@ -167,7 +167,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_20sdp"
-              android:layout_margin="10dp"
+              android:layout_margin="5dp"
                 android:background="#ffffff"
                 android:orientation="horizontal"
                 android:weightSum="8">
