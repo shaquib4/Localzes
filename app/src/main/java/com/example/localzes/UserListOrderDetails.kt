@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -133,15 +134,18 @@ class UserListOrderDetails : AppCompatActivity() {
                 when (orderStatus) {
                     "In Progress" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.colorAccent))
+                        btnPay.visibility= View.GONE
                     }
                     "Accepted" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.green))
                     }
                     "Out For Delivery" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.acidGreen))
+                        btnPay.visibility= View.GONE
                     }
                     "Cancelled" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.red))
+                        btnPay.visibility= View.GONE
                     }
                 }
                 orderListIdUser.text = "OD${orderId}"

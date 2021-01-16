@@ -7,10 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -52,6 +49,9 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private lateinit var imgMakeCallCustomer: ImageView
     private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
     private lateinit var checkboxComplete: CheckBox
+    private lateinit var etDelivery: EditText
+    private var totalCost: Double = 0.0
+    private var totalWith: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_details_seller)
@@ -61,6 +61,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         orderIdTv = intent.getStringExtra("orderIdTv")
         orderByTv = intent.getStringExtra("orderByTv")
         txtOrderId = findViewById(R.id.txtOrderId)
+        etDelivery = findViewById(R.id.etDeliveryCharge)
         checkboxComplete = findViewById(R.id.checkbox_Completed)
         imgMakeCallCustomer = findViewById(R.id.imgMakeCallCustomer)
         txtOrderDate = findViewById(R.id.txtOrderDate)
@@ -161,6 +162,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 }
                 txtOrderId.text = "OD${orderId}"
                 txtOrderStatus.text = orderStatus
+                totalCost = orderCost.toDouble()
                 totalAmount.text = "₹${orderCost}"
                 txtOrderDate.text = formattedDate
             }
@@ -281,7 +283,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 builderNew.setSingleChoiceItems(reasons, -1) { dialog, which ->
                     val selected = reasons[which]
                     selectedReason = selected
-                    editOrderStatus("$selectedItem due to $selectedReason")
+                    editOrderStatus("$selectedItem due to $selectedReason", totalCost, 0.0)
                     dialog.dismiss()
                 }
                 builderNew.create().show()
@@ -314,13 +316,13 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     builderNew.setSingleChoiceItems(reasons, -1) { dialog, which ->
                         val selected = reasons[which]
                         selectedReason = selected
-                        editOrderStatus("$selectedItem due to $selectedReason")
+                        editOrderStatus("$selectedItem due to $selectedReason", totalCost, 0.0)
                         dialog.dismiss()
                     }
                     builderNew.create().show()
                 }
                 else -> {
-                    editOrderStatus(selectedItem)
+                    editOrderStatus(selectedItem, totalCost, 0.0)
                     dialog.dismiss()
                 }
             }
@@ -329,7 +331,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     private fun editOrderStatusDialog() {
-        val options = arrayOf("Accepted", "Rejected")
+        val options = arrayOf("Accept & Send Bill", "Rejected")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Order Status")
         builder.setSingleChoiceItems(options, -1) { dialog, which ->
@@ -343,22 +345,30 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 newBuilder.setSingleChoiceItems(reasons, -1) { dialog, which ->
                     val selected = reasons[which]
                     selectedReason = selected
-                    editOrderStatus("$selectedItem due to $selectedReason")
+                    editOrderStatus("$selectedItem due to $selectedReason", totalCost, 0.0)
                     dialog.dismiss()
                 }
                 newBuilder.create().show()
             } else {
-                editOrderStatus(selectedItem)
-                dialog.dismiss()
-            }
+                try {
+                    val totalAmount = totalCost + etDelivery.text.toString().toDouble()
+                    editOrderStatus("Accepted", totalAmount, etDelivery.text.toString().toDouble())
+                    dialog.dismiss()
 
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
         builder.create().show()
     }
 
-    private fun editOrderStatus(selectedItem: String) {
+    private fun editOrderStatus(selectedItem: String, totalAmount: Double, deliveryFee: Double) {
         val headers = hashMapOf<String, Any>()
         headers["orderStatus"] = selectedItem
+        headers["orderCost"] = totalAmount.toString()
+        headers["deliveryFee"] = deliveryFee.toString()
+        totalWith = totalAmount + deliveryFee
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
@@ -387,7 +397,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         var NOTIFICATION_MESSAGE: String = ""
         when (message) {
             "Order has been Accepted" -> {
-                NOTIFICATION_MESSAGE = "Yay! Your order has been accepted"
+                NOTIFICATION_MESSAGE = "Your order has been accepted of cost ₹${totalWith}"
             }
             "Order has been Out For Delivery" -> {
                 NOTIFICATION_MESSAGE = "Your order is on the way"
@@ -407,6 +417,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             notificationBodyJs.put("buyerId", orderByTv.toString())
             notificationBodyJs.put("sellerUid", (shopAuth.currentUser)!!.uid)
             notificationBodyJs.put("orderId", orderId)
+            notificationBodyJs.put("totalAmount", totalWith.toString())
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
             notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
             //where to send
@@ -421,7 +432,6 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     }
 
     private fun sendFcmNotification(notificationJs: JSONObject) {
-        val queue = Volley.newRequestQueue(this)
         val jsonObjectRequest = object : JsonObjectRequest(
             "https://fcm.googleapis.com/fcm/send",
             notificationJs,
