@@ -74,7 +74,7 @@ class Cart : AppCompatActivity() {
         recyclerCartProduct = findViewById(R.id.cart_recycler_view)
         txtTotalPrice = findViewById(R.id.txtTotalPrice)
         txtPrice = findViewById(R.id.txtPrice)
-        txtDeliveryCharge = findViewById(R.id.txtDeliveryCharge)
+       // txtDeliveryCharge = findViewById(R.id.txtDeliveryCharge)
         txtDiscountPrice = findViewById(R.id.txtDiscountPrice)
         txtTotalAmount = findViewById(R.id.txtTotalAmount)
         totalPayment = findViewById(R.id.TotalPayment)

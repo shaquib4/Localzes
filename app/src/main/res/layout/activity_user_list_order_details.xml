@@ -215,7 +215,7 @@
                 <Button
                     android:id="@+id/btnPay"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_22sdp"
                     android:background="@drawable/bg_buttons"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Pay Now"

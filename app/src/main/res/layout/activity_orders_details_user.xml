@@ -209,6 +209,17 @@
                     android:text="@string/rs_1_209"
                     android:textColor="#008000"
                     android:textSize="@dimen/_12ssp" />
+                <Button
+                    android:id="@+id/btnPayCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_22sdp"
+                    android:background="@drawable/bg_buttons"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Pay Now"
+                    android:layout_margin="5dp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_10ssp" />
 
             </TableRow>
 

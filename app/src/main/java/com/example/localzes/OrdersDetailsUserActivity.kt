@@ -6,6 +6,7 @@ import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -16,6 +17,8 @@ import com.example.localzes.Adapters.AdapterOrderedItems
 import com.example.localzes.Modals.ModelOrderedItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_orders_details_user.*
+import kotlinx.android.synthetic.main.activity_pay.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.jar.Manifest
@@ -114,15 +117,19 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 when (orderStatus) {
                     "In Progress" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.colorAccent))
+                        btnPayCart.visibility= View.GONE
                     }
                     "Accepted" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.green))
+                        btnPayCart.visibility= View.GONE
                     }
                     "Out For Delivery" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.acidGreen))
+                        btnPayCart.visibility= View.GONE
                     }
                     "Cancelled" -> {
                         orderStatusUser.setTextColor(resources.getColor(R.color.red))
+                        btnPayCart.visibility= View.GONE
                     }
                 }
                 orderIdUser.text = "OD${orderId}"
@@ -165,6 +172,10 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
         imgBackOrderDetails.setOnClickListener {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
+            finish()
+        }
+        btnPayNow.setOnClickListener {
+            startActivity(Intent(this,continue_payment::class.java))
             finish()
         }
     }
