@@ -1,5 +1,6 @@
 package com.example.localzes
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +13,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.localzes.Adapters.AdapterCartItem
 import com.example.localzes.Adapters.AdapterManageAddress
 import com.example.localzes.Modals.ModelManageAddress
@@ -21,6 +26,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_cart1.*
+import org.json.JSONObject
 import util.ConnectionManager
 
 class Cart : AppCompatActivity() {
@@ -332,7 +338,7 @@ class Cart : AppCompatActivity() {
                 rl_cart_connection.visibility = View.VISIBLE
                 rl_retryCart.visibility = View.GONE
                 if (boolean) {
-                    val intent = Intent(this@Cart, continue_payment::class.java)
+                    /*val intent = Intent(this@Cart, continue_payment::class.java)
                     intent.putExtra("shopId", shopId)
                     intent.putExtra("totalCost", totalCost.toString())
                     intent.putExtra("orderBy", orderByuid)
@@ -341,7 +347,108 @@ class Cart : AppCompatActivity() {
                     intent.putExtra("orderByName", orderByName)
                     intent.putExtra("orderByMobile", deliveryUserMobileNo)
                     startActivity(intent)
-                    finish()
+                    finish()*/
+                    val builder = AlertDialog.Builder(this)
+                    val dialog = builder.show()
+                    builder.setTitle("Confirmation")
+                    builder.setMessage("Are you sure to place your order")
+                    builder.setPositiveButton("Confirm") { text, listener ->
+                        dialog.dismiss()
+                        progressDialog.setMessage("Placing Your Order....")
+                        progressDialog.show()
+                        val dataReference: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("users")
+                                .child(uid).child("Cart")
+                        dataReference.addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                (cartProducts as ArrayList<UserCartDetails>).clear()
+                                for (i in snapshot.children) {
+                                    val obj =
+                                        UserCartDetails(
+                                            i.child("productId").value.toString(),
+                                            i.child("orderBy").value.toString(),
+                                            i.child("productTitle").value.toString(),
+                                            i.child("priceEach").value.toString(),
+                                            i.child("finalPrice").value.toString(),
+                                            i.child("finalQuantity").value.toString(),
+                                            i.child("orderTo").value.toString(),
+                                            i.child("productImageUrl").value.toString(),
+                                            i.child("sellingPrice").value.toString(),
+                                            i.child("finalsellingPrice").value.toString()
+                                        )
+                                    (cartProducts as ArrayList<UserCartDetails>).add(obj)
+                                }
+                            }
+
+                        })
+                        val timestamp = System.currentTimeMillis().toString()
+                        val orderId = timestamp
+                        val orderTime = timestamp
+                        val orderStatus = "Pending"
+                        val orderCost = totalCost.toString()
+                        val orderBy = uid
+                        val orderTo = shopId
+                        val deliveryAddress = deliveryUser
+                        orderDetails =
+                            ModelOrderDetails(
+                                orderId,
+                                orderTime,
+                                orderStatus,
+                                orderCost,
+                                orderBy,
+                                orderTo,
+                                totalItem.toString(),
+                                deliveryAddress,
+                                "",
+                                orderByName,
+                                deliveryUserMobileNo
+                            )
+                        val ref: DatabaseReference =
+                            FirebaseDatabase.getInstance().reference.child("seller")
+                                .child(orderTo)
+                                .child("Orders")
+                        ref.child(timestamp).setValue(orderDetails).addOnSuccessListener {
+                            val reference: DatabaseReference =
+                                FirebaseDatabase.getInstance().reference.child("users")
+                                    .child(orderBy)
+                                    .child("MyOrders")
+                            reference.child(orderId).setValue(orderDetails)
+                            for (i in 0 until cartProducts.size) {
+                                val productId = cartProducts[i].productId
+                                val orderedBy = cartProducts[i].orderBy
+                                val productTitle = cartProducts[i].productTitle
+                                val priceEach = cartProducts[i].priceEach
+                                val finalPrice = cartProducts[i].finalPrice
+                                val finalQuantity = cartProducts[i].finalQuantity
+                                val orderedTo = cartProducts[i].orderTo
+                                val sellingPrice = cartProducts[i].sellingPrice
+                                val headers = HashMap<String, String>()
+                                headers["productId"] = productId
+                                headers["orderBy"] = orderedBy
+                                headers["productTitle"] = productTitle
+                                headers["priceEach"] = priceEach
+                                headers["finalPrice"] = finalPrice
+                                headers["finalQuantity"] = finalQuantity
+                                headers["orderTo"] = orderedTo
+                                headers["sellingPrice"] = sellingPrice
+                                ref.child(timestamp).child("Items").child(productId)
+                                    .setValue(headers)
+                                reference.child(orderId).child("orderedItems").child(productId)
+                                    .setValue(headers)
+                            }
+                            dataReference.removeValue()
+                            progressDialog.dismiss()
+                            prepareNotificationMessage(orderId)
+                        }
+                    }
+                    builder.setNegativeButton("Exit") { text, listener ->
+                        dialog.dismiss()
+                    }
+                    builder.create().show()
                 } else if (!boolean) {
                     Toast.makeText(
                         this,
@@ -412,6 +519,64 @@ class Cart : AppCompatActivity() {
                 }
             }
         })
+
+
+    }
+
+    private fun prepareNotificationMessage(orderId: String) {
+//when user places order,send notification to seller
+        //prepare data for notification
+        val NOTIFICATION_TOPIC =
+            "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
+        val NOTIFICATION_TITLE = "New order has been received"
+        val NOTIFICATION_MESSAGE = "Congratulations....!You received a new order"
+        val NOTIFICATION_TYPE = "New Order"
+        //prepare json(what to send and where to send)
+        val notificationJs = JSONObject()
+        val notificationBodyJs = JSONObject()
+        try {
+            //what to send
+            notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
+            notificationBodyJs.put("buyerId", orderByuid)
+            notificationBodyJs.put("sellerUid", shopId)
+            notificationBodyJs.put("orderId", orderId)
+            notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
+            notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
+            //where to send
+            notificationJs.put("to", NOTIFICATION_TOPIC)//to all who subscribed this topic
+            notificationJs.put("data", notificationBodyJs)
+        } catch (e: Exception) {
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+        }
+        sendFcmNotification(notificationJs, orderId)
+    }
+
+    private fun sendFcmNotification(notificationJs: JSONObject, orderId: String) {
+        val jsonObjectRequest = object : JsonObjectRequest(
+            Request.Method.POST,
+            "https://fcm.googleapis.com/fcm/send",
+            notificationJs,
+            Response.Listener {
+                //after sending fcm start order details activity
+                val intent = Intent(this, NewActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            },
+            Response.ErrorListener {
+                //if failed sending fcm,still start order details activity
+                Toast.makeText(this, "Some error occured", Toast.LENGTH_SHORT).show()
+
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] =
+                    "key=AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D"
+                return headers
+            }
+        }
+        Volley.newRequestQueue(this).add(jsonObjectRequest)
 
 
     }

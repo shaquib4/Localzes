@@ -29,6 +29,8 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
         val shopName: TextView = view.findViewById(R.id.txtShop_name)
         val shopCategory: TextView = view.findViewById(R.id.txtCategory)
         val cardShop: CardView = view.findViewById(R.id.card_shop)
+        val timing:TextView=view.findViewById(R.id.timing)
+        val status:TextView=view.findViewById(R.id.Open)
         val unFavorite: FloatingActionButton = view.findViewById(R.id.btnFavorites)
         val favorite: FloatingActionButton = view.findViewById(R.id.btnFavorites1)
 
@@ -58,6 +60,9 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
         holder.shopName.text =
             shops_user.shop_name.substring(0, 1).toUpperCase() + shops_user.shop_name.substring(1)
         holder.shopCategory.text = shops_user.category1
+        val shopOpenTime=shops_user.openingTime
+        val shopClosingTime=shops_user.closingTime
+        holder.timing.text="$shopOpenTime to $shopClosingTime"
         val favShopReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
                 .child("Favorites")
@@ -152,12 +157,14 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
                 try {
                     if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
                         Glide.with(context).load(shops_user.imageUrl).into(holder.imgShop)
+                        holder.status.text="Open"
                         holder.itemView.isClickable = true
                     } else if (snapshot.child("StoreStatus").value.toString() == "CLOSED") {
                         val colorMatrix = ColorMatrix()
                         colorMatrix.setSaturation(0.0f)
                         val filter = ColorMatrixColorFilter(colorMatrix)
                         holder.imgShop.colorFilter = filter
+                        holder.status.text="Closed"
                         holder.itemView.isClickable = false
                     }
                 } catch (e: Exception) {
