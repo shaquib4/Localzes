@@ -223,16 +223,24 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 }
                 orderStatusTv.text = orderStatus
                 orderDateTv.text = formattedDate
+
                 deliveryAddressTv.text = snapshot.child("deliveryAddress").value.toString()
                 if (snapshot.child("deliveryFee").value.toString() != null) {
                     deliveryFee.text = "₹" + snapshot.child("deliveryFee").value.toString()
+                    paymentStatus.text = snapshot.child("paymentMode").value.toString()
                 } else {
+                    paymentStatus.text = "Unpaid"
                     etDeliveryList.addTextChangedListener(object : TextWatcher {
                         override fun afterTextChanged(s: Editable?) {
 
                         }
 
-                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                        override fun beforeTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            count: Int,
+                            after: Int
+                        ) {
 
                         }
 
@@ -246,12 +254,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         }
                     })
                 }
-                paymentStatus.text = snapshot.child("paymentMode").value.toString()
             }
         })
 
-        if (etDeliveryList.text.toString().isNotEmpty()) {
-            acceptConfirm.setOnClickListener {
+
+        acceptConfirm.setOnClickListener {
+            if (etDeliveryList.text.toString().isNotEmpty()) {
+
                 if (ConnectionManager().checkConnectivity(this)) {
                     //  rl_ListSeller.visibility = View.VISIBLE
                     //  rl_ListOrderDetails.visibility = View.GONE
@@ -301,9 +310,11 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     //  rl_ListSeller.visibility = View.GONE
                     //  rl_ListOrderDetails.visibility = View.VISIBLE
                 }
+
+            } else {
+                Toast.makeText(this, "Please enter delivery charge", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            Toast.makeText(this, "Please enter delivery charge", Toast.LENGTH_SHORT).show()
+
         }
 
         if (ConnectionManager().checkConnectivity(this)) {
