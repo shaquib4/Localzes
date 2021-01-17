@@ -370,7 +370,9 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                 1
             )
             val address: String = addresses[0].getAddressLine(0)
-            val city: String = addresses[0].subAdminArea
+           try {
+
+           val city: String = addresses[0].subAdminArea
             val state: String = addresses[0].adminArea
             val pinCode: String = addresses[0].postalCode
             val country: String = addresses[0].countryName
@@ -387,7 +389,9 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
             Pincode_seller.text = " $pinCode"
 
             Locality_bold_seller.text = locality
-            localit_seller.text = "$locality,"
+            localit_seller.text = "$locality,"}catch (e:Exception){
+               e.printStackTrace()
+           }
 
         } catch (e: IndexOutOfBoundsException) {
             e.printStackTrace()
