@@ -32,6 +32,8 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
     private lateinit var totalItemsUser: TextView
     private lateinit var totalAmountUser: TextView
     private lateinit var deliveryAddress: TextView
+    private lateinit var deliveryFeeUser: TextView
+    private lateinit var paymentModeInfo: TextView
     private lateinit var shopAddress: TextView
     private lateinit var recyclerOrderUsers: RecyclerView
     private lateinit var adapterOrderItems: AdapterOrderedItems
@@ -63,6 +65,8 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
         shopAddress = findViewById(R.id.txtOrderShopAddressUser)
         recyclerOrderUsers = findViewById(R.id.recycler_order_users)
         imgBackOrderDetails = findViewById(R.id.imgBackOrderDetails)
+        paymentModeInfo = findViewById(R.id.paymentStatusDetailUser)
+        deliveryFeeUser = findViewById(R.id.deliveryFeeOrderUser)
         imgMakeCall = findViewById(R.id.imageMakeCall)
         orderItemsList = ArrayList<ModelOrderedItems>()
         userAuth = FirebaseAuth.getInstance()
@@ -136,8 +140,15 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 }
                 orderIdUser.text = "OD${orderId}"
                 orderStatusUser.text = orderStatus
-                totalAmountUser.text = "₹${orderCost}"
                 orderDateUser.text = formattedDate
+                paymentModeInfo.text = snapshot.child("paymentMode").value.toString()
+                if (snapshot.child("deliveryFee").value.toString() != null) {
+                    deliveryFeeUser.text = "₹" + snapshot.child("deliveryFee").value.toString()
+                    totalAmountUser.text = "₹${orderCost}(Including Delivery Fee)"
+                } else {
+                    totalAmountUser.text = "₹${orderCost}"
+                    deliveryFeeUser.text = "Not Available (updated soon)"
+                }
                 val reference: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("seller")
                         .child(orderToId.toString())

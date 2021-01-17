@@ -218,7 +218,8 @@
                         android:id="@+id/etDeliveryCharge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Delivery Fee" />
+                        android:hint="Delivery Fee"
+                        android:inputType="number" />
                 </TableRow>
 
                 <TableRow>
@@ -234,12 +235,13 @@
                         android:textSize="@dimen/_11ssp" />
 
                     <TextView
+                        android:id="@+id/paymentStatusDetailsSeller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Unpaid(Cash On Delivery)"
+                        android:text="Unpaid"
                         android:textColor="#000000"
                         android:textSize="@dimen/_11ssp" />
                 </TableRow>

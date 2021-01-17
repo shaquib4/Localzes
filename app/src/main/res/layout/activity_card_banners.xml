@@ -10,212 +10,213 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
 
         <RelativeLayout
-
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_160sdp"
-            android:background="@drawable/border">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="@dimen/_160sdp"
-                android:layout_height="@dimen/_120sdp"
-                android:layout_alignStart="@+id/txtBYS"
-                android:scaleType="fitXY"
-                android:src="@drawable/shop_png"
-                android:contentDescription="@string/todo" />
-
-            <TextView
-                android:id="@+id/txtBYS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_100sdp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/boost_your_shop"
-                android:textColor="#fff"
-                android:textSize="@dimen/_25ssp" />
-        </RelativeLayout>
-
-
-        <View
-            android:id="@+id/viewCenter"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-
-            android:layout_centerHorizontal="true" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardShare"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_160sdp"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-
-            android:layout_marginTop="@dimen/_135sdp"
-
-            android:layout_toStartOf="@id/viewCenter"
-            app:cardCornerRadius="10dp">
 
             <RelativeLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#008000">
+                android:layout_height="@dimen/_160sdp"
+                android:background="@drawable/border">
 
                 <ImageView
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:background="@drawable/disk_circle"
-                    android:padding="@dimen/_10sdp"
-                    android:src="@drawable/share"
-                    android:contentDescription="@string/todo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/share_your_shop"
-                    android:textAlignment="center"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_15ssp" />
-
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardQR"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_160sdp"
-            android:layout_below="@id/cardShare"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_toStartOf="@id/viewCenter"
-            app:cardCornerRadius="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#f156">
-
-                <ImageView
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:src="@drawable/qr_scan"
-                    android:contentDescription="@string/todo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/generate_qr_code"
-                    android:textAlignment="center"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_15ssp" />
-
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardBanner"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_160sdp"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-
-            android:layout_marginTop="@dimen/_135sdp"
-            android:layout_toEndOf="@id/viewCenter"
-            app:cardCornerRadius="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#f15642">
-
-                <ImageView
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:background="@drawable/disk_circle"
-                    android:padding="@dimen/_10sdp"
-                    android:src="@drawable/pdf"
-                    android:contentDescription="@string/todo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/shop_banner"
-                    android:textAlignment="center"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_15ssp" />
-
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardCatalogue"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_160sdp"
-            android:layout_below="@id/cardShare"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_toEndOf="@id/viewCenter"
-            app:cardCornerRadius="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ffce44">
-
-                <ImageView
+                    android:layout_width="@dimen/_160sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_alignStart="@+id/txtBYS"
                     android:contentDescription="@string/todo"
-                    android:id="@+id/imgOverview"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:src="@drawable/overview" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/shop_png" />
 
                 <TextView
-                    android:layout_below="@id/imgOverview"
+                    android:id="@+id/txtBYS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_100sdp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/shop_overview"
-                    android:textAlignment="center"
+                    android:text="@string/boost_your_shop"
                     android:textColor="#fff"
-                    android:textSize="@dimen/_15ssp" />
-
-
+                    android:textSize="@dimen/_25ssp" />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
 
 
-    </RelativeLayout>
+            <View
+                android:id="@+id/viewCenter"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+
+                android:layout_centerHorizontal="true" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardShare"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+
+                android:layout_marginTop="@dimen/_135sdp"
+
+                android:layout_toStartOf="@id/viewCenter"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#008000">
+
+                    <ImageView
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@drawable/disk_circle"
+                        android:contentDescription="@string/todo"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/share" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/share_your_shop"
+                        android:textAlignment="center"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15ssp" />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardQR"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_below="@id/cardShare"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_toStartOf="@id/viewCenter"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#f156">
+
+                    <ImageView
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/qr_scan" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/generate_qr_code"
+                        android:textAlignment="center"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15ssp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardBanner"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+
+                android:layout_marginTop="@dimen/_135sdp"
+                android:layout_toEndOf="@id/viewCenter"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#f15642">
+
+                    <ImageView
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@drawable/disk_circle"
+                        android:contentDescription="@string/todo"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/pdf" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/shop_banner"
+                        android:textAlignment="center"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15ssp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardCatalogue"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_below="@id/cardShare"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_toEndOf="@id/viewCenter"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffce44">
+
+                    <ImageView
+                        android:id="@+id/imgOverview"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/overview" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imgOverview"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/shop_overview"
+                        android:textAlignment="center"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15ssp" />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
     </ScrollView>
 
 

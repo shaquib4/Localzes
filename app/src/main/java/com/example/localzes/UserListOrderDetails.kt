@@ -44,6 +44,8 @@ class UserListOrderDetails : AppCompatActivity() {
     private lateinit var imgBackListUser: ImageView
     private lateinit var imgMakePhone: ImageView
     private lateinit var btnPay: Button
+    private lateinit var deliveryFeeUser: TextView
+    private lateinit var paymentStatusUser: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_list_order_details)
@@ -58,6 +60,8 @@ class UserListOrderDetails : AppCompatActivity() {
         recyclerOrderList = findViewById(R.id.recycler_order_list_users)
         imgMakePhone = findViewById(R.id.imageMakeCallList)
         imgBackListUser = findViewById(R.id.imgListBackOrderDetails)
+        deliveryFeeUser = findViewById(R.id.deliveryFeeUser)
+        paymentStatusUser = findViewById(R.id.paymentStatusUser)
         btnPay = findViewById(R.id.btnPay)
         recyclerOrderList.layoutManager = LinearLayoutManager(this)
         orderedItemList = ArrayList<ModelList>()
@@ -128,6 +132,7 @@ class UserListOrderDetails : AppCompatActivity() {
                 val orderCost: String = snapshot.child("orderCost").value.toString()
                 val orderBy = snapshot.child("order").value.toString()
                 val orderTo = snapshot.child("orderTo").value.toString()
+                val deliveryCost = snapshot.child("deliveryFee").value.toString()
                 val listStatus = snapshot.child("listStatus").value.toString()
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
@@ -135,28 +140,29 @@ class UserListOrderDetails : AppCompatActivity() {
                 when (orderStatus) {
                     "In Progress" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.colorAccent))
-                        btnPay.visibility= View.GONE
+                        btnPay.visibility = View.GONE
                     }
                     "Accepted" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.green))
-                        btnPay.visibility=View.VISIBLE
+                        btnPay.visibility = View.VISIBLE
                     }
                     "Out For Delivery" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.acidGreen))
-                        btnPay.visibility= View.GONE
+                        btnPay.visibility = View.GONE
                     }
                     "Cancelled" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.red))
-                        btnPay.visibility= View.GONE
+                        btnPay.visibility = View.GONE
                     }
                 }
                 orderListIdUser.text = "OD${orderId}"
-
                 orderStatusListUser.text = orderStatus
                 if (listStatus == "Confirm") {
-                    amountOrderList.text = "₹${totalCost}"
+                    amountOrderList.text = "₹${totalCost}(Including Delivery Fee)"
+                    deliveryFeeUser.text = "₹${deliveryCost}"
                 } else {
                     amountOrderList.text = "Order amount will be updated soon"
+                    deliveryFeeUser.text = "Not Available(updated soon)"
                 }
                 orderDateListUser.text = formattedDate
                 val reference: DatabaseReference =

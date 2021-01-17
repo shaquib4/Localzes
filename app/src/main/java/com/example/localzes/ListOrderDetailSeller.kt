@@ -6,11 +6,10 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -44,7 +43,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var shopAuth: FirebaseAuth
     private lateinit var imgListEdit: ImageView
     private lateinit var list: List<ModelList>
-    private lateinit var totalListCost: TextView
+    private lateinit var etDeliveryList: EditText
+    private lateinit var deliveryFee: TextView
+    private lateinit var paymentStatus: TextView
     private lateinit var progressDialog: ProgressDialog
     private var bool = true
     private var orderId = ""
@@ -52,6 +53,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private var oStatus = ""
     private var newBool: Boolean = false
     var totalCost: Double = 0.00
+    var totalWith: Double = 0.00
     private var selectedReason: String = ""
     private var REQUEST_CALL: Int = 1
     private var customerMobileNo: String = ""
@@ -71,8 +73,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
         imgMakeCustomerCall = findViewById(R.id.imageMakeCallCustomer)
         checkboxListComplete = findViewById(R.id.checkbox_List_Completed)
         imgListEdit = findViewById(R.id.imgListEdit)
+        deliveryFee = findViewById(R.id.deliverySellerCharge)
+        paymentStatus = findViewById(R.id.paymentStatusSeller)
+        etDeliveryList = findViewById(R.id.etDeliveryChargeList)
         imgBackList = findViewById(R.id.imgBackListOrderDetails)
-        totalListCost = findViewById(R.id.totalListCost)
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
@@ -151,7 +155,6 @@ class ListOrderDetailSeller : AppCompatActivity() {
                             }
                         }
                         amountTv.text = "₹${totalCost}"
-                        totalListCost.text = "₹${totalCost}"
                         itemsTv.text = snapshot.childrenCount.toString()
                         val headers = HashMap<String, Any>()
                         headers["orderCost"] = totalCost
@@ -182,7 +185,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         checkboxListComplete.visibility = View.GONE
                         orderStatusTv.setTextColor(resources.getColor(R.color.colorAccent))
                         imgListEdit.visibility = View.GONE
-                        totalListCost.visibility = View.VISIBLE
+
                         acceptConfirm.visibility = View.VISIBLE
                     }
                     "Accepted" -> {
@@ -190,7 +193,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         orderStatusTv.setTextColor(resources.getColor(R.color.acidGreen))
                         imgListEdit.visibility = View.VISIBLE
                         acceptConfirm.visibility = View.GONE
-                        totalListCost.visibility = View.GONE
+
                         imgListEdit.setOnClickListener {
                             editOrderStatusDialog()
                         }
@@ -200,7 +203,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         orderStatusTv.setTextColor(resources.getColor(R.color.red))
                         imgListEdit.visibility = View.GONE
                         acceptConfirm.visibility = View.GONE
-                        totalListCost.visibility = View.GONE
+
 
                     }
                     "Out For Delivery" -> {
@@ -208,7 +211,6 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         orderStatusTv.setTextColor(resources.getColor(R.color.green))
                         imgListEdit.visibility = View.VISIBLE
                         acceptConfirm.visibility = View.GONE
-                        totalListCost.visibility = View.GONE
                         imgListEdit.setOnClickListener {
                             newEditOrderStatusDialog()
                         }
@@ -217,60 +219,93 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         orderStatusTv.setTextColor(resources.getColor(R.color.green))
                         imgListEdit.visibility = View.GONE
                         acceptConfirm.visibility = View.GONE
-                        totalListCost.visibility = View.GONE
                     }
                 }
                 orderStatusTv.text = orderStatus
                 orderDateTv.text = formattedDate
                 deliveryAddressTv.text = snapshot.child("deliveryAddress").value.toString()
-            }
+                if (snapshot.child("deliveryFee").value.toString() != null) {
+                    deliveryFee.text = "₹" + snapshot.child("deliveryFee").value.toString()
+                } else {
+                    etDeliveryList.addTextChangedListener(object : TextWatcher {
+                        override fun afterTextChanged(s: Editable?) {
 
-        })
-
-
-        acceptConfirm.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)) {
-                //  rl_ListSeller.visibility = View.VISIBLE
-                //  rl_ListOrderDetails.visibility = View.GONE
-                val builder = AlertDialog.Builder(this)
-                val dialog = builder.show()
-                builder.setTitle("Confirmation")
-                builder.setMessage("Are you sure to confirm this list Order")
-                builder.setPositiveButton("Yes") { text, listener ->
-                    dialog.dismiss()
-                    progressDialog.setMessage("Processing.....")
-                    progressDialog.show()
-                    if (bool) {
-                        val headers = HashMap<String, Any>()
-                        headers["listStatus"] = "Confirm"
-                        headers["orderStatus"] = "Accepted"
-
-                        ref.child(orderId).updateChildren(headers).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                prepareNotificationMessage(orderId, "Order has been Confirmed")
-                                databaseRef.child(orderId).updateChildren(headers)
-                                    .addOnCompleteListener {
-                                        this.recreate()
-                                    }
-                            }
                         }
 
+                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
-                    } else {
-                        dialog.dismiss()
-                        Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
-                    }
-                    progressDialog.dismiss()
+                        }
+
+                        override fun onTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            before: Int,
+                            count: Int
+                        ) {
+                            deliveryFee.text = "₹${s.toString()}"
+                        }
+                    })
                 }
-                builder.setNegativeButton("No") { text, listener ->
-                    dialog.dismiss()
-                }
-                builder.create().show()
-            } else {
-                //  rl_ListSeller.visibility = View.GONE
-                //  rl_ListOrderDetails.visibility = View.VISIBLE
+                paymentStatus.text = snapshot.child("paymentMode").value.toString()
             }
+        })
+
+        if (etDeliveryList.text.toString().isNotEmpty()) {
+            acceptConfirm.setOnClickListener {
+                if (ConnectionManager().checkConnectivity(this)) {
+                    //  rl_ListSeller.visibility = View.VISIBLE
+                    //  rl_ListOrderDetails.visibility = View.GONE
+                    val builder = AlertDialog.Builder(this)
+                    val dialog = builder.show()
+                    builder.setTitle("Confirmation")
+                    builder.setMessage("Are you sure to confirm this list Order")
+                    builder.setPositiveButton("Yes") { text, listener ->
+                        dialog.dismiss()
+                        progressDialog.setMessage("Processing.....")
+                        progressDialog.show()
+                        if (bool) {
+                            try {
+                                totalWith = totalCost + etDeliveryList.text.toString().toDouble()
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                            val headers = HashMap<String, Any>()
+                            headers["listStatus"] = "Confirm"
+                            headers["orderStatus"] = "Accepted"
+                            headers["orderCost"] =
+                                totalWith.toString()
+                            headers["deliveryFee"] = etDeliveryList.text.toString()
+
+                            ref.child(orderId).updateChildren(headers).addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    prepareNotificationMessage(orderId, "Order has been Confirmed")
+                                    databaseRef.child(orderId).updateChildren(headers)
+                                        .addOnCompleteListener {
+                                            this.recreate()
+                                        }
+                                }
+                            }
+
+
+                        } else {
+                            dialog.dismiss()
+                            Toast.makeText(this, "Some fields are empty", Toast.LENGTH_LONG).show()
+                        }
+                        progressDialog.dismiss()
+                    }
+                    builder.setNegativeButton("No") { text, listener ->
+                        dialog.dismiss()
+                    }
+                    builder.create().show()
+                } else {
+                    //  rl_ListSeller.visibility = View.GONE
+                    //  rl_ListOrderDetails.visibility = View.VISIBLE
+                }
+            }
+        } else {
+            Toast.makeText(this, "Please enter delivery charge", Toast.LENGTH_SHORT).show()
         }
+
         if (ConnectionManager().checkConnectivity(this)) {
             //  rl_ListSeller.visibility = View.VISIBLE
             //  rl_ListOrderDetails.visibility = View.GONE
@@ -444,7 +479,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     "Sorry for the inconvenience.Your order is rejected due to $selectedReason"
             }
             "Order has been Confirmed" -> {
-                NOTIFICATION_MESSAGE = "Your order costs only ₹${totalCost}"
+                NOTIFICATION_MESSAGE = "Your order costs only ₹${totalWith}"
             }
         }
         val NOTIFICATION_TYPE = "OrderListStatusChanged"
@@ -455,7 +490,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
             notificationBodyJs.put("buyerId", orderBy)
             notificationBodyJs.put("sellerUid", (shopAuth.currentUser)!!.uid)
             notificationBodyJs.put("orderId", orderId)
-            notificationBodyJs.put("totalCost", totalCost.toString())
+            notificationBodyJs.put("totalCost", totalWith.toString())
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
             notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
             notificationJs.put("to", NOTIFICATION_TOPIC)

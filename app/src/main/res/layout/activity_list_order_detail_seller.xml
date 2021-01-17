@@ -216,12 +216,12 @@
                             android:textSize="@dimen/_11ssp" />
 
                         <TextView
+                            android:id="@+id/deliverySellerCharge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="0"
                             android:textColor="#000000"
                             android:textSize="@dimen/_11ssp" />
                     </TableRow>
@@ -239,12 +239,13 @@
                             android:textSize="@dimen/_11ssp" />
 
                         <TextView
+                            android:id="@+id/paymentStatusSeller"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="Unpaid(Cash on Delivery)"
+                            android:text="Unpaid"
                             android:textColor="#000000"
                             android:textSize="@dimen/_11ssp" />
 
@@ -374,7 +375,8 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_weight="1"
-                android:hint="Enter Delivery Charge " />
+                android:hint="Enter Delivery Charge "
+                android:inputType="number" />
 
             <Button
                 android:id="@+id/acceptConfirm"

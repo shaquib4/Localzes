@@ -74,7 +74,7 @@ class Cart : AppCompatActivity() {
         recyclerCartProduct = findViewById(R.id.cart_recycler_view)
         txtTotalPrice = findViewById(R.id.txtTotalPrice)
         txtPrice = findViewById(R.id.txtPrice)
-       // txtDeliveryCharge = findViewById(R.id.txtDeliveryCharge)
+        // txtDeliveryCharge = findViewById(R.id.txtDeliveryCharge)
         txtDiscountPrice = findViewById(R.id.txtDiscountPrice)
         txtTotalAmount = findViewById(R.id.txtTotalAmount)
         totalPayment = findViewById(R.id.TotalPayment)
@@ -338,16 +338,6 @@ class Cart : AppCompatActivity() {
                 rl_cart_connection.visibility = View.VISIBLE
                 rl_retryCart.visibility = View.GONE
                 if (boolean) {
-                    /*val intent = Intent(this@Cart, continue_payment::class.java)
-                    intent.putExtra("shopId", shopId)
-                    intent.putExtra("totalCost", totalCost.toString())
-                    intent.putExtra("orderBy", orderByuid)
-                    intent.putExtra("totalItem", totalItem.toString())
-                    intent.putExtra("delivery", deliveryUser)
-                    intent.putExtra("orderByName", orderByName)
-                    intent.putExtra("orderByMobile", deliveryUserMobileNo)
-                    startActivity(intent)
-                    finish()*/
                     val builder = AlertDialog.Builder(this)
                     val dialog = builder.show()
                     builder.setTitle("Confirmation")
@@ -548,10 +538,10 @@ class Cart : AppCompatActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
-        sendFcmNotification(notificationJs, orderId)
+        sendFcmNotification(notificationJs)
     }
 
-    private fun sendFcmNotification(notificationJs: JSONObject, orderId: String) {
+    private fun sendFcmNotification(notificationJs: JSONObject) {
         val jsonObjectRequest = object : JsonObjectRequest(
             Request.Method.POST,
             "https://fcm.googleapis.com/fcm/send",

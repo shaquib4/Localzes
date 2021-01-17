@@ -51,6 +51,24 @@ class continue_payment : AppCompatActivity() {
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
         radioGroup = findViewById(R.id.radioPayment)
+        totalCharges.text = "₹${totalCost}"
+        totalChargesTv.text = "₹${totalCost}"
+        val databaseReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid.toString())
+                .child("MyOrders").child(orderId.toString())
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val productCharge = totalCost.toString()
+                    .toDouble() - (snapshot.child("deliveryFee").value.toString()).toDouble()
+                productCharges.text = "₹$productCharge"
+                shippingCharges.text = "₹${snapshot.child("deliveryFee").value.toString()}"
+            }
+
+        })
         btnPayContinue.setOnClickListener {
             val id = radioGroup!!.checkedRadioButtonId
             val radioButton = findViewById<RadioButton>(id)
@@ -76,7 +94,7 @@ class continue_payment : AppCompatActivity() {
                 }
                 "Pay with Paytm" -> {
                     val intent = Intent(this, PaymentActivity::class.java)
-                    intent.putExtra("platform","Cart")
+                    intent.putExtra("platform", "Cart")
                     intent.putExtra("shopId", shopId.toString())
                     intent.putExtra("totalCost", totalCost.toString())
                     intent.putExtra("orderId", orderId.toString())

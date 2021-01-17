@@ -231,21 +231,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delivery Fee :"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/montserrat_medium"
+                    android:text="Delivery Fee :"
                     android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp"/>
+                    android:textSize="@dimen/_11ssp" />
+
                 <TextView
+                    android:id="@+id/deliveryFeeUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/montserrat_medium"
+                    android:text="Not Available(updated soon)"
                     android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp"
-                    android:text="0"/>
+                    android:textSize="@dimen/_11ssp" />
             </TableRow>
 
             <TableRow>
@@ -253,21 +255,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment Status :"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/montserrat_medium"
+                    android:text="Payment Status :"
                     android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp"/>
+                    android:textSize="@dimen/_11ssp" />
+
                 <TextView
+                    android:id="@+id/paymentStatusUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/montserrat_medium"
+                    android:text="Unpaid "
                     android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp"
-                    android:text="Unpaid "/>
+                    android:textSize="@dimen/_11ssp" />
 
             </TableRow>
 

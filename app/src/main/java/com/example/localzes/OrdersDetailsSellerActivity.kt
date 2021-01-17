@@ -50,6 +50,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
     private lateinit var checkboxComplete: CheckBox
     private lateinit var etDelivery: EditText
+    private lateinit var paymentModeInfo: TextView
     private var totalCost: Double = 0.0
     private var totalWith: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,7 +109,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 val orderCost = snapshot.child("orderCost").value.toString()
                 val orderBy = snapshot.child("orderBy").value.toString()
                 val orderTo = snapshot.child("orderTo").value.toString()
-                val deliveryCharge=snapshot.child("deliveryFee").value.toString()
+                val deliveryCharge = snapshot.child("deliveryFee").value.toString()
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
@@ -117,7 +118,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     when (orderStatus) {
                         "Pending" -> {
                             txtOrderStatus.setTextColor(resources.getColor(R.color.colorAccent))
-                            etDelivery.isEnabled=true
+                            etDelivery.isEnabled = true
                             checkboxComplete.visibility = View.GONE
                             imgEdit.setOnClickListener {
                                 if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
@@ -132,7 +133,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             checkboxComplete.visibility = View.VISIBLE
                             etDelivery.setText("₹$deliveryCharge")
                             etDelivery.setTextColor(resources.getColor(R.color.green))
-                            etDelivery.isEnabled=false
+                            etDelivery.isEnabled = false
                             txtOrderStatus.setTextColor(resources.getColor(R.color.green))
                             imgEdit.setOnClickListener {
                                 if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
@@ -148,7 +149,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
 
                             etDelivery.setText("₹$deliveryCharge")
                             etDelivery.setTextColor(resources.getColor(R.color.green))
-                            etDelivery.isEnabled=false
+                            etDelivery.isEnabled = false
                             txtOrderStatus.setTextColor(resources.getColor(R.color.acidGreen))
                             imgEdit.setOnClickListener {
                                 afterEditOrderStatusDialog()
@@ -159,12 +160,12 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
 
                             etDelivery.setText("₹$deliveryCharge")
                             etDelivery.setTextColor(resources.getColor(R.color.green))
-                            etDelivery.isEnabled=false
+                            etDelivery.isEnabled = false
                             txtOrderStatus.setTextColor(resources.getColor(R.color.red))
                             imgEdit.visibility = View.GONE
                         }
                         "Completed" -> {
-                            etDelivery.isEnabled=false
+                            etDelivery.isEnabled = false
 
                             etDelivery.setText("₹$deliveryCharge")
                             etDelivery.setTextColor(resources.getColor(R.color.green))
@@ -179,8 +180,13 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 txtOrderId.text = "OD${orderId}"
                 txtOrderStatus.text = orderStatus
                 totalCost = orderCost.toDouble()
-                totalAmount.text = "₹${orderCost}"
+                if (snapshot.child("deliveryFee").value.toString() != null) {
+                    totalAmount.text = "₹${orderCost}(Including Delivery Fee)"
+                } else {
+                    totalAmount.text = "₹${orderCost}"
+                }
                 txtOrderDate.text = formattedDate
+                paymentModeInfo.text = snapshot.child("paymentMode").toString()
             }
         })
         if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {

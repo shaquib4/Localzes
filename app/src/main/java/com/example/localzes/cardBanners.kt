@@ -10,7 +10,7 @@ class cardBanners : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card_banners)
 
-        bottom_navOrders_seller.selectedItemId=R.id.nav_order_seller
+        bottom_navOrders_seller.selectedItemId = R.id.nav_order_seller
         bottom_navOrders_seller.setOnNavigationItemSelectedListener {
             when (it.itemId) {
 
@@ -53,17 +53,17 @@ class cardBanners : AppCompatActivity() {
             return@setOnNavigationItemSelectedListener false
         }
         cardQR.setOnClickListener {
-            startActivity(Intent(this,generateQRcode::class.java))
+            startActivity(Intent(this, generateQRcode::class.java))
             finish()
         }
         cardBanner.setOnClickListener {
-            startActivity(Intent(this,ShopBanner::class.java))
+            startActivity(Intent(this, ShopBanner::class.java))
             finish()
         }
     }
 
     override fun onBackPressed() {
-        val intent=Intent(this,Home_seller::class.java)
+        val intent = Intent(this, Home_seller::class.java)
         startActivity(intent)
         finish()
     }

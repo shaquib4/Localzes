@@ -9,8 +9,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import org.json.JSONObject
 
 class ContinuePaymentListActivity : AppCompatActivity() {
@@ -43,9 +42,23 @@ class ContinuePaymentListActivity : AppCompatActivity() {
         orderId = intent.getStringExtra("orderId")
         orderBy = intent.getStringExtra("orderBy")
         button = findViewById(R.id.btnPayContinueList)
-        productCharges.text = "₹" + totalCost.toString()
         totalChargesTv.text = "₹" + totalCost.toString() + "/-"
         totalCharges.text = "₹" + totalCost.toString()
+        val databaseReference =
+            FirebaseDatabase.getInstance().reference.child("users").child(orderBy.toString())
+                .child("MyOrderList").child(orderId.toString())
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val productCharge = totalCost.toString()
+                    .toDouble() - (snapshot.child("deliveryFee").value.toString()).toDouble()
+                productCharges.text = "₹$productCharge"
+                shippingCharges.text = "₹${snapshot.child("deliveryFee").value.toString()}"
+            }
+        })
         button.setOnClickListener {
             val id = radioGroup!!.checkedRadioButtonId
             val radioButton = findViewById<RadioButton>(id)
@@ -72,7 +85,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                 }
                 "Pay with Paytm" -> {
                     val intent = Intent(this, PaymentActivity::class.java)
-                    intent.putExtra("platform","List")
+                    intent.putExtra("platform", "List")
                     intent.putExtra("shopId", shopId.toString())
                     intent.putExtra("totalCost", totalCost.toString())
                     intent.putExtra("orderId", orderId.toString())

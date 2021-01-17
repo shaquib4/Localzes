@@ -105,35 +105,34 @@
 
 
                 <ImageView
-                    android:layout_below="@id/view2"
                     android:id="@+id/imgPaytm"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_12sdp"
+                    android:layout_below="@id/view2"
                     android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/_10sdp"
                     android:contentDescription="@string/todo"
                     android:scaleType="fitXY"
                     android:src="@drawable/paytm" />
 
-<!--                <ImageView
+                <!--                <ImageView
 
-                    android:layout_below="@+id/view3"
-                    android:id="@+id/imgRazorpay"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_razorpay" />
+                                    android:layout_below="@+id/view3"
+                                    android:id="@+id/imgRazorpay"
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_24sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_margin="@dimen/_10sdp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/ic_razorpay" />
 
-                <View
-                    android:layout_marginTop="@dimen/_43sdp"
-                    android:layout_below="@id/view2"
-                    android:id="@+id/view3"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#d3d3d3" />-->
+                                <View
+                                    android:layout_marginTop="@dimen/_43sdp"
+                                    android:layout_below="@id/view2"
+                                    android:id="@+id/view3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="#d3d3d3" />-->
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -188,7 +187,7 @@
                     android:layout_below="@+id/txtPP"
                     android:layout_margin="@dimen/_5sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/shipping_charges"
+                    android:text="Delivery Charges"
                     android:textSize="@dimen/_10ssp" />
 
                 <TextView
@@ -199,7 +198,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/_5sdp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/free"
+                    android:text="Rs.20 "
                     android:textColor="#008000"
                     android:textSize="@dimen/_10ssp" />
 
@@ -282,27 +281,6 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <ImageView
-            android:id="@+id/imgSecure"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_alignTop="@+id/txtSecure"
-            android:layout_marginStart="@dimen/_60sdp"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_secure" />
-
-        <TextView
-            android:id="@+id/txtSecure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/card3"
-            android:layout_marginEnd="@dimen/_60sdp"
-            android:layout_marginBottom="@dimen/_80sdp"
-            android:layout_toEndOf="@id/imgSecure"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="@string/safe_and_secure_payments_100_authentic_products"
-            android:textSize="@dimen/_8ssp" />
 
         <RelativeLayout
             android:id="@+id/rl_retryContinuePayment"
