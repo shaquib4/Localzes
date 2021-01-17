@@ -63,6 +63,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         orderByTv = intent.getStringExtra("orderByTv")
         txtOrderId = findViewById(R.id.txtOrderId)
         etDelivery = findViewById(R.id.etDeliveryCharge)
+        paymentModeInfo=findViewById(R.id.paymentStatusDetailsSeller)
         checkboxComplete = findViewById(R.id.checkbox_Completed)
         imgMakeCallCustomer = findViewById(R.id.imgMakeCallCustomer)
         txtOrderDate = findViewById(R.id.txtOrderDate)
