@@ -414,23 +414,28 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
                 1
             )
             val address: String = addresses[0].getAddressLine(0)
-            val city: String = addresses[0].subAdminArea
-            val state: String = addresses[0].adminArea
-            val pinCode: String = addresses[0].postalCode
-            val country: String = addresses[0].countryName
-            val locality: String = addresses[0].locality
-            btnmap_new.text = "$locality, $state($city), $pinCode $country"
-            txtCity_new.text = city
-            txtState_new.text = state
-            txtPincode_new.text = pinCode
-            txtLocality_new.text = locality
-            txtCountry_new.text = country
-            City_new.text = "($city),"
-            State_new.text = state
-            Pincode_new.text = " $pinCode"
+         try {
+             val city: String = addresses[0].subAdminArea
+             val state: String = addresses[0].adminArea
+             val pinCode: String = addresses[0].postalCode
+             val country: String = addresses[0].countryName
+             val locality: String = addresses[0].locality
+             btnmap_new.text = "$locality, $state($city), $pinCode $country"
+             txtCity_new.text = city
+             txtState_new.text = state
+             txtPincode_new.text = pinCode
+             txtLocality_new.text = locality
+             txtCountry_new.text = country
+             City_new.text = "($city),"
+             State_new.text = state
+             Pincode_new.text = " $pinCode"
 
-            Locality_bold_new.text = locality
-            localit_new.text = "$locality,"
+             Locality_bold_new.text = locality
+             localit_new.text = "$locality,"
+         }catch (e:Exception)   {
+             e.printStackTrace()
+         }
+
 
 
         } catch (e: IndexOutOfBoundsException) {
