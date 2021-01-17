@@ -47,9 +47,6 @@
             android:name=".CurrentUserOrder"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CartVsList"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ListOrders"
             android:screenOrientation="portrait" />
         <activity
