@@ -76,6 +76,7 @@ class AdapterUserOrderHistory(
                 OrdersDetailsUserActivity::class.java)
             intent.putExtra("orderId",orderHistory.orderId)
             intent.putExtra("orderTo",orderHistory.orderTo)
+            intent.putExtra("totalAmount",orderHistory.orderCost)
             context.startActivity(intent)
 
 
