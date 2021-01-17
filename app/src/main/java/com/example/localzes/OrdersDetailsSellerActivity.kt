@@ -388,10 +388,15 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
 
     private fun editOrderStatus(selectedItem: String, totalAmount: Double, deliveryFee: Double) {
         val headers = hashMapOf<String, Any>()
-        headers["orderStatus"] = selectedItem
-        headers["orderCost"] = totalAmount.toString()
-        headers["deliveryFee"] = deliveryFee.toString()
-        totalWith = totalAmount
+        if (selectedItem == "Accepted") {
+            headers["orderStatus"] = selectedItem
+            headers["orderCost"] = totalAmount.toString()
+            headers["deliveryFee"] = deliveryFee.toString()
+            totalWith = totalAmount
+        } else {
+            headers["orderStatus"] = selectedItem
+            totalWith = totalAmount
+        }
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid

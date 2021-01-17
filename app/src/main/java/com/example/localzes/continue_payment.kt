@@ -262,8 +262,8 @@ class continue_payment : AppCompatActivity() {
         //prepare data for notification
         val NOTIFICATION_TOPIC =
             "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
-        val NOTIFICATION_TITLE = "New order has been received"
-        val NOTIFICATION_MESSAGE = "Congratulations....!You received a new order"
+        val NOTIFICATION_TITLE = "Cash On Delivery"
+        val NOTIFICATION_MESSAGE = "Amount ₹${totalCost.toString()} given by COD"
         val NOTIFICATION_TYPE = "New Order"
         //prepare json(what to send and where to send)
         val notificationJs = JSONObject()
