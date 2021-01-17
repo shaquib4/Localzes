@@ -86,7 +86,12 @@ class SellerShop_detail : AppCompatActivity() {
                     if (ConnectionManager().checkConnectivity(this)) {
                         rl_ShopDetail.visibility = View.VISIBLE
                         rl_retryShopDetail.visibility = View.GONE
-                        uploadFile()
+                        if (imgUrl==""){
+                            Toast.makeText(this,"Slow Internet,Press Upload again",Toast.LENGTH_SHORT).show()
+                        }else{
+                            uploadFile()
+                        }
+
                     } else {
                         rl_ShopDetail.visibility = View.VISIBLE
                         rl_retryShopDetail.visibility = View.GONE
@@ -146,7 +151,8 @@ class SellerShop_detail : AppCompatActivity() {
                                 country!!.toString().trim(),
                                 openingTime.selectedItem.toString(),
                                 closingTime.selectedItem.toString(),
-                                closingDay.selectedItem.toString()
+                                closingDay.selectedItem.toString(),
+                                locality2!!.toString().trim().toLowerCase()
                             )
                             mDatabaseRef =
                                 FirebaseDatabase.getInstance().reference.child("seller")

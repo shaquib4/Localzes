@@ -144,6 +144,8 @@ class Search : AppCompatActivity() {
             btnLocality.setOnClickListener {
                 searchAct.visibility = View.VISIBLE
                 search.visibility = View.GONE
+                btnLocality2.setTextColor(this.resources.getColor(R.color.black))
+                btnLocality2.setBackgroundColor(this.resources.getColor(R.color.white))
                 btnLocality.setTextColor(this.resources.getColor(R.color.white))
                 btnLocality.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
                 btnShop.setTextColor(this.resources.getColor(R.color.black))
@@ -164,9 +166,14 @@ class Search : AppCompatActivity() {
                     }
                 })
             }
+            btnLocality2.setOnClickListener {
+
+            }
             btnShop.setOnClickListener {
                 searchAct.visibility = View.VISIBLE
                 search.visibility = View.GONE
+                btnLocality2.setTextColor(this.resources.getColor(R.color.black))
+                btnLocality2.setBackgroundColor(this.resources.getColor(R.color.white))
                 btnShop.setTextColor(this.resources.getColor(R.color.white))
                 btnShop.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
                 btnLocality.setTextColor(this.resources.getColor(R.color.black))
@@ -191,6 +198,8 @@ class Search : AppCompatActivity() {
             btnProduct.setOnClickListener {
 
                 search.visibility = View.VISIBLE
+                btnLocality2.setTextColor(this.resources.getColor(R.color.black))
+                btnLocality2.setBackgroundColor(this.resources.getColor(R.color.white))
                 btnProduct.setTextColor(this.resources.getColor(R.color.white))
                 btnProduct.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
                 btnShop.setTextColor(this.resources.getColor(R.color.black))
@@ -221,12 +230,12 @@ class Search : AppCompatActivity() {
             search.visibility = View.GONE
             btnLocality2.setTextColor(this.resources.getColor(R.color.white))
             btnLocality2.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
-            btnProduct.setTextColor(this.resources.getColor(R.color.black))
-            btnProduct.setBackgroundColor(this.resources.getColor(R.color.white))
             btnShop.setTextColor(this.resources.getColor(R.color.black))
             btnShop.setBackgroundColor(this.resources.getColor(R.color.white))
             btnLocality.setTextColor(this.resources.getColor(R.color.black))
             btnLocality.setBackgroundColor(this.resources.getColor(R.color.white))
+            btnProduct.setTextColor(this.resources.getColor(R.color.black))
+            btnProduct.setBackgroundColor(this.resources.getColor(R.color.white))
             searchAct.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
 
@@ -242,7 +251,7 @@ class Search : AppCompatActivity() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    searchLocality1(s.toString().toLowerCase())
+                    searchLocality2(s.toString().toLowerCase())
                 }
 
             })
@@ -251,8 +260,61 @@ class Search : AppCompatActivity() {
 
     }
 
-    private fun searchLocality1(s: String) {
-        val queryShop = FirebaseDatabase.getInstance().reference
+    private fun searchLocality2(s: String) {
+        val queryShop =
+            FirebaseDatabase.getInstance().reference.child("seller").orderByChild("locality2")
+                .startAt(s)
+                .endAt(s+ "\uf8ff")
+
+        if (ConnectionManager().checkConnectivity(this@Search)) {
+            rl_search.visibility = View.VISIBLE
+            rl_retrySearch.visibility = View.GONE
+            queryShop.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (searchItem as ArrayList<Upload>).clear()
+                    for (i in snapshot.children) {
+
+                        val obj = Upload(
+                            i.child("shopId").value.toString(),
+                            i.child("phone").value.toString(),
+                            i.child("name").value.toString(),
+                            i.child("email").value.toString(),
+                            i.child("address").value.toString(),
+                            i.child("shop_name").value.toString(),
+                            i.child("imageUrl").value.toString(),
+                            i.child("category1").value.toString(),
+                            i.child("upi").value.toString(),
+                            i.child("locality").value.toString(),
+                            i.child("city").value.toString(),
+                            i.child("pinCode").value.toString(),
+                            i.child("state").value.toString(),
+                            i.child("country").value.toString(),
+                            i.child("openingTime").value.toString(),
+                            i.child("closingTime").value.toString(),
+                            i.child("closingDay").value.toString(),
+                            i.child("locality2").value.toString()
+                        )
+                        if (currentCity.toLowerCase() == i.child("city").value.toString()) {
+                            (searchItem as ArrayList<Upload>).add(obj)
+                        }
+
+                    }
+                    searchAdapter = AdapterSearchItem(
+                        this@Search,
+                        searchItem
+                    )
+                    recyclerSearchItem.adapter = searchAdapter
+
+                }
+            })
+        } else {
+            rl_search.visibility = View.GONE
+            rl_retrySearch.visibility = View.VISIBLE
+        }
     }
 
     private fun searchProducts(string: String) {
@@ -363,7 +425,8 @@ class Search : AppCompatActivity() {
                             i.child("country").value.toString(),
                             i.child("openingTime").value.toString(),
                             i.child("closingTime").value.toString(),
-                            i.child("closingDay").value.toString()
+                            i.child("closingDay").value.toString(),
+                            i.child("locality2").value.toString()
                         )
                         if (currentCity.toLowerCase() == i.child("city").value.toString()) {
                             (searchItem as ArrayList<Upload>).add(obj)
@@ -420,7 +483,8 @@ class Search : AppCompatActivity() {
                             i.child("country").value.toString(),
                             i.child("openingTime").value.toString(),
                             i.child("closingTime").value.toString(),
-                            i.child("closingDay").value.toString()
+                            i.child("closingDay").value.toString(),
+                            i.child("locality2").value.toString()
                         )
                         if (currentCity.toLowerCase() == i.child("city").value.toString()) {
                             (searchItem as ArrayList<Upload>).add(obj)

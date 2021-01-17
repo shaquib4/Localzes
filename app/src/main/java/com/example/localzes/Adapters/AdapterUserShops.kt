@@ -132,7 +132,8 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
                             shops_user.country,
                             shops_user.openingTime,
                             shops_user.closingTime,
-                            shops_user.closingDay
+                            shops_user.closingDay,
+                            shops_user.locality2
 
                         )
                         favShopReference.child(shops_user.shopId).setValue(obj)
@@ -226,7 +227,8 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
             shop_user.country,
             shop_user.openingTime,
             shop_user.closingTime,
-            shop_user.closingDay
+            shop_user.closingDay,
+            shop_user.locality2
 
         )
         val favShopReference: DatabaseReference =
@@ -268,7 +270,8 @@ class AdapterUserShops(val context: Context, private val shopsUser: List<Upload>
             shop_user.country,
             shop_user.openingTime,
             shop_user.closingTime,
-            shop_user.closingDay
+            shop_user.closingDay,
+            shop_user.locality2
 
         )
         val favShopReference: DatabaseReference =

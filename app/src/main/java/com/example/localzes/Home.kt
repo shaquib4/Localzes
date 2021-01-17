@@ -264,7 +264,8 @@ class Home : AppCompatActivity() {
                             i.child("country").value.toString(),
                             i.child("openingTime").value.toString(),
                             i.child("closingTime").value.toString(),
-                            i.child("closingDay").value.toString()
+                            i.child("closingDay").value.toString(),
+                            i.child("locality2").value.toString()
                         )
                         if (currentCity.toLowerCase() == i.child("city").value.toString()) {
                             (shops as ArrayList<Upload>).add(obj)
@@ -326,7 +327,8 @@ class Home : AppCompatActivity() {
                             i.child("country").value.toString(),
                             i.child("openingTime").value.toString(),
                             i.child("closingTime").value.toString(),
-                            i.child("closingDay").value.toString()
+                            i.child("closingDay").value.toString(),
+                            i.child("locality2").value.toString()
                         )
                         if (currentCity.toLowerCase() == i.child("city").value.toString()) {
 
@@ -363,7 +365,8 @@ class Home : AppCompatActivity() {
                             i.country,
                             i.openingTime,
                             i.closingTime,
-                            i.closingDay
+                            i.closingDay,
+                            i.locality2
                         )
                         userDatabase.child(shopId).child("Categories")
                             .addValueEventListener(object : ValueEventListener {

@@ -5,372 +5,359 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MapsActivity_New">
-<RelativeLayout
-    android:id="@+id/rl_mapN"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
     <RelativeLayout
-        android:id="@+id/mapRel_new"
+        android:id="@+id/rl_mapN"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <fragment
-
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/mapRel_new"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_260sdp"
-            tools:context=".MapsActivity2" />
+            android:layout_height="wrap_content">
+
+            <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_260sdp"
+                tools:context=".MapsActivity2" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_pin"
+                android:translationY="-18dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtLocality_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="18dp"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/btnmap_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="18dp"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/txtCity_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="18dp"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/txtState_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="18dp"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/txtCountry_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="18dp"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/txtPincode_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="18dp"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:visibility="invisible" />
+        </RelativeLayout>
 
         <ImageView
-            android:contentDescription="@string/todo"
+            android:id="@+id/lo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_pin"
-            android:translationY="-18dp" />
-    </RelativeLayout>
+            android:layout_below="@id/mapRel_new"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_location_pin" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/txtLocality_new"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="18dp"
-            android:textAllCaps="false"
-            android:textColor="#000"
-            android:textSize="14sp"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/btnmap_new"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="18dp"
-            android:textAllCaps="false"
-            android:textColor="#000"
-            android:textSize="14sp"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/txtCity_new"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="18dp"
-            android:textAllCaps="false"
-            android:textColor="#000"
-            android:textSize="14sp"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/txtState_new"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="18dp"
-            android:textAllCaps="false"
-            android:textColor="#000"
-            android:textSize="14sp"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/txtCountry_new"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="18dp"
-            android:textAllCaps="false"
-            android:textColor="#000"
-            android:textSize="14sp"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/txtPincode_new"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="18dp"
-            android:textAllCaps="false"
-            android:textColor="#000"
-            android:textSize="14sp"
-            android:visibility="invisible" />
-    </RelativeLayout>
-
-    <ImageView
-        android:contentDescription="@string/todo"
-        android:id="@+id/lo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/mapRel_new"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_location_pin" />
-
-
-    <TextView
-        android:id="@+id/Locality_bold_new"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mapRel_new"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="9dp"
-        android:layout_toEndOf="@+id/lo"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/gorakhpur"
-        android:textColor="#000"
-        android:textSize="20sp" />
-
-    <TextView
-
-        android:id="@+id/localit_new"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lo"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/montserrat_medium"
-
-
-        android:text="@string/haraya"
-        android:textColor="#000000"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/State_new"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lo"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/localit_new"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/uttar_pradesh"
-        android:textColor="#000000"
-        android:textSize="12sp" />
-
-    <TextView
-
-        android:id="@+id/City_new"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lo"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/State_new"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/gorakhpur_1"
-        android:textColor="#000000"
-        android:textSize="12sp" />
-
-    <TextView
-
-        android:id="@+id/Pincode_new"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lo"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/City_new"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/_273016"
-        android:textColor="#000000"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/Country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lo"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/Pincode_new"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/india"
-        android:textSize="15sp"
-        android:visibility="invisible" />
-
-
-    <RelativeLayout
-        android:id="@+id/jk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/localit_new"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp">
-
-        <EditText
-            android:id="@+id/edtLocality_newr"
-            android:maxLines="1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/montserrat_medium"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:paddingStart="16dp"
-            android:textSize="13sp"
-            android:inputType="text"
-            tools:ignore="LabelFor,RtlSymmetry"
-            android:importantForAutofill="no" />
-
-        <TextView
+            android:id="@+id/Locality_bold_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
-            android:background="#fcfcfc"
-
+            android:layout_below="@+id/mapRel_new"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@+id/lo"
             android:fontFamily="@font/montserrat_medium"
-            android:paddingStart="2dp"
-            android:paddingEnd="2dp"
-            android:text="@string/village_locality"
+            android:text="Gorakhpur"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <TextView
+
+            android:id="@+id/localit_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lo"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_medium"
+
+
+            android:text="Haraya,"
+            android:textColor="#000000"
             android:textSize="12sp" />
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/nu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/jk"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="10dp">
-
-        <EditText
-            android:maxLines="1"
-            android:id="@+id/HouseNo_new"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/montserrat_medium"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:paddingStart="16dp"
-            android:textSize="13sp"
-            android:inputType="text"
-            tools:ignore="LabelFor,RtlSymmetry"
-            android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/State_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
-            android:background="#fcfcfc"
+            android:layout_below="@+id/lo"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/localit_new"
             android:fontFamily="@font/montserrat_medium"
-            android:paddingStart="2dp"
-            android:paddingEnd="2dp"
-            android:text="@string/house_flat_block_no"
+            android:text="Uttar Pradesh"
+            android:textColor="#000000"
             android:textSize="12sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/io"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nu"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="10dp">
-
-        <EditText
-            android:maxLines="1"
-            android:id="@+id/edtNearestLandmark_new"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/montserrat_medium"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:paddingStart="16dp"
-            android:textSize="13sp"
-            android:inputType="text"
-            tools:ignore="LabelFor,RtlSymmetry"
-            android:importantForAutofill="no" />
 
         <TextView
+
+            android:id="@+id/City_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
-            android:background="#fcfcfc"
+            android:layout_below="@+id/lo"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/State_new"
             android:fontFamily="@font/montserrat_medium"
-            android:paddingStart="2dp"
-            android:paddingEnd="2dp"
-            android:text="@string/nearest_landmark"
+            android:text="(Gorakhpur),"
+            android:textColor="#000000"
             android:textSize="12sp" />
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/MobileNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/io"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="10dp">
+        <TextView
 
-        <EditText
-            android:maxLines="1"
-            android:id="@+id/edtMobileNumber"
+            android:id="@+id/Pincode_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lo"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/City_new"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="273016"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lo"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/Pincode_new"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="India"
+            android:textSize="15sp"
+            android:visibility="invisible" />
+
+
+        <RelativeLayout
+            android:id="@+id/jk"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_36sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/localit_new"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:id="@+id/edtLocality_newr"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="Village/Locality*"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/nu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/jk"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/montserrat_medium"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:paddingStart="16dp"
-            android:textSize="13sp"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor,RtlSymmetry,TextFields"
-            android:inputType="text" />
+            android:layout_marginRight="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <EditText
+                android:maxLines="1"
+                android:id="@+id/HouseNo_new"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="House/Flat/Block No"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/io"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
-            android:background="#fcfcfc"
-            android:fontFamily="@font/montserrat_medium"
-            android:paddingStart="2dp"
-            android:paddingEnd="2dp"
-            android:text="@string/mobile_number"
-            android:textSize="12sp" />
+            android:layout_below="@+id/nu"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:maxLines="1"
+                android:id="@+id/edtNearestLandmark_new"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="Nearest Landmark"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/MobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/io"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:maxLines="1"
+                android:id="@+id/edtMobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:background="#fcfcfc"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="Mobile Number"
+                android:textSize="12sp" />
 
 
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/SaveAddress_new"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/MobileNumber"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_buttons"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Save And Proceed"
+            android:textColor="#fff"
+            android:textSize="15sp" />
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/SaveAddress_new"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_below="@id/MobileNumber"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_buttons"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/save_and_proceed"
-        android:textColor="#fff"
-        android:textSize="15sp" />
-</RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_retryMapN"
         android:layout_width="match_parent"
@@ -385,7 +372,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/oh_no"
+            android:text="Oh No.."
             android:textSize="@dimen/_20ssp" />
 
 
@@ -398,8 +385,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/no_internet_connection"
-            android:textSize="@dimen/_15ssp" />
+            android:text="No Internet Connection"
+            android:textSize="@dimen/_20ssp" />
 
 
         <TextView
@@ -410,7 +397,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/please_connect_to_internet"
+            android:text="Please connect to internet"
             android:textSize="@dimen/_15ssp" />
 
         <Button
@@ -424,7 +411,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
-            android:text="@string/retry"
+            android:text="Retry"
             android:textColor="#de4500"
             android:textSize="@dimen/_15ssp" />
 
