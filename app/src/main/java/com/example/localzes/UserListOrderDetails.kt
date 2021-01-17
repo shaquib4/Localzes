@@ -144,7 +144,6 @@ class UserListOrderDetails : AppCompatActivity() {
                     }
                     "Accepted" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.green))
-                        btnPay.visibility = View.VISIBLE
                     }
                     "Out For Delivery" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.acidGreen))
@@ -165,6 +164,12 @@ class UserListOrderDetails : AppCompatActivity() {
                     deliveryFeeUser.text = "Not Available(updated soon)"
                 }
                 orderDateListUser.text = formattedDate
+                paymentStatusUser.text = snapshot.child("paymentMode").value.toString()
+                if (snapshot.child("paymentMode").value.toString() == "" && snapshot.child("orderStatus").value.toString() == "Accepted") {
+                    btnPay.visibility = View.VISIBLE
+                } else {
+                    btnPay.visibility = View.GONE
+                }
                 val reference: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("seller")
                         .child(orderToId.toString())

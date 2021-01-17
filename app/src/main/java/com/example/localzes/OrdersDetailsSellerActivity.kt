@@ -63,7 +63,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         orderByTv = intent.getStringExtra("orderByTv")
         txtOrderId = findViewById(R.id.txtOrderId)
         etDelivery = findViewById(R.id.etDeliveryCharge)
-        paymentModeInfo=findViewById(R.id.paymentStatusDetailsSeller)
+        paymentModeInfo = findViewById(R.id.paymentStatusDetailsSeller)
         checkboxComplete = findViewById(R.id.checkbox_Completed)
         imgMakeCallCustomer = findViewById(R.id.imgMakeCallCustomer)
         txtOrderDate = findViewById(R.id.txtOrderDate)
@@ -187,7 +187,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                     totalAmount.text = "₹${orderCost}"
                 }
                 txtOrderDate.text = formattedDate
-                paymentModeInfo.text = snapshot.child("paymentMode").toString()
+                paymentModeInfo.text = snapshot.child("paymentMode").value.toString()
             }
         })
         if (ConnectionManager().checkConnectivity(this@OrdersDetailsSellerActivity)) {
@@ -391,7 +391,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         headers["orderStatus"] = selectedItem
         headers["orderCost"] = totalAmount.toString()
         headers["deliveryFee"] = deliveryFee.toString()
-        totalWith = totalAmount + deliveryFee
+        totalWith = totalAmount
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
         val uid = user!!.uid
