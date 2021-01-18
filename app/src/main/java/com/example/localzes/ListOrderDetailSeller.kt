@@ -41,6 +41,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var adapterListOrder: AdapterSellerListOrder
     private lateinit var imgBackList: ImageView
     private lateinit var shopAuth: FirebaseAuth
+    private var bools:Boolean=false
     private lateinit var imgListEdit: ImageView
     private lateinit var list: List<ModelList>
     private lateinit var etDeliveryList: EditText
@@ -103,7 +104,11 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 customerMobileNo = snapshot.child("orderByMobile").value.toString()
-                amountTv.text = "₹${snapshot.child("orderCost").value.toString()}"
+                if (snapshot.child("deliveryFee").exists()){
+               bools=true}
+                if (bools==true){
+                    amountTv.text = "₹${snapshot.child("orderCost").value.toString()}"
+                }
             }
 
         })
@@ -155,7 +160,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
                                 totalCost += j
                             }
                         }
-
+                       if (bools==false){
+                           amountTv.text="₹${totalCost}"
+                       }
                         itemsTv.text = snapshot.childrenCount.toString()
                         val headers = HashMap<String, Any>()
                         try {

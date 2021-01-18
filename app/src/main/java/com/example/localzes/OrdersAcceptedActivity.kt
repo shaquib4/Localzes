@@ -100,8 +100,8 @@ class OrdersAcceptedActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                searchCartAcceptedOrders(s.toString())
 
+                searchListAcceptedOrders(s.toString())
             }
 
         })
@@ -115,7 +115,7 @@ class OrdersAcceptedActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                searchListAcceptedOrders(s.toString())
+                searchCartAcceptedOrders(s.toString())
             }
 
         })
