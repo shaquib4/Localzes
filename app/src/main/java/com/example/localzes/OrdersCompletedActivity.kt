@@ -50,7 +50,6 @@ class OrdersCompletedActivity : AppCompatActivity() {
         searchCartCompletedOrders = findViewById(R.id.searchCartCompletedOrders)
         searchListCompletedOrders = findViewById(R.id.searchListCompletedOrders)
         back = findViewById(R.id.imgBackCompletedOrders)
-        searchListCompletedOrders.visibility = View.GONE
         recyclerOrdersCompleted.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")

@@ -41,7 +41,6 @@ class SellerOrdersActivity : AppCompatActivity() {
         listOrders = ArrayList<ModalSellerOrderList>()
         rl_search_Pending = findViewById(R.id.search_act_Pending)
         rl_search_Pending1 = findViewById(R.id.search_act_Pending1)
-        rl_search_Pending1.visibility = View.GONE
         recyclerShopOrders.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser

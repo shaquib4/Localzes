@@ -49,7 +49,6 @@ class OrdersAcceptedActivity : AppCompatActivity() {
         orderAccepted = findViewById(R.id.rl_Accepted_Orders)
         editSearchCartAccepted = findViewById(R.id.searchCartAccepted)
         editSearchListAccepted = findViewById(R.id.searchListAccepted)
-        editSearchListAccepted.visibility = View.GONE
         listOrders = ArrayList<ModalSellerOrderList>()
         recyclerOrdersAccepted.layoutManager = LinearLayoutManager(this)
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
