@@ -214,9 +214,7 @@ class Home_seller : AppCompatActivity() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     t7 = snapshot.childrenCount.toInt()
-                    for (i in snapshot.children) {
-                        cartIncome += (snapshot.child("orderCost").value.toString()).toDouble()
-                    }
+
                 }
 
             })
@@ -230,12 +228,58 @@ class Home_seller : AppCompatActivity() {
                     t8 = snapshot.childrenCount.toInt()
                     t = t7 + t8
                     ordersCompleted.text = t.toString()
-                    for (i in snapshot.children) {
-                        listIncome += (snapshot.child("orderCost").value.toString()).toDouble()
-                    }
-                    totalIncome.text = "₹${(cartIncome + listIncome)}"
+
                 }
             })
+        orderDatabaseReference.child("OrdersLists").addValueEventListener(object:ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var finalPriceOfList = arrayListOf<Double>()
+                for (i in snapshot.children){
+                    finalPriceOfList.clear()
+                    val cost=i.child("orderCost").value.toString()
+                    val status=i.child("orderStatus").value.toString()
+                    if (status=="Completed"){
+                        finalPriceOfList.add(cost.toDouble())
+                    }
+                    for (j in finalPriceOfList){
+                        listIncome+=j
+                    }
+
+                }
+
+            }
+        })
+
+        orderDatabaseReference.child("Orders").addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var finalPriceOfCart = arrayListOf<Double>()
+                for (i in snapshot.children){
+                    finalPriceOfCart.clear()
+                    val cost=i.child("orderCost").value.toString()
+                    val status=i.child("orderStatus").value.toString()
+                    if (status=="Completed"){
+                        finalPriceOfCart.add(cost.toDouble())
+                    }
+                    for (k in finalPriceOfCart){
+                        cartIncome+=k
+                    }
+                    val l=cartIncome+listIncome
+                    totalIncome.text=l.toString()
+                 }
+
+                }
+
+
+        })
+
         OrderAcc.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_HomeSeller.visibility = View.VISIBLE
