@@ -121,12 +121,17 @@
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
-
+        <RelativeLayout
+            android:id="@+id/searchs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_top"
+            android:layout_marginTop="@dimen/_5sdp">
         <EditText
             android:id="@+id/search_act_Pending"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
-            android:layout_below="@id/rl_top"
+
             android:layout_margin="5dp"
             android:background="@drawable/bg_product_shop"
             android:drawableStart="@drawable/ic_search"
@@ -140,7 +145,7 @@
             android:id="@+id/search_act_Pending1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
-            android:layout_below="@id/rl_top"
+
             android:layout_margin="5dp"
             android:background="@drawable/bg_product_shop"
             android:drawableStart="@drawable/ic_search"
@@ -149,7 +154,7 @@
             tools:ignore="RtlSymmetry"
             android:importantForAutofill="no"
             android:inputType="number" />
-
+        </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_Pending_Orders"
             android:layout_width="match_parent"
@@ -180,7 +185,7 @@
             android:id="@+id/recyclerShopOrders"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rl_top"
+            android:layout_below="@id/searchs"
             android:visibility="gone"
             tools:listitem="@layout/row_order_seller" />
     </RelativeLayout>

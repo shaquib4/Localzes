@@ -138,12 +138,16 @@
                     android:textSize="@dimen/_14ssp" />
             </RelativeLayout>
         </LinearLayout>
-
+        <RelativeLayout
+            android:id="@+id/searchs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_create"
+            android:layout_marginTop="@dimen/_5sdp">
         <EditText
             android:id="@+id/searchCartCompletedOrders"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
-            android:layout_below="@+id/rl_create"
             android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/bg_product_shop"
             android:hint="Search Cart Orders..."
@@ -156,7 +160,6 @@
             android:id="@+id/searchListCompletedOrders"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
-            android:layout_below="@+id/rl_create"
             android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/bg_product_shop"
             android:hint="Search List Orders..."
@@ -164,12 +167,12 @@
             android:maxLines="1"
             android:paddingStart="@dimen/_20sdp"
             tools:ignore="RtlSymmetry" />
-
+        </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerOrdersCompleted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/searchCartCompletedOrders"
+            android:layout_below="@id/searchs"
             android:visibility="gone"
             tools:listitem="@layout/row_order_seller" />
     </RelativeLayout>
