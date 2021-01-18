@@ -103,6 +103,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 customerMobileNo = snapshot.child("orderByMobile").value.toString()
+                amountTv.text = "₹${snapshot.child("orderCost").value.toString()}"
             }
 
         })
@@ -154,7 +155,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                                 totalCost += j
                             }
                         }
-                        amountTv.text = "₹${totalCost}"
+
                         itemsTv.text = snapshot.childrenCount.toString()
                         val headers = HashMap<String, Any>()
                         try {
