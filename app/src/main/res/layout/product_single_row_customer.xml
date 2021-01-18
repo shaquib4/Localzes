@@ -6,12 +6,12 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="5dp"
         android:id="@+id/card1_customer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:background="@drawable/bg_product_shop">
+        android:background="@drawable/bg_product_shop"
+        app:cardCornerRadius="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -41,26 +41,26 @@
 
 
             <ImageView
-                android:contentDescription="@string/todo"
                 android:id="@+id/imgProduct_customer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_130sdp"
+                android:contentDescription="@string/todo"
                 android:scaleType="centerCrop"
                 android:src="@drawable/lanju" />
 
             <View
+                android:id="@+id/v1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:id="@+id/v1"
                 android:layout_below="@id/imgProduct_customer"
-                android:background="#d3d3d3"/>
+                android:background="#d3d3d3" />
 
             <TextView
                 android:id="@+id/txtStock_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignTop="@id/txtProductPrice_customer"
                 android:layout_alignParentEnd="true"
-              android:layout_alignTop="@id/txtProductPrice_customer"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/stock_in"
@@ -68,28 +68,27 @@
                 android:textSize="@dimen/_8ssp" />
 
 
+            <!-- <ImageView
+                 android:id="@+id/imgRating_customer"
+                 android:layout_marginTop="5dp"
+                 android:layout_width="@dimen/_15sdp"
+                 android:layout_height="@dimen/_15sdp"
+                 android:layout_below="@id/imgProduct_customer"
+                 android:layout_toStartOf="@+id/txtRatingShop_customer"
+                 android:src="@drawable/ic_rating" />
 
-           <!-- <ImageView
-                android:id="@+id/imgRating_customer"
-                android:layout_marginTop="5dp"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:layout_below="@id/imgProduct_customer"
-                android:layout_toStartOf="@+id/txtRatingShop_customer"
-                android:src="@drawable/ic_rating" />
-
-            <TextView
-                android:id="@+id/txtRatingShop_customer"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/txtProductTitle_customer"
-                android:layout_alignParentEnd="true"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="4.5/5"
-                android:textColor="#de4500"
-                android:textSize="@dimen/_10ssp" />-->
+             <TextView
+                 android:id="@+id/txtRatingShop_customer"
+                 android:layout_marginTop="5dp"
+                 android:layout_marginEnd="5dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignTop="@+id/txtProductTitle_customer"
+                 android:layout_alignParentEnd="true"
+                 android:fontFamily="@font/montserrat_bold"
+                 android:text="4.5/5"
+                 android:textColor="#de4500"
+                 android:textSize="@dimen/_10ssp" />-->
 
             <Button
                 android:id="@+id/btnAddItem"
@@ -97,25 +96,24 @@
                 android:layout_height="@dimen/_20sdp"
                 android:layout_below="@id/txtProductOfferPrice"
                 android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
                 android:background="@drawable/bg_add_item"
                 android:elevation="0dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:gravity="center"
 
-                android:layout_margin="5dp"
+                android:gravity="center"
                 android:text="@string/add_"
                 android:textAllCaps="false"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_10ssp"
-                />
+                android:textSize="@dimen/_10ssp" />
 
 
             <TextView
                 android:id="@+id/txtProductTitle_customer"
                 android:layout_width="match_parent"
-                android:layout_alignParentStart="true"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/v1"
+                android:layout_alignParentStart="true"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/electronics_accessories"
@@ -137,39 +135,39 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="@dimen/_6sdp"
-                android:layout_alignEnd="@id/txtProductOfferPrice"
                 android:layout_alignStart="@id/txtProductOfferPrice"
                 android:layout_alignTop="@id/txtProductOfferPrice"
+                android:layout_alignEnd="@id/txtProductOfferPrice"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:layout_toEndOf="@id/txtProductOfferPrice"
                 android:background="#d3d3d3" />
 
             <TextView
-                android:paddingHorizontal="5dp"
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/txtProductTitle_customer"
 
-                android:layout_marginStart="5dp"
-               android:layout_below="@id/txtProductPrice_customer"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/txtProductPrice_customer"
                 android:fontFamily="@font/montserrat_medium"
-
+                android:paddingHorizontal="5dp"
                 android:text="@string/_1099"
                 android:textColor="#d3d3d3"
-                android:textSize="@dimen/_8ssp" />
+                android:textSize="@dimen/_10ssp" />
 
 
             <LinearLayout
-                android:visibility="invisible"
-
                 android:id="@+id/btnLinear"
-                android:layout_below="@id/txtProductOfferPrice"
-                android:layout_centerHorizontal="true"
+
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_20sdp"
-              android:layout_margin="5dp"
+                android:layout_below="@id/txtProductOfferPrice"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
                 android:background="#ffffff"
                 android:orientation="horizontal"
+                android:visibility="invisible"
                 android:weightSum="8">
 
                 <Button
