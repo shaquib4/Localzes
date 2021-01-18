@@ -181,7 +181,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 txtOrderId.text = "OD${orderId}"
                 txtOrderStatus.text = orderStatus
                 totalCost = orderCost.toDouble()
-                if (snapshot.child("deliveryFee").value.toString() != null) {
+                if (snapshot.child("deliveryFee").exists()) {
                     totalAmount.text = "₹${orderCost}(Including Delivery Fee)"
                 } else {
                     totalAmount.text = "₹${orderCost}"
