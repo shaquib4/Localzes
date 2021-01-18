@@ -157,7 +157,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         amountTv.text = "₹${totalCost}"
                         itemsTv.text = snapshot.childrenCount.toString()
                         val headers = HashMap<String, Any>()
-                        headers["orderCost"] = totalCost
+                        try {
+                            headers["orderCost"] =
+                                (totalCost + etDeliveryList.text.toString().toDouble()).toString()
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+
                         databaseRef.child(orderId).updateChildren(headers)
                             .addOnSuccessListener {
                                 ref.child(orderId).updateChildren(headers)
@@ -235,12 +241,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
                         }
 
-                        override fun beforeTextChanged(
-                            s: CharSequence?,
-                            start: Int,
-                            count: Int,
-                            after: Int
-                        ) {
+                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
                         }
 
