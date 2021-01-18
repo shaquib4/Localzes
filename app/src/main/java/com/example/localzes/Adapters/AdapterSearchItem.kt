@@ -17,11 +17,12 @@ import com.example.localzes.UserProductsActivity
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
-class AdapterSearchItem(val context: Context,private val search:List<Upload>):RecyclerView.Adapter<AdapterSearchItem.HolderSearchItem>() {
+class AdapterSearchItem(val context: Context, private val search: List<Upload>) :
+    RecyclerView.Adapter<AdapterSearchItem.HolderSearchItem>() {
     class HolderSearchItem(view: View) : RecyclerView.ViewHolder(view) {
-        val shopImage:ImageView=view.findViewById(R.id.productImage)
-        val shopName:TextView=view.findViewById(R.id.productName)
-        val shopAddress:TextView=view.findViewById(R.id.price)
+        val shopImage: ImageView = view.findViewById(R.id.productImage)
+        val shopName: TextView = view.findViewById(R.id.productName)
+        val shopAddress: TextView = view.findViewById(R.id.price)
 
     }
 
@@ -34,14 +35,17 @@ class AdapterSearchItem(val context: Context,private val search:List<Upload>):Re
     }
 
     override fun getItemCount(): Int {
-       return search.size
+        return search.size
     }
 
     override fun onBindViewHolder(holder: HolderSearchItem, position: Int) {
-        val searchItem=search[position]
-        holder.shopName.text=searchItem.shop_name.substring(0,1).toUpperCase()+searchItem.shop_name.substring(1)
-        try{holder.shopAddress.text=searchItem.locality.substring(0,1).toUpperCase()+
-                searchItem.locality.substring(1)}catch (e:Exception){
+        val searchItem = search[position]
+        holder.shopName.text =
+            searchItem.shop_name.substring(0, 1).toUpperCase() + searchItem.shop_name.substring(1)
+        try {
+            holder.shopAddress.text = searchItem.locality.substring(0, 1).toUpperCase() +
+                    searchItem.locality.substring(1)
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
@@ -64,20 +68,24 @@ class AdapterSearchItem(val context: Context,private val search:List<Upload>):Re
                         holder.shopImage.colorFilter = filter
                         holder.itemView.isClickable = false
                     }
-                } catch (e: java.lang.Exception) {
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
 
             }
         })
 
-      try{  Picasso.get().load(searchItem.imageUrl).into(holder.shopImage)}catch (e:java.lang.Exception){
-          e.printStackTrace()
-      }
-        holder.itemView.setOnClickListener{
-            val intent= Intent(context,
-                UserProductsActivity::class.java)
-            intent.putExtra("shopId",searchItem.shopId)
+        try {
+            Picasso.get().load(searchItem.imageUrl).into(holder.shopImage)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        holder.itemView.setOnClickListener {
+            val intent = Intent(
+                context,
+                UserProductsActivity::class.java
+            )
+            intent.putExtra("shopId", searchItem.shopId)
             context.startActivity(intent)
 
         }

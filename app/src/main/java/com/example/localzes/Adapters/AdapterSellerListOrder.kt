@@ -151,12 +151,7 @@ class AdapterSellerListOrder(
 
                             }
 
-                            override fun onTextChanged(
-                                s: CharSequence?,
-                                start: Int,
-                                before: Int,
-                                count: Int
-                            ) {
+                            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                                 priceEdit(s.toString(), sellerOrderList.itemId)
                             }
                         })

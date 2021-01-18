@@ -26,8 +26,8 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
         val oderBy: TextView = view.findViewById(R.id.txt_OrderedBy)
         val cuMobileNum: TextView = view.findViewById(R.id.txt_MobileOrderedBy)
         val orderId: TextView = view.findViewById(R.id.txt_orderIdTv)
-        val cod: TextView = view.findViewById(R.id.txt_Cod1)
-        val paid: TextView = view.findViewById(R.id.txt_Cod2)
+        val cod: TextView = view.findViewById(R.id.txt_Cod1List)
+        val paid: TextView = view.findViewById(R.id.txt_Cod2List)
         val orderStatus: TextView = view.findViewById(R.id.txt_orderStatusTv)
         val orderTime: TextView = view.findViewById(R.id.txt_orderDateTv)
 
@@ -65,6 +65,20 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
             holder.totalCost.text = "Please update total Amount"
         } else {
             holder.totalCost.text = "₹${sellerOrder.orderCost}"
+        }
+        when (sellerOrder.paymentMode) {
+            "" -> {
+                holder.paid.visibility = View.GONE
+                holder.cod.visibility = View.GONE
+            }
+            "Cash on Delivery" -> {
+                holder.paid.visibility = View.GONE
+                holder.cod.visibility = View.VISIBLE
+            }
+            else -> {
+                holder.cod.visibility = View.GONE
+                holder.paid.visibility = View.VISIBLE
+            }
         }
 
         holder.oderBy.text = sellerOrder.orderByName

@@ -27,6 +27,7 @@ import com.example.localzes.Seller_Products
 import com.example.localzes.UpdateProductDetailsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
@@ -137,7 +138,7 @@ class AdapterSellerProducts(
                 UpdateProductDetailsActivity::class.java
             )
             intent.putExtra("productId", products.productId)
-            intent.putExtra("productCat",products.productCategory)
+            intent.putExtra("productCat", products.productCategory)
             context.startActivity(intent)
             (context as Seller_Products).finish()
         }
@@ -151,6 +152,8 @@ class AdapterSellerProducts(
         val user = userAuth.currentUser
         val uid = user!!.uid
         val productId = products_seller[position].productId
+        val storage =
+            FirebaseStorage.getInstance().getReferenceFromUrl(products_seller[position].imageUrl)
         val database =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
         database.orderByChild("productId").equalTo(productId)
@@ -163,8 +166,10 @@ class AdapterSellerProducts(
                     for (i in snapshot.children) {
                         i.ref.removeValue()
                     }
-                    Toast.makeText(context, "Product Removed successfully", Toast.LENGTH_SHORT)
-                        .show()
+                    storage.delete().addOnSuccessListener {
+                        Toast.makeText(context, "Product Removed successfully", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                     (context as Seller_Products).recreate()
                 }
             })

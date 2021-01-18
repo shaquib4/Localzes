@@ -80,7 +80,6 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txt_orderAmountTv"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_toStartOf="@+id/txt_Cod1"
                         android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/ratnakar_chaurasiya"
@@ -92,7 +91,6 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txt_OrderedBy"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_toStartOf="@+id/txtCod1"
                         android:layout_toEndOf="@+id/imgProduct1"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/_91_7518894470"
@@ -116,7 +114,7 @@
 
                     <TextView
 
-                        android:id="@+id/txt_Cod1"
+                        android:id="@+id/txt_Cod1List"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txt_orderIdTv"
@@ -130,7 +128,7 @@
                         android:textSize="@dimen/_13ssp" />
 
                     <TextView
-                        android:id="@+id/txt_Cod2"
+                        android:id="@+id/txt_Cod2List"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txt_orderIdTv"

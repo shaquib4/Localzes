@@ -71,7 +71,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                             .child(shopId.toString())
                             .child("OrdersLists").child(orderId.toString())
                     val headers = HashMap<String, Any>()
-                    headers["paymentMode"] = "Cash on Delivery"
+                    headers["paymentMode"] = "Unpaid(Cash on Delivery)"
                     dataReference.updateChildren(headers).addOnCompleteListener {
                         val userData: DatabaseReference =
                             FirebaseDatabase.getInstance().reference.child("users")

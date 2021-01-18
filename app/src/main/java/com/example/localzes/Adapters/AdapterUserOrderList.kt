@@ -55,7 +55,7 @@ class AdapterUserOrderList(
                     if (userOrderList.itemCost == 0.toString()) {
                         holder.txtPriceCustomer.text = "Not Available"
                     } else {
-                        holder.txtPriceCustomer.text = userOrderList.itemCost
+                        holder.txtPriceCustomer.text = "₹"+userOrderList.itemCost
                     }
                 } else {
                     holder.txtPriceCustomer.visibility = View.GONE

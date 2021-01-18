@@ -231,7 +231,7 @@ class PaymentActivity : AppCompatActivity() {
                             FirebaseDatabase.getInstance().reference.child("seller")
                                 .child(shopId.toString()).child("Orders").child(orderId.toString())
                         val headers = HashMap<String, Any>()
-                        headers["paymentMode"] = "Pay with Paytm"
+                        headers["paymentMode"] = "Paid(Pay with Paytm)"
                         dataReference.updateChildren(headers).addOnSuccessListener {
                             val userData: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("users")
@@ -250,7 +250,7 @@ class PaymentActivity : AppCompatActivity() {
                                 .child(shopId.toString()).child("OrdersLists")
                                 .child(orderId.toString())
                         val headers = HashMap<String, Any>()
-                        headers["paymentMode"] = "Pay with Paytm"
+                        headers["paymentMode"] = "Paid(Pay with Paytm)"
                         dataReference.updateChildren(headers).addOnSuccessListener {
                             val userData: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("users")
