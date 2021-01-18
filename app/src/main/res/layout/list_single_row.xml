@@ -30,6 +30,7 @@
         android:textSize="@dimen/_14ssp"
         android:singleLine="true"
         android:inputType="text"
+        android:hint="Enter Item Name"
         android:importantForAutofill="no"
         tools:ignore="LabelFor" />
 
@@ -44,6 +45,7 @@
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:inputType="text"
+        android:hint="Enter Item Quantity"
         android:paddingTop="@dimen/_2sdp"
         android:importantForAutofill="no" />
 

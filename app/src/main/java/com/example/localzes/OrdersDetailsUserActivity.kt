@@ -142,7 +142,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 orderStatusUser.text = orderStatus
                 orderDateUser.text = formattedDate
                 paymentModeInfo.text = snapshot.child("paymentMode").value.toString()
-                if (snapshot.child("deliveryFee").value.toString() != null) {
+                if (snapshot.child("deliveryFee").exists()) {
                     deliveryFeeUser.text = "₹" + snapshot.child("deliveryFee").value.toString()
                     totalAmountUser.text = "₹${orderCost}(Including Delivery Fee)"
                 } else {

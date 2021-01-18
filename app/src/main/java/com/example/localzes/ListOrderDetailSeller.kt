@@ -239,7 +239,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 orderDateTv.text = formattedDate
 
                 deliveryAddressTv.text = snapshot.child("deliveryAddress").value.toString()
-                if (snapshot.child("deliveryFee").value.toString() != null) {
+                if (snapshot.child("deliveryFee").exists()) {
                     deliveryFee.text = "₹" + snapshot.child("deliveryFee").value.toString()
                     paymentStatus.text = snapshot.child("paymentMode").value.toString()
                 } else {

@@ -82,7 +82,7 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
         }
 
         holder.oderBy.text = sellerOrder.orderByName
-        holder.orderId.text = sellerOrder.orderId
+        holder.orderId.text = "OD${sellerOrder.orderId}"
         holder.orderStatus.text = sellerOrder.orderStatus
         val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
         val date = Date(sellerOrder.orderTime.toLong())
