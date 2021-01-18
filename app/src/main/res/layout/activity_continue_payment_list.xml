@@ -104,12 +104,22 @@
                     android:background="#d3d3d3" />
 
 
-                <ImageView
+                <!--<ImageView
                     android:id="@+id/imgPaytm"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_12sdp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:contentDescription="@string/todo"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/paytm" />-->
+                <ImageView
+                    android:id="@+id/imgPaytm"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_below="@id/view2"
+                    android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/_10sdp"
                     android:contentDescription="@string/todo"
                     android:scaleType="fitXY"
