@@ -241,7 +241,7 @@
                     android:id="@+id/btnUpdateProduct"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_32sdp"
-                    android:layout_below="@+id/linearLayout5"
+                    android:layout_below="@+id/linearLayout4"
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
@@ -292,7 +292,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+  <!--              <LinearLayout
                     android:id="@+id/linearLayout5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -325,7 +325,7 @@
                             android:importantForAutofill="no"
                             android:inputType="text" />
 
-                </LinearLayout>
+                </LinearLayout>-->
 
 
             </RelativeLayout>
