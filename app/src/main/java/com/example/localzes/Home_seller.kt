@@ -35,6 +35,10 @@ class Home_seller : AppCompatActivity() {
     private var t7: Int = 0
     private var t8: Int = 0
     private var t: Int = 0
+    private var cartOrders: Int = 0
+    private var listOrders: Int = 0
+    private var cartIncome: Double = 0.0
+    private var listIncome: Double = 0.0
     private var backPressedTime = 0L
 
     //private lateinit var storeViews:TextView
@@ -107,6 +111,28 @@ class Home_seller : AppCompatActivity() {
             return@setOnNavigationItemSelectedListener false
         }
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        orderDatabaseReference.child("Orders").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                cartOrders = snapshot.childrenCount.toInt()
+            }
+
+        })
+        orderDatabaseReference.child("OrdersLists")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    listOrders = snapshot.childrenCount.toInt()
+                    totalOrders.text = (cartOrders + listOrders).toString()
+                }
+
+            })
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Pending")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -188,6 +214,9 @@ class Home_seller : AppCompatActivity() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     t7 = snapshot.childrenCount.toInt()
+                    for (i in snapshot.children) {
+                        cartIncome += (snapshot.child("orderCost").value.toString()).toDouble()
+                    }
                 }
 
             })
@@ -201,6 +230,10 @@ class Home_seller : AppCompatActivity() {
                     t8 = snapshot.childrenCount.toInt()
                     t = t7 + t8
                     ordersCompleted.text = t.toString()
+                    for (i in snapshot.children) {
+                        listIncome += (snapshot.child("orderCost").value.toString()).toDouble()
+                    }
+                    totalIncome.text = "₹${(cartIncome + listIncome)}"
                 }
             })
         OrderAcc.setOnClickListener {
