@@ -241,7 +241,7 @@ class OrdersCompletedActivity : AppCompatActivity() {
 
 
                         )
-                        if (i.child("orderStatus").value.toString() == "Pending") {
+                        if (i.child("orderStatus").value.toString() == "Completed") {
                             (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
                         }
                     }

@@ -41,7 +41,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var adapterListOrder: AdapterSellerListOrder
     private lateinit var imgBackList: ImageView
     private lateinit var shopAuth: FirebaseAuth
-    private var bools:Boolean=false
+    private var bools: Boolean = false
     private lateinit var imgListEdit: ImageView
     private lateinit var list: List<ModelList>
     private lateinit var etDeliveryList: EditText
@@ -61,6 +61,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
     private lateinit var imgMakeCustomerCall: ImageView
     private lateinit var checkboxListComplete: CheckBox
+    private lateinit var llAcceptConfirm: LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_order_detail_seller)
@@ -78,6 +79,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         paymentStatus = findViewById(R.id.paymentStatusSeller)
         etDeliveryList = findViewById(R.id.etDeliveryChargeList)
         imgBackList = findViewById(R.id.imgBackListOrderDetails)
+        llAcceptConfirm = findViewById(R.id.rlAcceptConfirm)
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
@@ -104,9 +106,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 customerMobileNo = snapshot.child("orderByMobile").value.toString()
-                if (snapshot.child("deliveryFee").exists()){
-               bools=true}
-                if (bools==true){
+                if (snapshot.child("deliveryFee").exists()) {
+                    bools = true
+                }
+                if (bools == true) {
                     amountTv.text = "₹${snapshot.child("orderCost").value.toString()}"
                 }
             }
@@ -160,9 +163,9 @@ class ListOrderDetailSeller : AppCompatActivity() {
                                 totalCost += j
                             }
                         }
-                       if (bools==false){
-                           amountTv.text="₹${totalCost}"
-                       }
+                        if (bools == false) {
+                            amountTv.text = "₹${totalCost}"
+                        }
                         itemsTv.text = snapshot.childrenCount.toString()
                         val headers = HashMap<String, Any>()
                         try {
@@ -199,14 +202,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         checkboxListComplete.visibility = View.GONE
                         orderStatusTv.setTextColor(resources.getColor(R.color.colorAccent))
                         imgListEdit.visibility = View.GONE
-
-                        acceptConfirm.visibility = View.VISIBLE
+                        llAcceptConfirm.visibility = View.VISIBLE
                     }
                     "Accepted" -> {
                         checkboxListComplete.visibility = View.VISIBLE
                         orderStatusTv.setTextColor(resources.getColor(R.color.acidGreen))
                         imgListEdit.visibility = View.VISIBLE
-                        acceptConfirm.visibility = View.GONE
+                        llAcceptConfirm.visibility = View.GONE
 
                         imgListEdit.setOnClickListener {
                             editOrderStatusDialog()
@@ -216,7 +218,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         checkboxListComplete.visibility = View.GONE
                         orderStatusTv.setTextColor(resources.getColor(R.color.red))
                         imgListEdit.visibility = View.GONE
-                        acceptConfirm.visibility = View.GONE
+                        llAcceptConfirm.visibility = View.GONE
 
 
                     }
@@ -224,7 +226,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         checkboxListComplete.visibility = View.VISIBLE
                         orderStatusTv.setTextColor(resources.getColor(R.color.green))
                         imgListEdit.visibility = View.VISIBLE
-                        acceptConfirm.visibility = View.GONE
+                        llAcceptConfirm.visibility = View.GONE
                         imgListEdit.setOnClickListener {
                             newEditOrderStatusDialog()
                         }
@@ -232,7 +234,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     "Completed" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.green))
                         imgListEdit.visibility = View.GONE
-                        acceptConfirm.visibility = View.GONE
+                        llAcceptConfirm.visibility = View.GONE
                     }
                 }
                 orderStatusTv.text = orderStatus
@@ -249,7 +251,12 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
                         }
 
-                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                        override fun beforeTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            count: Int,
+                            after: Int
+                        ) {
 
                         }
 

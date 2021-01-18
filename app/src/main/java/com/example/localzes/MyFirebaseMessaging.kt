@@ -144,7 +144,8 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             intent.putExtra("orderTo", sellerUid)
             intent.putExtra("totalCost", totalCost)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
         }
         if (notificationType == "OrderStatusChanged") {
             intent = Intent(this, OrdersDetailsUserActivity::class.java)
@@ -152,7 +153,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             intent.putExtra("orderTo", sellerUid)
             intent.putExtra("totalAmount", totalCost)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         }
         val pendingIntent: PendingIntent =
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
@@ -166,6 +167,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             .setContentTitle(notificationTitle)
             .setContentText(notificationDescription)
             .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
 
@@ -194,21 +196,21 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 intent.putExtra("orderIdTv", orderId)
                 intent.putExtra("orderByTv", buyerId)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
             "New Order List" -> {
                 intent = Intent(this, ListOrderDetailSeller::class.java)
                 intent.putExtra("orderId", orderId)
                 intent.putExtra("orderBy", buyerId)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
             "PaymentMethod" -> {
                 intent = Intent(this, ListOrderDetailSeller::class.java)
                 intent.putExtra("orderId", orderId)
                 intent.putExtra("orderBy", buyerId)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
         }
         val pendingIntent: PendingIntent =
@@ -222,6 +224,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             .setLargeIcon(largeIcon)
             .setContentTitle(notificationTitle)
             .setContentText(notificationDescription)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
             .setSound(notificationSoundUri)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
