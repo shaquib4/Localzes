@@ -49,6 +49,7 @@ class continue_payment : AppCompatActivity() {
         totalCost = intent.getStringExtra("totalCost")
         uid = intent.getStringExtra("orderBy")
         orderId = intent.getStringExtra("orderId")
+        orderDeliveryFee=intent.getStringExtra("deliveryFee")
         cartProducts = ArrayList<UserCartDetails>()
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
