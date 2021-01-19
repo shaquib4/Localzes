@@ -36,13 +36,16 @@ class PaymentActivity : AppCompatActivity() {
     var send: Button? = null
     var TAG = "main"
     private var shopId: String? = "100"
-    private var totalCost: String? = "200"
+    private var totalCost: String? = ""
+    private var deliveryAmount:String?=""
     private var uid: String? = "400"
     private var orderId: String? = "800"
     private var mode: String? = "900"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
+    private lateinit var itemCost:TextView
+    private lateinit var deliveryFee:TextView
     val UPI_PAYMENT = 0
     private lateinit var userDatabase: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +56,13 @@ class PaymentActivity : AppCompatActivity() {
         progressDialog.setCanceledOnTouchOutside(false)
         shopId = intent.getStringExtra("shopId")
         totalCost = intent.getStringExtra("totalCost")
+        deliveryAmount=intent.getStringExtra("deliveryFee")
         uid = intent.getStringExtra("orderBy")
         orderId = intent.getStringExtra("orderId")
         mode = intent.getStringExtra("platform")
         cartProducts = ArrayList<UserCartDetails>()
         send = findViewById<View>(R.id.btnPayNow) as Button
-        amount = findViewById<View>(R.id.txtPayAmount) as TextView
+        amount = findViewById<View>(R.id.txtToralPrice) as TextView
         note = findViewById<View>(R.id.txtReason) as TextView
         name = findViewById<View>(R.id.txtSellerName) as TextView
         upivirtualid = findViewById<View>(R.id.txtUPI) as TextView
@@ -67,7 +71,11 @@ class PaymentActivity : AppCompatActivity() {
         retryPayment.setOnClickListener {
             this.recreate()
         }
-
+        itemCost=findViewById(R.id.txtPayAmount)
+        deliveryFee=findViewById(R.id.charge)
+        val c=totalCost.toString().toDouble()-deliveryAmount.toString().toDouble()
+        itemCost.text=c.toString()
+        deliveryFee.text=deliveryAmount.toString()
         if (ConnectionManager().checkConnectivity(this)) {
             rl_Payment.visibility = View.VISIBLE
             rl_retryPayment.visibility = View.GONE
