@@ -25,6 +25,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
     private var totalCost: String? = "200"
     private var orderId: String? = "300"
     private var orderBy: String? = "400"
+    private var orderDeliveryFee: String? = "500"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_payment_list)
@@ -41,6 +42,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
         totalCost = intent.getStringExtra("totalCost")
         orderId = intent.getStringExtra("orderId")
         orderBy = intent.getStringExtra("orderBy")
+        orderDeliveryFee = intent.getStringExtra("deliveryFee")
         button = findViewById(R.id.btnPayContinueList)
         totalChargesTv.text = "₹" + totalCost.toString() + "/-"
         totalCharges.text = "₹" + totalCost.toString()
@@ -90,6 +92,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                     intent.putExtra("totalCost", totalCost.toString())
                     intent.putExtra("orderId", orderId.toString())
                     intent.putExtra("orderBy", orderBy.toString())
+                    intent.putExtra("deliveryFee", orderDeliveryFee.toString())
                     startActivity(intent)
                     finish()
                 }

@@ -46,6 +46,7 @@ class UserListOrderDetails : AppCompatActivity() {
     private lateinit var btnPay: Button
     private lateinit var deliveryFeeUser: TextView
     private lateinit var paymentStatusUser: TextView
+    private var deliveryFee: Double? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_list_order_details)
@@ -74,15 +75,7 @@ class UserListOrderDetails : AppCompatActivity() {
         val databaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrderList")
                 .child(orderId.toString())
-        btnPay.setOnClickListener {
-            val intent = Intent(this, ContinuePaymentListActivity::class.java)
-            intent.putExtra("shopId", orderToId.toString())
-            intent.putExtra("totalCost", totalCost.toString())
-            intent.putExtra("orderId", orderId.toString())
-            intent.putExtra("orderBy", uid)
-            startActivity(intent)
-            finish()
-        }
+
         imgMakePhone.setOnClickListener {
             makePhoneCall()
         }
@@ -137,6 +130,7 @@ class UserListOrderDetails : AppCompatActivity() {
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
+                deliveryFee = deliveryCost.toDouble()
                 when (orderStatus) {
                     "In Progress" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.colorAccent))
@@ -202,6 +196,20 @@ class UserListOrderDetails : AppCompatActivity() {
                 })
             }
         })
+        btnPay.setOnClickListener {
+            if (deliveryFee != null) {
+                val intent = Intent(this, ContinuePaymentListActivity::class.java)
+                intent.putExtra("shopId", orderToId.toString())
+                intent.putExtra("totalCost", totalCost.toString())
+                intent.putExtra("orderId", orderId.toString())
+                intent.putExtra("deliveryFee", deliveryFee.toString())
+                intent.putExtra("orderBy", uid)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "Slow Internet,Press button again", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun makePhoneCall() {

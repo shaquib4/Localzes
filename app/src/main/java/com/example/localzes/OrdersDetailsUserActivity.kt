@@ -48,6 +48,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
     private var REQUEST_CALL: Int = 1
     private var shopMobileNumber: String = ""
     private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
+    private var deliveryFee: Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,6 +144,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 orderDateUser.text = formattedDate
                 paymentModeInfo.text = snapshot.child("paymentMode").value.toString()
                 if (snapshot.child("deliveryFee").exists()) {
+                    deliveryFee = snapshot.child("deliveryFee").value.toString().toDouble()
                     deliveryFeeUser.text = "₹" + snapshot.child("deliveryFee").value.toString()
                     totalAmountUser.text = "₹${orderCost}(Including Delivery Fee)"
                 } else {
@@ -187,14 +189,20 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
         btnPayCart.setOnClickListener {
-            val intent = Intent(this, continue_payment::class.java)
-            intent.putExtra("shopId", orderToId.toString())
-            intent.putExtra("totalCost", totalCost.toString())
-            intent.putExtra("orderId", orderItemId.toString())
-            intent.putExtra("orderBy", uid)
-            startActivity(intent)
-            finish()
+            if (deliveryFee != null) {
+                val intent = Intent(this, continue_payment::class.java)
+                intent.putExtra("shopId", orderToId.toString())
+                intent.putExtra("totalCost", totalCost.toString())
+                intent.putExtra("deliveryFee", deliveryFee.toString())
+                intent.putExtra("orderId", orderItemId.toString())
+                intent.putExtra("orderBy", uid)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "Slow Internet,Press Button Again", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

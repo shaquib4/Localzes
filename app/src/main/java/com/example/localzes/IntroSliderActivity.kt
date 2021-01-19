@@ -14,24 +14,6 @@ import com.example.localzes.Modals.IntroSlide
 import kotlinx.android.synthetic.main.activity_intro_slider.*
 
 class IntroSliderActivity : AppCompatActivity() {
-    /*private val introSliderAdapter = AdapterIntroSlide(
-        listOf(
-            IntroSlide(R.drawable.splash_screen),
-            IntroSlide(R.drawable.localze_shop),
-            IntroSlide(R.drawable.lanju)
-        )
-    )
-    lateinit var preference: SharedPreferences
-    private lateinit var btnNext: Button
-    val pref_show_intro = "Intro"
-    private lateinit var skipIntro: TextView*//*
-    private lateinit var viewPager: ViewPager
-    private lateinit var introViewPagerAdapter: AdapterIntroSlide
-    private lateinit var tabIndicator: TabLayout
-    private lateinit var btnNext: Button
-    private lateinit var btnGetStarted: Button
-    var position = 0
-    private lateinit var btnAnim: Animation*/
     private lateinit var btnNext: Button
     private lateinit var btnGetStarted: Button
     private lateinit var btnAnim: Animation

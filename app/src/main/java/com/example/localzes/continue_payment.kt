@@ -2,10 +2,9 @@ package com.example.localzes
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -15,8 +14,11 @@ import com.example.localzes.Modals.UserCartDetails
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_continue_payment.*
 import org.json.JSONObject
-import util.ConnectionManager
-import java.util.ArrayList
+import java.util.*
+import kotlin.collections.HashMap
+import kotlin.collections.List
+import kotlin.collections.MutableMap
+import kotlin.collections.set
 
 class continue_payment : AppCompatActivity() {
 
@@ -34,6 +36,7 @@ class continue_payment : AppCompatActivity() {
     private lateinit var cartProducts: List<UserCartDetails>
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var imgBackContinue: ImageView
+    private var orderDeliveryFee: String? = "900"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_payment)
@@ -99,6 +102,7 @@ class continue_payment : AppCompatActivity() {
                     intent.putExtra("totalCost", totalCost.toString())
                     intent.putExtra("orderId", orderId.toString())
                     intent.putExtra("orderBy", uid.toString())
+                    intent.putExtra("deliveryFee",orderDeliveryFee.toString())
                     startActivity(intent)
                     finish()
                 }
