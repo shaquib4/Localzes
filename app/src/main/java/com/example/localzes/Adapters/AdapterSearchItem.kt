@@ -23,6 +23,7 @@ class AdapterSearchItem(val context: Context, private val search: List<Upload>) 
         val shopImage: ImageView = view.findViewById(R.id.productImage)
         val shopName: TextView = view.findViewById(R.id.productName)
         val shopAddress: TextView = view.findViewById(R.id.price)
+        val locality2:TextView=view.findViewById(R.id.price1)
 
     }
 
@@ -40,6 +41,7 @@ class AdapterSearchItem(val context: Context, private val search: List<Upload>) 
 
     override fun onBindViewHolder(holder: HolderSearchItem, position: Int) {
         val searchItem = search[position]
+        holder.locality2.text=searchItem.locality2
         holder.shopName.text =
             searchItem.shop_name.substring(0, 1).toUpperCase() + searchItem.shop_name.substring(1)
         try {
