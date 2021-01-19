@@ -113,7 +113,7 @@ class AdapterManageAddress(
         val databaseReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("address")
         databaseReference.orderByChild("id").equalTo(id)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
