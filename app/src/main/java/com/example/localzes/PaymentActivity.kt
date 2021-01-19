@@ -62,7 +62,7 @@ class PaymentActivity : AppCompatActivity() {
         mode = intent.getStringExtra("platform")
         cartProducts = ArrayList<UserCartDetails>()
         send = findViewById<View>(R.id.btnPayNow) as Button
-        amount = findViewById<View>(R.id.txtToralPrice) as TextView
+        amount = findViewById<View>(R.id.TxtTotalPrice) as TextView
         note = findViewById<View>(R.id.txtReason) as TextView
         name = findViewById<View>(R.id.txtSellerName) as TextView
         upivirtualid = findViewById<View>(R.id.txtUPI) as TextView
@@ -74,8 +74,8 @@ class PaymentActivity : AppCompatActivity() {
         itemCost=findViewById(R.id.txtPayAmount)
         deliveryFee=findViewById(R.id.charge)
         val c=totalCost.toString().toDouble()-deliveryAmount.toString().toDouble()
-        itemCost.text=c.toString()
-        deliveryFee.text=deliveryAmount.toString()
+        itemCost.text="₹${c.toString()}"
+        deliveryFee.text="₹${deliveryAmount.toString()}"
         if (ConnectionManager().checkConnectivity(this)) {
             rl_Payment.visibility = View.VISIBLE
             rl_retryPayment.visibility = View.GONE
@@ -91,7 +91,7 @@ class PaymentActivity : AppCompatActivity() {
                     val upiId = snapshot.child("upi").value.toString()
                     name!!.text = names
                     upivirtualid!!.text = upiId
-                    amount!!.text = totalCost
+                    amount!!.text = "₹${totalCost.toString()}"
                 }
 
             })
@@ -107,7 +107,7 @@ class PaymentActivity : AppCompatActivity() {
             rl_Payment.visibility = View.VISIBLE
             rl_retryPayment.visibility = View.GONE
             val sendf = intent.getStringExtra("send")
-            amount!!.text = totalCost.toString()
+
             if (TextUtils.isEmpty(name!!.text.toString().trim { it <= ' ' })) {
                 Toast.makeText(this@PaymentActivity, " Name is invalid", Toast.LENGTH_SHORT).show()
             } else if (TextUtils.isEmpty(
