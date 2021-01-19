@@ -233,6 +233,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                     }
                     "Completed" -> {
                         orderStatusTv.setTextColor(resources.getColor(R.color.green))
+                        checkboxListComplete.visibility = View.GONE
                         imgListEdit.visibility = View.GONE
                         llAcceptConfirm.visibility = View.GONE
                     }
@@ -575,9 +576,15 @@ class ListOrderDetailSeller : AppCompatActivity() {
                             val databaseNewReference: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("seller")
                             databaseNewReference.child(uid).child("OrdersLists").child(orderId)
-                                .updateChildren(userMap)
-                            view.visibility = View.GONE
+                                .updateChildren(userMap).addOnSuccessListener {
+                                    val dataRef =
+                                        FirebaseDatabase.getInstance().reference.child("users")
+                                            .child(orderBy).child("MyOrderList").child(orderId)
+                                    dataRef.updateChildren(userMap)
+                                }
+
                             new.dismiss()
+                            view.visibility = View.GONE
                         }
                         builder.setNegativeButton("Cancel") { text, listener ->
                             view.isChecked = false

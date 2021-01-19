@@ -167,7 +167,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         }
                         "Completed" -> {
                             etDelivery.isEnabled = false
-
+                            checkboxComplete.visibility=View.GONE
                             etDelivery.setText("₹$deliveryCharge")
                             etDelivery.setTextColor(resources.getColor(R.color.green))
                             txtOrderStatus.setTextColor(resources.getColor(R.color.green))
@@ -521,9 +521,15 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                                 FirebaseDatabase.getInstance().reference.child("seller")
                             databaseNewReference.child(uid).child("Orders")
                                 .child(orderIdTv.toString())
-                                .updateChildren(userMap)
-                            view.visibility = View.GONE
+                                .updateChildren(userMap).addOnSuccessListener {
+                                    val databaseRef =
+                                        FirebaseDatabase.getInstance().reference.child("users")
+                                            .child(orderByTv.toString()).child("MyOrders")
+                                            .child(orderIdTv.toString())
+                                    databaseRef.updateChildren(userMap)
+                                }
                             new.dismiss()
+                            view.visibility = View.GONE
                         }
                         builder.setNegativeButton("Cancel") { text, listener ->
                             view.isChecked = false

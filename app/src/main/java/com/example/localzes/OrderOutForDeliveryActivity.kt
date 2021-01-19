@@ -173,6 +173,7 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
                         (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
                     }
                 }
+                (listOrders as ArrayList<ModalSellerOrderList>).reverse()
                 adapterOutForDeliveryList =
                     AdapterListOrder(this@OrderOutForDeliveryActivity, listOrders)
                 recyclerOutForDelivery.adapter = adapterOutForDeliveryList
@@ -211,6 +212,7 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
                         (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).add(obj)
                     }
                 }
+                (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).reverse()
                 adapterOutForDelivery =
                     AdapterSellerOrders(
                         this@OrderOutForDeliveryActivity,

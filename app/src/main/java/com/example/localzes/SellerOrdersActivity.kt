@@ -206,6 +206,7 @@ class SellerOrdersActivity : AppCompatActivity() {
                     } else {
                         relativeOrders.visibility = View.GONE
                         recyclerShopOrders.visibility = View.VISIBLE
+                        (listOrders as ArrayList<ModalSellerOrderList>).reverse()
                         listAdapter = AdapterListOrder(this@SellerOrdersActivity, listOrders)
                         recyclerShopOrders.adapter = listAdapter
                     }
@@ -254,6 +255,7 @@ class SellerOrdersActivity : AppCompatActivity() {
                     } else {
                         relativeOrders.visibility = View.GONE
                         recyclerShopOrders.visibility = View.VISIBLE
+                        (mSellerOrders as ArrayList<ModelOrderDetails>).reverse()
                         sellerOrderAdapter =
                             AdapterSellerOrders(
                                 this@SellerOrdersActivity,

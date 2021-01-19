@@ -248,6 +248,7 @@ class OrdersAcceptedActivity : AppCompatActivity() {
                     } else {
                         orderAccepted.visibility = View.GONE
                         recyclerOrdersAccepted.visibility = View.VISIBLE
+                        (listOrders as ArrayList<ModalSellerOrderList>).reverse()
                         listAdapter = AdapterListOrder(this@OrdersAcceptedActivity, listOrders)
                         recyclerOrdersAccepted.adapter = listAdapter
                     }
@@ -299,6 +300,7 @@ class OrdersAcceptedActivity : AppCompatActivity() {
                             } else {
                                 orderAccepted.visibility = View.GONE
                                 recyclerOrdersAccepted.visibility = View.VISIBLE
+                                (ordersAcceptedList as ArrayList<ModelOrderDetails>).reverse()
                                 adapterOrderAccepted =
                                     AdapterSellerOrders(
                                         this@OrdersAcceptedActivity,
