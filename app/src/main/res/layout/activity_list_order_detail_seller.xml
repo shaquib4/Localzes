@@ -373,15 +373,16 @@
             <EditText
                 android:id="@+id/etDeliveryChargeList"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_32sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:layout_weight="1"
+                android:textAlignment="center"
                 android:hint="Enter Delivery Charge "
                 android:inputType="number" />
 
             <Button
                 android:id="@+id/acceptConfirm"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_32sdp"
+                android:layout_height="@dimen/_33sdp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_buttons"
                 android:text="@string/accept_and_confirm"
