@@ -91,12 +91,4 @@ class SHOP : Fragment() {
         return view
     }
 
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        this.v = view
-        favRecyclerShop = view.findViewById(R.id.recycler_favorite_shop)
-        favShops = ArrayList<Upload>()
-        favRecyclerShop.layoutManager = LinearLayoutManager(activity)
-
-    }*/
 }

@@ -321,7 +321,7 @@ class continue_payment : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, Cart::class.java)
+        val intent = Intent(this, Home::class.java)
         startActivity(intent)
         finish()
     }

@@ -269,20 +269,6 @@ class SellerShop_detail : AppCompatActivity() {
                 }
             }
         }
-        /*if (requestCode == 111 && resultCode == Activity.RESULT_OK && data != null) {
-            data.data?.let { uri ->
-                launchCropImage(uri)
-            }
-            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-                val result = CropImage.getActivityResult(data)
-                if (resultCode == Activity.RESULT_OK) {
-                    filepath = result.uri
-                    result.uri?.let {
-                        setImage(it)
-                    }
-                }
-            }
-        }*/
     }
 
     private fun setImage(uri: Uri) {
