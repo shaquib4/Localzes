@@ -281,7 +281,7 @@ class CreateList : AppCompatActivity() {
                         txtCurrMobile.text = "Mobile No- ${deliveryUserMobileNo}"
                         val layoutManager = LinearLayoutManager(this@CreateList)
                         rv.layoutManager = layoutManager
-                        val adapter = AdapterManageAddress(this@CreateList, addresses)
+                        val adapter = AdapterManageAddress(this@CreateList, addresses, "List")
                         rv.adapter = adapter
                         btnAddNewAddress.setOnClickListener {
                             startActivity(Intent(this@CreateList, MapsActivity_New::class.java))

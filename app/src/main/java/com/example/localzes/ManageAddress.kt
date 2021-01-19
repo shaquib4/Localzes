@@ -48,71 +48,74 @@ class ManageAddress : AppCompatActivity() {
             this.recreate()
         }
 
-        if (ConnectionManager().checkConnectivity(this)){
+        if (ConnectionManager().checkConnectivity(this)) {
 
-            rl_manageAddress.visibility= View.VISIBLE
-            rl_retryManageAddress.visibility=View.GONE
+            rl_manageAddress.visibility = View.VISIBLE
+            rl_retryManageAddress.visibility = View.GONE
             userDatabase.child("address").addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                (addresses as ArrayList<ModelManageAddress>).clear()
-                for (i in snapshot.children) {
-
-                    val obj = ModelManageAddress(
-                        i.child("id").value.toString(),
-                        i.child("address").value.toString(),
-                        i.child("city").value.toString(),
-                        i.child("pinCode").value.toString(),
-                        i.child("country").value.toString(),
-                        i.child("state").value.toString(),
-                        i.child("mobileNo").value.toString()
-
-                    )
-                    (addresses as ArrayList<ModelManageAddress>).add(obj)
+                override fun onCancelled(error: DatabaseError) {
 
                 }
-                userAddressAdapter =
-                    AdapterManageAddress(
-                        this@ManageAddress,
-                        addresses
-                    )
-                recyclerManageAddress.adapter = userAddressAdapter
-            }
 
-        })}else{
-            rl_manageAddress.visibility= View.GONE
-            rl_retryManageAddress.visibility=View.VISIBLE
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (addresses as ArrayList<ModelManageAddress>).clear()
+                    for (i in snapshot.children) {
+
+                        val obj = ModelManageAddress(
+                            i.child("id").value.toString(),
+                            i.child("address").value.toString(),
+                            i.child("city").value.toString(),
+                            i.child("pinCode").value.toString(),
+                            i.child("country").value.toString(),
+                            i.child("state").value.toString(),
+                            i.child("mobileNo").value.toString()
+
+                        )
+                        (addresses as ArrayList<ModelManageAddress>).add(obj)
+
+                    }
+                    userAddressAdapter =
+                        AdapterManageAddress(
+                            this@ManageAddress,
+                            addresses, "Manage"
+                        )
+                    recyclerManageAddress.adapter = userAddressAdapter
+                }
+
+            })
+        } else {
+            rl_manageAddress.visibility = View.GONE
+            rl_retryManageAddress.visibility = View.VISIBLE
         }
-        if (ConnectionManager().checkConnectivity(this)){
-            rl_manageAddress.visibility= View.VISIBLE
-            rl_retryManageAddress.visibility=View.GONE
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_manageAddress.visibility = View.VISIBLE
+            rl_retryManageAddress.visibility = View.GONE
             userDatabase.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val mobNo = snapshot.child("phone").value.toString()
-                mobileTv.text = mobNo
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val mobNo = snapshot.child("phone").value.toString()
+                    mobileTv.text = mobNo
 
-            }
+                }
 
-        })
-        userDatabase.child("current_address").addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+            })
+            userDatabase.child("current_address")
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-            }
+                    }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val currentAddress = snapshot.child("address").value.toString()
-                txtCurrentAddress.text = currentAddress
-            }
-        })}else{
-            rl_manageAddress.visibility= View.GONE
-            rl_retryManageAddress.visibility=View.VISIBLE
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val currentAddress = snapshot.child("address").value.toString()
+                        txtCurrentAddress.text = currentAddress
+                    }
+                })
+        } else {
+            rl_manageAddress.visibility = View.GONE
+            rl_retryManageAddress.visibility = View.VISIBLE
         }
         imgBackManage.setOnClickListener {
             val intent = Intent(this, Accounts::class.java)
@@ -120,13 +123,14 @@ class ManageAddress : AppCompatActivity() {
             finish()
         }
         addNewAddress.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(this)){
-                rl_manageAddress.visibility= View.VISIBLE
-                rl_retryManageAddress.visibility=View.GONE
-            startActivity(Intent(this, MapsActivity_New::class.java))
-            finish()}else{
-                rl_manageAddress.visibility= View.GONE
-                rl_retryManageAddress.visibility=View.VISIBLE
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_manageAddress.visibility = View.VISIBLE
+                rl_retryManageAddress.visibility = View.GONE
+                startActivity(Intent(this, MapsActivity_New::class.java))
+                finish()
+            } else {
+                rl_manageAddress.visibility = View.GONE
+                rl_retryManageAddress.visibility = View.VISIBLE
             }
         }
     }

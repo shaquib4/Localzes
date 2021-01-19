@@ -492,7 +492,7 @@ class Cart : AppCompatActivity() {
                         txtCurrMobile.text = "Mobile No- ${deliveryUserMobileNo}"
                         val layoutManager = LinearLayoutManager(this@Cart)
                         rv.layoutManager = layoutManager
-                        val adapter = AdapterManageAddress(this@Cart, addresses)
+                        val adapter = AdapterManageAddress(this@Cart, addresses,"Cart")
                         rv.adapter = adapter
                         btnAddNewAddress.setOnClickListener {
                             startActivity(Intent(this@Cart, MapsActivity_New::class.java))

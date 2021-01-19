@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.localzes.Cart
+import com.example.localzes.CreateList
 import com.example.localzes.ManageAddress
 import com.example.localzes.Modals.ModelManageAddress
 import com.example.localzes.R
@@ -18,7 +20,8 @@ import util.ConnectionManager
 
 class AdapterManageAddress(
     val context: Context,
-    private val address_manage: List<ModelManageAddress>
+    private val address_manage: List<ModelManageAddress>,
+    val type: String
 ) : RecyclerView.Adapter<AdapterManageAddress.HolderManageAddress>() {
     class HolderManageAddress(view: View) : RecyclerView.ViewHolder(view) {
         val city: TextView = view.findViewById(R.id.txtHome)
@@ -53,39 +56,51 @@ class AdapterManageAddress(
             deleteAddress(position)
         }
         holder.itemView.setOnClickListener {
-            if (ConnectionManager().checkConnectivity(context)){
-            val builder = AlertDialog.Builder(context)
-            val show = builder.show()
-            builder.setTitle("Confirmation")
-            builder.setMessage("Are you sure you want to set your current address as ${address_manage[position].address},${address_manage[position].city}")
-            builder.setPositiveButton("Yes") { text, listener ->
-                val headers = HashMap<String, Any>()
-                headers["address"] = address_manage[position].address
-                headers["city"] = address_manage[position].city
-                headers["pincode"] = address_manage[position].pinCode
-                headers["country"] = address_manage[position].country
-                headers["state"] = address_manage[position].state
-                headers["mobileNo"] = address_manage[position].mobileNo
-                val databaseRef: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("users").child(uid)
-                        .child("current_address")
-                databaseRef.updateChildren(headers).addOnSuccessListener {
-                    Toast.makeText(
-                        context,
-                        "Delivery Address Updated Successfully",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    show.dismiss()
+            if (ConnectionManager().checkConnectivity(context)) {
+                val builder = AlertDialog.Builder(context)
+                val show = builder.show()
+                builder.setTitle("Confirmation")
+                builder.setMessage("Are you sure you want to set your current address as ${address_manage[position].address},${address_manage[position].city}")
+                builder.setPositiveButton("Yes") { text, listener ->
+                    val headers = HashMap<String, Any>()
+                    headers["address"] = address_manage[position].address
+                    headers["city"] = address_manage[position].city
+                    headers["pincode"] = address_manage[position].pinCode
+                    headers["country"] = address_manage[position].country
+                    headers["state"] = address_manage[position].state
+                    headers["mobileNo"] = address_manage[position].mobileNo
+                    val databaseRef: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                            .child("current_address")
+                    databaseRef.updateChildren(headers).addOnSuccessListener {
+                        Toast.makeText(
+                            context,
+                            "Delivery Address Updated Successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        show.dismiss()
+                        when (type) {
+                            "Cart" -> {
+                                (context as Cart).recreate()
+                            }
+                            "List" -> {
+                                (context as CreateList).recreate()
+                            }
+                            else -> {
+                                (context as ManageAddress).recreate()
+                            }
+                        }
+
+                    }
+
 
                 }
-
-
-            }
-            builder.setNegativeButton("No") { text, listener ->
-                show.dismiss()
-            }
-            builder.create().show()}else{
-                Toast.makeText(context,"No Internet Connection Found",Toast.LENGTH_SHORT).show()
+                builder.setNegativeButton("No") { text, listener ->
+                    show.dismiss()
+                }
+                builder.create().show()
+            } else {
+                Toast.makeText(context, "No Internet Connection Found", Toast.LENGTH_SHORT).show()
             }
         }
     }
