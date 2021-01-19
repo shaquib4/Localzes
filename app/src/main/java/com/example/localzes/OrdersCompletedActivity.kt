@@ -245,6 +245,7 @@ class OrdersCompletedActivity : AppCompatActivity() {
                             (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
                         }
                     }
+                    (listOrders as ArrayList<ModalSellerOrderList>).reverse()
                     if (listOrders.isEmpty()) {
                         recyclerOrdersCompleted.visibility = View.GONE
                     } else {
@@ -297,6 +298,7 @@ class OrdersCompletedActivity : AppCompatActivity() {
                                 }
 
                             }
+                            (ordersCompletedList as ArrayList<ModelOrderDetails>).reverse()
                             if (ordersCompletedList.isEmpty()) {
                                 recyclerOrdersCompleted.visibility = View.GONE
                             } else {

@@ -129,6 +129,7 @@ class PastOrdersActivity : AppCompatActivity() {
                             (mOrderedItemList as ArrayList<ModalSellerOrderList>).add(obj)
                         }
                     }
+                    (mOrderedItemList as ArrayList<ModalSellerOrderList>).reverse()
                     if (mOrderedItemList.isEmpty()) {
                         recyclerOrderDetails.visibility = View.GONE
                     } else {
@@ -175,6 +176,7 @@ class PastOrdersActivity : AppCompatActivity() {
                         }
 
                     }
+                    (mOrderedItem as ArrayList<ModelOrderDetails>).reverse()
                     if (mOrderedItem.isEmpty()) {
                         recyclerOrderDetails.visibility = View.GONE
                     } else {

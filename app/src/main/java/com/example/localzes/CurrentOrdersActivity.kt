@@ -171,8 +171,10 @@ class CurrentOrdersActivity : AppCompatActivity() {
                         ).value.toString() == "Out For Delivery"
                     ) {
                         (mOrderedList as ArrayList<ModalSellerOrderList>).add(obj)
+
                     }
                 }
+                (mOrderedList as ArrayList<ModalSellerOrderList>).reverse()
                 if (mOrderedList.isEmpty()) {
                     recyclerOrderDetails.visibility = View.GONE
                 } else {
@@ -219,9 +221,14 @@ class CurrentOrdersActivity : AppCompatActivity() {
                                 "orderStatus"
                             ).value.toString() == "Out For Delivery"
                         ) {
+
                             (mOrderedItem as ArrayList<ModelOrderDetails>).add(obj)
+
+
                         }
+
                     }
+                    (mOrderedItem as ArrayList<ModelOrderDetails>).reverse()
                     if (mOrderedItem.isEmpty()) {
                         recyclerOrderDetails.visibility = View.GONE
                     } else {
