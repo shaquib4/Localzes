@@ -143,6 +143,11 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 orderStatusUser.text = orderStatus
                 orderDateUser.text = formattedDate
                 paymentModeInfo.text = snapshot.child("paymentMode").value.toString()
+                if (snapshot.child("paymentMode").value.toString() == "" && snapshot.child("orderStatus").value.toString() == "Accepted") {
+                    btnPayCart.visibility = View.GONE
+                } else {
+                    btnPayCart.visibility = View.GONE
+                }
                 if (snapshot.child("deliveryFee").exists()) {
                     deliveryFee = snapshot.child("deliveryFee").value.toString().toDouble()
                     deliveryFeeUser.text = "₹" + snapshot.child("deliveryFee").value.toString()
