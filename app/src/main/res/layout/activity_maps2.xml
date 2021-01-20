@@ -331,7 +331,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:textColor="#fff"
         android:text="@string/save_and_proceed"/>
-</RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_retryMapS"
         android:layout_width="match_parent"
@@ -391,4 +391,6 @@
 
 
     </RelativeLayout>
+</RelativeLayout>
+
 </RelativeLayout>
