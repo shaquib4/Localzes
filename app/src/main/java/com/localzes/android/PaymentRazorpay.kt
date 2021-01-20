@@ -13,6 +13,7 @@ import com.android.volley.toolbox.Volley
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
 import com.razorpay.PaymentResultWithDataListener
+import org.json.JSONArray
 import org.json.JSONObject
 
 class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
@@ -32,13 +33,21 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
         }else{
 
             val orderRequest = JSONObject()
+            val transfer=JSONObject()
+            val transferRequest=JSONArray()
             try {
                
                 orderRequest.put("amount", amo.toDouble()*100) // amount in the smallest currency unit
                 orderRequest.put("currency", "INR")
                 orderRequest.put("receipt", "order_rcptid_11")
                 orderRequest.put("payment_capture", 1)
+                transfer.put("account","acc_GNFnz1wTS3UaUu")
+                transfer.put("amount",100)
+                transfer.put("currency","INR")
+                transferRequest.put(transfer)
+                orderRequest.put("transfers",transferRequest)
                // orderRequest.put("order_id",PaymentData().orderId)
+
                 order(orderRequest)
             } catch (e: Exception) {
                 // Handle Exception
@@ -92,9 +101,9 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
             options.put("description","Order Charges")
             //You can omit the image option to fetch the image from dashboard
             options.put("image","https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
-            options.put("theme.color", "#3399cc");
-            options.put("currency","INR");
-            options.put("order_id", orderId);
+            options.put("theme.color", "#ff4500")
+            options.put("currency","INR")
+            options.put("order_id", orderId)
             options.put("amount",amo.toDouble()*100)//pass amount in currency subunits
 
             val prefill = JSONObject()
