@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+
+        app:cardCornerRadius="10dp"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_toEndOf="@id/imgshop"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/txtshopOwnerName"
+                android:id="@+id/txtshopNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile No. :"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_medium"/>
+
+            <TextView
+                android:layout_toEndOf="@id/imgshop"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/shopName"
+                android:id="@+id/txtshopOwnerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shop Owner:"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_medium"/>
+
+            <TextView
+
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/imgshop"
+                android:id="@+id/shopName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Electronics Shop"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="#de4500"
+                android:fontFamily="@font/montserrat_bold"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/txtshopNumber"
+                android:layout_below="@+id/shopOwnerName"
+                android:id="@+id/shopNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9876543210"
+                android:textColor="#000"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_medium"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/txtshopOwnerName"
+                android:layout_below="@+id/shopName"
+                android:id="@+id/shopOwnerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Katappa Mama"
+                android:textColor="#000"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_bold"/>
+
+
+
+
+
+            <ImageView
+                android:background="@drawable/stroke_primary"
+                android:padding="1dp"
+                android:id="@+id/imgshop"
+                android:src="@drawable/stores"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_margin="5dp"/>
+
+            <ImageView
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5dp"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:id="@+id/imgDelete"
+                android:src="@drawable/ic_remove"/>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
