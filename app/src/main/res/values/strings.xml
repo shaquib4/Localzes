@@ -27,6 +27,11 @@
         <item><font fontfamily="@font/montserrat_medium" size="14"> pound </font></item>
     </string-array>
 
+    <string-array name="Spinner_Bank_type">
+        <item><font fontfamily="@font/montserrat_medium" size="14">Savings Account</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">Current Account</font></item>
+    </string-array>
+
     <string-array name="Spinner_Item1">
         <item><font fontfamily="@font/montserrat_medium" size="14">Grocery</font></item>
         <item><font fontfamily="@font/montserrat_medium" size="14">Food</font></item>

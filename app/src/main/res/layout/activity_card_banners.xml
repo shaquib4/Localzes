@@ -215,6 +215,46 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/carStaff"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_below="@id/cardQR"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_toStartOf="@id/viewCenter"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00ffff">
+
+                    <ImageView
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/staff_single" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="My Staff"
+                        android:textAlignment="center"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15ssp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
 
         </RelativeLayout>
     </ScrollView>
