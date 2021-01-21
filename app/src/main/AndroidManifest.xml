@@ -29,105 +29,106 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
+        <activity android:name=".MyStaffActivity"></activity>
         <activity
-            android:name="com.localzes.android.ContinuePaymentListActivity"
+            android:name=".ContinuePaymentListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.PaymentModes"
+            android:name=".PaymentModes"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.HelpSectionActivity"
+            android:name=".HelpSectionActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.localzes.android.PaymentRazorpay" />
+        <activity android:name=".PaymentRazorpay" />
         <activity
-            android:name="com.localzes.android.RegisterDetailDelivery"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.localzes.android.UserListOrderDetails"
+            android:name=".RegisterDetailDelivery"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.CurrentUserOrder"
+            android:name=".UserListOrderDetails"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.ListOrders"
+            android:name=".CurrentUserOrder"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.ListOrderDetailSeller"
+            android:name=".ListOrders"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.CreateList"
+            android:name=".ListOrderDetailSeller"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.CatalogueActivity"
+            android:name=".CreateList"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.ShopBanner"
+            android:name=".CatalogueActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.generateQRcode"
+            android:name=".ShopBanner"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.cardBanners"
+            android:name=".generateQRcode"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.SplashScreenActivity"
+            android:name=".cardBanners"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.MainActivity"
+            android:name=".SplashScreenActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.continue_payment"
+            android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Category"
+            android:name=".continue_payment"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.OrdersSeller"
+            android:name=".Category"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.PagerActivity"
+            android:name=".OrdersSeller"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.AccountsSeller"
+            android:name=".PagerActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.OrdersDetailsUserActivity"
+            android:name=".AccountsSeller"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.UpdateShopDetailActivity"
+            android:name=".OrdersDetailsUserActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.UpdateProductDetailsActivity"
+            android:name=".UpdateShopDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.NewActivity"
+            android:name=".UpdateProductDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.PaymentActivity"
+            android:name=".NewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.CurrentOrdersActivity"
+            android:name=".PaymentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.OrdersCompletedActivity"
+            android:name=".CurrentOrdersActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.OrderOutForDeliveryActivity"
+            android:name=".OrdersCompletedActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.OrdersAcceptedActivity"
+            android:name=".OrderOutForDeliveryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.PastOrdersActivity"
+            android:name=".OrdersAcceptedActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.OrdersDetailsSellerActivity"
+            android:name=".PastOrdersActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.SellerOrdersActivity"
+            android:name=".OrdersDetailsSellerActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.ManageAddress"
+            android:name=".SellerOrdersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ManageAddress"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
@@ -146,62 +147,62 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.localzes.android.MapsActivity_New"
+            android:name=".MapsActivity_New"
             android:label="@string/title_activity_maps__new"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.UserProductsActivity"
+            android:name=".UserProductsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Seller_Products"
+            android:name=".Seller_Products"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.AddProduct"
+            android:name=".AddProduct"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.SellerShop_detail"
+            android:name=".SellerShop_detail"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.MapsActivity2"
+            android:name=".MapsActivity2"
             android:label="@string/title_activity_maps2"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Home_seller"
+            android:name=".Home_seller"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Registerdetails_seller"
+            android:name=".Registerdetails_seller"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Registerdetails"
+            android:name=".Registerdetails"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Accounts"
+            android:name=".Accounts"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Search"
+            android:name=".Search"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Cart"
+            android:name=".Cart"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Home"
+            android:name=".Home"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Continueas"
+            android:name=".Continueas"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.Verify"
+            android:name=".Verify"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
         <activity
-            android:name="com.localzes.android.MapsActivity"
+            android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.localzes.android.IntroSliderActivity"
+            android:name=".IntroSliderActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -211,7 +212,7 @@
         </activity>
 
         <service
-            android:name="com.localzes.android.MyFirebaseMessaging"
+            android:name=".MyFirebaseMessaging"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

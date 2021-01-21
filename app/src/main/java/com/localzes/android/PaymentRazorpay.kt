@@ -72,7 +72,7 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
             },
             Response.ErrorListener {
                 //if failed sending fcm,still start order details activity
-                Toast.makeText(this, ali.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, ali, Toast.LENGTH_SHORT).show()
 
             }) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -129,8 +129,8 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
     }
 
     override fun onPaymentSuccess(s: String?, p1: PaymentData?) {
-        Log.e("Done", " payment successful "+ s.toString());
-        Toast.makeText(this, p1?.orderId, Toast.LENGTH_SHORT).show();
+        Log.e("Done", " payment successful "+ s.toString())
+        Toast.makeText(this, p1?.orderId, Toast.LENGTH_SHORT).show()
         startActivity(Intent(this,NewActivity::class.java))
         finish()
     }
