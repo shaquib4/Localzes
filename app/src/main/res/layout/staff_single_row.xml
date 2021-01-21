@@ -1,66 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
 
-        app:cardCornerRadius="10dp"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:background="#fff"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="10dp">
 
-        <TextView
-            android:layout_toEndOf="@id/imgStaff"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_below="@+id/StaffName"
-            android:id="@+id/txtStaffNumber"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mobile No. :"
-            android:textSize="@dimen/_10ssp"
-            android:fontFamily="@font/montserrat_medium"/>
-        <TextView
-            android:layout_toEndOf="@id/imgStaff"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_below="@id/txtStaffNumber"
-            android:id="@+id/txtStaffAccess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Access :"
-            android:textSize="@dimen/_10ssp"
-            android:fontFamily="@font/montserrat_medium"/>
+            android:background="#fff">
+
+            <TextView
+                android:id="@+id/txtStaffNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/StaffName"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/imgStaff"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Mobile No. :"
+                android:textSize="@dimen/_10ssp" />
+
+            <TextView
+                android:id="@+id/txtStaffAccess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtStaffNumber"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/imgStaff"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Access :"
+                android:textSize="@dimen/_10ssp" />
+
             <TextView
 
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imgStaff"
                 android:id="@+id/StaffName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Katappa Mama"
-                android:textSize="@dimen/_12ssp"
-                android:textColor="#de4500"
-                android:fontFamily="@font/montserrat_bold"/>
-            <TextView
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/txtStaffNumber"
-                android:layout_below="@+id/StaffName"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/imgStaff"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Katappa Mama"
+                android:textColor="#de4500"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
                 android:id="@+id/StaffNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/StaffName"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/txtStaffNumber"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="9876543210"
                 android:textColor="#000"
-                android:textSize="@dimen/_10ssp"
-                android:fontFamily="@font/montserrat_medium"/>
+                android:textSize="@dimen/_10ssp" />
 
             <TextView
                 android:id="@+id/StaffAccess"
@@ -76,32 +80,31 @@
                 android:textSize="@dimen/_10ssp" />
 
 
-
             <ImageView
-                android:background="@drawable/stroke_primary"
-                android:padding="1dp"
                 android:id="@+id/imgStaff"
-                android:src="@drawable/staff_single"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:background="@drawable/stroke_primary"
+                android:padding="1dp"
+                android:src="@drawable/staff_single" />
 
             <ImageView
                 android:id="@+id/imgEdit"
-                android:layout_alignTop="@id/StaffAccess"
                 android:layout_width="@dimen/_14sdp"
                 android:layout_height="@dimen/_14sdp"
+                android:layout_alignTop="@id/StaffAccess"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="5dp"
-                android:src="@drawable/edit"/>
+                android:src="@drawable/edit" />
 
             <ImageView
-                android:layout_alignParentEnd="true"
-                android:layout_margin="5dp"
+                android:id="@+id/imgDelete"
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_15sdp"
-                android:id="@+id/imgDelete"
-                android:src="@drawable/ic_remove"/>
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_remove" />
 
 
         </RelativeLayout>
