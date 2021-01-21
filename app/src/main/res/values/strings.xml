@@ -124,7 +124,7 @@
     <string name="active">Completed</string>
     <string name="pending">Pending</string>
     <string name="overview">OVERVIEW</string>
-    <string name="connect_with_your_customer_for_visit_your_online_store_easly">Connect with your customer for visit your online store easly!</string>
+    <string name="connect_with_your_customer_for_visit_your_online_store_easly">Connect with your customer to visit your online store easily!</string>
     <string name="title_activity_maps__new">Map</string>
     <string name="FCM_KEY">AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D</string>
     <string name="FCM_TOPIC">PUSH_NOTIFICATIONS</string>
@@ -429,4 +429,5 @@
     <string name="electronics_accessories">Electronics Accessories</string>
     <string name="switchs">Switch</string>
     <string name="switch_screen">Switch</string>
+    <string name="staff_mobile_number"><font fontfamily="@font/l_r" size="16">Staff Mobile Number</font></string>
 </resources>
