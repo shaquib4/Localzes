@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.localzes.android.Adapters.AdapterStaffOf
+import com.localzes.android.Modals.ModelStaffOf
 import kotlinx.android.synthetic.main.activity_continueas.*
 import util.ConnectionManager
 
@@ -16,10 +18,13 @@ class Continueas : AppCompatActivity() {
     private lateinit var cuserDatabase: DatabaseReference
     private lateinit var suserDatabase: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var adapterStaffOf:AdapterStaffOf
+    private lateinit var staffOf:List<ModelStaffOf>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continueas)
         progress_continue.visibility = View.GONE
+        staffOf=ArrayList<ModelStaffOf>()
         retryContinueAs.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_continueAs.visibility = View.VISIBLE
@@ -67,9 +72,41 @@ class Continueas : AppCompatActivity() {
         userDatabase!!.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    progress_continue.visibility = View.GONE
-                    startActivity(Intent(this@Continueas, Home_seller::class.java))
-                    finish()
+                    if(snapshot.child("staff").exists()){
+                        userDatabase.child("staff").addValueEventListener(object :ValueEventListener{
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+
+                            override fun onDataChange(snapshots: DataSnapshot) {
+                                (staffOf as ArrayList<ModelStaffOf>).clear()
+                                for(i in snapshots.children){
+                                    val obj=ModelStaffOf(
+                                        i.child("shopOwnerName").value.toString(),
+                                        i.child("shopName").value.toString(),
+                                        i.child("shopMobileNumber").value.toString(),
+                                        i.child("status").value.toString(),
+                                        i.child("invitationUid").value.toString()
+                                    )
+                                    if(i.child("invitation").value.toString()=="Accepted"){
+                                        (staffOf as ArrayList<ModelStaffOf>).add(obj)
+                                    }
+
+                                }
+                                if (staffOf.isEmpty()){
+                                    progress_continue.visibility = View.GONE
+                                    startActivity(Intent(this@Continueas, Home_seller::class.java))
+                                    finish()
+                                }else{
+                                  adapterStaffOf=AdapterStaffOf(this@Continueas,staffOf)
+                                }
+                            }
+                        })
+                    }else{
+                        progress_continue.visibility = View.GONE
+                        startActivity(Intent(this@Continueas, Home_seller::class.java))
+                        finish()
+                    }
                 } else {
                     progress_continue.visibility = View.GONE
                     val phone = intent.getStringExtra("phone1")
