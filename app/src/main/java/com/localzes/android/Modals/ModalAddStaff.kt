@@ -6,7 +6,8 @@ class ModalAddStaff(
     val address: String,
     val status: String,
     val access: String,
-    val uid: String
+    val uid: String,
+    val invitationStatus:String
 ) {
-    constructor() : this("", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "","")
 }
