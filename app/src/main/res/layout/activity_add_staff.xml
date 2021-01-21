@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddStaff">
+    <RelativeLayout
+
+        android:id="@+id/addStaff"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/border">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/_18ssp"
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="#fff"
+            android:textStyle="bold"
+
+            android:text="Add Staff +"/>
+
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/staff_img"
+        android:layout_marginTop="@dimen/_42sdp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/shop_png"
+        android:layout_below="@+id/addStaff"
+        android:layout_width="@dimen/_220sdp"
+        android:layout_height="@dimen/_180sdp"/>
+    <EditText
+        android:maxLines="1"
+        android:id="@+id/edtStaffNumber"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_below="@id/staff_img"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:background="@drawable/stroke_red"
+        android:fontFamily="@font/montserrat_medium"
+        android:drawableStart="@drawable/ic_personcon"
+        android:hint="@string/staff_mobile_number"
+        android:paddingHorizontal="@dimen/_18sdp"
+        android:drawablePadding="@dimen/_7sdp"
+        android:textColor="#de4500"
+        android:textColorHint="#000000"
+        android:textSize="@dimen/_12ssp"
+
+        android:inputType="phone"
+        android:importantForAutofill="no" />
+    <Button
+        android:id="@+id/Access_staff"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:paddingHorizontal="@dimen/_18sdp"
+        android:text="Access"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_11ssp"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:drawablePadding="@dimen/_8sdp"
+        android:fontFamily="@font/montserrat_medium"
+        android:paddingLeft="@dimen/_30sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_below="@+id/edtStaffNumber"
+        android:drawableStart="@drawable/ic_key"
+        android:background="@drawable/stroke_red"
+        android:layout_marginTop="@dimen/_10sdp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_14ssp"
+        android:textColor="#fff"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_below="@+id/Access_staff"
+        android:background="@drawable/bg_buttons"
+        android:layout_marginTop="@dimen/_25sdp"/>
+
+</RelativeLayout>
