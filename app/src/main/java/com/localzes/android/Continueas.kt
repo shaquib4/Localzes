@@ -86,9 +86,10 @@ class Continueas : AppCompatActivity() {
                                         i.child("shopName").value.toString(),
                                         i.child("shopMobileNumber").value.toString(),
                                         i.child("status").value.toString(),
-                                        i.child("invitationUid").value.toString()
+                                        i.child("invitationUid").value.toString(),
+                                        i.child("invitationStatus").value.toString()
                                     )
-                                    if(i.child("invitation").value.toString()=="Accepted"){
+                                    if(i.child("invitationStatus").value.toString()=="Accepted"){
                                         (staffOf as ArrayList<ModelStaffOf>).add(obj)
                                     }
 
@@ -98,7 +99,7 @@ class Continueas : AppCompatActivity() {
                                     startActivity(Intent(this@Continueas, Home_seller::class.java))
                                     finish()
                                 }else{
-                                  adapterStaffOf=AdapterStaffOf(this@Continueas,staffOf)
+                                  adapterStaffOf= AdapterStaffOf(this@Continueas,staffOf)
                                 }
                             }
                         })
