@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp">
+            
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_back"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="@dimen/_10sdp"/>
+            
+            <TextView
+                android:id="@+id/txtManageStaff"
+                android:layout_toEndOf="@id/imgBack"
+               android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manage Staff"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="#000"
+                android:fontFamily="@font/montserrat_bold"
+                />
+            
+            <view
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#d3d3d3"
+                android:layout_alignParentBottom="true"/>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_add_primary"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/border"
+            android:id="@+id/rl2"
+            android:layout_below="@id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="As Main Seller"
+                android:textColor="#fff"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="@dimen/_20ssp"/>
+
+        </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_below="@+id/rl2"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/staff_single_row"/>
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:backgroundTint="#de4500"
+        android:src="@drawable/ic_add"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>
