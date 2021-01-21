@@ -5,7 +5,8 @@ class ModelStaffOf(
     val shopName: String,
     val shopMobileNumber: String,
     val status: String,
-    val invitationUid: String
+    val invitationUid: String,
+    val invitationStatus: String
 ) {
-    constructor() : this("", "", "", "", "")
+    constructor() : this("", "", "", "", "", "")
 }
