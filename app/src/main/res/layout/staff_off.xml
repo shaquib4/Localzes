@@ -78,17 +78,23 @@
 
 
 
+            <RelativeLayout
+                android:layout_margin="5dp"
+                android:background="@drawable/stroke_primary"
+                android:id="@+id/imgshop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
 
             <ImageView
+                android:layout_margin="1dp"
+                android:scaleType="centerCrop"
                 android:background="@drawable/stroke_primary"
-                android:padding="1dp"
-                android:id="@+id/imgshop"
-                android:src="@drawable/stores"
+                android:src="@drawable/localze_shop"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
-                android:layout_margin="5dp"/>
-
+               />
+            </RelativeLayout>
             <ImageView
                 android:layout_alignParentEnd="true"
                 android:layout_margin="5dp"

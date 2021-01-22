@@ -24,9 +24,10 @@
                 android:layout_marginVertical="10dp"
                 android:id="@+id/txtStaffShop"
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
                 android:text="Staff of other Shop"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="30dp"
                 android:textSize="@dimen/_15ssp"
                 android:fontFamily="@font/montserrat_bold"/>
             <View
@@ -43,7 +44,7 @@
                 android:id="@+id/cardShop"
                 android:layout_marginVertical="20dp"
                 android:layout_marginHorizontal="10dp"
-                app:cardCornerRadius="5dp"
+                app:cardCornerRadius="30dp"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -76,12 +77,14 @@
 
             </RelativeLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_staff_of"
-                android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/v1"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="2dp"
                 tools:listitem="@layout/staff_off" />
 
 
