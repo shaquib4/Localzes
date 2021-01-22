@@ -122,6 +122,20 @@ class AccountsSeller : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
+                "To Main Seller" -> {
+                    val intent = Intent(this, Home_seller::class.java)
+                    val databaseReference =
+                        FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                    val headers = HashMap<String, Any>()
+                    headers["staffOfShop"] = ""
+                    databaseReference.updateChildren(headers).addOnSuccessListener {
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+                "As Staff Of Shop" -> {
+
+                }
             }
             return@setOnChildClickListener true
         }
@@ -194,7 +208,7 @@ class AccountsSeller : AppCompatActivity() {
         //item2.add("FAQs")
         item2.add("Contact Us")
 
-        val item3:MutableList<String> = ArrayList()
+        val item3: MutableList<String> = ArrayList()
         item3.add("To Main Seller")
         item3.add("As Staff Of Shop")
 
@@ -202,7 +216,7 @@ class AccountsSeller : AppCompatActivity() {
         //item[menu[0]] = item1
         item[menu[0]] = item1
         item[menu[1]] = item2
-        item[menu[2]]=item3
+        item[menu[2]] = item3
 
     }
 
