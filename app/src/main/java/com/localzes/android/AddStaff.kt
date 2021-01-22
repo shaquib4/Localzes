@@ -47,6 +47,7 @@ class AddStaff : AppCompatActivity() {
             builder.setSingleChoiceItems(options, -1) { dialog, which ->
                 val selectedItem = options[which]
                 selectedAccess = selectedItem
+                accessStaff.text = selectedAccess
                 dialog.dismiss()
             }
             builder.create().show()
@@ -86,9 +87,10 @@ class AddStaff : AppCompatActivity() {
                                     newHeader["invitationStatus"] = ""
                                     val staffHeader = HashMap<String, Any>()
                                     staffHeader["staffOfShop"] = ""
-                                    dataRef.child(uid).setValue(staffHeader)
+                                    dataRef.child(uid).updateChildren(staffHeader)
                                     dataRef.child(uid).child("StaffOf").child(sellerUid)
-                                        .setValue(newHeader).addOnSuccessListener {
+                                        .updateChildren(newHeader).addOnSuccessListener {
+                                            progressDialog.dismiss()
                                             Toast.makeText(
                                                 this@AddStaff,
                                                 "New Staff is added successfully",
