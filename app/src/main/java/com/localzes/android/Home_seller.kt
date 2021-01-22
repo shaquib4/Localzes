@@ -117,54 +117,57 @@ class Home_seller : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (!(snapshot.child("staffOfShop").exists()) || snapshot.child("staffOfShop").value.toString() == "") {
+                    if (!(snapshot.child("staffOfShop")
+                            .exists()) || snapshot.child("staffOfShop").value.toString() == ""
+                    ) {
                         homeSeller(uid)
                     } else {
                         val uidOfShop = snapshot.child("staffOfShop").value.toString()
-                        if (snapshot.child("staffOf").child(uidOfShop).exists()){
-                        val databaseReference =
-                            FirebaseDatabase.getInstance().reference.child("seller")
-                                .child(uidOfShop).child("MyStaff").child(uid)
-                        databaseReference.addValueEventListener(object : ValueEventListener {
-                            override fun onCancelled(error: DatabaseError) {
+                        if (snapshot.child("StaffOf").child(uidOfShop).exists()) {
+                            val databaseReference =
+                                FirebaseDatabase.getInstance().reference.child("seller")
+                                    .child(uidOfShop).child("MyStaff").child(uid)
+                            databaseReference.addValueEventListener(object : ValueEventListener {
+                                override fun onCancelled(error: DatabaseError) {
 
-                            }
+                                }
 
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                val access = snapshot.child("access").value.toString()
-                                when (access) {
-                                    "Total Access" -> {
-                                        homeSeller(uidOfShop)
-                                    }
-                                    "Order Access" -> {
-                                        homeSeller(uidOfShop)
-                                        editShopDetails.visibility=View.GONE
-                                    }
-                                    "Delivery Access" -> {
-                                        orderPen.isClickable=false
-                                        editShopDetails.visibility=View.GONE
-                                        totalIncome.visibility=View.GONE
-                                    }
-                                    "Catalogue Access(Product)" -> {
-                                      rl_HomeSeller.visibility=View.GONE
-                                        rl_accessHome.visibility=View.VISIBLE
-                                    }
-                                    "Boost Your Shop Access" -> {
-                                        rl_HomeSeller.visibility=View.GONE
-                                        rl_accessHome.visibility=View.VISIBLE
-                                    }
-                                    "(Orders + Catalogue)Access" -> {
-                                        homeSeller(uidOfShop)
-                                        editShopDetails.visibility=View.GONE
-                                    }
-                                    "(Order + Boost Your Shop)Access" -> {
-                                        homeSeller(uidOfShop)
-                                        editShopDetails.visibility=View.GONE
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    val access = snapshot.child("access").value.toString()
+                                    when (access) {
+                                        "Total Access" -> {
+                                            homeSeller(uidOfShop)
+                                        }
+                                        "Order Access" -> {
+                                            homeSeller(uidOfShop)
+                                            editShopDetails.visibility = View.GONE
+                                        }
+                                        "Delivery Access" -> {
+                                            orderPen.isClickable = false
+                                            editShopDetails.visibility = View.GONE
+                                            totalIncome.visibility = View.GONE
+                                        }
+                                        "Catalogue Access(Product)" -> {
+                                            rl_HomeSeller.visibility = View.GONE
+                                            rl_accessHome.visibility = View.VISIBLE
+                                        }
+                                        "Boost Your Shop Access" -> {
+                                            rl_HomeSeller.visibility = View.GONE
+                                            rl_accessHome.visibility = View.VISIBLE
+                                        }
+                                        "(Orders + Catalogue)Access" -> {
+                                            homeSeller(uidOfShop)
+                                            editShopDetails.visibility = View.GONE
+                                        }
+                                        "(Order + Boost Your Shop)Access" -> {
+                                            homeSeller(uidOfShop)
+                                            editShopDetails.visibility = View.GONE
+                                        }
                                     }
                                 }
-                            }
-                        })
-                    }}
+                            })
+                        }
+                    }
                 }
             })
     }

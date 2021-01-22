@@ -52,6 +52,10 @@ class cardBanners : AppCompatActivity() {
 
             return@setOnNavigationItemSelectedListener false
         }
+        CardBanners()
+
+    }
+    private fun CardBanners(){
         cardQR.setOnClickListener {
             startActivity(Intent(this, generateQRcode::class.java))
             finish()

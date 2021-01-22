@@ -13,6 +13,7 @@ import com.localzes.android.Adapters.AdapterSellerProducts
 import com.localzes.android.Modals.ModelAddProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_home_seller.*
 import kotlinx.android.synthetic.main.activity_seller__products.*
 import util.ConnectionManager
 
@@ -41,34 +42,6 @@ class Seller_Products : AppCompatActivity() {
         search = findViewById(R.id.searchShopProduct)
         val user = auth.currentUser
         val uid = user!!.uid
-        if (category.toString() == null) {
-            additem.setOnClickListener {
-                startActivity(Intent(this, AddProduct::class.java))
-                finish()
-            }
-        } else {
-            additem.setOnClickListener {
-                val intent = Intent(this, AddProduct::class.java)
-                intent.putExtra("categoryAdd", category.toString())
-                startActivity(intent)
-                finish()
-            }
-        }
-
-        search.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                searchSellerProducts(cs.toString().toLowerCase())
-            }
-        })
-
         sellerProductRetry.setOnClickListener {
             this.recreate()
         }
@@ -117,105 +90,66 @@ class Seller_Products : AppCompatActivity() {
             return@setOnNavigationItemSelectedListener false
         }
         productDatabaseRef =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
-        if (category != null) {
-            if (ConnectionManager().checkConnectivity(this)) {
-                rl_sellerProducts.visibility = View.VISIBLE
-                rl_Seller_Products_Internet.visibility = View.GONE
-                productDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError) {
-                        Toast.makeText(this@Seller_Products, error.message, Toast.LENGTH_SHORT)
-                            .show()
+            FirebaseDatabase.getInstance().reference.child("seller")
+        productDatabaseRef.child(uid)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
 
-                    }
+                }
 
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        (mSellerProducts as ArrayList<ModelAddProduct>).clear()
-                        for (i in snapshot.children) {
-                            val obj = ModelAddProduct(
-                                i.child("shopId").value.toString(),
-                                i.child("productId").value.toString(),
-                                i.child("imageUrl").value.toString(),
-                                i.child("productCategory").value.toString(),
-                                i.child("title").value.toString(),
-                                i.child("description").value.toString(),
-                                i.child("sellingPrice").value.toString(),
-                                i.child("offerPrice").value.toString(),
-                                i.child("unit").value.toString(),
-                                i.child("quantity").value.toString(),
-                                i.child("stock").value.toString()
-                            )
-                            if (i.child("productCategory").value.toString() == category.toString()) {
-                                (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
-                            }
-                        }
-                        if (mSellerProducts.isEmpty()) {
-                            recyclerSellerProducts.visibility = View.GONE
-                        } else {
-                            relativeAddProduct.visibility = View.GONE
-                            recyclerSellerProducts.visibility = View.VISIBLE
-                            productAdapter =
-                                AdapterSellerProducts(
-                                    this@Seller_Products,
-                                    mSellerProducts
-                                )
-                            recyclerSellerProducts.adapter = productAdapter
-                        }
-                    }
-                })
-            } else {
-                rl_sellerProducts.visibility = View.GONE
-                rl_Seller_Products_Internet.visibility = View.VISIBLE
-            }
-        } else {
-            if (ConnectionManager().checkConnectivity(this)) {
-                rl_sellerProducts.visibility = View.VISIBLE
-                rl_Seller_Products_Internet.visibility = View.GONE
-                productDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError) {
-                        Toast.makeText(this@Seller_Products, error.message, Toast.LENGTH_SHORT)
-                            .show()
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (!(snapshot.child("staffOfShop")
+                            .exists()) || snapshot.child("staffOfShop").value.toString() == ""
+                    ) {
+                        sellerProducts(uid)
+                    } else {
+                        val uidOfShop = snapshot.value.toString()
+                        if (snapshot.child("StaffOf").child(uidOfShop).exists()) {
+                            val databaseReference =
+                                FirebaseDatabase.getInstance().reference.child("seller")
+                                    .child(uidOfShop).child("MyStaff").child(uid)
+                            databaseReference.addValueEventListener(object : ValueEventListener {
+                                override fun onCancelled(error: DatabaseError) {
 
-                    }
+                                }
 
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        (mSellerProducts as ArrayList<ModelAddProduct>).clear()
-                        for (i in snapshot.children) {
-                            val obj = ModelAddProduct(
-                                i.child("shopId").value.toString(),
-                                i.child("productId").value.toString(),
-                                i.child("imageUrl").value.toString(),
-                                i.child("productCategory").value.toString(),
-                                i.child("title").value.toString(),
-                                i.child("description").value.toString(),
-                                i.child("sellingPrice").value.toString(),
-                                i.child("offerPrice").value.toString(),
-                                i.child("unit").value.toString(),
-                                i.child("quantity").value.toString(),
-                                i.child("stock").value.toString()
-                            )
-                            (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
-                        }
-                        if (mSellerProducts.isEmpty()) {
-                            recyclerSellerProducts.visibility = View.GONE
-                        } else {
-                            relativeAddProduct.visibility = View.GONE
-                            recyclerSellerProducts.visibility = View.VISIBLE
-                            productAdapter =
-                                AdapterSellerProducts(
-                                    this@Seller_Products,
-                                    mSellerProducts
-                                )
-                            recyclerSellerProducts.adapter = productAdapter
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    val access = snapshot.child("access").value.toString()
+                                    when (access) {
+                                        "Total Access" -> {
+                                            sellerProducts(uidOfShop)
+                                        }
+                                        "Order Access" -> {
+                                            sellerProducts(uidOfShop)
+                                        }
+                                        "Delivery Access" -> {
+
+                                        }
+                                        "Catalogue Access(Product)" -> {
+
+                                        }
+                                        "Boost Your Shop Access" -> {
+
+                                        }
+                                        "(Orders + Catalogue)Access" -> {
+
+                                        }
+                                        "(Order + Boost Your Shop)Access" -> {
+
+                                        }
+                                    }
+                                }
+
+                            })
                         }
                     }
-                })
-            } else {
-                rl_sellerProducts.visibility = View.GONE
-                rl_Seller_Products_Internet.visibility = View.VISIBLE
-            }
 
-        }
+                }
+
+            })
+
+
+
     }
 
     private fun searchSellerProducts(str: String) {
@@ -265,6 +199,136 @@ class Seller_Products : AppCompatActivity() {
             rl_sellerProducts.visibility = View.GONE
             rl_Seller_Products_Internet.visibility = View.VISIBLE
         }
+    }
+
+    private fun sellerProducts(uid: String) {
+        if (category.toString() == null) {
+            additem.setOnClickListener {
+                startActivity(Intent(this, AddProduct::class.java))
+                finish()
+            }
+        } else {
+            additem.setOnClickListener {
+                val intent = Intent(this, AddProduct::class.java)
+                intent.putExtra("categoryAdd", category.toString())
+                startActivity(intent)
+                finish()
+            }
+        }
+        search.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                searchSellerProducts(cs.toString().toLowerCase())
+            }
+        })
+        if (category != null) {
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_sellerProducts.visibility = View.VISIBLE
+                rl_Seller_Products_Internet.visibility = View.GONE
+                productDatabaseRef.child(uid).child("Products")
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(this@Seller_Products, error.message, Toast.LENGTH_SHORT)
+                                .show()
+
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            (mSellerProducts as ArrayList<ModelAddProduct>).clear()
+                            for (i in snapshot.children) {
+                                val obj = ModelAddProduct(
+                                    i.child("shopId").value.toString(),
+                                    i.child("productId").value.toString(),
+                                    i.child("imageUrl").value.toString(),
+                                    i.child("productCategory").value.toString(),
+                                    i.child("title").value.toString(),
+                                    i.child("description").value.toString(),
+                                    i.child("sellingPrice").value.toString(),
+                                    i.child("offerPrice").value.toString(),
+                                    i.child("unit").value.toString(),
+                                    i.child("quantity").value.toString(),
+                                    i.child("stock").value.toString()
+                                )
+                                if (i.child("productCategory").value.toString() == category.toString()) {
+                                    (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
+                                }
+                            }
+                            if (mSellerProducts.isEmpty()) {
+                                recyclerSellerProducts.visibility = View.GONE
+                            } else {
+                                relativeAddProduct.visibility = View.GONE
+                                recyclerSellerProducts.visibility = View.VISIBLE
+                                productAdapter =
+                                    AdapterSellerProducts(
+                                        this@Seller_Products,
+                                        mSellerProducts
+                                    )
+                                recyclerSellerProducts.adapter = productAdapter
+                            }
+                        }
+                    })
+            } else {
+                rl_sellerProducts.visibility = View.GONE
+                rl_Seller_Products_Internet.visibility = View.VISIBLE
+            }
+        } else {
+            if (ConnectionManager().checkConnectivity(this)) {
+                rl_sellerProducts.visibility = View.VISIBLE
+                rl_Seller_Products_Internet.visibility = View.GONE
+                productDatabaseRef.child(uid).child("Products")
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(this@Seller_Products, error.message, Toast.LENGTH_SHORT)
+                                .show()
+
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            (mSellerProducts as ArrayList<ModelAddProduct>).clear()
+                            for (i in snapshot.children) {
+                                val obj = ModelAddProduct(
+                                    i.child("shopId").value.toString(),
+                                    i.child("productId").value.toString(),
+                                    i.child("imageUrl").value.toString(),
+                                    i.child("productCategory").value.toString(),
+                                    i.child("title").value.toString(),
+                                    i.child("description").value.toString(),
+                                    i.child("sellingPrice").value.toString(),
+                                    i.child("offerPrice").value.toString(),
+                                    i.child("unit").value.toString(),
+                                    i.child("quantity").value.toString(),
+                                    i.child("stock").value.toString()
+                                )
+                                (mSellerProducts as ArrayList<ModelAddProduct>).add(obj)
+                            }
+                            if (mSellerProducts.isEmpty()) {
+                                recyclerSellerProducts.visibility = View.GONE
+                            } else {
+                                relativeAddProduct.visibility = View.GONE
+                                recyclerSellerProducts.visibility = View.VISIBLE
+                                productAdapter =
+                                    AdapterSellerProducts(
+                                        this@Seller_Products,
+                                        mSellerProducts
+                                    )
+                                recyclerSellerProducts.adapter = productAdapter
+                            }
+                        }
+                    })
+            } else {
+                rl_sellerProducts.visibility = View.GONE
+                rl_Seller_Products_Internet.visibility = View.VISIBLE
+            }
+
+        }
+
     }
 
     override fun onBackPressed() {
