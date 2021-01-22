@@ -109,18 +109,71 @@ class Home_seller : AppCompatActivity() {
             }
             return@setOnNavigationItemSelectedListener false
         }
-        orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-        orderDatabaseReference.child("Orders").addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+        orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller")
+        orderDatabaseReference.child(uid).child("staffOfShop")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                cartOrders = snapshot.childrenCount.toInt()
-            }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (!(snapshot.exists()) || snapshot.value.toString() == "") {
+                        homeSeller(uid)
+                    } else {
+                        val uidOfShop = snapshot.value.toString()
+                        val databaseReference =
+                            FirebaseDatabase.getInstance().reference.child("seller")
+                                .child(uidOfShop).child("MyStaff").child(uid)
+                        databaseReference.addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError) {
 
-        })
-        orderDatabaseReference.child("OrdersLists")
+                            }
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                val access = snapshot.child("access").value.toString()
+                                when (access) {
+                                    "Total Access" -> {
+                                        homeSeller(uidOfShop)
+                                    }
+                                    "Order Access" -> {
+
+                                    }
+                                    "Delivery Access" -> {
+
+                                    }
+                                    "Catalogue Access(Product)" -> {
+
+                                    }
+                                    "Boost Your Shop Access" -> {
+
+                                    }
+                                    "(Orders + Catalogue)Access" -> {
+
+                                    }
+                                    "(Order + Boost Your Shop)Access" -> {
+
+                                    }
+                                }
+                            }
+                        })
+                    }
+                }
+            })
+    }
+
+    private fun homeSeller(uid: String) {
+        orderDatabaseReference.child(uid).child("Orders")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    cartOrders = snapshot.childrenCount.toInt()
+                }
+
+            })
+        orderDatabaseReference.child(uid).child("OrdersLists")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -132,7 +185,8 @@ class Home_seller : AppCompatActivity() {
                 }
 
             })
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Pending")
+        orderDatabaseReference.child(uid).child("Orders").orderByChild("orderStatus")
+            .equalTo("Pending")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -142,7 +196,8 @@ class Home_seller : AppCompatActivity() {
                     t1 = snapshot.childrenCount.toInt()
                 }
             })
-        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Pending")
+        orderDatabaseReference.child(uid).child("OrdersLists").orderByChild("orderStatus")
+            .equalTo("Pending")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -156,7 +211,8 @@ class Home_seller : AppCompatActivity() {
                 }
             })
 
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
+        orderDatabaseReference.child(uid).child("Orders").orderByChild("orderStatus")
+            .equalTo("Accepted")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -166,7 +222,8 @@ class Home_seller : AppCompatActivity() {
                     t3 = snapshot.childrenCount.toInt()
                 }
             })
-        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Accepted")
+        orderDatabaseReference.child(uid).child("OrdersLists").orderByChild("orderStatus")
+            .equalTo("Accepted")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -180,7 +237,7 @@ class Home_seller : AppCompatActivity() {
                 }
 
             })
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus")
+        orderDatabaseReference.child(uid).child("Orders").orderByChild("orderStatus")
             .equalTo("Out For Delivery")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -192,7 +249,7 @@ class Home_seller : AppCompatActivity() {
                 }
 
             })
-        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus")
+        orderDatabaseReference.child(uid).child("OrdersLists").orderByChild("orderStatus")
             .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -205,7 +262,8 @@ class Home_seller : AppCompatActivity() {
                 }
 
             })
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")
+        orderDatabaseReference.child(uid).child("Orders").orderByChild("orderStatus")
+            .equalTo("Completed")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -217,7 +275,8 @@ class Home_seller : AppCompatActivity() {
                 }
 
             })
-        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Completed")
+        orderDatabaseReference.child(uid).child("OrdersLists").orderByChild("orderStatus")
+            .equalTo("Completed")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -230,54 +289,56 @@ class Home_seller : AppCompatActivity() {
 
                 }
             })
-        orderDatabaseReference.child("OrdersLists").addValueEventListener(object:ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
+        orderDatabaseReference.child(uid).child("OrdersLists")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var finalPriceOfList = arrayListOf<Double>()
-                for (i in snapshot.children){
-                    finalPriceOfList.clear()
-                    val cost=i.child("orderCost").value.toString()
-                    val status=i.child("orderStatus").value.toString()
-                    if (status=="Completed"){
-                        finalPriceOfList.add(cost.toDouble())
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var finalPriceOfList = arrayListOf<Double>()
+                    for (i in snapshot.children) {
+                        finalPriceOfList.clear()
+                        val cost = i.child("orderCost").value.toString()
+                        val status = i.child("orderStatus").value.toString()
+                        if (status == "Completed") {
+                            finalPriceOfList.add(cost.toDouble())
+                        }
+                        for (j in finalPriceOfList) {
+                            listIncome += j
+                        }
+
                     }
-                    for (j in finalPriceOfList){
-                        listIncome+=j
+
+                }
+            })
+
+        orderDatabaseReference.child(uid).child("Orders")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var finalPriceOfCart = arrayListOf<Double>()
+                    for (i in snapshot.children) {
+                        finalPriceOfCart.clear()
+                        val cost = i.child("orderCost").value.toString()
+                        val status = i.child("orderStatus").value.toString()
+                        if (status == "Completed") {
+                            finalPriceOfCart.add(cost.toDouble())
+                        }
+                        for (k in finalPriceOfCart) {
+                            cartIncome += k
+                        }
+                        val l = cartIncome + listIncome
+                        totalIncome.text = l.toString()
                     }
 
                 }
 
-            }
-        })
 
-        orderDatabaseReference.child("Orders").addValueEventListener(object :ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var finalPriceOfCart = arrayListOf<Double>()
-                for (i in snapshot.children){
-                    finalPriceOfCart.clear()
-                    val cost=i.child("orderCost").value.toString()
-                    val status=i.child("orderStatus").value.toString()
-                    if (status=="Completed"){
-                        finalPriceOfCart.add(cost.toDouble())
-                    }
-                    for (k in finalPriceOfCart){
-                        cartIncome+=k
-                    }
-                    val l=cartIncome+listIncome
-                    totalIncome.text=l.toString()
-                 }
-
-                }
-
-
-        })
+            })
 
         OrderAcc.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
@@ -339,7 +400,7 @@ class Home_seller : AppCompatActivity() {
                 rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
-        orderDatabaseReference.addValueEventListener(object : ValueEventListener {
+        orderDatabaseReference.child(uid).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -349,20 +410,6 @@ class Home_seller : AppCompatActivity() {
                 shopName.text = shop
             }
         })
-/*        orderDatabaseReference.child("Orders").addValueEventListener(object :ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val orders=snapshot.childrenCount.toString()
-                totalOrders.text=orders
-                for(i in snapshot.children){
-                    
-                }
-            }
-
-        })*/
     }
 
     override fun onBackPressed() {
