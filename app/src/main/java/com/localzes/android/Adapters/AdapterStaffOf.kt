@@ -14,7 +14,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.localzes.android.Modals.ModelStaffOf
-import com.localzes.android.Modals.Upload
 import com.localzes.android.R
 
 class AdapterStaffOf(val context: Context, val staffOf: List<ModelStaffOf>) :
@@ -84,9 +83,12 @@ class AdapterStaffOf(val context: Context, val staffOf: List<ModelStaffOf>) :
                 for (i in snapshot.children) {
                     i.ref.removeValue()
                 }
-                Toast.makeText(context, "Shop Removed Successfully", Toast.LENGTH_SHORT).show()
+                val database = FirebaseDatabase.getInstance().reference.child("seller")
+                    .child(staffOf[position].invitationUid).child("MyStaff")
+                database.child(uid).removeValue().addOnSuccessListener {
+                    Toast.makeText(context, "Shop Removed Successfully", Toast.LENGTH_SHORT).show()
+                }
             }
-
         })
     }
 }
