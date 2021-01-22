@@ -110,17 +110,18 @@ class Home_seller : AppCompatActivity() {
             return@setOnNavigationItemSelectedListener false
         }
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller")
-        orderDatabaseReference.child(uid).child("staffOfShop")
+        orderDatabaseReference.child(uid)
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (!(snapshot.exists()) || snapshot.value.toString() == "") {
+                    if (!(snapshot.child("staffOfShop").exists()) || snapshot.child("staffOfShop").value.toString() == "") {
                         homeSeller(uid)
                     } else {
-                        val uidOfShop = snapshot.value.toString()
+                        val uidOfShop = snapshot.child("staffOfShop").value.toString()
+                        if (snapshot.child("staffOf").child(uidOfShop).exists()){
                         val databaseReference =
                             FirebaseDatabase.getInstance().reference.child("seller")
                                 .child(uidOfShop).child("MyStaff").child(uid)
@@ -145,10 +146,12 @@ class Home_seller : AppCompatActivity() {
                                         totalIncome.visibility=View.GONE
                                     }
                                     "Catalogue Access(Product)" -> {
-
+                                      rl_HomeSeller.visibility=View.GONE
+                                        rl_accessHome.visibility=View.VISIBLE
                                     }
                                     "Boost Your Shop Access" -> {
-
+                                        rl_HomeSeller.visibility=View.GONE
+                                        rl_accessHome.visibility=View.VISIBLE
                                     }
                                     "(Orders + Catalogue)Access" -> {
                                         homeSeller(uidOfShop)
@@ -161,7 +164,7 @@ class Home_seller : AppCompatActivity() {
                                 }
                             }
                         })
-                    }
+                    }}
                 }
             })
     }

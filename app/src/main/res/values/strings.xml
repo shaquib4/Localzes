@@ -429,5 +429,5 @@
     <string name="electronics_accessories">Electronics Accessories</string>
     <string name="switchs">Switch</string>
     <string name="switch_screen">Switch</string>
-    <string name="staff_mobile_number"><font fontfamily="@font/l_r" size="16">Staff Mobile Number</font></string>
+    <string name="staff_mobile_number"><font fontfamily="@font/l_r" size="13">Staff Mobile Number</font></string>
 </resources>

@@ -35,7 +35,7 @@ class AddStaff : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
-       staffNumber.addTextChangedListener(object:TextWatcher{
+     /*  staffNumber.addTextChangedListener(object:TextWatcher{
            override fun afterTextChanged(s: Editable?) {
 
            }
@@ -45,9 +45,11 @@ class AddStaff : AppCompatActivity() {
            }
 
            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-               staff(s.toString())
+
+               Toast.makeText(this@AddStaff,s?.length.toString(),Toast.LENGTH_SHORT).show()
+               staff(s?.length.toString())
            }
-       })
+       })*/
 
         accessStaff.setOnClickListener {
             val options = arrayOf(
@@ -124,8 +126,9 @@ class AddStaff : AppCompatActivity() {
 
     }
 
-    private fun staff(s: String) {
-        if (s.length==10){
+    private fun staff(toString: String) {
+        for (i in toString()){
+        if (toString==10.toString()){
             progressDialog.setMessage("Fetching details.....")
             progressDialog.show()
             val ref=FirebaseDatabase.getInstance().reference.child("seller")
@@ -141,12 +144,9 @@ class AddStaff : AppCompatActivity() {
                             bool=true
                         }
                     }
-                    if (bool==false){
-                        Toast.makeText(this@AddStaff,"Does Not Exist",Toast.LENGTH_SHORT).show()
-                    }
                     progressDialog.dismiss()
                 }
             })
         }
-    }
+    }}
 }
