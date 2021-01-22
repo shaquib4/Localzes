@@ -6,8 +6,32 @@
     android:layout_height="match_parent"
     android:background="#fff"
     tools:context=".cardBanners">
+    <RelativeLayout
+        android:id="@+id/rl_accessCard"
+        android:visibility="invisible"
+        android:background="#eeeeee"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:id="@+id/imgloc"
+            android:src="@drawable/ic_outline_lock_24"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You have no access to this area"
+            android:layout_below="@id/imgloc"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#000"
+            /></RelativeLayout>
     <ScrollView
+        android:id="@+id/cardScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navOrders_seller">
