@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,6 +19,7 @@ class AddStaff : AppCompatActivity() {
     private lateinit var staffNumber: EditText
     private lateinit var accessStaff: Button
     private lateinit var btnConfirmStaff: Button
+    private var bool:Boolean=false
     private lateinit var progressDialog: ProgressDialog
     private lateinit var shopAuth: FirebaseAuth
     var selectedAccess: String = ""
@@ -32,6 +35,20 @@ class AddStaff : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
+       staffNumber.addTextChangedListener(object:TextWatcher{
+           override fun afterTextChanged(s: Editable?) {
+
+           }
+
+           override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+           }
+
+           override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+               staff(s.toString())
+           }
+       })
+
         accessStaff.setOnClickListener {
             val options = arrayOf(
                 "Total Access",
@@ -105,5 +122,31 @@ class AddStaff : AppCompatActivity() {
             })
         }
 
+    }
+
+    private fun staff(s: String) {
+        if (s.length==10){
+            progressDialog.setMessage("Fetching details.....")
+            progressDialog.show()
+            val ref=FirebaseDatabase.getInstance().reference.child("seller")
+            ref.addValueEventListener(object:ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children){
+                        val phone = i.child("phone").value.toString()
+                        if (staffNumber.text.toString() == phone){
+                            bool=true
+                        }
+                    }
+                    if (bool==false){
+                        Toast.makeText(this@AddStaff,"Does Not Exist",Toast.LENGTH_SHORT).show()
+                    }
+                    progressDialog.dismiss()
+                }
+            })
+        }
     }
 }
