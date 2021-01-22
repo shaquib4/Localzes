@@ -136,10 +136,13 @@ class Home_seller : AppCompatActivity() {
                                         homeSeller(uidOfShop)
                                     }
                                     "Order Access" -> {
-
+                                        homeSeller(uidOfShop)
+                                        editShopDetails.visibility=View.GONE
                                     }
                                     "Delivery Access" -> {
-
+                                        orderPen.isClickable=false
+                                        editShopDetails.visibility=View.GONE
+                                        totalIncome.visibility=View.GONE
                                     }
                                     "Catalogue Access(Product)" -> {
 
@@ -148,10 +151,12 @@ class Home_seller : AppCompatActivity() {
 
                                     }
                                     "(Orders + Catalogue)Access" -> {
-
+                                        homeSeller(uidOfShop)
+                                        editShopDetails.visibility=View.GONE
                                     }
                                     "(Order + Boost Your Shop)Access" -> {
-
+                                        homeSeller(uidOfShop)
+                                        editShopDetails.visibility=View.GONE
                                     }
                                 }
                             }
