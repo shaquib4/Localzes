@@ -180,6 +180,7 @@ class AccountsSeller : AppCompatActivity() {
         // (menu as ArrayList<String>).add("Account")
         (menu as ArrayList<String>).add("Refunds & Payments")
         (menu as ArrayList<String>).add("Help")
+        (menu as ArrayList<String>).add("Switch")
 
         //  val item1: MutableList<String> = ArrayList()
         //item1.add("Offers")
@@ -193,10 +194,15 @@ class AccountsSeller : AppCompatActivity() {
         //item2.add("FAQs")
         item2.add("Contact Us")
 
+        val item3:MutableList<String> = ArrayList()
+        item3.add("To Main Seller")
+        item3.add("As Staff Of Shop")
+
 
         //item[menu[0]] = item1
         item[menu[0]] = item1
         item[menu[1]] = item2
+        item[menu[2]]=item3
 
     }
 

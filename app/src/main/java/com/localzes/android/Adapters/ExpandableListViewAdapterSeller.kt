@@ -44,12 +44,15 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
         menuTv.text=menuTitle
 /*            menuitem.text = "Offers, Referrals"
 
-        }*/if (menuTitle=="Refunds & Payments"){
+        }*/
+        if (menuTitle=="Refunds & Payments"){
             menuitem.text = "Refund Initiated, Transaction history"
         }
 
         else if (menuTitle=="Help"){
             menuitem.text = "FAQs, Contact us"
+        }else if(menuTitle=="Switch"){
+            menuitem.text="To Main Seller, Staff"
         }
         return convertView
     }
@@ -102,7 +105,11 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
              img.setImageResource(R.drawable.ic_offer_vc)
          }*/else if(itemTitles=="Contact Us"&& menuTitle=="Help"){
              img.setImageResource(R.drawable.ic_referrals)
-         }
+         }else if (itemTitles=="To Main Seller"&&menuTitle=="Switch"){
+            img.setImageResource(R.drawable.ic_referrals)
+        }else if (itemTitles=="As Staff Of Shop"&&menuTitle=="Switch"){
+            img.setImageResource(R.drawable.ic_referrals)
+        }
 
         return convertView
     }
