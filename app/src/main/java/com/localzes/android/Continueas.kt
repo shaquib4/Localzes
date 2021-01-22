@@ -111,7 +111,7 @@ class Continueas : AppCompatActivity() {
                                     } else {
                                         val builder = AlertDialog.Builder(this@Continueas)
                                         val view = LayoutInflater.from(this@Continueas)
-                                            .inflate(R.layout.staffof_dialog, null, false)
+                                            .inflate(R.layout.main_seller, null, false)
                                         val rv: RecyclerView =
                                             view.findViewById(R.id.recycler_staff_of)
                                         val layoutManager = LinearLayoutManager(this@Continueas)
