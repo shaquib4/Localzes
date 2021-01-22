@@ -39,7 +39,6 @@ class AddStaff : AppCompatActivity() {
                 "Delivery Access",
                 "Catalogue Access(Product)",
                 "Boost Your Shop Access",
-                "(Orders + Delivery)Access",
                 "(Orders + Catalogue)Access",
                 "(Order + Boost Your Shop)Access"
             )

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,76 +12,78 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <view
 
+                android:id="@+id/v2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:id="@+id/v2"
-               android:layout_below="@id/cardShop"
-                android:background="#d3d3d3"/>
+                android:layout_below="@id/cardShop"
+                android:background="#d3d3d3" />
+
             <TextView
-                android:layout_below="@id/v2"
-                android:layout_marginVertical="10dp"
                 android:id="@+id/txtStaffShop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Staff of other Shop"
+                android:layout_below="@id/v2"
+                android:layout_marginVertical="10dp"
                 android:layout_marginStart="10dp"
-                android:textSize="@dimen/_15ssp"
-                android:fontFamily="@font/montserrat_bold"/>
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Staff of other Shop"
+                android:textSize="@dimen/_15ssp" />
+
             <View
                 android:id="@+id/v1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#d3d3d3"
-                android:layout_below="@id/txtStaffShop"/>
-
-
+                android:layout_below="@id/txtStaffShop"
+                android:background="#d3d3d3" />
 
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardShop"
-                android:layout_marginVertical="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                app:cardCornerRadius="5dp"
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_marginVertical="20dp"
+                app:cardCornerRadius="5dp">
 
 
-            <RelativeLayout
-                android:background="@drawable/stroke_de4500"
-                android:id="@+id/rl2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                >
+                <RelativeLayout
+                    android:id="@+id/rl2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/stroke_de4500">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="As Main Seller"
-                    android:textColor="#de4500"
-                    android:textSize="@dimen/_20ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="As Main Seller"
+                        android:textColor="#de4500"
+                        android:textSize="@dimen/_20ssp" />
 
-                <ImageView
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_forward"/>
+                    <ImageView
+                        android:id="@+id/asMainSeller"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:src="@drawable/ic_forward" />
 
-            </RelativeLayout>
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_staff_of"
-                android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/v1"
+                android:layout_margin="2dp"
                 tools:listitem="@layout/staff_off" />
 
 

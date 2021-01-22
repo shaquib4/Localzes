@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -114,6 +115,11 @@ class Continueas : AppCompatActivity() {
                                             .inflate(R.layout.main_seller, null, false)
                                         val rv: RecyclerView =
                                             view.findViewById(R.id.recycler_staff_of)
+                                        val mainSeller: ImageView =
+                                            view.findViewById(R.id.asMainSeller)
+                                        mainSeller.setOnClickListener {
+
+                                        }
                                         val layoutManager = LinearLayoutManager(this@Continueas)
                                         rv.layoutManager = layoutManager
                                         adapterStaffOf = AdapterStaffOf(this@Continueas, staffOf)
