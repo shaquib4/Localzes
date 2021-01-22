@@ -60,6 +60,10 @@ class cardBanners : AppCompatActivity() {
             startActivity(Intent(this, ShopBanner::class.java))
             finish()
         }
+        carStaff.setOnClickListener {
+            startActivity(Intent(this, AddStaff::class.java))
+            finish()
+        }
     }
 
     override fun onBackPressed() {
