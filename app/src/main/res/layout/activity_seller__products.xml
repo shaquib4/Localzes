@@ -9,9 +9,8 @@
     <RelativeLayout
         android:id="@+id/rl_sellerProducts"
         android:layout_width="match_parent"
-        android:layout_above="@id/bottom_navProducts"
-
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navProducts">
 
         <EditText
             android:id="@+id/searchShopProduct"
@@ -21,11 +20,11 @@
             android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/bg_product_shop"
             android:hint="@string/search"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:maxLines="1"
             android:paddingStart="@dimen/_20sdp"
-            tools:ignore="RtlSymmetry"
-            android:inputType="text"
-            android:importantForAutofill="no" />
+            tools:ignore="RtlSymmetry" />
 
         <RelativeLayout
             android:id="@+id/rl_Add_Products"
@@ -35,11 +34,11 @@
             android:visibility="visible">
 
             <ImageView
-                android:contentDescription="@string/todo"
                 android:id="@+id/imgEmpty"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/ic_empty" />
 
             <TextView
@@ -101,7 +100,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:layout_below="@id/searchShopProduct">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -125,17 +123,14 @@
         </RelativeLayout>
 
 
-
-
-
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_Seller_Products_Internet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:background="@drawable/lost">
+        android:background="@drawable/lost"
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/txtOhNo"
@@ -188,6 +183,7 @@
             android:textSize="@dimen/_15ssp" />
 
     </RelativeLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navProducts"
         android:layout_width="match_parent"
@@ -195,31 +191,31 @@
         android:layout_alignParentBottom="true"
         android:background="#fff"
         app:menu="@menu/seller_menu" />
+
     <RelativeLayout
-        android:visibility="invisible"
         android:id="@+id/product_accesss"
-        android:background="#eeeeee"
-        android:layout_above="@id/bottom_navProducts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navProducts"
+        android:background="#eeeeee"
+        android:visibility="invisible">
 
         <ImageView
+            android:id="@+id/imglock"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:id="@+id/imglock"
-            android:src="@drawable/ic_outline_lock_24"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_outline_lock_24" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You have no access to this area"
             android:layout_below="@id/imglock"
             android:layout_centerHorizontal="true"
-            android:textSize="@dimen/_15ssp"
             android:fontFamily="@font/montserrat_bold"
+            android:text="You have no access to this area"
             android:textColor="#000"
-            />
+            android:textSize="@dimen/_15ssp" />
 
     </RelativeLayout>
 </RelativeLayout>

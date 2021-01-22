@@ -28,6 +28,7 @@ class Seller_Products : AppCompatActivity() {
     private lateinit var imgBackProducts: ImageView
     private lateinit var txtAddProduct: TextView
     private var category: String? = "400"
+    private lateinit var rlProductAccess: RelativeLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller__products)
@@ -36,6 +37,7 @@ class Seller_Products : AppCompatActivity() {
         // imgBackProducts=findViewById(R.id.imgBackProducts)
         //  txtAddProduct=findViewById(R.id.add)
         relativeAddProduct = findViewById(R.id.rl_Add_Products)
+        rlProductAccess = findViewById(R.id.product_accesss)
         category = intent.getStringExtra("category")
         recyclerSellerProducts.layoutManager = GridLayoutManager(this, 2)
         auth = FirebaseAuth.getInstance()
@@ -120,36 +122,35 @@ class Seller_Products : AppCompatActivity() {
                                             sellerProducts(uidOfShop)
                                         }
                                         "Order Access" -> {
-                                            sellerProducts(uidOfShop)
+                                            rl_sellerProducts.visibility = View.GONE
+                                            rlProductAccess.visibility = View.VISIBLE
                                         }
                                         "Delivery Access" -> {
-
+                                            rl_sellerProducts.visibility = View.GONE
+                                            rlProductAccess.visibility = View.VISIBLE
                                         }
                                         "Catalogue Access(Product)" -> {
-
+                                            sellerProducts(uidOfShop)
                                         }
                                         "Boost Your Shop Access" -> {
+                                            rl_sellerProducts.visibility = View.GONE
+                                            rlProductAccess.visibility = View.VISIBLE
 
                                         }
                                         "(Orders + Catalogue)Access" -> {
-
+                                            sellerProducts(uidOfShop)
                                         }
                                         "(Order + Boost Your Shop)Access" -> {
-
+                                            rl_sellerProducts.visibility = View.GONE
+                                            rlProductAccess.visibility = View.VISIBLE
                                         }
                                     }
                                 }
-
                             })
                         }
                     }
-
                 }
-
             })
-
-
-
     }
 
     private fun searchSellerProducts(str: String) {
