@@ -1,5 +1,6 @@
 package com.localzes.android.Adapters
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -47,8 +48,37 @@ class AdapterMyStaff(val context: Context, val staffDetails: List<ModalAddStaff>
             deleteStaff(position)
         }
         holder.imgEdit.setOnClickListener {
-
+            val options = arrayOf(
+                "Total Access",
+                "Order Access",
+                "Delivery Access",
+                "Catalogue Access(Product)",
+                "Boost Your Shop Access",
+                "(Orders + Catalogue)Access",
+                "(Order + Boost Your Shop)Access"
+            )
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Access Modes")
+            builder.setSingleChoiceItems(options, -1) { dialog, which ->
+                val selectedItem = options[which]
+                editAccess(selectedItem,position)
+                dialog.dismiss()
+            }
+            builder.create().show()
         }
+    }
+
+    private fun editAccess(s:String,position: Int) {
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        val uid = user!!.uid
+        val staffUid = staffDetails[position].uid
+        val databaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("MyStaff").child(staffUid)
+        val headers=HashMap<String,Any>()
+        headers["access"]=s
+        databaseReference.updateChildren(headers)
+
     }
 
     private fun deleteStaff(position: Int) {
@@ -73,6 +103,21 @@ class AdapterMyStaff(val context: Context, val staffDetails: List<ModalAddStaff>
 
         })
 
+        val reference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(staffUid).child("StaffOf")
+                .orderByChild("uid").equalTo(staffUid)
+        reference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (i in snapshot.children) {
+                    i.ref.removeValue()
+                }
+                Toast.makeText(context, "Staff Removed Successfully", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 }
