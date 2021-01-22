@@ -20,16 +20,11 @@ import util.ConnectionManager
 class Continueas : AppCompatActivity() {
     var firebaseUser: FirebaseUser? = null
     private lateinit var userDatabase: DatabaseReference
-    private lateinit var cuserDatabase: DatabaseReference
-    private lateinit var suserDatabase: DatabaseReference
-    private lateinit var auth: FirebaseAuth
-    private lateinit var adapterStaffOf: AdapterStaffOf
-    private lateinit var staffOf: List<ModelStaffOf>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continueas)
         progress_continue.visibility = View.GONE
-        staffOf = ArrayList<ModelStaffOf>()
         retryContinueAs.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_continueAs.visibility = View.VISIBLE
@@ -77,62 +72,9 @@ class Continueas : AppCompatActivity() {
         userDatabase!!.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    if (snapshot.child("staff").exists()) {
-                        userDatabase.child("staff")
-                            .addValueEventListener(object : ValueEventListener {
-                                override fun onCancelled(error: DatabaseError) {
-
-                                }
-
-                                override fun onDataChange(snapshots: DataSnapshot) {
-                                    (staffOf as ArrayList<ModelStaffOf>).clear()
-                                    for (i in snapshots.children) {
-                                        val obj = ModelStaffOf(
-                                            i.child("shopOwnerName").value.toString(),
-                                            i.child("shopName").value.toString(),
-                                            i.child("shopMobileNumber").value.toString(),
-                                            i.child("status").value.toString(),
-                                            i.child("invitationUid").value.toString(),
-                                            i.child("invitationStatus").value.toString()
-                                        )
-                                        if (i.child("invitationStatus").value.toString() == "Accepted") {
-                                            (staffOf as ArrayList<ModelStaffOf>).add(obj)
-                                        }
-
-                                    }
-                                    if (staffOf.isEmpty()) {
-                                        progress_continue.visibility = View.GONE
-                                        startActivity(
-                                            Intent(
-                                                this@Continueas,
-                                                Home_seller::class.java
-                                            )
-                                        )
-                                        finish()
-                                    } else {
-                                        val builder = AlertDialog.Builder(this@Continueas)
-                                        val view = LayoutInflater.from(this@Continueas)
-                                            .inflate(R.layout.main_seller, null, false)
-                                        val rv: RecyclerView =
-                                            view.findViewById(R.id.recycler_staff_of)
-                                        val mainSeller: ImageView =
-                                            view.findViewById(R.id.asMainSeller)
-                                        mainSeller.setOnClickListener {
-
-                                        }
-                                        val layoutManager = LinearLayoutManager(this@Continueas)
-                                        rv.layoutManager = layoutManager
-                                        adapterStaffOf = AdapterStaffOf(this@Continueas, staffOf)
-                                        rv.adapter = adapterStaffOf
-                                        builder.create().show()
-                                    }
-                                }
-                            })
-                    } else {
-                        progress_continue.visibility = View.GONE
-                        startActivity(Intent(this@Continueas, Home_seller::class.java))
-                        finish()
-                    }
+                    progress_continue.visibility = View.GONE
+                    startActivity(Intent(this@Continueas, Home_seller::class.java))
+                    finish()
                 } else {
                     progress_continue.visibility = View.GONE
                     val phone = intent.getStringExtra("phone1")
@@ -165,7 +107,6 @@ class Continueas : AppCompatActivity() {
                     finish()
                 } else {
                     progress_continue.visibility = View.GONE
-                    val phone = intent.getStringExtra("phone1")
                     val intent = Intent(this@Continueas, Registerdetails::class.java)
                     startActivity(intent)
                     finish()
