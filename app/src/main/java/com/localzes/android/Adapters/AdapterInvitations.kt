@@ -1,6 +1,7 @@
 package com.localzes.android.Adapters
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -18,16 +19,17 @@ import com.localzes.android.R
 class AdapterInvitations(val context: Context, val invitationOf: List<ModelStaffOf>) :
     RecyclerView.Adapter<AdapterInvitations.HolderInvitationsOf>() {
     class HolderInvitationsOf(view: View) : RecyclerView.ViewHolder(view) {
-        val invitationShopName = view.findViewById<TextView>(R.id.shopStaffNameInvitation)
-        val invitationShopOwner = view.findViewById<TextView>(R.id.shopOwnerNameInvitation)
-        val invitationShopMobileNumber = view.findViewById<TextView>(R.id.shopOwnerNumberInvitation)
-        val accept = view.findViewById<Button>(R.id.acceptInvite)
-        val reject = view.findViewById<Button>(R.id.RejectInvite)
-
+        val invitationShopName: TextView = view.findViewById(R.id.shopStaffNameInvitation)
+        val invitationShopOwner: TextView = view.findViewById(R.id.shopOwnerNameInvitation)
+        val invitationShopMobileNumber: TextView = view.findViewById(R.id.shopOwnerNumberInvitation)
+        val accept: Button = view.findViewById(R.id.acceptInvite)
+        val reject: Button = view.findViewById(R.id.RejectInvite)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderInvitationsOf {
-        TODO("Not yet implemented")
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.invitation_single_row, parent, false)
+        return HolderInvitationsOf(view)
     }
 
     override fun getItemCount(): Int {
