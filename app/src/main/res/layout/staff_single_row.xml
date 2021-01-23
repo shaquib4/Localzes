@@ -23,7 +23,7 @@
                 android:layout_below="@+id/StaffName"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/imgStaff"
+                android:layout_toEndOf="@id/rlstaff"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Mobile No. :"
                 android:textSize="@dimen/_10ssp" />
@@ -35,7 +35,7 @@
                 android:layout_below="@id/txtStaffNumber"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/imgStaff"
+                android:layout_toEndOf="@id/rlstaff"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Access :"
                 android:textSize="@dimen/_10ssp" />
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/imgStaff"
+                android:layout_toEndOf="@id/rlstaff"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Katappa Mama"
                 android:textColor="#de4500"
@@ -79,15 +79,22 @@
                 android:textColor="#3498db"
                 android:textSize="@dimen/_10ssp" />
 
+            <RelativeLayout
+              android:id="@+id/rlstaff"
+                android:layout_margin="5dp"
+                android:background="@drawable/stroke_primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
             <ImageView
+                android:layout_margin="1dp"
                 android:id="@+id/imgStaff"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
-                android:layout_margin="5dp"
-                android:background="@drawable/stroke_primary"
-                android:padding="1dp"
+
                 android:src="@drawable/staff_single" />
+
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/imgEdit"
