@@ -38,9 +38,7 @@ class UserListOrderDetails : AppCompatActivity() {
     private var orderToId: String? = "300"
     private var totalCost: String? = "400"
     private lateinit var userAuth: FirebaseAuth
-    private var REQUEST_CALL = 1
     private var shopMobileNumber: String = ""
-    private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
     private lateinit var imgBackListUser: ImageView
     private lateinit var imgMakePhone: ImageView
     private lateinit var btnPay: Button
@@ -214,33 +212,12 @@ class UserListOrderDetails : AppCompatActivity() {
 
     private fun makePhoneCall() {
         val number = shopMobileNumber
-        if (number.trim().isNotEmpty()) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(this, permissions, REQUEST_CALL)
-            } else {
-                val dial: String = "tel:" + number
-                startActivity(Intent(Intent.ACTION_CALL, Uri.parse(dial)))
-            }
-        }
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$number")
+        val chooser = Intent.createChooser(intent, "Call Action Using")
+        startActivity(chooser)
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == REQUEST_CALL) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                makePhoneCall()
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     override fun onBackPressed() {
         val intent = Intent(this, Accounts::class.java)
