@@ -28,8 +28,9 @@
                 android:layout_below="@id/v2"
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="10dp"
+                android:textAlignment="center"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Staff of other Shop"
+                android:text="Continue as Staff of Shop"
                 android:textSize="@dimen/_15ssp" />
 
             <View
@@ -44,36 +45,43 @@
                 android:id="@+id/cardShop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-
-                android:layout_marginVertical="20dp"
-                app:cardCornerRadius="5dp">
-
+                app:cardCornerRadius="0dp">
 
                 <RelativeLayout
                     android:id="@+id/rl2"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:background="@drawable/stroke_de4500">
+                    android:layout_height="@dimen/_220sdp"
+                    >
+                    <view
 
+                        android:id="@+id/v4"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+
+                        android:background="#d3d3d3" />
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:id="@+id/invi"
+                        android:layout_below="@+id/v4"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="As Main Seller"
-                        android:textColor="#de4500"
-                        android:textSize="@dimen/_20ssp" />
+                        android:text="Invitation"
+                        android:textSize="@dimen/_15sdp"
+                        />
+                    <View
+                        android:id="@+id/v5"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/invi"
+                        android:background="#d3d3d3" />
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:layout_margin="2dp"
+                       android:layout_below="@+id/invi"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       tools:listitem="@layout/invitation_single_row"/>
 
-                    <ImageView
-                        android:id="@+id/asMainSeller"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:src="@drawable/ic_forward" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
