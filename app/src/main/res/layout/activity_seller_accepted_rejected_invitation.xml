@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SellerAcceptedRejectedInvitation">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/Invite"
+        android:layout_height="@dimen/_31sdp">
+
+
+        <TextView
+            android:id="@+id/txtOFD"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Invitations"
+            android:textColor="#de4500"
+            android:textSize="@dimen/_18ssp" />
+
+        <View
+            android:id="@id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/txtOFD"
+            android:background="#d3d3d3" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/rl_invite"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_below="@id/Invite"
+        android:background="@drawable/border"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <RelativeLayout
+            android:id="@+id/rl_AcceptedInvite"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="2sp"
+            android:layout_weight="1"
+            android:background="@drawable/stroke_solid_btn">
+
+            <TextView
+                android:id="@+id/AcceptedInvite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Accepted"
+                android:textColor="#000"
+                android:textSize="@dimen/_14ssp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_PendingInvite"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_weight="1"
+            android:background="@drawable/stroke_solid_btn">
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/txtPendingInvite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Pending"
+                android:textColor="#000"
+                android:textSize="@dimen/_14ssp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_RejectedInvite"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_weight="1"
+            android:background="@drawable/stroke_solid_btn">
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/txtRejectedInvite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Rejected"
+                android:textColor="#000"
+                android:textSize="@dimen/_14ssp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
