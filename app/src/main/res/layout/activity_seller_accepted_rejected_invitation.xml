@@ -110,6 +110,14 @@
 
         </RelativeLayout>
 
-    </LinearLayout>
 
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+       android:layout_below="@id/rl_invite"
+        android:id="@+id/recycler_inviteStaff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:padding="3dp"
+        tools:listitem="@layout/staff_single_row"/>
 </RelativeLayout>

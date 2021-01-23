@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <view
+            <View
 
                 android:id="@+id/v2"
                 android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_220sdp"
                     >
-                    <view
+                    <View
 
                         android:id="@+id/v4"
                         android:layout_width="match_parent"
