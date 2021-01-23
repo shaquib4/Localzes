@@ -76,7 +76,7 @@
                 android:layout_toEndOf="@id/txtStaffAccess"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Full access"
-                android:textColor="#008000"
+                android:textColor="#3498db"
                 android:textSize="@dimen/_10ssp" />
 
 
@@ -106,7 +106,11 @@
                 android:layout_margin="5dp"
                 android:src="@drawable/ic_remove" />
 
-
+          <Button
+              android:layout_width="18dp"
+              android:layout_height="18dp"
+              android:background="@drawable/active"
+              />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
