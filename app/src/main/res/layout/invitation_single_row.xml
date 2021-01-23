@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+
+        app:cardCornerRadius="10dp"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_toEndOf="@id/imgshop"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/txtshopOwnerNameInvitation"
+                android:id="@+id/txtshopNumberInvitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile No. :"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_medium"/>
+
+            <TextView
+                android:layout_toEndOf="@id/imgshop"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/shopStaffNameInvitation"
+                android:id="@+id/txtshopOwnerNameInvitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shop Owner:"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_medium"/>
+
+            <TextView
+
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/imgshop"
+                android:id="@+id/shopStaffNameInvitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Electronics Shop"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="#de4500"
+                android:fontFamily="@font/montserrat_bold"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/txtshopNumberInvitation"
+                android:layout_below="@+id/shopOwnerNameInvitation"
+                android:id="@+id/shopOwnerNumberInvitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9876543210"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_medium"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/txtshopOwnerNameInvitation"
+                android:layout_below="@+id/shopStaffNameInvitation"
+                android:id="@+id/shopOwnerNameInvitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Katappa Mama"
+                android:textColor="#3498db"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/montserrat_bold"/>
+
+
+
+            <RelativeLayout
+                android:layout_margin="5dp"
+                android:background="@drawable/stroke_primary"
+                android:id="@+id/imgshop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:layout_margin="1dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/stroke_primary"
+                    android:src="@drawable/shop_png"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    />
+            </RelativeLayout>
+            <Button
+                android:text="Accept"
+                android:textAllCaps="false"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/stroke_red"
+                android:id="@+id/acceptInvite"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_alignParentEnd="true"/>
+            <Button
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/stroke_red"
+                android:layout_below="@id/acceptInvite"
+                android:textAllCaps="false"
+                android:text="Reject"
+                android:fontFamily="@font/montserrat_medium"
+                android:id="@+id/RejectInvite"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_alignParentEnd="true"/>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

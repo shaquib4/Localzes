@@ -137,7 +137,7 @@ class cardBanners : AppCompatActivity() {
             finish()
         }
         carStaff.setOnClickListener {
-            startActivity(Intent(this, AddStaff::class.java))
+            startActivity(Intent(this, MyStaffActivity::class.java))
             finish()
         }
     }
