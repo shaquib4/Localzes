@@ -80,6 +80,8 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_Out_For_delivery.visibility = View.VISIBLE
                 rl_retryDeliveryOrder.visibility = View.GONE
+                countListOrders()
+                countCartOrders()
                 listOutForDeliveryOrders()
             } else {
                 rl_Out_For_delivery.visibility = View.GONE
@@ -90,6 +92,8 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         rl_cartOut.setOnClickListener {
 
             if (ConnectionManager().checkConnectivity(this)) {
+                countCartOrders()
+                countListOrders()
                 cartOutForDeliveryOrders()
             } else {
                 rl_DeliveryOrder.visibility = View.GONE
@@ -232,48 +236,48 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         listOutNo.setTextColor(resources.getColor(R.color.black))
         val user = orderAuth.currentUser
         val uid = user!!.uid
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus")
-            .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
+        orderDatabaseReference.child("Orders").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
-                }
+            }
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).clear()
-                        for (i in snapshot.children) {
-                            val obj =
-                                ModelOrderDetails(
-                                    i.child("orderId").value.toString(),
-                                    i.child("orderTime").value.toString(),
-                                    i.child("orderStatus").value.toString(),
-                                    i.child("orderCost").value.toString(),
-                                    i.child("orderBy").value.toString(),
-                                    i.child("orderTo").value.toString(),
-                                    i.child("orderQuantity").value.toString(),
-                                    i.child("deliveryAddress").value.toString(),
-                                    i.child("paymentMode").value.toString(),
-                                    i.child("orderByName").value.toString(),
-                                    i.child("orderByMobile").value.toString()
-                                )
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).clear()
+                    for (i in snapshot.children) {
+                        val obj =
+                            ModelOrderDetails(
+                                i.child("orderId").value.toString(),
+                                i.child("orderTime").value.toString(),
+                                i.child("orderStatus").value.toString(),
+                                i.child("orderCost").value.toString(),
+                                i.child("orderBy").value.toString(),
+                                i.child("orderTo").value.toString(),
+                                i.child("orderQuantity").value.toString(),
+                                i.child("deliveryAddress").value.toString(),
+                                i.child("paymentMode").value.toString(),
+                                i.child("orderByName").value.toString(),
+                                i.child("orderByMobile").value.toString()
+                            )
+                        if (i.child("orderStatus").value.toString() == "Out For Delivery") {
                             (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).add(obj)
                         }
-                        if (ordersOutForDeliveryList.isEmpty()) {
-                            recyclerOutForDelivery.visibility = View.GONE
-                        } else {
-                            relativeOutForDelivery.visibility = View.GONE
-                            recyclerOutForDelivery.visibility = View.VISIBLE
-                            cartOutNo.text = "(${ordersOutForDeliveryList.size})"
-                            adapterOutForDelivery =
-                                AdapterSellerOrders(
-                                    this@OrderOutForDeliveryActivity,
-                                    ordersOutForDeliveryList
-                                )
-                            recyclerOutForDelivery.adapter = adapterOutForDelivery
-                        }
+                    }
+                    if (ordersOutForDeliveryList.isEmpty()) {
+                        recyclerOutForDelivery.visibility = View.GONE
+                    } else {
+                        relativeOutForDelivery.visibility = View.GONE
+                        recyclerOutForDelivery.visibility = View.VISIBLE
+                        adapterOutForDelivery =
+                            AdapterSellerOrders(
+                                this@OrderOutForDeliveryActivity,
+                                ordersOutForDeliveryList
+                            )
+                        recyclerOutForDelivery.adapter = adapterOutForDelivery
                     }
                 }
-            })
+            }
+        })
     }
 
     private fun listOutForDeliveryOrders() {
@@ -317,7 +321,6 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
                     } else {
                         relativeOutForDelivery.visibility = View.GONE
                         recyclerOutForDelivery.visibility = View.VISIBLE
-                        cartOutNo.text = "(${listOrders.size})"
                         adapterOutForDeliveryList =
                             AdapterListOrder(this@OrderOutForDeliveryActivity, listOrders)
                         recyclerOutForDelivery.adapter = adapterOutForDeliveryList
