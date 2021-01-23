@@ -92,6 +92,7 @@ class AddStaff : AppCompatActivity() {
                             headers["status"] = ""
                             headers["access"] = selectedAccess
                             headers["uid"] = uid
+                            headers["invitationStatus"]=""
                             dataRef.child(sellerUid).child("MyStaff").child(uid).setValue(headers)
                                 .addOnSuccessListener {
                                     val newHeader = HashMap<String, Any>()
