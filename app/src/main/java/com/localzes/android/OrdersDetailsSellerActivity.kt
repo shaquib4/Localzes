@@ -47,7 +47,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private var REQUEST_CALL: Int = 1
     private var customerMobileNo: String = ""
     private lateinit var imgMakeCallCustomer: ImageView
-    private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
+    /*private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)*/
     private lateinit var checkboxComplete: CheckBox
     private lateinit var etDelivery: EditText
     private lateinit var paymentModeInfo: TextView
@@ -274,18 +274,9 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
 
     private fun makePhoneCallCustomer() {
         val number = customerMobileNo
-        if (number.trim().isNotEmpty()) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(this, permissions, REQUEST_CALL)
-            } else {
-                val dial: String = "tel:" + number
-                startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(dial)))
-            }
-        }
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$number")
+        startActivity(intent)
     }
 
     private fun afterEditOrderStatusDialog() {
@@ -482,7 +473,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
 
-    override fun onRequestPermissionsResult(
+/*    override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
@@ -495,7 +486,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             }
         }
 
-    }
+    }*/
 
     override fun onBackPressed() {
         super.onBackPressed()
