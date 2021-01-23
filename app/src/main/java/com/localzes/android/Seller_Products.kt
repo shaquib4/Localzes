@@ -105,7 +105,7 @@ class Seller_Products : AppCompatActivity() {
                     ) {
                         sellerProducts(uid)
                     } else {
-                        val uidOfShop = snapshot.value.toString()
+                        val uidOfShop = snapshot.child("staffOfShop").value.toString()
                         if (snapshot.child("StaffOf").child(uidOfShop).exists()) {
                             val databaseReference =
                                 FirebaseDatabase.getInstance().reference.child("seller")
