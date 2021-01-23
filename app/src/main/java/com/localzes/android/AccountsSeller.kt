@@ -134,7 +134,9 @@ class AccountsSeller : AppCompatActivity() {
                     }
                 }
                 "As Staff Of Shop" -> {
-
+                    val intent = Intent(this, AsStaffOf::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
             return@setOnChildClickListener true
