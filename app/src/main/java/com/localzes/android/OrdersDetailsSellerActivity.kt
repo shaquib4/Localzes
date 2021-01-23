@@ -167,7 +167,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         }
                         "Completed" -> {
                             etDelivery.isEnabled = false
-                            checkboxComplete.visibility=View.GONE
+                            checkboxComplete.visibility = View.GONE
                             etDelivery.setText("₹$deliveryCharge")
                             etDelivery.setTextColor(resources.getColor(R.color.green))
                             txtOrderStatus.setTextColor(resources.getColor(R.color.green))
@@ -283,7 +283,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 ActivityCompat.requestPermissions(this, permissions, REQUEST_CALL)
             } else {
                 val dial: String = "tel:" + number
-                startActivity(Intent(Intent.ACTION_CALL, Uri.parse(dial)))
+                startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(dial)))
             }
         }
     }
