@@ -47,6 +47,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private var REQUEST_CALL: Int = 1
     private var customerMobileNo: String = ""
     private lateinit var imgMakeCallCustomer: ImageView
+
     /*private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)*/
     private lateinit var checkboxComplete: CheckBox
     private lateinit var etDelivery: EditText
@@ -276,7 +277,8 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         val number = customerMobileNo
         val intent = Intent(Intent.ACTION_DIAL)
         intent.data = Uri.parse("tel:$number")
-        startActivity(intent)
+        val chooser = Intent.createChooser(intent, "Call Action Using")
+        startActivity(chooser)
     }
 
     private fun afterEditOrderStatusDialog() {
