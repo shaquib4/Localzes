@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/v2"
                 android:layout_marginVertical="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="30dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Staff of other Shop"
                 android:textSize="@dimen/_15ssp" />
@@ -47,7 +47,7 @@
                 android:layout_marginHorizontal="10dp"
 
                 android:layout_marginVertical="20dp"
-                app:cardCornerRadius="5dp">
+                app:cardCornerRadius="30dp">
 
 
                 <RelativeLayout
