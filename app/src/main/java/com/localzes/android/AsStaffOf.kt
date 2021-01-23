@@ -18,18 +18,21 @@ class AsStaffOf : AppCompatActivity() {
     private lateinit var staffOf: List<ModelStaffOf>
     private lateinit var invitations: List<ModelStaffOf>
     private lateinit var auth: FirebaseAuth
+    private lateinit var rvInvitations: RecyclerView
     private lateinit var adapterStaff: AdapterStaffOf
     private lateinit var adapterInvitation: AdapterInvitations
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_as_staff_of)
         asStaffOf = findViewById(R.id.recycler_staff_of)
+        rvInvitations = findViewById(R.id.recyclerInvitation)
         staffOf = ArrayList<ModelStaffOf>()
         invitations = ArrayList<ModelStaffOf>()
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
         asStaffOf.layoutManager = LinearLayoutManager(this)
+        rvInvitations.layoutManager = LinearLayoutManager(this)
         val databaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("StaffOf")
         databaseReference.addValueEventListener(object : ValueEventListener {
@@ -76,6 +79,8 @@ class AsStaffOf : AppCompatActivity() {
                         (invitations as ArrayList<ModelStaffOf>).add(obj)
                     }
                 }
+                adapterInvitation = AdapterInvitations(this@AsStaffOf, invitations)
+                rvInvitations.adapter = adapterInvitation
 
             }
 
