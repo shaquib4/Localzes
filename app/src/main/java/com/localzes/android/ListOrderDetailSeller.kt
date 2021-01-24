@@ -485,7 +485,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         try {
             notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
             notificationBodyJs.put("buyerId", orderBy)
-            /*notificationBodyJs.put("sellerUid", (shopAuth.currentUser)!!.uid)*/
+            notificationBodyJs.put("sellerUid", orderTo)
             notificationBodyJs.put("orderId", orderId)
             notificationBodyJs.put("totalCost", totalWith.toString())
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
