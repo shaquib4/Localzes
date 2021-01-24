@@ -92,24 +92,29 @@ class cardBanners : AppCompatActivity() {
                                             CardBanners()
                                         }
                                         "Order Access" -> {
-                                            rl_accessCard.visibility= View.GONE
-                                            cardScroll.visibility=View.VISIBLE
+                                            cardScroll.visibility=View.GONE
+                                            rl_accessCard.visibility= View.VISIBLE
+
                                         }
                                         "Delivery Access" -> {
-                                            rl_accessCard.visibility= View.GONE
-                                            cardScroll.visibility=View.VISIBLE
+                                            cardScroll.visibility=View.GONE
+                                            rl_accessCard.visibility= View.VISIBLE
+
                                         }
                                         "Catalogue Access(Product)" -> {
-                                            rl_accessCard.visibility= View.GONE
-                                            cardScroll.visibility=View.VISIBLE
+                                            cardScroll.visibility=View.GONE
+                                            rl_accessCard.visibility= View.VISIBLE
+
                                         }
                                         "Boost Your Shop Access" -> {
                                             carStaff.visibility=View.GONE
                                             CardBanners()
+                                            carStaff.isClickable=false
                                         }
                                         "(Orders + Catalogue)Access" -> {
-                                            rl_accessCard.visibility= View.GONE
-                                            cardScroll.visibility=View.VISIBLE
+                                            cardScroll.visibility=View.GONE
+                                            rl_accessCard.visibility= View.VISIBLE
+
                                         }
                                         "(Order + Boost Your Shop)Access" -> {
                                             carStaff.visibility=View.GONE

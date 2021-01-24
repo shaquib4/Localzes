@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.localzes.android.Adapters.AdapterMyStaff
 import com.localzes.android.Modals.ModalAddStaff
+import kotlinx.android.synthetic.main.activity_seller_accepted_rejected_invitation.*
 
 class SellerAcceptedRejectedInvitation : AppCompatActivity() {
     private lateinit var shopAuth: FirebaseAuth
@@ -27,13 +28,24 @@ class SellerAcceptedRejectedInvitation : AppCompatActivity() {
         val user=shopAuth.currentUser
         val uid=user!!.uid
 
+        rl_AcceptedInvite.setOnClickListener {
+            acceptedInvite(uid)
+        }
+        rl_PendingInvite.setOnClickListener {
+            pendingInvite(uid)
+        }
+        rl_RejectedInvite.setOnClickListener {
+            rejectedInvite(uid)
+        }
 
-        acceptedInvite(uid)
-        pendingInvite(uid)
-        rejectedInvite(uid)
+
     }
 
     private fun rejectedInvite(uid: String) {
+        AcceptedInvite.setTextColor(this.resources.getColor(R.color.black))
+        txtPendingInvite.setTextColor(this.resources.getColor(R.color.black))
+        txtRejectedInvite.setTextColor(this.resources.getColor(R.color.colorPrimary))
+
         val dataReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("MyStaff")
         dataReference.addValueEventListener(object : ValueEventListener {
@@ -64,6 +76,9 @@ class SellerAcceptedRejectedInvitation : AppCompatActivity() {
     }
 
     private fun pendingInvite(uid: String) {
+        AcceptedInvite.setTextColor(this.resources.getColor(R.color.black))
+        txtPendingInvite.setTextColor(this.resources.getColor(R.color.colorPrimary))
+        txtRejectedInvite.setTextColor(this.resources.getColor(R.color.black))
         val dataReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("MyStaff")
         dataReference.addValueEventListener(object : ValueEventListener {
@@ -95,6 +110,9 @@ class SellerAcceptedRejectedInvitation : AppCompatActivity() {
     }
 
     private fun acceptedInvite(uid:String) {
+        AcceptedInvite.setTextColor(this.resources.getColor(R.color.colorPrimary))
+        txtPendingInvite.setTextColor(this.resources.getColor(R.color.black))
+        txtRejectedInvite.setTextColor(this.resources.getColor(R.color.black))
         val dataReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("MyStaff")
         dataReference.addValueEventListener(object : ValueEventListener {

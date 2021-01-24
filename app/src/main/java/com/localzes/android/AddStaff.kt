@@ -2,6 +2,7 @@ package com.localzes.android
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -19,11 +20,11 @@ class AddStaff : AppCompatActivity() {
     private lateinit var staffNumber: EditText
     private lateinit var accessStaff: Button
     private lateinit var btnConfirmStaff: Button
-    private var bool:Boolean=false
-    private var phoneCheck:String?=null
-    private var staffName:String?=null
-    private var address:String?=null
-    private var staffuid:String?=null
+    private var bool: Boolean = false
+    private var phoneCheck: String? = null
+    private var staffName: String? = null
+    private var address: String? = null
+    private var staffuid: String? = null
     private lateinit var progressDialog: ProgressDialog
     private lateinit var shopAuth: FirebaseAuth
     var selectedAccess: String = ""
@@ -39,21 +40,21 @@ class AddStaff : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
-     /*  staffNumber.addTextChangedListener(object:TextWatcher{
-           override fun afterTextChanged(s: Editable?) {
+        /*  staffNumber.addTextChangedListener(object:TextWatcher{
+              override fun afterTextChanged(s: Editable?) {
 
-           }
+              }
 
-           override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+              override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
-           }
+              }
 
-           override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+              override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-               Toast.makeText(this@AddStaff,s?.length.toString(),Toast.LENGTH_SHORT).show()
-               staff(s?.length.toString())
-           }
-       })*/
+                  Toast.makeText(this@AddStaff,s?.length.toString(),Toast.LENGTH_SHORT).show()
+                  staff(s?.length.toString())
+              }
+          })*/
 
         accessStaff.setOnClickListener {
             val options = arrayOf(
@@ -87,17 +88,19 @@ class AddStaff : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (i in snapshot.children) {
                         val phone = i.child("phone").value.toString()
-                        if (staffNumber.text.toString() == phone){
-                            phoneCheck=phone
-                            staffName=i.child("name").value.toString()
-                            address=i.child("address").value.toString()
-                            staffuid= i.child("shopId").value.toString()
+                        if (staffNumber.text.toString() == phone) {
+                            phoneCheck = phone
+                            staffName = i.child("name").value.toString()
+                            address = i.child("address").value.toString()
+                            staffuid = i.child("shopId").value.toString()
 
                         }
 
 
                     }
-                    if (staffNumber.text.toString() == phoneCheck&& phoneCheck.toString().isNotEmpty()) {
+                    if (staffNumber.text.toString() == phoneCheck && phoneCheck.toString()
+                            .isNotEmpty()
+                    ) {
 
                         val headers = HashMap<String, Any>()
                         headers["name"] = staffName.toString()
@@ -106,8 +109,9 @@ class AddStaff : AppCompatActivity() {
                         headers["status"] = ""
                         headers["access"] = selectedAccess
                         headers["uid"] = staffuid.toString()
-                        headers["invitationStatus"]=""
-                        dataRef.child(sellerUid).child("MyStaff").child(staffuid.toString()).updateChildren(headers)
+                        headers["invitationStatus"] = ""
+                        dataRef.child(sellerUid).child("MyStaff").child(staffuid.toString())
+                            .updateChildren(headers)
                             .addOnSuccessListener {
                                 val newHeader = HashMap<String, Any>()
                                 newHeader["shopOwnerName"] =
@@ -141,26 +145,33 @@ class AddStaff : AppCompatActivity() {
     }
 
     private fun staff(toString: String) {
-        for (i in toString()){
-        if (toString==10.toString()){
-            progressDialog.setMessage("Fetching details.....")
-            progressDialog.show()
-            val ref=FirebaseDatabase.getInstance().reference.child("seller")
-            ref.addValueEventListener(object:ValueEventListener{
-                override fun onCancelled(error: DatabaseError) {
+        for (i in toString()) {
+            if (toString == 10.toString()) {
+                progressDialog.setMessage("Fetching details.....")
+                progressDialog.show()
+                val ref = FirebaseDatabase.getInstance().reference.child("seller")
+                ref.addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (i in snapshot.children){
-                        val phone = i.child("phone").value.toString()
-                        if (staffNumber.text.toString() == phone){
-                            bool=true
-                        }
                     }
-                    progressDialog.dismiss()
-                }
-            })
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (i in snapshot.children) {
+                            val phone = i.child("phone").value.toString()
+                            if (staffNumber.text.toString() == phone) {
+                                bool = true
+                            }
+                        }
+                        progressDialog.dismiss()
+                    }
+                })
+            }
         }
-    }}
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MyStaffActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

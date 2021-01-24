@@ -2,22 +2,19 @@ package com.localzes.android
 
 import android.app.AlertDialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.localzes.android.Adapters.AdapterOrderedItems
-import com.localzes.android.Modals.ModelOrderedItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.localzes.android.Adapters.AdapterOrderedItems
+import com.localzes.android.Modals.ModelOrderedItems
 import kotlinx.android.synthetic.main.activity_orders_details_seller.*
 import org.json.JSONObject
 import util.ConnectionManager
@@ -37,18 +34,15 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
     private lateinit var totalAmount: TextView
     private lateinit var deliveryAddress: TextView
     private lateinit var imgEdit: ImageView
-    private lateinit var shopAuth: FirebaseAuth
     private var orderIdTv: String? = "100"
     private var orderByTv: String? = "200"
     private var mStatus: String? = null
     private var bool: Boolean = false
     private lateinit var imgBackOrderDetails: ImageView
     private var selectedReason: String = ""
-    private var REQUEST_CALL: Int = 1
     private var customerMobileNo: String = ""
     private lateinit var imgMakeCallCustomer: ImageView
-
-    /*private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)*/
+    private var orderTo = ""
     private lateinit var checkboxComplete: CheckBox
     private lateinit var etDelivery: EditText
     private lateinit var paymentModeInfo: TextView
@@ -62,6 +56,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         imgBackOrderDetails = findViewById(R.id.imgBackOrderDetails)
         orderIdTv = intent.getStringExtra("orderIdTv")
         orderByTv = intent.getStringExtra("orderByTv")
+        orderTo = intent.getStringExtra("orderToTv").toString()
         txtOrderId = findViewById(R.id.txtOrderId)
         etDelivery = findViewById(R.id.etDeliveryCharge)
         paymentModeInfo = findViewById(R.id.paymentStatusDetailsSeller)
@@ -73,14 +68,11 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         totalAmount = findViewById(R.id.txtOrderCost)
         deliveryAddress = findViewById(R.id.txtOrderDeliveryAddress)
         imgEdit = findViewById(R.id.imgEdit)
-        shopAuth = FirebaseAuth.getInstance()
-        val user = shopAuth.currentUser
-        val uid = user!!.uid
         retryOrdersDetails.setOnClickListener {
             this.recreate()
         }
         val newReference =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+            FirebaseDatabase.getInstance().reference.child("seller").child(orderTo).child("Orders")
                 .child(orderIdTv.toString())
         newReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -97,7 +89,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         }
 
         val databaseRef: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+            FirebaseDatabase.getInstance().reference.child("seller").child(orderTo).child("Orders")
                 .child(orderIdTv.toString())
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -242,7 +234,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
              }
          })*/
         val database: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+            FirebaseDatabase.getInstance().reference.child("seller").child(orderTo).child("Orders")
                 .child(orderIdTv.toString())
         database.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -255,7 +247,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
 
         })
         val reference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("Seller").child(uid).child("Orders")
+            FirebaseDatabase.getInstance().reference.child("Seller").child(orderTo).child("Orders")
                 .child(orderIdTv.toString())
         reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -390,11 +382,8 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             headers["orderStatus"] = selectedItem
             totalWith = totalAmount
         }
-        shopAuth = FirebaseAuth.getInstance()
-        val user = shopAuth.currentUser
-        val uid = user!!.uid
         val ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("seller")
-        ref.child(uid).child("Orders").child(orderIdTv.toString()).updateChildren(headers)
+        ref.child(orderTo).child("Orders").child(orderIdTv.toString()).updateChildren(headers)
             .addOnSuccessListener {
                 Toast.makeText(this, "Order has been $selectedItem", Toast.LENGTH_SHORT).show()
                 val message = "Order has been $selectedItem"
@@ -436,7 +425,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
             //what to send
             notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
             notificationBodyJs.put("buyerId", orderByTv.toString())
-            notificationBodyJs.put("sellerUid", (shopAuth.currentUser)!!.uid)
+            notificationBodyJs.put("sellerUid", orderTo)
             notificationBodyJs.put("orderId", orderId)
             notificationBodyJs.put("totalAmount", totalWith.toString())
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
@@ -506,13 +495,11 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                         builder.setTitle("Confirmation")
                         builder.setMessage("Are you sure your order has been successfully completed")
                         builder.setPositiveButton("Ok") { text, listener ->
-                            val user = shopAuth.currentUser
-                            val uid = user!!.uid
                             val userMap = HashMap<String, Any>()
                             userMap["orderStatus"] = "Completed"
                             val databaseNewReference: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("seller")
-                            databaseNewReference.child(uid).child("Orders")
+                            databaseNewReference.child(orderTo).child("Orders")
                                 .child(orderIdTv.toString())
                                 .updateChildren(userMap).addOnSuccessListener {
                                     val databaseRef =

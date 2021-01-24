@@ -19,21 +19,21 @@
                 android:id="@+id/txtMyStaff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:fontFamily="@font/montserrat_bold"
-       android:layout_margin="@dimen/_10sdp"
+                android:layout_margin="@dimen/_10sdp"
                 android:text="MY STAFF"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/_20ssp" />
 
             <Button
-                android:layout_width="@dimen/_100sdp"
+                android:layout_width="@dimen/_120sdp"
                 android:layout_height="wrap_content"
+                android:textAllCaps="false"
                 android:id="@+id/btnInvitation"
                 android:layout_below="@id/txtMyStaff"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:text="Status"
+                android:text="Check Invite Status"
 
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#de4500"

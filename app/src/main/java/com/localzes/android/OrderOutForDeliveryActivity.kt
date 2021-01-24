@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_order_out_for_delivery.*
 import util.ConnectionManager
 
 class OrderOutForDeliveryActivity : AppCompatActivity() {
-    private lateinit var orderAuth: FirebaseAuth
     private lateinit var orderDatabaseReference: DatabaseReference
     private lateinit var ordersOutForDeliveryList: List<ModelOrderDetails>
     private lateinit var recyclerOutForDelivery: RecyclerView
@@ -32,12 +31,14 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
     private lateinit var listOrders: List<ModalSellerOrderList>
     private lateinit var searchCartOFD: EditText
     private lateinit var searchListOFD: EditText
+    private var Uid: String? = "500"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_out_for_delivery)
-        orderAuth = FirebaseAuth.getInstance()
+        /*orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
-        val uid = user!!.uid
+        val uid = user!!.uid*/
+        Uid = intent.getStringExtra("UID")
 
         retryDeliveryOrders.setOnClickListener {
             this.recreate()
@@ -51,7 +52,8 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         searchListOFD = findViewById(R.id.searchListOFD)
         recyclerOutForDelivery.layoutManager = LinearLayoutManager(this)
 
-        orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        orderDatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
 /*        orderDatabaseReference.child("Orders").orderByChild("orderStatus")
             .equalTo("Out For Delivery").addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -145,10 +147,9 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
     }
 
     private fun searchListOrdersOFD(s: String) {
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
         val querySellerDatabase =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+                .child("OrdersLists")
                 .orderByChild("orderId").startAt(s).endAt(s + "\uF8FF")
         querySellerDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -185,10 +186,9 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
     }
 
     private fun searchCartOrdersOFD(s: String) {
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
         val querySellerDatabase =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+                .child("Orders")
                 .orderByChild("orderId").startAt(s).endAt(s + "\uF8FF")
         querySellerDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -234,50 +234,49 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         cartOutNo.setTextColor(resources.getColor(R.color.colorPrimary))
         txtlistOut.setTextColor(resources.getColor(R.color.black))
         listOutNo.setTextColor(resources.getColor(R.color.black))
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
-        orderDatabaseReference.child("Orders").addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+        FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+            .child("Orders").addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).clear()
-                    for (i in snapshot.children) {
-                        val obj =
-                            ModelOrderDetails(
-                                i.child("orderId").value.toString(),
-                                i.child("orderTime").value.toString(),
-                                i.child("orderStatus").value.toString(),
-                                i.child("orderCost").value.toString(),
-                                i.child("orderBy").value.toString(),
-                                i.child("orderTo").value.toString(),
-                                i.child("orderQuantity").value.toString(),
-                                i.child("deliveryAddress").value.toString(),
-                                i.child("paymentMode").value.toString(),
-                                i.child("orderByName").value.toString(),
-                                i.child("orderByMobile").value.toString()
-                            )
-                        if (i.child("orderStatus").value.toString() == "Out For Delivery") {
-                            (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).add(obj)
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).clear()
+                        for (i in snapshot.children) {
+                            val obj =
+                                ModelOrderDetails(
+                                    i.child("orderId").value.toString(),
+                                    i.child("orderTime").value.toString(),
+                                    i.child("orderStatus").value.toString(),
+                                    i.child("orderCost").value.toString(),
+                                    i.child("orderBy").value.toString(),
+                                    i.child("orderTo").value.toString(),
+                                    i.child("orderQuantity").value.toString(),
+                                    i.child("deliveryAddress").value.toString(),
+                                    i.child("paymentMode").value.toString(),
+                                    i.child("orderByName").value.toString(),
+                                    i.child("orderByMobile").value.toString()
+                                )
+                            if (i.child("orderStatus").value.toString() == "Out For Delivery") {
+                                (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).add(obj)
+                            }
+                        }
+                        if (ordersOutForDeliveryList.isEmpty()) {
+                            recyclerOutForDelivery.visibility = View.GONE
+                        } else {
+                            relativeOutForDelivery.visibility = View.GONE
+                            recyclerOutForDelivery.visibility = View.VISIBLE
+                            adapterOutForDelivery =
+                                AdapterSellerOrders(
+                                    this@OrderOutForDeliveryActivity,
+                                    ordersOutForDeliveryList
+                                )
+                            recyclerOutForDelivery.adapter = adapterOutForDelivery
                         }
                     }
-                    if (ordersOutForDeliveryList.isEmpty()) {
-                        recyclerOutForDelivery.visibility = View.GONE
-                    } else {
-                        relativeOutForDelivery.visibility = View.GONE
-                        recyclerOutForDelivery.visibility = View.VISIBLE
-                        adapterOutForDelivery =
-                            AdapterSellerOrders(
-                                this@OrderOutForDeliveryActivity,
-                                ordersOutForDeliveryList
-                            )
-                        recyclerOutForDelivery.adapter = adapterOutForDelivery
-                    }
                 }
-            }
-        })
+            })
     }
 
     private fun listOutForDeliveryOrders() {
@@ -287,8 +286,6 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         cartOutNo.setTextColor(resources.getColor(R.color.black))
         txtlistOut.setTextColor(resources.getColor(R.color.colorPrimary))
         listOutNo.setTextColor(resources.getColor(R.color.colorPrimary))
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
         orderDatabaseReference.child("OrdersLists")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -332,42 +329,44 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
     }
 
     private fun countCartOrders() {
-        orderDatabaseReference.child("Orders").addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
+        FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+            .child("Orders").addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).clear()
-                for (i in snapshot.children) {
-                    val obj =
-                        ModelOrderDetails(
-                            i.child("orderId").value.toString(),
-                            i.child("orderTime").value.toString(),
-                            i.child("orderStatus").value.toString(),
-                            i.child("orderCost").value.toString(),
-                            i.child("orderBy").value.toString(),
-                            i.child("orderTo").value.toString(),
-                            i.child("orderQuantity").value.toString(),
-                            i.child("deliveryAddress").value.toString(),
-                            i.child("paymentMode").value.toString(),
-                            i.child("orderByName").value.toString(),
-                            i.child("orderByMobile").value.toString()
-                        )
-                    if (i.child("orderStatus").value.toString() == "Out For Delivery") {
-                        (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).add(obj)
-                    }
                 }
-                cartOutNo.text = "(${ordersOutForDeliveryList.size})"
-            }
 
-        })
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).clear()
+                    for (i in snapshot.children) {
+                        val obj =
+                            ModelOrderDetails(
+                                i.child("orderId").value.toString(),
+                                i.child("orderTime").value.toString(),
+                                i.child("orderStatus").value.toString(),
+                                i.child("orderCost").value.toString(),
+                                i.child("orderBy").value.toString(),
+                                i.child("orderTo").value.toString(),
+                                i.child("orderQuantity").value.toString(),
+                                i.child("deliveryAddress").value.toString(),
+                                i.child("paymentMode").value.toString(),
+                                i.child("orderByName").value.toString(),
+                                i.child("orderByMobile").value.toString()
+                            )
+                        if (i.child("orderStatus").value.toString() == "Out For Delivery") {
+                            (ordersOutForDeliveryList as ArrayList<ModelOrderDetails>).add(obj)
+                        }
+                    }
+                    cartOutNo.text = "(${ordersOutForDeliveryList.size})"
+                }
+
+            })
 
 
     }
 
     private fun countListOrders() {
-        orderDatabaseReference.child("OrdersLists")
+        FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+            .child("OrdersLists")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -402,6 +401,7 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        Uid = intent.getStringExtra("UID")
         countCartOrders()
         countListOrders()
         cartOutForDeliveryOrders()

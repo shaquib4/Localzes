@@ -92,6 +92,7 @@ class AdapterSellerOrders(
             )
             intent.putExtra("orderIdTv", sellerOrders.orderId)
             intent.putExtra("orderByTv", sellerOrders.orderBy)
+            intent.putExtra("orderToTv", sellerOrders.orderTo)
             context.startActivity(intent)
         }
     }

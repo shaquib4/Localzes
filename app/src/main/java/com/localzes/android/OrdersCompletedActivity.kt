@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_orders_completed.*
 import util.ConnectionManager
 
 class OrdersCompletedActivity : AppCompatActivity() {
-    private lateinit var orderAuth: FirebaseAuth
     private lateinit var orderDatabaseReference: DatabaseReference
     private lateinit var ordersCompletedList: List<ModelOrderDetails>
     private lateinit var recyclerOrdersCompleted: RecyclerView
@@ -32,12 +31,15 @@ class OrdersCompletedActivity : AppCompatActivity() {
     private lateinit var listOrders: List<ModalSellerOrderList>
     private lateinit var searchCartCompletedOrders: EditText
     private lateinit var searchListCompletedOrders: EditText
+    private var Uid: String? = "400"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_completed)
-        orderAuth = FirebaseAuth.getInstance()
+        /*orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
-        val uid = user!!.uid
+        val uid = user!!.uid*/
+        Uid = intent.getStringExtra("UID")
+
         retryCompletedOrders.setOnClickListener {
             this.recreate()
         }
@@ -49,7 +51,8 @@ class OrdersCompletedActivity : AppCompatActivity() {
         searchListCompletedOrders = findViewById(R.id.searchListCompletedOrders)
         back = findViewById(R.id.imgBackCompletedOrders)
         recyclerOrdersCompleted.layoutManager = LinearLayoutManager(this)
-        orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        orderDatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Completed")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -126,10 +129,9 @@ class OrdersCompletedActivity : AppCompatActivity() {
     }
 
     private fun searchCartCompleted(s: String) {
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
         val querySellerDatabase =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+                .child("Orders")
                 .orderByChild("orderId").startAt(s).endAt(s + "\uF8FF")
         querySellerDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -167,10 +169,9 @@ class OrdersCompletedActivity : AppCompatActivity() {
     }
 
     private fun searchListCompleted(s: String) {
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
         val querySellerDatabase =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+                .child("OrdersLists")
                 .orderByChild("orderId").startAt(s).endAt(s + "\uF8FF")
         querySellerDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -211,10 +212,8 @@ class OrdersCompletedActivity : AppCompatActivity() {
         cartCompletedNo.setTextColor(this.resources.getColor(R.color.black))
         txtlistCompleted.setTextColor(this.resources.getColor(R.color.colorPrimary))
         listCompletedNo.setTextColor(this.resources.getColor(R.color.colorPrimary))
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
 
-        FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+        FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString()).child("OrdersLists")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -267,7 +266,8 @@ class OrdersCompletedActivity : AppCompatActivity() {
         if (ConnectionManager().checkConnectivity(this)) {
             rl_CompletedOrder.visibility = View.VISIBLE
             rl_retryCompletedOrder.visibility = View.GONE
-            orderDatabaseReference.child("Orders")
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+                .child("Orders")
                 .addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 
@@ -326,6 +326,7 @@ class OrdersCompletedActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        Uid = intent.getStringExtra("UID")
         completedCartOrders()
     }
 }

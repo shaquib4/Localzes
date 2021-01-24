@@ -40,7 +40,6 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private lateinit var recyclerOrderedList: RecyclerView
     private lateinit var adapterListOrder: AdapterSellerListOrder
     private lateinit var imgBackList: ImageView
-    private lateinit var shopAuth: FirebaseAuth
     private var bools: Boolean = false
     private lateinit var imgListEdit: ImageView
     private lateinit var list: List<ModelList>
@@ -51,6 +50,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private var bool = true
     private var orderId = ""
     private var orderBy = ""
+    private var orderTo = ""
     private var oStatus = ""
     private var newBool: Boolean = false
     var totalCost: Double = 0.00
@@ -83,19 +83,15 @@ class ListOrderDetailSeller : AppCompatActivity() {
         progressDialog.setCanceledOnTouchOutside(false)
         list = ArrayList<ModelList>()
         recyclerOrderedList.layoutManager = LinearLayoutManager(this)
-        shopAuth = FirebaseAuth.getInstance()
-        val user = shopAuth.currentUser
-        val uid = user!!.uid
-
-
-        val databaseRef: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                .child("OrdersLists")
-
         orderId = intent.getStringExtra("orderId").toString()
         orderBy = intent.getStringExtra("orderBy").toString()
+        orderTo = intent.getStringExtra("orderTo").toString()
+        val databaseRef: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
+                .child("OrdersLists")
         val newRef =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+            FirebaseDatabase.getInstance().reference.child("seller").child(orderTo)
+                .child("OrdersLists")
                 .child(orderId)
         newRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -455,16 +451,13 @@ class ListOrderDetailSeller : AppCompatActivity() {
     private fun editOrderStatus(selectedItem: String) {
         val headers = hashMapOf<String, Any>()
         headers["orderStatus"] = selectedItem
-        shopAuth = FirebaseAuth.getInstance()
-        val user = shopAuth.currentUser
-        val uid = user!!.uid
         val ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("seller")
-        ref.child(uid).child("OrdersLists").child(orderId).updateChildren(headers)
+        ref.child(orderBy).child("OrdersLists").child(orderId).updateChildren(headers)
             .addOnSuccessListener {
                 Toast.makeText(this, "Order has been $selectedItem", Toast.LENGTH_SHORT).show()
                 val message = "Order has been $selectedItem"
                 val reference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                    FirebaseDatabase.getInstance().reference.child("users").child(orderTo)
                 reference.child("MyOrderList").child(orderId).updateChildren(headers)
                 prepareNotificationMessage(orderId, message)
             }
@@ -492,7 +485,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
         try {
             notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
             notificationBodyJs.put("buyerId", orderBy)
-            notificationBodyJs.put("sellerUid", (shopAuth.currentUser)!!.uid)
+            notificationBodyJs.put("sellerUid", orderTo)
             notificationBodyJs.put("orderId", orderId)
             notificationBodyJs.put("totalCost", totalWith.toString())
             notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
@@ -545,13 +538,11 @@ class ListOrderDetailSeller : AppCompatActivity() {
                         builder.setTitle("Confirmation")
                         builder.setMessage("Are you sure your order has been successfully completed")
                         builder.setPositiveButton("Ok") { text, listener ->
-                            val user = shopAuth.currentUser
-                            val uid = user!!.uid
                             val userMap = HashMap<String, Any>()
                             userMap["orderStatus"] = "Completed"
                             val databaseNewReference: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("seller")
-                            databaseNewReference.child(uid).child("OrdersLists").child(orderId)
+                            databaseNewReference.child(orderBy).child("OrdersLists").child(orderId)
                                 .updateChildren(userMap).addOnSuccessListener {
                                     val dataRef =
                                         FirebaseDatabase.getInstance().reference.child("users")
