@@ -141,9 +141,11 @@ class Home_seller : AppCompatActivity() {
                                         "Order Access" -> {
                                             homeSeller(uidOfShop)
                                             editShopDetails.visibility = View.GONE
+                                            totalIncome.visibility = View.GONE
                                         }
                                         "Delivery Access" -> {
                                             orderPen.isClickable = false
+                                            ordersPending.visibility = View.GONE
                                             editShopDetails.visibility = View.GONE
                                             totalIncome.visibility = View.GONE
                                         }
@@ -158,10 +160,12 @@ class Home_seller : AppCompatActivity() {
                                         "(Orders + Catalogue)Access" -> {
                                             homeSeller(uidOfShop)
                                             editShopDetails.visibility = View.GONE
+                                            totalIncome.visibility = View.GONE
                                         }
                                         "(Order + Boost Your Shop)Access" -> {
                                             homeSeller(uidOfShop)
                                             editShopDetails.visibility = View.GONE
+                                            totalIncome.visibility = View.GONE
                                         }
                                     }
                                 }
@@ -356,6 +360,7 @@ class Home_seller : AppCompatActivity() {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
                 val intent = Intent(this, OrdersAcceptedActivity::class.java)
+                intent.putExtra("UID", uid)
                 startActivity(intent)
                 finish()
             } else {
@@ -368,6 +373,7 @@ class Home_seller : AppCompatActivity() {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
                 val intent = Intent(this, OrdersCompletedActivity::class.java)
+                intent.putExtra("UID", uid)
                 startActivity(intent)
                 finish()
             } else {
@@ -380,6 +386,7 @@ class Home_seller : AppCompatActivity() {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
                 val intent = Intent(this, SellerOrdersActivity::class.java)
+                intent.putExtra("UID", uid)
                 startActivity(intent)
                 finish()
             } else {
@@ -392,6 +399,7 @@ class Home_seller : AppCompatActivity() {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
                 val intent = Intent(this, OrderOutForDeliveryActivity::class.java)
+                intent.putExtra("UID", uid)
                 startActivity(intent)
                 finish()
             } else {

@@ -53,7 +53,7 @@ class AdapterStaffOf(val context: Context, val staffOf: List<ModelStaffOf>) :
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val headers = HashMap<String, Any>()
-                    headers["staffOfShop"] = "${staff_off.shopName},${staff_off.shopMobileNumber}"
+                    headers["staffOfShop"] = staff_off.invitationUid
                     dataRef.updateChildren(headers).addOnSuccessListener {
                         Toast.makeText(context, "Account enabled successfully", Toast.LENGTH_SHORT)
                             .show()

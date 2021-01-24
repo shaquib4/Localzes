@@ -32,12 +32,15 @@ class OrdersAcceptedActivity : AppCompatActivity() {
     private lateinit var listOrders: List<ModalSellerOrderList>
     private lateinit var editSearchCartAccepted: EditText
     private lateinit var editSearchListAccepted: EditText
+    private var Uid: String? = "400"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders_accepted)
-        orderAuth = FirebaseAuth.getInstance()
+        /*orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
-        val uid = user!!.uid
+        val uid = user!!.uid*/
+        Uid = intent.getStringExtra("UID")
+
         retryAcceptedOrders.setOnClickListener {
             this.recreate()
         }
@@ -50,7 +53,8 @@ class OrdersAcceptedActivity : AppCompatActivity() {
         editSearchListAccepted = findViewById(R.id.searchListAccepted)
         listOrders = ArrayList<ModalSellerOrderList>()
         recyclerOrdersAccepted.layoutManager = LinearLayoutManager(this)
-        orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        orderDatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -127,10 +131,9 @@ class OrdersAcceptedActivity : AppCompatActivity() {
     }
 
     private fun searchListAcceptedOrders(s: String) {
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
         val querySellerDatabase =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+                .child("OrdersLists")
                 .orderByChild("orderId").startAt(s).endAt(s + "\uF8FF")
         querySellerDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -165,10 +168,9 @@ class OrdersAcceptedActivity : AppCompatActivity() {
     }
 
     private fun searchCartAcceptedOrders(s: String) {
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
         val querySellerDatabase =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Orders")
+            FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+                .child("Orders")
                 .orderByChild("orderId").startAt(s).endAt(s + "\uF8FF")
         querySellerDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
