@@ -37,7 +37,7 @@ class MyStaffActivity : AppCompatActivity() {
             finish()
         }
         btnInvitation.setOnClickListener {
-            startActivity(Intent(this,SellerAcceptedRejectedInvitation::class.java))
+            startActivity(Intent(this, SellerAcceptedRejectedInvitation::class.java))
             finish()
         }
         val dataReference =
@@ -67,5 +67,11 @@ class MyStaffActivity : AppCompatActivity() {
                 recyclerAddStaff.adapter = adapterStaffs
             }
         })
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, cardBanners::class.java)
+        startActivity(intent)
+        finish()
     }
 }
