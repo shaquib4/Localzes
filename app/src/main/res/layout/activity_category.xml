@@ -6,8 +6,35 @@
     android:layout_height="match_parent"
     android:background="#fcfcfc"
     tools:context=".Category">
+    <RelativeLayout
+        android:id="@+id/rlCategoryAccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navCategory_seller"
+        android:background="#eeeeee"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/imglock"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_outline_lock_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imglock"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="You have no access to this area"
+            android:textColor="#000"
+            android:textSize="@dimen/_15ssp" />
+
+    </RelativeLayout>
 
     <RelativeLayout
+        android:layout_above="@id/btnAddNewCategory"
         android:id="@+id/rl_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,7 +42,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/btnAddNewCategory">
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -63,53 +90,12 @@
         </ScrollView>
 
 
-        <RelativeLayout
-            android:id="@+id/rlCategoryAccess"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/bottom_navCategory_seller"
-            android:background="#eeeeee"
-            android:visibility="invisible">
-
-            <ImageView
-                android:id="@+id/imglock"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_outline_lock_24" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/imglock"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="You have no access to this area"
-                android:textColor="#000"
-                android:textSize="@dimen/_15ssp" />
-
-        </RelativeLayout>
 
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navCategory_seller"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#fff"
-            app:menu="@menu/seller_menu" />
 
-        <Button
-            android:id="@+id/btnAddNewCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/bottom_navCategory_seller"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/proceed_to_add"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/add_new_category"
-            android:textColor="#fff"
-            android:textSize="@dimen/_15ssp" />
+
+
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -170,5 +156,22 @@
             android:textSize="@dimen/_15ssp" />
 
     </RelativeLayout>
-
+    <Button
+        android:layout_above="@id/bottom_navCategory_seller"
+        android:id="@+id/btnAddNewCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/proceed_to_add"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/add_new_category"
+        android:textColor="#fff"
+        android:textSize="@dimen/_15ssp" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navCategory_seller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        app:menu="@menu/seller_menu" />
 </RelativeLayout>

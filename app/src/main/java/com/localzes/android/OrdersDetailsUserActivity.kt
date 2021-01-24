@@ -139,7 +139,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 orderDateUser.text = formattedDate
                 paymentModeInfo.text = snapshot.child("paymentMode").value.toString()
                 if (snapshot.child("paymentMode").value.toString() == "" && snapshot.child("orderStatus").value.toString() == "Accepted") {
-                    btnPayCart.visibility = View.GONE
+                    btnPayCart.visibility = View.VISIBLE
                 } else {
                     btnPayCart.visibility = View.GONE
                 }

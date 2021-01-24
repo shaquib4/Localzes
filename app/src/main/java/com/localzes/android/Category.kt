@@ -71,10 +71,12 @@ class Category : AppCompatActivity() {
                                     }
                                     "Order Access" -> {
                                         rl_category.visibility = View.GONE
+                                        btnAddNewCategory.visibility=View.GONE
                                         categoryAccess.visibility = View.VISIBLE
                                     }
                                     "Delivery Access" -> {
                                         rl_category.visibility = View.GONE
+                                        btnAddNewCategory.visibility=View.GONE
                                         categoryAccess.visibility = View.VISIBLE
                                     }
                                     "Catalogue Access(Product)" -> {
@@ -82,6 +84,7 @@ class Category : AppCompatActivity() {
                                     }
                                     "Boost Your Shop Access" -> {
                                         rl_category.visibility = View.GONE
+                                        btnAddNewCategory.visibility=View.GONE
                                         categoryAccess.visibility = View.VISIBLE
                                     }
                                     "(Orders + Catalogue)Access" -> {
@@ -90,6 +93,7 @@ class Category : AppCompatActivity() {
                                     }
                                     "(Order + Boost Your Shop)Access" -> {
                                         rl_category.visibility = View.GONE
+                                        btnAddNewCategory.visibility=View.GONE
                                         categoryAccess.visibility = View.VISIBLE
                                     }
                                 }
