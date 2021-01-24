@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.localzes.android.Adapters.AdapterMyStaff
 import com.localzes.android.Modals.ModalAddStaff
+import kotlinx.android.synthetic.main.activity_my_staff.*
 
 class MyStaffActivity : AppCompatActivity() {
     private lateinit var addStaff: FloatingActionButton
@@ -33,6 +34,10 @@ class MyStaffActivity : AppCompatActivity() {
         addStaff.setOnClickListener {
             val intent = Intent(this, AddStaff::class.java)
             startActivity(intent)
+            finish()
+        }
+        btnInvitation.setOnClickListener {
+            startActivity(Intent(this,SellerAcceptedRejectedInvitation::class.java))
             finish()
         }
         val dataReference =
