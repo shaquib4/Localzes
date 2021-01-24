@@ -25,7 +25,6 @@ class SellerOrdersActivity : AppCompatActivity() {
     private lateinit var sellerOrderAdapter: AdapterSellerOrders
     private lateinit var mSellerOrders: List<ModelOrderDetails>
     private lateinit var sellerOrderDatabase: DatabaseReference
-    private lateinit var auth: FirebaseAuth
     private lateinit var imgBackPending: ImageView
     private lateinit var relativeOrders: RelativeLayout
     private lateinit var listAdapter: AdapterListOrder
@@ -103,6 +102,8 @@ class SellerOrdersActivity : AppCompatActivity() {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_pending.visibility = View.VISIBLE
                 rl_Seller_Orders_retry.visibility = View.GONE
+                countCartOrders()
+                countListOrders()
                 pendingCartOrder()
             } else {
                 rl_pending.visibility = View.GONE
@@ -113,6 +114,8 @@ class SellerOrdersActivity : AppCompatActivity() {
             rl_pending.visibility = View.VISIBLE
             rl_Seller_Orders_retry.visibility = View.GONE
             if (ConnectionManager().checkConnectivity(this)) {
+                countListOrders()
+                countCartOrders()
                 pendingListOrder()
             } else {
                 rl_pending.visibility = View.GONE
@@ -315,6 +318,71 @@ class SellerOrdersActivity : AppCompatActivity() {
         })
     }
 
+    private fun countCartOrders() {
+        FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+            .child("Orders").addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (mSellerOrders as ArrayList<ModelOrderDetails>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModelOrderDetails(
+                            i.child("orderId").value.toString(),
+                            i.child("orderTime").value.toString(),
+                            i.child("orderStatus").value.toString(),
+                            i.child("orderCost").value.toString(),
+                            i.child("orderBy").value.toString(),
+                            i.child("orderTo").value.toString(),
+                            i.child("orderQuantity").value.toString(),
+                            i.child("deliveryAddress").value.toString(),
+                            i.child("paymentMode").value.toString(),
+                            i.child("orderByName").value.toString(),
+                            i.child("orderByMobile").value.toString()
+                        )
+                        if (i.child("orderStatus").value.toString() == "Pending") {
+                            (mSellerOrders as ArrayList<ModelOrderDetails>).add(obj)
+                        }
+                    }
+                    cartPendingNo.text = "(${mSellerOrders.size})"
+                }
+            })
+    }
+
+    private fun countListOrders() {
+        FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+            .child("OrdersLists").addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (listOrders as ArrayList<ModalSellerOrderList>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModalSellerOrderList(
+                            i.child("orderId").value.toString(),
+                            i.child("orderTime").value.toString(),
+                            i.child("orderStatus").value.toString(),
+                            i.child("orderCost").value.toString(),
+                            i.child("orderBy").value.toString(),
+                            i.child("orderTo").value.toString(),
+                            i.child("deliveryAddress").value.toString(),
+                            i.child("totalItems").value.toString(),
+                            i.child("listStatus").value.toString(),
+                            i.child("orderByName").value.toString(),
+                            i.child("orderByMobile").value.toString(),
+                            i.child("paymentMode").value.toString()
+                        )
+                        if (i.child("orderStatus").value.toString() == "Pending") {
+                            (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
+                        }
+                    }
+                    listPendingNo.text = "(${listOrders.size})"
+                }
+            })
+    }
+
     override fun onBackPressed() {
         val intent = Intent(this, Home_seller::class.java)
         startActivity(intent)
@@ -323,9 +391,12 @@ class SellerOrdersActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        Uid = intent.getStringExtra("UID")
         if (ConnectionManager().checkConnectivity(this)) {
             rl_pending.visibility = View.VISIBLE
             rl_Seller_Orders_retry.visibility = View.GONE
+            countCartOrders()
+            countListOrders()
             pendingCartOrder()
         } else {
             rl_pending.visibility = View.GONE

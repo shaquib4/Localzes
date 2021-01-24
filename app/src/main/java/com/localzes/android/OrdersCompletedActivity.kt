@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_orders_completed.*
 import util.ConnectionManager
 
 class OrdersCompletedActivity : AppCompatActivity() {
-    private lateinit var orderAuth: FirebaseAuth
     private lateinit var orderDatabaseReference: DatabaseReference
     private lateinit var ordersCompletedList: List<ModelOrderDetails>
     private lateinit var recyclerOrdersCompleted: RecyclerView
@@ -213,10 +212,8 @@ class OrdersCompletedActivity : AppCompatActivity() {
         cartCompletedNo.setTextColor(this.resources.getColor(R.color.black))
         txtlistCompleted.setTextColor(this.resources.getColor(R.color.colorPrimary))
         listCompletedNo.setTextColor(this.resources.getColor(R.color.colorPrimary))
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
 
-        FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+        FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString()).child("OrdersLists")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -329,6 +326,7 @@ class OrdersCompletedActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        Uid = intent.getStringExtra("UID")
         completedCartOrders()
     }
 }
