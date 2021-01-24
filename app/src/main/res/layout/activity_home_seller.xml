@@ -166,6 +166,7 @@
 
                     <HorizontalScrollView
                         android:id="@+id/linearLayoutTittle"
+                        android:scrollbars="none"
                         android:layout_below="@id/txtOrders"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -179,12 +180,13 @@
                         android:layout_height="wrap_content"
                         android:baselineAligned="false"
                         android:orientation="horizontal"
-                        android:weightSum="6">
+                        android:weightSum="6.6">
 
 
 
                         <RelativeLayout
-                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_2sdp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
@@ -229,18 +231,19 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_marginHorizontal="@dimen/_5sdp"
+
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1.45">
 
                             <RelativeLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
                             <ImageView
                                 android:id="@+id/orderOFD"
-                                android:layout_width="@dimen/_55sdp"
-                                android:layout_height="@dimen/_55sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_width="@dimen/_56sdp"
+                                android:layout_height="@dimen/_53sdp"
                                 android:layout_centerInParent="true"
                                 android:contentDescription="@string/todo"
                                 android:src="@drawable/circle" />
@@ -273,7 +276,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
@@ -316,7 +319,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_marginHorizontal="@dimen/_7sdp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
@@ -359,7 +362,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_marginHorizontal="@dimen/_7sdp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
@@ -369,7 +372,7 @@
                                 android:layout_height="wrap_content">
 
                             <ImageView
-                                android:id="@+id/OrderRej"
+                                android:id="@+id/OrderRejected"
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"
                                 android:layout_centerInParent="true"
@@ -378,7 +381,7 @@
                                 tools:ignore="TooDeepLayout" />
 
                             <TextView
-                                android:id="@+id/txtItemRej"
+                                android:id="@+id/txtItemRejected"
                                 android:layout_width="@dimen/_50sdp"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
@@ -388,7 +391,7 @@
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10ssp" />
                                 <TextView
-                                    android:layout_below="@id/OrderRej"
+                                    android:layout_below="@id/OrderRejected"
                                     android:layout_marginTop="@dimen/_10sdp"
                                     android:layout_centerHorizontal="true"
                                     android:id="@+id/txtRej"
@@ -405,7 +408,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_marginHorizontal="@dimen/_7sdp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
