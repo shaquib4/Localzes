@@ -355,7 +355,8 @@ class ListOrderDetailSeller : AppCompatActivity() {
                                 list,
                                 orderId,
                                 orderBy,
-                                oStatus
+                                oStatus,
+                                orderTo
                             )
                         recyclerOrderedList.adapter = adapterListOrder
                     }

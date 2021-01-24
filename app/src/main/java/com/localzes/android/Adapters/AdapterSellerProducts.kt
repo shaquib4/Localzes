@@ -135,19 +135,17 @@ class AdapterSellerProducts(
             (context as Seller_Products).finish()
         }
         holder.imgRemove.setOnClickListener {
-            deleteProduct(position)
+            deleteProduct(position,products.shopId)
         }
     }
 
-    private fun deleteProduct(position: Int) {
-        val userAuth: FirebaseAuth = FirebaseAuth.getInstance()
-        val user = userAuth.currentUser
-        val uid = user!!.uid
+    private fun deleteProduct(position: Int, shopId: String) {
+
         val productId = products_seller[position].productId
         val storage =
             FirebaseStorage.getInstance().getReferenceFromUrl(products_seller[position].imageUrl)
         val database =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId).child("Products")
         database.orderByChild("productId").equalTo(productId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {

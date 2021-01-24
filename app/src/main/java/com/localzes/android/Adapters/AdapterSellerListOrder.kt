@@ -23,7 +23,8 @@ class AdapterSellerListOrder(
     val seller_order_list: List<ModelList>,
     val orderId: String,
     val orderBy: String,
-    val orderStatus: String
+    val orderStatus: String,
+    val uidS:String
 ) :
     RecyclerView.Adapter<AdapterSellerListOrder.HolderSellerListOrder>() {
     class HolderSellerListOrder(view: View) : RecyclerView.ViewHolder(view) {
@@ -55,21 +56,17 @@ class AdapterSellerListOrder(
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
         spannableString.setSpan(mStrikeThrough, 0, mString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val uAuths = FirebaseAuth.getInstance()
-        val users = uAuths.currentUser
-        val uids = users!!.uid
+
         if (orderStatus != "Pending") {
             holder.edtPrice.setText(sellerOrderList.itemCost)
             holder.edtPrice.isEnabled = false
             holder.itemRevive.visibility = View.GONE
             holder.itemRemove.visibility = View.GONE
         } else {
-            val uAuth = FirebaseAuth.getInstance()
-            val user = uAuth.currentUser
-            val uid = user!!.uid
+
 
             val databaseReference: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                FirebaseDatabase.getInstance().reference.child("seller").child(uidS)
                     .child("OrdersLists").child(orderId)
                     .child("ListItems").child(sellerOrderList.itemId)
             databaseReference.addValueEventListener(object : ValueEventListener {
@@ -114,7 +111,7 @@ class AdapterSellerListOrder(
                 }
             })
             val databaseReferences: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                FirebaseDatabase.getInstance().reference.child("seller").child(uidS)
                     .child("OrdersLists").child(orderId)
                     .child("ListItems").child(sellerOrderList.itemId)
             databaseReferences.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -162,11 +159,9 @@ class AdapterSellerListOrder(
 
         holder.itemRemove.setOnClickListener {
             holder.txtItem_Name.text = spannableString
-            val uAuth = FirebaseAuth.getInstance()
-            val user = uAuth.currentUser
-            val uid = user!!.uid
+
             val databaseReference: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                FirebaseDatabase.getInstance().reference.child("seller").child(uidS)
                     .child("OrdersLists").child(orderId)
                     .child("ListItems").child(sellerOrderList.itemId)
             val headers = HashMap<String, Any>()
@@ -188,11 +183,9 @@ class AdapterSellerListOrder(
         }
         holder.itemRevive.setOnClickListener {
             holder.txtItem_Name.text = "${sellerOrderList.itemName}  X ${sellerOrderList.itemQuantity}"
-            val uAuth = FirebaseAuth.getInstance()
-            val user = uAuth.currentUser
-            val uid = user!!.uid
+
             val databaseReference: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                FirebaseDatabase.getInstance().reference.child("seller").child(uidS)
                     .child("OrdersLists").child(orderId)
                     .child("ListItems").child(sellerOrderList.itemId)
             val headers = HashMap<String, Any>()
@@ -215,11 +208,9 @@ class AdapterSellerListOrder(
     }
 
     private fun priceEdit(s: String, itemId: String) {
-        val uAuth = FirebaseAuth.getInstance()
-        val user = uAuth.currentUser
-        val uid = user!!.uid
+
         val databaseReference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("OrdersLists")
+            FirebaseDatabase.getInstance().reference.child("seller").child(uidS).child("OrdersLists")
                 .child(orderId)
                 .child("ListItems").child(itemId)
         val headers = HashMap<String, Any>()
