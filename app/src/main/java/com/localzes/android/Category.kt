@@ -241,7 +241,7 @@ class Category : AppCompatActivity() {
                             (categories as ArrayList<ModelCategory>).add(obj)
                         }
 
-                        adapterCategory = AdapterCategory(this@Category, categories)
+                        adapterCategory = AdapterCategory(this@Category, categories,uid)
                         recyclerCategories.adapter = adapterCategory
 
                     }

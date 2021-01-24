@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlin.random.Random
 
-class AdapterCategory(val context: Context, val categoryList: List<ModelCategory>) :
+class AdapterCategory(val context: Context, val categoryList: List<ModelCategory>,val uid:String) :
     RecyclerView.Adapter<AdapterCategory.HolderCategory>() {
     class HolderCategory(view: View) : RecyclerView.ViewHolder(view) {
         val categoryCard: RelativeLayout = view.findViewById(R.id.cardCategory)
@@ -49,6 +49,7 @@ class AdapterCategory(val context: Context, val categoryList: List<ModelCategory
         colors.add("#ffce44")
         val random: Random = Random
         val l1: Int = random.nextInt(3 - 0) + 0
+
         holder.title.text = category_List.category
         try {
             holder.categoryCard.setBackgroundColor(Color.parseColor(colors[l1]))
@@ -62,15 +63,13 @@ class AdapterCategory(val context: Context, val categoryList: List<ModelCategory
             (context as Category).finish()
         }
         holder.removeCategory.setOnClickListener {
-            deleteCategory(position)
+            deleteCategory(position,uid)
 
         }
     }
 
-    private fun deleteCategory(position: Int) {
-        val userAuth: FirebaseAuth = FirebaseAuth.getInstance()
-        val user = userAuth.currentUser
-        val uid = user!!.uid
+    private fun deleteCategory(position: Int, uid: String) {
+
         val category = categoryList[position].category
         val databaseReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Categories")
