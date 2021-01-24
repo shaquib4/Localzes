@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_order_out_for_delivery.*
 import util.ConnectionManager
 
 class OrderOutForDeliveryActivity : AppCompatActivity() {
-    private lateinit var orderAuth: FirebaseAuth
     private lateinit var orderDatabaseReference: DatabaseReference
     private lateinit var ordersOutForDeliveryList: List<ModelOrderDetails>
     private lateinit var recyclerOutForDelivery: RecyclerView
@@ -235,8 +234,6 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
         cartOutNo.setTextColor(resources.getColor(R.color.colorPrimary))
         txtlistOut.setTextColor(resources.getColor(R.color.black))
         listOutNo.setTextColor(resources.getColor(R.color.black))
-        val user = orderAuth.currentUser
-        val uid = user!!.uid
         FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
             .child("Orders").addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -404,6 +401,7 @@ class OrderOutForDeliveryActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        Uid = intent.getStringExtra("UID")
         countCartOrders()
         countListOrders()
         cartOutForDeliveryOrders()
