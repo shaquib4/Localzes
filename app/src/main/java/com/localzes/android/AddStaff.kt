@@ -20,6 +20,10 @@ class AddStaff : AppCompatActivity() {
     private lateinit var accessStaff: Button
     private lateinit var btnConfirmStaff: Button
     private var bool:Boolean=false
+    private var phoneCheck:String?=null
+    private var staffName:String?=null
+    private var address:String?=null
+    private var staffuid:String?=null
     private lateinit var progressDialog: ProgressDialog
     private lateinit var shopAuth: FirebaseAuth
     var selectedAccess: String = ""
@@ -75,7 +79,7 @@ class AddStaff : AppCompatActivity() {
             progressDialog.setMessage("Fetching details.....")
             progressDialog.show()
             val dataRef = FirebaseDatabase.getInstance().reference.child("seller")
-            dataRef.addValueEventListener(object : ValueEventListener {
+            dataRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
@@ -83,41 +87,51 @@ class AddStaff : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (i in snapshot.children) {
                         val phone = i.child("phone").value.toString()
-                        if (staffNumber.text.toString() == phone) {
-                            val uid = i.child("shopId").value.toString()
-                            val headers = HashMap<String, Any>()
-                            headers["name"] = i.child("name").value.toString()
-                            headers["phone"] = i.child("phone").value.toString()
-                            headers["address"] = i.child("address").value.toString()
-                            headers["status"] = ""
-                            headers["access"] = selectedAccess
-                            headers["uid"] = uid
-                            dataRef.child(sellerUid).child("MyStaff").child(uid).setValue(headers)
-                                .addOnSuccessListener {
-                                    val newHeader = HashMap<String, Any>()
-                                    newHeader["shopOwnerName"] =
-                                        snapshot.child(sellerUid).child("name").value.toString()
-                                    newHeader["shopName"] = snapshot.child(sellerUid)
-                                        .child("shop_name").value.toString()
-                                    newHeader["shopMobileNumber"] =
-                                        snapshot.child(sellerUid).child("phone").value.toString()
-                                    newHeader["status"] = ""
-                                    newHeader["invitationUid"] = sellerUid
-                                    newHeader["invitationStatus"] = ""
-                                    val staffHeader = HashMap<String, Any>()
-                                    staffHeader["staffOfShop"] = ""
-                                    dataRef.child(uid).updateChildren(staffHeader)
-                                    dataRef.child(uid).child("StaffOf").child(sellerUid)
-                                        .updateChildren(newHeader).addOnSuccessListener {
-                                            progressDialog.dismiss()
-                                            Toast.makeText(
-                                                this@AddStaff,
-                                                "New Staff is added successfully",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        }
-                                }
+                        if (staffNumber.text.toString() == phone){
+                            phoneCheck=phone
+                            staffName=i.child("name").value.toString()
+                            address=i.child("address").value.toString()
+                            staffuid= i.child("shopId").value.toString()
+
                         }
+
+
+                    }
+                    if (staffNumber.text.toString() == phoneCheck&& phoneCheck.toString().isNotEmpty()) {
+
+                        val headers = HashMap<String, Any>()
+                        headers["name"] = staffName.toString()
+                        headers["phone"] = phoneCheck.toString()
+                        headers["address"] = address.toString()
+                        headers["status"] = ""
+                        headers["access"] = selectedAccess
+                        headers["uid"] = staffuid.toString()
+                        headers["invitationStatus"]=""
+                        dataRef.child(sellerUid).child("MyStaff").child(staffuid.toString()).updateChildren(headers)
+                            .addOnSuccessListener {
+                                val newHeader = HashMap<String, Any>()
+                                newHeader["shopOwnerName"] =
+                                    snapshot.child(sellerUid).child("name").value.toString()
+                                newHeader["shopName"] = snapshot.child(sellerUid)
+                                    .child("shop_name").value.toString()
+                                newHeader["shopMobileNumber"] =
+                                    snapshot.child(sellerUid).child("phone").value.toString()
+                                newHeader["status"] = ""
+                                newHeader["invitationUid"] = sellerUid
+                                newHeader["invitationStatus"] = ""
+                                val staffHeader = HashMap<String, Any>()
+                                staffHeader["staffOfShop"] = ""
+                                dataRef.child(staffuid.toString()).updateChildren(staffHeader)
+                                dataRef.child(staffuid.toString()).child("StaffOf").child(sellerUid)
+                                    .updateChildren(newHeader).addOnSuccessListener {
+                                        progressDialog.dismiss()
+                                        Toast.makeText(
+                                            this@AddStaff,
+                                            "New Staff is added successfully",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                            }
                     }
                 }
 

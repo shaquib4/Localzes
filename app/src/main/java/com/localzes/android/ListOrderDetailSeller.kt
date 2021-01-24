@@ -56,9 +56,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
     var totalCost: Double = 0.00
     var totalWith: Double = 0.00
     private var selectedReason: String = ""
-    private var REQUEST_CALL: Int = 1
     private var customerMobileNo: String = ""
-    private var permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
     private lateinit var imgMakeCustomerCall: ImageView
     private lateinit var checkboxListComplete: CheckBox
     private lateinit var llAcceptConfirm: LinearLayout
@@ -375,32 +373,10 @@ class ListOrderDetailSeller : AppCompatActivity() {
 
     private fun makePhoneCallCustomer() {
         val number = customerMobileNo
-        if (number.trim().isNotEmpty()) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(this, permissions, REQUEST_CALL)
-            } else {
-                val dial: String = "tel:" + number
-                startActivity(Intent(Intent.ACTION_CALL, Uri.parse(dial)))
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == REQUEST_CALL) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                makePhoneCallCustomer()
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
-            }
-        }
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$number")
+        val chooser = Intent.createChooser(intent, "Call Action Using")
+        startActivity(chooser)
     }
 
 
