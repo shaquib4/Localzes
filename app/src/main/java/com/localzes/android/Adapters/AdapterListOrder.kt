@@ -91,6 +91,7 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
             )
             intent.putExtra("orderId", sellerOrder.orderId)
             intent.putExtra("orderBy", sellerOrder.orderBy)
+            intent.putExtra("orderTo", sellerOrder.orderTo)
             context.startActivity(intent)
         }
     }
