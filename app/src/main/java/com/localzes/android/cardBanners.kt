@@ -97,8 +97,8 @@ class cardBanners : AppCompatActivity() {
 
                                         }
                                         "Delivery Access" -> {
-                                            cardScroll.visibility=View.VISIBLE
-                                            rl_accessCard.visibility= View.GONE
+                                            cardScroll.visibility=View.GONE
+                                            rl_accessCard.visibility= View.VISIBLE
 
                                         }
                                         "Catalogue Access(Product)" -> {
@@ -107,9 +107,9 @@ class cardBanners : AppCompatActivity() {
 
                                         }
                                         "Boost Your Shop Access" -> {
-                                            carStaff.isClickable=false
                                             carStaff.visibility=View.GONE
                                             CardBanners()
+                                            carStaff.isClickable=false
                                         }
                                         "(Orders + Catalogue)Access" -> {
                                             cardScroll.visibility=View.GONE
