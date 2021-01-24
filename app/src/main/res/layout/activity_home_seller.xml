@@ -49,7 +49,7 @@
             android:id="@+id/SV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -164,27 +164,42 @@
                         android:textColor="#000000"
                         android:textSize="@dimen/_12ssp" />
 
+                    <HorizontalScrollView
+                        android:id="@+id/linearLayoutTittle"
+                        android:layout_below="@id/txtOrders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
                     <LinearLayout
                         android:id="@+id/linearLayoutOrders"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/txtOrders"
                         android:baselineAligned="false"
                         android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:weightSum="6">
+
+
 
                         <RelativeLayout
+                            android:layout_marginHorizontal="@dimen/_5sdp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
 
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
                             <ImageView
                                 android:id="@+id/OrderAcc"
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"
                                 android:layout_centerInParent="true"
                                 android:contentDescription="@string/todo"
-                                android:src="@drawable/circle" />
+                                android:src="@drawable/circle"
+                                tools:ignore="TooDeepLayout" />
 
                             <TextView
                                 android:id="@+id/txtItemAccepted"
@@ -197,13 +212,31 @@
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10ssp" />
 
+
+                                <TextView
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                 android:layout_centerHorizontal="true"
+                                    android:id="@+id/txtAccepted"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                  android:layout_below="@id/OrderAcc"
+                                    android:fontFamily="@font/montserrat_medium"
+                                    android:text="@string/accepted"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/_9ssp" />
+                            </RelativeLayout>
+
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:layout_marginHorizontal="@dimen/_5sdp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
 
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
                             <ImageView
                                 android:id="@+id/orderOFD"
                                 android:layout_width="@dimen/_55sdp"
@@ -223,13 +256,31 @@
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10ssp" />
 
+                                <TextView
+                                    android:layout_below="@id/orderOFD"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_centerHorizontal="true"
+                                    android:id="@+id/txtShipped"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    android:fontFamily="@font/montserrat_medium"
+                                    android:text="@string/out_for_delivery"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/_9ssp" />
+                            </RelativeLayout>
+
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:layout_marginHorizontal="@dimen/_5sdp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
 
+                           <RelativeLayout
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content">
                             <ImageView
                                 android:id="@+id/orderCom"
                                 android:layout_width="@dimen/_55sdp"
@@ -249,13 +300,30 @@
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10ssp" />
 
+                               <TextView
+                                   android:layout_below="@id/orderCom"
+                                   android:layout_marginTop="@dimen/_10sdp"
+                                   android:layout_centerHorizontal="true"
+                                   android:id="@+id/txtActive"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
 
+                                   android:fontFamily="@font/montserrat_medium"
+                                   android:text="@string/active"
+                                   android:textAlignment="center"
+                                   android:textSize="@dimen/_9ssp" />
+                           </RelativeLayout>
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:layout_marginHorizontal="@dimen/_5sdp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
 
                             <ImageView
                                 android:id="@+id/orderPen"
@@ -275,60 +343,132 @@
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/_10ssp" />
+                                <TextView
+                                    android:layout_below="@id/orderPen"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_centerHorizontal="true"
+                                    android:id="@+id/txtPending"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/montserrat_medium"
+                                    android:text="@string/pending"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/_9ssp" />
 
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/OrderRej"
+                                android:layout_width="@dimen/_55sdp"
+                                android:layout_height="@dimen/_55sdp"
+                                android:layout_centerInParent="true"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/circle"
+                                tools:ignore="TooDeepLayout" />
+
+                            <TextView
+                                android:id="@+id/txtItemRej"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/_0"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10ssp" />
+                                <TextView
+                                    android:layout_below="@id/OrderRej"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_centerHorizontal="true"
+                                    android:id="@+id/txtRej"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    android:fontFamily="@font/montserrat_medium"
+                                    android:text="Rejected"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/_9ssp" />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            <ImageView
+                                android:id="@+id/OrderAll"
+                                android:layout_width="@dimen/_55sdp"
+                                android:layout_height="@dimen/_55sdp"
+                                android:layout_centerInParent="true"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/circle"
+                                tools:ignore="TooDeepLayout" />
+
+                            <TextView
+                                android:id="@+id/txtItemAll"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/_0"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_10ssp" />
+                                <TextView
+                                    android:layout_below="@id/OrderAll"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_centerHorizontal="true"
+                                    android:id="@+id/txtAll"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/montserrat_medium"
+                                    android:text="All Orders"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/_9ssp" />
+                            </RelativeLayout>
 
                         </RelativeLayout>
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/linearLayoutTittle"
-                        android:layout_width="match_parent"
+
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/linearLayoutOrders"
                         android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:weightSum="6">
 
-                        <TextView
-                            android:id="@+id/txtAccepted"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="@string/accepted"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/_9ssp" />
 
-                        <TextView
-                            android:id="@+id/txtShipped"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="@string/out_for_delivery"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/_9ssp" />
 
-                        <TextView
-                            android:id="@+id/txtActive"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="@string/active"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/_9ssp" />
 
-                        <TextView
-                            android:id="@+id/txtPending"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="@string/pending"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/_9ssp" />
+
+
+
+
                     </LinearLayout>
+                        </RelativeLayout>
+
+                    </HorizontalScrollView>
 
                     <TextView
                         android:id="@+id/txtOverview"
