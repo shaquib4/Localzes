@@ -554,6 +554,7 @@ class Cart : AppCompatActivity() {
                 }
             }
         })
+        uidList += shopId
 
         val NOTIFICATION_TOPIC =
             "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user

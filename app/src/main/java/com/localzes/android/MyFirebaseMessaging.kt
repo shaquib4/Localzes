@@ -44,7 +44,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             val notificationDescription = remoteMessage.data["notificationMessage"]
             val string: List<String> = listOfIds!!.split(",")
             if (firebaseUser != null) {
-                for (i in string) {
+                /*for (i in string) {
                     if (currentAuth!!.uid == i) {
                         showNotification(
                             orderId.toString(),
@@ -55,6 +55,16 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                             notificationType.toString()
                         )
                     }
+                }*/
+                if (currentAuth!!.uid in string) {
+                    showNotification(
+                        orderId.toString(),
+                        (currentAuth!!.uid).toString(),
+                        buyerUid.toString(),
+                        notificationTitle.toString(),
+                        notificationDescription.toString(),
+                        notificationType.toString()
+                    )
                 }
             }
         }
