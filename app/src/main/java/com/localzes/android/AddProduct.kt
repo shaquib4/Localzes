@@ -12,8 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.localzes.android.Modals.ModelAddProduct
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.theartofdev.edmodo.cropper.CropImage
@@ -39,8 +38,18 @@ class AddProduct : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
+        val uid=intent.getStringExtra("uid").toString()
 
-        auth = FirebaseAuth.getInstance()
+        if (uid.isNotEmpty()){
+            addProduct(uid)
+        }
+
+
+
+
+    }
+
+    private fun addProduct(uid: String) {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
@@ -110,7 +119,7 @@ class AddProduct : AppCompatActivity() {
                         rl_retryAddProduct.visibility = View.GONE
                         progressDialog.setMessage("Adding Your Product....")
                         progressDialog.show()
-                        uploadData(progressDialog)
+                        uploadData(progressDialog,uid)
                     } else {
                         rl_addProduct.visibility = View.GONE
                         rl_retryAddProduct.visibility = View.VISIBLE
@@ -194,7 +203,7 @@ class AddProduct : AppCompatActivity() {
 
     }
 
-    private fun uploadData(progressDialog: ProgressDialog) {
+    private fun uploadData(progressDialog: ProgressDialog, uid: String) {
         try {
             if (imgUrl != "") {
 /*
@@ -247,8 +256,7 @@ class AddProduct : AppCompatActivity() {
                     val progress = (100.0 * p0.bytesTransferred / p0.totalByteCount)
 
                 }*/
-                val user = auth.currentUser
-                val uid = user!!.uid
+
                 products = ModelAddProduct(
                     uid,
                     timestamp,

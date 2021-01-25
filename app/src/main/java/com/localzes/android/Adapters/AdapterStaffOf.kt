@@ -46,7 +46,7 @@ class AdapterStaffOf(val context: Context, val staffOf: List<ModelStaffOf>) :
         holder.shopOwnerPhone.text = staff_off.shopMobileNumber
         val dataRef = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         holder.itemView.setOnClickListener {
-            dataRef.addValueEventListener(object : ValueEventListener {
+            dataRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }

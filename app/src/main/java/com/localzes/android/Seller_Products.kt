@@ -205,12 +205,15 @@ class Seller_Products : AppCompatActivity() {
     private fun sellerProducts(uid: String) {
         if (category.toString() == null) {
             additem.setOnClickListener {
-                startActivity(Intent(this, AddProduct::class.java))
+                val intent=Intent(this, AddProduct::class.java)
+                intent.putExtra("uid",uid)
+                startActivity(intent)
                 finish()
             }
         } else {
             additem.setOnClickListener {
                 val intent = Intent(this, AddProduct::class.java)
+                intent.putExtra("uid",uid)
                 intent.putExtra("categoryAdd", category.toString())
                 startActivity(intent)
                 finish()
