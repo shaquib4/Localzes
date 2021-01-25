@@ -523,7 +523,7 @@ class Cart : AppCompatActivity() {
         //prepare data for notification
         val databaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId).child("MyStaff")
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -566,35 +566,36 @@ class Cart : AppCompatActivity() {
                         }
                     }
                 }
+                uidLists += shopId
+                val NOTIFICATION_TOPIC =
+                    "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
+                val NOTIFICATION_TITLE = "New order has been received"
+                val NOTIFICATION_MESSAGE = "Congratulations....!You received a new order"
+                val NOTIFICATION_TYPE = "New Order"
+                //prepare json(what to send and where to send)
+                val notificationJs = JSONObject()
+                val notificationBodyJs = JSONObject()
+                try {
+                    //what to send
+                    notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
+                    notificationBodyJs.put("ListOfIds", uidLists)
+                    notificationBodyJs.put("buyerId", orderByuid)
+                    notificationBodyJs.put("sellerUid", shopId)
+                    notificationBodyJs.put("orderId", orderId)
+                    notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
+                    notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
+                    //where to send
+                    notificationJs.put("to", NOTIFICATION_TOPIC)//to all who subscribed this topic
+                    notificationJs.put("data", notificationBodyJs)
+                } catch (e: Exception) {
+                    Toast.makeText(this@Cart, e.message, Toast.LENGTH_SHORT).show()
+                }
+                sendFcmNotification(notificationJs)
             }
         })
-        uidLists += shopId
-        Toast.makeText(this, uidLists, Toast.LENGTH_SHORT).show()
 
-        val NOTIFICATION_TOPIC =
-            "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
-        val NOTIFICATION_TITLE = "New order has been received"
-        val NOTIFICATION_MESSAGE = "Congratulations....!You received a new order"
-        val NOTIFICATION_TYPE = "New Order"
-        //prepare json(what to send and where to send)
-        val notificationJs = JSONObject()
-        val notificationBodyJs = JSONObject()
-        try {
-            //what to send
-            notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
-            notificationBodyJs.put("ListOfIds", uidLists)
-            notificationBodyJs.put("buyerId", orderByuid)
-            notificationBodyJs.put("sellerUid", shopId)
-            notificationBodyJs.put("orderId", orderId)
-            notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
-            notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
-            //where to send
-            notificationJs.put("to", NOTIFICATION_TOPIC)//to all who subscribed this topic
-            notificationJs.put("data", notificationBodyJs)
-        } catch (e: Exception) {
-            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-        }
-        sendFcmNotification(notificationJs)
+
+
     }
 
     private fun sendFcmNotification(notificationJs: JSONObject) {
