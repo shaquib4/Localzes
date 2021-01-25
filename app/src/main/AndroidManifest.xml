@@ -28,7 +28,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".SellerAcceptedRejectedInvitation"></activity>
+        <activity android:name=".OrderRejectedActivity"></activity>
+        <activity android:name=".SellerAcceptedRejectedInvitation" />
         <activity android:name=".AsStaffOf" />
         <activity android:name=".MyStaffActivity" />
         <activity android:name=".AddStaff" />
@@ -85,7 +86,7 @@
             android:name=".Category"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OrdersSeller"
+            android:name=".OrderAllActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PagerActivity"
