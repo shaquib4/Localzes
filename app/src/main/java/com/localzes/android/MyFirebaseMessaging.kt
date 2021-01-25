@@ -1,6 +1,5 @@
 package com.localzes.android
 
-import android.R.string
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -11,7 +10,6 @@ import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
-import android.text.TextUtils.split
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -222,6 +220,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 intent = Intent(this, ListOrderDetailSeller::class.java)
                 intent.putExtra("orderId", orderId)
                 intent.putExtra("orderBy", buyerId)
+                intent.putExtra("orderTo",sellerUid)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }

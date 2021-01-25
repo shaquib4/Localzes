@@ -409,6 +409,12 @@ class Home_seller : AppCompatActivity() {
                 rl_Seller_Internet.visibility = View.VISIBLE
             }
         }
+        OrderRejected.setOnClickListener {
+
+        }
+        OrderAll.setOnClickListener {
+
+        }
         editShopDetails.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_HomeSeller.visibility = View.VISIBLE
