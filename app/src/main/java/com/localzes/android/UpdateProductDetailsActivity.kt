@@ -42,9 +42,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_product_details)
-        updateAuth = FirebaseAuth.getInstance()
-        val user = updateAuth.currentUser
-        val uid = user!!.uid
+
         imageUpdate = findViewById(R.id.image_view_update)
         categoryUpdate = findViewById(R.id.sp_spinner_add_update)
         descriptionUpdate = findViewById(R.id.etDescriptionUpdate)
@@ -56,7 +54,9 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         updateProduct = findViewById(R.id.btnUpdateProduct)
         retryUpdateProductDetail.setOnClickListener {
             this.recreate()
+
         }
+        val uid = intent.getStringExtra("uid").toString()
         productId = intent.getStringExtra("productId")
 /*        categorySelect=intent.getStringExtra("")
         if (categoryUpdate.selectedItem == "Fashion") {

@@ -25,7 +25,8 @@ import java.lang.Exception
 
 class AdapterSellerProducts(
     val context: Context,
-    private val products_seller: List<ModelAddProduct>
+    private val products_seller: List<ModelAddProduct>,
+    val uid:String
 ) : RecyclerView.Adapter<AdapterSellerProducts.HolderProduct>() {
     class HolderProduct(view: View) : RecyclerView.ViewHolder(view) {
         val imgProduct: ImageView = view.findViewById(R.id.imgProduct_customer)
@@ -131,6 +132,7 @@ class AdapterSellerProducts(
             )
             intent.putExtra("productId", products.productId)
             intent.putExtra("productCat", products.productCategory)
+            intent.putExtra("uid",uid)
             context.startActivity(intent)
             (context as Seller_Products).finish()
         }
