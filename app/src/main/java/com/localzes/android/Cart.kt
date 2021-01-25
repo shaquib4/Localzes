@@ -65,7 +65,7 @@ class Cart : AppCompatActivity() {
     private lateinit var addresses: List<ModelManageAddress>
     private lateinit var btnShopNow: Button
     private lateinit var staffDetails: List<ModalAddStaff>
-    private var uidList: String = ""
+    private var uidLists: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -529,7 +529,7 @@ class Cart : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                (staffDetails as ArrayList<ModalAddStaff>).clear()
+                /*(staffDetails as ArrayList<ModalAddStaff>).clear()
                 for (i in snapshot.children) {
                     val obj = ModalAddStaff(
                         i.child("name").value.toString(),
@@ -551,11 +551,25 @@ class Cart : AppCompatActivity() {
                 for (i in staffDetails) {
                     val uids = i.uid
                     uidList = "$uids,"
+                }*/
+                val uidList = arrayListOf<String>()
+                for (i in snapshot.children) {
+                    uidList.clear()
+                    if (i.child("invitationStatus").value.toString() == "Accepted" && (i.child("access").value.toString() == "Total Access" || i.child(
+                            "access"
+                        ).value.toString() == "Order Access")
+                    ) {
+                        val uid = i.child("uid").value.toString()
+                        uidList.add(uid)
+                        for (j in uidList) {
+                            uidLists += "$j,"
+                        }
+                    }
                 }
             }
         })
-        uidList += shopId
-        Toast.makeText(this,uidList,Toast.LENGTH_SHORT).show()
+        uidLists += shopId
+        Toast.makeText(this, uidLists, Toast.LENGTH_SHORT).show()
 
         val NOTIFICATION_TOPIC =
             "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
@@ -568,7 +582,7 @@ class Cart : AppCompatActivity() {
         try {
             //what to send
             notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
-            notificationBodyJs.put("ListOfIds", uidList)
+            notificationBodyJs.put("ListOfIds", uidLists)
             notificationBodyJs.put("buyerId", orderByuid)
             notificationBodyJs.put("sellerUid", shopId)
             notificationBodyJs.put("orderId", orderId)
