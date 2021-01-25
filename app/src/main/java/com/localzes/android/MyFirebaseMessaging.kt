@@ -45,16 +45,17 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             val string: List<String> = listOfIds!!.split(",")
             if (firebaseUser != null) {
                 for (i in string) {
-                    showNotification(
-                        orderId.toString(),
-                        sellerUid.toString(),
-                        buyerUid.toString(),
-                        notificationTitle.toString(),
-                        notificationDescription.toString(),
-                        notificationType.toString()
-                    )
+                    if (currentAuth!!.uid == i) {
+                        showNotification(
+                            orderId.toString(),
+                            i,
+                            buyerUid.toString(),
+                            notificationTitle.toString(),
+                            notificationDescription.toString(),
+                            notificationType.toString()
+                        )
+                    }
                 }
-
             }
         }
         if (notificationType.equals("OrderStatusChanged")) {
