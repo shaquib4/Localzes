@@ -57,10 +57,10 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                         )
                     }
                 }*/
-                if (currentAuth!!.uid in string) {
+                for (i in string) {
                     showNotification(
                         orderId.toString(),
-                        (currentAuth!!.uid).toString(),
+                        i,
                         buyerUid.toString(),
                         notificationTitle.toString(),
                         notificationDescription.toString(),
