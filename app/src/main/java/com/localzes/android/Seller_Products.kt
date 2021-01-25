@@ -191,7 +191,8 @@ class Seller_Products : AppCompatActivity() {
                     productAdapter =
                         AdapterSellerProducts(
                             this@Seller_Products,
-                            mSellerProducts
+                            mSellerProducts,
+                            uid
                         )
                     recyclerSellerProducts.adapter = productAdapter
                 }
@@ -272,7 +273,8 @@ class Seller_Products : AppCompatActivity() {
                                 productAdapter =
                                     AdapterSellerProducts(
                                         this@Seller_Products,
-                                        mSellerProducts
+                                        mSellerProducts,
+                                        uid
                                     )
                                 recyclerSellerProducts.adapter = productAdapter
                             }
@@ -320,7 +322,8 @@ class Seller_Products : AppCompatActivity() {
                                 productAdapter =
                                     AdapterSellerProducts(
                                         this@Seller_Products,
-                                        mSellerProducts
+                                        mSellerProducts,
+                                        uid
                                     )
                                 recyclerSellerProducts.adapter = productAdapter
                             }
