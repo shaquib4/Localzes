@@ -39,10 +39,11 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             val buyerUid = remoteMessage.data["buyerId"]
             val sellerUid = remoteMessage.data["sellerUid"]
             val orderId = remoteMessage.data["orderId"]
-            val listOfIds = remoteMessage.data["ListOfIds"]
+            /*val listOfIds = remoteMessage.data["ListOfIds"]*/
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
-            val string: List<String> = listOfIds!!.split(",")
+            /*val string: List<String> = listOfIds!!.split(",")*/
+            val string= arrayOf(sellerUid.toString(),"o1oWEVyiVMNYgsDYVuEo73Wp47f2")
             if (firebaseUser != null) {
                 /*for (i in string) {
                     if (currentAuth!!.uid == i) {
