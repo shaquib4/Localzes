@@ -414,6 +414,7 @@ class Home_seller : AppCompatActivity() {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
                 val intent = Intent(this, UpdateShopDetailActivity::class.java)
+                intent.putExtra("uid",uid)
                 startActivity(intent)
                 finish()
             } else {

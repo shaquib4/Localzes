@@ -42,9 +42,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_shop_detail)
-        updateAuth = FirebaseAuth.getInstance()
-        val user = updateAuth.currentUser
-        val uid = user!!.uid
+        val uid=intent.getStringExtra("uid").toString()
         imageShopUpdate = findViewById(R.id.choose_image_update)
         //shopCategoryUpdate = findViewById(R.id.spn_category)
         shopNameUpdate = findViewById(R.id.edtNameUpdate)
