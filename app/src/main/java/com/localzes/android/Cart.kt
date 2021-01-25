@@ -555,6 +555,7 @@ class Cart : AppCompatActivity() {
             }
         })
         uidList += shopId
+        Toast.makeText(this,uidList,Toast.LENGTH_SHORT).show()
 
         val NOTIFICATION_TOPIC =
             "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
