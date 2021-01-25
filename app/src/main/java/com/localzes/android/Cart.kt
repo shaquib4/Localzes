@@ -25,6 +25,7 @@ import com.localzes.android.Modals.UserCartDetails
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.localzes.android.Modals.ModalAddStaff
 import kotlinx.android.synthetic.main.activity_cart1.*
 import org.json.JSONObject
 import util.ConnectionManager
@@ -63,6 +64,8 @@ class Cart : AppCompatActivity() {
     private lateinit var orderByMobile: String
     private lateinit var addresses: List<ModelManageAddress>
     private lateinit var btnShopNow: Button
+    private lateinit var staffDetails: List<ModalAddStaff>
+    private var uidList: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,11 +73,13 @@ class Cart : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
+        staffDetails = ArrayList<ModalAddStaff>()
 
         recyclerCartProduct = findViewById(R.id.cart_recycler_view)
         txtTotalPrice = findViewById(R.id.txtTotalPrice)
         txtPrice = findViewById(R.id.txtPrice)
         // txtDeliveryCharge = findViewById(R.id.txtDeliveryCharge)
+        /*uidList = ArrayList<String>()*/
         txtDiscountPrice = findViewById(R.id.txtDiscountPrice)
         txtTotalAmount = findViewById(R.id.txtTotalAmount)
         totalPayment = findViewById(R.id.TotalPayment)
@@ -492,7 +497,7 @@ class Cart : AppCompatActivity() {
                         txtCurrMobile.text = "Mobile No- ${deliveryUserMobileNo}"
                         val layoutManager = LinearLayoutManager(this@Cart)
                         rv.layoutManager = layoutManager
-                        val adapter = AdapterManageAddress(this@Cart, addresses,"Cart")
+                        val adapter = AdapterManageAddress(this@Cart, addresses, "Cart")
                         rv.adapter = adapter
                         btnAddNewAddress.setOnClickListener {
                             startActivity(Intent(this@Cart, MapsActivity_New::class.java))
@@ -516,6 +521,40 @@ class Cart : AppCompatActivity() {
     private fun prepareNotificationMessage(orderId: String) {
 //when user places order,send notification to seller
         //prepare data for notification
+        val databaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId).child("MyStaff")
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (staffDetails as ArrayList<ModalAddStaff>).clear()
+                for (i in snapshot.children) {
+                    val obj = ModalAddStaff(
+                        i.child("name").value.toString(),
+                        i.child("phone").value.toString(),
+                        i.child("address").value.toString(),
+                        i.child("status").value.toString(),
+                        i.child("access").value.toString(),
+                        i.child("uid").value.toString(),
+                        i.child("invitationStatus").value.toString()
+                    )
+                    if (i.child("invitationStatus").value.toString() == "Accepted" && (i.child("access").value.toString() == "Total Access" || i.child(
+                            "access"
+                        ).value.toString() == "Order Access")
+                    ) {
+                        (staffDetails as ArrayList<ModalAddStaff>).add(obj)
+                    }
+                }
+                uidList = ""
+                for (i in staffDetails) {
+                    val uids = i.uid
+                    uidList = "$uids,"
+                }
+            }
+        })
+
         val NOTIFICATION_TOPIC =
             "/topics/PUSH_NOTIFICATIONS"//must be same as subscribed by user
         val NOTIFICATION_TITLE = "New order has been received"
@@ -527,6 +566,7 @@ class Cart : AppCompatActivity() {
         try {
             //what to send
             notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
+            notificationBodyJs.put("ListOfIds", uidList)
             notificationBodyJs.put("buyerId", orderByuid)
             notificationBodyJs.put("sellerUid", shopId)
             notificationBodyJs.put("orderId", orderId)
