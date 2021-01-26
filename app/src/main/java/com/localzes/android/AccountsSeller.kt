@@ -2,6 +2,7 @@ package com.localzes.android
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
@@ -44,37 +45,25 @@ class AccountsSeller : AppCompatActivity() {
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
-        databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        databaseReference = FirebaseDatabase.getInstance().reference.child("seller")
+        databaseReference.child(uid).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
-                    switchStoreStatus.isChecked = true
-                    storeStatus.text = snapshot.child("StoreStatus").value.toString()
-                } else if (snapshot.child("StoreStatus").value.toString() == "CLOSED") {
-                    switchStoreStatus.isChecked = false
-                    storeStatus.text = snapshot.child("StoreStatus").value.toString()
+                if (!(snapshot.child("staffOfShop")
+                        .exists()) || snapshot.child("staffOfShop").value.toString() == ""
+                ) {
+                    accountsMainSeller(uid)
+                } else {
+                    rl_Status.visibility = View.GONE
+                    accountsStaff(uid)
                 }
             }
         })
-        switchStoreStatus.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                val headers = HashMap<String, Any>()
-                headers["StoreStatus"] = "OPEN"
-                val reference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                reference.updateChildren(headers)
-                storeStatus.text = "OPEN"
-            } else {
-                val headers = HashMap<String, Any>()
-                headers["StoreStatus"] = "CLOSED"
-                val reference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                reference.updateChildren(headers)
-                storeStatus.text = "CLOSED"
-            }
-        }
+
+
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -96,51 +85,7 @@ class AccountsSeller : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        showList()
-        listViewAdapter =
-            ExpandableListViewAdapterSeller(
-                this,
-                menu,
-                item
-            )
-        expand.setAdapter(listViewAdapter)
-        expand.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-            val select = listViewAdapter.getChild(groupPosition, childPosition) as String
-            when (select) {
-                "Offers" -> {
-                }
-                "Referrals" -> {
-                }
-                "Refunds Initiated" -> {
-                }
-                "Transaction History" -> {
-                }
-                "FAQs" -> {
-                }
-                "Contact Us" -> {
-                    val intent = Intent(this, HelpSectionActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-                "To Main Seller" -> {
-                    val intent = Intent(this, Home_seller::class.java)
-                    val databaseReference =
-                        FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                    val headers = HashMap<String, Any>()
-                    headers["staffOfShop"] = ""
-                    databaseReference.updateChildren(headers).addOnSuccessListener {
-                        startActivity(intent)
-                        finish()
-                    }
-                }
-                "As Staff Of Shop" -> {
-                    val intent = Intent(this, AsStaffOf::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-            }
-            return@setOnChildClickListener true
-        }
+
 
         bottom_navAcc_seller.selectedItemId = R.id.nav_account_seller
         bottom_navAcc_seller.setOnNavigationItemSelectedListener { item ->
@@ -188,6 +133,61 @@ class AccountsSeller : AppCompatActivity() {
         }
     }
 
+    private fun accountsStaff(uid: String) {
+        showList()
+        listViewAdapter =
+            ExpandableListViewAdapterSeller(
+                this,
+                menu,
+                item
+            )
+        expand.setAdapter(listViewAdapter)
+        expand.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
+            val select = listViewAdapter.getChild(groupPosition, childPosition) as String
+            when (select) {
+                "Offers" -> {
+                }
+                "Referrals" -> {
+                }
+                "Refunds Initiated" -> {
+                }
+                "Transaction History" -> {
+                }
+                "FAQs" -> {
+                }
+                "Contact Us" -> {
+                    val intent = Intent(this, HelpSectionActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                "To Main Seller" -> {
+                    val intent = Intent(this, Home_seller::class.java)
+                    val databaseReference =
+                        FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                    val headers = HashMap<String, Any>()
+                    headers["staffOfShop"] = ""
+                    headers["StoreStatus"] = "OPEN"
+                    databaseReference.updateChildren(headers).addOnSuccessListener {
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+                "As Staff Of Shop" -> {
+                    val headers = HashMap<String, Any>()
+                    headers["StoreStatus"] = "CLOSED"
+                    FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                        .updateChildren(headers).addOnSuccessListener {
+                            val intent = Intent(this, AsStaffOf::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                }
+            }
+            return@setOnChildClickListener true
+        }
+
+    }
+
     private fun showList() {
 
         menu = ArrayList()
@@ -221,6 +221,91 @@ class AccountsSeller : AppCompatActivity() {
         item[menu[2]] = item3
 
     }
+
+    private fun accountsMainSeller(uid: String) {
+        databaseReference.child(uid).addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.child("StoreStatus").value.toString() == "OPEN") {
+                    switchStoreStatus.isChecked = true
+                    storeStatus.text = snapshot.child("StoreStatus").value.toString()
+                } else if (snapshot.child("StoreStatus").value.toString() == "CLOSED") {
+                    switchStoreStatus.isChecked = false
+                    storeStatus.text = snapshot.child("StoreStatus").value.toString()
+                }
+            }
+        })
+        switchStoreStatus.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                val headers = HashMap<String, Any>()
+                headers["StoreStatus"] = "OPEN"
+                val reference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                reference.updateChildren(headers)
+                storeStatus.text = "OPEN"
+            } else {
+                val headers = HashMap<String, Any>()
+                headers["StoreStatus"] = "CLOSED"
+                val reference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                reference.updateChildren(headers)
+                storeStatus.text = "CLOSED"
+            }
+        }
+        showList()
+        listViewAdapter =
+            ExpandableListViewAdapterSeller(
+                this,
+                menu,
+                item
+            )
+        expand.setAdapter(listViewAdapter)
+        expand.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
+            val select = listViewAdapter.getChild(groupPosition, childPosition) as String
+            when (select) {
+                "Offers" -> {
+                }
+                "Referrals" -> {
+                }
+                "Refunds Initiated" -> {
+                }
+                "Transaction History" -> {
+                }
+                "FAQs" -> {
+                }
+                "Contact Us" -> {
+                    val intent = Intent(this, HelpSectionActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                "To Main Seller" -> {
+                    val intent = Intent(this, Home_seller::class.java)
+                    val databaseReference =
+                        FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                    val headers = HashMap<String, Any>()
+                    headers["staffOfShop"] = ""
+                    headers["StoreStatus"] = "OPEN"
+                    databaseReference.updateChildren(headers).addOnSuccessListener {
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+                "As Staff Of Shop" -> {
+                    val headers = HashMap<String, Any>()
+                    headers["StoreStatus"] = "CLOSED"
+                    FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                        .updateChildren(headers).addOnSuccessListener {
+                            val intent = Intent(this, AsStaffOf::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                }
+            }
+            return@setOnChildClickListener true
+        }
+    }
+
 
     override fun onBackPressed() {
         val intent = Intent(applicationContext, Home_seller::class.java)
