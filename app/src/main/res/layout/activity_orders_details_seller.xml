@@ -191,6 +191,12 @@
                         android:textColor="#008000"
                         android:textSize="@dimen/_12ssp" />
 
+                    <Button
+                        android:id="@+id/btndir"
+                        android:text="direction"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_width="wrap_content"/>
+
 
                 </TableRow>
 

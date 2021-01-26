@@ -49,7 +49,7 @@ class Category : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (!(snapshot.child("staffOfShop")
-                        .exists()) || snapshot.child("staffOfShop").value.toString() == "Accepted"
+                        .exists()) || snapshot.child("staffOfShop").value.toString() == ""
                 ) {
                     categorySeller(uid)
                 } else {

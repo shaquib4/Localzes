@@ -71,6 +71,25 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         retryOrdersDetails.setOnClickListener {
             this.recreate()
         }
+        val ref=FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString()).child("current_address")
+            .addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val latitude=snapshot.child("latitude").value.toString()
+                    val longitude=snapshot.child("longitude").value.toString()
+                    btndir.setOnClickListener {
+                        Toast.makeText(this@OrdersDetailsSellerActivity,latitude,Toast.LENGTH_LONG).show()
+                     val uri=Uri.parse("google.navigation:q=$latitude,$longitude")
+                     val intent=Intent(Intent.ACTION_VIEW)
+                        intent.data=uri
+                     startActivity(intent)
+                    }
+                }
+            })
+
         val newReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(orderTo).child("Orders")
                 .child(orderIdTv.toString())

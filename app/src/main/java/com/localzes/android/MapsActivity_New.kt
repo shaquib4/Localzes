@@ -43,7 +43,8 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
     private lateinit var userDatabase: DatabaseReference
     var timestamp: String = ""
     var maxId: Int = 0
-
+    private var latitudeL:String?=null
+    private var longitude:String?=null
     private fun getLocationAccess() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -217,6 +218,9 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
                     userMap["nearestLandmark"] = nearestLandmark
                     userMap["mobileNo"] = mobNo
                     userMap["id"] = timestamp
+                    userMap["latitude"]  = latitudeL.toString()
+                    userMap["longitude"] =  longitude.toString()
+
 
                     userDatabase.child(timestamp).setValue(userMap)
                         .addOnCompleteListener { task ->
@@ -290,6 +294,8 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
 
                         Locality_bold_new.text = locality
                         localit_new.text = "$locality,"
+                        latitudeL=addresses[0].latitude.toString()
+                        longitude=addresses[0].longitude.toString()
 
 
                     } catch (e: Exception) {
@@ -382,6 +388,8 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
 
             Locality_bold_new.text = locality
             localit_new.text = "$locality,"
+            latitudeL=addresses[0].latitude.toString()
+            longitude=addresses[0].longitude.toString()
 
 
         } catch (e: Exception) {
@@ -427,6 +435,8 @@ class MapsActivity_New : AppCompatActivity(), OnMapReadyCallback, LocationListen
 
              Locality_bold_new.text = locality
              localit_new.text = "$locality,"
+             latitudeL=addresses[0].latitude.toString()
+             longitude=addresses[0].longitude.toString()
          }catch (e:Exception)   {
              e.printStackTrace()
          }

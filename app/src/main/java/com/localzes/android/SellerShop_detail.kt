@@ -25,7 +25,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.HashMap
 
-class SellerShop_detail : AppCompatActivity() {
+class  SellerShop_detail : AppCompatActivity() {
     private lateinit var btnChooseImage: ImageView
     private lateinit var btnUpload: Button
     private lateinit var auth: FirebaseAuth
@@ -56,7 +56,6 @@ class SellerShop_detail : AppCompatActivity() {
         etCategory1 = findViewById(R.id.spn_category)
         upi = findViewById(R.id.edtPay)
         auth = FirebaseAuth.getInstance()
-
 
         retryShopDetail.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
@@ -168,6 +167,8 @@ class SellerShop_detail : AppCompatActivity() {
                                     mDatabaseRef =
                                         FirebaseDatabase.getInstance().reference.child("seller")
                                             .child(uid).child("current_address")
+                                    val latitude=intent.getStringExtra("latitude").toString()
+                                    val longitude=intent.getStringExtra("longitude").toString()
                                     val userMaps = HashMap<String, Any>()
                                     userMaps["address"] = address.toString()
                                     userMaps["city"] = city.toString()
@@ -178,6 +179,8 @@ class SellerShop_detail : AppCompatActivity() {
                                     userMaps["nearestLandmark"] = nearestLandmark.toString()
                                     userMaps["houseBlock"] = houseNo.toString()
                                     userMaps["mobileNo"] = phone.toString()
+                                    userMaps["latitude"] =latitude
+                                    userMaps["longitude"] =longitude
                                     mDatabaseRef.setValue(userMaps).addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
                                             startActivity(

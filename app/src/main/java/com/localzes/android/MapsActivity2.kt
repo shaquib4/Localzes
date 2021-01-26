@@ -42,6 +42,8 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
     private lateinit var userDatabase: DatabaseReference
+    private var latitudeL:String?=null
+    private var longitude:String?=null
 
     private fun getLocationAccess() {
         if (ContextCompat.checkSelfPermission(
@@ -191,6 +193,8 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                     intent.putExtra("locality2", locality2)
                     intent.putExtra("nearestLandmark", nearestLandmark)
                     intent.putExtra("HouseNo", houseNo)
+                    intent.putExtra("latitude",latitudeL.toString())
+                    intent.putExtra("longitude",longitude.toString())
                     startActivity(intent)
                     finish()}else{
                         rl_mapS.visibility= View.GONE
@@ -250,6 +254,8 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
 
                         Locality_bold_seller.text = locality
                         localit_seller.text = "$locality,"
+                        latitudeL=addresses[0].latitude.toString()
+                        longitude=addresses[0].longitude.toString()
                     } catch (e: java.lang.Exception) {
                         e.printStackTrace()
                     }
@@ -341,6 +347,8 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
 
             Locality_bold_seller.text = locality
             localit_seller.text = "$locality,"
+            latitudeL=addresses[0].latitude.toString()
+            longitude=addresses[0].longitude.toString()
 
 
         } catch (e: Exception) {
@@ -387,7 +395,9 @@ class MapsActivity2 : AppCompatActivity(), OnMapReadyCallback, LocationListener,
             Pincode_seller.text = " $pinCode"
 
             Locality_bold_seller.text = locality
-            localit_seller.text = "$locality,"}catch (e:Exception){
+            localit_seller.text = "$locality,"
+               latitudeL=addresses[0].latitude.toString()
+               longitude=addresses[0].longitude.toString()}catch (e:Exception){
                e.printStackTrace()
            }
 

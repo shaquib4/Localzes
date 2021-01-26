@@ -44,6 +44,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
     private lateinit var locationCallback: LocationCallback
     private lateinit var userDatabase: DatabaseReference
     private lateinit var suserDatabase: DatabaseReference
+    private var latitudeL:String?=null
+    private var longitude:String?=null
     private fun getLocationAccess() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -233,6 +235,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                 userMaps["houseBlock"] = houseNo
                 userMaps["nearestLandmark"] = nearestLandmark
                 userMaps["mobileNo"] = phone.toString()
+                userMaps["latitude"]=latitudeL.toString()
+                userMaps["longitude"]=longitude.toString()
                 userDatabase.setValue(userMaps).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
 
@@ -301,6 +305,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                         txtState.text = state
                         txtPincode.text = pinCode
                         txtCountry.text = country
+                        latitudeL=addresses[0].latitude.toString()
+                        longitude=addresses[0].longitude.toString()
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
@@ -389,6 +395,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
 
             Locality_bold.text = locality
             localit.text = "$locality,"
+            latitudeL=addresses[0].latitude.toString()
+            longitude=addresses[0].longitude.toString()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -414,6 +422,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
                 map!!.cameraPosition.target.longitude,
                 1
             )
+
             val address: String = addresses[0].getAddressLine(0)
            try{ val city: String = addresses[0].subAdminArea
             val state: String = addresses[0].adminArea
@@ -430,11 +439,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener,
             City.text = "($city),"
             State.text = state
             Pincode.text = " $pinCode"
+               latitudeL=addresses[0].latitude.toString()
+               longitude=addresses[0].longitude.toString()
 
             Locality_bold.text = locality
             localit.text = "$locality,"}catch (e:java.lang.Exception){
                e.printStackTrace()
            }
+
 
         } catch (e: IndexOutOfBoundsException) {
             e.printStackTrace()
