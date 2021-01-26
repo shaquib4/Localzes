@@ -25,7 +25,7 @@
             android:layout_marginVertical="@dimen/_10sdp"
             android:layout_toRightOf="@id/imgBackRejected"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Accepted Orders"
+            android:text="Rejected Orders"
             android:textColor="#000000"
             android:textSize="@dimen/_13ssp" />
 
@@ -37,7 +37,7 @@
             android:background="#d3d3d3" />
 
         <RelativeLayout
-            android:id="@+id/rl_Accepted_Orders"
+            android:id="@+id/rl_Rejected_Orders"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -55,7 +55,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="No orders accepted yet!"
+                android:text="No orders Rejected yet!"
                 android:textColor="#696969"
                 android:textSize="@dimen/_15ssp" />
         </RelativeLayout>
@@ -160,7 +160,7 @@
                 android:id="@+id/searchListRejected"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
-
+android:fontFamily="@font/montserrat_medium"
                 android:layout_margin="@dimen/_5sdp"
                 android:background="@drawable/bg_product_shop"
                 android:hint="Search List Orders..."
