@@ -77,6 +77,7 @@ class AddStaff : AppCompatActivity() {
             builder.create().show()
         }
         btnConfirmStaff.setOnClickListener {
+
             progressDialog.setMessage("Fetching details.....")
             progressDialog.show()
             val dataRef = FirebaseDatabase.getInstance().reference.child("seller")
@@ -101,6 +102,10 @@ class AddStaff : AppCompatActivity() {
                     if (staffNumber.text.toString() == phoneCheck && phoneCheck.toString()
                             .isNotEmpty()
                     ) {
+                        if(snapshot.child(sellerUid).child("MyStaff").child(staffuid.toString()).exists()){
+                           Toast.makeText(this@AddStaff,"Staff Already exists",Toast.LENGTH_LONG).show()
+                            progressDialog.dismiss()
+                        }else{
 
                         val headers = HashMap<String, Any>()
                         headers["name"] = staffName.toString()
@@ -135,12 +140,23 @@ class AddStaff : AppCompatActivity() {
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     }
-                            }
+                            }}
+                    }else{
+                        Toast.makeText(this@AddStaff,"value",Toast.LENGTH_LONG).show()
+                        progressDialog.dismiss()
                     }
                 }
 
             })
         }
+
+    }
+
+    private fun checkuid() {
+        val dataRef = FirebaseDatabase.getInstance().reference.child("seller").child("MyStaff")
+    }
+
+    private fun confirm() {
 
     }
 
