@@ -3,6 +3,7 @@ package com.localzes.android
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -15,6 +16,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_add_staff.*
 
 class AddStaff : AppCompatActivity() {
     private lateinit var staffNumber: EditText
@@ -40,6 +42,21 @@ class AddStaff : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
+        sendMessage.setOnClickListener {
+            try {
+                val mobile = "917317544896"
+                val msg = "Its Working"
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://api.whatsapp.com/send?phone=$mobile&text=$msg")
+                    )
+                )
+            } catch (e: Exception) {
+                Toast.makeText(this, "Please install whatsapp", Toast.LENGTH_SHORT).show()
+            }
+
+        }
         /*  staffNumber.addTextChangedListener(object:TextWatcher{
               override fun afterTextChanged(s: Editable?) {
 
@@ -102,47 +119,52 @@ class AddStaff : AppCompatActivity() {
                     if (staffNumber.text.toString() == phoneCheck && phoneCheck.toString()
                             .isNotEmpty()
                     ) {
-                        if(snapshot.child(sellerUid).child("MyStaff").child(staffuid.toString()).exists()){
-                           Toast.makeText(this@AddStaff,"Staff Already exists",Toast.LENGTH_LONG).show()
+                        if (snapshot.child(sellerUid).child("MyStaff").child(staffuid.toString())
+                                .exists()
+                        ) {
+                            Toast.makeText(this@AddStaff, "Staff Already exists", Toast.LENGTH_LONG)
+                                .show()
                             progressDialog.dismiss()
-                        }else{
+                        } else {
 
-                        val headers = HashMap<String, Any>()
-                        headers["name"] = staffName.toString()
-                        headers["phone"] = phoneCheck.toString()
-                        headers["address"] = address.toString()
-                        headers["status"] = ""
-                        headers["access"] = selectedAccess
-                        headers["uid"] = staffuid.toString()
-                        headers["invitationStatus"] = ""
-                        dataRef.child(sellerUid).child("MyStaff").child(staffuid.toString())
-                            .updateChildren(headers)
-                            .addOnSuccessListener {
-                                val newHeader = HashMap<String, Any>()
-                                newHeader["shopOwnerName"] =
-                                    snapshot.child(sellerUid).child("name").value.toString()
-                                newHeader["shopName"] = snapshot.child(sellerUid)
-                                    .child("shop_name").value.toString()
-                                newHeader["shopMobileNumber"] =
-                                    snapshot.child(sellerUid).child("phone").value.toString()
-                                newHeader["status"] = ""
-                                newHeader["invitationUid"] = sellerUid
-                                newHeader["invitationStatus"] = ""
-                                val staffHeader = HashMap<String, Any>()
-                                staffHeader["staffOfShop"] = ""
-                                dataRef.child(staffuid.toString()).updateChildren(staffHeader)
-                                dataRef.child(staffuid.toString()).child("StaffOf").child(sellerUid)
-                                    .updateChildren(newHeader).addOnSuccessListener {
-                                        progressDialog.dismiss()
-                                        Toast.makeText(
-                                            this@AddStaff,
-                                            "New Staff is added successfully",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                            }}
-                    }else{
-                        Toast.makeText(this@AddStaff,"value",Toast.LENGTH_LONG).show()
+                            val headers = HashMap<String, Any>()
+                            headers["name"] = staffName.toString()
+                            headers["phone"] = phoneCheck.toString()
+                            headers["address"] = address.toString()
+                            headers["status"] = ""
+                            headers["access"] = selectedAccess
+                            headers["uid"] = staffuid.toString()
+                            headers["invitationStatus"] = ""
+                            dataRef.child(sellerUid).child("MyStaff").child(staffuid.toString())
+                                .updateChildren(headers)
+                                .addOnSuccessListener {
+                                    val newHeader = HashMap<String, Any>()
+                                    newHeader["shopOwnerName"] =
+                                        snapshot.child(sellerUid).child("name").value.toString()
+                                    newHeader["shopName"] = snapshot.child(sellerUid)
+                                        .child("shop_name").value.toString()
+                                    newHeader["shopMobileNumber"] =
+                                        snapshot.child(sellerUid).child("phone").value.toString()
+                                    newHeader["status"] = ""
+                                    newHeader["invitationUid"] = sellerUid
+                                    newHeader["invitationStatus"] = ""
+                                    val staffHeader = HashMap<String, Any>()
+                                    staffHeader["staffOfShop"] = ""
+                                    dataRef.child(staffuid.toString()).updateChildren(staffHeader)
+                                    dataRef.child(staffuid.toString()).child("StaffOf")
+                                        .child(sellerUid)
+                                        .updateChildren(newHeader).addOnSuccessListener {
+                                            progressDialog.dismiss()
+                                            Toast.makeText(
+                                                this@AddStaff,
+                                                "New Staff is added successfully",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                }
+                        }
+                    } else {
+                        Toast.makeText(this@AddStaff, "value", Toast.LENGTH_LONG).show()
                         progressDialog.dismiss()
                     }
                 }
