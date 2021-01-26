@@ -529,29 +529,6 @@ class Cart : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                /*(staffDetails as ArrayList<ModalAddStaff>).clear()
-                for (i in snapshot.children) {
-                    val obj = ModalAddStaff(
-                        i.child("name").value.toString(),
-                        i.child("phone").value.toString(),
-                        i.child("address").value.toString(),
-                        i.child("status").value.toString(),
-                        i.child("access").value.toString(),
-                        i.child("uid").value.toString(),
-                        i.child("invitationStatus").value.toString()
-                    )
-                    if (i.child("invitationStatus").value.toString() == "Accepted" && (i.child("access").value.toString() == "Total Access" || i.child(
-                            "access"
-                        ).value.toString() == "Order Access")
-                    ) {
-                        (staffDetails as ArrayList<ModalAddStaff>).add(obj)
-                    }
-                }
-                uidList = ""
-                for (i in staffDetails) {
-                    val uids = i.uid
-                    uidList = "$uids,"
-                }*/
                 val uidList = arrayListOf<String>()
                 for (i in snapshot.children) {
                     uidList.clear()
@@ -593,9 +570,6 @@ class Cart : AppCompatActivity() {
                 sendFcmNotification(notificationJs)
             }
         })
-
-
-
     }
 
     private fun sendFcmNotification(notificationJs: JSONObject) {

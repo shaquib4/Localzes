@@ -47,6 +47,7 @@ class CreateList : AppCompatActivity() {
     private var orderByMobile: String? = "300"
     private var deliveryAddress: String? = "400"
     private var userId: String? = "500"
+    private var uidLists: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -413,26 +414,52 @@ class CreateList : AppCompatActivity() {
     }
 
     private fun prepareNotificationMessage(orderId: String) {
-        val NOTIFICATION_TOPIC = "/topics/PUSH_NOTIFICATIONS"
-        val NOTIFICATION_TITLE = "New List Order has been received"
-        val NOTIFICATION_MESSAGE = "Congratulations....!You received a new list order"
-        val NOTIFICATION_TYPE = "New Order List"
-        val notificationJs = JSONObject()
-        val notificationBodyJs = JSONObject()
-        try {
-            notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
-            notificationBodyJs.put("buyerId", userId.toString())
-            notificationBodyJs.put("sellerUid", shopId.toString())
-            notificationBodyJs.put("orderId", orderId)
-            notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
-            notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
-            notificationJs.put("to", NOTIFICATION_TOPIC)
-            notificationJs.put("data", notificationBodyJs)
-        } catch (e: Exception) {
-            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-        }
-        sendFcmNotification(notificationJs)
+        val databaseReference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+                .child("MyStaff")
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val uidList = arrayListOf<String>()
+                for (i in snapshot.children) {
+                    uidList.clear()
+                    if (i.child("invitationStatus").value.toString() == "Accepted" && (i.child("access").value.toString() == "Total Access" || i.child(
+                            "access"
+                        ).value.toString() == "Order Access")
+                    ) {
+                        val uid = i.child("uid").value.toString()
+                        uidList.add(uid)
+                        for (j in uidList) {
+                            uidLists += "$j,"
+                        }
+                    }
+                }
+                uidLists += shopId
+                val NOTIFICATION_TOPIC = "/topics/PUSH_NOTIFICATIONS"
+                val NOTIFICATION_TITLE = "New List Order has been received"
+                val NOTIFICATION_MESSAGE = "Congratulations....!You received a new list order"
+                val NOTIFICATION_TYPE = "New Order List"
+                val notificationJs = JSONObject()
+                val notificationBodyJs = JSONObject()
+                try {
+                    notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
+                    notificationBodyJs.put("buyerId", userId.toString())
+                    notificationBodyJs.put("sellerUid", shopId.toString())
+                    notificationBodyJs.put("ListOfIds", uidLists)
+                    notificationBodyJs.put("orderId", orderId)
+                    notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
+                    notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
+                    notificationJs.put("to", NOTIFICATION_TOPIC)
+                    notificationJs.put("data", notificationBodyJs)
+                } catch (e: Exception) {
+                    Toast.makeText(this@CreateList, e.message, Toast.LENGTH_SHORT).show()
+                }
+                sendFcmNotification(notificationJs)
+            }
+        })
     }
 
     private fun sendFcmNotification(notificationJs: JSONObject) {

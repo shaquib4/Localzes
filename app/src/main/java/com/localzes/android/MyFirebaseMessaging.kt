@@ -42,18 +42,6 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             val notificationDescription = remoteMessage.data["notificationMessage"]
             val string: List<String> = listOfIds!!.split(",")
             if (firebaseUser != null) {
-                /*for (i in string) {
-                    if (currentAuth!!.uid == i) {
-                        showNotification(
-                            orderId.toString(),
-                            i,
-                            buyerUid.toString(),
-                            notificationTitle.toString(),
-                            notificationDescription.toString(),
-                            notificationType.toString()
-                        )
-                    }
-                }*/
                 if (currentAuth!!.uid in string) {
                     showNotification(
                         orderId.toString(),
@@ -89,17 +77,21 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             val buyerUid = remoteMessage.data["buyerId"]
             val sellerUid = remoteMessage.data["sellerUid"]
             val orderId = remoteMessage.data["orderId"]
+            val listOfIds = remoteMessage.data["ListOfIds"]
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
-            if (firebaseUser != null && currentAuth!!.uid == sellerUid.toString()) {
-                showNotification(
-                    orderId.toString(),
-                    sellerUid.toString(),
-                    buyerUid.toString(),
-                    notificationTitle.toString(),
-                    notificationDescription.toString(),
-                    notificationType.toString()
-                )
+            val string: List<String> = listOfIds!!.split(",")
+            if (firebaseUser != null) {
+                if (currentAuth!!.uid in string) {
+                    showNotification(
+                        orderId.toString(),
+                        (currentAuth!!.uid).toString(),
+                        buyerUid.toString(),
+                        notificationTitle.toString(),
+                        notificationDescription.toString(),
+                        notificationType.toString()
+                    )
+                }
             }
         }
         if (notificationType.equals("PaymentMethod")) {
@@ -220,7 +212,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 intent = Intent(this, ListOrderDetailSeller::class.java)
                 intent.putExtra("orderId", orderId)
                 intent.putExtra("orderBy", buyerId)
-                intent.putExtra("orderTo",sellerUid)
+                intent.putExtra("orderTo", sellerUid)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }

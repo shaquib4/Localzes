@@ -410,9 +410,15 @@ class Home_seller : AppCompatActivity() {
             }
         }
         OrderRejected.setOnClickListener {
+            val intent = Intent(this, OrderRejectedActivity::class.java)
+            intent.putExtra("UID", uid)
+            startActivity(intent)
 
         }
         OrderAll.setOnClickListener {
+            val intent = Intent(this, OrderAllActivity::class.java)
+            intent.putExtra("UID", uid)
+            startActivity(intent)
 
         }
         editShopDetails.setOnClickListener {
@@ -420,7 +426,7 @@ class Home_seller : AppCompatActivity() {
                 rl_HomeSeller.visibility = View.VISIBLE
                 rl_Seller_Internet.visibility = View.GONE
                 val intent = Intent(this, UpdateShopDetailActivity::class.java)
-                intent.putExtra("uid",uid)
+                intent.putExtra("uid", uid)
                 startActivity(intent)
                 finish()
             } else {

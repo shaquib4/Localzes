@@ -3,8 +3,7 @@
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/rl_TotalOrder"
@@ -138,12 +137,14 @@
                     android:textSize="@dimen/_14ssp" />
             </RelativeLayout>
         </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/searchs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/rl_create"
             android:layout_marginTop="@dimen/_5sdp">
+
             <EditText
                 android:id="@+id/searchCartTotal"
                 android:layout_width="match_parent"
@@ -160,9 +161,9 @@
                 android:id="@+id/searchListTotal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
-android:fontFamily="@font/montserrat_medium"
                 android:layout_margin="@dimen/_5sdp"
                 android:background="@drawable/bg_product_shop"
+                android:fontFamily="@font/montserrat_medium"
                 android:hint="Search List Orders..."
                 android:inputType="number"
                 android:maxLines="1"
