@@ -1,143 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fcfcfc"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-  <RelativeLayout
+    <RelativeLayout
         android:id="@+id/relexpand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/txtaccEdit"
-            android:layout_marginTop="@dimen/_20sdp"
             android:id="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_toStartOf="@id/txtaccEdit"
+            android:fontFamily="@font/montserrat_bold"
             android:text="@string/space"
             android:textAllCaps="true"
-            android:textSize="@dimen/_15ssp"
-            android:layout_marginStart="20dp"
-            android:fontFamily="@font/montserrat_bold"
             android:textColor="#000000"
+            android:textSize="@dimen/_15ssp"
             tools:ignore="RelativeOverlap" />
+
         <TextView
             android:id="@+id/txtaccEdit"
-            android:layout_marginTop="@dimen/_22sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="@string/log_out"
             android:textAllCaps="true"
-            android:textSize="@dimen/_12ssp"
-            android:layout_marginEnd="12dp"
-            android:layout_alignParentEnd="true"
-            android:fontFamily="@font/montserrat_bold"
             android:textColor="#D64500"
+            android:textSize="@dimen/_12ssp"
             tools:ignore="RelativeOverlap" />
+
         <TextView
             android:id="@+id/txtaccmobile"
-            android:layout_below="@+id/txtaccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/txtaccName"
             android:layout_marginStart="20dp"
-            android:textSize="@dimen/_10ssp"
-            android:fontFamily="@font/montserrat_regular"
             android:layout_marginTop="3dp"
-            android:text="@string/space"/>
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/space"
+            android:textSize="@dimen/_10ssp" />
+
         <TextView
-            android:layout_marginStart="@dimen/_5sdp"
             android:id="@+id/txtaccEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtaccName"
-            android:text="@string/space"
-            android:layout_toEndOf="@+id/txtaccmobile"
+            android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="3dp"
-            android:textSize="@dimen/_10ssp"
+            android:layout_toEndOf="@+id/txtaccmobile"
             android:fontFamily="@font/montserrat_regular"
+            android:text="@string/space"
+            android:textSize="@dimen/_10ssp"
 
             />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_Status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/relexpand">
+
         <TextView
             android:id="@+id/storeStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/store_status"
             android:layout_marginStart="20dp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="@dimen/_10sdp"
-            android:fontFamily="@font/montserrat_medium"/>
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/store_status"
+            android:textSize="@dimen/_10sdp" />
+
         <TextView
             android:id="@+id/storeOpen"
-            android:layout_alignTop="@id/storeStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/open"
-            android:layout_toEndOf="@id/storeStatus"
+            android:layout_alignTop="@id/storeStatus"
             android:layout_marginStart="15dp"
+            android:layout_toEndOf="@id/storeStatus"
             android:fontFamily="@font/montserrat_bold"
+            android:text="@string/open"
             tools:ignore="RelativeOverlap" />
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchOpen"
-            android:layout_alignTop="@id/storeOpen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@id/storeOpen"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/_6sdp"
-            android:track="@drawable/rectangle_track"
+            android:theme="@style/SwitchTheme"
             android:thumb="@drawable/rectangle_thumb"
-            android:theme="@style/SwitchTheme"/>
+            android:track="@drawable/rectangle_track" />
+
         <TextView
             android:id="@+id/storeDelivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/delivery"
+            android:layout_below="@id/storeStatus"
             android:layout_marginStart="20dp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:textSize="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_medium"
-            android:layout_below="@id/storeStatus"/>
+            android:text="@string/delivery"
+            android:textSize="@dimen/_10sdp" />
+
         <TextView
             android:id="@+id/deliveryAvailable"
-            android:layout_alignTop="@id/storeDelivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/available"
             android:layout_below="@id/storeStatus"
-            android:layout_toEndOf="@id/storeDelivery"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/montserrat_bold"/>
-        <androidx.appcompat.widget.SwitchCompat
             android:layout_alignTop="@id/storeDelivery"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@id/storeDelivery"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/available" />
+
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchDelivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/switchOpen"
+            android:layout_alignTop="@id/storeDelivery"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/_6sdp"
-            android:track="@drawable/rectangle_track"
+            android:theme="@style/SwitchTheme"
             android:thumb="@drawable/rectangle_thumb"
-            android:theme="@style/SwitchTheme"/>
+            android:track="@drawable/rectangle_track" />
 
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_below="@id/rl_Status"
-        android:layout_above="@id/bottom_navAcc_seller"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_navAcc_seller"
+        android:layout_below="@id/rl_Status"
+        android:layout_marginTop="@dimen/_5sdp">
 
         <ExpandableListView
             android:id="@+id/expand"
@@ -155,29 +166,28 @@
 
 
     <RelativeLayout
-        android:visibility="invisible"
-        android:background="#eeeeee"
-        android:layout_above="@id/bottom_navAcc_seller"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navAcc_seller"
+        android:background="#eeeeee"
+        android:visibility="invisible">
 
         <ImageView
+            android:id="@+id/imglock"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:id="@+id/imglock"
-            android:src="@drawable/ic_outline_lock_24"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_outline_lock_24" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You have no access to this area"
             android:layout_below="@id/imglock"
             android:layout_centerHorizontal="true"
-            android:textSize="@dimen/_15ssp"
             android:fontFamily="@font/montserrat_bold"
+            android:text="You have no access to this area"
             android:textColor="#000"
-            />
+            android:textSize="@dimen/_15ssp" />
 
     </RelativeLayout>
 
