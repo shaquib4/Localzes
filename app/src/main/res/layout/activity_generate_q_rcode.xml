@@ -31,11 +31,11 @@
                 android:background="#fff">
 
                 <ImageView
-                    android:contentDescription="@string/todo"
                     android:id="@+id/store_image"
                     android:layout_width="@dimen/_75sdp"
                     android:layout_height="@dimen/_60sdp"
                     android:background="#fff"
+                    android:contentDescription="@string/todo"
                     android:src="@drawable/stores"
                     android:visibility="visible" />
 
@@ -68,12 +68,12 @@
                         android:textSize="@dimen/_21ssp" />
 
                     <ImageView
-                        android:contentDescription="@string/todo"
                         android:id="@+id/iv_qr_code"
                         android:layout_width="@dimen/_160sdp"
                         android:layout_height="@dimen/_160sdp"
                         android:layout_centerInParent="true"
-                        android:background="#fff" />
+                        android:background="#fff"
+                        android:contentDescription="@string/todo" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -88,12 +88,12 @@
                 </RelativeLayout>
 
                 <ImageView
-                    android:contentDescription="@string/todo"
                     android:layout_width="@dimen/_165sdp"
                     android:layout_height="@dimen/_38sdp"
                     android:layout_below="@+id/bg_QR"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
+                    android:contentDescription="@string/todo"
                     android:src="@drawable/localze" />
 
             </RelativeLayout>
@@ -109,7 +109,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/ic_customer_btn"
             android:fontFamily="@font/montserrat_medium"
-            android:text="@string/save_qr"
+            android:text="Save Shop QR"
             android:textColor="#fff"
             android:textSize="@dimen/_14ssp"
             tools:ignore="MissingConstraints" />

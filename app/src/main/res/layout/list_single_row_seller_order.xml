@@ -33,20 +33,20 @@
 
     <EditText
         android:id="@+id/edtPrice"
-        android:maxLines="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/_2sdp"
         android:layout_weight="1.4"
         android:fontFamily="@font/montserrat_medium"
-        android:textAlignment="center"
+        android:importantForAutofill="no"
         android:inputType="number"
+        android:maxLines="1"
         android:scrollHorizontally="true"
         android:singleLine="true"
+        android:textAlignment="center"
         android:textColor="#000"
         android:textSize="@dimen/_14ssp"
-        android:importantForAutofill="no"
         tools:ignore="LabelFor" />
 
     <RelativeLayout
@@ -56,19 +56,19 @@
         android:layout_weight="0.6">
 
         <ImageView
-            android:contentDescription="@string/todo"
             android:id="@+id/itemRemove"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_centerHorizontal="true"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_baseline_clear_24" />
 
         <ImageView
-            android:contentDescription="@string/todo"
             android:id="@+id/itemRevive"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_centerHorizontal="true"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_baseline_reply_24"
             android:visibility="invisible" />
     </RelativeLayout>

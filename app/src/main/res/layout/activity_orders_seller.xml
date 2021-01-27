@@ -54,7 +54,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="No Orders !"
+                android:text="No Orders Yet!"
                 android:textColor="#696969"
                 android:textSize="@dimen/_15ssp" />
         </RelativeLayout>

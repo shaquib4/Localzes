@@ -19,36 +19,34 @@
                 android:id="@+id/txtMyStaff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
                 android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="MY STAFF"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/_20ssp" />
 
             <Button
+                android:id="@+id/btnInvitation"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="wrap_content"
-                android:textAllCaps="false"
-                android:id="@+id/btnInvitation"
                 android:layout_below="@id/txtMyStaff"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:text="Check Invite Status"
-
+                android:background="@drawable/round_button"
                 android:fontFamily="@font/montserrat_bold"
+                android:text="Check Invite Status"
+                android:textAllCaps="false"
                 android:textColor="#de4500"
-                android:textSize="@dimen/_12ssp"
-                android:background="@drawable/round_button"/>
+                android:textSize="@dimen/_12ssp" />
 
             <ImageView
-                android:layout_margin="@dimen/_10sdp"
-                android:layout_centerVertical="true"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/_10sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/staff_group" />
-
 
 
         </RelativeLayout>
@@ -60,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_background"
         android:padding="3dp"
-        tools:listitem="@layout/staff_single_row"/>
+        tools:listitem="@layout/staff_single_row" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addStaff"
@@ -68,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-       android:layout_margin="@dimen/_10sdp"
+        android:layout_margin="@dimen/_10sdp"
         android:backgroundTint="#ff4500"
         android:elevation="3dp"
         android:padding="3dp"

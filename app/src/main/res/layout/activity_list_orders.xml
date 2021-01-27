@@ -4,17 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListOrders">
+
     <RelativeLayout
         android:id="@+id/rl_AcceptedOrder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="UselessParent">
+
         <ImageView
-            android:contentDescription="@string/todo"
             android:id="@+id/imgBackOrders"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_margin="@dimen/_10sdp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_back" />
 
         <TextView
@@ -36,17 +38,17 @@
             android:background="#d3d3d3" />
 
         <RelativeLayout
-            android:visibility="invisible"
             android:id="@+id/rl_Orders"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="invisible">
 
             <ImageView
-                android:contentDescription="@string/todo"
                 android:id="@+id/imgEmpty"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/ic_empty" />
 
             <TextView
@@ -66,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/view1"
-           tools:listitem="@layout/row_list_order" /></RelativeLayout>
+            tools:listitem="@layout/row_list_order" />
+    </RelativeLayout>
 
 </RelativeLayout>

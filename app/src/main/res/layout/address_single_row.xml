@@ -15,13 +15,13 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:contentDescription="@string/todo"
                 android:id="@+id/imgHome"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_centerVertical="true"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/bg_border"
+                android:contentDescription="@string/todo"
                 android:padding="10dp"
                 android:src="@drawable/ic_home" />
 
@@ -40,18 +40,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtHome"
-                android:fontFamily="@font/montserrat_medium"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:layout_toEndOf="@id/imgHome"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/mohan_chauraha_saraivika_jaunpur_up_222202_india" />
 
             <TextView
                 android:id="@+id/txtMobile"
-                android:fontFamily="@font/montserrat_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtAddress"
                 android:layout_toEndOf="@id/imgHome"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/mobile_7518894470" />
 
             <TextView

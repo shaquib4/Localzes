@@ -10,11 +10,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:contentDescription="@string/todo"
             android:id="@+id/imgBack"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_margin="@dimen/_10sdp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_back" />
 
         <TextView
@@ -39,9 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120sdp"
             android:layout_below="@id/view1"
+            android:contentDescription="@string/todo"
             android:scaleType="fitXY"
-            android:src="@drawable/border"
-            android:contentDescription="@string/todo" />
+            android:src="@drawable/border" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardPay"
@@ -84,9 +84,9 @@
                     android:layout_below="@+id/txtSellerName"
                     android:layout_alignStart="@+id/txtShop"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:textSize="@dimen/_12ssp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/upi" />
+                    android:text="@string/upi"
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/txtUPI"
@@ -111,16 +111,15 @@
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
+                    android:id="@+id/reason"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtReason"
-                    android:text="@string/paymet_for_localze"
-                    android:id="@+id/reason"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_13ssp"
                     android:layout_alignStart="@id/txtReason"
                     android:fontFamily="@font/montserrat_medium"
-                    />
+                    android:text="@string/paymet_for_localze"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_13ssp" />
 
                 <TextView
                     android:id="@+id/txtPriceDetails"
@@ -138,12 +137,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtPriceDetails"
-                    android:text="@string/rs_199"
-                    android:textColor="#008000"
-                    android:textSize="@dimen/_14ssp"
                     android:layout_alignStart="@id/txtReason"
                     android:fontFamily="@font/montserrat_bold"
-                    />
+                    android:text="@string/rs_199"
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_14ssp" />
 
 
                 <TextView
@@ -151,54 +149,52 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/reason"
-                  android:layout_alignParentEnd="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="@string/delivery_charge"
-                    android:layout_marginEnd="@dimen/_10sdp"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
+                    android:id="@+id/charge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtPriceDetails"
-                    android:text="@string/rs_40"
-                    android:id="@+id/charge"
-                    android:textColor="#008000"
-                    android:textSize="@dimen/_14ssp"
                     android:layout_alignStart="@id/txtDeliveryPrice"
                     android:fontFamily="@font/montserrat_bold"
-                    />
+                    android:text="@string/rs_40"
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_14ssp" />
 
                 <View
+                    android:id="@+id/view3"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:id="@+id/view3"
                     android:layout_below="@id/charge"
-                  android:layout_marginVertical="10dp"
-                    android:background="#d3d3d3"
-                    />
+                    android:layout_marginVertical="10dp"
+                    android:background="#d3d3d3" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/total_amount_1"
                     android:layout_below="@+id/view3"
-                    android:fontFamily="@font/montserrat_bold"
                     android:layout_alignStart="@id/txtShop"
-                    android:textSize="@dimen/_15ssp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/total_amount_1"
+                    android:textSize="@dimen/_15ssp" />
+
                 <TextView
+                    android:id="@+id/TxtTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/view3"
-                    android:text="@string/rs_239_00"
-                    android:id="@+id/TxtTotalPrice"
-                    android:textColor="#de4500"
-                    android:textSize="@dimen/_16ssp"
                     android:layout_alignStart="@id/txtDeliveryPrice"
                     android:fontFamily="@font/montserrat_bold"
-                    />
+                    android:text="@string/rs_239_00"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_16ssp" />
 
 
             </RelativeLayout>

@@ -34,23 +34,23 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:contentDescription="@string/todo"
                         android:id="@+id/imgProduct1"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_60sdp"
                         android:layout_margin="@dimen/_10sdp"
+                        android:contentDescription="@string/todo"
                         android:scaleType="fitCenter"
                         android:src="@drawable/lanju" />
 
                     <ImageView
-                        android:contentDescription="@string/todo"
                         android:id="@+id/imgBorder1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/txtShopMobile"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:background="#f1f1f1" />
+                        android:background="#f1f1f1"
+                        android:contentDescription="@string/todo" />
 
 
                     <TextView

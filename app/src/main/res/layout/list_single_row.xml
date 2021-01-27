@@ -18,44 +18,44 @@
 
     <EditText
         android:id="@+id/Item_name"
-        android:layout_width="@dimen/_195sdp"
+        android:layout_width="@dimen/_150sdp"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/_4sdp"
         android:layout_marginBottom="@dimen/_2sdp"
         android:layout_toEndOf="@+id/txtSNo"
         android:fontFamily="@font/montserrat_medium"
+        android:hint="Enter Item Name"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:maxLines="1"
         android:paddingTop="@dimen/_2sdp"
         android:scrollHorizontally="true"
-        android:textSize="@dimen/_14ssp"
         android:singleLine="true"
-        android:inputType="text"
-        android:hint="Enter Item Name"
-        android:importantForAutofill="no"
+        android:textSize="@dimen/_14ssp"
         tools:ignore="LabelFor" />
 
     <EditText
         android:id="@+id/Item_Quan"
-        android:layout_width="@dimen/_55sdp"
+        android:layout_width="@dimen/_100sdp"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/_17sdp"
         android:layout_marginBottom="@dimen/_2sdp"
         android:layout_toEndOf="@+id/Item_name"
-        android:maxLines="1"
-        android:scrollHorizontally="true"
-        android:singleLine="true"
-        android:inputType="text"
         android:hint="Enter Item Quantity"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLines="1"
         android:paddingTop="@dimen/_2sdp"
-        android:importantForAutofill="no" />
+        android:scrollHorizontally="true"
+        android:singleLine="true" />
 
     <ImageView
-        android:contentDescription="@string/todo"
         android:id="@+id/itemRemove"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/_2sdp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/ic_baseline_clear_24" />
 </RelativeLayout>
