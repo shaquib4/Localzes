@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_list_order_detail_seller.*
 import kotlinx.android.synthetic.main.activity_orders_details_seller.*
+import kotlinx.android.synthetic.main.activity_user_list_order_details.*
 import org.json.JSONObject
 import util.ConnectionManager
 import java.text.SimpleDateFormat
@@ -97,7 +98,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val latitude=snapshot.child("latitude").value.toString()
                     val longitude=snapshot.child("longitude").value.toString()
-                    btndir.setOnClickListener {
+                    btnDirListSeller.setOnClickListener {
                         val uri=Uri.parse("google.navigation:q=$latitude,$longitude")
                         val intent=Intent(Intent.ACTION_VIEW)
                         intent.data=uri

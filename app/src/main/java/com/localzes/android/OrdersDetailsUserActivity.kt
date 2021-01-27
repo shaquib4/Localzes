@@ -17,6 +17,7 @@ import com.localzes.android.Modals.ModelOrderedItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_orders_details_user.*
+import kotlinx.android.synthetic.main.activity_user_list_order_details.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -68,6 +69,23 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
+        val refs=FirebaseDatabase.getInstance().reference.child("users").child(orderToId.toString()).child("current_address")
+            .addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val latitude=snapshot.child("latitude").value.toString()
+                    val longitude=snapshot.child("longitude").value.toString()
+                    btnDirShop.setOnClickListener {
+                        val uri=Uri.parse("google.navigation:q=$latitude,$longitude")
+                        val intent=Intent(Intent.ACTION_VIEW)
+                        intent.data=uri
+                        startActivity(intent)
+                    }
+                }
+            })
         imgMakeCall.setOnClickListener {
             makePhoneCall()
         }

@@ -80,7 +80,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val latitude=snapshot.child("latitude").value.toString()
                     val longitude=snapshot.child("longitude").value.toString()
-                    btndir.setOnClickListener {
+                    btnDirSeller.setOnClickListener {
                         Toast.makeText(this@OrdersDetailsSellerActivity,latitude,Toast.LENGTH_LONG).show()
                      val uri=Uri.parse("google.navigation:q=$latitude,$longitude")
                      val intent=Intent(Intent.ACTION_VIEW)

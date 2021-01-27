@@ -345,7 +345,7 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <ImageView
-                    android:id="@+id/btnDirListSeller"
+                    android:id="@+id/btnDirListShop"
                     android:layout_margin="5dp"
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
