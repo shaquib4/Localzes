@@ -89,13 +89,4 @@
         android:textColor="#fff"
         android:textSize="@dimen/_14ssp" />
 
-    <Button
-        android:id="@+id/sendMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Send"
-        android:textSize="@dimen/_25ssp"/>
-
 </RelativeLayout>

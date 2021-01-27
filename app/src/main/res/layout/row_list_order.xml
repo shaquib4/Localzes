@@ -33,22 +33,22 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:contentDescription="@string/todo"
                         android:id="@+id/imgProduct1"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_margin="10dp"
+                        android:contentDescription="@string/todo"
                         android:src="@drawable/lanju" />
 
                     <ImageView
-                        android:contentDescription="@string/todo"
                         android:id="@+id/imgBorder1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@id/txt_MobileOrderedBy"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginVertical="@dimen/_10sdp"
-                        android:background="#f1f1f1" />
+                        android:background="#f1f1f1"
+                        android:contentDescription="@string/todo" />
 
 
                     <TextView

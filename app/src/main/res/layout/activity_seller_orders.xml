@@ -16,11 +16,11 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:contentDescription="@string/todo"
                 android:id="@+id/imgBackPending"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_margin="@dimen/_10sdp"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/ic_back" />
 
             <TextView
@@ -49,9 +49,9 @@
                 android:layout_height="@dimen/_45sdp"
                 android:layout_below="@+id/v1"
                 android:background="@drawable/border"
+                android:baselineAligned="false"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                android:baselineAligned="false">
+                android:weightSum="2">
 
                 <RelativeLayout
                     android:id="@+id/rl_cartPending"
@@ -121,51 +121,54 @@
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/searchs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/rl_top"
             android:layout_marginTop="@dimen/_5sdp">
-        <EditText
-            android:id="@+id/search_act_Pending"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
 
-            android:layout_margin="5dp"
-            android:background="@drawable/bg_product_shop"
-            android:drawableStart="@drawable/ic_search"
-            android:hint="@string/search"
-            android:paddingStart="@dimen/_5sdp"
-            tools:ignore="RtlSymmetry"
-            android:inputType="number"
-            android:importantForAutofill="no" />
+            <EditText
+                android:id="@+id/search_act_Pending"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
 
-        <EditText
-            android:id="@+id/search_act_Pending1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_product_shop"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="@string/search"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:paddingStart="@dimen/_5sdp"
+                tools:ignore="RtlSymmetry" />
 
-            android:layout_margin="5dp"
-            android:background="@drawable/bg_product_shop"
-            android:drawableStart="@drawable/ic_search"
-            android:hint="@string/search"
-            android:paddingStart="@dimen/_5sdp"
-            tools:ignore="RtlSymmetry"
-            android:importantForAutofill="no"
-            android:inputType="number" />
+            <EditText
+                android:id="@+id/search_act_Pending1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_product_shop"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="@string/search"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:paddingStart="@dimen/_5sdp"
+                tools:ignore="RtlSymmetry" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/rl_Pending_Orders"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:contentDescription="@string/todo"
                 android:id="@+id/imgEmpty"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/ic_empty" />
 
             <TextView

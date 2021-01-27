@@ -2,28 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_store_seller"
-        android:title="My Store"
         android:icon="@drawable/ic_mystore"
-        />
+        android:title="My Store" />
     <item
         android:id="@+id/nav_order_seller"
-        android:title="Orders"
         android:icon="@drawable/ic_order_seller"
-        />
+        android:title="Booster" />
     <item
         android:id="@+id/nav_product_seller"
-        android:title="Products"
         android:icon="@drawable/ic_products"
-        />
+        android:title="Products" />
     <item
         android:id="@+id/nav_category_seller"
-        android:title="Categories"
         android:icon="@drawable/ic_category_seller"
-        />
+        android:title="Categories" />
     <item
         android:id="@+id/nav_account_seller"
-        android:title="Account"
         android:icon="@drawable/ic_action_account"
-        />
+        android:title="Account" />
 
 </menu>

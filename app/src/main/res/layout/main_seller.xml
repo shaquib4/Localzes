@@ -13,19 +13,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <view
-
-                android:id="@+id/v2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/cardShop"
-                android:background="#d3d3d3" />
-
             <TextView
                 android:id="@+id/txtStaffShop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/v2"
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="30dp"
                 android:fontFamily="@font/montserrat_bold"
@@ -39,44 +30,44 @@
                 android:layout_below="@id/txtStaffShop"
                 android:background="#d3d3d3" />
 
+            <!--
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardShop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardShop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-
-                android:layout_marginVertical="20dp"
-                app:cardCornerRadius="30dp">
+                            android:layout_marginVertical="20dp"
+                            app:cardCornerRadius="30dp">
 
 
-                <RelativeLayout
-                    android:id="@+id/rl2"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:background="@drawable/stroke_de4500">
+                            <RelativeLayout
+                                android:id="@+id/rl2"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:background="@drawable/stroke_de4500">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="20dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="As Main Seller"
-                        android:textColor="#de4500"
-                        android:textSize="@dimen/_20ssp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="20dp"
+                                    android:fontFamily="@font/montserrat_bold"
+                                    android:text="As Main Seller"
+                                    android:textColor="#de4500"
+                                    android:textSize="@dimen/_20ssp" />
 
-                    <ImageView
-                        android:id="@+id/asMainSeller"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:src="@drawable/ic_forward" />
+                                <ImageView
+                                    android:id="@+id/asMainSeller"
+                                    android:layout_width="@dimen/_30sdp"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:src="@drawable/ic_forward" />
 
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_staff_of"

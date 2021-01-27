@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,8 +7,8 @@
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
         android:id="@+id/Invite"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/_31sdp">
 
 
@@ -54,14 +53,15 @@
                 android:id="@+id/AcceptedInvite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Accepted"
                 android:textColor="#000"
                 android:textSize="@dimen/_14ssp" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/rl_PendingInvite"
             android:layout_width="wrap_content"
@@ -73,10 +73,10 @@
             android:background="@drawable/stroke_solid_btn">
 
             <TextView
-                android:layout_centerHorizontal="true"
                 android:id="@+id/txtPendingInvite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_medium"
@@ -97,10 +97,10 @@
             android:background="@drawable/stroke_solid_btn">
 
             <TextView
-                android:layout_centerHorizontal="true"
                 android:id="@+id/txtRejectedInvite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_medium"
@@ -112,12 +112,13 @@
 
 
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-       android:layout_below="@id/rl_invite"
         android:id="@+id/recycler_inviteStaff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/rl_invite"
         android:layout_marginTop="@dimen/_2sdp"
         android:padding="3dp"
-        tools:listitem="@layout/staff_single_row"/>
+        tools:listitem="@layout/staff_single_row" />
 </RelativeLayout>

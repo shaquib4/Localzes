@@ -54,6 +54,21 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 }
             }
         }
+        if (notificationType.equals("PendingInvitation")) {
+            val senderId = remoteMessage.data["senderId"]
+            val receiverId = remoteMessage.data["receiverId"]
+            val notificationTitle = remoteMessage.data["notificationTitle"]
+            val notificationDescription = remoteMessage.data["notificationMessage"]
+            if (firebaseUser != null && currentAuth!!.uid == receiverId.toString()) {
+                showInvitationNotification(
+                    senderId.toString(),
+                    receiverId.toString(),
+                    notificationTitle.toString(),
+                    notificationDescription.toString(),
+                    notificationType.toString()
+                )
+            }
+        }
         if (notificationType.equals("OrderStatusChanged")) {
             val buyerUid = remoteMessage.data["buyerId"]
             val sellerUid = remoteMessage.data["sellerUid"]
@@ -132,6 +147,45 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         }
     }
 
+    private fun showInvitationNotification(
+        senderId: String,
+        receiverId: String,
+        notificationTitle: String,
+        notificationDescription: String,
+        notificationType: String
+    ) {
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationId = Random.nextInt(3000)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setUpNotificationChannel(notificationManager)
+        }
+        if (notificationType == "PendingInvitation") {
+            intent = Intent(this, AsStaffOf::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.localze_shop)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_logo)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+        notificationManager.notify(notificationId, notificationBuilder.build())
+
+
+    }
+
     private fun showNotification1(
         orderId: String,
         sellerUid: String,
@@ -171,7 +225,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder: NotificationCompat.Builder =
             NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+        notificationBuilder.setSmallIcon(R.drawable.ic_logo)
             .setLargeIcon(largeIcon)
             .setContentTitle(notificationTitle)
             .setContentText(notificationDescription)
@@ -231,7 +285,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder: NotificationCompat.Builder =
             NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+        notificationBuilder.setSmallIcon(R.drawable.ic_logo)
             .setLargeIcon(largeIcon)
             .setContentTitle(notificationTitle)
             .setContentText(notificationDescription)
@@ -260,7 +314,4 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         notificationManager.createNotificationChannel(notificationChannel)
     }
 
-    override fun onNewToken(p0: String) {
-        super.onNewToken(p0)
-    }
 }

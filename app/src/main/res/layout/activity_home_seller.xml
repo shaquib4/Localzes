@@ -67,8 +67,8 @@
                         android:id="@+id/editShopDetails"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_margin="@dimen/_10sdp"
+                        android:layout_alignEnd="@id/txtShopName"
+                        android:layout_marginTop="@dimen/_165sdp"
                         android:contentDescription="@string/todo"
                         android:src="@drawable/edit" />
 
@@ -648,7 +648,6 @@
         android:id="@+id/switchButtonHomeSeller"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_25sdp"
-        android:layout_above="@id/bottom_navHome_seller"
         android:layout_alignParentEnd="true"
         android:layout_margin="5dp"
         android:background="@drawable/round2_btn"

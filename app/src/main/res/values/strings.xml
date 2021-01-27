@@ -387,7 +387,9 @@
     <string name="pani_puri">Pani Puri</string>
 
     <string name="add_">Add +</string>
-
+    <string name="googlepay_button_content_description">Google Pay</string>
+    <string name="buy_with_googlepay_button_content_description">Buy with Google Pay</string>
+    <string name="donate_with_googlepay_button_content_description" description="Donate button text for Google Pay [CHAR LIMIT=100]">Donate with Google Pay</string>
     <string name="_1099">1099</string>
     <string name="aaloo_chat">Aaloo Chat</string>
     <string name="rs_1_499">Rs. 1,499</string>

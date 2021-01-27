@@ -3,20 +3,20 @@ package com.localzes.android
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_add_staff.*
+import org.json.JSONObject
 
 class AddStaff : AppCompatActivity() {
     private lateinit var staffNumber: EditText
@@ -42,7 +42,7 @@ class AddStaff : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please Wait")
         progressDialog.setCanceledOnTouchOutside(false)
-        sendMessage.setOnClickListener {
+        /*sendMessage.setOnClickListener {
             try {
                 val mobile = "917317544896"
                 val msg = "Its Working"
@@ -56,7 +56,7 @@ class AddStaff : AppCompatActivity() {
                 Toast.makeText(this, "Please install whatsapp", Toast.LENGTH_SHORT).show()
             }
 
-        }
+        }*/
         /*  staffNumber.addTextChangedListener(object:TextWatcher{
               override fun afterTextChanged(s: Editable?) {
 
@@ -154,6 +154,10 @@ class AddStaff : AppCompatActivity() {
                                     dataRef.child(staffuid.toString()).child("StaffOf")
                                         .child(sellerUid)
                                         .updateChildren(newHeader).addOnSuccessListener {
+                                            prepareNotificationMessage(
+                                                snapshot.child(sellerUid)
+                                                    .child("shop_name").value.toString()
+                                            )
                                             progressDialog.dismiss()
                                             Toast.makeText(
                                                 this@AddStaff,
@@ -164,7 +168,6 @@ class AddStaff : AppCompatActivity() {
                                 }
                         }
                     } else {
-                        Toast.makeText(this@AddStaff, "value", Toast.LENGTH_LONG).show()
                         progressDialog.dismiss()
                     }
                 }
@@ -172,6 +175,50 @@ class AddStaff : AppCompatActivity() {
             })
         }
 
+    }
+
+    private fun prepareNotificationMessage(shopName: String) {
+        val NOTIFICATION_TOPIC = "/topics/PUSH_NOTIFICATIONS"
+        val NOTIFICATION_TITLE = "Pending Invitation"
+        val NOTIFICATION_MESSAGE = "You have a new invitation from $shopName as a staff"
+        val NOTIFICATION_TYPE = "PendingInvitation"
+        val notificationJs = JSONObject()
+        val notificationBodyJs = JSONObject()
+        try {
+            notificationBodyJs.put("notificationType", NOTIFICATION_TYPE)
+            notificationBodyJs.put("senderId", (shopAuth.currentUser)!!.uid)
+            notificationBodyJs.put("receiverId", staffuid.toString())
+            notificationBodyJs.put("notificationTitle", NOTIFICATION_TITLE)
+            notificationBodyJs.put("notificationMessage", NOTIFICATION_MESSAGE)
+            notificationJs.put("to", NOTIFICATION_TOPIC)
+            notificationJs.put("data", notificationBodyJs)
+        } catch (e: Exception) {
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+        }
+        sendFcmNotification(notificationJs)
+    }
+
+    private fun sendFcmNotification(notificationJs: JSONObject) {
+        val jsonObjectRequest = object : JsonObjectRequest(
+            "https://fcm.googleapis.com/fcm/send",
+            notificationJs,
+            Response.Listener {
+                //notification sent
+            },
+            Response.ErrorListener {
+                //notification failed
+                Toast.makeText(this, "Some error occurred", Toast.LENGTH_SHORT).show()
+
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] =
+                    "key=AAAA0TgW0AY:APA91bGNGMLtISkxVjfP-Mvu6GCZeeTcoDzvFtUg0Pq1SrJ9SshsFXDuXR9i3-lOqtlUjVmGqmv4C0sSRbsIphiacRau5c1ERQEUBukLxV-EXGVGv1ZmTN796LyLs1Wd7s1Tnu60e_2D"
+                return headers
+            }
+        }
+        Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
 
     private fun checkuid() {

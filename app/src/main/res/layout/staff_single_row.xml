@@ -5,7 +5,6 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -80,19 +79,19 @@
                 android:textSize="@dimen/_10ssp" />
 
             <RelativeLayout
-              android:id="@+id/rlstaff"
-                android:layout_margin="5dp"
-                android:background="@drawable/stroke_primary"
+                android:id="@+id/rlstaff"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/stroke_primary">
 
-            <ImageView
-                android:layout_margin="1dp"
-                android:id="@+id/imgStaff"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                <ImageView
+                    android:id="@+id/imgStaff"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_margin="1dp"
 
-                android:src="@drawable/staff_single" />
+                    android:src="@drawable/staff_single" />
 
             </RelativeLayout>
 
@@ -113,11 +112,11 @@
                 android:layout_margin="5dp"
                 android:src="@drawable/ic_remove" />
 
-          <Button
-              android:layout_width="18dp"
-              android:layout_height="18dp"
-              android:background="@drawable/active"
-              />
+            <Button
+                android:id="@+id/btnStatus"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/active" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
