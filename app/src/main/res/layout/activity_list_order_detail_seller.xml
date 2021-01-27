@@ -340,12 +340,9 @@
 
                         <ImageView
                             android:id="@+id/btnDirListSeller"
-                            android:layout_margin="5dp"
-                            android:layout_width="@dimen/_25sdp"
-                            android:layout_height="@dimen/_25sdp"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:src="@drawable/map_icon"/>
-
-
 
                     </TableRow>
                 </TableLayout>
