@@ -27,15 +27,13 @@ class HelpSectionActivity : AppCompatActivity() {
         }
         ic_gmail.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
-            intent.data = Uri.parse("mailto:")
+            intent.data = Uri.parse("mailto:localzeteam@gmail.com")
             intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_EMAIL, "localzeteam@gmail.com")
             try {
                 startActivity(Intent.createChooser(intent, "Choose an Email Client"))
             } catch (e: Exception) {
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
             }
-
         }
         ic_twitter.setOnClickListener {
 

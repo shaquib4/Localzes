@@ -173,14 +173,9 @@ class AccountsSeller : AppCompatActivity() {
                     }
                 }
                 "As Staff Of Shop" -> {
-                    val headers = HashMap<String, Any>()
-                    headers["StoreStatus"] = "CLOSED"
-                    FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                        .updateChildren(headers).addOnSuccessListener {
-                            val intent = Intent(this, AsStaffOf::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
+                    val intent = Intent(this, AsStaffOf::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
             return@setOnChildClickListener true

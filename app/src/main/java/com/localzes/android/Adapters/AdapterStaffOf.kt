@@ -57,6 +57,7 @@ class AdapterStaffOf(val context: Context, val staffOf: List<ModelStaffOf>) :
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val headers = HashMap<String, Any>()
                     headers["staffOfShop"] = staff_off.invitationUid
+                    headers["StoreStatus"] = "CLOSED"
                     dataRef.updateChildren(headers).addOnSuccessListener {
                         val newHeaders = HashMap<String, Any>()
                         newHeaders["status"] = "Active"
