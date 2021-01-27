@@ -62,9 +62,9 @@
                 android:layout_height="@dimen/_80sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_toEndOf="@+id/txtPC"
-                android:contentDescription="@string/todo"
                 android:scaleType="fitXY"
-                android:src="@drawable/shop_png" />
+                android:src="@drawable/shop_png"
+                android:contentDescription="@string/todo" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -84,12 +84,12 @@
             android:layout_above="@+id/li">
 
             <ImageView
+                android:contentDescription="@string/todo"
                 android:id="@+id/imgHomeList"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_margin="@dimen/_8sdp"
                 android:background="@drawable/bg_border"
-                android:contentDescription="@string/todo"
                 android:padding="10dp"
                 android:src="@drawable/ic_home" />
 
@@ -101,6 +101,17 @@
                 android:layout_toEndOf="@+id/imgHomeList"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/saraibika"
+                android:textSize="@dimen/_10ssp" />
+
+            <TextView
+                android:id="@+id/txtPhoneList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtAreaList"
+                android:layout_toEndOf="@+id/imgHomeList"
+                android:fontFamily="@font/montserrat_medium"
+                android:text=""
+                android:textColor="#000"
                 android:textSize="@dimen/_10ssp" />
 
             <TextView
@@ -139,13 +150,13 @@
             android:weightSum="2">
 
             <Button
+                android:fontFamily="@font/montserrat_bold"
                 android:id="@+id/btnAdd"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_buttons"
-                android:fontFamily="@font/montserrat_bold"
                 android:text="@string/add"
                 android:textAllCaps="false"
                 android:textColor="#fff"
@@ -153,14 +164,14 @@
                 tools:ignore="ButtonStyle" />
 
             <Button
-                android:id="@+id/btnCn"
+                android:fontFamily="@font/montserrat_bold"
 
+                android:id="@+id/btnCn"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_buttons"
-                android:fontFamily="@font/montserrat_bold"
                 android:text="@string/confirm"
                 android:textAllCaps="false"
                 android:textColor="#fff"

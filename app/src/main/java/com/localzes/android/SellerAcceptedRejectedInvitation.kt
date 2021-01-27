@@ -1,5 +1,6 @@
 package com.localzes.android
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -140,5 +141,10 @@ class SellerAcceptedRejectedInvitation : AppCompatActivity() {
                 recyclerStaff.adapter = adapterStaffs
             }
         })
+    }
+    override fun onBackPressed() {
+        val intent = Intent(applicationContext, MyStaffActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

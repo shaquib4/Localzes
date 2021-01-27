@@ -1,5 +1,6 @@
 package com.localzes.android
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -62,11 +63,11 @@ class AsStaffOf : AppCompatActivity() {
                     }
                 }
                 if (staffOf.isEmpty()) {
-                    asStaffOf.visibility = View.GONE
-                    rlStaff.visibility = View.VISIBLE
-                } else {
-                    rlStaff.visibility = View.GONE
                     asStaffOf.visibility = View.VISIBLE
+                    rlStaff.visibility = View.GONE
+                } else {
+                    rlStaff.visibility = View.VISIBLE
+                    asStaffOf.visibility = View.GONE
                     adapterStaff = AdapterStaffOf(this@AsStaffOf, staffOf)
                     asStaffOf.adapter = adapterStaff
                 }
@@ -94,15 +95,20 @@ class AsStaffOf : AppCompatActivity() {
                     }
                 }
                 if (invitations.isEmpty()) {
-                    rvInvitations.visibility = View.GONE
-                    rlInvitations.visibility = View.VISIBLE
-                } else {
-                    rlInvitations.visibility = View.GONE
                     rvInvitations.visibility = View.VISIBLE
+                    rlInvitations.visibility = View.GONE
+                } else {
+                    rlInvitations.visibility = View.VISIBLE
+                    rvInvitations.visibility = View.GONE
                     adapterInvitation = AdapterInvitations(this@AsStaffOf, invitations)
                     rvInvitations.adapter = adapterInvitation
                 }
             }
         })
+    }
+    override fun onBackPressed() {
+        val intent = Intent(applicationContext, AccountsSeller::class.java)
+        startActivity(intent)
+        finish()
     }
 }
