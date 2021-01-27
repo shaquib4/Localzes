@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_home_seller.*
 import util.ConnectionManager
 
 class Home_seller : AppCompatActivity() {
+    private var t9: Int = 0
+    private var t10 = 0
     private lateinit var ordersAccepted: TextView
     private lateinit var ordersOutForDelivery: TextView
     private lateinit var ordersCompleted: TextView
@@ -135,6 +137,10 @@ class Home_seller : AppCompatActivity() {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     val access = snapshot.child("access").value.toString()
                                     when (access) {
+                                        "No Access" -> {
+                                            rl_HomeSeller.visibility = View.GONE
+                                            rl_accessHome.visibility = View.VISIBLE
+                                        }
                                         "Total Access" -> {
                                             homeSeller(uidOfShop)
                                         }
@@ -303,6 +309,31 @@ class Home_seller : AppCompatActivity() {
                     t8 = snapshot.childrenCount.toInt()
                     t = t7 + t8
                     ordersCompleted.text = t.toString()
+
+                }
+            })
+        orderDatabaseReference.child(uid).child("Orders")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    t9 = snapshot.childrenCount.toInt()
+
+                }
+
+            })
+        orderDatabaseReference.child(uid).child("OrdersLists")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    t10 = snapshot.childrenCount.toInt()
+                    t = t9 + t10
+                    txtItemAll.text = t.toString()
 
                 }
             })

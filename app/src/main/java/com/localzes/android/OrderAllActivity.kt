@@ -17,6 +17,7 @@ import com.localzes.android.Adapters.AdapterSellerOrders
 import com.localzes.android.Modals.ModalSellerOrderList
 import com.localzes.android.Modals.ModelOrderDetails
 import kotlinx.android.synthetic.main.activity_orders_seller.*
+import kotlinx.android.synthetic.main.activity_seller_orders.*
 
 class OrderAllActivity : AppCompatActivity() {
     private lateinit var orderDatabaseReference: DatabaseReference
@@ -50,13 +51,18 @@ class OrderAllActivity : AppCompatActivity() {
         rl_listTotal.setOnClickListener {
             allListOrder()
         }
+        backAll.setOnClickListener {
+            val intent = Intent(this, Home_seller::class.java)
+            startActivity(intent)
+            finish()
+        }
         orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    txtCartTotal.text = "(${snapshot.childrenCount})"
+                    cartTotalNo.text = "(${snapshot.childrenCount})"
 
                 }
 
@@ -68,7 +74,7 @@ class OrderAllActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    txtlistTotal.text = "(${snapshot.childrenCount})"
+                    listTotalNo.text = "(${snapshot.childrenCount})"
 
                 }
             })
@@ -164,6 +170,7 @@ class OrderAllActivity : AppCompatActivity() {
                     )
                     (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
                 }
+
                 listAdapter = AdapterListOrder(this@OrderAllActivity, listOrders)
                 recyclerAllOrders.adapter = listAdapter
             }
@@ -211,8 +218,18 @@ class OrderAllActivity : AppCompatActivity() {
                                     )
                                     (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
                                 }
-                                listAdapter = AdapterListOrder(this@OrderAllActivity, listOrders)
-                                recyclerAllOrders.adapter = listAdapter
+                                (listOrders as ArrayList<ModalSellerOrderList>).reverse()
+                                if (listOrders.isEmpty()) {
+                                    recyclerAllOrders.visibility = View.GONE
+
+                                } else {
+                                    orderAll.visibility = View.GONE
+                                    recyclerAllOrders.visibility = View.VISIBLE
+                                    listAdapter =
+                                        AdapterListOrder(this@OrderAllActivity, listOrders)
+                                    recyclerAllOrders.adapter = listAdapter
+                                }
+
                             }
                         })
                 }
@@ -251,8 +268,16 @@ class OrderAllActivity : AppCompatActivity() {
                         )
                         (allOrdersList as ArrayList<ModelOrderDetails>).add(obj)
                     }
-                    adapterAllOrders = AdapterSellerOrders(this@OrderAllActivity, allOrdersList)
-                    recyclerAllOrders.adapter = adapterAllOrders
+                    (allOrdersList as ArrayList<ModelOrderDetails>).reverse()
+                    if (allOrdersList.isEmpty()) {
+                        recyclerAllOrders.visibility = View.GONE
+                    } else {
+                        orderAll.visibility = View.GONE
+                        recyclerAllOrders.visibility = View.VISIBLE
+                        adapterAllOrders = AdapterSellerOrders(this@OrderAllActivity, allOrdersList)
+                        recyclerAllOrders.adapter = adapterAllOrders
+                    }
+
                 }
             })
     }

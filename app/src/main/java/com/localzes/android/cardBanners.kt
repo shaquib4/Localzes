@@ -61,7 +61,7 @@ class cardBanners : AppCompatActivity() {
 
             return@setOnNavigationItemSelectedListener false
         }
-      val  cardDatabaseRef =
+        val cardDatabaseRef =
             FirebaseDatabase.getInstance().reference.child("seller")
         cardDatabaseRef.child(uid)
             .addValueEventListener(object : ValueEventListener {
@@ -88,36 +88,40 @@ class cardBanners : AppCompatActivity() {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     val access = snapshot.child("access").value.toString()
                                     when (access) {
+                                        "No Access" -> {
+                                            cardScroll.visibility = View.GONE
+                                            rl_accessCard.visibility = View.VISIBLE
+                                        }
                                         "Total Access" -> {
                                             CardBanners()
                                         }
                                         "Order Access" -> {
-                                            cardScroll.visibility=View.GONE
-                                            rl_accessCard.visibility= View.VISIBLE
+                                            cardScroll.visibility = View.GONE
+                                            rl_accessCard.visibility = View.VISIBLE
 
                                         }
                                         "Delivery Access" -> {
-                                            cardScroll.visibility=View.GONE
-                                            rl_accessCard.visibility= View.VISIBLE
+                                            cardScroll.visibility = View.GONE
+                                            rl_accessCard.visibility = View.VISIBLE
 
                                         }
                                         "Catalogue Access(Product)" -> {
-                                            cardScroll.visibility=View.GONE
-                                            rl_accessCard.visibility= View.VISIBLE
+                                            cardScroll.visibility = View.GONE
+                                            rl_accessCard.visibility = View.VISIBLE
 
                                         }
                                         "Boost Your Shop Access" -> {
-                                            carStaff.visibility=View.GONE
+                                            carStaff.visibility = View.GONE
                                             CardBanners()
-                                            carStaff.isClickable=false
+                                            carStaff.isClickable = false
                                         }
                                         "(Orders + Catalogue)Access" -> {
-                                            cardScroll.visibility=View.GONE
-                                            rl_accessCard.visibility= View.VISIBLE
+                                            cardScroll.visibility = View.GONE
+                                            rl_accessCard.visibility = View.VISIBLE
 
                                         }
                                         "(Order + Boost Your Shop)Access" -> {
-                                            carStaff.visibility=View.GONE
+                                            carStaff.visibility = View.GONE
                                             CardBanners()
                                         }
                                     }
@@ -132,7 +136,8 @@ class cardBanners : AppCompatActivity() {
             })
 
     }
-    private fun CardBanners(){
+
+    private fun CardBanners() {
         cardQR.setOnClickListener {
             startActivity(Intent(this, generateQRcode::class.java))
             finish()

@@ -66,17 +66,22 @@ class Category : AppCompatActivity() {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 val access = snapshot.child("access").value.toString()
                                 when (access) {
+                                    "No Access" -> {
+                                        rl_category.visibility = View.GONE
+                                        btnAddNewCategory.visibility = View.GONE
+                                        categoryAccess.visibility = View.VISIBLE
+                                    }
                                     "Total Access" -> {
                                         categorySeller(uidOfShop)
                                     }
                                     "Order Access" -> {
                                         rl_category.visibility = View.GONE
-                                        btnAddNewCategory.visibility=View.GONE
+                                        btnAddNewCategory.visibility = View.GONE
                                         categoryAccess.visibility = View.VISIBLE
                                     }
                                     "Delivery Access" -> {
                                         rl_category.visibility = View.GONE
-                                        btnAddNewCategory.visibility=View.GONE
+                                        btnAddNewCategory.visibility = View.GONE
                                         categoryAccess.visibility = View.VISIBLE
                                     }
                                     "Catalogue Access(Product)" -> {
@@ -84,7 +89,7 @@ class Category : AppCompatActivity() {
                                     }
                                     "Boost Your Shop Access" -> {
                                         rl_category.visibility = View.GONE
-                                        btnAddNewCategory.visibility=View.GONE
+                                        btnAddNewCategory.visibility = View.GONE
                                         categoryAccess.visibility = View.VISIBLE
                                     }
                                     "(Orders + Catalogue)Access" -> {
@@ -93,7 +98,7 @@ class Category : AppCompatActivity() {
                                     }
                                     "(Order + Boost Your Shop)Access" -> {
                                         rl_category.visibility = View.GONE
-                                        btnAddNewCategory.visibility=View.GONE
+                                        btnAddNewCategory.visibility = View.GONE
                                         categoryAccess.visibility = View.VISIBLE
                                     }
                                 }
@@ -241,7 +246,7 @@ class Category : AppCompatActivity() {
                             (categories as ArrayList<ModelCategory>).add(obj)
                         }
 
-                        adapterCategory = AdapterCategory(this@Category, categories,uid)
+                        adapterCategory = AdapterCategory(this@Category, categories, uid)
                         recyclerCategories.adapter = adapterCategory
 
                     }

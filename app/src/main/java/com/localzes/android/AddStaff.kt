@@ -75,6 +75,7 @@ class AddStaff : AppCompatActivity() {
 
         accessStaff.setOnClickListener {
             val options = arrayOf(
+                "No Access",
                 "Total Access",
                 "Order Access",
                 "Delivery Access",

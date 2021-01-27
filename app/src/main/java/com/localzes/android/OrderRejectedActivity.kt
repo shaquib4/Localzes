@@ -74,6 +74,11 @@ class OrderRejectedActivity : AppCompatActivity() {
             rejectedListOrder()
 
         }
+        backRejected.setOnClickListener {
+            val intent = Intent(this, Home_seller::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         editSearchListRejected.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -227,7 +232,7 @@ class OrderRejectedActivity : AppCompatActivity() {
                         }
                         if (listOrders.isEmpty()) {
                             recyclerOrdersRejected.visibility = View.GONE
-                            orderRejected.visibility = View.VISIBLE
+
                         } else {
                             orderRejected.visibility = View.GONE
                             recyclerOrdersRejected.visibility = View.VISIBLE
@@ -280,7 +285,6 @@ class OrderRejectedActivity : AppCompatActivity() {
                         }
                         if (ordersRejectedList.isEmpty()) {
                             recyclerOrdersRejected.visibility = View.GONE
-                            orderRejected.visibility = View.VISIBLE
                         } else {
                             orderRejected.visibility = View.GONE
                             recyclerOrdersRejected.visibility = View.VISIBLE
