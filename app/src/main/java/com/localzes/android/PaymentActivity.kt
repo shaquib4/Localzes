@@ -12,6 +12,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.android.volley.Request
@@ -31,7 +32,7 @@ class PaymentActivity : AppCompatActivity() {
     var note: TextView? = null
     var name: TextView? = null
     var upivirtualid: TextView? = null
-    var send: Button? = null
+    var send: RelativeLayout? = null
     var TAG = "main"
     private var shopId: String? = "100"
     private var totalCost: String? = ""
@@ -59,7 +60,7 @@ class PaymentActivity : AppCompatActivity() {
         orderId = intent.getStringExtra("orderId")
         mode = intent.getStringExtra("platform")
         cartProducts = ArrayList<UserCartDetails>()
-        send = findViewById<View>(R.id.btnPayNow) as Button
+        send = findViewById<View>(R.id.btnPayNow) as RelativeLayout
         amount = findViewById<View>(R.id.TxtTotalPrice) as TextView
         note = findViewById<View>(R.id.txtReason) as TextView
         name = findViewById<View>(R.id.txtSellerName) as TextView

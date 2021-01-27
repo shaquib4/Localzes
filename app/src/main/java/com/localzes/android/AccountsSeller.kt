@@ -64,7 +64,7 @@ class AccountsSeller : AppCompatActivity() {
         })
 
 
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        databaseReference.child(uid).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }

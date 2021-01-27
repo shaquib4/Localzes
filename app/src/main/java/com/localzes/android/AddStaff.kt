@@ -168,6 +168,11 @@ class AddStaff : AppCompatActivity() {
                                 }
                         }
                     } else {
+                        Toast.makeText(
+                            this@AddStaff,
+                            "This user have not downloaded Localzes app",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         progressDialog.dismiss()
                     }
                 }

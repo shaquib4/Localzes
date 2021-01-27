@@ -92,6 +92,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:visibility="invisible"
                         android:id="@+id/rl_No_Invitations"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -133,6 +134,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="invisible"
                 android:id="@+id/rl_no_staff"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
