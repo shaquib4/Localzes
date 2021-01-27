@@ -209,17 +209,15 @@
             android:background="#d3d3d3" />
 
 
-        <Button
+        <RelativeLayout
             android:id="@+id/btnPayNow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_13sdp"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/proceed_to_add"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/pay_now"
-            android:textColor="#fff"
-            android:textSize="@dimen/_13ssp" />
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+        <include layout="@layout/googlepay_button"/>
+        </RelativeLayout>
 
 
     </RelativeLayout>
