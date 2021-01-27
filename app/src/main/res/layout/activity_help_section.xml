@@ -292,7 +292,7 @@
                         android:layout_below="@id/txtWebsite"
                         android:background="#d3d3d3" />
 
-                    <ImageView
+                    <!--<ImageView
                         android:id="@+id/ic_browse"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
@@ -351,8 +351,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Connet with us on Social Media"
                         android:textColor="#000"
-                        android:textSize="@dimen/_12ssp" />
-
+                        android:textSize="@dimen/_12ssp" />-->
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>

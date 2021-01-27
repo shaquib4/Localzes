@@ -1,20 +1,13 @@
 package com.localzes.android
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_help_section.*
-
 class HelpSectionActivity : AppCompatActivity() {
-    private lateinit var emailId: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_help_section)
-        emailId = findViewById(R.id.txtEmail)
+/*        emailId = findViewById(R.id.txtEmail)
         ic_fb.setOnClickListener {
             try {
                 packageManager.getPackageInfo("com.facebook.katana", 0)
@@ -41,12 +34,12 @@ class HelpSectionActivity : AppCompatActivity() {
         ic_ig.setOnClickListener {
             val string = "https://www.instagram.com/localzeteam/"
             gotoUrl(string)
-        }
+        }*/
     }
 
-    private fun gotoUrl(s: String) {
+    /*private fun gotoUrl(s: String) {
         val uri: Uri = Uri.parse(s)
         startActivity(Intent(Intent.ACTION_VIEW, uri))
-    }
+    }*/
 
 }
