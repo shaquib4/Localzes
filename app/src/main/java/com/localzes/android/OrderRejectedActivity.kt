@@ -38,7 +38,7 @@ class OrderRejectedActivity : AppCompatActivity() {
         backRejected = findViewById(R.id.imgBackRejected)
         editSearchCartRejected = findViewById(R.id.searchCartRejected)
         editSearchListRejected = findViewById(R.id.searchListRejected)
-        orderRejected = findViewById(R.id.rl_RejectedOrder)
+        orderRejected = findViewById(R.id.rl_Rejected_Orders)
         recyclerOrdersRejected.layoutManager = LinearLayoutManager(this)
         listOrders = ArrayList<ModalSellerOrderList>()
         Uid = intent.getStringExtra("UID")

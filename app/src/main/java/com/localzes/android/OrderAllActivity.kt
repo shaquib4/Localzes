@@ -192,46 +192,35 @@ class OrderAllActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
-                        .child("OrdersLists")
-                        .addValueEventListener(object : ValueEventListener {
-                            override fun onCancelled(error: DatabaseError) {
+                    (listOrders as ArrayList<ModalSellerOrderList>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModalSellerOrderList(
+                            i.child("orderId").value.toString(),
+                            i.child("orderTime").value.toString(),
+                            i.child("orderStatus").value.toString(),
+                            i.child("orderCost").value.toString(),
+                            i.child("orderBy").value.toString(),
+                            i.child("orderTo").value.toString(),
+                            i.child("deliveryAddress").value.toString(),
+                            i.child("totalItems").value.toString(),
+                            i.child("listStatus").value.toString(),
+                            i.child("orderByName").value.toString(),
+                            i.child("orderByMobile").value.toString(),
+                            i.child("paymentMode").value.toString()
+                        )
+                        (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
+                    }
+                    (listOrders as ArrayList<ModalSellerOrderList>).reverse()
+                    if (listOrders.isEmpty()) {
+                        recyclerAllOrders.visibility = View.GONE
 
-                            }
-
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                (listOrders as ArrayList<ModalSellerOrderList>).clear()
-                                for (i in snapshot.children) {
-                                    val obj = ModalSellerOrderList(
-                                        i.child("orderId").value.toString(),
-                                        i.child("orderTime").value.toString(),
-                                        i.child("orderStatus").value.toString(),
-                                        i.child("orderCost").value.toString(),
-                                        i.child("orderBy").value.toString(),
-                                        i.child("orderTo").value.toString(),
-                                        i.child("deliveryAddress").value.toString(),
-                                        i.child("totalItems").value.toString(),
-                                        i.child("listStatus").value.toString(),
-                                        i.child("orderByName").value.toString(),
-                                        i.child("orderByMobile").value.toString(),
-                                        i.child("paymentMode").value.toString()
-                                    )
-                                    (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
-                                }
-                                (listOrders as ArrayList<ModalSellerOrderList>).reverse()
-                                if (listOrders.isEmpty()) {
-                                    recyclerAllOrders.visibility = View.GONE
-
-                                } else {
-                                    orderAll.visibility = View.GONE
-                                    recyclerAllOrders.visibility = View.VISIBLE
-                                    listAdapter =
-                                        AdapterListOrder(this@OrderAllActivity, listOrders)
-                                    recyclerAllOrders.adapter = listAdapter
-                                }
-
-                            }
-                        })
+                    } else {
+                        orderAll.visibility = View.GONE
+                        recyclerAllOrders.visibility = View.VISIBLE
+                        listAdapter =
+                            AdapterListOrder(this@OrderAllActivity, listOrders)
+                        recyclerAllOrders.adapter = listAdapter
+                    }
                 }
             })
     }
