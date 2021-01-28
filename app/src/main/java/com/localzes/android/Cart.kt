@@ -532,7 +532,7 @@ class Cart : AppCompatActivity() {
                 val uidList = arrayListOf<String>()
                 for (i in snapshot.children) {
                     uidList.clear()
-                    if (i.child("invitationStatus").value.toString() == "Accepted" && (i.child("access").value.toString() == "Total Access" || i.child(
+                    if (i.child("status").value.toString() == "Active" && (i.child("access").value.toString() == "Total Access" || i.child(
                             "access"
                         ).value.toString() == "Order Access")
                     ) {

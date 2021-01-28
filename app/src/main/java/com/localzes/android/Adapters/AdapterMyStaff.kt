@@ -69,6 +69,7 @@ class AdapterMyStaff(val context: Context, val staffDetails: List<ModalAddStaff>
         }
         holder.imgEdit.setOnClickListener {
             val options = arrayOf(
+                "No Access",
                 "Total Access",
                 "Order Access",
                 "Delivery Access",

@@ -44,7 +44,7 @@ class OrderRejectedActivity : AppCompatActivity() {
         Uid = intent.getStringExtra("UID")
         orderDatabaseReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
+/*        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -65,14 +65,17 @@ class OrderRejectedActivity : AppCompatActivity() {
                     listRejectedNo.text = "(${snapshot.childrenCount})"
                 }
 
-            })
+            })*/
         rl_cartRejected.setOnClickListener {
+            countCartOrders()
+            countListOrders()
             rejectedCartOrder()
 
         }
         rl_listRejected.setOnClickListener {
+            countListOrders()
+            countCartOrders()
             rejectedListOrder()
-
         }
         backRejected.setOnClickListener {
             val intent = Intent(this, Home_seller::class.java)
@@ -300,9 +303,92 @@ class OrderRejectedActivity : AppCompatActivity() {
 
     }
 
+    private fun countCartOrders() {
+        FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+            .child("Orders").addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        (ordersRejectedList as ArrayList<ModelOrderDetails>).clear()
+                        for (i in snapshot.children) {
+                            val obj = ModelOrderDetails(
+                                i.child("orderId").value.toString(),
+                                i.child("orderTime").value.toString(),
+                                i.child("orderStatus").value.toString(),
+                                i.child("orderCost").value.toString(),
+                                i.child("orderBy").value.toString(),
+                                i.child("orderTo").value.toString(),
+                                i.child("orderQuantity").value.toString(),
+                                i.child("deliveryAddress").value.toString(),
+                                i.child("paymentMode").value.toString(),
+                                i.child("orderByName").value.toString(),
+                                i.child("orderByMobile").value.toString()
+                            )
+                            if (i.child("orderStatus").value.toString() == "Rejected due to Item is Out Of Stock" || i.child(
+                                    "orderStatus"
+                                ).value.toString() == "Rejected due to Shop is closed Now" || i.child(
+                                    "orderStatus"
+                                ).value.toString() == "Rejected due to Others"
+                            ) {
+                                ((ordersRejectedList as ArrayList<ModelOrderDetails>)).add(obj)
+                            }
+                        }
+                        cartRejectedNo.text = "(${ordersRejectedList.size})"
+                    }
+                }
+            })
+
+    }
+
+    private fun countListOrders() {
+        FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
+            .child("OrdersLists").addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        (listOrders as ArrayList<ModalSellerOrderList>).clear()
+                        for (i in snapshot.children) {
+                            val obj = ModalSellerOrderList(
+                                i.child("orderId").value.toString(),
+                                i.child("orderTime").value.toString(),
+                                i.child("orderStatus").value.toString(),
+                                i.child("orderCost").value.toString(),
+                                i.child("orderBy").value.toString(),
+                                i.child("orderTo").value.toString(),
+                                i.child("deliveryAddress").value.toString(),
+                                i.child("totalItems").value.toString(),
+                                i.child("listStatus").value.toString(),
+                                i.child("orderByName").value.toString(),
+                                i.child("orderByMobile").value.toString(),
+                                i.child("paymentMode").value.toString()
+                            )
+                            if (i.child("orderStatus").value.toString() == "Rejected due to Item is Out Of Stock" || i.child(
+                                    "orderStatus"
+                                ).value.toString() == "Rejected due to Shop is closed Now" || i.child(
+                                    "orderStatus"
+                                ).value.toString() == "Rejected due to Others"
+                            ) {
+                                (listOrders as ArrayList<ModalSellerOrderList>).add(obj)
+
+                            }
+                        }
+                        listRejectedNo.text = "(${listOrders.size})"
+                    }
+                }
+            })
+    }
+
     override fun onStart() {
         super.onStart()
         Uid = intent.getStringExtra("UID")
+        countCartOrders()
+        countListOrders()
         rejectedCartOrder()
     }
 
