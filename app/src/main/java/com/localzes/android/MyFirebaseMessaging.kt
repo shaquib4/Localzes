@@ -173,7 +173,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder: NotificationCompat.Builder =
             NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-        notificationBuilder.setSmallIcon(R.drawable.ic_logo)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
             .setLargeIcon(largeIcon)
             .setContentTitle(notificationTitle)
             .setContentText(notificationDescription)
