@@ -56,7 +56,7 @@ class OrderAllActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        orderDatabaseReference.child("Orders").orderByChild("orderStatus").equalTo("Accepted")
+        orderDatabaseReference.child("Orders")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                 }
@@ -67,7 +67,7 @@ class OrderAllActivity : AppCompatActivity() {
                 }
 
             })
-        orderDatabaseReference.child("OrdersLists").orderByChild("orderStatus").equalTo("Accepted")
+        orderDatabaseReference.child("OrdersLists")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
