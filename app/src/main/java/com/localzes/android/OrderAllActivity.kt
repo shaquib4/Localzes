@@ -282,6 +282,11 @@ class OrderAllActivity : AppCompatActivity() {
             })
     }
 
+    override fun onStart() {
+        super.onStart()
+        allCartOrder()
+    }
+
     override fun onBackPressed() {
         val intent = Intent(applicationContext, Home_seller::class.java)
         startActivity(intent)

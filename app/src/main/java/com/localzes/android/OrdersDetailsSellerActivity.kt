@@ -71,24 +71,30 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         retryOrdersDetails.setOnClickListener {
             this.recreate()
         }
-        val ref=FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString()).child("current_address")
-            .addListenerForSingleValueEvent(object :ValueEventListener{
-                override fun onCancelled(error: DatabaseError) {
+        val ref =
+            FirebaseDatabase.getInstance().reference.child("users").child(orderByTv.toString())
+                .child("current_address")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val latitude=snapshot.child("latitude").value.toString()
-                    val longitude=snapshot.child("longitude").value.toString()
-                    btnDirSeller.setOnClickListener {
-                        Toast.makeText(this@OrdersDetailsSellerActivity,latitude,Toast.LENGTH_LONG).show()
-                     val uri=Uri.parse("google.navigation:q=$latitude,$longitude")
-                     val intent=Intent(Intent.ACTION_VIEW)
-                        intent.data=uri
-                     startActivity(intent)
                     }
-                }
-            })
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val latitude = snapshot.child("latitude").value.toString()
+                        val longitude = snapshot.child("longitude").value.toString()
+                        btnDirSeller.setOnClickListener {
+                            Toast.makeText(
+                                this@OrdersDetailsSellerActivity,
+                                latitude,
+                                Toast.LENGTH_LONG
+                            ).show()
+                            val uri = Uri.parse("google.navigation:q=$latitude,$longitude")
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            intent.data = uri
+                            startActivity(intent)
+                        }
+                    }
+                })
 
         val newReference =
             FirebaseDatabase.getInstance().reference.child("seller").child(orderTo).child("Orders")
@@ -168,9 +174,24 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                                 afterEditOrderStatusDialog()
                             }
                         }
-                        "Rejected due to $selectedReason" -> {
+                        "Rejected due to Item is Out Of Stock" -> {
                             checkboxComplete.visibility = View.GONE
-
+                            etDelivery.setText("₹$deliveryCharge")
+                            etDelivery.setTextColor(resources.getColor(R.color.green))
+                            etDelivery.isEnabled = false
+                            txtOrderStatus.setTextColor(resources.getColor(R.color.red))
+                            imgEdit.visibility = View.GONE
+                        }
+                        "Rejected due to Shop is closed Now" -> {
+                            checkboxComplete.visibility = View.GONE
+                            etDelivery.setText("₹$deliveryCharge")
+                            etDelivery.setTextColor(resources.getColor(R.color.green))
+                            etDelivery.isEnabled = false
+                            txtOrderStatus.setTextColor(resources.getColor(R.color.red))
+                            imgEdit.visibility = View.GONE
+                        }
+                        "Rejected due to Others" -> {
+                            checkboxComplete.visibility = View.GONE
                             etDelivery.setText("₹$deliveryCharge")
                             etDelivery.setTextColor(resources.getColor(R.color.green))
                             etDelivery.isEnabled = false
@@ -288,7 +309,7 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         val number = customerMobileNo
         val intent = Intent(Intent.ACTION_DIAL)
         intent.data = Uri.parse("tel:$number")
-        val chooser = Intent.createChooser(intent, "Call Action Using")
+        val chooser = Intent.createChooser(intent, "Call Using")
         startActivity(chooser)
     }
 
@@ -483,20 +504,6 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
         Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
 
-/*    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == REQUEST_CALL) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                makePhoneCallCustomer()
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-    }*/
 
     override fun onBackPressed() {
         super.onBackPressed()
