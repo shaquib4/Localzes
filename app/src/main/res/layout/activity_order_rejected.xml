@@ -37,6 +37,7 @@
             android:background="#d3d3d3" />
 
         <RelativeLayout
+            android:visibility="invisible"
             android:id="@+id/rl_Rejected_Orders"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

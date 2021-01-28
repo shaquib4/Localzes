@@ -163,7 +163,11 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 }
                 if (snapshot.child("deliveryFee").exists()) {
                     deliveryFee = snapshot.child("deliveryFee").value.toString().toDouble()
-                    deliveryFeeUser.text = "₹" + snapshot.child("deliveryFee").value.toString()
+                    if (deliveryFee==null){
+                        deliveryFeeUser.text="0"
+                    }else{
+                        deliveryFeeUser.text = "₹" + snapshot.child("deliveryFee").value.toString()
+                    }
                     totalAmountUser.text = "₹${orderCost}(Including Delivery Fee)"
                 } else {
                     totalAmountUser.text = "₹${orderCost}"
