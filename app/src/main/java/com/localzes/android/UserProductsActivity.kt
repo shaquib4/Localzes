@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -41,7 +42,7 @@ class UserProductsActivity : AppCompatActivity() {
     var totalOriginalPrice: Double = 0.00
     var totalItems: Int = 0
     var shop_Name: String = ""
-    private lateinit var createList: FloatingActionButton
+    private lateinit var createList: Button
     private lateinit var userDatabaseReference: DatabaseReference
     private var deliveryMobileNo: String = ""
     private var deliveryAddress: String = ""
