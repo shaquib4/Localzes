@@ -66,7 +66,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_25sdp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Invitation"
+                        android:text="INVITATION"
                         android:textSize="@dimen/_15sdp"
                         />
                     <View

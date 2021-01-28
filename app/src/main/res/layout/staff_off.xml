@@ -92,7 +92,6 @@
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
                     android:layout_margin="1dp"
-                    android:background="@drawable/stroke_primary"
                     android:scaleType="centerCrop"
                     android:src="@drawable/localze_shop" />
             </RelativeLayout>

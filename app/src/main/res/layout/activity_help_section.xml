@@ -106,7 +106,7 @@
                         android:text="Call Us"
                         android:textColor="#000"
 
-                        android:textSize="@dimen/_20ssp" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <ImageView
                         android:id="@+id/img_call_us"
@@ -177,7 +177,7 @@
                         android:text="Mail Us"
                         android:textColor="#000"
 
-                        android:textSize="@dimen/_20ssp" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <ImageView
                         android:id="@+id/img_email_us"
@@ -239,7 +239,7 @@
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Need Help! Mail to our team"
                         android:textColor="#000"
-                        android:textSize="@dimen/_15ssp" />
+                        android:textSize="@dimen/_14ssp" />
 
                     <ImageView
                         android:id="@+id/imgMail"
@@ -259,8 +259,8 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="localzeteam@gmail.com"
-                        android:textColor="#0000ff"
-                        android:textSize="@dimen/_15ssp" />
+                        android:textColor="#1589b6"
+                        android:textSize="@dimen/_13ssp" />
 
                     <TextView
                         android:id="@+id/txtWebsite"
@@ -271,7 +271,7 @@
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Website"
                         android:textColor="#000"
-                        android:textSize="@dimen/_20ssp" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <TextView
                         android:id="@+id/txtLink"
@@ -282,8 +282,8 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="www.localze.com"
-                        android:textColor="#0000ff"
-                        android:textSize="@dimen/_15ssp" />
+                        android:textColor="#1589b6"
+                        android:textSize="@dimen/_13ssp" />
 
                     <View
                         android:id="@+id/v5"

@@ -252,7 +252,6 @@
                     </TableRow>
 
 
-
                     <TableRow>
 
                         <TextView
@@ -314,13 +313,14 @@
 
 
                     </TableRow>
+
                     <TableRow>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="5dp"
                             android:layout_marginTop="10dp"
+                            android:layout_marginEnd="5dp"
                             android:fontFamily="@font/montserrat_medium"
                             android:text="Get Direction :"
                             android:textColor="#000000"
@@ -332,8 +332,8 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginTop="10dp"
+                            android:layout_weight="1"
                             android:fontFamily="@font/montserrat_medium"
                             android:text="Check your customer location"
                             android:textSize="@dimen/_10ssp" />
@@ -342,7 +342,7 @@
                             android:id="@+id/btnDirListSeller"
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
-                            android:src="@drawable/map_icon"/>
+                            android:src="@drawable/map_icon" />
 
                     </TableRow>
                 </TableLayout>
@@ -351,7 +351,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="#d3d3d3" />
 
             <TextView
@@ -369,8 +369,70 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="#d3d3d3" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <TextView
+                    android:id="@+id/txtNoCustomer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="No."
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/txtItem_NameCustomer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Item Name"
+                    android:textAlignment="center"
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/txtQuanCustomer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Quantity"
+                    android:textAlignment="center"
+                    android:textColor="#1589b6"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/txtPriceCustomer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Price"
+                    android:textAlignment="center"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_14ssp" />
+
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerOrderedSellerItem"
@@ -408,9 +470,10 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_42sdp"
                 android:layout_weight="1"
-                android:textAlignment="center"
+                android:fontFamily="@font/montserrat_medium"
                 android:hint="Enter Delivery Charge "
-                android:inputType="number" />
+                android:inputType="number"
+                android:textAlignment="center" />
 
             <Button
                 android:id="@+id/acceptConfirm"
@@ -418,6 +481,7 @@
                 android:layout_height="@dimen/_33sdp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_buttons"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/accept_and_confirm"
                 android:textAllCaps="false"
                 android:textColor="#fff"
