@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/rl_cart_details"
-            android:layout_below="@id/searchShopProduct">
+            android:layout_below="@id/createList">
 
             <androidx.recyclerview.widget.RecyclerView
 
@@ -120,17 +120,23 @@
 
         </RelativeLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/createList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_width="@dimen/_130sdp"
+            android:textColor="#fff"
+            android:layout_height="@dimen/_32sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_below="@+id/searchShopProduct"
             android:layout_marginEnd="@dimen/_5sdp"
-           android:layout_marginBottom="@dimen/_40sdp"
+         android:layout_marginBottom="2dp"
+            android:text="Create List+"
             android:layout_alignParentEnd="true"
             android:backgroundTint="#de4500"
             android:padding="@dimen/_5sdp"
-            android:src="@drawable/ic_baseline_article_24"
+           android:background="@drawable/round2_btn"
             tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>

@@ -152,10 +152,14 @@ class Home_seller : AppCompatActivity() {
                                         "Delivery Access" -> {
 
                                             ordersPending.visibility = View.GONE
+                                            txtItemRejected.visibility=View.GONE
+                                            txtItemAll.visibility=View.GONE
                                             editShopDetails.visibility = View.GONE
                                             totalIncome.visibility = View.GONE
                                             homeSeller(uidOfShop)
                                             orderPen.isClickable = false
+                                            OrderRejected.isClickable=false
+                                            OrderAll.isClickable=false
                                         }
                                         "Catalogue Access(Product)" -> {
                                             rl_HomeSeller.visibility = View.GONE

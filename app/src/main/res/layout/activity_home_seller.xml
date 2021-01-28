@@ -371,53 +371,6 @@
                                         android:layout_height="wrap_content">
 
                                         <ImageView
-                                            android:id="@+id/OrderRejected"
-                                            android:layout_width="@dimen/_55sdp"
-                                            android:layout_height="@dimen/_55sdp"
-                                            android:layout_centerInParent="true"
-                                            android:contentDescription="@string/todo"
-                                            android:src="@drawable/circle"
-                                            tools:ignore="TooDeepLayout" />
-
-                                        <TextView
-                                            android:id="@+id/txtItemRejected"
-                                            android:layout_width="@dimen/_50sdp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true"
-                                            android:fontFamily="@font/montserrat_medium"
-                                            android:text="@string/_0"
-                                            android:textAlignment="center"
-                                            android:textColor="#000000"
-                                            android:textSize="@dimen/_10ssp" />
-
-                                        <TextView
-                                            android:id="@+id/txtRej"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_below="@id/OrderRejected"
-                                            android:layout_centerHorizontal="true"
-                                            android:layout_marginTop="@dimen/_10sdp"
-
-                                            android:fontFamily="@font/montserrat_medium"
-                                            android:text="Rejected"
-                                            android:textAlignment="center"
-                                            android:textSize="@dimen/_9ssp" />
-
-                                    </RelativeLayout>
-
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginHorizontal="@dimen/_7sdp"
-                                    android:layout_weight="1">
-
-                                    <RelativeLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-
-                                        <ImageView
                                             android:id="@+id/OrderAll"
                                             android:layout_width="@dimen/_55sdp"
                                             android:layout_height="@dimen/_55sdp"
@@ -452,6 +405,56 @@
                                     </RelativeLayout>
 
                                 </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginHorizontal="@dimen/_7sdp"
+                                    android:layout_weight="1">
+
+                                    <RelativeLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <ImageView
+                                            android:id="@+id/OrderRejected"
+                                            android:layout_width="@dimen/_55sdp"
+                                            android:layout_height="@dimen/_55sdp"
+                                            android:layout_centerInParent="true"
+                                            android:contentDescription="@string/todo"
+                                            android:src="@drawable/circle"
+                                            tools:ignore="TooDeepLayout" />
+
+                                        <TextView
+                                            android:id="@+id/txtItemRejected"
+                                            android:visibility="invisible"
+                                            android:layout_width="@dimen/_50sdp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:text="@string/_0"
+                                            android:textAlignment="center"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/_10ssp" />
+
+                                        <TextView
+                                            android:id="@+id/txtRej"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@id/OrderRejected"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginTop="@dimen/_10sdp"
+
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:text="Rejected"
+                                            android:textAlignment="center"
+                                            android:textSize="@dimen/_9ssp" />
+
+                                    </RelativeLayout>
+
+                                </RelativeLayout>
+
+
 
                             </LinearLayout>
 
