@@ -280,7 +280,7 @@ class AccountsSeller : AppCompatActivity() {
                     newHeaders["status"] = "Inactive"
                     val databaseReference =
                         FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                    databaseReference.addValueEventListener(object : ValueEventListener {
+                    databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onCancelled(error: DatabaseError) {
 
                         }

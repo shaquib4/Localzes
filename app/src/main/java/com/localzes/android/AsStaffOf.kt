@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import com.localzes.android.Adapters.AdapterInvitations
 import com.localzes.android.Adapters.AdapterStaffOf
 import com.localzes.android.Modals.ModelStaffOf
+import kotlinx.android.synthetic.main.activity_as_staff_of.*
 
 class AsStaffOf : AppCompatActivity() {
     private lateinit var asStaffOf: RecyclerView
@@ -24,17 +25,14 @@ class AsStaffOf : AppCompatActivity() {
     private lateinit var rvInvitations: RecyclerView
     private lateinit var adapterStaff: AdapterStaffOf
     private lateinit var adapterInvitation: AdapterInvitations
-    private lateinit var rlInvitations: RelativeLayout
-    private lateinit var rlStaff: RelativeLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_as_staff_of)
-        asStaffOf = findViewById(R.id.recycler_staff_of)
-        rvInvitations = findViewById(R.id.recyclerInvitation)
+        asStaffOf = findViewById(R.id.recycler_staff)
+        rvInvitations = findViewById(R.id.recyclerInvitatio)
         staffOf = ArrayList<ModelStaffOf>()
         invitations = ArrayList<ModelStaffOf>()
-        rlInvitations = findViewById(R.id.rl_Invitations)
-        rlStaff = findViewById(R.id.rl_no_staff)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
@@ -62,15 +60,8 @@ class AsStaffOf : AppCompatActivity() {
                         (staffOf as ArrayList<ModelStaffOf>).add(obj)
                     }
                 }
-                if (staffOf.isEmpty()) {
-                    asStaffOf.visibility = View.GONE
-                } else {
-                    rlStaff.visibility = View.GONE
-                    asStaffOf.visibility = View.VISIBLE
-                    adapterStaff = AdapterStaffOf(this@AsStaffOf, staffOf)
-                    asStaffOf.adapter = adapterStaff
-                }
-
+                adapterStaff = AdapterStaffOf(this@AsStaffOf, staffOf)
+                asStaffOf.adapter = adapterStaff
             }
         })
         databaseReference.addValueEventListener(object : ValueEventListener {
@@ -93,21 +84,11 @@ class AsStaffOf : AppCompatActivity() {
                         (invitations as ArrayList<ModelStaffOf>).add(obj)
                     }
                 }
-                if (invitations.isEmpty()) {
-                    rvInvitations.visibility = View.GONE
-                } else {
-                    rlInvitations.visibility = View.GONE
-                    rvInvitations.visibility = View.VISIBLE
-                    adapterInvitation = AdapterInvitations(this@AsStaffOf, invitations)
-                    rvInvitations.adapter = adapterInvitation
-                }
-            }
-        })
-    }
+                adapterInvitation = AdapterInvitations(this@AsStaffOf, invitations)
+                rvInvitations.adapter = adapterInvitation
 
-    override fun onBackPressed() {
-        val intent = Intent(applicationContext, AccountsSeller::class.java)
-        startActivity(intent)
-        finish()
+            }
+
+        })
     }
 }
