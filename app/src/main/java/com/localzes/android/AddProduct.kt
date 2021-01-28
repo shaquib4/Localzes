@@ -38,14 +38,15 @@ class AddProduct : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
-        val uid=intent.getStringExtra("uid").toString()
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        val uid = intent.getStringExtra("uid").toString()
 
-        if (uid.isNotEmpty()){
+        if (uid != null) {
             addProduct(uid)
+        } else {
+            addProduct(user!!.uid)
         }
-
-
-
 
     }
 
@@ -119,7 +120,7 @@ class AddProduct : AppCompatActivity() {
                         rl_retryAddProduct.visibility = View.GONE
                         progressDialog.setMessage("Adding Your Product....")
                         progressDialog.show()
-                        uploadData(progressDialog,uid)
+                        uploadData(progressDialog, uid)
                     } else {
                         rl_addProduct.visibility = View.GONE
                         rl_retryAddProduct.visibility = View.VISIBLE

@@ -65,16 +65,13 @@
         android:layout_marginStart="@dimen/_2sdp"
         android:layout_weight="2"
         android:fontFamily="@font/montserrat_medium"
-        android:importantForAutofill="no"
-        android:inputType="number"
         android:hint="Price"
         android:maxLines="1"
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:textAlignment="center"
         android:textColor="#de4500"
-        android:textSize="@dimen/_14ssp"
-        tools:ignore="LabelFor" />
+        android:textSize="@dimen/_14ssp" />
 
     <RelativeLayout
         android:layout_width="0dp"
