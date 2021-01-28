@@ -273,6 +273,7 @@ class OrderAllActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        Uid = intent.getStringExtra("UID")
         allCartOrder()
     }
 
