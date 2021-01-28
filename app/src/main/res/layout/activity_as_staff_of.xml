@@ -80,19 +80,18 @@
                         android:id="@+id/rl_Invitations"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_below="@id/v5"
-                        android:visibility="gone">
+                        android:layout_below="@id/v5">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerInvitation"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="2dp"
+                            android:visibility="gone"
                             tools:listitem="@layout/invitation_single_row" />
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:visibility="invisible"
                         android:id="@+id/rl_No_Invitations"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -121,20 +120,19 @@
             <RelativeLayout
                 android:id="@+id/rl_staff_of_shop"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/v1"
-                android:visibility="gone">
+                android:layout_height="match_parent"
+                android:layout_below="@+id/v1">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_staff_of"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
+                    android:visibility="gone"
                     tools:listitem="@layout/staff_off" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:visibility="invisible"
                 android:id="@+id/rl_no_staff"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

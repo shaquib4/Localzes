@@ -63,11 +63,10 @@ class AsStaffOf : AppCompatActivity() {
                     }
                 }
                 if (staffOf.isEmpty()) {
-                    asStaffOf.visibility = View.VISIBLE
-                    rlStaff.visibility = View.GONE
-                } else {
-                    rlStaff.visibility = View.VISIBLE
                     asStaffOf.visibility = View.GONE
+                } else {
+                    rlStaff.visibility = View.GONE
+                    asStaffOf.visibility = View.VISIBLE
                     adapterStaff = AdapterStaffOf(this@AsStaffOf, staffOf)
                     asStaffOf.adapter = adapterStaff
                 }
@@ -95,17 +94,17 @@ class AsStaffOf : AppCompatActivity() {
                     }
                 }
                 if (invitations.isEmpty()) {
-                    rvInvitations.visibility = View.VISIBLE
-                    rlInvitations.visibility = View.GONE
-                } else {
-                    rlInvitations.visibility = View.VISIBLE
                     rvInvitations.visibility = View.GONE
+                } else {
+                    rlInvitations.visibility = View.GONE
+                    rvInvitations.visibility = View.VISIBLE
                     adapterInvitation = AdapterInvitations(this@AsStaffOf, invitations)
                     rvInvitations.adapter = adapterInvitation
                 }
             }
         })
     }
+
     override fun onBackPressed() {
         val intent = Intent(applicationContext, AccountsSeller::class.java)
         startActivity(intent)

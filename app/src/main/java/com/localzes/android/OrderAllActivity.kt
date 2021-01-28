@@ -193,7 +193,7 @@ class OrderAllActivity : AppCompatActivity() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     FirebaseDatabase.getInstance().reference.child("seller").child(Uid.toString())
-                        .child("Orders")
+                        .child("OrdersLists")
                         .addValueEventListener(object : ValueEventListener {
                             override fun onCancelled(error: DatabaseError) {
 
