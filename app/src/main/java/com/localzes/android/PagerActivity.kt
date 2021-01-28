@@ -44,7 +44,7 @@ class PagerActivity: AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent= Intent(this,AccountsSeller::class.java)
+        val intent= Intent(this,Accounts::class.java)
         startActivity(intent)
         finish()
     }

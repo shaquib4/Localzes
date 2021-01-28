@@ -45,7 +45,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 if (currentAuth!!.uid in string) {
                     showNotification(
                         orderId.toString(),
-                        (currentAuth!!.uid).toString(),
+                        sellerUid.toString(),
                         buyerUid.toString(),
                         notificationTitle.toString(),
                         notificationDescription.toString(),
@@ -100,7 +100,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 if (currentAuth!!.uid in string) {
                     showNotification(
                         orderId.toString(),
-                        (currentAuth!!.uid).toString(),
+                        sellerUid.toString(),
                         buyerUid.toString(),
                         notificationTitle.toString(),
                         notificationDescription.toString(),
