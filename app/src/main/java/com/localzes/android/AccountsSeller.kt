@@ -276,28 +276,6 @@ class AccountsSeller : AppCompatActivity() {
                 }
                 "To Main Seller" -> {
                     val intent = Intent(this, Home_seller::class.java)
-                    val newHeaders = HashMap<String, Any>()
-                    newHeaders["status"] = "Inactive"
-                    val databaseReference =
-                        FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                    databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onCancelled(error: DatabaseError) {
-
-                        }
-
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            val uidOfShop = snapshot.child("staffOfShop").value.toString()
-                            if (snapshot.child("StaffOf").child(uidOfShop).exists()) {
-                                FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                                    .child("StaffOf").child(uidOfShop).updateChildren(newHeaders)
-                                    .addOnSuccessListener {
-                                        FirebaseDatabase.getInstance().reference.child("seller")
-                                            .child(uidOfShop).child("MyStaff").child(uid)
-                                            .updateChildren(newHeaders)
-                                    }
-                            }
-                        }
-                    })
                     val headers = HashMap<String, Any>()
                     headers["staffOfShop"] = ""
                     headers["StoreStatus"] = "OPEN"

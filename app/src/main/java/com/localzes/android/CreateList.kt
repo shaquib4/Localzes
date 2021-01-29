@@ -185,7 +185,7 @@ class CreateList : AppCompatActivity() {
                 headers["itemId"] = timestamp
                 headers["itemName"] = ""
                 headers["itemQuantity"] = ""
-                headers["itemCost"] = ""
+                headers["itemCost"] = "0.0"
                 headers["shopId"] = shopId.toString()
                 userDatabase.child("OrderList").child(timestamp).setValue(headers)
                     .addOnCompleteListener {
