@@ -57,8 +57,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ListOrderDetailSeller"
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan"
             android:screenOrientation="portrait" />
         <activity
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan"
             android:name=".CreateList"
             android:screenOrientation="portrait" />
         <activity

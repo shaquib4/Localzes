@@ -5,7 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateList">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <RelativeLayout
         android:id="@+id/rl_createList"
         android:layout_width="match_parent"
@@ -71,7 +76,7 @@
             android:id="@+id/recycler_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/rlAddress"
+
             android:layout_below="@+id/rl_create"
             android:padding="2dp"
             app:stackFromEnd="true"
@@ -81,7 +86,7 @@
             android:id="@+id/rlAddress"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_70sdp"
-            android:layout_above="@+id/li">
+            android:layout_below="@+id/recycler_list">
 
             <ImageView
                 android:contentDescription="@string/todo"
@@ -143,7 +148,7 @@
             android:id="@+id/li"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/rlAddress"
             android:layout_marginHorizontal="@dimen/_3sdp"
             android:layout_marginBottom="@dimen/_2sdp"
             android:orientation="horizontal"
@@ -239,4 +244,6 @@
             android:textSize="@dimen/_15ssp" />
 
     </RelativeLayout>
+</RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
