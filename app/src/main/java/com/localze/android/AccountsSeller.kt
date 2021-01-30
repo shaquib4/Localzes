@@ -1,6 +1,7 @@
 package com.localze.android
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -31,6 +32,7 @@ class AccountsSeller : AppCompatActivity() {
     private lateinit var deliveryAvailibility: TextView
     private lateinit var switchStoreStatus: SwitchCompat
     private lateinit var switchDelivery: SwitchCompat
+    private lateinit var privacySeller: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accounts_seller)
@@ -41,6 +43,7 @@ class AccountsSeller : AppCompatActivity() {
         deliveryAvailibility = findViewById(R.id.deliveryAvailable)
         switchStoreStatus = findViewById(R.id.switchOpen)
         switchDelivery = findViewById(R.id.switchDelivery)
+        privacySeller = findViewById(R.id.txtPrivacySeller)
         logOut = findViewById(R.id.txtaccEdit)
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
@@ -84,6 +87,12 @@ class AccountsSeller : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
+        }
+        privacySeller.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://localze.flycricket.io/privacy.html")
+            val chooser = Intent.createChooser(intent, "Open With")
+            startActivity(chooser)
         }
 
 

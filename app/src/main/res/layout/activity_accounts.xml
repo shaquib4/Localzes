@@ -83,16 +83,17 @@
 
             tools:targetApi="p" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/txtPrivacy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Privacy Policy"
-        android:textColor="#de4500"
+        android:layout_above="@id/bottom_navAcc"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/montserrat_bold"
-        android:textSize="@dimen/_22ssp"
-        android:layout_above="@id/bottom_navAcc"/>
+        android:text="Privacy Policy"
+        android:textColor="#de4500"
+        android:textSize="@dimen/_22ssp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navAcc"

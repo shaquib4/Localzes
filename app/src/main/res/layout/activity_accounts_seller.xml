@@ -191,16 +191,17 @@
             android:textSize="@dimen/_15ssp" />
 
     </RelativeLayout>
+
     <TextView
         android:id="@+id/txtPrivacySeller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Privacy Policy"
+        android:layout_above="@id/bottom_navAcc_seller"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/montserrat_bold"
+        android:text="Privacy Policy"
         android:textColor="#de4500"
-        android:textSize="@dimen/_22ssp"
-        android:layout_above="@id/bottom_navAcc_seller"/>
+        android:textSize="@dimen/_22ssp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navAcc_seller"

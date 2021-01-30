@@ -1,6 +1,7 @@
 package com.localze.android
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -24,10 +25,12 @@ class Accounts : AppCompatActivity() {
     private lateinit var logOut: TextView
     private lateinit var databaseReference: DatabaseReference
     private lateinit var userAuth: FirebaseAuth
+    private lateinit var privacy: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accounts)
         userName = findViewById(R.id.txtaccName)
+        privacy = findViewById(R.id.txtPrivacy)
         userMobileNo = findViewById(R.id.txtaccmobile)
         userEmailAddress = findViewById(R.id.txtaccEmail)
         logOut = findViewById(R.id.txtaccEdit)
@@ -55,6 +58,12 @@ class Accounts : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
+        }
+        privacy.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://localze.flycricket.io/privacy.html")
+            val chooser = Intent.createChooser(intent, "Open With")
+            startActivity(chooser)
         }
         bottom_navAcc.selectedItemId = R.id.nav_account
         bottom_navAcc.setOnNavigationItemSelectedListener { item ->
