@@ -186,7 +186,7 @@ class  SellerShop_detail : AppCompatActivity() {
                                             startActivity(
                                                 Intent(
                                                     this@SellerShop_detail,
-                                                    AddProduct::class.java
+                                                    Home_seller::class.java
                                                 )
                                             )
                                             finish()
