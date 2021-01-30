@@ -146,7 +146,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/bottom_navAcc_seller"
+        android:layout_above="@id/txtPrivacySeller"
         android:layout_below="@id/rl_Status"
         android:layout_marginTop="@dimen/_5sdp">
 
@@ -180,6 +180,7 @@
             android:src="@drawable/ic_outline_lock_24" />
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imglock"
@@ -190,6 +191,16 @@
             android:textSize="@dimen/_15ssp" />
 
     </RelativeLayout>
+    <TextView
+        android:id="@+id/txtPrivacySeller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#de4500"
+        android:textSize="@dimen/_22ssp"
+        android:layout_above="@id/bottom_navAcc_seller"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navAcc_seller"
