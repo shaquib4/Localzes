@@ -155,7 +155,7 @@
     <string name="rs_699">Rs. 699</string>
     <string name="rs_1099">Rs. 1099</string>
     <string name="_4_5_5">4.5/5</string>
-    <string name="continue_1">Continue</string>
+    <string name="continue_1">Confirm</string>
     <string name="no_item_in_your_cart">No Item in your cart !</string>
     <string name="shop_now">Shop Now</string>
     <string name="total_item_9">Total Item :- 9</string>
@@ -324,7 +324,7 @@
     <string name="no_orders_pending_yet">No orders pending yet!</string>
     <string name="add_shop_image_optional">Add shop image (optional)</string>
     <string name="choose_shop_category">Choose shop category</string>
-    <string name="upi_id_optional">UPI ID (optional)</string>
+    <string name="upi_id_optional">PhonePay or GooglePay Business UPI ID (optional)</string>
     <string name="upload">Upload</string>
     <string name="select_shop_s_activity_hours">Select Shop\'s Activity Hours</string>
     <string name="close">Close</string>
