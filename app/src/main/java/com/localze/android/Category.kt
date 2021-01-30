@@ -1,4 +1,4 @@
-package com.localzes.android
+package com.localze.android
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -9,12 +9,11 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.localzes.android.Adapters.AdapterCategory
-import com.localzes.android.Modals.ModelCategory
+import com.localze.android.Adapters.AdapterCategory
+import com.localze.android.Modals.ModelCategory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_category.*
-import kotlinx.android.synthetic.main.activity_seller__products.*
 import util.ConnectionManager
 
 class Category : AppCompatActivity() {
