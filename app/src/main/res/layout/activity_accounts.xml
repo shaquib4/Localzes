@@ -93,7 +93,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="Privacy Policy"
         android:textColor="#de4500"
-        android:textSize="@dimen/_22ssp" />
+        android:textSize="@dimen/_18ssp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navAcc"
