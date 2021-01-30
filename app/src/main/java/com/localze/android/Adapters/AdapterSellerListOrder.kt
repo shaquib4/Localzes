@@ -131,7 +131,7 @@ class AdapterSellerListOrder(
 
 
                     } else {
-
+                        holder.edtPrice.setText(sellerOrderList.itemCost)
                         holder.itemRemove.visibility = View.VISIBLE
                         holder.itemRevive.visibility = View.GONE
                         holder.edtPrice.addTextChangedListener(object : TextWatcher {
