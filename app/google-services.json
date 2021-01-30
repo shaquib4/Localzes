@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:898589184006:android:78b354f49fc84d2fe73387",
+        "mobilesdk_app_id": "1:898589184006:android:ed9e99705c0e19f2e73387",
         "android_client_info": {
-          "package_name": "com.example.localzes"
+          "package_name": "com.localze.android"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "898589184006-inh66lcntoaep58m1cvpvd1us6nngsni.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.localze.android",
+            "certificate_hash": "f2a371ec6806cdb54bd36dd960609e32137b68dd"
+          }
+        },
         {
           "client_id": "898589184006-lv3b6dm4gvvcsiucbaa8s7h9j5k1ev7v.apps.googleusercontent.com",
           "client_type": 3
