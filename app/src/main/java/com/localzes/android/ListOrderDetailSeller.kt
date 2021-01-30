@@ -331,7 +331,36 @@ class ListOrderDetailSeller : AppCompatActivity() {
                                     prepareNotificationMessage(orderId, "Order has been Confirmed")
                                     databaseRef.child(orderId).updateChildren(headers)
                                         .addOnCompleteListener {
-                                            this.recreate()
+                                            databaseRef.child(orderId).child("ListItems")
+                                                .addValueEventListener(object : ValueEventListener {
+                                                    override fun onCancelled(error: DatabaseError) {
+
+                                                    }
+
+                                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                                        (list as ArrayList<ModelList>).clear()
+                                                        for (i in snapshot.children) {
+                                                            val obj = ModelList(
+                                                                i.child("itemId").value.toString(),
+                                                                i.child("itemName").value.toString(),
+                                                                i.child("itemQuantity").value.toString(),
+                                                                i.child("itemCost").value.toString(),
+                                                                i.child("shopId").value.toString()
+                                                            )
+                                                            (list as ArrayList<ModelList>).add(obj)
+                                                        }
+                                                        adapterListOrder = AdapterSellerListOrder(
+                                                            this@ListOrderDetailSeller,
+                                                            list,
+                                                            orderId,
+                                                            orderBy,
+                                                            "Accepted",
+                                                            orderTo
+                                                        )
+                                                        recyclerOrderedList.adapter =
+                                                            adapterListOrder
+                                                    }
+                                                })
                                         }
                                 }
                             }
