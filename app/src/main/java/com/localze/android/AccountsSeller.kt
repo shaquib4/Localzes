@@ -288,7 +288,7 @@ class AccountsSeller : AppCompatActivity() {
                     val headers = HashMap<String, Any>()
                     headers["staffOfShop"] = ""
                     headers["StoreStatus"] = "OPEN"
-                    databaseReference.updateChildren(headers).addOnSuccessListener {
+                    databaseReference.child(uid).updateChildren(headers).addOnSuccessListener {
                         startActivity(intent)
                         finish()
                     }
