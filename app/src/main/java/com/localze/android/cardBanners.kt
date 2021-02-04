@@ -1,6 +1,7 @@
 package com.localze.android
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.dynamiclinks.DynamicLink
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import kotlinx.android.synthetic.main.activity_card_banners.*
 
 class cardBanners : AppCompatActivity() {
@@ -150,6 +153,32 @@ class cardBanners : AppCompatActivity() {
             startActivity(Intent(this, MyStaffActivity::class.java))
             finish()
         }
+        cardShare.setOnClickListener {
+            createLink()
+
+        }
+    }
+
+    private fun createLink() {
+        val dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+            .setLink(Uri.parse("https://www.localze.com/"))
+            .setDynamicLinkDomain("https://localzes.page.link")
+            .setAndroidParameters(DynamicLink.AndroidParameters.Builder().build())
+            .buildDynamicLink()
+        val dynamicLinkUri = dynamicLink.uri
+        val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+            .setLongLink(dynamicLinkUri)
+            .setDomainUriPrefix("https://localzes.page.link")
+            .buildShortDynamicLink().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val shortLink = it.result?.shortLink
+                    val intent = Intent()
+                    intent.action = Intent.ACTION_SEND
+                    intent.putExtra(Intent.EXTRA_TEXT, shortLink.toString())
+                    intent.type = "text/plain"
+                    startActivity(intent)
+                }
+            }
     }
 
     override fun onBackPressed() {
