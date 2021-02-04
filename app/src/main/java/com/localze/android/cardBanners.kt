@@ -161,24 +161,25 @@ class cardBanners : AppCompatActivity() {
 
     private fun createLink() {
         val dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
-            .setLink(Uri.parse("https://www.localze.com/"))
+            .setLink(Uri.parse("http://www.localze.com/"))
             .setDynamicLinkDomain("https://localzes.page.link")
             .setAndroidParameters(DynamicLink.AndroidParameters.Builder().build())
             .buildDynamicLink()
         val dynamicLinkUri = dynamicLink.uri
-        val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.putExtra(Intent.EXTRA_TEXT, dynamicLinkUri.toString())
+        intent.type = "text/plain"
+        startActivity(intent)
+       /* val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
             .setLongLink(dynamicLinkUri)
             .setDomainUriPrefix("https://localzes.page.link")
             .buildShortDynamicLink().addOnCompleteListener {
                 if (it.isSuccessful) {
                     val shortLink = it.result?.shortLink
-                    val intent = Intent()
-                    intent.action = Intent.ACTION_SEND
-                    intent.putExtra(Intent.EXTRA_TEXT, shortLink.toString())
-                    intent.type = "text/plain"
-                    startActivity(intent)
+
                 }
-            }
+            }*/
     }
 
     override fun onBackPressed() {
