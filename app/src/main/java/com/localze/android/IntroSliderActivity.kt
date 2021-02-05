@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -44,6 +45,7 @@ class IntroSliderActivity : AppCompatActivity() {
                     var deepLink: Uri? = null
                     if (it != null) {
                         deepLink = it.link
+                        Log.e("TAG", "myReferLink$deepLink")
                         var referLink = deepLink.toString()
                         try {
                             referLink = referLink.substring(referLink.lastIndexOf("=") + 1)

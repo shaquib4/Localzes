@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -154,7 +155,7 @@ class cardBanners : AppCompatActivity() {
             finish()
         }
         cardShare.setOnClickListener {
-            createLink(s)
+            createReferLink(s)
 
         }
     }
@@ -166,11 +167,16 @@ class cardBanners : AppCompatActivity() {
             .setAndroidParameters(DynamicLink.AndroidParameters.Builder().build())
             .buildDynamicLink()
         val dynamicLinkUri = dynamicLink.uri
+
+    }
+
+    private fun createReferLink(s: String) {
         val shareLinkTest =
-            "https://localzes.page.link/?" + "link=http://www.localze.com/myshopId.php?shopid=" + s + "&apn=" + packageName + "&st=" + "My Shop Link" + "&si=" + R.drawable.ic_localze
+            "https://localzes.page.link/?link=http://www.localze.com/myshopId.php?shopid=$s&apn=$packageName&st=My Shop Link" /*+ "&si=" + R.drawable.ic_localze*/
+        Log.e("TAG", "shareLink$shareLinkTest")
 
         val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
-            .setLink(Uri.parse(shareLinkTest))
+            .setLongLink(Uri.parse(shareLinkTest))
             .buildShortDynamicLink().addOnCompleteListener {
                 if (it.isSuccessful) {
                     val shortLink = it.result?.shortLink
@@ -181,6 +187,7 @@ class cardBanners : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+
     }
 
     override fun onBackPressed() {
