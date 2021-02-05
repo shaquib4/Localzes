@@ -177,6 +177,7 @@ class cardBanners : AppCompatActivity() {
 
         val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
             .setLongLink(Uri.parse(shareLinkTest))
+            .setDomainUriPrefix("https://localzes.page.link")
             .buildShortDynamicLink().addOnCompleteListener {
                 if (it.isSuccessful) {
                     val shortLink = it.result?.shortLink
