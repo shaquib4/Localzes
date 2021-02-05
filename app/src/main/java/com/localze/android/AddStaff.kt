@@ -3,7 +3,9 @@ package com.localze.android
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import org.json.JSONObject
+import java.net.URLEncoder
 
 class AddStaff : AppCompatActivity() {
     private lateinit var staffNumber: EditText
@@ -114,8 +117,6 @@ class AddStaff : AppCompatActivity() {
                             staffuid = i.child("shopId").value.toString()
 
                         }
-
-
                     }
                     if (staffNumber.text.toString() == phoneCheck && phoneCheck.toString()
                             .isNotEmpty()
@@ -169,15 +170,39 @@ class AddStaff : AppCompatActivity() {
                                 }
                         }
                     } else {
-                        Toast.makeText(
-                            this@AddStaff,
-                            "This user have not downloaded Localzes app",
-                            Toast.LENGTH_SHORT
-                        ).show()
                         progressDialog.dismiss()
+                        val builder = AlertDialog.Builder(this@AddStaff)
+                        val view =
+                            LayoutInflater.from(this@AddStaff).inflate(R.layout.custom_layout, null)
+                        builder.setView(view)
+                        val show = builder.show()
+                        val shareLink = view.findViewById<Button>(R.id.shareLink)
+                        val cancel = view.findViewById<Button>(R.id.Cancel)
+                        shareLink.setOnClickListener {
+                            show.dismiss()
+                            try {
+                                val mobile = staffNumber.text.toString()
+                                val msg =
+                                    "Cupcakes want you to be registered as their staff.To download the app,click" + URLEncoder.encode(
+                                        "https://play.google.com/store/apps/details?id=com.localze.android",
+                                        "utf-8"
+                                    ) + "and continue as Seller to accept invitation"
+                                startActivity(
+                                    Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse("https://api.whatsapp.com/send?phone=$mobile&text=$msg")
+                                    )
+                                )
+
+                            } catch (e: Exception) {
+
+                            }
+                            cancel.setOnClickListener {
+                                show.dismiss()
+                            }
+                        }
                     }
                 }
-
             })
         }
 

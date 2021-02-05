@@ -74,6 +74,7 @@ class cardBanners : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
+
                     if (!(snapshot.child("staffOfShop")
                             .exists()) || snapshot.child("staffOfShop").value.toString() == ""
                     ) {
@@ -155,8 +156,18 @@ class cardBanners : AppCompatActivity() {
             finish()
         }
         cardShare.setOnClickListener {
-            createReferLink(s)
+            FirebaseDatabase.getInstance().reference.child("seller").child(s)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val shopName = snapshot.child("shop_name").value.toString()
+                        val imgUrl = snapshot.child("imageUrl").value.toString()
+                        createReferLink(s, shopName, imgUrl)
+                    }
+                })
         }
     }
 
@@ -170,9 +181,9 @@ class cardBanners : AppCompatActivity() {
 
     }
 
-    private fun createReferLink(s: String) {
+    private fun createReferLink(s: String, shopName: String, imgUrl: String) {
         val shareLinkTest =
-            "https://localzes.page.link/?link=http://www.localze.com/myshopId.php?shopid=$s&apn=$packageName&st=My Shop Link" /*+ "&si=" + R.drawable.ic_localze*/
+            "https://localzes.page.link/?link=http://www.localze.com/myshopId.php?shopid=$s&apn=$packageName&st=${shopName}&si=$imgUrl"
         Log.e("TAG", "shareLink$shareLinkTest")
 
         val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()

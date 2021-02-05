@@ -59,10 +59,9 @@ class IntroSliderActivity : AppCompatActivity() {
                         }
                     }
                 }
-            } else {
-                startActivity(Intent(this, SplashScreenActivity::class.java))
-                finish()
             }
+            startActivity(Intent(this, SplashScreenActivity::class.java))
+            finish()
         }
         view_pager2.adapter = introSliderAdapter
         btnNext.setOnClickListener {

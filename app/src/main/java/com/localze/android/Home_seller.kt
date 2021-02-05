@@ -1,6 +1,7 @@
 package com.localze.android
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import kotlinx.android.synthetic.main.activity_home_seller.*
 import util.ConnectionManager
 
@@ -27,6 +29,7 @@ class Home_seller : AppCompatActivity() {
     private lateinit var totalOrders: TextView
     private lateinit var totalIncome: TextView
     private lateinit var switchButton: Button
+    private lateinit var shareApp: ImageView
     private var t1: Int = 0
     private var t2: Int = 0
     private var t3: Int = 0
@@ -56,6 +59,7 @@ class Home_seller : AppCompatActivity() {
         ordersCompleted = findViewById(R.id.txtItemActive)
         ordersPending = findViewById(R.id.txtItemPending)
         switchButton = findViewById(R.id.switchButtonHomeSeller)
+        shareApp = findViewById(R.id.imgSend)
         orderAuth = FirebaseAuth.getInstance()
         val user = orderAuth.currentUser
         val uid = user!!.uid
@@ -67,6 +71,7 @@ class Home_seller : AppCompatActivity() {
         sellerRetry.setOnClickListener {
             this.recreate()
         }
+
 
         bottom_navHome_seller.selectedItemId = R.id.nav_store_seller
         bottom_navHome_seller.setOnNavigationItemSelectedListener { item ->
@@ -152,14 +157,14 @@ class Home_seller : AppCompatActivity() {
                                         "Delivery Access" -> {
 
                                             ordersPending.visibility = View.GONE
-                                            txtItemRejected.visibility=View.GONE
-                                            txtItemAll.visibility=View.GONE
+                                            txtItemRejected.visibility = View.GONE
+                                            txtItemAll.visibility = View.GONE
                                             editShopDetails.visibility = View.GONE
                                             totalIncome.visibility = View.GONE
                                             homeSeller(uidOfShop)
                                             orderPen.isClickable = false
-                                            OrderRejected.isClickable=false
-                                            OrderAll.isClickable=false
+                                            OrderRejected.isClickable = false
+                                            OrderAll.isClickable = false
                                         }
                                         "Catalogue Access(Product)" -> {
                                             rl_HomeSeller.visibility = View.GONE
@@ -186,6 +191,28 @@ class Home_seller : AppCompatActivity() {
                     }
                 }
             })
+    }
+
+    private fun createReferLink(
+        uid: String,
+        shopName: String,
+        imgUrl: String
+    ) {
+        val shareLinkTest =
+            "https://localzes.page.link/?link=http://www.localze.com/myshopId.php?shopid=$uid&apn=$packageName&st=${shopName}&si=$imgUrl"
+        val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+            .setLongLink(Uri.parse(shareLinkTest))
+            .setDomainUriPrefix("https://localzes.page.link")
+            .buildShortDynamicLink().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val shortLink = it.result?.shortLink
+                    val intent = Intent()
+                    intent.action = Intent.ACTION_SEND
+                    intent.putExtra(Intent.EXTRA_TEXT, shortLink.toString())
+                    intent.type = "text/plain"
+                    startActivity(intent)
+                }
+            }
     }
 
     private fun homeSeller(uid: String) {
@@ -479,6 +506,22 @@ class Home_seller : AppCompatActivity() {
                 shopName.text = shop
             }
         })
+        shareApp.setOnClickListener {
+            FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val shopName = snapshot.child("shop_name").value.toString()
+                        val imgUrl = snapshot.child("imageUrl").value.toString()
+                        createReferLink(uid, shopName, imgUrl)
+                    }
+
+                })
+
+        }
     }
 
     override fun onBackPressed() {
