@@ -76,7 +76,7 @@ class cardBanners : AppCompatActivity() {
                     if (!(snapshot.child("staffOfShop")
                             .exists()) || snapshot.child("staffOfShop").value.toString() == ""
                     ) {
-                        CardBanners()
+                        CardBanners(uid)
                     } else {
                         val uidOfShop = snapshot.child("staffOfShop").value.toString()
                         if (snapshot.child("StaffOf").child(uidOfShop).exists()) {
@@ -96,7 +96,7 @@ class cardBanners : AppCompatActivity() {
                                             rl_accessCard.visibility = View.VISIBLE
                                         }
                                         "Total Access" -> {
-                                            CardBanners()
+                                            CardBanners(uidOfShop)
                                         }
                                         "Order Access" -> {
                                             cardScroll.visibility = View.GONE
@@ -115,7 +115,7 @@ class cardBanners : AppCompatActivity() {
                                         }
                                         "Boost Your Shop Access" -> {
                                             carStaff.visibility = View.GONE
-                                            CardBanners()
+                                            CardBanners(uidOfShop)
                                             carStaff.isClickable = false
                                         }
                                         "(Orders + Catalogue)Access" -> {
@@ -125,7 +125,7 @@ class cardBanners : AppCompatActivity() {
                                         }
                                         "(Order + Boost Your Shop)Access" -> {
                                             carStaff.visibility = View.GONE
-                                            CardBanners()
+                                            CardBanners(uidOfShop)
                                         }
                                     }
                                 }
@@ -140,7 +140,7 @@ class cardBanners : AppCompatActivity() {
 
     }
 
-    private fun CardBanners() {
+    private fun CardBanners(s: String) {
         cardQR.setOnClickListener {
             startActivity(Intent(this, generateQRcode::class.java))
             finish()
@@ -154,12 +154,12 @@ class cardBanners : AppCompatActivity() {
             finish()
         }
         cardShare.setOnClickListener {
-            createLink()
+            createLink(s)
 
         }
     }
 
-    private fun createLink() {
+    private fun createLink(s: String) {
         val dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
             .setLink(Uri.parse("http://www.localze.com/"))
             .setDynamicLinkDomain("https://localzes.page.link")
@@ -167,7 +167,7 @@ class cardBanners : AppCompatActivity() {
             .buildDynamicLink()
         val dynamicLinkUri = dynamicLink.uri
         val shareLinkTest =
-            "https://localzes.page.link/?" + "link=http://www.localze.com/" + "&apn=" + packageName + "&st=" + "My Shop Link" + "&si=" + R.drawable.ic_localze
+            "https://localzes.page.link/?" + "link=http://www.localze.com/myshopId.php?shopid=" + s + "&apn=" + packageName + "&st=" + "My Shop Link" + "&si=" + R.drawable.ic_localze
 
         val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
             .setLink(Uri.parse(shareLinkTest))

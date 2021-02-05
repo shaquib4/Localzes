@@ -3,12 +3,15 @@ package com.localze.android
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.localze.android.Adapters.AdapterIntroSlide
 import com.localze.android.Modals.IntroSlide
 import kotlinx.android.synthetic.main.activity_intro_slider.*
@@ -46,7 +49,8 @@ class IntroSliderActivity : AppCompatActivity() {
             }
         }
         btnGetStarted.setOnClickListener {
-            startActivity(Intent(this, SplashScreenActivity::class.java))
+            val intent = Intent(this, SplashScreenActivity::class.java)
+            startActivity(intent)
             savePrefData()
             finish()
         }
@@ -225,5 +229,29 @@ class IntroSliderActivity : AppCompatActivity() {
         btnGetStarted.animation = btnAnim
     }
 
+    override fun onStart() {
+        super.onStart()
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val user = firebaseAuth.currentUser
+        if (user?.uid != null) {
+            FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
+                var deepLink: Uri? = null
+                if (it != null) {
+                    deepLink = it.link
+                    var referLink = deepLink.toString()
+                    try {
+                        referLink = referLink.substring(referLink.lastIndexOf("=") + 1)
+                        val shopId = referLink
+                        val intent = Intent(this, UserProductsActivity::class.java)
+                        intent.putExtra("shopId", shopId)
+                        startActivity(intent)
+                        finish()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
+    }
 
 }
