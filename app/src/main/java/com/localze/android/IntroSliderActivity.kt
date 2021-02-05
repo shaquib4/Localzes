@@ -37,8 +37,30 @@ class IntroSliderActivity : AppCompatActivity() {
         btnGetStarted = findViewById(R.id.btn_get_started)
         btnAnim = AnimationUtils.loadAnimation(applicationContext, R.anim.button_animation)
         if (restorePrefData()) {
-            startActivity(Intent(this, SplashScreenActivity::class.java))
-            finish()
+            val firebaseAuth = FirebaseAuth.getInstance()
+            val user = firebaseAuth.currentUser
+            if (user?.uid != null) {
+                FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
+                    var deepLink: Uri? = null
+                    if (it != null) {
+                        deepLink = it.link
+                        var referLink = deepLink.toString()
+                        try {
+                            referLink = referLink.substring(referLink.lastIndexOf("=") + 1)
+                            val shopId = referLink
+                            val intent = Intent(this, UserProductsActivity::class.java)
+                            intent.putExtra("shopId", shopId)
+                            startActivity(intent)
+                            finish()
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                }
+            } else {
+                startActivity(Intent(this, SplashScreenActivity::class.java))
+                finish()
+            }
         }
         view_pager2.adapter = introSliderAdapter
         btnNext.setOnClickListener {
@@ -233,25 +255,6 @@ class IntroSliderActivity : AppCompatActivity() {
         super.onStart()
         val firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser
-        if (user?.uid != null) {
-            FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
-                var deepLink: Uri? = null
-                if (it != null) {
-                    deepLink = it.link
-                    var referLink = deepLink.toString()
-                    try {
-                        referLink = referLink.substring(referLink.lastIndexOf("=") + 1)
-                        val shopId = referLink
-                        val intent = Intent(this, UserProductsActivity::class.java)
-                        intent.putExtra("shopId", shopId)
-                        startActivity(intent)
-                        finish()
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-            }
-        }
     }
 
 }
