@@ -123,7 +123,10 @@ class PastOrdersActivity : AppCompatActivity() {
                             i.child("orderByMobile").value.toString(),
                             i.child("paymentMode").value.toString()
                         )
-                        if (i.child("orderStatus").value.toString() == "Completed") {
+                        if (i.child("orderStatus").value.toString() == "Completed" || i.child("orderStatus").value.toString() == "Rejected due to Item is Out Of Stock" || i.child(
+                                "orderStatus"
+                            ).value.toString() == "Rejected due to Shop is closed Now" || i.child("orderStatus").value.toString() == "Rejected due to Others"
+                        ) {
                             (mOrderedItemList as ArrayList<ModalSellerOrderList>).add(obj)
                         }
                     }
