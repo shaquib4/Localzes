@@ -60,7 +60,8 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
             e.printStackTrace()
         }
         holder.productTitleCart.text = cartDetails.productTitle
-        holder.productOfferPriceCart.text = "₹${cartDetails.priceEach}"
+        holder.productOfferPriceCart.text =
+            "₹" + cartDetails.priceEach + "/per " + cartDetails.originalQuantity + " " + cartDetails.unit
         val mString = "₹${cartDetails.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()

@@ -285,6 +285,8 @@ class UserProductsActivity : AppCompatActivity() {
                         val productImageUrl = i.child("productImageUrl").value.toString()
                         val sellingPrice = i.child("sellingPrice").value.toString()
                         val finalsellingPrice = i.child("finalsellingPrice").value.toString()
+                        val unit = i.child("unit").value.toString()
+                        val originalQuantity = i.child("originalQuantity").value.toString()
                         val obj = UserCartDetails(
                             productId,
                             orderBy,
@@ -295,7 +297,7 @@ class UserProductsActivity : AppCompatActivity() {
                             orderTo,
                             productImageUrl,
                             sellingPrice,
-                            finalsellingPrice
+                            finalsellingPrice, unit, originalQuantity
                         )
                         finalPriceList.add(finalPrice.toDouble())
                         sellingPriceList.add(finalsellingPrice.toDouble())

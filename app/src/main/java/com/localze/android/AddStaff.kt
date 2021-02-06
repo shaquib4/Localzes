@@ -33,6 +33,7 @@ class AddStaff : AppCompatActivity() {
     private lateinit var progressDialog: ProgressDialog
     private lateinit var shopAuth: FirebaseAuth
     var selectedAccess: String = ""
+    var shopName: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_staff)
@@ -140,6 +141,8 @@ class AddStaff : AppCompatActivity() {
                             dataRef.child(sellerUid).child("MyStaff").child(staffuid.toString())
                                 .updateChildren(headers)
                                 .addOnSuccessListener {
+                                    shopName = snapshot.child(sellerUid)
+                                        .child("shop_name").value.toString()
                                     val newHeader = HashMap<String, Any>()
                                     newHeader["shopOwnerName"] =
                                         snapshot.child(sellerUid).child("name").value.toString()
@@ -183,10 +186,10 @@ class AddStaff : AppCompatActivity() {
                             try {
                                 val mobile = staffNumber.text.toString()
                                 val msg =
-                                    "Cupcakes want you to be registered as their staff.To download the app,click " + URLEncoder.encode(
+                                    "$shopName want you to be registered as their staff.To download the app,click " + URLEncoder.encode(
                                         "https://play.google.com/store/apps/details?id=com.localze.android",
                                         "utf-8"
-                                    ) + " and continue as Seller to accept invitation"
+                                    ) + " and continue as Seller to accept invitation.If link doesn't work save the number in your contacts as $shopName Shop or reply on the message"
                                 startActivity(
                                     Intent(
                                         Intent.ACTION_VIEW,

@@ -65,23 +65,25 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
         userAuth = FirebaseAuth.getInstance()
         val user = userAuth.currentUser
         val uid = user!!.uid
-        val refs=FirebaseDatabase.getInstance().reference.child("users").child(orderToId.toString()).child("current_address")
-            .addListenerForSingleValueEvent(object :ValueEventListener{
-                override fun onCancelled(error: DatabaseError) {
+        val refs =
+            FirebaseDatabase.getInstance().reference.child("users").child(orderToId.toString())
+                .child("current_address")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val latitude=snapshot.child("latitude").value.toString()
-                    val longitude=snapshot.child("longitude").value.toString()
-                    btnDirShop.setOnClickListener {
-                        val uri=Uri.parse("google.navigation:q=$latitude,$longitude")
-                        val intent=Intent(Intent.ACTION_VIEW)
-                        intent.data=uri
-                        startActivity(intent)
                     }
-                }
-            })
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val latitude = snapshot.child("latitude").value.toString()
+                        val longitude = snapshot.child("longitude").value.toString()
+                        btnDirShop.setOnClickListener {
+                            val uri = Uri.parse("google.navigation:q=$latitude,$longitude")
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            intent.data = uri
+                            startActivity(intent)
+                        }
+                    }
+                })
         imgMakeCall.setOnClickListener {
             makePhoneCall()
         }
@@ -101,7 +103,8 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                         i.child("productTitle").value.toString(),
                         i.child("finalPrice").value.toString(),
                         i.child("priceEach").value.toString(),
-                        i.child("finalQuantity").value.toString()
+                        i.child("finalQuantity").value.toString(), i.child("unit").value.toString(),
+                        i.child("originalQuantity").value.toString()
                     )
                     (orderItemsList as ArrayList<ModelOrderedItems>).add(obj)
                 }
@@ -159,9 +162,9 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
                 }
                 if (snapshot.child("deliveryFee").exists()) {
                     deliveryFee = snapshot.child("deliveryFee").value.toString().toDouble()
-                    if (deliveryFee==null){
-                        deliveryFeeUser.text="0"
-                    }else{
+                    if (deliveryFee == null) {
+                        deliveryFeeUser.text = "0"
+                    } else {
                         deliveryFeeUser.text = "₹" + snapshot.child("deliveryFee").value.toString()
                     }
                     totalAmountUser.text = "₹${orderCost}(Including Delivery Fee)"

@@ -45,7 +45,7 @@ class AdapterSearchProductItem(
         val products = searchProduct[position]
         holder.productName.text =
             products.title.substring(0, 1).toUpperCase() + products.title.substring(1)
-        holder.productPrice.text = "₹" + products.offerPrice
+        holder.productPrice.text = "₹" + products.offerPrice+"/ per ${products.quantity}${products.unit}"
         try {
             when (products.stock) {
                 "IN" -> {
