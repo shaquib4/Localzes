@@ -173,7 +173,7 @@ class AddStaff : AppCompatActivity() {
                         progressDialog.dismiss()
                         val builder = AlertDialog.Builder(this@AddStaff)
                         val view =
-                            LayoutInflater.from(this@AddStaff).inflate(R.layout.custom_layout, null)
+                            LayoutInflater.from(this@AddStaff).inflate(R.layout.custom_dialog, null)
                         builder.setView(view)
                         val show = builder.show()
                         val shareLink = view.findViewById<Button>(R.id.shareLink)
@@ -183,14 +183,14 @@ class AddStaff : AppCompatActivity() {
                             try {
                                 val mobile = staffNumber.text.toString()
                                 val msg =
-                                    "Cupcakes want you to be registered as their staff.To download the app,click" + URLEncoder.encode(
+                                    "Cupcakes want you to be registered as their staff.To download the app,click " + URLEncoder.encode(
                                         "https://play.google.com/store/apps/details?id=com.localze.android",
                                         "utf-8"
-                                    ) + "and continue as Seller to accept invitation"
+                                    ) + " and continue as Seller to accept invitation"
                                 startActivity(
                                     Intent(
                                         Intent.ACTION_VIEW,
-                                        Uri.parse("https://api.whatsapp.com/send?phone=$mobile&text=$msg")
+                                        Uri.parse("https://api.whatsapp.com/send?phone=+91$mobile&text=$msg")
                                     )
                                 )
 
