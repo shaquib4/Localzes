@@ -291,7 +291,62 @@ class ListOrderDetailSeller : AppCompatActivity() {
                 }
             }
         })
+     reject.setOnClickListener {
+         val newBuilder = AlertDialog.Builder(this)
+         newBuilder.setTitle("Choose A Reason")
+         val reasons =
+             arrayOf("Item is Out Of Stock", "Shop is closed Now", "Others")
+         newBuilder.setSingleChoiceItems(reasons, -1) { dialog, which ->
+             val selected = reasons[which]
+             selectedReason = selected
+             val headers = HashMap<String, Any>()
+             headers["listStatus"] = "Rejected"
+             headers["orderStatus"] = "Rejected due to $selectedReason"
+             headers["orderCost"] ="0.0"
+             headers["deliveryFee"] = "0.0"
 
+             ref.child(orderId).updateChildren(headers).addOnCompleteListener {
+                 if (it.isSuccessful) {
+                     prepareNotificationMessage(orderId, "Order Rejected due to $selectedReason")
+                     databaseRef.child(orderId).updateChildren(headers)
+                         .addOnCompleteListener {
+                             databaseRef.child(orderId).child("ListItems")
+                                 .addValueEventListener(object : ValueEventListener {
+                                     override fun onCancelled(error: DatabaseError) {
+
+                                     }
+
+                                     override fun onDataChange(snapshot: DataSnapshot) {
+                                         (list as ArrayList<ModelList>).clear()
+                                         for (i in snapshot.children) {
+                                             val obj = ModelList(
+                                                 i.child("itemId").value.toString(),
+                                                 i.child("itemName").value.toString(),
+                                                 i.child("itemQuantity").value.toString(),
+                                                 i.child("itemCost").value.toString(),
+                                                 i.child("shopId").value.toString()
+                                             )
+                                             (list as ArrayList<ModelList>).add(obj)
+                                         }
+                                         adapterListOrder = AdapterSellerListOrder(
+                                             this@ListOrderDetailSeller,
+                                             list,
+                                             orderId,
+                                             orderBy,
+                                             "Rejected",
+                                             orderTo
+                                         )
+                                         recyclerOrderedList.adapter =
+                                             adapterListOrder
+                                     }
+                                 })
+                         }
+                 }
+             }
+             dialog.dismiss()
+         }
+         newBuilder.create().show()
+     }
 
         acceptConfirm.setOnClickListener {
             if (etDeliveryList.text.toString().isNotEmpty()) {

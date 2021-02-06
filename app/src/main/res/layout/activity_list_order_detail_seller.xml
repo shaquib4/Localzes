@@ -457,7 +457,7 @@
            android:layout_below="@id/rl_ListOrderDetails"
             android:layout_marginHorizontal="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_3sdp"
-            android:weightSum="2">
+            android:weightSum="3">
 
 
             <!-- <TextView
@@ -473,24 +473,38 @@
             <EditText
                 android:id="@+id/etDeliveryChargeList"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_42sdp"
-                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_weight="0.8"
                 android:fontFamily="@font/montserrat_medium"
                 android:hint="Enter Delivery Charge "
                 android:inputType="number"
                 android:textAlignment="center" />
 
             <Button
+                android:layout_marginStart="@dimen/_5sdp"
                 android:id="@+id/acceptConfirm"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_33sdp"
-                android:layout_weight="1"
+                android:layout_weight="1.4"
                 android:background="@drawable/bg_buttons"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/accept_and_confirm"
                 android:textAllCaps="false"
                 android:textColor="#fff"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_10ssp" />
+            <Button
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:id="@+id/reject"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_weight="0.8"
+                android:background="@drawable/bg_buttons"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Rejrct"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="@dimen/_10ssp" />
         </LinearLayout>
     </RelativeLayout>
 

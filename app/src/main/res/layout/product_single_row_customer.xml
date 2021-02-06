@@ -146,10 +146,10 @@
                 android:id="@+id/txtProductOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtProductTitle_customer"
+                android:layout_below="@id/txtProductPrice_customer"
 
                 android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/txtProductPrice_customer"
+
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingHorizontal="5dp"
                 android:text="@string/_1099"
