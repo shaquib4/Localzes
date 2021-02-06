@@ -25,7 +25,7 @@ import java.lang.Exception
 class AdapterSellerProducts(
     val context: Context,
     private val products_seller: List<ModelAddProduct>,
-    val uid:String
+    val uid: String
 ) : RecyclerView.Adapter<AdapterSellerProducts.HolderProduct>() {
     class HolderProduct(view: View) : RecyclerView.ViewHolder(view) {
         val imgProduct: ImageView = view.findViewById(R.id.imgProduct_customer)
@@ -59,7 +59,8 @@ class AdapterSellerProducts(
         }
         holder.txtProductTitle.text =
             products.title.substring(0, 1).toUpperCase() + products.title.substring(1)
-        holder.txtProductPrice.text = "₹${products.offerPrice}"
+        holder.txtProductPrice.text =
+            "₹" + products.offerPrice + "/per " + products.quantity + " " + products.unit
         val mString = "₹${products.sellingPrice}"
         val spannableString = SpannableString(mString)
         val mStrikeThrough = StrikethroughSpan()
@@ -131,12 +132,12 @@ class AdapterSellerProducts(
             )
             intent.putExtra("productId", products.productId)
             intent.putExtra("productCat", products.productCategory)
-            intent.putExtra("uid",uid)
+            intent.putExtra("uid", uid)
             context.startActivity(intent)
             (context as Seller_Products).finish()
         }
         holder.imgRemove.setOnClickListener {
-            deleteProduct(position,products.shopId)
+            deleteProduct(position, products.shopId)
         }
     }
 

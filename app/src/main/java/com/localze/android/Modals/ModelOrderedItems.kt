@@ -5,7 +5,9 @@ class ModelOrderedItems(
     val name: String,
     val cost: String,
     val price: String,
-    val quantity: String
+    val quantity: String,
+    val unit:String,
+    val originalQuantity:String
 ) {
-    constructor():this("","","","","")
+    constructor():this("","","","","","","")
 }

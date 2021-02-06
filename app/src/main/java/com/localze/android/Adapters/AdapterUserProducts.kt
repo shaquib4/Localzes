@@ -43,12 +43,15 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val mUser = uAuth.currentUser
         val mUid = mUser!!.uid
 
-       try{ Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)}catch (e:Exception){
-           e.printStackTrace()
-       }
+        try {
+            Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         holder.productTitle.text =
             userProducts.title.substring(0, 1).toUpperCase() + userProducts.title.substring(1)
-        holder.productPrice.text = "₹${userProducts.offerPrice}"
+        holder.productPrice.text =
+            "₹" + userProducts.offerPrice + "/per " + userProducts.quantity + userProducts.unit
         /*holder.stock.text = "STOCK :- " + userProducts.stock*/
         /* val dRef:DatabaseReference=FirebaseDatabase.getInstance().reference.child("seller").child(userProducts.shopId).child("Products").child(userProducts.productId)
          dRef.addValueEventListener(object :ValueEventListener{
@@ -61,22 +64,24 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
              }
 
          })*/
-        try{when (userProducts.stock) {
-            "IN" -> {
-                Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
-                holder.stock.text == "STOCK: IN"
+        try {
+            when (userProducts.stock) {
+                "IN" -> {
+                    Glide.with(context).load(userProducts.imageUrl).into(holder.productImage)
+                    holder.stock.text == "STOCK: IN"
 
+                }
+                "OUT" -> {
+                    val colorMatrix = ColorMatrix()
+                    colorMatrix.setSaturation(0.0f)
+                    val filter = ColorMatrixColorFilter(colorMatrix)
+                    holder.productImage.colorFilter = filter
+                    holder.stock.text = "STOCK: OUT"
+
+
+                }
             }
-            "OUT" -> {
-                val colorMatrix = ColorMatrix()
-                colorMatrix.setSaturation(0.0f)
-                val filter = ColorMatrixColorFilter(colorMatrix)
-                holder.productImage.colorFilter = filter
-                holder.stock.text = "STOCK: OUT"
-
-
-            }
-        }}catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
@@ -318,7 +323,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                             holder.addItem,
                                             sPDB.toDouble(),
                                             finalSPDB.toDouble(),
-                                            finalSPDB
+                                            finalSPDB,
+                                            userProducts.unit,
+                                            userProducts.quantity
                                         )
 
                                     }
@@ -348,7 +355,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                                 holder.addItem,
                                                 sellingP,
                                                 finalSellingPrice,
-                                                userProducts.sellingPrice
+                                                userProducts.sellingPrice,
+                                                userProducts.unit,
+                                                userProducts.quantity
                                             )
 
                                         } else if (orderTo !== shopID.toString()) {
@@ -384,7 +393,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                                     holder.addItem,
                                                     sellingP,
                                                     finalSellingPrice,
-                                                    userProducts.sellingPrice
+                                                    userProducts.sellingPrice,
+                                                    userProducts.unit,
+                                                    userProducts.quantity
                                                 )
                                                 holder.addItem.visibility = View.GONE
                                                 show.dismiss()
@@ -423,7 +434,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                 holder.addItem,
                                 sellingP,
                                 finalSellingPrice,
-                                userProducts.sellingPrice
+                                userProducts.sellingPrice,
+                                userProducts.unit,
+                                userProducts.quantity
                             )
 
                         } else if (orderTo !== shopID.toString()) {
@@ -460,7 +473,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                     holder.addItem,
                                     sellingP,
                                     finalSellingPrice,
-                                    userProducts.sellingPrice
+                                    userProducts.sellingPrice,
+                                    userProducts.unit,
+                                    userProducts.quantity
                                 )
                                 holder.addItem.visibility = View.GONE
                                 show.dismiss()
@@ -572,7 +587,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         addItem: Button,
         sellingP: Double,
         finalSellingPrice: Double,
-        finalSellingPr: String
+        finalSellingPr: String,
+        unit: String,
+        quantity1: String
     ) {
         var finalCost = finalCost
         var finalSellingPrice = finalSellingPrice
@@ -597,6 +614,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             cartMap["productImageUrl"] = productUrl
             cartMap["sellingPrice"] = sellingPrice
             cartMap["finalsellingPrice"] = finalSellingPrice.toString()
+            cartMap["unit"] = unit
+            cartMap["originalQuantity"] = quantity1
             val cart = UserCartDetails(
                 productId,
                 uid,
@@ -607,8 +626,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 shopId,
                 productUrl,
                 sellingPrice,
-                finalSellingPrice.toString()
-
+                finalSellingPrice.toString(),
+                unit,
+                quantity1
             )
             val cartDetails =
                 FirebaseDatabase.getInstance().reference.child("users").child(uid)
@@ -634,6 +654,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 cartMap["productImageUrl"] = productUrl
                 cartMap["sellingPrice"] = sellingPrice
                 cartMap["finalsellingPrice"] = finalSellingPrice.toString()
+                cartMap["unit"] = unit
+                cartMap["originalQuantity"] = quantity1
                 val cart = UserCartDetails(
                     productId,
                     uid,
@@ -644,7 +666,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                     shopId,
                     productUrl,
                     sellingPrice,
-                    finalSellingPrice.toString()
+                    finalSellingPrice.toString(),
+                    unit, quantity1
                 )
                 val cartDetails =
                     FirebaseDatabase.getInstance().reference.child("users").child(uid)
@@ -688,7 +711,9 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         addItem: Button,
         sellingP: Double,
         finalSellingPrice: Double,
-        finalSellingPr: String
+        finalSellingPr: String,
+        unit: String,
+        quantity1: String
     ) {
         val cart = UserCartDetails(
             productId,
@@ -700,7 +725,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             shopId,
             productUrl,
             sellingPrice,
-            finalSellingPr
+            finalSellingPr, unit, quantity1
         )
         val cartMap = HashMap<String, Any>()
         cartMap["productId"] = productId
@@ -713,6 +738,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         cartMap["productImageUrl"] = productUrl
         cartMap["sellingPrice"] = sellingPrice
         cartMap["finalsellingPrice"] = finalSellingPr
+        cartMap["unit"] = unit
+        cartMap["originalQuantity"] = quantity1
 
         val cartDetails =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
@@ -734,7 +761,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val btnIncrease: Button = view.findViewById(R.id.btnIncrease_new)
         val btnDecrease: Button = view.findViewById(R.id.btnDecrease_new)
         val btnLinear: LinearLayout = view.findViewById(R.id.btnLinear)
-    //    val rating: TextView = view.findViewById(R.id.txtRatingShop_customer)
+
+        //    val rating: TextView = view.findViewById(R.id.txtRatingShop_customer)
         val txtCounter: TextView = view.findViewById(R.id.txtCounter)
         val stock: TextView = view.findViewById(R.id.txtStock_customer)
         val unfavorite: FloatingActionButton = view.findViewById(R.id.btnFavoriteItem)

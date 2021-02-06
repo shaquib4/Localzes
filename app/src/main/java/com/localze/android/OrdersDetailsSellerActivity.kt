@@ -238,7 +238,10 @@ class OrdersDetailsSellerActivity : AppCompatActivity() {
                             i.child("productTitle").value.toString(),
                             i.child("finalPrice").value.toString(),
                             i.child("priceEach").value.toString(),
-                            i.child("finalQuantity").value.toString()
+                            i.child("finalQuantity").value.toString(),
+                            i.child("unit").value.toString(),
+                            i.child("originalQuantity").value.toString()
+
                         )
                         (mOrderDetails as ArrayList<ModelOrderedItems>).add(obj)
                     }
