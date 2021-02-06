@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
-    app:cardCornerRadius="@dimen/_5sdp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -69,26 +70,30 @@
 
 
             <Button
+                android:layout_margin="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:id="@+id/btnCancel"
+                android:backgroundTint="#fff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
+                android:textColor="#de4500"
                 android:textSize="@dimen/_12ssp"
                 android:fontFamily="@font/montserrat_bold"
-              android:background="#d3d3d3"
+              android:background="@drawable/stroke_red"
                 android:text="@string/cancel"
                 tools:ignore="ButtonStyle" />
 
             <Button
+                android:layout_margin="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:id="@+id/btnConfirm"
                 android:layout_width="0dp"
+                android:backgroundTint="#de4500"
                 android:textColor="#fff"
                 android:fontFamily="@font/montserrat_bold"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_12ssp"
-                android:background="#de4500"
+                android:background="@drawable/proceed_to_add"
                 android:text="@string/confirm"
                 tools:ignore="ButtonStyle" />
 
