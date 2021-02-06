@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.localze.android.ListOrderDetailSeller
 import com.localze.android.Modals.ModalSellerOrderList
 import com.localze.android.R
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -51,7 +52,7 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
                        }
                    })*/
         holder.cuMobileNum.text = sellerOrder.orderByMobile
-        if (sellerOrder.totalItems.toInt() > 1) {
+       try{ if (sellerOrder.totalItems.toInt() > 1) {
             holder.totalItem.text = "${sellerOrder.totalItems} items"
         } else {
             holder.totalItem.text = "${sellerOrder.totalItems} item"
@@ -60,7 +61,9 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
             holder.totalCost.text = "Please update total Amount"
         } else {
             holder.totalCost.text = "₹${sellerOrder.orderCost}"
-        }
+        }}catch (e:Exception){
+           e.printStackTrace()
+       }
         when (sellerOrder.paymentMode) {
             "" -> {
                 holder.paid.visibility = View.GONE

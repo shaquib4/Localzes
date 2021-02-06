@@ -16,6 +16,7 @@ import com.localze.android.Modals.ModelList
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_user_list_order_details.*
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -144,7 +145,9 @@ class UserListOrderDetails : AppCompatActivity() {
                 val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
                 val date = Date(orderTime.toLong())
                 val formattedDate = sdf.format(date)
-                deliveryFee = deliveryCost.toDouble()
+               try{ deliveryFee = deliveryCost.toDouble()}catch (e:Exception){
+                   e.printStackTrace()
+               }
                 when (orderStatus) {
                     "In Progress" -> {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.colorAccent))
