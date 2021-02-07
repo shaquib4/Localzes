@@ -15,6 +15,10 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import kotlin.random.Random
@@ -33,6 +37,30 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         firebaseUser = currentAuth.currentUser!!
 
         val notificationType = remoteMessage.data["notificationType"]
+        if (notificationType.equals("AdminApp")) {
+            val selected = remoteMessage.data["selectedPerson"]
+            val notificationTitle = remoteMessage.data["notificationTitle"]
+            val notificationDescription = remoteMessage.data["notificationMessage"]
+            val databaseRef = FirebaseDatabase.getInstance().reference.child(selected.toString())
+            databaseRef.child(currentAuth!!.uid.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            showNewNotification(
+                                selected.toString(),
+                                notificationTitle.toString(),
+                                notificationDescription.toString(),
+                                notificationType.toString()
+                            )
+                        }
+                    }
+
+                })
+        }
         if (notificationType.equals("New Order")) {
             val buyerUid = remoteMessage.data["buyerId"]
             val sellerUid = remoteMessage.data["sellerUid"]
@@ -145,6 +173,49 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 )
             }
         }
+    }
+
+    private fun showNewNotification(
+        selected: String,
+        notificationTitle: String,
+        notificationDescription: String,
+        notificationType: String
+    ) {
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationId = Random.nextInt(3000)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setUpNotificationChannel(notificationManager)
+        }
+        if (notificationType == "AdminApp") {
+            if (selected == "seller") {
+                intent = Intent(this, Home_seller::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+            if (selected == "users") {
+                intent = Intent(this, Home::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.localze_shop)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+        notificationManager.notify(notificationId, notificationBuilder.build())
+
     }
 
     private fun showInvitationNotification(
