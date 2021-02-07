@@ -40,10 +40,12 @@ class IntroSliderActivity : AppCompatActivity() {
         if (restorePrefData()) {
             val firebaseAuth = FirebaseAuth.getInstance()
             val user = firebaseAuth.currentUser
-            if (user?.uid != null) {
+
                 FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
                     var deepLink: Uri? = null
-                    if (it != null) {
+                    if (it != null&&user?.uid != null) {
+                        btnNext.visibility = View.INVISIBLE
+                        btnNext.isClickable=false
                         deepLink = it.link
                         Log.e("TAG", "myReferLink$deepLink")
                         var referLink = deepLink.toString()
@@ -57,13 +59,13 @@ class IntroSliderActivity : AppCompatActivity() {
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
-                    }
-                }
-                    .addOnFailureListener {
+                    }else{
                         startActivity(Intent(this, SplashScreenActivity::class.java))
                         finish()
                     }
-            }
+                }
+
+
         }
         view_pager2.adapter = introSliderAdapter
         btnNext.setOnClickListener {
