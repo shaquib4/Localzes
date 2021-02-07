@@ -164,6 +164,24 @@ class UserListOrderDetails : AppCompatActivity() {
                         orderStatusListUser.setTextColor(resources.getColor(R.color.red))
                         btnPay.visibility = View.GONE
                     }
+                    "Rejected due to Item is Out Of Stock"->{
+                        orderStatusListUser.setTextColor(resources.getColor(R.color.red))
+                        btnPay.visibility = View.GONE
+                        deliveryFeeUser.text= "₹$deliveryCost"
+                        amountOrderList.text="₹${orderCost}"
+                    }
+                    "Rejected due to Shop is closed Now"->{
+                        orderStatusListUser.setTextColor(resources.getColor(R.color.red))
+                        btnPay.visibility = View.GONE
+                        deliveryFeeUser.text= "₹$deliveryCost"
+                        amountOrderList.text="₹${orderCost}"
+                    }
+                    "Rejected due to Others"->{
+                        orderStatusListUser.setTextColor(resources.getColor(R.color.red))
+                        btnPay.visibility = View.GONE
+                        deliveryFeeUser.text= "₹$deliveryCost"
+                        amountOrderList.text="₹${orderCost}"
+                    }
                 }
                 orderListIdUser.text = "OD${orderId}"
                 orderStatusListUser.text = orderStatus
