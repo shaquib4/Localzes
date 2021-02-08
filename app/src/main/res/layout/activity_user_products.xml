@@ -11,16 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:background="#de4500"
+            android:text="Shop Name"
+            android:textColor="#fff"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="@dimen/_15ssp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:id="@+id/txtShop"
+            />
         <EditText
 
+            android:layout_below="@id/txtShop"
             android:id="@+id/searchShopProduct"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
-            android:layout_marginTop="3dp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/bg_product_shop"
             android:hint="@string/search"
             android:paddingStart="@dimen/_20sdp"
             android:inputType="text"
+            android:fontFamily="@font/montserrat_medium"
             android:importantForAutofill="no"
             tools:ignore="RtlSymmetry" />
 
