@@ -37,6 +37,32 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         firebaseUser = currentAuth.currentUser!!
 
         val notificationType = remoteMessage.data["notificationType"]
+        if (notificationType.equals("Offer")){
+            val notificationTitle = remoteMessage.data["notificationTitle"]
+            val notificationDescription = remoteMessage.data["notificationMessage"]
+            val person=remoteMessage.data["person"]
+            val databaseRef = FirebaseDatabase.getInstance().reference.child("seller")
+            databaseRef.child(currentAuth!!.uid.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists() && (snapshot.child("Products").childrenCount.toInt() in 0..5)) {
+                            showOfferNotification(
+                                currentAuth!!.uid.toString(),
+                                person.toString(),
+                                notificationTitle.toString(),
+                                notificationDescription.toString(),
+                                notificationType.toString()
+                            )
+                        }
+
+                    }
+
+                })
+        }
         if (notificationType.equals("SingleNotification")) {
             val id = remoteMessage.data["uid"]
             val notificationTitle = remoteMessage.data["notificationTitle"]
@@ -56,6 +82,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         if (notificationType.equals("AddProduct")) {
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
+            val person=remoteMessage.data["person"]
             val databaseRef = FirebaseDatabase.getInstance().reference.child("seller")
             databaseRef.child(currentAuth!!.uid.toString())
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -67,6 +94,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                         if (snapshot.exists() && (snapshot.child("Products").childrenCount.toInt() in 0..5)) {
                             showProductNotification(
                                 currentAuth!!.uid.toString(),
+                                person.toString(),
                                 notificationTitle.toString(),
                                 notificationDescription.toString(),
                                 notificationType.toString()
@@ -215,6 +243,50 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         }
     }
 
+    private fun showOfferNotification(
+        uid: String,
+        person: String,
+        notificationTitle: String,
+        notificationDescription: String,
+        notificationType: String
+    ) {
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationId = Random.nextInt(3000)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setUpNotificationChannel(notificationManager)
+        }
+        if (notificationType=="Offer"){
+            if (person == "users") {
+                intent = Intent(this, Home::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+            }
+            if (person == "seller") {
+                intent = Intent(this, Home_seller::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.localze_shop)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
+
     private fun showSingleNotification(
         id: String,
         selection: String,
@@ -261,6 +333,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
 
     private fun showProductNotification(
         uid: String,
+        person: String,
         notificationTitle: String,
         notificationDescription: String,
         notificationType: String
