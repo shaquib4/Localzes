@@ -14,6 +14,7 @@ import com.google.firebase.database.*
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import kotlinx.android.synthetic.main.activity_home_seller.*
 import util.ConnectionManager
+import java.lang.Exception
 
 class Home_seller : AppCompatActivity() {
     private var t9: Int = 0
@@ -381,7 +382,11 @@ class Home_seller : AppCompatActivity() {
                         val cost = i.child("orderCost").value.toString()
                         val status = i.child("orderStatus").value.toString()
                         if (status == "Completed") {
-                            finalPriceOfList.add(cost.toDouble())
+                          try{  finalPriceOfList.add(cost.toDouble())} catch (
+                              e:Exception
+                          ){
+                              e.printStackTrace()
+                          }
                         }
                         for (j in finalPriceOfList) {
                             listIncome += j

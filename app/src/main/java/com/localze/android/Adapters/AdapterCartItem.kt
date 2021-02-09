@@ -89,7 +89,7 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
                 }
             }
         })
-        var items = quantity.toInt()
+       try{ var items = quantity.toInt()
         var updatedCost = cost.toDouble()
         val oneCost = costOne.toInt()
         var finalSell = finalSelling.toDouble()
@@ -122,7 +122,10 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
         }
         holder.removeItem.setOnClickListener {
             deleteItem(position)
-        }
+        }}catch (e:Exception){
+           e.printStackTrace()
+       }
+
     }
 
     private fun deleteItem(position: Int) {

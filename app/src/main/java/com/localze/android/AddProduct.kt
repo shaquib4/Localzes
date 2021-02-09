@@ -84,7 +84,7 @@ class AddProduct : AppCompatActivity() {
         }
 
         btnAddProduct.setOnClickListener {
-            when {
+          try{  when {
                 etTittle.text.trim().toString().isEmpty() -> {
                     etTittle.error = "Please enter product name"
                     return@setOnClickListener
@@ -126,7 +126,9 @@ class AddProduct : AppCompatActivity() {
                         rl_retryAddProduct.visibility = View.VISIBLE
                     }
                 }
-            }
+            }}catch (e:Exception){
+              e.printStackTrace()
+          }
         }
     }
 

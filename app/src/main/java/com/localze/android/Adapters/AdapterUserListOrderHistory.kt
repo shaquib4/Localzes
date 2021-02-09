@@ -11,6 +11,7 @@ import com.localze.android.Modals.ModalSellerOrderList
 import com.localze.android.R
 import com.localze.android.UserListOrderDetails
 import com.google.firebase.database.*
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,10 +51,12 @@ class AdapterUserListOrderHistory(
             holder.totalOrderCostTv.text = userListOrderHistory.orderCost
         }*/
         holder.orderListIdTv.text = "OD${userListOrderHistory.orderId}"
-        val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
+       try{ val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
         val date = Date(userListOrderHistory.orderTime.toLong())
         val formattedDate = sdf.format(date)
-        holder.orderDateTv.text = formattedDate
+        holder.orderDateTv.text = formattedDate}catch (e:Exception){
+           e.printStackTrace()
+       }
         if (userListOrderHistory.listStatus == "") {
             holder.orderListStatusTv.text = "In Progress"
             holder.totalOrderCostTv.text = "Amount will be updated by seller soon"

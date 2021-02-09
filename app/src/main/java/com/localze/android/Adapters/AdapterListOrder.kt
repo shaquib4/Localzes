@@ -82,10 +82,12 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
         holder.oderBy.text = sellerOrder.orderByName
         holder.orderId.text = "OD${sellerOrder.orderId}"
         holder.orderStatus.text = sellerOrder.orderStatus
-        val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
+       try{ val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
         val date = Date(sellerOrder.orderTime.toLong())
         val formattedDate = sdf.format(date)
-        holder.orderTime.text = formattedDate
+        holder.orderTime.text = formattedDate}catch (e:Exception){
+           e.printStackTrace()
+       }
 
         holder.itemView.setOnClickListener {
             val intent = Intent(

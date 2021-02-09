@@ -11,6 +11,7 @@ import com.localze.android.Modals.ModelOrderDetails
 import com.localze.android.OrdersDetailsUserActivity
 import com.localze.android.R
 import com.google.firebase.database.*
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -66,10 +67,12 @@ class AdapterUserOrderHistory(
         }
         holder.orderAmount.text = "₹${orderHistory.orderCost}"
 
-        val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
+       try{ val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
         val date = Date(orderHistory.orderTime.toLong())
         val formattedDate = sdf.format(date)
-        holder.orderDate.text = formattedDate
+        holder.orderDate.text = formattedDate}catch (e:Exception){
+           e.printStackTrace()
+       }
         holder.orderStatus.text = orderHistory.orderStatus
         holder.itemView.setOnClickListener {
             val intent= Intent(context,
