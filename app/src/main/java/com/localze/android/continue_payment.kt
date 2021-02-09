@@ -66,10 +66,14 @@ class continue_payment : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val productCharge = totalCost.toString()
-                    .toDouble() - (snapshot.child("deliveryFee").value.toString()).toDouble()
-                productCharges.text = "₹$productCharge"
-                shippingCharges.text = "₹${snapshot.child("deliveryFee").value.toString()}"
+               try {
+                   val productCharge = totalCost.toString()
+                       .toDouble() - (snapshot.child("deliveryFee").value.toString()).toDouble()
+                   productCharges.text = "₹$productCharge"
+                   shippingCharges.text = "₹${snapshot.child("deliveryFee").value.toString()}"
+               }catch (e:Exception){
+                   e.printStackTrace()
+               }
             }
 
         })

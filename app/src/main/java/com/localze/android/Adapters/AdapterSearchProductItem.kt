@@ -43,9 +43,13 @@ class AdapterSearchProductItem(
 
     override fun onBindViewHolder(holder: HolderSearchProductItem, position: Int) {
         val products = searchProduct[position]
+    try {
         holder.productName.text =
             products.title.substring(0, 1).toUpperCase() + products.title.substring(1)
         holder.productPrice.text = "₹" + products.offerPrice+"/ per ${products.quantity}${products.unit}"
+    } catch (e:Exception){
+        e.printStackTrace()
+    }
         try {
             when (products.stock) {
                 "IN" -> {
