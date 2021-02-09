@@ -37,16 +37,18 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         firebaseUser = currentAuth.currentUser!!
 
         val notificationType = remoteMessage.data["notificationType"]
-        if (notificationType.equals("SingleCustomer")) {
+        if (notificationType.equals("SingleNotification")) {
             val id = remoteMessage.data["uid"]
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
+            val selection = remoteMessage.data["selectedPerson"]
             if (firebaseUser != null && currentAuth!!.uid == id) {
                 showSingleNotification(
                     id.toString(),
-
+                    selection.toString(),
                     notificationTitle.toString(),
-                    notificationDescription.toString()
+                    notificationDescription.toString(),
+                    notificationType.toString()
                 )
             }
         }
@@ -215,8 +217,10 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
 
     private fun showSingleNotification(
         id: String,
+        selection: String,
         notificationTitle: String,
-        notificationDescription: String
+        notificationDescription: String,
+        notificationType: String
     ) {
         val notificationManager: NotificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -224,7 +228,35 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setUpNotificationChannel(notificationManager)
         }
+        if (notificationType == "SingleNotification") {
+            if (selection == "users") {
+                intent = Intent(this, Home::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
+            }
+            if (selection == "seller") {
+                intent = Intent(this, Home_seller::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.localze_shop)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+        notificationManager.notify(notificationId, notificationBuilder.build())
     }
 
     private fun showProductNotification(
