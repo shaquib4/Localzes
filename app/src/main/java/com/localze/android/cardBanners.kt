@@ -144,7 +144,9 @@ class cardBanners : AppCompatActivity() {
 
     private fun CardBanners(s: String) {
         cardQR.setOnClickListener {
-            startActivity(Intent(this, generateQRcode::class.java))
+            val intent = Intent(this, generateQRcode::class.java)
+            intent.putExtra("id", s)
+            startActivity(intent)
             finish()
         }
         cardBanner.setOnClickListener {

@@ -10,6 +10,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -27,10 +28,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 import kotlinx.android.synthetic.main.activity_generate_q_rcode.*
+import kotlinx.android.synthetic.main.activity_home_seller.*
 import util.ConnectionManager
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -51,6 +54,8 @@ class generateQRcode : AppCompatActivity() {
     private lateinit var storeName: TextView
     var shopName: String = ""
     var shopId: String = ""
+    var imgUrl: String = ""
+    var Url:String=""
     private var bitmapN: Bitmap? = null
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -60,17 +65,19 @@ class generateQRcode : AppCompatActivity() {
         storeName = findViewById(R.id.store_Name)
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
-        shopId = user!!.uid
-        databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        shopId = intent.getStringExtra("id").toString()
+        databaseReference = FirebaseDatabase.getInstance().reference.child("seller")
+        databaseReference.child(shopId).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 shopName = snapshot.child("shop_name").value.toString()
+                imgUrl = snapshot.child("imageUrl").value.toString()
                 storeName.text = shopName
-            }
 
+
+            }
         })
         context = this
         storeQr = findViewById(R.id.storeQR)
@@ -80,7 +87,8 @@ class generateQRcode : AppCompatActivity() {
                 if (ConnectionManager().checkConnectivity(this)) {
                     rl_Qr.visibility = View.VISIBLE
                     rl_retryQr.visibility = View.GONE
-                    generateQRCode()
+                    createReferLink(shopId, shopName, imgUrl)
+
                 } else {
                     rl_Qr.visibility = View.GONE
                     rl_retryQr.visibility = View.VISIBLE
@@ -92,7 +100,7 @@ class generateQRcode : AppCompatActivity() {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_Qr.visibility = View.VISIBLE
                 rl_retryQr.visibility = View.GONE
-                generateQRCode()
+                createReferLink(shopId, shopName, imgUrl)
             } else {
                 rl_Qr.visibility = View.GONE
                 rl_retryQr.visibility = View.VISIBLE
@@ -107,8 +115,8 @@ class generateQRcode : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
-    fun generateQRCode() {
-        val bitmap = encodeAsBitmap(shopId, 400, 400, context)
+    fun generateQRCode(S:String) {
+        val bitmap = encodeAsBitmap(S,400, 400, context)
         iv_qr_code.setImageBitmap(bitmap)
 
         qrsave.setOnClickListener {
@@ -161,12 +169,17 @@ class generateQRcode : AppCompatActivity() {
         Toast.makeText(this, "saved", Toast.LENGTH_LONG).show()
     }
 
-    fun encodeAsBitmap(str: String, WIDTH: Int, HEIGHT: Int, ctx: Context): Bitmap? {
+    fun encodeAsBitmap(
+        str: String,
+        WIDTH: Int,
+        HEIGHT: Int,
+        ctx: Context
+    ): Bitmap? {
         val result: BitMatrix
         try {
 
             result = MultiFormatWriter().encode(
-                str,
+                Url,
                 BarcodeFormat.QR_CODE, WIDTH, HEIGHT, null
             )
         } catch (iae: IllegalArgumentException) {
@@ -238,6 +251,27 @@ class generateQRcode : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun createReferLink(s: String, shopName: String, imgUrl: String) {
+        val shareLinkTest =
+            "https://localzes.page.link/?link=http://www.localze.com/myshopId.php?shopid=$s&apn=$packageName&st=${shopName}&si=$imgUrl"
+        var shortLinks = ""
+        val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+            .setLongLink(Uri.parse(shareLinkTest))
+            .setDomainUriPrefix("https://localzes.page.link")
+            .buildShortDynamicLink().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    shortLinks = it.result?.shortLink.toString()
+                    Url=shortLinks
+                    generateQRCode(shortLinks)
+                    Toast.makeText(this,Url,Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+
+    }
+
     fun checkPermission(context: Context, permissionArray: Array<String>): Boolean {
         var allSuccess = true
         for (i in permissionArray.indices) {
@@ -293,7 +327,7 @@ class generateQRcode : AppCompatActivity() {
                 }
             }
             if (allSuccess) {
-                generateQRCode()
+                createReferLink(shopId, shopName, imgUrl)
             }
         }
     }

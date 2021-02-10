@@ -37,6 +37,100 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         firebaseUser = currentAuth.currentUser!!
 
         val notificationType = remoteMessage.data["notificationType"]
+        if (notificationType.equals("NoProduct")) {
+            val notificationTitle = remoteMessage.data["notificationTitle"]
+            val notificationDescription = remoteMessage.data["notificationMessage"]
+            val person=remoteMessage.data["person"]
+            val databaseRef = FirebaseDatabase.getInstance().reference.child("seller")
+            databaseRef.child(currentAuth!!.uid.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists() && !snapshot.child("Products").exists()) {
+                            showNoProductNotification(
+                                currentAuth!!.uid.toString(),
+                                person.toString(),
+                                notificationTitle.toString(),
+                                notificationDescription.toString(),
+                                notificationType.toString()
+                            )
+                        }
+
+                    }
+
+                })
+        }
+        if (notificationType.equals("Offer")){
+            val notificationTitle = remoteMessage.data["notificationTitle"]
+            val notificationDescription = remoteMessage.data["notificationMessage"]
+            val person=remoteMessage.data["person"]
+            val databaseRef = FirebaseDatabase.getInstance().reference.child("seller")
+            databaseRef.child(currentAuth!!.uid.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists() && (snapshot.child("Products").childrenCount.toInt() in 0..5)) {
+                            showOfferNotification(
+                                currentAuth!!.uid.toString(),
+                                person.toString(),
+                                notificationTitle.toString(),
+                                notificationDescription.toString(),
+                                notificationType.toString()
+                            )
+                        }
+
+                    }
+
+                })
+        }
+        if (notificationType.equals("SingleNotification")) {
+            val id = remoteMessage.data["uid"]
+            val notificationTitle = remoteMessage.data["notificationTitle"]
+            val notificationDescription = remoteMessage.data["notificationMessage"]
+            val selection = remoteMessage.data["selectedPerson"]
+            if (firebaseUser != null && currentAuth!!.uid == id) {
+                showSingleNotification(
+                    id.toString(),
+                    selection.toString(),
+                    notificationTitle.toString(),
+                    notificationDescription.toString(),
+                    notificationType.toString()
+                )
+            }
+        }
+
+        if (notificationType.equals("AddProduct")) {
+            val notificationTitle = remoteMessage.data["notificationTitle"]
+            val notificationDescription = remoteMessage.data["notificationMessage"]
+            val person=remoteMessage.data["person"]
+            val databaseRef = FirebaseDatabase.getInstance().reference.child("seller")
+            databaseRef.child(currentAuth!!.uid.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists() && (snapshot.child("Products").childrenCount.toInt() in 0..5)) {
+                            showProductNotification(
+                                currentAuth!!.uid.toString(),
+                                person.toString(),
+                                notificationTitle.toString(),
+                                notificationDescription.toString(),
+                                notificationType.toString()
+                            )
+                        }
+
+                    }
+
+                })
+        }
         if (notificationType.equals("AdminApp")) {
             val selected = remoteMessage.data["selectedPerson"]
             val notificationTitle = remoteMessage.data["notificationTitle"]
@@ -175,6 +269,177 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         }
     }
 
+    private fun showNoProductNotification
+
+                ( uid: String,
+                  person: String,
+                  notificationTitle: String,
+                  notificationDescription: String,
+                  notificationType: String) {
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationId = Random.nextInt(3000)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setUpNotificationChannel(notificationManager)
+        }
+        if (notificationType == "NoProduct") {
+            intent = Intent(this, Seller_Products::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.add_to_cart)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.add_to_cart))
+                    .bigLargeIcon(null)
+            )
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+        notificationManager.notify(notificationId, notificationBuilder.build())
+
+    }
+
+    private fun showOfferNotification(
+        uid: String,
+        person: String,
+        notificationTitle: String,
+        notificationDescription: String,
+        notificationType: String
+    ) {
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationId = Random.nextInt(3000)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setUpNotificationChannel(notificationManager)
+        }
+        if (notificationType=="Offer"){
+            if (person == "users") {
+                intent = Intent(this, Home::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+            }
+            if (person == "seller") {
+                intent = Intent(this, Home_seller::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.localze_shop)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
+
+    private fun showSingleNotification(
+        id: String,
+        selection: String,
+        notificationTitle: String,
+        notificationDescription: String,
+        notificationType: String
+    ) {
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationId = Random.nextInt(3000)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setUpNotificationChannel(notificationManager)
+        }
+        if (notificationType == "SingleNotification") {
+            if (selection == "users") {
+                intent = Intent(this, Home::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+            }
+            if (selection == "seller") {
+                intent = Intent(this, Home_seller::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.localze_shop)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
+
+    private fun showProductNotification(
+        uid: String,
+        person: String,
+        notificationTitle: String,
+        notificationDescription: String,
+        notificationType: String
+    ) {
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationId = Random.nextInt(3000)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setUpNotificationChannel(notificationManager)
+        }
+        if (notificationType == "AddProduct") {
+            intent = Intent(this, Seller_Products::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.add_to_cart)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.add_to_cart))
+                    .bigLargeIcon(null)
+            )
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
+
     private fun showNewNotification(
         selected: String,
         notificationTitle: String,
@@ -253,8 +518,6 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
         notificationManager.notify(notificationId, notificationBuilder.build())
-
-
     }
 
     private fun showNotification1(

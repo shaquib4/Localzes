@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.localze.android.Modals.ModelOrderDetails
 import com.localze.android.OrdersDetailsSellerActivity
 import com.localze.android.R
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -67,10 +68,12 @@ class AdapterSellerOrders(
                 holder.orderStatusTv.setTextColor(context.resources.getColor(R.color.red))
             }
         }
-        val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
+       try{ val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
         val date = Date(sellerOrders.orderTime.toLong())
         val formattedDate = sdf.format(date)
-        holder.orderDateTv.text = formattedDate
+        holder.orderDateTv.text = formattedDate}catch (e:Exception){
+           e.printStackTrace()
+       }
         when (sellerOrders.paymentMode) {
             "Cash on Delivery" -> {
                 holder.paymentPAID.visibility = View.GONE
