@@ -33,6 +33,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 import kotlinx.android.synthetic.main.activity_generate_q_rcode.*
+import kotlinx.android.synthetic.main.activity_home_seller.*
 import util.ConnectionManager
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -63,9 +64,9 @@ class generateQRcode : AppCompatActivity() {
         storeName = findViewById(R.id.store_Name)
         shopAuth = FirebaseAuth.getInstance()
         val user = shopAuth.currentUser
-        shopId = user!!.uid
-        databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        shopId = intent.getStringExtra("id").toString()
+        databaseReference = FirebaseDatabase.getInstance().reference.child("seller")
+        databaseReference.child(shopId).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
             }
 
@@ -73,8 +74,8 @@ class generateQRcode : AppCompatActivity() {
                 shopName = snapshot.child("shop_name").value.toString()
                 imgUrl = snapshot.child("imageUrl").value.toString()
                 storeName.text = imgUrl
-            }
 
+            }
         })
         context = this
         storeQr = findViewById(R.id.storeQR)
