@@ -55,6 +55,7 @@ class generateQRcode : AppCompatActivity() {
     var shopName: String = ""
     var shopId: String = ""
     var imgUrl: String = ""
+    var Url:String=""
     private var bitmapN: Bitmap? = null
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -73,7 +74,8 @@ class generateQRcode : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 shopName = snapshot.child("shop_name").value.toString()
                 imgUrl = snapshot.child("imageUrl").value.toString()
-                storeName.text = imgUrl
+                storeName.text = shopName
+
 
             }
         })
@@ -85,7 +87,8 @@ class generateQRcode : AppCompatActivity() {
                 if (ConnectionManager().checkConnectivity(this)) {
                     rl_Qr.visibility = View.VISIBLE
                     rl_retryQr.visibility = View.GONE
-                    generateQRCode()
+                    createReferLink(shopId, shopName, imgUrl)
+
                 } else {
                     rl_Qr.visibility = View.GONE
                     rl_retryQr.visibility = View.VISIBLE
@@ -97,7 +100,7 @@ class generateQRcode : AppCompatActivity() {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_Qr.visibility = View.VISIBLE
                 rl_retryQr.visibility = View.GONE
-                generateQRCode()
+                createReferLink(shopId, shopName, imgUrl)
             } else {
                 rl_Qr.visibility = View.GONE
                 rl_retryQr.visibility = View.VISIBLE
@@ -112,8 +115,8 @@ class generateQRcode : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
-    fun generateQRCode() {
-        val bitmap = encodeAsBitmap(shopId, shopName, imgUrl, 400, 400, context)
+    fun generateQRCode(S:String) {
+        val bitmap = encodeAsBitmap(S,400, 400, context)
         iv_qr_code.setImageBitmap(bitmap)
 
         qrsave.setOnClickListener {
@@ -168,8 +171,6 @@ class generateQRcode : AppCompatActivity() {
 
     fun encodeAsBitmap(
         str: String,
-        name: String,
-        shopImage: String,
         WIDTH: Int,
         HEIGHT: Int,
         ctx: Context
@@ -178,7 +179,7 @@ class generateQRcode : AppCompatActivity() {
         try {
 
             result = MultiFormatWriter().encode(
-                createReferLink(str, name, shopImage),
+                Url,
                 BarcodeFormat.QR_CODE, WIDTH, HEIGHT, null
             )
         } catch (iae: IllegalArgumentException) {
@@ -250,7 +251,8 @@ class generateQRcode : AppCompatActivity() {
         }
     }
 
-    private fun createReferLink(s: String, shopName: String, imgUrl: String): String {
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun createReferLink(s: String, shopName: String, imgUrl: String) {
         val shareLinkTest =
             "https://localzes.page.link/?link=http://www.localze.com/myshopId.php?shopid=$s&apn=$packageName&st=${shopName}&si=$imgUrl"
         var shortLinks = ""
@@ -260,9 +262,13 @@ class generateQRcode : AppCompatActivity() {
             .buildShortDynamicLink().addOnCompleteListener {
                 if (it.isSuccessful) {
                     shortLinks = it.result?.shortLink.toString()
+                    Url=shortLinks
+                    generateQRCode(shortLinks)
+                    Toast.makeText(this,Url,Toast.LENGTH_SHORT).show()
                 }
+
             }
-        return shortLinks
+
 
     }
 
@@ -321,7 +327,7 @@ class generateQRcode : AppCompatActivity() {
                 }
             }
             if (allSuccess) {
-                generateQRCode()
+                createReferLink(shopId, shopName, imgUrl)
             }
         }
     }
