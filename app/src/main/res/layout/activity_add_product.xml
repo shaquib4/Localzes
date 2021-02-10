@@ -147,7 +147,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/_10ssp" />
 
-                <EditText
+                <!--<EditText
                     android:id="@+id/etDescription"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_32sdp"
@@ -163,7 +163,7 @@
                     android:maxLength="300"
                     android:maxLines="1"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_10ssp" />-->
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
@@ -205,7 +205,7 @@
                     android:id="@+id/linearLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etDescription"
+                    android:layout_below="@id/etTittle"
                     android:weightSum="2">
 
                     <EditText

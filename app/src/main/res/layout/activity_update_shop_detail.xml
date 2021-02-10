@@ -54,18 +54,18 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:layout_width="@dimen/_120sdp"
                             android:layout_height="@dimen/_120sdp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/todo"
                             android:src="@drawable/ic_add_image" />
 
                         <ImageView
-                            android:contentDescription="@string/todo"
                             android:id="@+id/choose_image_update"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/todo"
                             android:scaleType="fitXY" />
 
 
@@ -131,12 +131,12 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:gravity="center_vertical"
                         android:hint="@string/shop_name"
+                        android:importantForAutofill="no"
                         android:inputType="text"
                         android:maxLines="1"
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:importantForAutofill="no"
                         tools:ignore="RtlSymmetry" />
 
                     <EditText
@@ -150,19 +150,19 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:gravity="center_vertical"
                         android:hint="@string/upi_id_optional"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:inputType="text"
-                        tools:ignore="RtlSymmetry"
-                        android:importantForAutofill="no" />
+                        tools:ignore="RtlSymmetry" />
 
                     <Button
                         android:id="@+id/Update"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_32sdp"
-                        android:layout_below="@+id/ll2"
+                        android:layout_below="@+id/edtMinAmountUpdate"
                         android:layout_gravity="bottom"
                         android:layout_marginHorizontal="@dimen/_22sdp"
                         android:layout_marginTop="20dp"
@@ -192,9 +192,9 @@
                         android:layout_below="@+id/txtTime"
                         android:layout_alignStart="@id/txtChooseCategory"
                         android:layout_marginEnd="@dimen/_7sdp"
+                        android:baselineAligned="false"
                         android:orientation="horizontal"
-                        android:weightSum="4"
-                        android:baselineAligned="false">
+                        android:weightSum="4">
 
                         <RelativeLayout
                             android:layout_width="0dp"
@@ -265,9 +265,9 @@
                         android:layout_alignStart="@+id/txtChooseCategory"
                         android:layout_marginVertical="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_7sdp"
+                        android:baselineAligned="false"
                         android:orientation="horizontal"
-                        android:weightSum="2"
-                        android:baselineAligned="false">
+                        android:weightSum="2">
 
                         <RelativeLayout
                             android:layout_width="0dp"
@@ -299,6 +299,25 @@
                         </RelativeLayout>
 
                     </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/edtMinAmountUpdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_below="@+id/ll2"
+                        android:layout_marginHorizontal="@dimen/_7sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/bg_ractangle_rounded_stroke"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Minimum Order Amount"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="@dimen/_7sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:singleLine="true"
+                        tools:ignore="RtlSymmetry" />
 
                 </RelativeLayout>
 

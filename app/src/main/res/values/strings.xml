@@ -432,4 +432,11 @@
     <string name="switchs">Switch</string>
     <string name="switch_screen">Switch</string>
     <string name="staff_mobile_number"><font fontfamily="@font/l_r" size="13">Staff Mobile Number</font></string>
+
+    <string-array name="Sp_Refund">
+        <item>Refundable</item>
+        <item>Non Refundable</item>
+        <item>Partial Refundable</item>
+    </string-array>
+
 </resources>
