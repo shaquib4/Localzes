@@ -10,6 +10,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -27,6 +28,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
@@ -51,6 +53,7 @@ class generateQRcode : AppCompatActivity() {
     private lateinit var storeName: TextView
     var shopName: String = ""
     var shopId: String = ""
+    var imgUrl: String = ""
     private var bitmapN: Bitmap? = null
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -68,7 +71,8 @@ class generateQRcode : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 shopName = snapshot.child("shop_name").value.toString()
-                storeName.text = shopName
+                imgUrl = snapshot.child("imageUrl").value.toString()
+                storeName.text = imgUrl
             }
 
         })
@@ -108,7 +112,7 @@ class generateQRcode : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.R)
     fun generateQRCode() {
-        val bitmap = encodeAsBitmap(shopId, 400, 400, context)
+        val bitmap = encodeAsBitmap(shopId, shopName, imgUrl, 400, 400, context)
         iv_qr_code.setImageBitmap(bitmap)
 
         qrsave.setOnClickListener {
@@ -161,12 +165,19 @@ class generateQRcode : AppCompatActivity() {
         Toast.makeText(this, "saved", Toast.LENGTH_LONG).show()
     }
 
-    fun encodeAsBitmap(str: String, WIDTH: Int, HEIGHT: Int, ctx: Context): Bitmap? {
+    fun encodeAsBitmap(
+        str: String,
+        name: String,
+        shopImage: String,
+        WIDTH: Int,
+        HEIGHT: Int,
+        ctx: Context
+    ): Bitmap? {
         val result: BitMatrix
         try {
 
             result = MultiFormatWriter().encode(
-                str,
+                createReferLink(str, name, shopImage),
                 BarcodeFormat.QR_CODE, WIDTH, HEIGHT, null
             )
         } catch (iae: IllegalArgumentException) {
@@ -236,6 +247,22 @@ class generateQRcode : AppCompatActivity() {
         } else {
             Toast.makeText(this, "File doesn't exist", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun createReferLink(s: String, shopName: String, imgUrl: String): String {
+        val shareLinkTest =
+            "https://localzes.page.link/?link=http://www.localze.com/myshopId.php?shopid=$s&apn=$packageName&st=${shopName}&si=$imgUrl"
+        var shortLinks = ""
+        val shortLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+            .setLongLink(Uri.parse(shareLinkTest))
+            .setDomainUriPrefix("https://localzes.page.link")
+            .buildShortDynamicLink().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    shortLinks = it.result?.shortLink.toString()
+                }
+            }
+        return shortLinks
+
     }
 
     fun checkPermission(context: Context, permissionArray: Array<String>): Boolean {
