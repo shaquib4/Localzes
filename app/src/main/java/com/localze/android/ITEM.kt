@@ -56,7 +56,6 @@ class ITEM : Fragment() {
                         i.child("imageUrl").value.toString(),
                         i.child("productCategory").value.toString(),
                         i.child("title").value.toString(),
-                        i.child("description").value.toString(),
                         i.child("sellingPrice").value.toString(),
                         i.child("offerPrice").value.toString(),
                         i.child("unit").value.toString(),
