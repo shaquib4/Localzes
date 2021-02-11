@@ -84,51 +84,58 @@ class AddProduct : AppCompatActivity() {
         }
 
         btnAddProduct.setOnClickListener {
-          try{  when {
-                etTittle.text.trim().toString().isEmpty() -> {
-                    etTittle.error = "Please enter product name"
-                    return@setOnClickListener
-                }
-                etSellPrice.text.trim().toString().isEmpty() -> {
-                    etSellPrice.error = "Please enter MRP of product"
-                    return@setOnClickListener
-                }
-                etOfferPrice.text.trim().toString().isEmpty() -> {
-                    etOfferPrice.error = "Please enter selling price of product"
-                    return@setOnClickListener
-                }
-                etQuantity.text.trim().toString().isEmpty() -> {
-                    etQuantity.error = "Please enter quantity"
-                    return@setOnClickListener
-                }
-                imagePath == null -> {
+            try {
+                when {
+                    etTittle.text.trim().toString().isEmpty() -> {
+                        etTittle.error = "Please enter product name"
+                        return@setOnClickListener
+                    }
+                    etSellPrice.text.trim().toString().isEmpty() -> {
+                        etSellPrice.error = "Please enter MRP of product"
+                        return@setOnClickListener
+                    }
+                    etOfferPrice.text.trim().toString().isEmpty() -> {
+                        etOfferPrice.error = "Please enter selling price of product"
+                        return@setOnClickListener
+                    }
+                    etQuantity.text.trim().toString().isEmpty() -> {
+                        etQuantity.error = "Please enter quantity"
+                        return@setOnClickListener
+                    }
+                    imagePath == null -> {
 
-                    Toast.makeText(this, "Please provide image of Your product", Toast.LENGTH_LONG)
-                        .show()
-                }
-                (etOfferPrice.text.trim().toString().toDouble() > etSellPrice.text.trim().toString()
-                    .toDouble()) -> {
-                    Toast.makeText(
-                        this,
-                        "Selling price should be less than MRP",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                else -> {
-                    if (ConnectionManager().checkConnectivity(this)) {
-                        rl_addProduct.visibility = View.VISIBLE
-                        rl_retryAddProduct.visibility = View.GONE
-                        progressDialog.setMessage("Adding Your Product....")
-                        progressDialog.show()
-                        uploadData(progressDialog, uid)
-                    } else {
-                        rl_addProduct.visibility = View.GONE
-                        rl_retryAddProduct.visibility = View.VISIBLE
+                        Toast.makeText(
+                            this,
+                            "Please provide image of Your product",
+                            Toast.LENGTH_LONG
+                        )
+                            .show()
+                    }
+                    (etOfferPrice.text.trim().toString().toDouble() > etSellPrice.text.trim()
+                        .toString()
+                        .toDouble()) -> {
+                        Toast.makeText(
+                            this,
+                            "Selling price should be less than MRP",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    else -> {
+                        if (ConnectionManager().checkConnectivity(this)) {
+                            rl_addProduct.visibility = View.VISIBLE
+                            rl_retryAddProduct.visibility = View.GONE
+                            progressDialog.setMessage("Adding Your Product....")
+                            progressDialog.show()
+                            uploadData(progressDialog, uid)
+                        } else {
+                            rl_addProduct.visibility = View.GONE
+                            rl_retryAddProduct.visibility = View.VISIBLE
+                        }
                     }
                 }
-            }}catch (e:Exception){
-              e.printStackTrace()
-          }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -283,7 +290,8 @@ class AddProduct : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             )
                                 .show()
-                            val intent = Intent(this, Home_seller::class.java)
+                            val intent = Intent(this, AddProductDetails::class.java)
+                            intent.putExtra("pId", timestamp)
                             startActivity(intent)
                             finish()
                         }
