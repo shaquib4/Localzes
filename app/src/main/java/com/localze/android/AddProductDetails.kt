@@ -17,7 +17,7 @@ class AddProductDetails : AppCompatActivity() {
     private lateinit var inputSizes: EditText
     private lateinit var refundableType: Spinner
     private lateinit var detailDatabase: DatabaseReference
-    private var productId: String = ""
+    private var productId: String ?=null
     private lateinit var shopAuth: FirebaseAuth
     private lateinit var proceed: Button
     private lateinit var pickColor: ImageView
@@ -36,7 +36,7 @@ class AddProductDetails : AppCompatActivity() {
         val uid = user!!.uid
         detailDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
-                .child(productId).child("ProductDetails")
+                .child(productId.toString()).child("ProductDetails")
         proceed.setOnClickListener {
             detailDatabase.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {

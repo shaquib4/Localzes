@@ -32,7 +32,7 @@ class AddProduct : AppCompatActivity() {
     private lateinit var imgBackAdd: ImageView
     private lateinit var timestamp: String
     private var categorySelected: String? = "200"
-    var imgUrl: String = ""
+    var imgUrl: String? = null
     private var spinnerItem: String = ""
     var thumb_Bitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -215,7 +215,7 @@ class AddProduct : AppCompatActivity() {
 
     private fun uploadData(progressDialog: ProgressDialog, uid: String) {
         try {
-            if (imgUrl != "") {
+            if (imgUrl != null) {
 /*
             val productRef =
                 FirebaseStorage.getInstance().reference.child("uploads/$timestamp.jpg")
@@ -270,7 +270,7 @@ class AddProduct : AppCompatActivity() {
                 products = ModelAddProduct(
                     uid,
                     timestamp,
-                    imgUrl,
+                    imgUrl.toString(),
                     sp_spinner_add.selectedItem.toString(),
                     etTittle.text.toString().trim().toLowerCase(),
                     etSellPrice.text.toString().trim(),
