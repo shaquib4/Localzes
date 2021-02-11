@@ -266,7 +266,6 @@ class AddProduct : AppCompatActivity() {
                     imgUrl,
                     sp_spinner_add.selectedItem.toString(),
                     etTittle.text.toString().trim().toLowerCase(),
-                    etDescription.text.toString().trim(),
                     etSellPrice.text.toString().trim(),
                     etOfferPrice.text.toString().trim(),
                     sp_unit.selectedItem.toString(),

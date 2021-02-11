@@ -45,7 +45,6 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
 
         imageUpdate = findViewById(R.id.image_view_update)
         categoryUpdate = findViewById(R.id.sp_spinner_add_update)
-        descriptionUpdate = findViewById(R.id.etDescriptionUpdate)
         productName = findViewById(R.id.etTittleUpdate)
         offerPriceUpdate = findViewById(R.id.etOfferPriceUpdate)
         sellPriceUpdate = findViewById(R.id.etSellPriceUpdate)
@@ -210,7 +209,6 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
             headers["sellingPrice"] = sellPriceUpdate.text.toString().trim()
             headers["title"] = productName.text.toString().trim()
             headers["unit"] = unitUpdate.selectedItem.toString().trim()
-            headers["description"] = descriptionUpdate.text.toString().trim()
             databaseRef.child("Products").child(productId.toString()).updateChildren(headers)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Item Updated Successfully", Toast.LENGTH_SHORT)
@@ -267,7 +265,6 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     headers["sellingPrice"] = sellPriceUpdate.text.toString().trim()
                     headers["title"] = productName.text.toString().trim()
                     headers["unit"] = unitUpdate.selectedItem.toString().trim()
-                    headers["description"] = descriptionUpdate.text.toString().trim()
                     databaseRef.child("Products").child(productId.toString())
                         .updateChildren(headers).addOnSuccessListener {
                             Toast.makeText(
