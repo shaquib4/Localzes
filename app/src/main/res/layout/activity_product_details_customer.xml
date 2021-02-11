@@ -8,6 +8,14 @@ android:background="#fff"
     tools:context=".ProductDetailsCustomer">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <RelativeLayout
         android:id="@+id/rl1"
         android:layout_width="match_parent"
@@ -127,6 +135,7 @@ android:background="#fff"
         android:textSize="@dimen/_15ssp"/>
 
     <TextView
+        android:id="@+id/txtDetails"
         android:text="Product details "
         android:padding="@dimen/_5sdp"
         android:paddingHorizontal="@dimen/_5sdp"
@@ -138,12 +147,13 @@ android:background="#fff"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_100sdp"
         android:layout_below="@+id/txtProductDetails"/>
-
+    </RelativeLayout>
+    </ScrollView>
     <Button
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/_20sdp"
+   android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_10sdp"
         android:background="@drawable/proceed_to_add"
         android:textColor="#fff"
         android:text="Add to cart"
