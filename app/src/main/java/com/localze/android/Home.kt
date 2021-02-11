@@ -2,6 +2,7 @@ package com.localze.android
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -444,12 +445,11 @@ class Home : AppCompatActivity() {
                 if (result.contents == null) {
                     Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
                 } else {
-                    val shopId = result.contents
-                    if (shopId.isNotEmpty()) {
-                        val intent = Intent(this, UserProductsActivity::class.java)
-                        intent.putExtra("shopId", shopId)
-                        startActivity(intent)
-                    }
+                    val link = result.contents
+                    val intent=Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse(link)
+                    val chooser = Intent.createChooser(intent, "Scan")
+                    startActivity(chooser)
                 }
             } else {
                 super.onActivityResult(requestCode, resultCode, data)
