@@ -5,34 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context=".ProductDetails">
+    tools:context=".AddProductDetails">
 
     <RelativeLayout
         android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp">
+
         <ImageView
             android:id="@+id/imgBack"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/ic_back"
             android:layout_centerVertical="true"
-            android:layout_marginHorizontal="@dimen/_10sdp"/>
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:src="@drawable/ic_back" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PRODUCT DETAILS"
-            android:textSize="@dimen/_15ssp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="#000"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@id/imgBack"
-            android:layout_centerVertical="true"/>
+            android:fontFamily="@font/montserrat_bold"
+            android:text="PRODUCT DETAILS"
+            android:textColor="#000"
+            android:textSize="@dimen/_15ssp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#d3d3d3"
             android:layout_alignParentBottom="true"
-            />
+            android:background="#d3d3d3" />
     </RelativeLayout>
 
     <TextView
@@ -40,123 +42,126 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl1"
-        android:text="PRODUCT DESCRIPTION"
-        android:textSize="@dimen/_12ssp"
+        android:layout_margin="@dimen/_10sdp"
         android:fontFamily="@font/montserrat_bold"
+        android:text="PRODUCT DESCRIPTION"
         android:textColor="#000"
-        android:layout_margin="@dimen/_10sdp"/>
+        android:textSize="@dimen/_12ssp" />
 
     <RelativeLayout
         android:id="@+id/rl2"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:background="@drawable/stroke_red"
-        android:layout_below="@id/txtProductDescription"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_80sdp">
+        android:layout_height="@dimen/_80sdp"
+        android:layout_below="@id/txtProductDescription"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:background="@drawable/stroke_red">
+
         <EditText
+            android:id="@+id/edtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
             android:background="#fff"
             android:fontFamily="@font/montserrat_medium"
-            android:id="@+id/edtDescription"
             android:hint="Write Product Description"
-            android:maxLines="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:inputType="text"
+            android:maxLines="2" />
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/txtChoseColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl2"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:fontFamily="@font/montserrat_bold"
-        android:textColor="#000"
-        android:id="@+id/txtChoseColor"
-        android:text="CHOOSE COLOR"/>
+        android:text="CHOOSE COLOR"
+        android:textColor="#000" />
+
     <EditText
-        android:paddingHorizontal="10dp"
-        android:layout_below="@id/txtChoseColor"
         android:id="@+id/edtColor"
-        android:maxLines="1"
-        android:layout_toLeftOf="@id/imgColor"
-        android:layout_margin="@dimen/_10sdp"
-        android:maxLength="50"
-        android:hint="Color Name"
-        android:fontFamily="@font/montserrat_medium"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_37sdp"
-        android:background="@drawable/stroke_red"/>
+        android:layout_below="@id/txtChoseColor"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_toLeftOf="@id/imgColor"
+        android:background="@drawable/stroke_red"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Color Name"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:paddingHorizontal="10dp" />
+
     <ImageView
-        android:layout_margin="@dimen/_8sdp"
+        android:id="@+id/imgColor"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/txtChoseColor"
         android:layout_alignParentEnd="true"
-        android:id="@+id/imgColor"
-        android:background="@drawable/circle"/>
+        android:layout_margin="@dimen/_8sdp"
+        android:background="@drawable/circle" />
 
     <TextView
         android:id="@+id/txtSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/edtColor"
+        android:layout_margin="@dimen/_10sdp"
+        android:fontFamily="@font/montserrat_bold"
         android:text="INPUT SIZE"
         android:textColor="#000"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="@dimen/_12ssp"
-        android:layout_below="@id/edtColor"
-        android:layout_margin="@dimen/_10sdp" />
+        android:textSize="@dimen/_12ssp" />
 
     <EditText
-        android:paddingHorizontal="10dp"
-        android:layout_below="@id/txtSize"
         android:id="@+id/edtSize"
-        android:maxLines="1"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:maxLength="50"
-        android:hint="Color Name"
-        android:fontFamily="@font/montserrat_medium"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_37sdp"
+        android:layout_below="@id/txtSize"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         android:background="@drawable/stroke_red"
-        />
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Size"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:paddingHorizontal="10dp" />
+
     <TextView
         android:id="@+id/txtRefundable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REFUND TYPE"
-        android:textColor="#000"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="@dimen/_12ssp"
         android:layout_below="@id/edtSize"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_20sdp"/>
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="REFUND TYPE"
+        android:textColor="#000"
+        android:textSize="@dimen/_12ssp" />
 
     <RelativeLayout
         android:id="@+id/rl4"
-        android:layout_below="@+id/txtRefundable"
-        android:background="@drawable/stroke_red"
-        android:layout_margin="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_37sdp"
-        >
+        android:layout_below="@+id/txtRefundable"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/stroke_red">
+
         <Spinner
             android:id="@+id/sp_refund"
-            android:entries="@array/Sp_Refund"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/_10sdp"/>
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:entries="@array/Sp_Refund" />
     </RelativeLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-        android:background="@drawable/proceed_to_add"
         android:layout_below="@id/rl4"
         android:layout_margin="@dimen/_20sdp"
+        android:background="@drawable/proceed_to_add"
+        android:fontFamily="@font/montserrat_bold"
         android:text="Proceed"
         android:textColor="#fff"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="@dimen/_15ssp"/>
+        android:textSize="@dimen/_15ssp" />
 </RelativeLayout>
