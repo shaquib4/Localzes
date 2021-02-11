@@ -6,316 +6,339 @@
     android:layout_height="match_parent"
     android:background="#fcfcfc"
     android:orientation="vertical">
-<LinearLayout
-    android:id="@+id/rl_ShopDetail"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.core.widget.NestedScrollView
+
+    <LinearLayout
+        android:id="@+id/rl_ShopDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/wel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/welcome_to_localze"
-                    android:textColor="#De4500"
-                    android:textSize="@dimen/_15ssp"
-
-                    />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1.2dp"
-                    android:layout_below="@+id/wel"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#eaeaea" />
-            </RelativeLayout>
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#fcfcfc">
+                android:orientation="vertical">
 
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_165sdp"
-                    android:layout_margin="@dimen/_7sdp"
-                    app:cardCornerRadius="10dp">
+                    android:layout_height="match_parent">
 
-                    <ImageView
-                        android:contentDescription="@string/todo"
+                    <TextView
+                        android:id="@+id/wel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/welcome_to_localze"
+                        android:textColor="#De4500"
+                        android:textSize="@dimen/_15ssp"
 
-                        android:layout_width="@dimen/_120sdp"
-                        android:layout_height="@dimen/_120sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_add_image" />
+                        />
 
-                    <ImageView
-                        android:contentDescription="@string/todo"
-                        android:id="@+id/choose_image"
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:scaleType="fitXY" />
+                        android:layout_height="1.2dp"
+                        android:layout_below="@+id/wel"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#eaeaea" />
+                </RelativeLayout>
 
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/txtAddShopImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/card"
-                    android:layout_margin="@dimen/_7sdp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/add_shop_image_optional"
-                    android:textSize="@dimen/_8ssp" />
-
-
-                <View
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1.2dp"
-                    android:layout_below="@id/txtAddShopImage"
-                    android:layout_marginHorizontal="@dimen/_7sdp"
-                    android:background="#eaeaea" />
-            </RelativeLayout>
+                    android:layout_height="match_parent"
+                    android:background="#fcfcfc">
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_165sdp"
+                        android:layout_margin="@dimen/_7sdp"
+                        app:cardCornerRadius="10dp">
 
-                <TextView
-                    android:id="@+id/txtChooseCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_13sdp"
+                        <ImageView
+                            android:layout_width="@dimen/_120sdp"
 
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/choose_shop_category"
-                    android:textSize="@dimen/_10ssp" />
+                            android:layout_height="@dimen/_120sdp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/todo"
+                            android:src="@drawable/ic_add_image" />
 
-                <Spinner
-                    android:id="@+id/spn_category"
-                    android:layout_width="@dimen/_110sdp"
-                    android:layout_height="@dimen/_32sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"
-                    android:layout_toEndOf="@+id/txtChooseCategory"
-                    android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:entries="@array/Spinner_Category"
-                    android:textAlignment="center" />
-
-
-                <EditText
-                    android:id="@+id/edtName"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
-                    android:layout_below="@+id/spn_category"
-                    android:layout_marginHorizontal="@dimen/_7sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:gravity="center_vertical"
-                    android:hint="@string/shop_name"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:padding="@dimen/_7sdp"
-                    android:paddingStart="@dimen/_12sdp"
-                    android:singleLine="true"
-                    android:textSize="@dimen/_12ssp"
-                    android:importantForAutofill="no"
-                    tools:ignore="RtlSymmetry" />
-
-                <EditText
-                    android:id="@+id/edtPay"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
-                    android:layout_below="@+id/edtName"
-                    android:layout_marginHorizontal="@dimen/_7sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/bg_ractangle_rounded_stroke"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:gravity="center_vertical"
-                    android:hint="@string/upi_id_optional"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:padding="@dimen/_7sdp"
-                    android:paddingStart="@dimen/_12sdp"
-                    android:singleLine="true"
-                    android:textSize="@dimen/_12ssp"
-                    tools:ignore="RtlSymmetry"
-                    android:importantForAutofill="no" />
-
-                <Button
-                    android:id="@+id/upload"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
-                    android:layout_below="@+id/ll2"
-                    android:layout_gravity="bottom"
-                    android:layout_marginHorizontal="@dimen/_22sdp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/round2_btn"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/upload"
-                    android:textAllCaps="false"
-                    android:textColor="#fcfcfc"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/edtPay"
-                    android:layout_alignStart="@+id/txtChooseCategory"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/select_shop_s_activity_hours"
-                    android:textSize="@dimen/_10ssp" />
-
-
-                <LinearLayout
-                    android:id="@+id/ll1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtTime"
-                    android:layout_alignStart="@id/txtChooseCategory"
-                    android:layout_marginEnd="@dimen/_7sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="4"
-                    android:baselineAligned="false">
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="@string/open"
-                            android:textSize="@dimen/_10ssp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="1.5"
-                        android:background="@drawable/rectangle_box">
-
-                        <Spinner
-                            android:id="@+id/openTime"
+                        <ImageView
+                            android:id="@+id/choose_image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:entries="@array/Spinner_Hours"
-                            android:textAlignment="center" />
-                    </RelativeLayout>
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/todo"
+                            android:scaleType="fitXY" />
 
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_weight="0.5">
+                    </androidx.cardview.widget.CardView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="@string/close"
-                            android:textSize="@dimen/_10ssp" />
-                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/txtAddShopImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/card"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/add_shop_image_optional"
+                        android:textSize="@dimen/_8ssp" />
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_weight="1.5"
-                        android:background="@drawable/rectangle_box">
 
-                        <Spinner
-                            android:id="@+id/closeTime"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:entries="@array/Spinner_Hours"
-                            android:textAlignment="center" />
-                    </RelativeLayout>
-                </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.2dp"
+                        android:layout_below="@id/txtAddShopImage"
+                        android:layout_marginHorizontal="@dimen/_7sdp"
+                        android:background="#eaeaea" />
+                </RelativeLayout>
 
-                <LinearLayout
-                    android:id="@+id/ll2"
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ll1"
-                    android:layout_alignStart="@id/txtChooseCategory"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:baselineAligned="false">
+                    android:layout_height="match_parent">
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/txtChooseCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="@string/select_shop_s_closing_day"
-                            android:textSize="@dimen/_8ssp" />
-                    </RelativeLayout>
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/choose_shop_category"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <Spinner
+                        android:id="@+id/spn_category"
+                        android:layout_width="@dimen/_110sdp"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_marginEnd="@dimen/_7sdp"
+                        android:layout_toEndOf="@+id/txtChooseCategory"
+                        android:background="@drawable/bg_ractangle_rounded_stroke"
+                        android:entries="@array/Spinner_Category"
+                        android:textAlignment="center" />
 
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rectangle_box">
+                    <EditText
+                        android:id="@+id/edtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_below="@+id/spn_category"
+                        android:layout_marginHorizontal="@dimen/_7sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/bg_ractangle_rounded_stroke"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_vertical"
+                        android:hint="@string/shop_name"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:padding="@dimen/_7sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_12ssp"
+                        tools:ignore="RtlSymmetry" />
 
-                        <Spinner
-                            android:id="@+id/closeDay"
-                            android:layout_width="match_parent"
+                    <EditText
+                        android:id="@+id/edtPay"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_below="@+id/edtName"
+                        android:layout_marginHorizontal="@dimen/_7sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/bg_ractangle_rounded_stroke"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_vertical"
+                        android:hint="@string/upi_id_optional"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:padding="@dimen/_7sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_12ssp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <Button
+                        android:id="@+id/upload"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_below="@+id/edtMinAmount"
+                        android:layout_gravity="bottom"
+                        android:layout_marginHorizontal="@dimen/_22sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/round2_btn"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/upload"
+                        android:textAllCaps="false"
+                        android:textColor="#fcfcfc"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/edtPay"
+                        android:layout_alignStart="@+id/txtChooseCategory"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/select_shop_s_activity_hours"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtTime"
+                        android:layout_alignStart="@id/txtChooseCategory"
+                        android:layout_marginEnd="@dimen/_7sdp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:entries="@array/Spinner_Days"
-                            android:textAlignment="center" />
-                    </RelativeLayout>
+                            android:layout_weight="0.5">
 
-                </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/open"
+                                android:textSize="@dimen/_10ssp" />
+                        </RelativeLayout>
 
-            </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/rectangle_box">
 
-        </LinearLayout>
+                            <Spinner
+                                android:id="@+id/openTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:entries="@array/Spinner_Hours"
+                                android:textAlignment="center" />
+                        </RelativeLayout>
 
-    </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="0.5">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/close"
+                                android:textSize="@dimen/_10ssp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/rectangle_box">
+
+                            <Spinner
+                                android:id="@+id/closeTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:entries="@array/Spinner_Hours"
+                                android:textAlignment="center" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll1"
+                        android:layout_alignStart="@id/txtChooseCategory"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_7sdp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/select_shop_s_closing_day"
+                                android:textSize="@dimen/_8ssp" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rectangle_box">
+
+                            <Spinner
+                                android:id="@+id/closeDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:entries="@array/Spinner_Days"
+                                android:textAlignment="center" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/edtMinAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_below="@+id/ll2"
+                        android:layout_marginHorizontal="@dimen/_7sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_ractangle_rounded_stroke"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Minimum Order Amount"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:padding="@dimen/_7sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_12ssp"
+                        tools:ignore="RtlSymmetry" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/rl_retryShopDetail"
         android:layout_width="match_parent"

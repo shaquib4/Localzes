@@ -140,7 +140,7 @@
                     android:textSize="@dimen/_10ssp"
                     android:importantForAutofill="no" />
 
-                <EditText
+                <!--<EditText
                     android:id="@+id/etDescriptionUpdate"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_32sdp"
@@ -156,7 +156,7 @@
                     android:maxLines="1"
                     android:textAlignment="center"
                     android:textSize="@dimen/_10ssp"
-                    android:importantForAutofill="no" />
+                    android:importantForAutofill="no" />-->
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
@@ -194,7 +194,7 @@
                     android:id="@+id/linearLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etDescriptionUpdate"
+                    android:layout_below="@id/etTittleUpdate"
                     android:weightSum="2">
 
                     <EditText
