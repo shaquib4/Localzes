@@ -37,10 +37,10 @@
             android:background="#d3d3d3" />
 
         <RelativeLayout
-            android:visibility="invisible"
             android:id="@+id/rl_Rejected_Orders"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/imgEmpty"
@@ -99,7 +99,7 @@
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:layout_toEndOf="@+id/txtCartRejected"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="(1000)"
+                    android:text="()"
                     android:textColor="#000"
                     android:textSize="@dimen/_14ssp" />
             </RelativeLayout>
@@ -132,7 +132,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/txtlistRejected"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="(1000)"
+                    android:text="()"
                     android:textColor="#000"
                     android:textSize="@dimen/_14ssp" />
             </RelativeLayout>
