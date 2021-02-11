@@ -12,30 +12,30 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:background="#de4500"
-            android:text="Shop Name"
-            android:textColor="#fff"
-            android:fontFamily="@font/montserrat_bold"
-            android:textSize="@dimen/_15ssp"
-            android:gravity="center"
-            android:textAlignment="center"
+            android:id="@+id/txtShop"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:id="@+id/txtShop"
-            />
+            android:background="#de4500"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:text="Shop Name"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="@dimen/_15ssp" />
+
         <EditText
 
-            android:layout_below="@id/txtShop"
             android:id="@+id/searchShopProduct"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/txtShop"
             android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/bg_product_shop"
-            android:hint="@string/search"
-            android:paddingStart="@dimen/_20sdp"
-            android:inputType="text"
             android:fontFamily="@font/montserrat_medium"
+            android:hint="@string/search"
             android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingStart="@dimen/_20sdp"
             tools:ignore="RtlSymmetry" />
 
         <RelativeLayout
@@ -137,20 +137,20 @@
         <Button
             android:id="@+id/createList"
             android:layout_width="@dimen/_130sdp"
-            android:textColor="#fff"
             android:layout_height="@dimen/_32sdp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textAllCaps="false"
-            android:textSize="@dimen/_13ssp"
-            android:layout_marginTop="@dimen/_2sdp"
             android:layout_below="@+id/searchShopProduct"
-            android:layout_marginEnd="@dimen/_5sdp"
-         android:layout_marginBottom="2dp"
-            android:text="Create List+"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/round2_btn"
             android:backgroundTint="#de4500"
+            android:fontFamily="@font/montserrat_bold"
             android:padding="@dimen/_5sdp"
-           android:background="@drawable/round2_btn"
+            android:text="Create List+"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="@dimen/_13ssp"
             tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>

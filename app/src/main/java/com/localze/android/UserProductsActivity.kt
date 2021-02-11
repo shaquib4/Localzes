@@ -37,6 +37,7 @@ class UserProductsActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewCart: TextView
     private lateinit var search: EditText
+    private lateinit var storeName: TextView
     var totalCost: Double = 0.00
     var totalOriginalPrice: Double = 0.00
     var totalItems: Int = 0
@@ -60,6 +61,7 @@ class UserProductsActivity : AppCompatActivity() {
         quantityItem = findViewById(R.id.quantity_item)
         costTotal = findViewById(R.id.total_cost_cart)
         createList = findViewById(R.id.createList)
+        storeName = findViewById(R.id.txtShop)
         cartItems = ArrayList<UserCartDetails>()
         viewCart = findViewById(R.id.txtViewCart)
         auth = FirebaseAuth.getInstance()
@@ -82,6 +84,7 @@ class UserProductsActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val shopName = snapshot.child("shop_name").value.toString()
                 shop_Name = shopName
+                storeName.text = shopName
 
             }
 
@@ -231,7 +234,6 @@ class UserProductsActivity : AppCompatActivity() {
                                 i.child("imageUrl").value.toString(),
                                 i.child("productCategory").value.toString(),
                                 i.child("title").value.toString(),
-                                i.child("description").value.toString(),
                                 i.child("sellingPrice").value.toString(),
                                 i.child("offerPrice").value.toString(),
                                 i.child("unit").value.toString(),
@@ -369,7 +371,6 @@ class UserProductsActivity : AppCompatActivity() {
                             i.child("imageUrl").value.toString(),
                             i.child("productCategory").value.toString(),
                             i.child("title").value.toString(),
-                            i.child("description").value.toString(),
                             i.child("sellingPrice").value.toString(),
                             i.child("offerPrice").value.toString(),
                             i.child("unit").value.toString(),

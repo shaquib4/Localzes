@@ -1,5 +1,6 @@
 package com.localze.android.Adapters
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.text.SpannableString
@@ -137,7 +138,17 @@ class AdapterSellerProducts(
             (context as Seller_Products).finish()
         }
         holder.imgRemove.setOnClickListener {
-            deleteProduct(position, products.shopId)
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Confirmation")
+            builder.setMessage("Are you sure you want to delete this product from your shop?")
+            val dialog = builder.show()
+            builder.setPositiveButton("Yes") { text, listener ->
+                deleteProduct(position, products.shopId)
+                dialog.dismiss()
+            }
+            builder.setNegativeButton("No") { text, listener ->
+                dialog.dismiss()
+            }
         }
     }
 

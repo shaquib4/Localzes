@@ -24,8 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".ProductDetailsCustomer"></activity>
-        <activity android:name=".ChooseNotification" />
         <activity
             android:name=".OrderRejectedActivity"
             android:screenOrientation="portrait" />
