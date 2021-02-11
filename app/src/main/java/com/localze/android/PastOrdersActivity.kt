@@ -100,7 +100,7 @@ class PastOrdersActivity : AppCompatActivity() {
         cartPastNo.setTextColor(resources.getColor(R.color.black))
         txtlistPast.setTextColor(resources.getColor(R.color.colorPrimary))
         listPastNo.setTextColor(resources.getColor(R.color.colorPrimary))
-        pastOrderHistoryDatabase.child("OrdersLists")
+        pastOrderHistoryDatabase.child("MyOrderList")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
