@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +29,16 @@ class ProductDetailsCustomer : AppCompatActivity() {
     private lateinit var refundType: TextView
     private lateinit var availableSize: TextView
     private lateinit var colorsVariant: TextView
+    private lateinit var addToCart: Button
+    private lateinit var btnLinear: LinearLayout
+    private lateinit var btnDecrease: Button
+    private lateinit var btnIncrease: Button
+    private lateinit var txtCount: TextView
+    private var productCost: Double = 0.0
+    private var finalSellingPrice: Double = 0.0
+    private var productOriginal: Double = 0.0
+    private var finalProductOriginal: Double = 0.0
+    private var quantity: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details_customer)
@@ -36,7 +48,14 @@ class ProductDetailsCustomer : AppCompatActivity() {
         originalPrice = findViewById(R.id.txtMRP)
         productStock = findViewById(R.id.txtStock)
         productDescription = findViewById(R.id.txtDetails)
-        refundType = findViewById(R.id.txtR)
+        refundType = findViewById(R.id.txtRefund)
+        availableSize = findViewById(R.id.txtSize)
+        colorsVariant = findViewById(R.id.txtColor)
+        addToCart = findViewById(R.id.btnCartAdd)
+        btnLinear = findViewById(R.id.btnLinearDetail)
+        btnDecrease = findViewById(R.id.btnDecrease_newDetail)
+        btnIncrease = findViewById(R.id.btnIncrease_newDetail)
+        txtCount = findViewById(R.id.txtCounterDetail)
         productAuth = FirebaseAuth.getInstance()
         val user = productAuth.currentUser
         val uid = user!!.uid
@@ -53,14 +72,17 @@ class ProductDetailsCustomer : AppCompatActivity() {
                     val imgUrl = snapshot.child("imageUrl").value.toString()
                     val pName = snapshot.child("title").value.toString()
                     val offPrice = snapshot.child("offerPrice").value.toString()
+                    productCost = offPrice.toDouble()
                     val orgPrice = snapshot.child("sellingPrice").value.toString()
+                    productOriginal = orgPrice.toDouble()
                     val pStock = snapshot.child("stock").value.toString()
                     val pDesc =
                         snapshot.child("ProductDetails").child("description").value.toString()
                     val refundT =
                         snapshot.child("ProductDetails").child("refundableType").value.toString()
-                    val colorT=snapshot.child("ProductDetails").child("colors").value.toString()
-
+                    refundType.text = "This product is $refundT"
+                    val colorT = snapshot.child("ProductDetails").child("colors").value.toString()
+                    colorsVariant.text = colorT
                     productName.text = pName
                     offerPrice.text = "₹$offPrice"
                     val spannableString = SpannableString("₹$orgPrice")
@@ -77,6 +99,25 @@ class ProductDetailsCustomer : AppCompatActivity() {
                 }
 
             })
+        finalSellingPrice = productCost
+        finalProductOriginal = productOriginal
+        addToCart.setOnClickListener {
+
+        }
+        btnDecrease.setOnClickListener {
+            if (quantity > 1) {
+                finalSellingPrice -= productCost
+                finalProductOriginal -= productOriginal
+                quantity--
+                txtCount.text = quantity.toString()
+            }
+        }
+        btnIncrease.setOnClickListener {
+            finalSellingPrice += productCost
+            finalProductOriginal += productOriginal
+            quantity++
+            txtCount.text = quantity.toString()
+        }
     }
 
 }

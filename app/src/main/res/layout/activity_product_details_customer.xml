@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:background="#fff"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".ProductDetailsCustomer">
 
 
@@ -147,18 +147,18 @@ android:background="#fff"
                     android:textColor="#008000"
                     android:textSize="@dimen/_12ssp" />
             </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/btnLinearDetail"
-                android:layout_marginStart="@dimen/_7sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_below="@id/relR"
                 android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:background="#ffffff"
                 android:orientation="horizontal"
-
                 android:weightSum="8">
 
                 <Button
@@ -198,8 +198,8 @@ android:background="#fff"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_12ssp" />
             </LinearLayout>
+
             <Button
-                android:visibility="invisible"
                 android:id="@+id/btnCartAdd"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
@@ -211,7 +211,8 @@ android:background="#fff"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Add to cart"
                 android:textColor="#fff"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_15ssp"
+                android:visibility="invisible" />
 
 
             <TextView
