@@ -153,25 +153,13 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                     holder.unfavorite.visibility = View.GONE
                                     holder.favorite.visibility = View.VISIBLE
                                     holder.favorite.setOnClickListener {
-                                        addToFavorites(
-                                            it,
-                                            userProducts,
-                                            mUid,
-                                            holder.unfavorite,
-                                            holder.favorite
-                                        )
+                                        addToFavorites(it, userProducts, mUid, holder.unfavorite, holder.favorite)
                                     }
                                 } else {
                                     holder.favorite.visibility = View.GONE
                                     holder.unfavorite.visibility = View.VISIBLE
                                     holder.unfavorite.setOnClickListener {
-                                        addToFavorites1(
-                                            it,
-                                            userProducts,
-                                            mUid,
-                                            holder.unfavorite,
-                                            holder.favorite
-                                        )
+                                        addToFavorites1(it, userProducts, mUid, holder.unfavorite, holder.favorite)
                                     }
 
                                 }
@@ -183,18 +171,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                         val view = it
                         holder.unfavorite.visibility = View.GONE
                         holder.favorite.visibility = View.VISIBLE
-                        val obj = ModelAddProduct(
-                            userProducts.shopId,
-                            userProducts.productId,
-                            userProducts.imageUrl,
-                            userProducts.productCategory,
-                            userProducts.title,
-                            userProducts.sellingPrice,
-                            userProducts.offerPrice,
-                            userProducts.unit,
-                            userProducts.quantity,
-                            userProducts.stock
-                        )
+                        val obj = ModelAddProduct(userProducts.shopId, userProducts.productId, userProducts.imageUrl, userProducts.productCategory, userProducts.title, userProducts.sellingPrice, userProducts.offerPrice, userProducts.unit, userProducts.quantity, userProducts.stock)
                         favItemReference.child(userProducts.productId).setValue(obj)
                             .addOnSuccessListener {
                                 val snackbar =
@@ -310,30 +287,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                     holder.btnLinear.visibility = View.VISIBLE
                                     holder.txtCounter.text = finalQDB
                                     if (orderTo == shopID.toString() || shopID == null) {
-                                        addToCart1(
-                                            orderBy,
-                                            productTitle,
-                                            priceEach,
-                                            finalPDB,
-                                            finalQDB,
-                                            orderTo,
-                                            productId,
-                                            productUrl,
-                                            sellingPrice,
-                                            holder.btnIncrease,
-                                            holder.btnDecrease,
-                                            holder.btnLinear,
-                                            cPDB.toDouble(),
-                                            finalPDB.toDouble(),
-                                            finalQDB.toInt(),
-                                            holder.txtCounter,
-                                            holder.addItem,
-                                            sPDB.toDouble(),
-                                            finalSPDB.toDouble(),
-                                            finalSPDB,
-                                            userProducts.unit,
-                                            userProducts.quantity
-                                        )
+                                        addToCart1(orderBy, productTitle, priceEach, finalPDB, finalQDB, orderTo, productId, productUrl, sellingPrice, holder.btnIncrease, holder.btnDecrease, holder.btnLinear, cPDB.toDouble(), finalPDB.toDouble(), finalQDB.toInt(), holder.txtCounter, holder.addItem, sPDB.toDouble(), finalSPDB.toDouble(), finalSPDB, userProducts.unit, userProducts.quantity)
 
                                     }
 
@@ -341,31 +295,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                     holder.addItem.visibility = View.VISIBLE
                                     holder.addItem.setOnClickListener {
                                         if (orderTo == shopID.toString() || shopID == null) {
-                                            addToCart(
-                                                orderBy,
-                                                productTitle,
-                                                priceEach,
-                                                userProducts.offerPrice,
-                                                "1",
-                                                orderTo,
-                                                productId,
-                                                productUrl,
-                                                sellingPrice,
-                                                holder.btnIncrease,
-                                                holder.btnDecrease,
-                                                holder.btnLinear,
-                                                cost,
-                                                finalCost,
-                                                quantity,
-
-                                                holder.txtCounter,
-                                                holder.addItem,
-                                                sellingP,
-                                                finalSellingPrice,
-                                                userProducts.sellingPrice,
-                                                userProducts.unit,
-                                                userProducts.quantity
-                                            )
+                                            addToCart(orderBy, productTitle, priceEach, userProducts.offerPrice, "1", orderTo, productId, productUrl, sellingPrice, holder.btnIncrease, holder.btnDecrease, holder.btnLinear, cost, finalCost, quantity, holder.txtCounter, holder.addItem, sellingP, finalSellingPrice, userProducts.sellingPrice, userProducts.unit, userProducts.quantity)
 
                                         } else if (orderTo !== shopID.toString()) {
                                             val builder = AlertDialog.Builder(context)
@@ -380,30 +310,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                                     FirebaseDatabase.getInstance().reference.child("users")
                                                         .child(uid).child("Cart")
                                                 userDatabase.removeValue()
-                                                addToCart(
-                                                    orderBy,
-                                                    productTitle,
-                                                    priceEach,
-                                                    userProducts.offerPrice,
-                                                    "1",
-                                                    orderTo,
-                                                    productId,
-                                                    productUrl,
-                                                    sellingPrice,
-                                                    holder.btnIncrease,
-                                                    holder.btnDecrease,
-                                                    holder.btnLinear,
-                                                    cost,
-                                                    finalCost,
-                                                    quantity,
-                                                    holder.txtCounter,
-                                                    holder.addItem,
-                                                    sellingP,
-                                                    finalSellingPrice,
-                                                    userProducts.sellingPrice,
-                                                    userProducts.unit,
-                                                    userProducts.quantity
-                                                )
+                                                addToCart(orderBy, productTitle, priceEach, userProducts.offerPrice, "1", orderTo, productId, productUrl, sellingPrice, holder.btnIncrease, holder.btnDecrease, holder.btnLinear, cost, finalCost, quantity, holder.txtCounter, holder.addItem, sellingP, finalSellingPrice, userProducts.sellingPrice, userProducts.unit, userProducts.quantity)
                                                 holder.addItem.visibility = View.GONE
                                                 show.dismiss()
                                             }
@@ -420,31 +327,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 } else if (!snapshot.exists() && userProducts.stock == "IN") {
                     holder.addItem.setOnClickListener {
                         if (orderTo == shopID.toString() || shopID == null) {
-                            addToCart(
-                                orderBy,
-                                productTitle,
-                                priceEach,
-                                userProducts.offerPrice,
-                                "1",
-                                orderTo,
-                                productId,
-                                productUrl,
-                                sellingPrice,
-                                holder.btnIncrease,
-                                holder.btnDecrease,
-                                holder.btnLinear,
-                                cost,
-                                finalCost,
-                                quantity,
-
-                                holder.txtCounter,
-                                holder.addItem,
-                                sellingP,
-                                finalSellingPrice,
-                                userProducts.sellingPrice,
-                                userProducts.unit,
-                                userProducts.quantity
-                            )
+                            addToCart(orderBy, productTitle, priceEach, userProducts.offerPrice, "1", orderTo, productId, productUrl, sellingPrice, holder.btnIncrease, holder.btnDecrease, holder.btnLinear, cost, finalCost, quantity, holder.txtCounter, holder.addItem, sellingP, finalSellingPrice, userProducts.sellingPrice, userProducts.unit, userProducts.quantity)
 
                         } else if (orderTo !== shopID.toString()) {
                             val builder = AlertDialog.Builder(context)
@@ -459,31 +342,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                                     FirebaseDatabase.getInstance().reference.child("users")
                                         .child(uid).child("Cart")
                                 userDatabase.removeValue()
-                                addToCart(
-                                    orderBy,
-                                    productTitle,
-                                    priceEach,
-                                    userProducts.offerPrice,
-                                    "1",
-                                    orderTo,
-                                    productId,
-                                    productUrl,
-                                    sellingPrice,
-                                    holder.btnIncrease,
-                                    holder.btnDecrease,
-                                    holder.btnLinear,
-                                    cost,
-                                    finalCost,
-                                    quantity,
-
-                                    holder.txtCounter,
-                                    holder.addItem,
-                                    sellingP,
-                                    finalSellingPrice,
-                                    userProducts.sellingPrice,
-                                    userProducts.unit,
-                                    userProducts.quantity
-                                )
+                                addToCart(orderBy, productTitle, priceEach, userProducts.offerPrice, "1", orderTo, productId, productUrl, sellingPrice, holder.btnIncrease, holder.btnDecrease, holder.btnLinear, cost, finalCost, quantity, holder.txtCounter, holder.addItem, sellingP, finalSellingPrice, userProducts.sellingPrice, userProducts.unit, userProducts.quantity)
                                 holder.addItem.visibility = View.GONE
                                 show.dismiss()
                             }
@@ -516,18 +375,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         favorite: FloatingActionButton
     ) {
         val view = it
-        val obj = ModelAddProduct(
-            userProducts.shopId,
-            userProducts.productId,
-            userProducts.imageUrl,
-            userProducts.productCategory,
-            userProducts.title,
-            userProducts.sellingPrice,
-            userProducts.offerPrice,
-            userProducts.unit,
-            userProducts.quantity,
-            userProducts.stock
-        )
+        val obj = ModelAddProduct(userProducts.shopId, userProducts.productId, userProducts.imageUrl, userProducts.productCategory, userProducts.title, userProducts.sellingPrice, userProducts.offerPrice, userProducts.unit, userProducts.quantity, userProducts.stock)
         val favItemReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(mUid)
                 .child("FavoriteItems")
@@ -548,18 +396,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
     ) {
 
         val view = it
-        val obj = ModelAddProduct(
-            userProducts.shopId,
-            userProducts.productId,
-            userProducts.imageUrl,
-            userProducts.productCategory,
-            userProducts.title,
-            userProducts.sellingPrice,
-            userProducts.offerPrice,
-            userProducts.unit,
-            userProducts.quantity,
-            userProducts.stock
-        )
+        val obj = ModelAddProduct(userProducts.shopId, userProducts.productId, userProducts.imageUrl, userProducts.productCategory, userProducts.title, userProducts.sellingPrice, userProducts.offerPrice, userProducts.unit, userProducts.quantity, userProducts.stock)
         val favItemReference: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(mUid)
                 .child("FavoriteItems")
@@ -572,30 +409,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
 
     }
 
-    private fun addToCart1(
-        uid: String,
-        title: String,
-        priceEach: String,
-        finalPr: String,
-        finalQ: String,
-        shopId: String,
-        productId: String,
-        productUrl: String,
-        sellingPrice: String,
-        btnIncrease: Button,
-        btnDecrease: Button,
-        btnLinear: LinearLayout,
-        cost: Double,
-        finalCost: Double,
-        quantity: Int,
-        txtCounter: TextView,
-        addItem: Button,
-        sellingP: Double,
-        finalSellingPrice: Double,
-        finalSellingPr: String,
-        unit: String,
-        quantity1: String
-    ) {
+    private fun addToCart1(uid: String, title: String, priceEach: String, finalPr: String, finalQ: String, shopId: String, productId: String, productUrl: String, sellingPrice: String, btnIncrease: Button, btnDecrease: Button, btnLinear: LinearLayout, cost: Double, finalCost: Double, quantity: Int, txtCounter: TextView, addItem: Button, sellingP: Double, finalSellingPrice: Double, finalSellingPr: String, unit: String, quantity1: String) {
         var finalCost = finalCost
         var finalSellingPrice = finalSellingPrice
         var sellingP = sellingP
@@ -621,20 +435,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             cartMap["finalsellingPrice"] = finalSellingPrice.toString()
             cartMap["unit"] = unit
             cartMap["originalQuantity"] = quantity1
-            val cart = UserCartDetails(
-                productId,
-                uid,
-                title,
-                priceEach,
-                finalCost.toString(),
-                quantity.toString(),
-                shopId,
-                productUrl,
-                sellingPrice,
-                finalSellingPrice.toString(),
-                unit,
-                quantity1
-            )
+            val cart = UserCartDetails(productId, uid, title, priceEach, finalCost.toString(), quantity.toString(), shopId, productUrl, sellingPrice, finalSellingPrice.toString(), unit, quantity1)
             val cartDetails =
                 FirebaseDatabase.getInstance().reference.child("users").child(uid)
                     .child("Cart")
@@ -661,19 +462,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
                 cartMap["finalsellingPrice"] = finalSellingPrice.toString()
                 cartMap["unit"] = unit
                 cartMap["originalQuantity"] = quantity1
-                val cart = UserCartDetails(
-                    productId,
-                    uid,
-                    title,
-                    priceEach,
-                    finalCost.toString(),
-                    quantity.toString(),
-                    shopId,
-                    productUrl,
-                    sellingPrice,
-                    finalSellingPrice.toString(),
-                    unit, quantity1
-                )
+                val cart = UserCartDetails(productId, uid, title, priceEach, finalCost.toString(), quantity.toString(), shopId, productUrl, sellingPrice, finalSellingPrice.toString(), unit, quantity1)
                 val cartDetails =
                     FirebaseDatabase.getInstance().reference.child("users").child(uid)
                         .child("Cart")
@@ -696,42 +485,8 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
     }
 
 
-    private fun addToCart(
-        uid: String,
-        title: String,
-        priceEach: String,
-        finalPr: String,
-        finalQ: String,
-        shopId: String,
-        productId: String,
-        productUrl: String,
-        sellingPrice: String,
-        btnIncrease: Button,
-        btnDecrease: Button,
-        btnLinear: LinearLayout,
-        cost: Double,
-        finalCost: Double,
-        quantity: Int,
-        txtCounter: TextView,
-        addItem: Button,
-        sellingP: Double,
-        finalSellingPrice: Double,
-        finalSellingPr: String,
-        unit: String,
-        quantity1: String
-    ) {
-        val cart = UserCartDetails(
-            productId,
-            uid,
-            title,
-            priceEach,
-            finalPr,
-            finalQ,
-            shopId,
-            productUrl,
-            sellingPrice,
-            finalSellingPr, unit, quantity1
-        )
+    private fun addToCart(uid: String, title: String, priceEach: String, finalPr: String, finalQ: String, shopId: String, productId: String, productUrl: String, sellingPrice: String, btnIncrease: Button, btnDecrease: Button, btnLinear: LinearLayout, cost: Double, finalCost: Double, quantity: Int, txtCounter: TextView, addItem: Button, sellingP: Double, finalSellingPrice: Double, finalSellingPr: String, unit: String, quantity1: String) {
+        val cart = UserCartDetails(productId, uid, title, priceEach, finalPr, finalQ, shopId, productUrl, sellingPrice, finalSellingPr, unit, quantity1)
         val cartMap = HashMap<String, Any>()
         cartMap["productId"] = productId
         cartMap["orderBy"] = uid
