@@ -95,6 +95,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
                         orgPrice.length,
                         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
+                    originalPrice.text=spannableString
                     productStock.text = "STOCK:-${pStock}"
                     productDescription.text = pDesc
                     Glide.with(this@ProductDetailsCustomer).load(imgUrl).into(productImage)
