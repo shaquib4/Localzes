@@ -28,6 +28,14 @@ android:background="#fff"
                     android:layout_centerVertical="true"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:src="@drawable/ic_back_white" />
+                <ImageView
+                    android:id="@+id/imgCarts"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/ic_shopping_cart_black_24dp" />
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView
@@ -129,7 +137,7 @@ android:background="#fff"
                     android:id="@+id/txtR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginHorizontal="@dimen/_11sdp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Refund Type :"
                     android:textColor="#ffb700"
@@ -140,10 +148,10 @@ android:background="#fff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_2sdp"
                     android:layout_toEndOf="@id/txtR"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="This Product is Non-Refuindable"
+                    android:text="This Product is Non-Refundable"
                     android:textColor="#008000"
                     android:textSize="@dimen/_12ssp" />
             </RelativeLayout>
@@ -199,7 +207,7 @@ android:background="#fff"
                     android:textSize="@dimen/_12ssp" />
             </LinearLayout>
             <Button
-                android:visibility="invisible"
+
                 android:id="@+id/btnCartAdd"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
