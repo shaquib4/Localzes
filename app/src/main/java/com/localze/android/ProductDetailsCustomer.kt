@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -72,6 +71,4 @@ class ProductDetailsCustomer : AppCompatActivity() {
             })
     }
 
-    fun countDe(view: View) {}
-    fun countIn(view: View) {}
 }
