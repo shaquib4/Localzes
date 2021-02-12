@@ -2,6 +2,7 @@ package com.localze.android.Adapters
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.text.SpannableString
@@ -20,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.localze.android.ProductDetailsCustomer
 import java.lang.Exception
 
 @Suppress("NAME_SHADOWING")
@@ -52,6 +54,12 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
             userProducts.title.substring(0, 1).toUpperCase() + userProducts.title.substring(1)
         holder.productPrice.text =
             "₹" + userProducts.offerPrice + "/per " + userProducts.quantity + userProducts.unit
+        holder.details.setOnClickListener {
+            val intent = Intent(context, ProductDetailsCustomer::class.java)
+            intent.putExtra("productsId", userProducts.productId)
+            intent.putExtra("shopsId",userProducts.shopId)
+            context.startActivity(intent)
+        }
         /*holder.stock.text = "STOCK :- " + userProducts.stock*/
         /* val dRef:DatabaseReference=FirebaseDatabase.getInstance().reference.child("seller").child(userProducts.shopId).child("Products").child(userProducts.productId)
          dRef.addValueEventListener(object :ValueEventListener{
@@ -765,6 +773,7 @@ class AdapterUserProducts(val context: Context, private val products_user: List<
         val unfavorite: FloatingActionButton = view.findViewById(R.id.btnFavoriteItem)
         val favorite: FloatingActionButton = view.findViewById(R.id.btnFavoriteItem1)
         val card: CardView = view.findViewById(R.id.card1_customer)
+        val details: TextView = view.findViewById(R.id.productDetails)
 
     }
 }
