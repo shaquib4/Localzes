@@ -24,6 +24,9 @@ class ProductDetailsCustomer : AppCompatActivity() {
     private var productId: String? = "400"
     private var shopId: String? = "500"
     private lateinit var productAuth: FirebaseAuth
+    private lateinit var refundType: TextView
+    private lateinit var availableSize: TextView
+    private lateinit var colorsVariant: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details_customer)
@@ -33,6 +36,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
         originalPrice = findViewById(R.id.txtMRP)
         productStock = findViewById(R.id.txtStock)
         productDescription = findViewById(R.id.txtDetails)
+        refundType = findViewById(R.id.txtR)
         productAuth = FirebaseAuth.getInstance()
         val user = productAuth.currentUser
         val uid = user!!.uid
@@ -53,9 +57,13 @@ class ProductDetailsCustomer : AppCompatActivity() {
                     val pStock = snapshot.child("stock").value.toString()
                     val pDesc =
                         snapshot.child("ProductDetails").child("description").value.toString()
+                    val refundT =
+                        snapshot.child("ProductDetails").child("refundableType").value.toString()
+                    val colorT=snapshot.child("ProductDetails").child("colors").value.toString()
+
                     productName.text = pName
-                    offerPrice.text = offPrice
-                    val spannableString = SpannableString(orgPrice)
+                    offerPrice.text = "₹$offPrice"
+                    val spannableString = SpannableString("₹$orgPrice")
                     val mStrikeThrough = StrikethroughSpan()
                     spannableString.setSpan(
                         mStrikeThrough,
