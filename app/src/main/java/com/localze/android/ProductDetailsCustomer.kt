@@ -82,6 +82,8 @@ class ProductDetailsCustomer : AppCompatActivity() {
                         snapshot.child("ProductDetails").child("refundableType").value.toString()
                     refundType.text = "This product is $refundT"
                     val colorT = snapshot.child("ProductDetails").child("colors").value.toString()
+                    val sizes=snapshot.child("ProductDetails").child("sizes").value.toString()
+                    availableSize.text=sizes
                     colorsVariant.text = colorT
                     productName.text = pName
                     offerPrice.text = "₹$offPrice"
