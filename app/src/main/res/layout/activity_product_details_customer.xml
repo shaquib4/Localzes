@@ -136,6 +136,7 @@ android:background="#fff"
                     android:textSize="@dimen/_13ssp" />
 
                 <TextView
+                    android:id="@+id/txtRefund"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -146,11 +147,64 @@ android:background="#fff"
                     android:textColor="#008000"
                     android:textSize="@dimen/_12ssp" />
             </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/btnLinearDetail"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_below="@id/relR"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:background="#ffffff"
+                android:orientation="horizontal"
 
+                android:weightSum="8">
+
+                <Button
+                    android:id="@+id/btnDecrease_newDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="2.4"
+                    android:background="@drawable/add_item_decrease"
+                    android:gravity="center"
+                    android:onClick="countDe"
+                    android:text="@string/minus"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/txtCounterDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="3"
+                    android:background="@drawable/add_item_quantity"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
+                    android:text="@string/_1"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_12ssp" />
+
+                <Button
+                    android:id="@+id/btnIncrease_newDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="2.4"
+                    android:background="@drawable/add_item_increase"
+                    android:gravity="center"
+                    android:onClick="countIn"
+                    android:text="@string/plus"
+                    android:textColor="#de4500"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
             <Button
+                android:visibility="invisible"
                 android:id="@+id/btnCartAdd"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_below="@id/relR"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_7sdp"
@@ -194,6 +248,7 @@ android:background="#fff"
                     android:textSize="@dimen/_13ssp" />
 
                 <TextView
+                    android:id="@+id/txtSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -225,6 +280,7 @@ android:background="#fff"
                     android:textSize="@dimen/_13ssp" />
 
                 <TextView
+                    android:id="@+id/txtColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
