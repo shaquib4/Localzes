@@ -45,17 +45,12 @@ android:background="#fff"
 
 
             <ImageView
+                android:id="@+id/imgP"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/localze_shop" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ic_favourite" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -136,17 +131,22 @@ android:background="#fff"
 
     <TextView
         android:id="@+id/txtDetails"
-        android:text="Product details "
+        android:text="Description "
         android:padding="@dimen/_5sdp"
         android:paddingHorizontal="@dimen/_5sdp"
         android:textSize="@dimen/_12ssp"
         android:textColor="#000"
         android:fontFamily="@font/montserrat_medium"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        android:background="@drawable/stroke_gray"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/txtProductDetails"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </RelativeLayout>
+
     </RelativeLayout>
     </ScrollView>
     <Button
