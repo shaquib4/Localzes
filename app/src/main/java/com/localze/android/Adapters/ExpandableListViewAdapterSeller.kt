@@ -50,7 +50,7 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
         }
 
         else if (menuTitle=="Help"){
-            menuitem.text = "FAQs, Contact us"
+            menuitem.text = "Address, Contact us"
         }else if(menuTitle=="Switch"){
             menuitem.text="To Main Seller, Staff"
         }
@@ -101,9 +101,9 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
         }else if (itemTitles=="Transaction History"&& menuTitle=="Refunds & Payments")
         {
             img.setImageResource(R.drawable.ic_refundstatus)
-        }/*else if (itemTitles=="FAQs"&& menuTitle=="Help"){
-             img.setImageResource(R.drawable.ic_offer_vc)
-         }*/else if(itemTitles=="Contact Us"&& menuTitle=="Help"){
+        }else if (itemTitles=="Address"&& menuTitle=="Help"){
+             img.setImageResource(R.drawable.ic_my_location)
+         }else if(itemTitles=="Contact Us"&& menuTitle=="Help"){
              img.setImageResource(R.drawable.ic_referrals)
          }else if (itemTitles=="To Main Seller"&&menuTitle=="Switch"){
             img.setImageResource(R.drawable.ic_referrals)

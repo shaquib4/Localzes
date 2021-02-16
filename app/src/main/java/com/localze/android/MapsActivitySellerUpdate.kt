@@ -431,7 +431,7 @@ class MapsActivitySellerUpdate : AppCompatActivity(), OnMapReadyCallback, Locati
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, Registerdetails::class.java)
+        val intent = Intent(this, AccountsSeller::class.java)
         startActivity(intent)
         finish()
     }

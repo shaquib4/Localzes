@@ -213,6 +213,7 @@ class AccountsSeller : AppCompatActivity() {
         val item2: MutableList<String> = ArrayList()
         //item2.add("FAQs")
         item2.add("Contact Us")
+        item2.add("Address")
 
         val item3: MutableList<String> = ArrayList()
         item3.add("To Main Seller")
