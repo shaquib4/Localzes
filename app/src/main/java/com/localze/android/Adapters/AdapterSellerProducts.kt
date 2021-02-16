@@ -149,6 +149,7 @@ class AdapterSellerProducts(
             builder.setNegativeButton("No") { text, listener ->
                 dialog.dismiss()
             }
+            builder.create().show()
         }
     }
 

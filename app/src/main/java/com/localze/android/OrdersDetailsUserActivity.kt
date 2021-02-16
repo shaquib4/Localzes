@@ -230,7 +230,7 @@ class OrdersDetailsUserActivity : AppCompatActivity() {
     private fun makePhoneCall() {
         val number = shopMobileNumber
         val intent = Intent(Intent.ACTION_DIAL)
-        intent.setData(Uri.parse("tel:" + number))
+        intent.data = Uri.parse("tel:$number")
         val chooser = Intent.createChooser(intent, "Call Action Using")
         startActivity(chooser)
     }

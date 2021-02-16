@@ -89,16 +89,30 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
                 }
             }
         })
-       try{ var items = quantity.toInt()
-        var updatedCost = cost.toDouble()
-        val oneCost = costOne.toInt()
-        var finalSell = finalSelling.toDouble()
-        val sellOne = sellingOne.toDouble()
-        holder.btnDecreaseCart.setOnClickListener {
-            if (items > 1) {
-                updatedCost -= oneCost
-                items--
-                finalSell -= sellOne
+        try {
+            var items = quantity.toInt()
+            var updatedCost = cost.toDouble()
+            val oneCost = costOne.toInt()
+            var finalSell = finalSelling.toDouble()
+            val sellOne = sellingOne.toDouble()
+            holder.btnDecreaseCart.setOnClickListener {
+                if (items > 1) {
+                    updatedCost -= oneCost
+                    items--
+                    finalSell -= sellOne
+                    holder.productTotalPrice.text = "₹${updatedCost}"
+                    holder.quantityCart.text = items.toString()
+                    val headers = HashMap<String, Any>()
+                    headers["finalPrice"] = updatedCost.toString()
+                    headers["finalQuantity"] = items.toString()
+                    headers["finalsellingPrice"] = finalSell.toString()
+                    mCartDatabase.child(cart_user[position].productId).updateChildren(headers)
+                }
+            }
+            holder.btnIncreaseCart.setOnClickListener {
+                updatedCost += oneCost
+                items++
+                finalSell += sellOne
                 holder.productTotalPrice.text = "₹${updatedCost}"
                 holder.quantityCart.text = items.toString()
                 val headers = HashMap<String, Any>()
@@ -107,24 +121,12 @@ class AdapterCartItem(val context: Context, private val cart_user: List<UserCart
                 headers["finalsellingPrice"] = finalSell.toString()
                 mCartDatabase.child(cart_user[position].productId).updateChildren(headers)
             }
+            holder.removeItem.setOnClickListener {
+                deleteItem(position)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        holder.btnIncreaseCart.setOnClickListener {
-            updatedCost += oneCost
-            items++
-            finalSell += sellOne
-            holder.productTotalPrice.text = "₹${updatedCost}"
-            holder.quantityCart.text = items.toString()
-            val headers = HashMap<String, Any>()
-            headers["finalPrice"] = updatedCost.toString()
-            headers["finalQuantity"] = items.toString()
-            headers["finalsellingPrice"] = finalSell.toString()
-            mCartDatabase.child(cart_user[position].productId).updateChildren(headers)
-        }
-        holder.removeItem.setOnClickListener {
-            deleteItem(position)
-        }}catch (e:Exception){
-           e.printStackTrace()
-       }
 
     }
 
