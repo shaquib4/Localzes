@@ -55,7 +55,7 @@ class generateQRcode : AppCompatActivity() {
     var shopName: String = ""
     var shopId: String = ""
     var imgUrl: String = ""
-    var Url:String=""
+    var Url: String = ""
     private var bitmapN: Bitmap? = null
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -115,8 +115,8 @@ class generateQRcode : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
-    fun generateQRCode(S:String) {
-        val bitmap = encodeAsBitmap(S,400, 400, context)
+    fun generateQRCode(S: String) {
+        val bitmap = encodeAsBitmap(S, 400, 400, context)
         iv_qr_code.setImageBitmap(bitmap)
 
         qrsave.setOnClickListener {
@@ -262,9 +262,8 @@ class generateQRcode : AppCompatActivity() {
             .buildShortDynamicLink().addOnCompleteListener {
                 if (it.isSuccessful) {
                     shortLinks = it.result?.shortLink.toString()
-                    Url=shortLinks
+                    Url = shortLinks
                     generateQRCode(shortLinks)
-                    Toast.makeText(this,Url,Toast.LENGTH_SHORT).show()
                 }
 
             }

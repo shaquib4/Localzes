@@ -293,7 +293,8 @@ class Search : AppCompatActivity() {
                             i.child("openingTime").value.toString(),
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString(),
-                            i.child("locality2").value.toString()
+                            i.child("locality2").value.toString(),
+                            i.child("minAm").value.toString()
                         )
                         if (currentCity.toLowerCase() == i.child("city").value.toString()) {
                             (searchItem as ArrayList<Upload>).add(obj)
@@ -422,7 +423,8 @@ class Search : AppCompatActivity() {
                             i.child("openingTime").value.toString(),
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString(),
-                            i.child("locality2").value.toString()
+                            i.child("locality2").value.toString(),
+                            i.child("minAm").value.toString()
                         )
                         if (currentCity.toLowerCase() == i.child("city").value.toString()) {
                             (searchItem as ArrayList<Upload>).add(obj)
@@ -480,7 +482,8 @@ class Search : AppCompatActivity() {
                             i.child("openingTime").value.toString(),
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString(),
-                            i.child("locality2").value.toString()
+                            i.child("locality2").value.toString(),
+                            i.child("minAm").value.toString()
                         )
                         if (currentCity.toLowerCase() == i.child("city").value.toString()) {
                             (searchItem as ArrayList<Upload>).add(obj)

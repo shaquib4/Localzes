@@ -39,10 +39,11 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private lateinit var spinnerClosingDay: Spinner
     var thumb_Bitmap: Bitmap? = null
     var imgUri: Uri? = null
+    private lateinit var minOrder: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_shop_detail)
-        val uid=intent.getStringExtra("uid").toString()
+        val uid = intent.getStringExtra("uid").toString()
         imageShopUpdate = findViewById(R.id.choose_image_update)
         //shopCategoryUpdate = findViewById(R.id.spn_category)
         shopNameUpdate = findViewById(R.id.edtNameUpdate)
@@ -52,6 +53,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
         spinnerOpen = findViewById(R.id.spinner_open)
         spinnerClosingDay = findViewById(R.id.spinner_closing_day)
         shopsCategory = findViewById(R.id.spn_category)
+        minOrder = findViewById(R.id.edtMinAmountUpdate)
         retryUpdateShops.setOnClickListener {
             this.recreate()
         }
@@ -69,11 +71,13 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     val imageUrl = snapshot.child("imageUrl").value.toString()
                     val shopName = snapshot.child("shop_name").value.toString()
                     val shopCategory = snapshot.child("category1").value.toString()
+                    val minAmount = snapshot.child("minAm").value.toString()
                     val upiId = snapshot.child("upi").value.toString()
                     Picasso.get().load(imageUrl).into(imageShopUpdate)
                     shopNameUpdate.setText(shopName)
                     upiIdUpdate.setText(upiId)
                     shopsCategory.setSelection(getIndex(shopsCategory, shopCategory))
+                    minOrder.setText(minAmount)
                 }
             })
         } else {
@@ -112,6 +116,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
             headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
             headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
             headers["closingDay"] = spinnerClosingDay.selectedItem.toString().trim()
+            headers["minAm"] = minOrder.text.toString().trim()
             databaseRef.updateChildren(headers).addOnSuccessListener {
                 val intent = Intent(this, Home_seller::class.java)
                 startActivity(intent)
@@ -151,10 +156,11 @@ class UpdateShopDetailActivity : AppCompatActivity() {
 
                 }
             }*/
-            if (imgUri==null){
-                Toast.makeText(this,"Slow Internet,Please press Update again",Toast.LENGTH_SHORT).show()
+            if (imgUri == null) {
+                Toast.makeText(this, "Slow Internet,Please press Update again", Toast.LENGTH_SHORT)
+                    .show()
 
-        }else{
+            } else {
                 val user = FirebaseAuth.getInstance().currentUser
                 val imageUrl = imgUri
                 val request = UserProfileChangeRequest.Builder().setPhotoUri(imageUrl).build()
@@ -167,6 +173,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
                     headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
                     headers["closingDay"] = spinnerClosingDay.selectedItem.toString().trim()
+                    headers["minAm"]=minOrder.text.toString().trim()
                     databaseRef.updateChildren(headers).addOnSuccessListener {
                         val intent = Intent(this, Home_seller::class.java)
                         startActivity(intent)
@@ -224,7 +231,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                             val imageUri = taskSnapshot.storage.downloadUrl
                             imageUri.addOnSuccessListener {
                                 imgUri = it
-                               
+
                             }
                         }
 

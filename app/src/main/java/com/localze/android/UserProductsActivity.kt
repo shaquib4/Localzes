@@ -48,6 +48,7 @@ class UserProductsActivity : AppCompatActivity() {
     private var deliveryAddress: String = ""
     private lateinit var orderByName: String
     private lateinit var orderByMobile: String
+    private lateinit var minOrdAmount:TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +65,7 @@ class UserProductsActivity : AppCompatActivity() {
         storeName = findViewById(R.id.txtShop)
         cartItems = ArrayList<UserCartDetails>()
         viewCart = findViewById(R.id.txtViewCart)
+        minOrdAmount=findViewById(R.id.minOrderAmount)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
@@ -83,6 +85,8 @@ class UserProductsActivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 val shopName = snapshot.child("shop_name").value.toString()
+                val minAmount=snapshot.child("minAm").value.toString()
+                minOrderAmount.text=minAmount
                 shop_Name = shopName
                 storeName.text = shopName
 

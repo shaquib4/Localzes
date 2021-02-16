@@ -17,11 +17,20 @@
             android:layout_height="@dimen/_40sdp"
             android:background="#de4500"
             android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
             android:text="Shop Name"
-            android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_15ssp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/minOrderAmount"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:text="orderAmount"
+            android:textColor="#fff"
+            android:textSize="@dimen/_15ssp"
+            android:layout_centerHorizontal="true"/>
 
         <EditText
 

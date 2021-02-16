@@ -261,7 +261,8 @@ class Home : AppCompatActivity() {
                             i.child("openingTime").value.toString(),
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString(),
-                            i.child("locality2").value.toString()
+                            i.child("locality2").value.toString(),
+                            i.child("minAm").value.toString()
                         )
                         if (currentCity.toLowerCase() == i.child("city").value.toString()) {
                             (shops as ArrayList<Upload>).add(obj)
@@ -324,7 +325,8 @@ class Home : AppCompatActivity() {
                             i.child("openingTime").value.toString(),
                             i.child("closingTime").value.toString(),
                             i.child("closingDay").value.toString(),
-                            i.child("locality2").value.toString()
+                            i.child("locality2").value.toString(),
+                            i.child("minAm").value.toString()
                         )
                         if (currentCity.toLowerCase() == i.child("city").value.toString()) {
 
@@ -362,7 +364,8 @@ class Home : AppCompatActivity() {
                             i.openingTime,
                             i.closingTime,
                             i.closingDay,
-                            i.locality2
+                            i.locality2,
+                            i.minAm
                         )
                         userDatabase.child(shopId).child("Categories")
                             .addValueEventListener(object : ValueEventListener {
@@ -446,7 +449,7 @@ class Home : AppCompatActivity() {
                     Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
                 } else {
                     val link = result.contents
-                    val intent=Intent(Intent.ACTION_VIEW)
+                    val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = Uri.parse(link)
                     val chooser = Intent.createChooser(intent, "Scan")
                     startActivity(chooser)

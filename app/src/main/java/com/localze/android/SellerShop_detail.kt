@@ -44,6 +44,7 @@ class  SellerShop_detail : AppCompatActivity() {
     private lateinit var upload: Upload
     var thumb_Bitmap: Bitmap? = null
     var imgUrl: String = ""
+    private lateinit var minAmount:EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_shop_detail)
@@ -54,6 +55,7 @@ class  SellerShop_detail : AppCompatActivity() {
         closingDay = findViewById(R.id.closeDay)
         etShopName = findViewById(R.id.edtName)
         etCategory1 = findViewById(R.id.spn_category)
+        minAmount=findViewById(R.id.edtMinAmount)
         upi = findViewById(R.id.edtPay)
         auth = FirebaseAuth.getInstance()
 
@@ -150,7 +152,8 @@ class  SellerShop_detail : AppCompatActivity() {
                                 openingTime.selectedItem.toString(),
                                 closingTime.selectedItem.toString(),
                                 closingDay.selectedItem.toString(),
-                                locality2!!.toString().trim().toLowerCase()
+                                locality2!!.toString().trim().toLowerCase(),
+                                minAmount.text.toString()
                             )
                             mDatabaseRef =
                                 FirebaseDatabase.getInstance().reference.child("seller")
