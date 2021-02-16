@@ -438,5 +438,6 @@
         <item>Non Refundable</item>
         <item>Partial Refundable</item>
     </string-array>
+    <string name="title_activity_maps_seller_update">Map</string>
 
 </resources>
