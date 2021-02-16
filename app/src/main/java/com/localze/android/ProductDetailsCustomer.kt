@@ -1,14 +1,15 @@
 package com.localze.android
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -39,6 +40,11 @@ class ProductDetailsCustomer : AppCompatActivity() {
     private var productOriginal: Double = 0.0
     private var finalProductOriginal: Double = 0.0
     private var quantity: Int = 0
+    private var shopID:String?=null
+    private var imgUrls:String?=null
+    private var productNam:String?=null
+    private var unit:String?=null
+    private var quan:String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details_customer)
@@ -70,9 +76,15 @@ class ProductDetailsCustomer : AppCompatActivity() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val imgUrl = snapshot.child("imageUrl").value.toString()
+                    imgUrls=imgUrl
                     val pName = snapshot.child("title").value.toString()
+                    productNam=pName
                     val offPrice = snapshot.child("offerPrice").value.toString()
                     productCost = offPrice.toDouble()
+                    val uni = snapshot.child("unit").value.toString()
+                    unit=uni.toString()
+                    val quantity = snapshot.child("quantity").value.toString()
+                    quan=quantity
                     val orgPrice = snapshot.child("sellingPrice").value.toString()
                     productOriginal = orgPrice.toDouble()
                     val pStock = snapshot.child("stock").value.toString()
@@ -104,23 +116,183 @@ class ProductDetailsCustomer : AppCompatActivity() {
             })
         finalSellingPrice = productCost
         finalProductOriginal = productOriginal
-        addToCart.setOnClickListener {
+        val userDatabase =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid).child("Cart")
+        userDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
-        }
-        btnDecrease.setOnClickListener {
-            if (quantity > 1) {
-                finalSellingPrice -= productCost
-                finalProductOriginal -= productOriginal
-                quantity--
-                txtCount.text = quantity.toString()
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (i in snapshot.children) {
+                    val shopId = i.child("orderTo").value.toString()
+
+                    shopID = shopId
+                }
+            }
+        })
+
+           userDatabase.addValueEventListener(object:ValueEventListener{
+               override fun onCancelled(error: DatabaseError) {
+
+               }
+
+               override fun onDataChange(snapshot: DataSnapshot) {
+                   if (snapshot.exists()){
+                       userDatabase.child(productId.toString()).addValueEventListener(object:ValueEventListener{
+                           override fun onCancelled(error: DatabaseError) {
+
+                           }
+
+                           override fun onDataChange(snapshot: DataSnapshot) {
+                               if (snapshot.exists()){
+                                   var finalQDB = snapshot.child("finalQuantity").value.toString()
+                                   val finalPDB = snapshot.child("finalPrice").value.toString()
+                                   val finalSPDB = snapshot.child("finalsellingPrice").value.toString()
+                                   val sPDB = snapshot.child("sellingPrice").value.toString()
+                                   val cPDB = snapshot.child("priceEach").value.toString()
+                                   addToCart.visibility = View.GONE
+                                   btnLinear.visibility = View.VISIBLE
+                                   txtCount.text = finalQDB
+                                   if (shopId.toString()==shopID.toString()){
+                                     addToCart1(productId.toString(),uid.toString(),productNam.toString(),cPDB.toDouble(),finalPDB.toDouble(),finalQDB.toInt(),shopId.toString(),imgUrls.toString(),sPDB.toDouble(),unit.toString(),quan.toString(),finalSPDB.toDouble())
+                                   }
+                               }else if (!snapshot.exists()){
+                                   if (shopId.toString()==shopID.toString()){
+                                    addToCart.setOnClickListener {  addToCarts(productId.toString(),uid.toString(),productNam.toString(),
+                                        productCost,finalProductOriginal,1,shopId.toString(),imgUrls.toString(),productOriginal,unit.toString(),quan.toString(),finalSellingPrice)}
+                                   }else if(shopId.toString()!==shopID.toString()){
+                                       val builder = AlertDialog.Builder(this@ProductDetailsCustomer)
+                                       val view = LayoutInflater.from(this@ProductDetailsCustomer)
+                                           .inflate(R.layout.custom_layout, null)
+                                       builder.setView(view)
+                                       val show = builder.show()
+                                       val confirm: Button = view.findViewById(R.id.btnConfirm)
+                                       val cancel: Button = view.findViewById(R.id.btnCancel)
+                                       confirm.setOnClickListener {
+                                           val userDatabases =
+                                               FirebaseDatabase.getInstance().reference.child("users")
+                                                   .child(uid).child("Cart")
+                                           userDatabases.removeValue()
+                                           addToCart.setOnClickListener {addToCarts(productId.toString(),uid.toString(),productNam.toString(),productCost,finalProductOriginal,1,shopId.toString(),
+                                               imgUrls.toString(),productOriginal,unit.toString(),quan.toString(),finalSellingPrice)}
+                                           show.dismiss()
+                                       }
+                                       cancel.setOnClickListener {
+                                           show.dismiss()
+                                       }
+                                   }
+                               }
+                           }
+                       })
+                   }else if (!snapshot.exists()){
+                       addToCart.setOnClickListener {  addToCarts(productId.toString(),uid.toString(),productNam.toString(),
+                           productCost,finalProductOriginal,1,shopId.toString(),imgUrls.toString(),productOriginal,unit.toString(),quan.toString(),finalSellingPrice)}
+                   }
+               }
+           })
+
+
+    }
+
+    private fun addToCarts(productId:String,uid:String,title:String,priceEach:Double,finalCost:Double,quantity:Int,shopId:String,productUrl:String,sellingPrice:Double,unit:String
+                           ,quantity1:String,finalSellingPrice:Double) {
+
+        val cartMap = HashMap<String, Any>()
+        cartMap["productId"] = productId
+        cartMap["orderBy"] = uid
+        cartMap["productTitle"] = title
+        cartMap["priceEach"] = priceEach.toString()
+        cartMap["finalPrice"] = productCost.toString()
+        cartMap["finalQuantity"] = quantity.toString()
+        cartMap["orderTo"] = shopId
+        cartMap["productImageUrl"] = productUrl
+        cartMap["sellingPrice"] = sellingPrice.toString()
+        cartMap["finalsellingPrice"] = productOriginal.toString()
+        cartMap["unit"] = unit
+        cartMap["originalQuantity"] = quantity1
+        val cartDetails =
+            FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                .child("Cart")
+        cartDetails.child(productId).updateChildren(cartMap).addOnCompleteListener {
+            if (it.isSuccessful){
+                addToCart.visibility=View.GONE
+                btnLinear.visibility=View.VISIBLE
             }
         }
-        btnIncrease.setOnClickListener {
-            finalSellingPrice += productCost
-            finalProductOriginal += productOriginal
-            quantity++
-            txtCount.text = quantity.toString()
-        }
+
     }
+
+    private fun addToCart1(productId:String,uid:String,title:String,priceEach:Double,finalCost:Double,quantity:Int,shopId:String,productUrl:String,sellingPrice:Double,unit:String
+    ,quantity1:String,finalSellingPrice:Double
+    ) {
+        var finalSellingPriceP=finalSellingPrice
+        var finalCosts=finalCost
+        var quan=quantity
+
+        btnIncrease.setOnClickListener {
+
+            finalSellingPriceP+=sellingPrice
+            finalCosts+=priceEach
+            quan++
+            txtCount.text=quan.toString()
+            val cartMap = HashMap<String, Any>()
+            cartMap["productId"] = productId
+            cartMap["orderBy"] = uid
+            cartMap["productTitle"] = title
+            cartMap["priceEach"] = priceEach.toString()
+            cartMap["finalPrice"] = finalCosts.toString()
+            cartMap["finalQuantity"] = quan.toString()
+            cartMap["orderTo"] = shopId
+            cartMap["productImageUrl"] = productUrl
+            cartMap["sellingPrice"] = sellingPrice.toString()
+            cartMap["finalsellingPrice"] = finalSellingPriceP.toString()
+            cartMap["unit"] = unit
+            cartMap["originalQuantity"] = quantity1
+            val cartDetails =
+                FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                    .child("Cart")
+            cartDetails.child(productId).updateChildren(cartMap)
+        }
+        btnDecrease.setOnClickListener {
+            var q=quan.toString()
+            if (quan>1){
+                finalSellingPriceP-=sellingPrice
+                finalCosts-=priceEach
+                quan--
+                txtCount.text=quan.toString()
+                val cartMap = HashMap<String, Any>()
+                cartMap["productId"] = productId
+                cartMap["orderBy"] = uid
+                cartMap["productTitle"] = title
+                cartMap["priceEach"] = priceEach.toString()
+                cartMap["finalPrice"] = finalCosts.toString()
+                cartMap["finalQuantity"] = quan.toString()
+                cartMap["orderTo"] = shopId
+                cartMap["productImageUrl"] = productUrl
+                cartMap["sellingPrice"] = sellingPrice.toString()
+                cartMap["finalsellingPrice"] = finalSellingPriceP.toString()
+                cartMap["unit"] = unit
+                cartMap["originalQuantity"] = quantity1
+                val cartDetails =
+                    FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                        .child("Cart")
+                cartDetails.child(productId).updateChildren(cartMap)
+            }else if (q<=1.toString()){
+                val cartDetails =
+                    FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                        .child("Cart")
+                cartDetails.child(productId).removeValue().addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        btnLinear.visibility=View.GONE
+                        addToCart.visibility=View.VISIBLE
+
+                    }
+                }
+            }
+        }
+
+    }
+
 
 }

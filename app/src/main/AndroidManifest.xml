@@ -23,6 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
+        <activity android:name=".ProductDetailsCustomer"
+            android:screenOrientation="portrait"/>
         <activity android:name=".AddProductDetails"
                 android:screenOrientation="portrait" />
         <activity
