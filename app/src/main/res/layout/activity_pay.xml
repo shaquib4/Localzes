@@ -210,13 +210,15 @@
 
 
         <RelativeLayout
-            android:id="@+id/btnPayNow"
+
             android:layout_margin="@dimen/_13sdp"
             android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
-        <include layout="@layout/googlepay_button"/>
+        <include
+            android:id="@+id/btnPayNow"
+            layout="@layout/googlepay_button"/>
         </RelativeLayout>
 
 
