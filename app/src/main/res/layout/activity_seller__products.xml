@@ -12,12 +12,23 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navProducts">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/additem"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/card_view_Details"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+ android:layout_margin="@dimen/_5sdp"
+            android:backgroundTint="#ff4500"
+            android:src="@drawable/ic_add_item" />
+
         <EditText
             android:id="@+id/searchShopProduct"
             android:layout_width="match_parent"
+            android:layout_toStartOf="@id/additem"
             android:layout_height="@dimen/_35sdp"
             android:layout_below="@id/card_view_Details"
-            android:layout_margin="@dimen/_5sdp"
+            android:layout_margin="@dimen/_10sdp"
             android:background="@drawable/bg_product_shop"
             android:hint="@string/search"
             android:importantForAutofill="no"
@@ -102,15 +113,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/searchShopProduct">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/additem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="@dimen/_10sdp"
-                android:backgroundTint="#ff4500"
-                android:src="@drawable/ic_add_item" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_seller_products"
