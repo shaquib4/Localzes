@@ -162,7 +162,9 @@ class AccountsSeller : AppCompatActivity() {
                 }
                 "Transaction History" -> {
                 }
-                "FAQs" -> {
+                "Address" ->{
+                    startActivity(Intent(this,AddressSellerEdit::class.java))
+                    finish()
                 }
                 "Contact Us" -> {
                     val intent = Intent(this, HelpSectionActivity::class.java)
@@ -186,6 +188,7 @@ class AccountsSeller : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
+
             }
             return@setOnChildClickListener true
         }
