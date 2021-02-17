@@ -142,7 +142,7 @@ class MapsActivitySellerUpdate : AppCompatActivity(), OnMapReadyCallback, Locati
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
+        setContentView(R.layout.activity_maps_seller_update)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -173,26 +173,26 @@ class MapsActivitySellerUpdate : AppCompatActivity(), OnMapReadyCallback, Locati
         var uid = user!!.uid
         userDatabase = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         val address=btnmapsellerU.text.toString()
-        val city = txtCity.text.toString()
-        val state = txtState.text.toString()
-        val country = txtCountry.text.toString()
-        val pinCode = txtPincode.text.toString()
-        val locality = txtLocality.text.toString()
-        val locality2 = edtLocality.text.toString()
-        val houseNo = HouseNo.text.toString()
-        val nearestLandmark = edtNearestLandmark.text.toString()
+        val city = txtCity_sellerU.text.toString()
+        val state = txtState_sellerU.text.toString()
+        val country = txtCountry_sellerU.text.toString()
+        val pinCode = txtPincode_sellerU.text.toString()
+        val locality = txtLocality_sellerU.text.toString()
+        val locality2 = edtLocality_sellerU.text.toString()
+        val houseNo = HouseNo_sellerU.text.toString()
+        val nearestLandmark = edtNearestLandmark_sellerU.text.toString()
         val userMap = HashMap<String, Any>()
         userMap["address"] = address
-        userMap["city"] = city
+        userMap["city"] = city.toLowerCase().toString()
         userMap["state"] = state
         userMap["country"] = country
         userMap["pinCode"] = pinCode
         userMap["locality"] = locality
         userMap["locality2"] = locality2
-        userDatabase.setValue(userMap).addOnCompleteListener { task ->
+        userDatabase.updateChildren(userMap).addOnCompleteListener { task ->
             if (task.isSuccessful) {
 
-                userDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
+                userDatabase = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                     .child("current_address")
                 val userMaps = HashMap<String, Any>()
                 userMaps["address"] = address
@@ -209,7 +209,7 @@ class MapsActivitySellerUpdate : AppCompatActivity(), OnMapReadyCallback, Locati
                 userDatabase.setValue(userMaps).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
 
-                        startActivity(Intent(this, Home::class.java))
+                        startActivity(Intent(this, AddressSellerEdit::class.java))
                         finish()
                     } else {
                         Toast.makeText(

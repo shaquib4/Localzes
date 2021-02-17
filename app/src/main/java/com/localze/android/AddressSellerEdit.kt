@@ -10,7 +10,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_address_seller_edit.*
-import kotlinx.android.synthetic.main.activity_card_banners.*
 import kotlinx.android.synthetic.main.address_single_row.*
 
 class AddressSellerEdit : AppCompatActivity() {
@@ -41,6 +40,7 @@ class AddressSellerEdit : AppCompatActivity() {
                        txtEditAd.visibility=View.VISIBLE
                         txtEditAd.setOnClickListener {
                             startActivity(Intent(this@AddressSellerEdit,MapsActivitySellerUpdate::class.java))
+                            finish()
                         }
                     } else {
                         val uidOfShop = snapshot.child("staffOfShop").value.toString()
@@ -65,6 +65,7 @@ class AddressSellerEdit : AppCompatActivity() {
                                             txtEditAd.visibility=View.VISIBLE
                                             txtEditAd.setOnClickListener {
                                                 startActivity(Intent(this@AddressSellerEdit,MapsActivitySellerUpdate::class.java))
+                                                finish()
                                             }
                                         }
                                         "Order Access" -> {
