@@ -67,13 +67,6 @@
                 android:textColor="#3498db"
                 android:textSize="@dimen/_8ssp" />
 
-            <TextView
-                android:id="@+id/productDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtStock_customer"
-                android:layout_alignParentRight="true"
-                android:text="Details" />
 
 
             <!-- <ImageView
