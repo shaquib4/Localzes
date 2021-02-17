@@ -134,6 +134,7 @@
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:maxLines="1"
+                        android:textSize="@dimen/_10ssp"
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
@@ -156,13 +157,14 @@
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
+                        android:textSize="@dimen/_10ssp"
                         tools:ignore="RtlSymmetry" />
 
                     <Button
                         android:id="@+id/Update"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_32sdp"
-                        android:layout_below="@+id/edtMinAmountUpdate"
+                        android:layout_below="@+id/ll2"
                         android:layout_gravity="bottom"
                         android:layout_marginHorizontal="@dimen/_22sdp"
                         android:layout_marginTop="20dp"
@@ -177,7 +179,7 @@
                         android:id="@+id/txtTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/edtPayUpdate"
+                        android:layout_below="@+id/edtMinAmountUpdate"
                         android:layout_alignStart="@+id/txtChooseCategory"
                         android:layout_marginVertical="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
@@ -304,7 +306,7 @@
                         android:id="@+id/edtMinAmountUpdate"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_32sdp"
-                        android:layout_below="@+id/ll2"
+                        android:layout_below="@+id/edtPayUpdate"
                         android:layout_marginHorizontal="@dimen/_7sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/bg_ractangle_rounded_stroke"
@@ -317,6 +319,7 @@
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
+                        android:textSize="@dimen/_10ssp"
                         tools:ignore="RtlSymmetry" />
 
                 </RelativeLayout>

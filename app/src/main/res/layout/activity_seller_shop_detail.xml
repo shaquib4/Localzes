@@ -147,7 +147,7 @@
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="@dimen/_10ssp"
                         tools:ignore="RtlSymmetry" />
 
                     <EditText
@@ -167,21 +167,40 @@
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="@dimen/_10ssp"
                         tools:ignore="RtlSymmetry" />
 
+                    <EditText
+                        android:id="@+id/edtMinAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_below="@+id/edtPay"
+                        android:layout_marginHorizontal="@dimen/_7sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_ractangle_rounded_stroke"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Minimum Order Amount"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:padding="@dimen/_7sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="RtlSymmetry" />
                     <Button
                         android:id="@+id/upload"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_32sdp"
-                        android:layout_below="@+id/edtMinAmount"
+                        android:layout_below="@+id/ll2"
                         android:layout_gravity="bottom"
                         android:layout_marginHorizontal="@dimen/_22sdp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/round2_btn"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/upload"
-                        android:textAllCaps="false"
+
                         android:textColor="#fcfcfc"
                         android:textSize="@dimen/_12ssp"
                         android:textStyle="bold" />
@@ -190,7 +209,7 @@
                         android:id="@+id/txtTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/edtPay"
+                        android:layout_below="@+id/edtMinAmount"
                         android:layout_alignStart="@+id/txtChooseCategory"
                         android:layout_marginVertical="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
@@ -312,25 +331,7 @@
 
                     </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/edtMinAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
-                        android:layout_below="@+id/ll2"
-                        android:layout_marginHorizontal="@dimen/_7sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:background="@drawable/bg_ractangle_rounded_stroke"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:gravity="center_vertical"
-                        android:hint="Enter Minimum Order Amount"
-                        android:importantForAutofill="no"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:padding="@dimen/_7sdp"
-                        android:paddingStart="@dimen/_12sdp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_12ssp"
-                        tools:ignore="RtlSymmetry" />
+                    
 
                 </RelativeLayout>
 
