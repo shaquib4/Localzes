@@ -288,7 +288,7 @@ class AccountsSeller : AppCompatActivity() {
                     finish()
                 }
                 "Contact Us" -> {
-                    val intent = Intent(this, HelpSectionActivity::class.java)
+                    val intent = Intent(this, ContactUsSeller::class.java)
                     startActivity(intent)
                     finish()
                 }

@@ -40,7 +40,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         if (notificationType.equals("NoProduct")) {
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
-            val person=remoteMessage.data["person"]
+            val person = remoteMessage.data["person"]
             val databaseRef = FirebaseDatabase.getInstance().reference.child("seller")
             databaseRef.child(currentAuth!!.uid.toString())
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -63,10 +63,10 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
 
                 })
         }
-        if (notificationType.equals("Offer")){
+        if (notificationType.equals("Offer")) {
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
-            val person=remoteMessage.data["person"]
+            val person = remoteMessage.data["person"]
             val databaseRef = FirebaseDatabase.getInstance().reference.child("seller")
             databaseRef.child(currentAuth!!.uid.toString())
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -108,7 +108,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         if (notificationType.equals("AddProduct")) {
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
-            val person=remoteMessage.data["person"]
+            val person = remoteMessage.data["person"]
             val databaseRef = FirebaseDatabase.getInstance().reference.child("seller")
             databaseRef.child(currentAuth!!.uid.toString())
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -269,13 +269,13 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         }
     }
 
-    private fun showNoProductNotification
-
-                ( uid: String,
-                  person: String,
-                  notificationTitle: String,
-                  notificationDescription: String,
-                  notificationType: String) {
+    private fun showNoProductNotification(
+        uid: String,
+        person: String,
+        notificationTitle: String,
+        notificationDescription: String,
+        notificationType: String
+    ) {
         val notificationManager: NotificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notificationId = Random.nextInt(3000)
@@ -324,7 +324,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setUpNotificationChannel(notificationManager)
         }
-        if (notificationType=="Offer"){
+        if (notificationType == "Offer") {
             if (person == "users") {
                 intent = Intent(this, Home::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -429,7 +429,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             .setContentTitle(notificationTitle)
             .setContentText(notificationDescription)
             .setSound(notificationSoundUri)
-            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            /*.setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))*/
             .setStyle(
                 NotificationCompat.BigPictureStyle()
                     .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.add_to_cart))
