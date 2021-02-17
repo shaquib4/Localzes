@@ -162,8 +162,8 @@ class AccountsSeller : AppCompatActivity() {
                 }
                 "Transaction History" -> {
                 }
-                "Address" ->{
-                    startActivity(Intent(this,AddressSellerEdit::class.java))
+                "Address" -> {
+                    startActivity(Intent(this, AddressSellerEdit::class.java))
                     finish()
                 }
                 "Contact Us" -> {
@@ -281,6 +281,11 @@ class AccountsSeller : AppCompatActivity() {
                 "Transaction History" -> {
                 }
                 "FAQs" -> {
+                }
+                "Address" -> {
+                    val intent = Intent(this, AddressSellerEdit::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 "Contact Us" -> {
                     val intent = Intent(this, HelpSectionActivity::class.java)
