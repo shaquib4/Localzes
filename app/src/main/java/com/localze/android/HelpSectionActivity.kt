@@ -1,7 +1,9 @@
 package com.localze.android
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+
 class HelpSectionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +39,9 @@ class HelpSectionActivity : AppCompatActivity() {
         }*/
     }
 
-    /*private fun gotoUrl(s: String) {
-        val uri: Uri = Uri.parse(s)
-        startActivity(Intent(Intent.ACTION_VIEW, uri))
-    }*/
-
+    override fun onBackPressed() {
+        val intent = Intent(this, Accounts::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
