@@ -23,7 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".AddressSellerEdit"></activity>
+        <activity
+            android:name=".AddressSellerEdit"
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,7 +40,8 @@
 
         <activity
             android:name=".MapsActivitySellerUpdate"
-            android:label="@string/title_activity_maps_seller_update" />
+            android:label="@string/title_activity_maps_seller_update"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductDetailsCustomer"
             android:screenOrientation="portrait" />
