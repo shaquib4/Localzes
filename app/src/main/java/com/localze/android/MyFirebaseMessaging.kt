@@ -429,7 +429,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             .setContentTitle(notificationTitle)
             .setContentText(notificationDescription)
             .setSound(notificationSoundUri)
-            /*.setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))*/
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
             .setStyle(
                 NotificationCompat.BigPictureStyle()
                     .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.add_to_cart))
