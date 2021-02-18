@@ -202,7 +202,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:id="@+id/cardCatalogue"
                 android:layout_width="@dimen/_130sdp"
                 android:layout_height="@dimen/_160sdp"
@@ -241,14 +241,15 @@
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-
+-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/carStaff"
                 android:layout_width="@dimen/_130sdp"
                 android:layout_height="@dimen/_160sdp"
-                android:layout_below="@id/cardQR"
+                android:layout_below="@id/cardBanner"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_toStartOf="@id/viewCenter"
+                android:layout_toEndOf="@id/cardQR"
+                android:layout_marginVertical="@dimen/_10sdp"
                 app:cardCornerRadius="10dp">
 
                 <RelativeLayout
