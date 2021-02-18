@@ -1,6 +1,7 @@
 package com.localze.android
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -38,6 +39,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
     private lateinit var btnDecrease: Button
     private lateinit var btnIncrease: Button
     private lateinit var txtCount: TextView
+    private lateinit var imgCart: ImageView
     private var productCost: Double = 0.0
     private var finalSellingPrice: Double = 0.0
     private var productOriginal: Double = 0.0
@@ -66,6 +68,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
         btnIncrease = findViewById(R.id.btnIncrease_newDetail)
         txtCount = findViewById(R.id.txtCounterDetail)
         cartItemsNo = findViewById(R.id.txtCount)
+        imgCart = findViewById(R.id.imgCarts)
         productAuth = FirebaseAuth.getInstance()
         val user = productAuth.currentUser
         val uid = user!!.uid
@@ -264,6 +267,11 @@ class ProductDetailsCustomer : AppCompatActivity() {
                 }
             }
         })
+        imgCart.setOnClickListener {
+            val intent = Intent(this, Cart::class.java)
+            startActivity(intent)
+            finish()
+        }
 
 
     }

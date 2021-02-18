@@ -1,5 +1,6 @@
 package com.localze.android
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -86,5 +87,11 @@ class AsStaffOf : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onBackPressed() {
+        val intent=Intent(this,AccountsSeller::class.java)
+        startActivity(intent)
+        finish()
     }
 }
