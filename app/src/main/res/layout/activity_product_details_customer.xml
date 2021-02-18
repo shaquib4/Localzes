@@ -21,7 +21,7 @@ android:background="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp">
                 <TextView
-
+                    android:id="@+id/txtCount"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_alignParentEnd="true"
