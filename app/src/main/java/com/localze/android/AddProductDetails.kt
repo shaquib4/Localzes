@@ -17,7 +17,7 @@ class AddProductDetails : AppCompatActivity() {
     private lateinit var inputSizes: EditText
     private lateinit var refundableType: Spinner
     private lateinit var detailDatabase: DatabaseReference
-    private var productId: String ?=null
+    private var productId: String? = null
     private lateinit var shopAuth: FirebaseAuth
     private lateinit var proceed: Button
     private lateinit var pickColor: ImageView
@@ -57,5 +57,11 @@ class AddProductDetails : AppCompatActivity() {
 
             })
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, Home_seller::class.java)
+        startActivity(intent)
+        finish()
     }
 }

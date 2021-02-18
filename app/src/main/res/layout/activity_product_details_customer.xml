@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:background="#fff"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".ProductDetailsCustomer">
 
 
@@ -20,25 +20,26 @@ android:background="#fff"
                 android:id="@+id/rl1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp">
+
                 <TextView
                     android:id="@+id/txtCount"
                     android:layout_width="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_alignParentEnd="true"
-                    android:text="1"
-
-                    android:textAlignment="center"
                     android:layout_height="@dimen/_15sdp"
-                    android:background="@drawable/circle"/>
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/circle"
+                    android:text="1"
+                    android:textAlignment="center" />
+
                 <ImageView
                     android:id="@+id/imgCarts"
                     android:layout_width="@dimen/_28sdp"
                     android:layout_height="@dimen/_28sdp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_shopping_cart_black_24dp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    />
+                    android:src="@drawable/ic_shopping_cart_black_24dp" />
+
                 <ImageView
                     android:id="@+id/imgBack"
                     android:layout_width="@dimen/_20sdp"
@@ -46,8 +47,6 @@ android:background="#fff"
                     android:layout_centerVertical="true"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:src="@drawable/ic_back_white" />
-
-
 
 
             </RelativeLayout>
@@ -169,15 +168,16 @@ android:background="#fff"
                     android:textColor="#008000"
                     android:textSize="@dimen/_12ssp" />
             </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/btnLinearDetail"
-                android:layout_marginStart="@dimen/_7sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_below="@id/relR"
                 android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:background="#ffffff"
                 android:orientation="horizontal"
 
@@ -220,6 +220,7 @@ android:background="#fff"
                     android:textColor="#de4500"
                     android:textSize="@dimen/_12ssp" />
             </LinearLayout>
+
             <Button
 
                 android:id="@+id/btnCartAdd"

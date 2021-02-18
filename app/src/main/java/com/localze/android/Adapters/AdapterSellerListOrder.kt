@@ -182,7 +182,7 @@ class AdapterSellerListOrder(
 
         }
         holder.itemRevive.setOnClickListener {
-            holder.txtItem_Name.text = "${sellerOrderList.itemName}  X ${sellerOrderList.itemQuantity}"
+            holder.txtItem_Name.text = "${sellerOrderList.itemName}"
 
             val databaseReference: DatabaseReference =
                 FirebaseDatabase.getInstance().reference.child("seller").child(uidS)

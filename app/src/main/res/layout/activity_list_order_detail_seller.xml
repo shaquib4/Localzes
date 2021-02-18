@@ -501,7 +501,7 @@
                 android:layout_weight="0.8"
                 android:background="@drawable/bg_buttons"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Rejrct"
+                android:text="Reject"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="@dimen/_10ssp" />

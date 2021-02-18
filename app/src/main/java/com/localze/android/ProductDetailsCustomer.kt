@@ -26,6 +26,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
     private lateinit var originalPrice: TextView
     private lateinit var productStock: TextView
     private lateinit var productDescription: TextView
+    private lateinit var cartItemsNo: TextView
     private var productId: String? = "400"
     private var shopId: String? = "500"
     private lateinit var productAuth: FirebaseAuth
@@ -64,6 +65,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
         btnDecrease = findViewById(R.id.btnDecrease_newDetail)
         btnIncrease = findViewById(R.id.btnIncrease_newDetail)
         txtCount = findViewById(R.id.txtCounterDetail)
+        cartItemsNo = findViewById(R.id.txtCount)
         productAuth = FirebaseAuth.getInstance()
         val user = productAuth.currentUser
         val uid = user!!.uid
@@ -141,6 +143,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
 
                     shopID = shopId
                 }
+                txtCount.text = snapshot.childrenCount.toString()
             }
         })
 

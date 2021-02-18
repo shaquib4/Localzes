@@ -2,13 +2,20 @@ package com.localze.android
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
 class HelpSectionActivity : AppCompatActivity() {
-
+    private lateinit var imgBackCustomer: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_help_section)
+        imgBackCustomer = findViewById(R.id.imgBackContactCustomer)
+        imgBackCustomer.setOnClickListener {
+            val intent = Intent(this, Accounts::class.java)
+            startActivity(intent)
+            finish()
+        }
 /*        emailId = findViewById(R.id.txtEmail)
         ic_fb.setOnClickListener {
             try {

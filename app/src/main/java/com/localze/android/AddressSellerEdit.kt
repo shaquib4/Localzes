@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -14,13 +15,20 @@ import kotlinx.android.synthetic.main.address_single_row.*
 
 class AddressSellerEdit : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private var ad:String?=null
+    private lateinit var imgBackSeller: ImageView
+    private var ad: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_address_seller_edit)
-        auth=FirebaseAuth.getInstance()
-        val user=auth.currentUser
-        val uid=user!!.uid
+        imgBackSeller = findViewById(R.id.imgBackManageSeller)
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        val uid = user!!.uid
+        imgBackSeller.setOnClickListener {
+            val intent = Intent(this, AccountsSeller::class.java)
+            startActivity(intent)
+            finish()
+        }
         val cardDatabaseRef =
             FirebaseDatabase.getInstance().reference.child("seller")
         cardDatabaseRef.child(uid)
@@ -34,12 +42,17 @@ class AddressSellerEdit : AppCompatActivity() {
                     if (!(snapshot.child("staffOfShop")
                             .exists()) || snapshot.child("staffOfShop").value.toString() == ""
                     ) {
-                        val address=snapshot.child("address").value.toString()
-                        txtAddressSeller.text=address
-                        ad=address
-                       txtEditAd.visibility=View.VISIBLE
+                        val address = snapshot.child("address").value.toString()
+                        txtAddressSeller.text = address
+                        ad = address
+                        txtEditAd.visibility = View.VISIBLE
                         txtEditAd.setOnClickListener {
-                            startActivity(Intent(this@AddressSellerEdit,MapsActivitySellerUpdate::class.java))
+                            startActivity(
+                                Intent(
+                                    this@AddressSellerEdit,
+                                    MapsActivitySellerUpdate::class.java
+                                )
+                            )
                             finish()
                         }
                     } else {
@@ -57,44 +70,49 @@ class AddressSellerEdit : AppCompatActivity() {
                                     val access = snapshot.child("access").value.toString()
                                     when (access) {
                                         "No Access" -> {
-                                            txtAddress.text=ad.toString()
-                                            txtEditAd.visibility=View.INVISIBLE
+                                            txtAddress.text = ad.toString()
+                                            txtEditAd.visibility = View.INVISIBLE
                                         }
                                         "Total Access" -> {
-                                            txtAddress.text=ad.toString()
-                                            txtEditAd.visibility=View.VISIBLE
+                                            txtAddress.text = ad.toString()
+                                            txtEditAd.visibility = View.VISIBLE
                                             txtEditAd.setOnClickListener {
-                                                startActivity(Intent(this@AddressSellerEdit,MapsActivitySellerUpdate::class.java))
+                                                startActivity(
+                                                    Intent(
+                                                        this@AddressSellerEdit,
+                                                        MapsActivitySellerUpdate::class.java
+                                                    )
+                                                )
                                                 finish()
                                             }
                                         }
                                         "Order Access" -> {
-                                            txtAddress.text=ad.toString()
-                                            txtEditAd.visibility=View.INVISIBLE
+                                            txtAddress.text = ad.toString()
+                                            txtEditAd.visibility = View.INVISIBLE
 
                                         }
                                         "Delivery Access" -> {
-                                            txtAddress.text=ad.toString()
-                                            txtEditAd.visibility=View.INVISIBLE
+                                            txtAddress.text = ad.toString()
+                                            txtEditAd.visibility = View.INVISIBLE
 
                                         }
                                         "Catalogue Access(Product)" -> {
-                                            txtAddress.text=ad.toString()
-                                            txtEditAd.visibility=View.INVISIBLE
+                                            txtAddress.text = ad.toString()
+                                            txtEditAd.visibility = View.INVISIBLE
 
                                         }
                                         "Boost Your Shop Access" -> {
-                                            txtAddress.text=ad.toString()
-                                            txtEditAd.visibility=View.INVISIBLE
+                                            txtAddress.text = ad.toString()
+                                            txtEditAd.visibility = View.INVISIBLE
                                         }
                                         "(Orders + Catalogue)Access" -> {
-                                            txtAddress.text=ad.toString()
-                                            txtEditAd.visibility=View.INVISIBLE
+                                            txtAddress.text = ad.toString()
+                                            txtEditAd.visibility = View.INVISIBLE
 
                                         }
                                         "(Order + Boost Your Shop)Access" -> {
-                                            txtAddress.text=ad.toString()
-                                            txtEditAd.visibility=View.INVISIBLE
+                                            txtAddress.text = ad.toString()
+                                            txtEditAd.visibility = View.INVISIBLE
                                         }
                                     }
                                 }
@@ -106,5 +124,11 @@ class AddressSellerEdit : AppCompatActivity() {
                 }
 
             })
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, AccountsSeller::class.java)
+        startActivity(intent)
+        finish()
     }
 }
