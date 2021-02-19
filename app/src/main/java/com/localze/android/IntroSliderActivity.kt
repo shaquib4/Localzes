@@ -25,7 +25,8 @@ class IntroSliderActivity : AppCompatActivity() {
         listOf(
             IntroSlide(R.drawable.register),
             IntroSlide(R.drawable.seller),
-            IntroSlide(R.drawable.customer)
+            IntroSlide(R.drawable.customer),
+            IntroSlide(R.drawable.add_staff)
         )
     )
 
