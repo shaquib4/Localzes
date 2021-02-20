@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
+import androidx.core.view.iterator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.localze.android.Modals.ModelProductDescription
@@ -37,30 +38,56 @@ class AddProductDetails : AppCompatActivity() {
         detailDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
                 .child(productId.toString()).child("ProductDetails")
-        proceed.setOnClickListener {
-            detailDatabase.addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
+        detailDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
-                }
+            }
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val descriptionMap = HashMap<String, Any>()
-                    descriptionMap["description"] = productDescription.text.toString()
-                    descriptionMap["colors"] = chooseColors.text.toString()
-                    descriptionMap["sizes"] = inputSizes.text.toString()
-                    descriptionMap["refundableType"] = refundableType.selectedItem.toString()
-                    detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
-                        val intent = Intent(this@AddProductDetails, Home_seller::class.java)
-                        startActivity(intent)
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    productDescription.setText(snapshot.child("description").value.toString())
+                    chooseColors.setText(snapshot.child("colors").value.toString())
+                    inputSizes.setText(snapshot.child("sizes").value.toString())
+                    for (i in 0 until refundableType.count) {
+                        if (refundableType.getItemAtPosition(i)
+                                .toString() == snapshot.child("refundableType").value.toString()
+                        ) {
+                            refundableType.setSelection(i)
+                        }
+                    }
+                    proceed.setOnClickListener {
+                        val descriptionMap = HashMap<String, Any>()
+                        descriptionMap["description"] = productDescription.text.toString()
+                        descriptionMap["colors"] = chooseColors.text.toString()
+                        descriptionMap["sizes"] = inputSizes.text.toString()
+                        descriptionMap["refundableType"] = refundableType.selectedItem.toString()
+                        detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
+                            val intent = Intent(this@AddProductDetails, Seller_Products::class.java)
+                            startActivity(intent)
+                        }
+                    }
+                } else {
+                    proceed.setOnClickListener {
+                        val descriptionMap = HashMap<String, Any>()
+                        descriptionMap["description"] = productDescription.text.toString()
+                        descriptionMap["colors"] = chooseColors.text.toString()
+                        descriptionMap["sizes"] = inputSizes.text.toString()
+                        descriptionMap["refundableType"] = refundableType.selectedItem.toString()
+                        detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
+                            val intent = Intent(this@AddProductDetails, Seller_Products::class.java)
+                            startActivity(intent)
+                        }
                     }
                 }
 
-            })
-        }
+            }
+
+        })
+
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, Home_seller::class.java)
+        val intent = Intent(this, Seller_Products::class.java)
         startActivity(intent)
         finish()
     }

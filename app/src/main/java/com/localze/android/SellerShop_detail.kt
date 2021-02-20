@@ -37,7 +37,6 @@ class  SellerShop_detail : AppCompatActivity() {
     private lateinit var etCategory1: Spinner
     private lateinit var openingTime: Spinner
     private lateinit var closingTime: Spinner
-    private lateinit var closingDay: Spinner
     private lateinit var etCategory2: EditText
     private lateinit var etCategory3: EditText
     private lateinit var upi: EditText
@@ -52,7 +51,6 @@ class  SellerShop_detail : AppCompatActivity() {
         btnUpload = findViewById(R.id.upload)
         openingTime = findViewById(R.id.openTime)
         closingTime = findViewById(R.id.closeTime)
-        closingDay = findViewById(R.id.closeDay)
         etShopName = findViewById(R.id.edtName)
         etCategory1 = findViewById(R.id.spn_category)
         minAmount=findViewById(R.id.edtMinAmount)
@@ -79,7 +77,7 @@ class  SellerShop_detail : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 filepath == null -> {
-                    Toast.makeText(this, "Please Provide Your Shop Image", Toast.LENGTH_SHORT)
+                     Toast.makeText(this, "Please Provide Your Shop Image", Toast.LENGTH_SHORT)
                         .show()
                 }
                 else -> {
@@ -151,7 +149,7 @@ class  SellerShop_detail : AppCompatActivity() {
                                 country!!.toString().trim(),
                                 openingTime.selectedItem.toString(),
                                 closingTime.selectedItem.toString(),
-                                closingDay.selectedItem.toString(),
+                                "",
                                 locality2!!.toString().trim().toLowerCase(),
                                 minAmount.text.toString()
                             )
