@@ -155,7 +155,7 @@ class AdapterSellerProducts(
         }
         holder.details.setOnClickListener {
             val intent=Intent(context,AddProductDetails::class.java)
-            intent.putExtra("PID",products.productId)
+            intent.putExtra("pId",products.productId)
             context.startActivity(intent)
             (context as Seller_Products).finish()
         }
