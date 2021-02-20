@@ -27,7 +27,9 @@ class Seller_Products : AppCompatActivity() {
     private lateinit var imgBackProducts: ImageView
     private lateinit var txtAddProduct: TextView
     private var category: String? = "400"
+    private var shopUid:String?=null
     private lateinit var rlProductAccess: RelativeLayout
+    private var accessS:String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller__products)
@@ -105,6 +107,7 @@ class Seller_Products : AppCompatActivity() {
                         sellerProducts(uid)
                     } else {
                         val uidOfShop = snapshot.child("staffOfShop").value.toString()
+                        shopUid=uidOfShop
                         if (snapshot.child("StaffOf").child(uidOfShop).exists()) {
                             val databaseReference =
                                 FirebaseDatabase.getInstance().reference.child("seller")
@@ -116,44 +119,46 @@ class Seller_Products : AppCompatActivity() {
 
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     val access = snapshot.child("access").value.toString()
-                                    when (access) {
-                                        "No Access" -> {
-                                            rl_sellerProducts.visibility = View.GONE
-                                            rlProductAccess.visibility = View.VISIBLE
-                                        }
-                                        "Total Access" -> {
-                                            sellerProducts(uidOfShop)
-                                        }
-                                        "Order Access" -> {
-                                            rl_sellerProducts.visibility = View.GONE
-                                            rlProductAccess.visibility = View.VISIBLE
-                                        }
-                                        "Delivery Access" -> {
-                                            rl_sellerProducts.visibility = View.GONE
-                                            rlProductAccess.visibility = View.VISIBLE
-                                        }
-                                        "Catalogue Access(Product)" -> {
-                                            sellerProducts(uidOfShop)
-                                        }
-                                        "Boost Your Shop Access" -> {
-                                            rl_sellerProducts.visibility = View.GONE
-                                            rlProductAccess.visibility = View.VISIBLE
+                                    accessS=access
 
-                                        }
-                                        "(Orders + Catalogue)Access" -> {
-                                            sellerProducts(uidOfShop)
-                                        }
-                                        "(Order + Boost Your Shop)Access" -> {
-                                            rl_sellerProducts.visibility = View.GONE
-                                            rlProductAccess.visibility = View.VISIBLE
-                                        }
-                                    }
                                 }
                             })
                         }
                     }
                 }
             })
+        when (accessS.toString()) {
+            "No Access" -> {
+                rl_sellerProducts.visibility = View.GONE
+                rlProductAccess.visibility = View.VISIBLE
+            }
+            "Total Access" -> {
+                sellerProducts(shopUid.toString())
+            }
+            "Order Access" -> {
+                rl_sellerProducts.visibility = View.GONE
+                rlProductAccess.visibility = View.VISIBLE
+            }
+            "Delivery Access" -> {
+                rl_sellerProducts.visibility = View.GONE
+                rlProductAccess.visibility = View.VISIBLE
+            }
+            "Catalogue Access(Product)" -> {
+                sellerProducts(shopUid.toString())
+            }
+            "Boost Your Shop Access" -> {
+                rl_sellerProducts.visibility = View.GONE
+                rlProductAccess.visibility = View.VISIBLE
+
+            }
+            "(Orders + Catalogue)Access" -> {
+                sellerProducts(shopUid.toString())
+            }
+            "(Order + Boost Your Shop)Access" -> {
+                rl_sellerProducts.visibility = View.GONE
+                rlProductAccess.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun searchSellerProducts(str: String) {

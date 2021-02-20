@@ -31,7 +31,6 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     private lateinit var imageUpdate: ImageView
     private lateinit var productName: EditText
     private lateinit var categoryUpdate: Spinner
-    private lateinit var descriptionUpdate: EditText
     private lateinit var sellPriceUpdate: EditText
     private lateinit var offerPriceUpdate: EditText
     private lateinit var quantityUpdate: EditText
@@ -83,11 +82,6 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                         val quantity = snapshot.child("quantity").value.toString()
                         Picasso.get().load(imageUrl).into(imageUpdate)
                         productName.setText(title)
-                        if (description != null) {
-                            descriptionUpdate.setText(description)
-                        } else {
-                            descriptionUpdate.setText("")
-                        }
                         sellPriceUpdate.setText(mrp)
                         offerPriceUpdate.setText(sellingPrice)
                         quantityUpdate.setText(quantity)
