@@ -89,7 +89,7 @@
                         android:layout_margin="@dimen/_7sdp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/add_shop_image_optional"
-                        android:textSize="@dimen/_8ssp" />
+                        android:textSize="@dimen/_9ssp" />
 
 
                     <View
@@ -114,12 +114,12 @@
                         android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/choose_shop_category"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_11ssp" />
 
                     <Spinner
                         android:id="@+id/spn_category"
                         android:layout_width="@dimen/_110sdp"
-                        android:layout_height="@dimen/_32sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_7sdp"
@@ -133,7 +133,7 @@
                     <EditText
                         android:id="@+id/edtName"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_below="@+id/spn_category"
                         android:layout_marginHorizontal="@dimen/_7sdp"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -147,13 +147,13 @@
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_11ssp"
                         tools:ignore="RtlSymmetry" />
 
                     <EditText
                         android:id="@+id/edtPay"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_below="@+id/edtName"
                         android:layout_marginHorizontal="@dimen/_7sdp"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -167,16 +167,16 @@
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_11ssp"
                         tools:ignore="RtlSymmetry" />
 
                     <EditText
                         android:id="@+id/edtMinAmount"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_below="@+id/edtPay"
                         android:layout_marginHorizontal="@dimen/_7sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/bg_ractangle_rounded_stroke"
                         android:fontFamily="@font/montserrat_medium"
                         android:gravity="center_vertical"
@@ -187,20 +187,19 @@
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_11ssp"
                         tools:ignore="RtlSymmetry" />
                     <Button
                         android:id="@+id/upload"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_32sdp"
-                        android:layout_below="@+id/ll2"
+                        android:layout_below="@+id/ll1"
                         android:layout_gravity="bottom"
                         android:layout_marginHorizontal="@dimen/_22sdp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:background="@drawable/round2_btn"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/upload"
-
                         android:textColor="#fcfcfc"
                         android:textSize="@dimen/_12ssp"
                         android:textStyle="bold" />
@@ -214,11 +213,12 @@
                         android:layout_marginVertical="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/select_shop_s_activity_hours"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_11ssp" />
 
 
                     <LinearLayout
                         android:id="@+id/ll1"
+                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txtTime"
@@ -226,12 +226,12 @@
                         android:layout_marginEnd="@dimen/_7sdp"
                         android:baselineAligned="false"
                         android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:weightSum="6">
 
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.5">
+                            android:layout_weight="1">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -239,14 +239,14 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:text="@string/open"
-                                android:textSize="@dimen/_10ssp" />
+                                android:textSize="@dimen/_11ssp" />
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:layout_marginEnd="@dimen/_5sdp"
-                            android:layout_weight="1.5"
+                            android:layout_height="@dimen/_30sdp"
+
+                            android:layout_weight="2"
                             android:background="@drawable/rectangle_box">
 
                             <Spinner
@@ -262,7 +262,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/_5sdp"
-                            android:layout_weight="0.5">
+                            android:layout_weight="1">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -270,13 +270,13 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:text="@string/close"
-                                android:textSize="@dimen/_10ssp" />
+                                android:textSize="@dimen/_11ssp" />
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:layout_weight="1.5"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_weight="2"
                             android:background="@drawable/rectangle_box">
 
                             <Spinner
@@ -288,48 +288,7 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/ll2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ll1"
-                        android:layout_alignStart="@id/txtChooseCategory"
-                        android:layout_marginVertical="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_7sdp"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
 
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/montserrat_medium"
-                                android:text="@string/select_shop_s_closing_day"
-                                android:textSize="@dimen/_8ssp" />
-                        </RelativeLayout>
-
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/rectangle_box">
-
-                            <Spinner
-                                android:id="@+id/closeDay"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:entries="@array/Spinner_Days"
-                                android:textAlignment="center" />
-                        </RelativeLayout>
-
-                    </LinearLayout>
 
                     
 

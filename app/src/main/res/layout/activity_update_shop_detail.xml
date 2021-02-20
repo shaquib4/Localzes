@@ -104,12 +104,12 @@
                         android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/choose_shop_category"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_11ssp" />
 
                     <Spinner
                         android:id="@+id/spn_category"
                         android:layout_width="@dimen/_110sdp"
-                        android:layout_height="@dimen/_32sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_7sdp"
@@ -123,7 +123,7 @@
                     <EditText
                         android:id="@+id/edtNameUpdate"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_below="@+id/spn_category"
                         android:layout_marginHorizontal="@dimen/_7sdp"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -134,7 +134,7 @@
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_11ssp"
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
@@ -143,7 +143,7 @@
                     <EditText
                         android:id="@+id/edtPayUpdate"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_below="@+id/edtNameUpdate"
                         android:layout_marginHorizontal="@dimen/_7sdp"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -157,18 +157,18 @@
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_11ssp"
                         tools:ignore="RtlSymmetry" />
 
                     <Button
                         android:id="@+id/Update"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
-                        android:layout_below="@+id/ll2"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_below="@+id/ll1"
                         android:layout_gravity="bottom"
                         android:layout_marginHorizontal="@dimen/_22sdp"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/proceed_to_add"
+                        android:background="@drawable/round2_btn"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/update_details"
                         android:textAllCaps="false"
@@ -184,7 +184,7 @@
                         android:layout_marginVertical="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/select_shop_s_activity_hours"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_11ssp" />
 
 
                     <LinearLayout
@@ -192,16 +192,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txtTime"
+                        android:layout_marginTop="10dp"
                         android:layout_alignStart="@id/txtChooseCategory"
                         android:layout_marginEnd="@dimen/_7sdp"
                         android:baselineAligned="false"
                         android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:weightSum="6">
 
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.5">
+                            android:layout_weight="1">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -214,15 +215,14 @@
 
                         <RelativeLayout
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_25sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:layout_marginEnd="@dimen/_5sdp"
-                            android:layout_weight="1.5"
+                            android:layout_weight="2"
                             android:background="@drawable/rectangle_box">
 
                             <Spinner
                                 android:id="@+id/spinner_open"
                                 android:layout_width="match_parent"
-
                                 android:layout_height="match_parent"
                                 android:entries="@array/Spinner_Hours"
                                 android:textAlignment="center" />
@@ -233,7 +233,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/_5sdp"
-                            android:layout_weight="0.5">
+                            android:layout_weight="1">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -246,8 +246,8 @@
 
                         <RelativeLayout
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:layout_weight="1.5"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_weight="2"
                             android:background="@drawable/rectangle_box">
 
                             <Spinner
@@ -259,53 +259,12 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/ll2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ll1"
-                        android:layout_alignStart="@+id/txtChooseCategory"
-                        android:layout_marginVertical="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_7sdp"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/montserrat_medium"
-                                android:text="@string/select_shop_s_closing_day"
-                                android:textSize="@dimen/_10ssp" />
-                        </RelativeLayout>
-
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/rectangle_box">
-
-                            <Spinner
-                                android:id="@+id/spinner_closing_day"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:entries="@array/Spinner_Days"
-                                android:textAlignment="center" />
-                        </RelativeLayout>
-
-                    </LinearLayout>
+                     
 
                     <EditText
                         android:id="@+id/edtMinAmountUpdate"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_below="@+id/edtPayUpdate"
                         android:layout_marginHorizontal="@dimen/_7sdp"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -319,7 +278,7 @@
                         android:padding="@dimen/_7sdp"
                         android:paddingStart="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/_11ssp"
                         tools:ignore="RtlSymmetry" />
 
                 </RelativeLayout>
