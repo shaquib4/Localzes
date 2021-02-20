@@ -75,7 +75,11 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     Picasso.get().load(imageUrl).into(imageShopUpdate)
                     shopNameUpdate.setText(shopName)
                     upiIdUpdate.setText(upiId)
-                    shopsCategory.setSelection(getIndex(shopsCategory, shopCategory))
+                    for (i in 0 until shopsCategory.count) {
+                        if (shopsCategory.getItemAtPosition(i).toString() == shopCategory) {
+                            shopsCategory.setSelection(i)
+                        }
+                    }
                     minOrder.setText(minAmount)
                 }
             })
@@ -172,7 +176,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
                     headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
                     headers["closingDay"] = ""
-                    headers["minAm"]=minOrder.text.toString().trim()
+                    headers["minAm"] = minOrder.text.toString().trim()
                     databaseRef.updateChildren(headers).addOnSuccessListener {
                         val intent = Intent(this, Home_seller::class.java)
                         startActivity(intent)
