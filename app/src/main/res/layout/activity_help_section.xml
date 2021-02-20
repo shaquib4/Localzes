@@ -317,7 +317,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Connet with us on Social Media"
+                        android:text="Like &amp; Follow us on"
                         android:textColor="#000"
                         android:textSize="@dimen/_12ssp" />
                 </RelativeLayout>
