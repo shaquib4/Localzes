@@ -52,6 +52,7 @@ class AddProductDetails : AppCompatActivity() {
                     detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
                         val intent = Intent(this@AddProductDetails, Home_seller::class.java)
                         startActivity(intent)
+                        finish()
                     }
                 }
 
