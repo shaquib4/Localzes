@@ -30,6 +30,7 @@ class Seller_Products : AppCompatActivity() {
     private var shopUid:String?=null
     private lateinit var rlProductAccess: RelativeLayout
     private var accessS:String?=null
+    private var bool:Boolean?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller__products)
@@ -104,7 +105,8 @@ class Seller_Products : AppCompatActivity() {
                     if (!(snapshot.child("staffOfShop")
                             .exists()) || snapshot.child("staffOfShop").value.toString() == ""
                     ) {
-                        sellerProducts(uid)
+                        bool=true
+
                     } else {
                         val uidOfShop = snapshot.child("staffOfShop").value.toString()
                         shopUid=uidOfShop
@@ -127,6 +129,9 @@ class Seller_Products : AppCompatActivity() {
                     }
                 }
             })
+        if (bool==true){
+            sellerProducts(uid)
+        }
         when (accessS.toString()) {
             "No Access" -> {
                 rl_sellerProducts.visibility = View.GONE
