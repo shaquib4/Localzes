@@ -291,7 +291,7 @@
                         android:src="@drawable/twitter" />
 
                     <ImageView
-                        android:layout_marginTop="@dimen/_21sdp"
+                        android:layout_margin ="@dimen/_21sdp"
                         android:id="@+id/ic_fb"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
@@ -300,7 +300,7 @@
                         android:src="@drawable/fb" />
 
                     <ImageView
-                        android:layout_marginTop="@dimen/_21sdp"
+                        android:layout_margin ="@dimen/_21sdp"
                         android:id="@+id/ic_ig"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
