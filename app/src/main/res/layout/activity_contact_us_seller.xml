@@ -116,14 +116,14 @@
                         android:layout_below="@id/txtCallUs"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/ic_baseline_phone_24"/>
+                        android:src="@drawable/ic_baseline_phone_24" />
 
                     <TextView
                         android:id="@+id/mobile1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txtCallUs"
-                      android:layout_centerHorizontal="true"
+                        android:layout_centerHorizontal="true"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="+91-8528436997"
                         android:textColor="#000"
@@ -172,7 +172,6 @@
                         android:textSize="@dimen/_15ssp" />
 
 
-
                     <ImageView
                         android:id="@+id/imgEmail"
                         android:layout_width="@dimen/_40sdp"
@@ -187,7 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txtEmailUs"
-                    android:layout_alignParentEnd="true"
+                        android:layout_alignParentEnd="true"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="khanShaquib21@gmail.com"
                         android:textColor="#000"
@@ -278,35 +277,33 @@
                         android:background="#d3d3d3" />
 
 
-
-
                     <ImageView
-                        android:layout_margin="@dimen/_21sdp"
-                        android:id="@+id/ic_twitter"
+                        android:id="@+id/ic_twitter_seller"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_below="@id/txtConnect"
                         android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/_21sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:src="@drawable/twitter" />
 
                     <ImageView
-                        android:layout_margin ="@dimen/_21sdp"
-                        android:id="@+id/ic_fb"
+                        android:id="@+id/ic_fb_seller"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_below="@id/txtConnect"
-                        android:layout_toLeftOf="@id/ic_twitter"
+                        android:layout_margin="@dimen/_21sdp"
+                        android:layout_toLeftOf="@id/ic_twitter_seller"
                         android:src="@drawable/fb" />
 
                     <ImageView
-                        android:layout_margin ="@dimen/_21sdp"
-                        android:id="@+id/ic_ig"
+                        android:id="@+id/ic_ig_seller"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_below="@id/txtConnect"
+                        android:layout_margin="@dimen/_21sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
-                        android:layout_toRightOf="@id/ic_twitter"
+                        android:layout_toRightOf="@id/ic_twitter_seller"
                         android:src="@drawable/instagram" />
 
 
