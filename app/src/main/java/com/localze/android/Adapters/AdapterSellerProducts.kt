@@ -21,6 +21,7 @@ import com.localze.android.Seller_Products
 import com.localze.android.UpdateProductDetailsActivity
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import com.localze.android.AddProductDetails
 import java.lang.Exception
 
 class AdapterSellerProducts(
@@ -29,6 +30,7 @@ class AdapterSellerProducts(
     val uid: String
 ) : RecyclerView.Adapter<AdapterSellerProducts.HolderProduct>() {
     class HolderProduct(view: View) : RecyclerView.ViewHolder(view) {
+        val details:TextView=view.findViewById(R.id.pDetails)
         val imgProduct: ImageView = view.findViewById(R.id.imgProduct_customer)
         val txtProductTitle: TextView = view.findViewById(R.id.txtProductTitle_customer)
         val txtProductPrice: TextView = view.findViewById(R.id.txtProductPrice_customer)
@@ -150,6 +152,10 @@ class AdapterSellerProducts(
                 dialog.dismiss()
             }
             builder.create().show()
+        }
+        holder.details.setOnClickListener {
+            context.startActivity(Intent(context,AddProductDetails::class.java))
+            (context as Seller_Products).finish()
         }
     }
 

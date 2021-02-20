@@ -24,6 +24,16 @@
                 android:layout_height="@dimen/_130sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/lanju" />
+            <TextView
+                android:id="@+id/pDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details"
+                android:textColor="#008000"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_alignParentEnd="true"
+                />
 
             <View
                 android:id="@+id/view_customer"
