@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
+import androidx.core.view.iterator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.localze.android.Modals.ModelProductDescription
@@ -47,6 +48,11 @@ class AddProductDetails : AppCompatActivity() {
                         productDescription.setText(snapshot.child("description").value.toString())
                         chooseColors.setText(snapshot.child("colors").value.toString())
                         inputSizes.setText(snapshot.child("sizes").value.toString())
+                        for (i in 0 until  refundableType.count){
+                            if (refundableType.getItemAtPosition(i).toString()==snapshot.child("refundableType").value.toString()){
+                                refundableType.setSelection(i)
+                            }
+                        }
                         proceed.setOnClickListener {   val descriptionMap = HashMap<String, Any>()
                         descriptionMap["description"] = productDescription.text.toString()
                         descriptionMap["colors"] = chooseColors.text.toString()
