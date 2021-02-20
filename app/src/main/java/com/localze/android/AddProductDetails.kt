@@ -37,27 +37,41 @@ class AddProductDetails : AppCompatActivity() {
         detailDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
                 .child(productId.toString()).child("ProductDetails")
-        proceed.setOnClickListener {
             detailDatabase.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val descriptionMap = HashMap<String, Any>()
-                    descriptionMap["description"] = productDescription.text.toString()
-                    descriptionMap["colors"] = chooseColors.text.toString()
-                    descriptionMap["sizes"] = inputSizes.text.toString()
-                    descriptionMap["refundableType"] = refundableType.selectedItem.toString()
-                    detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
-                        val intent = Intent(this@AddProductDetails, Home_seller::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
+                    if (snapshot.exists()){
+                        productDescription.setText(snapshot.child("description").value.toString())
+                        chooseColors.setText(snapshot.child("colors").value.toString())
+                        inputSizes.setText(snapshot.child("sizes").value.toString())
+                        proceed.setOnClickListener {   val descriptionMap = HashMap<String, Any>()
+                        descriptionMap["description"] = productDescription.text.toString()
+                        descriptionMap["colors"] = chooseColors.text.toString()
+                        descriptionMap["sizes"] = inputSizes.text.toString()
+                        descriptionMap["refundableType"] = refundableType.selectedItem.toString()
+                        detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
+                            val intent = Intent(this@AddProductDetails, Home_seller::class.java)
+                            startActivity(intent)
+                        }}
+                    }else{
+                       proceed.setOnClickListener {  val descriptionMap = HashMap<String, Any>()
+                        descriptionMap["description"] = productDescription.text.toString()
+                        descriptionMap["colors"] = chooseColors.text.toString()
+                        descriptionMap["sizes"] = inputSizes.text.toString()
+                        descriptionMap["refundableType"] = refundableType.selectedItem.toString()
+                        detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
+                            val intent = Intent(this@AddProductDetails, Home_seller::class.java)
+                            startActivity(intent)
+                        }
+                    }}
+
                 }
 
             })
-        }
+
     }
 
     override fun onBackPressed() {
