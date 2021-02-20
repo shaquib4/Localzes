@@ -66,9 +66,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/montserrat_bold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:text="For any Help or Support, Contact Us !"
-                        android:textColor="#008000"
+
                         android:textSize="@dimen/_12ssp" />
 
                     <ImageView
@@ -104,18 +104,10 @@
                         android:layout_margin="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Call Us"
-                        android:textColor="#000"
+
 
                         android:textSize="@dimen/_15ssp" />
 
-                    <ImageView
-                        android:id="@+id/img_call_us"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_below="@id/imgContact"
-                        android:layout_alignParentEnd="true"
-                        android:layout_margin="@dimen/_10sdp"
-                        android:src="@drawable/ic_baseline_phone_24" />
 
                     <ImageView
                         android:id="@+id/imgCall"
@@ -124,14 +116,14 @@
                         android:layout_below="@id/txtCallUs"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/call_us_icon" />
+                        android:src="@drawable/ic_baseline_phone_24"/>
 
                     <TextView
                         android:id="@+id/mobile1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/img_call_us"
-                        android:layout_toRightOf="@id/imgCall"
+                        android:layout_below="@id/txtCallUs"
+                      android:layout_centerHorizontal="true"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="+91-8528436997"
                         android:textColor="#000"
@@ -142,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/mobile1"
-                        android:layout_toRightOf="@id/imgCall"
+                        android:layout_centerHorizontal="true"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="+91-7518894470"
                         android:textColor="#000"
@@ -153,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/mobile2"
-                        android:layout_toRightOf="@id/imgCall"
+                        android:layout_centerHorizontal="true"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="+91-7317544896"
                         android:textColor="#000"
@@ -175,18 +167,11 @@
                         android:layout_margin="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Mail Us"
-                        android:textColor="#000"
+
 
                         android:textSize="@dimen/_15ssp" />
 
-                    <ImageView
-                        android:id="@+id/img_email_us"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_below="@id/v3"
-                        android:layout_alignParentEnd="true"
-                        android:layout_margin="@dimen/_10sdp"
-                        android:src="@drawable/ic_mail" />
+
 
                     <ImageView
                         android:id="@+id/imgEmail"
@@ -195,14 +180,14 @@
                         android:layout_below="@id/txtEmailUs"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/call_us_icon" />
+                        android:src="@drawable/ic_mail" />
 
                     <TextView
                         android:id="@+id/email1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/img_email_us"
-                        android:layout_toRightOf="@id/imgCall"
+                        android:layout_below="@id/txtEmailUs"
+                    android:layout_alignParentEnd="true"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="khanShaquib21@gmail.com"
                         android:textColor="#000"
@@ -213,7 +198,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/email1"
-                        android:layout_toRightOf="@id/imgCall"
+                        android:layout_alignParentEnd="true"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="ratnakarchaurasiya8@gmail.com"
                         android:textColor="#000"
@@ -224,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/email2"
-                        android:layout_toRightOf="@id/imgCall"
+                        android:layout_alignParentEnd="true"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="ekagraagrawal49@gmail.com"
                         android:textColor="#000"
@@ -238,7 +223,7 @@
                         android:layout_margin="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Need Help! Mail to our team"
-                        android:textColor="#000"
+
                         android:textSize="@dimen/_14ssp" />
 
                     <ImageView
@@ -270,7 +255,7 @@
                         android:layout_margin="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Website"
-                        android:textColor="#000"
+
                         android:textSize="@dimen/_15ssp" />
 
                     <TextView
@@ -292,53 +277,37 @@
                         android:layout_below="@id/txtWebsite"
                         android:background="#d3d3d3" />
 
-                    <!--<ImageView
-                        android:id="@+id/ic_browse"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_below="@id/txtConnect"
 
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        android:layout_toLeftOf="@+id/ic_gmail"
-                        android:padding="10dp"
-                        android:src="@drawable/linkedin_logo" />
+
 
                     <ImageView
-                        android:id="@+id/ic_gmail"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_below="@id/txtConnect"
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        android:layout_toLeftOf="@+id/ic_twitter"
-                        android:src="@drawable/gmail_logo" />
-
-                    <ImageView
+                        android:layout_margin="@dimen/_21sdp"
                         android:id="@+id/ic_twitter"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_below="@id/txtConnect"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="@dimen/_10sdp"
-                        android:src="@drawable/twitter_logo" />
+                        android:src="@drawable/twitter" />
 
                     <ImageView
+                        android:layout_margin ="@dimen/_21sdp"
                         android:id="@+id/ic_fb"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
-
                         android:layout_below="@id/txtConnect"
-                        android:layout_toRightOf="@id/ic_twitter"
-                        android:padding="@dimen/_8sdp"
-                        android:src="@drawable/fb_logo" />
+                        android:layout_toLeftOf="@id/ic_twitter"
+                        android:src="@drawable/fb" />
 
                     <ImageView
+                        android:layout_margin ="@dimen/_21sdp"
                         android:id="@+id/ic_ig"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_below="@id/txtConnect"
                         android:layout_marginBottom="@dimen/_10sdp"
-                        android:layout_toRightOf="@id/ic_fb"
-                        android:src="@drawable/ig_logo" />
+                        android:layout_toRightOf="@id/ic_twitter"
+                        android:src="@drawable/instagram" />
 
 
                     <TextView
@@ -349,9 +318,9 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Connet with us on Social Media"
+                        android:text="Like &amp; Follow us on"
                         android:textColor="#000"
-                        android:textSize="@dimen/_12ssp" />-->
+                        android:textSize="@dimen/_12ssp" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
