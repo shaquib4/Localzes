@@ -91,6 +91,20 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                         sellPriceUpdate.setText(mrp)
                         offerPriceUpdate.setText(sellingPrice)
                         quantityUpdate.setText(quantity)
+                        for (i in 0 until categoryUpdate.count) {
+                            if (categoryUpdate.getItemAtPosition(i)
+                                    .toString() == snapshot.child("productCategory").value.toString()
+                            ) {
+                                categoryUpdate.setSelection(i)
+                            }
+                        }
+                        for (j in 0 until unitUpdate.count) {
+                            if (unitUpdate.getItemAtPosition(j)
+                                    .toString() == snapshot.child("unit").value.toString()
+                            ) {
+                                unitUpdate.setSelection(j)
+                            }
+                        }
                     }
                 })
         } else {

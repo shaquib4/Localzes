@@ -38,32 +38,25 @@ class AddProductDetails : AppCompatActivity() {
         detailDatabase =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
                 .child(productId.toString()).child("ProductDetails")
-            detailDatabase.addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
+        detailDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
-                }
+            }
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()){
-                        productDescription.setText(snapshot.child("description").value.toString())
-                        chooseColors.setText(snapshot.child("colors").value.toString())
-                        inputSizes.setText(snapshot.child("sizes").value.toString())
-                        for (i in 0 until  refundableType.count){
-                            if (refundableType.getItemAtPosition(i).toString()==snapshot.child("refundableType").value.toString()){
-                                refundableType.setSelection(i)
-                            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    productDescription.setText(snapshot.child("description").value.toString())
+                    chooseColors.setText(snapshot.child("colors").value.toString())
+                    inputSizes.setText(snapshot.child("sizes").value.toString())
+                    for (i in 0 until refundableType.count) {
+                        if (refundableType.getItemAtPosition(i)
+                                .toString() == snapshot.child("refundableType").value.toString()
+                        ) {
+                            refundableType.setSelection(i)
                         }
-                        proceed.setOnClickListener {   val descriptionMap = HashMap<String, Any>()
-                        descriptionMap["description"] = productDescription.text.toString()
-                        descriptionMap["colors"] = chooseColors.text.toString()
-                        descriptionMap["sizes"] = inputSizes.text.toString()
-                        descriptionMap["refundableType"] = refundableType.selectedItem.toString()
-                        detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
-                            val intent = Intent(this@AddProductDetails, Seller_Products::class.java)
-                            startActivity(intent)
-                        }}
-                    }else{
-                       proceed.setOnClickListener {  val descriptionMap = HashMap<String, Any>()
+                    }
+                    proceed.setOnClickListener {
+                        val descriptionMap = HashMap<String, Any>()
                         descriptionMap["description"] = productDescription.text.toString()
                         descriptionMap["colors"] = chooseColors.text.toString()
                         descriptionMap["sizes"] = inputSizes.text.toString()
@@ -72,11 +65,24 @@ class AddProductDetails : AppCompatActivity() {
                             val intent = Intent(this@AddProductDetails, Seller_Products::class.java)
                             startActivity(intent)
                         }
-                    }}
-
+                    }
+                } else {
+                    proceed.setOnClickListener {
+                        val descriptionMap = HashMap<String, Any>()
+                        descriptionMap["description"] = productDescription.text.toString()
+                        descriptionMap["colors"] = chooseColors.text.toString()
+                        descriptionMap["sizes"] = inputSizes.text.toString()
+                        descriptionMap["refundableType"] = refundableType.selectedItem.toString()
+                        detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
+                            val intent = Intent(this@AddProductDetails, Seller_Products::class.java)
+                            startActivity(intent)
+                        }
+                    }
                 }
 
-            })
+            }
+
+        })
 
     }
 

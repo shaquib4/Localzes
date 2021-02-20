@@ -36,9 +36,8 @@ class ContactUsSeller : AppCompatActivity() {
         twitter_localze.setOnClickListener {
             try {
                 val twitterLink = "https://twitter.com/localze?s=20"
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(twitterLink)
-                startActivity(Intent.createChooser(intent, "Open With"))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(twitterLink))
+                startActivity(intent)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -46,9 +45,8 @@ class ContactUsSeller : AppCompatActivity() {
         insta_localze.setOnClickListener {
             try {
                 val instaLink = "https://www.instagram.com/localzeteam/"
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(instaLink)
-                startActivity(Intent.createChooser(intent, "Open With"))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(instaLink))
+                startActivity(intent)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
