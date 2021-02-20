@@ -36,7 +36,6 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private lateinit var shopsCategory: Spinner
     private lateinit var spinnerOpen: Spinner
     private lateinit var spinnerClose: Spinner
-    private lateinit var spinnerClosingDay: Spinner
     var thumb_Bitmap: Bitmap? = null
     var imgUri: Uri? = null
     private lateinit var minOrder: EditText
@@ -51,7 +50,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
         btnUpdateDetails = findViewById(R.id.Update)
         spinnerClose = findViewById(R.id.spinner_close)
         spinnerOpen = findViewById(R.id.spinner_open)
-        spinnerClosingDay = findViewById(R.id.spinner_closing_day)
+
         shopsCategory = findViewById(R.id.spn_category)
         minOrder = findViewById(R.id.edtMinAmountUpdate)
         retryUpdateShops.setOnClickListener {
@@ -115,7 +114,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
             headers["upi"] = upiIdUpdate.text.toString().trim()
             headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
             headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
-            headers["closingDay"] = spinnerClosingDay.selectedItem.toString().trim()
+            headers["closingDay"] = ""
             headers["minAm"] = minOrder.text.toString().trim()
             databaseRef.updateChildren(headers).addOnSuccessListener {
                 val intent = Intent(this, Home_seller::class.java)
@@ -172,7 +171,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     headers["upi"] = upiIdUpdate.text.toString().trim()
                     headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
                     headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
-                    headers["closingDay"] = spinnerClosingDay.selectedItem.toString().trim()
+                    headers["closingDay"] = ""
                     headers["minAm"]=minOrder.text.toString().trim()
                     databaseRef.updateChildren(headers).addOnSuccessListener {
                         val intent = Intent(this, Home_seller::class.java)

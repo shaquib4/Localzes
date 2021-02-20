@@ -59,7 +59,7 @@ class AddProductDetails : AppCompatActivity() {
                         descriptionMap["sizes"] = inputSizes.text.toString()
                         descriptionMap["refundableType"] = refundableType.selectedItem.toString()
                         detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
-                            val intent = Intent(this@AddProductDetails, Home_seller::class.java)
+                            val intent = Intent(this@AddProductDetails, Seller_Products::class.java)
                             startActivity(intent)
                         }}
                     }else{
@@ -69,7 +69,7 @@ class AddProductDetails : AppCompatActivity() {
                         descriptionMap["sizes"] = inputSizes.text.toString()
                         descriptionMap["refundableType"] = refundableType.selectedItem.toString()
                         detailDatabase.updateChildren(descriptionMap).addOnSuccessListener {
-                            val intent = Intent(this@AddProductDetails, Home_seller::class.java)
+                            val intent = Intent(this@AddProductDetails, Seller_Products::class.java)
                             startActivity(intent)
                         }
                     }}
@@ -81,7 +81,7 @@ class AddProductDetails : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, Home_seller::class.java)
+        val intent = Intent(this, Seller_Products::class.java)
         startActivity(intent)
         finish()
     }
