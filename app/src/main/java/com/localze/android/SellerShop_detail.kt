@@ -77,7 +77,7 @@ class  SellerShop_detail : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 filepath == null -> {
-                    Toast.makeText(this, "Please Provide Your Shop Image", Toast.LENGTH_SHORT)
+                     Toast.makeText(this, "Please Provide Your Shop Image", Toast.LENGTH_SHORT)
                         .show()
                 }
                 else -> {
