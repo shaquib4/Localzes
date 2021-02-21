@@ -159,7 +159,7 @@ class cardBanners : AppCompatActivity() {
         }
         cardShare.setOnClickListener {
             FirebaseDatabase.getInstance().reference.child("seller").child(s)
-                .addValueEventListener(object : ValueEventListener {
+                .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 
                     }
