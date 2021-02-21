@@ -513,7 +513,7 @@ class Home_seller : AppCompatActivity() {
         })
         shareApp.setOnClickListener {
             FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                .addValueEventListener(object : ValueEventListener {
+                .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
 
                     }
