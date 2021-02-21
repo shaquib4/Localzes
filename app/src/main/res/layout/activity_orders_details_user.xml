@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".OrdersDetailsUserActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,339 +60,343 @@
             android:background="#d3d3d3" />
     </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="3dp"
-        app:contentPadding="5dp">
 
-        <TableLayout
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:cardElevation="3dp"
+            app:contentPadding="5dp">
 
-            <TableRow>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/order_id"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_12ssp" />
+                <TableRow>
 
-                <TextView
-                    android:id="@+id/txtOrderIdUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/_123456"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/order_id"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12ssp" />
 
-            </TableRow>
+                    <TextView
+                        android:id="@+id/txtOrderIdUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/_123456"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-            <TableRow>
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/date"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
+                <TableRow>
 
-                <TextView
-                    android:id="@+id/txtOrderDateUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/_27_02_2020_9_45_pm"
-                    android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/date"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/order_status"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
+                    <TextView
+                        android:id="@+id/txtOrderDateUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/_27_02_2020_9_45_pm"
+                        android:textSize="@dimen/_10ssp" />
 
 
-                <TextView
-                    android:id="@+id/txtOrderStatusUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/in_progress"
-                    android:textColor="#008000"
-                    android:textSize="@dimen/_10ssp" />
+                </TableRow>
 
-            </TableRow>
+                <TableRow>
 
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="Shop Name"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/order_status"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
 
-                <TextView
-                    android:id="@+id/txtShopNameOrder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/abc_shop"
-                    android:textColor="#1589ff"
-                    android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/txtOrderStatusUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/in_progress"
+                        android:textColor="#008000"
+                        android:textSize="@dimen/_10ssp" />
 
-            </TableRow>
+                </TableRow>
 
-            <TableRow>
+                <TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/items"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
-
-                <TextView
-                    android:id="@+id/txtItemsUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/_9"
-                    android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Shop Name"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
 
-            </TableRow>
+                    <TextView
+                        android:id="@+id/txtShopNameOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/abc_shop"
+                        android:textColor="#1589ff"
+                        android:textSize="@dimen/_10ssp" />
 
-            <TableRow>
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/amount"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
+                <TableRow>
 
-                <TextView
-                    android:id="@+id/txtOrderCostUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/items"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/rs_1_209"
-                    android:textColor="#008000"
-                    android:textSize="@dimen/_12ssp" />
+                    <TextView
+                        android:id="@+id/txtItemsUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/_9"
+                        android:textSize="@dimen/_10ssp" />
 
-                <Button
-                    android:id="@+id/btnPayCart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_22sdp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bg_buttons"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:text="Pay Now"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/_10ssp" />
 
-            </TableRow>
+                </TableRow>
 
-            <TableRow>
+                <TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="Delivery Fee :"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/amount"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-                <TextView
-                    android:id="@+id/deliveryFeeOrderUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="Not Available (updated soon)"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/txtOrderCostUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
 
-            <TableRow>
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/rs_1_209"
+                        android:textColor="#008000"
+                        android:textSize="@dimen/_12ssp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="Payment Status :"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
+                    <Button
+                        android:id="@+id/btnPayCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_buttons"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:text="Pay Now"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/_10ssp" />
 
-                <TextView
-                    android:id="@+id/paymentStatusDetailUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="Unpaid"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
-            </TableRow>
+                </TableRow>
 
-            <TableRow>
+                <TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/delivery_address"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Delivery Fee :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-                <TextView
-                    android:id="@+id/txtOrderDeliveryAddressUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/saraibika_jaunpur_up_222202"
-                    android:textSize="@dimen/_10ssp" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/deliveryFeeOrderUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Not Available (updated soon)"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+                </TableRow>
 
-            <TableRow>
+                <TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/shop_address"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Payment Status :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-                <TextView
-                    android:id="@+id/txtOrderShopAddressUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/saraibika_jaunpur_up_222202"
-                    android:textSize="@dimen/_10ssp" />
-            </TableRow>
-            <TableRow>
+                    <TextView
+                        android:id="@+id/paymentStatusDetailUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Unpaid"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="Get Direction :"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_11ssp"
+                <TableRow>
 
-                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/delivery_address"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-                <TextView
+                    <TextView
+                        android:id="@+id/txtOrderDeliveryAddressUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/saraibika_jaunpur_up_222202"
+                        android:textSize="@dimen/_10ssp" />
+                </TableRow>
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="Check shop location"
-                    android:textSize="@dimen/_10ssp" />
+                <TableRow>
 
-                <ImageView
-                    android:id="@+id/btnDirShop"
-                    android:layout_margin="5dp"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/map_icon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/shop_address"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
 
-            </TableRow>
-        </TableLayout>
+                    <TextView
+                        android:id="@+id/txtOrderShopAddressUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/saraibika_jaunpur_up_222202"
+                        android:textSize="@dimen/_10ssp" />
+                </TableRow>
 
-    </androidx.cardview.widget.CardView>
+                <TableRow>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#d3d3d3" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Get Direction :"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp"
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:fontFamily="@font/montserrat_bold"
-        android:gravity="center"
-        android:paddingVertical="@dimen/_8sdp"
-        android:text="@string/ordered_items"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#000000" />
+                        />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#d3d3d3" />
+                    <TextView
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_order_users"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:reverseLayout="true"
-        app:stackFromEnd="true"
-        tools:listitem="@layout/row_ordered_items" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Check shop location"
+                        android:textSize="@dimen/_10ssp" />
 
-</LinearLayout>
+                    <ImageView
+                        android:id="@+id/btnDirShop"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/map_icon" />
+
+                </TableRow>
+            </TableLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#d3d3d3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/ordered_items"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000000" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#d3d3d3" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_order_users"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="true"
+            app:stackFromEnd="true"
+            tools:listitem="@layout/row_ordered_items" />
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -23,15 +23,16 @@
 
             <TextView
                 android:id="@+id/txtStaffShop"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/v2"
-                android:layout_marginVertical="10dp"
-                android:layout_marginStart="10dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_margin ="@dimen/_7sdp"
                 android:textAlignment="center"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Continue as Staff of Shop"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_12ssp" />
 
             <View
                 android:id="@+id/v1"
@@ -50,7 +51,7 @@
                 <RelativeLayout
                     android:id="@+id/rl2"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_220sdp"
+                    android:layout_height="@dimen/_280sdp"
                     >
                     <View
 
@@ -60,14 +61,17 @@
 
                         android:background="#d3d3d3" />
                     <TextView
-                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_margin ="@dimen/_7sdp"
                         android:id="@+id/invi"
                         android:layout_below="@+id/v4"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_25sdp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="INVITATION"
-                        android:textSize="@dimen/_15sdp"
+                        android:textColor="#000"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_12sdp"
                         />
                     <View
                         android:id="@+id/v5"

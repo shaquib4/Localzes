@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".OrdersDetailsSellerActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="ScrollViewCount">
+
     <LinearLayout
         android:id="@+id/rl_OrderDetails"
         android:layout_width="match_parent"
@@ -193,8 +198,6 @@
                         android:textSize="@dimen/_12ssp" />
 
 
-
-
                 </TableRow>
 
                 <TableRow>
@@ -242,7 +245,6 @@
                 </TableRow>
 
 
-
                 <TableRow>
 
                     <TextView
@@ -276,6 +278,7 @@
                         android:src="@drawable/ic_baseline_phone_24" />
 
                 </TableRow>
+
                 <TableRow>
 
                     <TextView
@@ -300,13 +303,14 @@
 
 
                 </TableRow>
+
                 <TableRow>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginEnd="5dp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Get Direction :"
                         android:textColor="#000000"
@@ -318,19 +322,18 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginTop="10dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Check your customer location"
                         android:textSize="@dimen/_10ssp" />
 
                     <ImageView
                         android:id="@+id/btnDirSeller"
-                        android:layout_margin="5dp"
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
-                        android:src="@drawable/map_icon"/>
-
+                        android:layout_margin="5dp"
+                        android:src="@drawable/map_icon" />
 
 
                 </TableRow>
@@ -429,5 +432,5 @@
 
 
     </RelativeLayout>
-
+    </ScrollView>
 </RelativeLayout>

@@ -20,8 +20,7 @@
                 android:id="@+id/imgCart"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="260dp"
+               android:layout_centerInParent="true"
                 android:contentDescription="@string/todo"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_cart_empty" />

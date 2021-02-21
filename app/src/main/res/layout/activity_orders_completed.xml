@@ -66,7 +66,7 @@
         <LinearLayout
             android:id="@+id/rl_create"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/view1"
             android:background="@drawable/border"
             android:orientation="horizontal"
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_33sdp"
                 android:layout_gravity="center"
-                android:layout_marginStart="2sp"
+                android:layout_margin ="@dimen/_7sdp"
                 android:layout_weight="1"
                 android:background="@drawable/stroke_solid_btn">
 
@@ -87,11 +87,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="@string/cart_orders"
                     android:textColor="#000"
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/cartCompletedNo"
@@ -104,7 +104,7 @@
                     android:text="@string/_1000"
                     android:textColor="#000"
 
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="@dimen/_12ssp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -112,8 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_33sdp"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_2sdp"
+                 android:layout_margin="@dimen/_7sdp"
                 android:layout_weight="1"
                 android:background="@drawable/stroke_solid_btn">
 
@@ -122,11 +121,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="@string/list_orders"
                     android:textColor="#000"
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/listCompletedNo"
@@ -138,7 +137,7 @@
                     android:text="@string/_1000"
                     android:textColor="#000"
 
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="@dimen/_12ssp" />
             </RelativeLayout>
         </LinearLayout>
         <RelativeLayout

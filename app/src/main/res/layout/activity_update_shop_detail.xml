@@ -166,8 +166,8 @@
                         android:layout_height="@dimen/_35sdp"
                         android:layout_below="@+id/ll1"
                         android:layout_gravity="bottom"
-                        android:layout_marginHorizontal="@dimen/_22sdp"
-                        android:layout_marginTop="20dp"
+                        android:layout_margin ="@dimen/_22sdp"
+
                         android:background="@drawable/round2_btn"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/update_details"

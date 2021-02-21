@@ -11,33 +11,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:background="#de4500"
+            android:id="@+id/rl3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp">
+
+
         <TextView
             android:id="@+id/txtShop"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="#de4500"
+            android:layout_centerVertical="true"
             android:fontFamily="@font/montserrat_bold"
             android:text="Shop Name"
             android:textColor="#fff"
             android:textSize="@dimen/_15ssp"
-            android:layout_centerHorizontal="true"/>
+             />
         <TextView
             android:id="@+id/minOrderAmount"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+           android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:text="orderAmount"
             android:textColor="#fff"
             android:textSize="@dimen/_15ssp"
             android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
 
         <EditText
 
             android:id="@+id/searchShopProduct"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
-            android:layout_below="@id/txtShop"
+            android:layout_below="@id/rl3"
             android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/bg_product_shop"
             android:fontFamily="@font/montserrat_medium"
