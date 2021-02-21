@@ -206,7 +206,7 @@ class AddProduct : AppCompatActivity() {
     private fun launchImageCrop(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(16, 10)
+            .setAspectRatio(16, 16)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
 
