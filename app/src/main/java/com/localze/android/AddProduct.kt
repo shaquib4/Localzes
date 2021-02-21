@@ -64,8 +64,8 @@ class AddProduct : AppCompatActivity() {
         spinnerItem = if (categorySelected.toString() == null) {
             sp_spinner_add.selectedItem.toString()
         } else {
-            sp_spinner_add.setSelection(getIndex(sp_spinner_add, categorySelected.toString()))
-                .toString()
+            sp_spinner_add.setSelection(getIndex(sp_spinner_add,categorySelected.toString())).toString()
+
         }
         imgBackAdd.setOnClickListener {
             val intent = Intent(this, Home_seller::class.java)
@@ -141,7 +141,7 @@ class AddProduct : AppCompatActivity() {
 
     private fun getIndex(mySpinner: Spinner, myValue: String): Int {
         for (i in 0 until mySpinner.count) {
-            if (mySpinner.getItemAtPosition(i).toString().equals(myValue, ignoreCase = true)) {
+            if (mySpinner.getItemAtPosition(i).toString() == myValue) {
                 return i
             }
         }
@@ -206,7 +206,7 @@ class AddProduct : AppCompatActivity() {
     private fun launchImageCrop(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(16, 10)
+            .setAspectRatio(16, 16)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
 

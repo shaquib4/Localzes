@@ -96,7 +96,7 @@ class Seller_Products : AppCompatActivity() {
         productDatabaseRef =
             FirebaseDatabase.getInstance().reference.child("seller")
         productDatabaseRef.child(uid)
-            .addValueEventListener(object : ValueEventListener {
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
                 }
@@ -105,70 +105,70 @@ class Seller_Products : AppCompatActivity() {
                     if (!(snapshot.child("staffOfShop")
                             .exists()) || snapshot.child("staffOfShop").value.toString() == ""
                     ) {
-                        bool=true
-
+                        sellerProducts(uid)
                     } else {
-                        val uidOfShop = snapshot.child("staffOfShop").value.toString()
-                        shopUid=uidOfShop
-                        if (snapshot.child("StaffOf").child(uidOfShop).exists()) {
-                            val databaseReference =
-                                FirebaseDatabase.getInstance().reference.child("seller")
-                                    .child(uidOfShop).child("MyStaff").child(uid)
-                            databaseReference.addValueEventListener(object : ValueEventListener {
-                                override fun onCancelled(error: DatabaseError) {
+                        productDatabaseRef.child(uid).addValueEventListener(object :ValueEventListener{
+                            override fun onCancelled(error: DatabaseError) {
 
+                            }
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                val uidOfShop = snapshot.child("staffOfShop").value.toString()
+                                if (snapshot.child("StaffOf").child(uidOfShop).exists()) {
+                                    val databaseReference =
+                                        FirebaseDatabase.getInstance().reference.child("seller")
+                                            .child(uidOfShop).child("MyStaff").child(uid)
+                                    databaseReference.addValueEventListener(object : ValueEventListener {
+                                        override fun onCancelled(error: DatabaseError) {
+
+                                        }
+
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            val access = snapshot.child("access").value.toString()
+                                            when (access) {
+                                                "No Access" -> {
+                                                    rl_sellerProducts.visibility = View.GONE
+                                                    rlProductAccess.visibility = View.VISIBLE
+                                                }
+                                                "Total Access" -> {
+                                                    sellerProducts(uidOfShop)
+                                                }
+                                                "Order Access" -> {
+                                                    rl_sellerProducts.visibility = View.GONE
+                                                    rlProductAccess.visibility = View.VISIBLE
+                                                }
+                                                "Delivery Access" -> {
+                                                    rl_sellerProducts.visibility = View.GONE
+                                                    rlProductAccess.visibility = View.VISIBLE
+                                                }
+                                                "Catalogue Access(Product)" -> {
+                                                    sellerProducts(uidOfShop)
+                                                }
+                                                "Boost Your Shop Access" -> {
+                                                    rl_sellerProducts.visibility = View.GONE
+                                                    rlProductAccess.visibility = View.VISIBLE
+
+                                                }
+                                                "(Orders + Catalogue)Access" -> {
+                                                    sellerProducts(uidOfShop)
+                                                }
+                                                "(Order + Boost Your Shop)Access" -> {
+                                                    rl_sellerProducts.visibility = View.GONE
+                                                    rlProductAccess.visibility = View.VISIBLE
+                                                }
+                                            }
+                                        }
+                                    })
                                 }
+                            }
+                        })
 
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    val access = snapshot.child("access").value.toString()
-                                    accessS=access
-
-                                }
-                            })
-                        }
                     }
                 }
             })
-        if (bool==true){
-            sellerProducts(uid)
-        }
-        when (accessS.toString()) {
-            "No Access" -> {
-                rl_sellerProducts.visibility = View.GONE
-                rlProductAccess.visibility = View.VISIBLE
-            }
-            "Total Access" -> {
-                sellerProducts(shopUid.toString())
-            }
-            "Order Access" -> {
-                rl_sellerProducts.visibility = View.GONE
-                rlProductAccess.visibility = View.VISIBLE
-            }
-            "Delivery Access" -> {
-                rl_sellerProducts.visibility = View.GONE
-                rlProductAccess.visibility = View.VISIBLE
-            }
-            "Catalogue Access(Product)" -> {
-                sellerProducts(shopUid.toString())
-            }
-            "Boost Your Shop Access" -> {
-                rl_sellerProducts.visibility = View.GONE
-                rlProductAccess.visibility = View.VISIBLE
-
-            }
-            "(Orders + Catalogue)Access" -> {
-                sellerProducts(shopUid.toString())
-            }
-            "(Order + Boost Your Shop)Access" -> {
-                rl_sellerProducts.visibility = View.GONE
-                rlProductAccess.visibility = View.VISIBLE
-            }
-        }
     }
 
-    private fun searchSellerProducts(str: String) {
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user!!.uid
+    private fun searchSellerProducts(str: String, uid: String) {
         val queryProduct =
             FirebaseDatabase.getInstance().reference.child("seller").child(uid).child("Products")
                 .orderByChild("title")
@@ -242,7 +242,7 @@ class Seller_Products : AppCompatActivity() {
             }
 
             override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                searchSellerProducts(cs.toString().toLowerCase())
+                searchSellerProducts(cs.toString().toLowerCase(),uid)
             }
         })
         if (category != null) {

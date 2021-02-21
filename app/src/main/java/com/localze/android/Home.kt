@@ -128,16 +128,10 @@ class Home : AppCompatActivity() {
             loadShops("Fashion")
         }
         categoryBooks.setOnClickListener {
-            loadShops("Books")
-        }
-        categoryHealth.setOnClickListener {
-            loadShops("Medical")
+            loadShops("Stationary")
         }
         categoryAutomobiles.setOnClickListener {
             loadShops("Automobiles")
-        }
-        categoryTravel.setOnClickListener {
-            loadShops("Travel")
         }
         categorySports.setOnClickListener {
             loadShops("Sports")
@@ -146,8 +140,11 @@ class Home : AppCompatActivity() {
             loadShops("Fitness")
         }
         categoryHealth.setOnClickListener {
-            loadShops("Health")
+            loadShops("Health Care")
 
+        }
+        categoryAppliances.setOnClickListener {
+            loadShops("Appliances")
         }
         categoryTravel.setOnClickListener {
             loadShops("Travel")
@@ -157,6 +154,12 @@ class Home : AppCompatActivity() {
         }
         categoryOthers.setOnClickListener {
             loadShops("Others")
+        }
+        categoryHome.setOnClickListener {
+            loadShops("Home")
+        }
+        categoryToys.setOnClickListener {
+            loadShops("Toys & Kids")
         }
         imgScan.setOnClickListener {
             val scanner = IntentIntegrator(this)
