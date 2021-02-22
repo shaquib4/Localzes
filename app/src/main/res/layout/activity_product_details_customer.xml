@@ -10,11 +10,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:id="@+id/rl1"
@@ -22,20 +23,25 @@
                 android:layout_height="@dimen/_40sdp">
 
                 <TextView
+                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_marginTop="@dimen/_2sdp"
                     android:id="@+id/txtCount"
+                    android:gravity="center"
+                    android:textSize="@dimen/_8ssp"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
                     android:background="@drawable/circle"
-                    android:text="1"
-                    android:textColor="#000"
+                    android:text="88"
+                    android:textColor="#de4500"
                     android:textAlignment="center" />
 
                 <ImageView
                     android:id="@+id/imgCarts"
                     android:layout_width="@dimen/_28sdp"
                     android:layout_height="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginHorizontal="@dimen/_10sdp"
@@ -155,32 +161,28 @@
 
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:layout_alignParentEnd="true"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="STOCK : IN"
                 android:layout_alignBottom="@id/txtPrice"
                 android:textColor="#3498db"
                 android:textSize="@dimen/_12ssp" />
 
-            <View
-                android:id="@+id/v2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/txtStock"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="#d3d3d3" />
+
 
             <RelativeLayout
+
                 android:id="@+id/relR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/v2"
-                android:layout_marginTop="@dimen/_2sdp">
+                android:layout_below="@id/txtStock"
+                android:layout_margin ="@dimen/_5sdp">
 
                 <TextView
+
                     android:id="@+id/txtR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_11sdp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Refund Type :"
                     android:textColor="#ffb700"
@@ -266,20 +268,39 @@
                 android:textColor="#fff"
                 android:textSize="@dimen/_15ssp" />
 
+            <View
+                android:id="@+id/v2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:layout_below="@+id/relR"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:background="#d3d3d3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtProductDetails"
+                android:text="Product Details"
+                android:layout_margin="@dimen/_10sdp"
+                android:textColor="#000"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="@dimen/_13ssp"
+                android:layout_below="@id/v2"
+                />
 
             <TextView
                 android:id="@+id/txtDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btnCartAdd"
+                android:layout_below="@+id/txtProductDetails"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+
                 android:fontFamily="@font/montserrat_medium"
-                android:padding="@dimen/_5sdp"
-                android:paddingHorizontal="@dimen/_5sdp"
+
                 android:text="In this meal you will get 2 parathas and 3 kebabas.Along with a cold drink of 250ml free"
                 android:textColor="#000"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_11ssp" />
 
             <RelativeLayout
                 android:id="@+id/relSize"
@@ -296,20 +317,21 @@
                     android:paddingHorizontal="@dimen/_5sdp"
                     android:text="Available sizes :"
                     android:textColor="#3498db"
-                    android:textSize="@dimen/_13ssp" />
+                    android:layout_margin="@dimen/_5sdp"
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/txtSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_toEndOf="@id/txtAv"
                     android:fontFamily="@font/montserrat_medium"
-                    android:paddingHorizontal="@dimen/_5sdp"
+                     android:layout_margin="@dimen/_5sdp"
                     android:text="XL ,L ,M"
-                    android:textColor="#008000"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textColor="#000"
+                    android:textSize="@dimen/_12ssp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -325,7 +347,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:paddingHorizontal="@dimen/_5sdp"
+
                     android:text="Colors :"
                     android:textColor="#ff6347"
                     android:textSize="@dimen/_12ssp" />
