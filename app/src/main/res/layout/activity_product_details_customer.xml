@@ -97,7 +97,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Product Name"
                 android:textColor="#000"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:id="@+id/txtPrice"
@@ -166,7 +166,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Refund Type :"
                     android:textColor="#ffb700"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
                 <TextView
                     android:id="@+id/txtRefund"
@@ -178,7 +178,7 @@
                     android:fontFamily="@font/montserrat_medium"
                     android:text="This Product is Non-Refundable"
                     android:textColor="#008000"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_9ssp" />
             </RelativeLayout>
 
             <LinearLayout
@@ -246,7 +246,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Add to cart"
                 android:textColor="#fff"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_13ssp" />
 
             <View
                 android:id="@+id/v2"
@@ -258,29 +258,17 @@
                 android:background="#d3d3d3" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtProductDetails"
-                android:text="Product Details"
-                android:layout_margin="@dimen/_10sdp"
-                android:textColor="#000"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="@dimen/_13ssp"
-                android:layout_below="@id/v2"
-                />
-
-            <TextView
                 android:id="@+id/txtDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtProductDetails"
-                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_below="@+id/v2"
+                android:layout_margin="@dimen/_10sdp"
 
                 android:fontFamily="@font/montserrat_medium"
 
                 android:text="In this meal you will get 2 parathas and 3 kebabas.Along with a cold drink of 250ml free"
                 android:textColor="#000"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_10ssp" />
 
             <RelativeLayout
                 android:id="@+id/relSize"

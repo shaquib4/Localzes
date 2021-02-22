@@ -107,7 +107,7 @@
             android:thumb="@drawable/rectangle_thumb"
             android:track="@drawable/rectangle_track" />
 
-        <TextView
+      <!--  <TextView
             android:id="@+id/storeDelivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
             android:theme="@style/SwitchTheme"
             android:thumb="@drawable/rectangle_thumb"
             android:track="@drawable/rectangle_track" />
-
+-->
     </RelativeLayout>
 
     <LinearLayout
