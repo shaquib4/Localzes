@@ -29,9 +29,7 @@ class AccountsSeller : AppCompatActivity() {
     private lateinit var userAuth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storeStatus: TextView
-    private lateinit var deliveryAvailibility: TextView
     private lateinit var switchStoreStatus: SwitchCompat
-    private lateinit var switchDelivery: SwitchCompat
     private lateinit var privacySeller: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +38,8 @@ class AccountsSeller : AppCompatActivity() {
         userMobileNo = findViewById(R.id.txtaccmobile)
         userEmailAddress = findViewById(R.id.txtaccEmail)
         storeStatus = findViewById(R.id.storeOpen)
-        deliveryAvailibility = findViewById(R.id.deliveryAvailable)
+
         switchStoreStatus = findViewById(R.id.switchOpen)
-        switchDelivery = findViewById(R.id.switchDelivery)
         privacySeller = findViewById(R.id.txtPrivacySeller)
         logOut = findViewById(R.id.txtaccEdit)
         userAuth = FirebaseAuth.getInstance()
