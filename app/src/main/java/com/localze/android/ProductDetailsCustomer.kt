@@ -209,7 +209,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
                                             )
                                         }
                                     } else if (shopId.toString() !== shopID.toString()) {
-                                        val builder =
+                                        addToCart.setOnClickListener {  val builder =
                                             AlertDialog.Builder(this@ProductDetailsCustomer)
                                         val view = LayoutInflater.from(this@ProductDetailsCustomer)
                                             .inflate(R.layout.custom_layout, null)
@@ -222,7 +222,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
                                                 FirebaseDatabase.getInstance().reference.child("users")
                                                     .child(uid).child("Cart")
                                             userDatabases.removeValue()
-                                            addToCart.setOnClickListener {
+
                                                 addToCarts(
                                                     productId.toString(),
                                                     uid.toString(),
@@ -237,13 +237,13 @@ class ProductDetailsCustomer : AppCompatActivity() {
                                                     quan.toString(),
                                                     finalSellingPrice
                                                 )
-                                            }
+
                                             show.dismiss()
                                         }
                                         cancel.setOnClickListener {
                                             show.dismiss()
                                         }
-                                    }
+                                    }}
                                 }
                             }
                         })
