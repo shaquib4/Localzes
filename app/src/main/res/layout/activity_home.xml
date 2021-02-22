@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".Home">
 
     <RelativeLayout
+
         android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,7 +23,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/welcome_to_localze"
             android:textColor="#de4500"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_15ssp"
             tools:ignore="RelativeOverlap" />
 
         <ImageView
@@ -65,8 +67,8 @@
 
                         <ImageView
                             android:id="@+id/imgAll"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/ic_baseline_category_24"
                             android:contentDescription="@string/todo" />
 
@@ -91,8 +93,8 @@
 
                         <ImageView
                             android:id="@+id/imgGrocery"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/grocery"
                             android:contentDescription="@string/todo" />
 
@@ -116,8 +118,8 @@
 
                         <ImageView
                             android:id="@+id/imgFood"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/food"
                             android:contentDescription="@string/todo" />
 
@@ -143,8 +145,8 @@
 
                         <ImageView
                             android:id="@+id/imgElectronics"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/electronics"
                             android:contentDescription="@string/todo" />
 
@@ -170,8 +172,8 @@
 
                         <ImageView
                             android:id="@+id/imgFashion"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/fashion"
                             android:contentDescription="@string/todo" />
 
@@ -197,8 +199,8 @@
 
                         <ImageView
                             android:id="@+id/imgMobiles"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/mobiles"
                             android:contentDescription="@string/todo" />
 
@@ -224,8 +226,8 @@
 
                         <ImageView
                             android:id="@+id/imgHome"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/home"
                             android:contentDescription="@string/todo" />
 
@@ -251,8 +253,8 @@
 
                         <ImageView
                             android:id="@+id/imgBeauty"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/beauty"
                             android:contentDescription="@string/todo" />
 
@@ -278,8 +280,8 @@
 
                         <ImageView
                             android:id="@+id/imgAppliances"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/appliances"
                             android:contentDescription="@string/todo" />
 
@@ -305,8 +307,8 @@
 
                         <ImageView
                             android:id="@+id/imgToys"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/toys"
                             android:contentDescription="@string/todo" />
 
@@ -333,8 +335,8 @@
 
                         <ImageView
                             android:id="@+id/imgSports"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/sports"
                             android:contentDescription="@string/todo" />
 
@@ -360,8 +362,8 @@
 
                         <ImageView
                             android:id="@+id/imgBooks"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/books"
                             android:contentDescription="@string/todo" />
 
@@ -387,8 +389,8 @@
 
                         <ImageView
                             android:id="@+id/imgAutomobiles"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/automobiles"
                             android:contentDescription="@string/todo" />
 
@@ -414,8 +416,8 @@
 
                         <ImageView
                             android:id="@+id/imgFitness"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/fitness"
                             android:contentDescription="@string/todo" />
 
@@ -441,8 +443,8 @@
 
                         <ImageView
                             android:id="@+id/imgHealth"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/health"
                             android:contentDescription="@string/todo" />
 
@@ -468,8 +470,8 @@
 
                         <ImageView
                             android:id="@+id/imgTravel"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/travel"
                             android:contentDescription="@string/todo" />
 
@@ -495,8 +497,8 @@
 
                         <ImageView
                             android:id="@+id/imgGaming"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/gaming"
                             android:contentDescription="@string/todo" />
 
@@ -522,8 +524,8 @@
 
                         <ImageView
                             android:id="@+id/imgOthers"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_60sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/ic_baseline_devices_other_24"
                             android:contentDescription="@string/todo" />
 
@@ -557,8 +559,8 @@
 
             <ImageView
                 android:id="@+id/imgEmpty"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_centerInParent="true"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_empty" />
@@ -656,7 +658,7 @@
             android:layout_below="@+id/txtOhNo"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/no_internet_connection"
             android:textSize="@dimen/_15ssp" />
