@@ -72,12 +72,25 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     val shopCategory = snapshot.child("category1").value.toString()
                     val minAmount = snapshot.child("minAm").value.toString()
                     val upiId = snapshot.child("upi").value.toString()
+                    val closeTime = snapshot.child("closingTime").value.toString()
+                    val openTime = snapshot.child("openingTime").value.toString()
                     Picasso.get().load(imageUrl).into(imageShopUpdate)
                     shopNameUpdate.setText(shopName)
                     upiIdUpdate.setText(upiId)
                     for (i in 0 until shopsCategory.count) {
                         if (shopsCategory.getItemAtPosition(i).toString() == shopCategory) {
                             shopsCategory.setSelection(i)
+                        }
+                    }
+                    for (j in 0 until spinnerOpen.count) {
+                        if (spinnerOpen.getItemAtPosition(j).toString() == openTime) {
+                            spinnerOpen.setSelection(j)
+                        }
+
+                    }
+                    for (k in 0 until spinnerClose.count) {
+                        if (spinnerClose.getItemAtPosition(k).toString() == closeTime) {
+                            spinnerClose.setSelection(k)
                         }
                     }
                     minOrder.setText(minAmount)
@@ -113,7 +126,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private fun updateData() {
         if (imagePathUpdated == null) {
             val headers = HashMap<String, Any>()
-            //headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
+            headers["category1"] = shopsCategory.selectedItem.toString().trim()
             headers["shop_name"] = shopNameUpdate.text.toString().trim()
             headers["upi"] = upiIdUpdate.text.toString().trim()
             headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
@@ -170,6 +183,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                 user?.updateProfile(request)?.addOnSuccessListener {
                     val headers = HashMap<String, Any>()
                     headers["imageUrl"] = imageUrl.toString()
+                    headers["category1"] = shopsCategory.selectedItem.toString().trim()
                     //headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
                     headers["shop_name"] = shopNameUpdate.text.toString().trim()
                     headers["upi"] = upiIdUpdate.text.toString().trim()
