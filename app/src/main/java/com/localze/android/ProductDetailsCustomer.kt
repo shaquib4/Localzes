@@ -147,7 +147,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
 
                     shopID = shopId
                 }
-                txtCount.text = snapshot.childrenCount.toString()
+                cartItemsNo.text = snapshot.childrenCount.toString()
             }
         })
 
