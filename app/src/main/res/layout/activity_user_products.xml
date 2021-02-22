@@ -61,7 +61,7 @@
             android:layout_marginVertical="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_medium"
             android:text="Min Order Amount :"
-            android:textColor="#000"
+            android:textColor="#008000"
             android:textSize="@dimen/_10ssp" />
 
         <EditText
