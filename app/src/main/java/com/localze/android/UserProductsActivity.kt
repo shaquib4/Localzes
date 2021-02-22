@@ -7,10 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.localze.android.Adapters.AdapterUserProducts
@@ -38,6 +35,7 @@ class UserProductsActivity : AppCompatActivity() {
     private lateinit var viewCart: TextView
     private lateinit var search: EditText
     private lateinit var storeName: TextView
+    private lateinit var imgBackProduct: ImageView
     var totalCost: Double = 0.00
     var totalOriginalPrice: Double = 0.00
     var totalItems: Int = 0
@@ -48,7 +46,7 @@ class UserProductsActivity : AppCompatActivity() {
     private var deliveryAddress: String = ""
     private lateinit var orderByName: String
     private lateinit var orderByMobile: String
-    private lateinit var minOrdAmount:TextView
+    private lateinit var minOrdAmount: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +63,8 @@ class UserProductsActivity : AppCompatActivity() {
         storeName = findViewById(R.id.txtShop)
         cartItems = ArrayList<UserCartDetails>()
         viewCart = findViewById(R.id.txtViewCart)
-        minOrdAmount=findViewById(R.id.minOrderAmount)
+        minOrdAmount = findViewById(R.id.minOrderAmount)
+        imgBackProduct = findViewById(R.id.imgBackProducts)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         val uid = user!!.uid
@@ -73,6 +72,11 @@ class UserProductsActivity : AppCompatActivity() {
         recyclerUserProduct.layoutManager = GridLayoutManager(this, 2)
         retryUserProducts.setOnClickListener {
             this.recreate()
+        }
+        imgBackProduct.setOnClickListener {
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+            finish()
         }
 
         userDatabaseReference = FirebaseDatabase.getInstance().reference.child("users").child(uid)
@@ -85,8 +89,8 @@ class UserProductsActivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 val shopName = snapshot.child("shop_name").value.toString()
-                val minAmount=snapshot.child("minAm").value.toString()
-                minOrderAmount.text=minAmount
+                val minAmount = snapshot.child("minAm").value.toString()
+                minOrderAmount.text = "₹$minAmount"
                 shop_Name = shopName
                 storeName.text = shopName
 

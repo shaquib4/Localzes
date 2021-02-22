@@ -18,7 +18,7 @@
             android:background="#de4500">
 
             <ImageView
-                android:id="@id/imgBack"
+                android:id="@+id/imgBackProducts"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_centerVertical="true"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_toRightOf="@id/imgBack"
+                android:layout_toRightOf="@id/imgBackProducts"
                 android:background="#de4500"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Shop Name"

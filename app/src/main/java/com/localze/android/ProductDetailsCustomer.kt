@@ -50,6 +50,7 @@ class ProductDetailsCustomer : AppCompatActivity() {
     private var productNam: String? = null
     private var unit: String? = null
     private var quan: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details_customer)
@@ -209,19 +210,21 @@ class ProductDetailsCustomer : AppCompatActivity() {
                                             )
                                         }
                                     } else if (shopId.toString() !== shopID.toString()) {
-                                        addToCart.setOnClickListener {  val builder =
-                                            AlertDialog.Builder(this@ProductDetailsCustomer)
-                                        val view = LayoutInflater.from(this@ProductDetailsCustomer)
-                                            .inflate(R.layout.custom_layout, null)
-                                        builder.setView(view)
-                                        val show = builder.show()
-                                        val confirm: Button = view.findViewById(R.id.btnConfirm)
-                                        val cancel: Button = view.findViewById(R.id.btnCancel)
-                                        confirm.setOnClickListener {
-                                            val userDatabases =
-                                                FirebaseDatabase.getInstance().reference.child("users")
-                                                    .child(uid).child("Cart")
-                                            userDatabases.removeValue()
+                                        addToCart.setOnClickListener {
+                                            val builder =
+                                                AlertDialog.Builder(this@ProductDetailsCustomer)
+                                            val view =
+                                                LayoutInflater.from(this@ProductDetailsCustomer)
+                                                    .inflate(R.layout.custom_layout, null)
+                                            builder.setView(view)
+                                            val show = builder.show()
+                                            val confirm: Button = view.findViewById(R.id.btnConfirm)
+                                            val cancel: Button = view.findViewById(R.id.btnCancel)
+                                            confirm.setOnClickListener {
+                                                val userDatabases =
+                                                    FirebaseDatabase.getInstance().reference.child("users")
+                                                        .child(uid).child("Cart")
+                                                userDatabases.removeValue()
 
                                                 addToCarts(
                                                     productId.toString(),
@@ -238,12 +241,13 @@ class ProductDetailsCustomer : AppCompatActivity() {
                                                     finalSellingPrice
                                                 )
 
-                                            show.dismiss()
+                                                show.dismiss()
+                                            }
+                                            cancel.setOnClickListener {
+                                                show.dismiss()
+                                            }
                                         }
-                                        cancel.setOnClickListener {
-                                            show.dismiss()
-                                        }
-                                    }}
+                                    }
                                 }
                             }
                         })
