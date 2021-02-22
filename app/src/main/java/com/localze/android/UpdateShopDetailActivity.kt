@@ -126,7 +126,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
     private fun updateData() {
         if (imagePathUpdated == null) {
             val headers = HashMap<String, Any>()
-            //headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
+            headers["category1"] = shopsCategory.selectedItem.toString().trim()
             headers["shop_name"] = shopNameUpdate.text.toString().trim()
             headers["upi"] = upiIdUpdate.text.toString().trim()
             headers["openingTime"] = spinnerOpen.selectedItem.toString().trim()
@@ -183,6 +183,7 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                 user?.updateProfile(request)?.addOnSuccessListener {
                     val headers = HashMap<String, Any>()
                     headers["imageUrl"] = imageUrl.toString()
+                    headers["category1"] = shopsCategory.selectedItem.toString().trim()
                     //headers["category1"] = shopCategoryUpdate.selectedItem.toString().trim()
                     headers["shop_name"] = shopNameUpdate.text.toString().trim()
                     headers["upi"] = upiIdUpdate.text.toString().trim()
