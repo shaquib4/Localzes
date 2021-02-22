@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_toStartOf="@id/additem"
             android:layout_height="@dimen/_35sdp"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_below="@id/card_view_Details"
             android:layout_margin="@dimen/_10sdp"
             android:background="@drawable/bg_product_shop"
@@ -46,8 +47,8 @@
 
             <ImageView
                 android:id="@+id/imgEmpty"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_centerInParent="true"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_empty" />

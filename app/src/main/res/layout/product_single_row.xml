@@ -29,8 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Details"
-                android:textColor="#008000"
-                android:textSize="@dimen/_14sdp"
+                android:layout_alignTop="@id/txtProductTitle_customer"
+                android:textColor="#1589b6"
+                android:textSize="@dimen/_10ssp"
                 android:fontFamily="@font/montserrat_medium"
                 android:layout_alignParentEnd="true"
                 />
@@ -46,6 +47,7 @@
 
 
             <TextView
+               android:layout_toLeftOf="@id/pDetails"
                 android:id="@+id/txtProductTitle_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,7 +79,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/stock_in"
                 android:textColor="#1589ff"
-                android:textSize="@dimen/_8ssp" />
+                android:textSize="@dimen/_7ssp" />
 
 
 
@@ -111,7 +113,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_below="@+id/txtStock"
                 android:layout_marginBottom="5dp"
-               android:layout_marginTop="10dp"
+               android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:src="@drawable/edit" />
 
@@ -153,7 +155,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_below="@id/txtStock"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/ic_remove" />
 

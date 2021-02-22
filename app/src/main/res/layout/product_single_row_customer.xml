@@ -65,7 +65,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/stock_in"
                 android:textColor="#3498db"
-                android:textSize="@dimen/_8ssp" />
+                android:textSize="@dimen/_7ssp" />
 
 
 
@@ -139,7 +139,7 @@
                 android:layout_alignStart="@id/txtProductOfferPrice"
                 android:layout_alignTop="@id/txtProductOfferPrice"
                 android:layout_alignEnd="@id/txtProductOfferPrice"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_7sdp"
                 android:layout_toEndOf="@id/txtProductOfferPrice"
                 android:background="#d3d3d3" />
 
@@ -149,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtProductPrice_customer"
 
-                android:layout_marginStart="10dp"
+               android:layout_alignLeft="@id/txtProductPrice_customer"
 
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingHorizontal="5dp"

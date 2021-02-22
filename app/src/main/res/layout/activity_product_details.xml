@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PRODUCT DETAILS"
+            android:text="Product Details"
             android:textSize="@dimen/_15ssp"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#000"
@@ -48,7 +48,7 @@
 
     <RelativeLayout
         android:id="@+id/rl2"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
         android:background="@drawable/stroke_red"
         android:layout_below="@id/txtProductDescription"
         android:layout_width="match_parent"
@@ -56,12 +56,14 @@
         <EditText
             android:layout_margin="@dimen/_5sdp"
             android:background="#fff"
+            android:textSize="@dimen/_12ssp"
             android:fontFamily="@font/montserrat_medium"
             android:id="@+id/edtDescription"
             android:hint="Write Product Description"
-            android:maxLines="2"
+            android:maxLines="4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top"
             android:inputType="text" />
     </RelativeLayout>
 
@@ -76,13 +78,15 @@
         android:id="@+id/txtChoseColor"
         android:text="CHOOSE COLOR"/>
         <EditText
-            android:paddingHorizontal="10dp"
+            android:paddingHorizontal="@dimen/_10sdp"
           android:layout_below="@id/txtChoseColor"
             android:id="@+id/edtColor"
             android:maxLines="1"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
             android:layout_toLeftOf="@id/imgColor"
-            android:layout_margin="@dimen/_10sdp"
-            android:maxLength="50"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:maxLength="25"
             android:hint="Color Name"
             android:fontFamily="@font/montserrat_medium"
             android:layout_width="match_parent"
@@ -112,10 +116,11 @@
         android:paddingHorizontal="10dp"
         android:layout_below="@id/txtSize"
         android:id="@+id/edtSize"
+        android:textSize="@dimen/_12ssp"
         android:maxLines="1"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
         android:maxLength="50"
-        android:hint="Color Name"
+        android:hint="Enter product size"
         android:fontFamily="@font/montserrat_medium"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_37sdp"
@@ -137,7 +142,8 @@
         android:id="@+id/rl4"
         android:layout_below="@+id/txtRefundable"
         android:background="@drawable/stroke_red"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_37sdp"
 >

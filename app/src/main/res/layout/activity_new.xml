@@ -41,6 +41,6 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/your_order_has_been_successfully_placed"
         android:textColor="#000"
-        android:textSize="@dimen/_12ssp" />
+        android:textSize="@dimen/_10ssp" />
 
 </RelativeLayout>

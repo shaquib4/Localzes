@@ -12,9 +12,10 @@
         tools:ignore="ScrollViewCount">
 
     <LinearLayout
+        android:background="#fff"
         android:id="@+id/rl_OrderDetails"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -383,11 +384,11 @@
             android:text="@string/please_connect_to_internet"
             android:textSize="@dimen/_15ssp" />
     </LinearLayout>
-
+    </ScrollView>
     <RelativeLayout
         android:id="@+id/rl_retryOrderDetails"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/lost"
         android:visibility="invisible">
 
@@ -432,5 +433,5 @@
 
 
     </RelativeLayout>
-    </ScrollView>
+
 </RelativeLayout>

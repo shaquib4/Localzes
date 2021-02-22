@@ -48,6 +48,7 @@
                 android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
+                android:fontFamily="@font/montserrat_medium"
                 android:layout_below="@+id/txtSearch"
                 android:layout_margin="5dp"
                 android:background="@drawable/bg_product_shop"

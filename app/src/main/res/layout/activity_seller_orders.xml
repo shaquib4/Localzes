@@ -46,7 +46,7 @@
 
                 android:id="@+id/rl_create"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/v1"
                 android:background="@drawable/border"
                 android:baselineAligned="false"
@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_33sdp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="2sp"
+                     android:layout_margin="@dimen/_7sdp"
                     android:layout_weight="1"
                     android:background="@drawable/stroke_solid_btn">
 
@@ -67,11 +67,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/cart_orders"
                         android:textColor="#000"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="@dimen/_12ssp" />
 
                     <TextView
                         android:id="@+id/cartPendingNo"
@@ -84,7 +84,7 @@
                         android:text="@string/_1000"
                         android:textColor="#000"
 
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="@dimen/_12ssp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -92,8 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_33sdp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_margin="@dimen/_7sdp"
                     android:layout_weight="1"
                     android:background="@drawable/stroke_solid_btn">
 
@@ -102,11 +101,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/list_orders"
                         android:textColor="#000"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="@dimen/_12ssp" />
 
                     <TextView
                         android:id="@+id/listPendingNo"
@@ -117,7 +116,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/_1000"
                         android:textColor="#000"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="@dimen/_12ssp" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -147,7 +146,7 @@
                 android:id="@+id/search_act_Pending1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
-
+android:fontFamily="@font/montserrat_medium"
                 android:layout_margin="5dp"
                 android:background="@drawable/bg_product_shop"
                 android:drawableStart="@drawable/ic_search"
@@ -165,8 +164,8 @@
 
             <ImageView
                 android:id="@+id/imgEmpty"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_centerInParent="true"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_empty" />
@@ -180,7 +179,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/no_orders_pending_yet"
                 android:textColor="#696969"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_12ssp" />
         </RelativeLayout>
 
 
@@ -221,7 +220,7 @@
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/no_internet_connection"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
 
         <TextView
@@ -233,7 +232,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/please_connect_to_internet"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <Button
             android:id="@+id/sellerOrdersRetry"

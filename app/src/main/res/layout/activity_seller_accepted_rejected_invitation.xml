@@ -14,6 +14,7 @@
 
         <TextView
             android:id="@+id/txtOFD"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
@@ -33,10 +34,11 @@
     <LinearLayout
         android:id="@+id/rl_invite"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/Invite"
         android:background="@drawable/border"
         android:baselineAligned="false"
+ android:padding="10dp"
         android:orientation="horizontal"
         android:weightSum="3">
 
@@ -59,7 +61,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Accepted"
                 android:textColor="#000"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_12ssp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -82,7 +84,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Pending"
                 android:textColor="#000"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_12ssp" />
 
         </RelativeLayout>
 
@@ -106,7 +108,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Rejected"
                 android:textColor="#000"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_12ssp" />
 
         </RelativeLayout>
 

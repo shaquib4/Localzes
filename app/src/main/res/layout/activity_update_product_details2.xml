@@ -26,9 +26,9 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/imgBack"
             android:fontFamily="@font/montserrat_bold"
-            android:text="PRODUCT DETAILS"
+            android:text="Product Details"
             android:textColor="#000"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_14ssp" />
 
         <View
             android:layout_width="match_parent"
@@ -42,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl1"
+
         android:layout_margin="@dimen/_10sdp"
         android:fontFamily="@font/montserrat_bold"
         android:text="PRODUCT DESCRIPTION"
@@ -53,19 +54,22 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80sdp"
         android:layout_below="@id/txtProductDescription"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
         android:background="@drawable/stroke_red">
 
         <EditText
             android:id="@+id/edtDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
+            android:layout_height="match_parent"
             android:background="#fff"
+            android:layout_margin="@dimen/_5sdp"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="top"
             android:fontFamily="@font/montserrat_medium"
             android:hint="Write Product Description"
-            android:inputType="text"
-            android:maxLines="2" />
+
+            android:maxLines="4"
+             />
     </RelativeLayout>
 
     <TextView
@@ -84,12 +88,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_37sdp"
         android:layout_below="@id/txtChoseColor"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:textSize="@dimen/_12ssp"
         android:layout_toLeftOf="@id/imgColor"
         android:background="@drawable/stroke_red"
         android:fontFamily="@font/montserrat_medium"
         android:hint="Color Name"
-        android:maxLength="50"
+        android:maxLength="25"
         android:maxLines="1"
         android:paddingHorizontal="10dp" />
 
@@ -118,11 +124,12 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_37sdp"
         android:layout_below="@id/txtSize"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
         android:background="@drawable/stroke_red"
         android:fontFamily="@font/montserrat_medium"
         android:hint="Available Sizes"
         android:maxLength="50"
+        android:textSize="@dimen/_12ssp"
         android:maxLines="1"
         android:paddingHorizontal="10dp" />
 
@@ -143,7 +150,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_37sdp"
         android:layout_below="@+id/txtRefundable"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
         android:background="@drawable/stroke_red">
 
         <Spinner
