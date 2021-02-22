@@ -301,8 +301,9 @@
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_below="@id/txtConnect"
-                        android:layout_margin="@dimen/_21sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_21sdp"
+                        android:layout_marginTop="@dimen/_21sdp"
+                        android:layout_marginEnd="@dimen/_21sdp"
                         android:layout_toRightOf="@id/ic_twitter_seller"
                         android:src="@drawable/instagram" />
 

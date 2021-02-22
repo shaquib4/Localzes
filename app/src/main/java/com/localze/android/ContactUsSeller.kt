@@ -5,12 +5,14 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 
 class ContactUsSeller : AppCompatActivity() {
     private lateinit var imgBackContact: ImageView
     private lateinit var fb_localze: ImageView
     private lateinit var twitter_localze: ImageView
     private lateinit var insta_localze: ImageView
+    private lateinit var websiteLink: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_us_seller)
@@ -18,6 +20,13 @@ class ContactUsSeller : AppCompatActivity() {
         fb_localze = findViewById(R.id.ic_fb_seller)
         twitter_localze = findViewById(R.id.ic_twitter_seller)
         insta_localze = findViewById(R.id.ic_ig_seller)
+        websiteLink = findViewById(R.id.txtLink)
+        websiteLink.setOnClickListener {
+            val webLink = "https://www.localze.com"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webLink))
+            val chooser = Intent.createChooser(intent, "Open With")
+            startActivity(chooser)
+        }
         imgBackContact.setOnClickListener {
             val intent = Intent(this, AccountsSeller::class.java)
             startActivity(intent)

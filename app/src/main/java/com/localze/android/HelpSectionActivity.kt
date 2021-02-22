@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class HelpSectionActivity : AppCompatActivity() {
@@ -11,6 +12,7 @@ class HelpSectionActivity : AppCompatActivity() {
     private lateinit var fbLocalze: ImageView
     private lateinit var twitterLocalze: ImageView
     private lateinit var instaLocalze: ImageView
+    private lateinit var website: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_help_section)
@@ -18,6 +20,13 @@ class HelpSectionActivity : AppCompatActivity() {
         fbLocalze = findViewById(R.id.ic_fb)
         twitterLocalze = findViewById(R.id.ic_twitter)
         instaLocalze = findViewById(R.id.ic_ig)
+        website = findViewById(R.id.txtLink)
+        website.setOnClickListener {
+            val webLink = "https://www.localze.com"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webLink))
+            val chooser = Intent.createChooser(intent, "Open With")
+            startActivity(chooser)
+        }
         imgBackCustomer.setOnClickListener {
             val intent = Intent(this, Accounts::class.java)
             startActivity(intent)
