@@ -23,42 +23,35 @@
                 android:layout_height="@dimen/_40sdp">
 
                 <TextView
-                    android:fontFamily="@font/montserrat_medium"
-                    android:layout_marginTop="@dimen/_2sdp"
                     android:id="@+id/txtCount"
-                    android:gravity="center"
-                    android:textSize="@dimen/_8ssp"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/_2sdp"
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:background="@drawable/circle"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
                     android:text="88"
+                    android:textAlignment="center"
                     android:textColor="#de4500"
-                    android:textAlignment="center" />
+                    android:textSize="@dimen/_8ssp" />
 
                 <ImageView
                     android:id="@+id/imgCarts"
                     android:layout_width="@dimen/_28sdp"
                     android:layout_height="@dimen/_28sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:src="@drawable/ic_shopping_cart_black_24dp" />
 
-                <ImageView
-                    android:id="@+id/imgBack"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:src="@drawable/ic_back" />
-<View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="#d3d3d3"
-    android:layout_alignParentBottom="true"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#d3d3d3" />
 
             </RelativeLayout>
 
@@ -80,9 +73,6 @@
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/localze_shop" />
-
-
-
 
 
                 </RelativeLayout>
@@ -139,14 +129,13 @@
                 android:layout_height="wrap_content"
 
 
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_alignBottom="@id/txtPrice"
                 android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="STOCK : IN"
-                android:layout_alignBottom="@id/txtPrice"
                 android:textColor="#3498db"
                 android:textSize="@dimen/_12ssp" />
-
 
 
             <RelativeLayout
@@ -155,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtStock"
-                android:layout_margin ="@dimen/_5sdp">
+                android:layout_margin="@dimen/_5sdp">
 
                 <TextView
 
@@ -258,16 +247,15 @@
                 android:background="#d3d3d3" />
 
             <TextView
+                android:id="@+id/txtProductDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtProductDetails"
-                android:text="Product Details"
-                android:layout_margin="@dimen/_10sdp"
-                android:textColor="#000"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="@dimen/_13ssp"
                 android:layout_below="@id/v2"
-                />
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Product Details"
+                android:textColor="#000"
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:id="@+id/txtDetails"
@@ -292,12 +280,12 @@
                     android:id="@+id/txtAv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_bold"
                     android:paddingHorizontal="@dimen/_5sdp"
                     android:text="Available sizes :"
                     android:textColor="#3498db"
-                    android:layout_margin="@dimen/_5sdp"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
@@ -305,10 +293,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_toEndOf="@id/txtAv"
                     android:fontFamily="@font/montserrat_medium"
-                     android:layout_margin="@dimen/_5sdp"
                     android:text="XL ,L ,M"
                     android:textColor="#000"
                     android:textSize="@dimen/_12ssp" />
