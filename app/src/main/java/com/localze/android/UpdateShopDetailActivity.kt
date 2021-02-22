@@ -72,12 +72,25 @@ class UpdateShopDetailActivity : AppCompatActivity() {
                     val shopCategory = snapshot.child("category1").value.toString()
                     val minAmount = snapshot.child("minAm").value.toString()
                     val upiId = snapshot.child("upi").value.toString()
+                    val closeTime = snapshot.child("closingTime").value.toString()
+                    val openTime = snapshot.child("openingTime").value.toString()
                     Picasso.get().load(imageUrl).into(imageShopUpdate)
                     shopNameUpdate.setText(shopName)
                     upiIdUpdate.setText(upiId)
                     for (i in 0 until shopsCategory.count) {
                         if (shopsCategory.getItemAtPosition(i).toString() == shopCategory) {
                             shopsCategory.setSelection(i)
+                        }
+                    }
+                    for (j in 0 until spinnerOpen.count) {
+                        if (spinnerOpen.getItemAtPosition(j).toString() == openTime) {
+                            spinnerOpen.setSelection(j)
+                        }
+
+                    }
+                    for (k in 0 until spinnerClose.count) {
+                        if (spinnerClose.getItemAtPosition(k).toString() == closeTime) {
+                            spinnerClose.setSelection(k)
                         }
                     }
                     minOrder.setText(minAmount)
