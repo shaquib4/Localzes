@@ -12,46 +12,58 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:background="#de4500"
             android:id="@+id/rl3"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp">
+            android:layout_height="@dimen/_45sdp"
+            android:background="#de4500">
 
             <ImageView
-                android:layout_marginStart="@dimen/_5sdp"
+                android:id="@id/imgBack"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:id="@id/imgBack"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_back_white"/>
+                android:layout_marginStart="@dimen/_5sdp"
+                android:src="@drawable/ic_back_white" />
 
-        <TextView
-            android:layout_toRightOf="@id/imgBack"
-            android:id="@+id/txtShop"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#de4500"
-            android:layout_centerVertical="true"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Shop Name"
-            android:textColor="#fff"
-            android:textSize="@dimen/_15ssp"
-             />
+            <TextView
+                android:id="@+id/txtShop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@id/imgBack"
+                android:background="#de4500"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Shop Name"
+                android:textColor="#fff"
+                android:textSize="@dimen/_15ssp" />
 
         </RelativeLayout>
 
         <TextView
-            android:layout_below="@id/rl3"
             android:id="@+id/minOrderAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-         android:fontFamily="@font/montserrat_bold"
-            android:text="Min Order Amount"
+            android:layout_below="@id/rl3"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_toEndOf="@id/txtMinOrderAmount"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Rs. 250"
             android:textColor="#de4500"
-            android:textSize="@dimen/_10ssp"
-            />
+            android:textSize="@dimen/_10ssp" />
+
+        <TextView
+            android:id="@+id/txtMinOrderAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl3"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Min Order Amount :"
+            android:textColor="#000"
+            android:textSize="@dimen/_10ssp" />
+
         <EditText
 
             android:id="@+id/searchShopProduct"
@@ -63,9 +75,9 @@
             android:fontFamily="@font/montserrat_medium"
             android:hint="@string/search"
             android:importantForAutofill="no"
-            android:textSize="@dimen/_12ssp"
             android:inputType="text"
             android:paddingStart="@dimen/_20sdp"
+            android:textSize="@dimen/_12ssp"
             tools:ignore="RtlSymmetry" />
 
         <RelativeLayout
@@ -80,6 +92,10 @@
                 android:id="@+id/recycler_shop_user_products"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
                 android:padding="2dp"
                 app:stackFromEnd="true"
                 tools:listitem="@layout/product_single_row_customer" />
@@ -166,21 +182,19 @@
 
         <Button
             android:id="@+id/createList"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_32sdp"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_below="@+id/rl3"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_marginBottom="2dp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/round2_btn"
             android:backgroundTint="#de4500"
             android:fontFamily="@font/montserrat_bold"
-            android:padding="@dimen/_5sdp"
+
             android:text="Create List+"
             android:textAllCaps="false"
             android:textColor="#fff"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_12ssp"
             tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>

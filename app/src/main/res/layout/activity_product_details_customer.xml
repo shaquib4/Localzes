@@ -81,27 +81,7 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/localze_shop" />
 
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/btnFavoriteItem"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_margin="5dp"
-                        android:backgroundTint="#ffffff"
-                        android:src="@drawable/ic_baseline_favorite_border_24"
-                        app:borderWidth="0dp"
-                        tools:ignore="RelativeOverlap" />
-
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/btnFavoriteItem1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_margin="5dp"
-                        android:backgroundTint="#ffffff"
-                        android:src="@drawable/ic_favourite"
-                        android:visibility="gone"
-                        app:borderWidth="0dp" />
+                  
 
 
 
