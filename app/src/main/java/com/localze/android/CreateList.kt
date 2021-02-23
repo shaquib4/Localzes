@@ -84,7 +84,7 @@ class CreateList : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val shopName = snapshot.child("shop_name").value.toString()
                     val mobileNo = snapshot.child("phone").value.toString()
-                    txtShops_name.text = shopName
+                    txtShops_name.text = shopName.capitalize()
                     txtShops_phone.text = "Mobile:-$mobileNo"
                 }
 

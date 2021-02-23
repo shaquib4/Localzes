@@ -508,7 +508,7 @@ class Home_seller : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 val shop = snapshot.child("shop_name").value.toString()
-                shopName.text = shop
+                shopName.text = shop.capitalize()
             }
         })
         shareApp.setOnClickListener {

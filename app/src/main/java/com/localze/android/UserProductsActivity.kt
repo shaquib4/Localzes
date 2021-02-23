@@ -91,8 +91,8 @@ class UserProductsActivity : AppCompatActivity() {
                 val shopName = snapshot.child("shop_name").value.toString()
                 val minAmount = snapshot.child("minAm").value.toString()
                 minOrderAmount.text = "₹$minAmount"
-                shop_Name = shopName
-                storeName.text = shopName
+                shop_Name = shopName.capitalize()
+                storeName.text = shopName.capitalize()
 
             }
 
