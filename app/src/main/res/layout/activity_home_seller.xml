@@ -579,7 +579,6 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginVertical="@dimen/_5sdp"
                                 android:fontFamily="@font/montserrat_bold"
-                                android:text="@string/_0"
                                 android:textSize="@dimen/_10ssp" />
                         </RelativeLayout>
                     </LinearLayout>

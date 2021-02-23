@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         tools:listitem="@layout/row_order_user"
         android:layout_below="@id/rl_create"
-        android:visibility="gone"/>
+       />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_retryPastOrders"
