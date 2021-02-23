@@ -75,11 +75,11 @@ class AdapterSellerOrders(
            e.printStackTrace()
        }
         when (sellerOrders.paymentMode) {
-            "Cash on Delivery" -> {
+            "Unpaid(Cash on Delivery)" -> {
                 holder.paymentPAID.visibility = View.GONE
                 holder.paymentCOD.visibility = View.VISIBLE
             }
-            "Paytm" -> {
+            "Paid(Pay with Paytm)" -> {
                 holder.paymentPAID.visibility = View.GONE
                 holder.paymentCOD.visibility = View.VISIBLE
             }

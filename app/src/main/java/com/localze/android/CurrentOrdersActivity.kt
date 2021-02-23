@@ -82,7 +82,7 @@ class CurrentOrdersActivity : AppCompatActivity() {
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrderList")
         currentOrderHistoryDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid).child("MyOrders")
-        currentOrderHistoryDatabase.addValueEventListener(object : ValueEventListener {
+        /*currentOrderHistoryDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -102,7 +102,7 @@ class CurrentOrdersActivity : AppCompatActivity() {
 
             }
 
-        })
+        })*/
         rl_cartCurrent.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_currentOrders.visibility = View.VISIBLE
@@ -173,6 +173,7 @@ class CurrentOrdersActivity : AppCompatActivity() {
 
                     }
                 }
+                listCurrentNo.text = "(${mOrderedList.size})"
                 (mOrderedList as ArrayList<ModalSellerOrderList>).reverse()
                 if (mOrderedList.isEmpty()) {
                     recyclerOrderDetails.visibility = View.GONE
@@ -227,6 +228,7 @@ class CurrentOrdersActivity : AppCompatActivity() {
                         }
 
                     }
+                    cartCurrentNo.text = "(${mOrderedItem.size})"
                     (mOrderedItem as ArrayList<ModelOrderDetails>).reverse()
                     if (mOrderedItem.isEmpty()) {
                         recyclerOrderDetails.visibility = View.GONE

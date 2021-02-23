@@ -52,24 +52,26 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
                        }
                    })*/
         holder.cuMobileNum.text = sellerOrder.orderByMobile
-       try{ if (sellerOrder.totalItems.toInt() > 1) {
-            holder.totalItem.text = "${sellerOrder.totalItems} items"
-        } else {
-            holder.totalItem.text = "${sellerOrder.totalItems} item"
+        try {
+            if (sellerOrder.totalItems.toInt() > 1) {
+                holder.totalItem.text = "${sellerOrder.totalItems} items"
+            } else {
+                holder.totalItem.text = "${sellerOrder.totalItems} item"
+            }
+            if (sellerOrder.orderCost == "") {
+                holder.totalCost.text = "Please update total Amount"
+            } else {
+                holder.totalCost.text = "₹${sellerOrder.orderCost}"
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        if (sellerOrder.orderCost == "") {
-            holder.totalCost.text = "Please update total Amount"
-        } else {
-            holder.totalCost.text = "₹${sellerOrder.orderCost}"
-        }}catch (e:Exception){
-           e.printStackTrace()
-       }
         when (sellerOrder.paymentMode) {
             "" -> {
                 holder.paid.visibility = View.GONE
                 holder.cod.visibility = View.GONE
             }
-            "Cash on Delivery" -> {
+            "Unpaid(Cash on Delivery)" -> {
                 holder.paid.visibility = View.GONE
                 holder.cod.visibility = View.VISIBLE
             }
@@ -82,12 +84,14 @@ class AdapterListOrder(val context: Context, val modelSellerList: List<ModalSell
         holder.oderBy.text = sellerOrder.orderByName
         holder.orderId.text = "OD${sellerOrder.orderId}"
         holder.orderStatus.text = sellerOrder.orderStatus
-       try{ val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
-        val date = Date(sellerOrder.orderTime.toLong())
-        val formattedDate = sdf.format(date)
-        holder.orderTime.text = formattedDate}catch (e:Exception){
-           e.printStackTrace()
-       }
+        try {
+            val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
+            val date = Date(sellerOrder.orderTime.toLong())
+            val formattedDate = sdf.format(date)
+            holder.orderTime.text = formattedDate
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         holder.itemView.setOnClickListener {
             val intent = Intent(

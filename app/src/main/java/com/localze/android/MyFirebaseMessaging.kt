@@ -608,6 +608,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 intent = Intent(this, ListOrderDetailSeller::class.java)
                 intent.putExtra("orderId", orderId)
                 intent.putExtra("orderBy", buyerId)
+                intent.putExtra("orderTo",sellerUid)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
