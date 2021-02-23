@@ -6,7 +6,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardAddress"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_120sdp"
+        android:layout_height="@dimen/_100sdp"
         android:layout_marginHorizontal="3dp"
         android:layout_marginTop="5dp">
 
@@ -29,7 +29,7 @@
                 android:id="@+id/txtHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_toEndOf="@+id/imgHome"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/home"
@@ -61,7 +61,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_toEndOf="@id/imgHome"
+            android:layout_alignParentEnd="true"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/delete"
                 android:textColor="#ff0000"
