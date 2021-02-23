@@ -42,28 +42,6 @@ class PastOrdersActivity : AppCompatActivity() {
         mOrderedItemList = ArrayList<ModalSellerOrderList>()
         pastOrderHistoryDatabase =
             FirebaseDatabase.getInstance().reference.child("users").child(uid)
-        pastOrderHistoryDatabase.child("MyOrders")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    cartPastNo.text = "(${snapshot.childrenCount})"
-                }
-
-            })
-        pastOrderHistoryDatabase.child("MyOrderList")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    listPastNo.text = "(${snapshot.childrenCount})"
-                }
-
-            })
         recyclerOrderDetails = findViewById(R.id.recyclerPastOrders)
         recyclerOrderDetails.layoutManager = LinearLayoutManager(this)
         rl_cartPast.setOnClickListener {
@@ -97,9 +75,7 @@ class PastOrdersActivity : AppCompatActivity() {
 
     private fun listPastOrders() {
         txtCartPast.setTextColor(resources.getColor(R.color.black))
-        cartPastNo.setTextColor(resources.getColor(R.color.black))
         txtlistPast.setTextColor(resources.getColor(R.color.colorPrimary))
-        listPastNo.setTextColor(resources.getColor(R.color.colorPrimary))
         pastOrderHistoryDatabase.child("MyOrderList")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -147,9 +123,7 @@ class PastOrdersActivity : AppCompatActivity() {
 
     private fun cartPastOrders() {
         txtCartPast.setTextColor(resources.getColor(R.color.colorPrimary))
-        cartPastNo.setTextColor(resources.getColor(R.color.colorPrimary))
         txtlistPast.setTextColor(resources.getColor(R.color.black))
-        listPastNo.setTextColor(resources.getColor(R.color.black))
         pastOrderHistoryDatabase.child("MyOrders")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
