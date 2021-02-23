@@ -107,6 +107,8 @@ class CurrentOrdersActivity : AppCompatActivity() {
             if (ConnectionManager().checkConnectivity(this)) {
                 rl_currentOrders.visibility = View.VISIBLE
                 rl_retryCurrentOrders.visibility = View.GONE
+                countCartOrders()
+                countListOrders()
                 currentCartOrder()
             } else {
                 rl_currentOrders.visibility = View.GONE
@@ -115,6 +117,8 @@ class CurrentOrdersActivity : AppCompatActivity() {
         }
         rl_listCurrent.setOnClickListener {
             if (ConnectionManager().checkConnectivity(this)) {
+                countListOrders()
+                countCartOrders()
                 currentListOrder()
             } else {
                 rl_currentOrders.visibility = View.GONE
@@ -173,7 +177,6 @@ class CurrentOrdersActivity : AppCompatActivity() {
 
                     }
                 }
-                listCurrentNo.text = "(${mOrderedList.size})"
                 (mOrderedList as ArrayList<ModalSellerOrderList>).reverse()
                 if (mOrderedList.isEmpty()) {
                     recyclerOrderDetails.visibility = View.GONE
@@ -228,7 +231,6 @@ class CurrentOrdersActivity : AppCompatActivity() {
                         }
 
                     }
-                    cartCurrentNo.text = "(${mOrderedItem.size})"
                     (mOrderedItem as ArrayList<ModelOrderDetails>).reverse()
                     if (mOrderedItem.isEmpty()) {
                         recyclerOrderDetails.visibility = View.GONE
@@ -251,6 +253,89 @@ class CurrentOrdersActivity : AppCompatActivity() {
         }
     }
 
+    private fun countCartOrders() {
+        if (ConnectionManager().checkConnectivity(this)) {
+            rl_currentOrders.visibility = View.VISIBLE
+            rl_retryCurrentOrders.visibility = View.GONE
+            currentOrderHistoryDatabase.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (mOrderedItem as ArrayList<ModelOrderDetails>).clear()
+                    for (i in snapshot.children) {
+                        val obj = ModelOrderDetails(
+                            i.child("orderId").value.toString(),
+                            i.child("orderTime").value.toString(),
+                            i.child("orderStatus").value.toString(),
+                            i.child("orderCost").value.toString(),
+                            i.child("orderBy").value.toString(),
+                            i.child("orderTo").value.toString(),
+                            i.child("orderQuantity").value.toString(),
+                            i.child("deliveryAddress").value.toString(),
+                            i.child("paymentMode").value.toString(),
+                            i.child("orderByName").value.toString(),
+                            i.child("orderByMobile").value.toString()
+                        )
+                        if (i.child("orderStatus").value.toString() == "Pending" || i.child("orderStatus").value.toString() == "Accepted" || i.child(
+                                "orderStatus"
+                            ).value.toString() == "Out For Delivery"
+                        ) {
+
+                            (mOrderedItem as ArrayList<ModelOrderDetails>).add(obj)
+
+
+                        }
+
+                    }
+                    cartCurrentNo.text = "(${mOrderedItem.size})"
+                }
+            })
+        } else {
+            rl_currentOrders.visibility = View.GONE
+            rl_retryCurrentOrders.visibility = View.VISIBLE
+        }
+
+    }
+
+    private fun countListOrders() {
+
+        currentListOrderDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (mOrderedList as ArrayList<ModalSellerOrderList>).clear()
+                for (i in snapshot.children) {
+                    val obj = ModalSellerOrderList(
+                        i.child("orderId").value.toString(),
+                        i.child("orderTime").value.toString(),
+                        i.child("orderStatus").value.toString(),
+                        i.child("orderCost").value.toString(),
+                        i.child("orderBy").value.toString(),
+                        i.child("orderTo").value.toString(),
+                        i.child("deliveryAddress").value.toString(),
+                        i.child("totalItems").value.toString(),
+                        i.child("listStatus").value.toString(),
+                        i.child("orderByName").value.toString(),
+                        i.child("orderByMobile").value.toString(),
+                        i.child("paymentMode").value.toString()
+                    )
+                    if (i.child("orderStatus").value.toString() == "Pending" || i.child("orderStatus").value.toString() == "Accepted" || i.child(
+                            "orderStatus"
+                        ).value.toString() == "Out For Delivery"
+                    ) {
+                        (mOrderedList as ArrayList<ModalSellerOrderList>).add(obj)
+
+                    }
+                }
+                listCurrentNo.text = "(${mOrderedList.size})"
+            }
+        })
+    }
+
     override fun onBackPressed() {
         val intent = Intent(this, Accounts::class.java)
         startActivity(intent)
@@ -262,6 +347,8 @@ class CurrentOrdersActivity : AppCompatActivity() {
         if (ConnectionManager().checkConnectivity(this)) {
             rl_currentOrders.visibility = View.VISIBLE
             rl_retryCurrentOrders.visibility = View.GONE
+            countCartOrders()
+            countListOrders()
             currentCartOrder()
         } else {
             rl_currentOrders.visibility = View.GONE
