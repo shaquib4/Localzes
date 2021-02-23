@@ -133,6 +133,26 @@ class UpdateShopDetailActivity : AppCompatActivity() {
             headers["closingTime"] = spinnerClose.selectedItem.toString().trim()
             headers["closingDay"] = ""
             headers["minAm"] = minOrder.text.toString().trim()
+            databaseRef.child("Categories")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (i in snapshot.children) {
+                            if (i.child("category").value.toString() != shopsCategory.selectedItem.toString()) {
+                                val header = HashMap<String, Any>()
+                                val times = System.currentTimeMillis().toString()
+                                val cat = shopsCategory.selectedItem.toString()
+                                header["category"] = cat
+                                header["categoryId"] = times
+                                databaseRef.child("Categories").child(times).setValue(header)
+                            }
+                        }
+                    }
+
+                })
             databaseRef.updateChildren(headers).addOnSuccessListener {
                 val intent = Intent(this, Home_seller::class.java)
                 startActivity(intent)
