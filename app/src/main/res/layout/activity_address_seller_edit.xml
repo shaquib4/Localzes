@@ -56,7 +56,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardAddress"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120sdp"
+            android:layout_height="@dimen/_100sdp"
             android:layout_below="@+id/txtCurrentAddress"
             android:layout_marginHorizontal="3dp"
             android:layout_marginTop="5dp">
@@ -80,7 +80,7 @@
                     android:id="@+id/txtHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_toEndOf="@+id/imgHome"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Shop"
@@ -97,7 +97,7 @@
                     android:layout_toEndOf="@id/imgHome"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="@string/mohan_chauraha_saraivika_jaunpur_up_222202_india"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
 
                 <TextView
@@ -113,7 +113,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Edit"
                     android:textColor="#ff0000"
-                    android:textSize="@dimen/_16ssp" />
+                    android:textSize="@dimen/_12ssp" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

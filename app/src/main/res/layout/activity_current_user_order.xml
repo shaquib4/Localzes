@@ -92,25 +92,24 @@
             android:id="@+id/txtLost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtOhNo"
+
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_80sdp"
+            android:layout_above="@id/txtConnect"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/no_internet_connection"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
 
         <TextView
             android:id="@+id/txtConnect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtLost"
+        android:layout_above="@id/retryCurrentListOrders"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/_20sdp"
+             android:layout_marginBottom="@dimen/_50sdp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/please_connect_to_internet"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <Button
             android:id="@+id/retryCurrentListOrders"
@@ -125,7 +124,7 @@
             android:paddingHorizontal="@dimen/_30sdp"
             android:text="@string/retry"
             android:textColor="#de4500"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
     </RelativeLayout>
 

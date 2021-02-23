@@ -427,7 +427,6 @@
 
                                         <TextView
                                             android:id="@+id/txtItemRejected"
-                                            android:visibility="invisible"
                                             android:layout_width="@dimen/_50sdp"
                                             android:layout_height="wrap_content"
                                             android:layout_centerInParent="true"
@@ -435,7 +434,8 @@
                                             android:text="@string/_0"
                                             android:textAlignment="center"
                                             android:textColor="#000000"
-                                            android:textSize="@dimen/_10ssp" />
+                                            android:textSize="@dimen/_10ssp"
+                                            android:visibility="invisible" />
 
                                         <TextView
                                             android:id="@+id/txtRej"
@@ -453,7 +453,6 @@
                                     </RelativeLayout>
 
                                 </RelativeLayout>
-
 
 
                             </LinearLayout>
@@ -589,6 +588,29 @@
         </ScrollView>
     </RelativeLayout>
 
+
+    <Button
+        android:id="@+id/switchButtonHomeSeller"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/round2_btn"
+        android:elevation="@dimen/_20sdp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/switch_screen"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/_12ssp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navHome_seller"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        app:menu="@menu/seller_menu" />
+
     <RelativeLayout
         android:id="@+id/rl_Seller_Internet"
         android:layout_width="match_parent"
@@ -611,25 +633,24 @@
             android:id="@+id/txtLost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtOhNo"
+            android:layout_above="@id/txtInternet"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_80sdp"
+
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/no_internet_connection"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
 
         <TextView
             android:id="@+id/txtInternet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtLost"
+            android:layout_above="@id/sellerRetry"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/_20sdp"
+
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/please_connect_to_internet"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <Button
             android:id="@+id/sellerRetry"
@@ -637,35 +658,13 @@
             android:layout_height="@dimen/_30sdp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/stroke"
+            android:layout_margin="@dimen/_50sdp"
+            android:background="@drawable/stroke_solid_btn"
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
             android:text="@string/retry"
             android:textColor="#de4500"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/switchButtonHomeSeller"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_25sdp"
-        android:layout_alignParentEnd="true"
-    android:layout_margin="@dimen/_5sdp"
-        android:background="@drawable/round2_btn"
-        android:elevation="@dimen/_20sdp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/switch_screen"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/_12ssp" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navHome_seller"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_alignParentBottom="true"
-        android:background="#fff"
-        app:menu="@menu/seller_menu" />
 </RelativeLayout>

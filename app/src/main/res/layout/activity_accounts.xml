@@ -71,7 +71,6 @@
         android:layout_below="@id/relexpand">
 
         <ExpandableListView
-            android:scrollbars="none"
             android:id="@+id/expand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,6 +79,7 @@
             android:footerDividersEnabled="true"
             android:layoutDirection="rtl"
             android:outlineSpotShadowColor="#d60606"
+            android:scrollbars="none"
             android:textDirection="ltr"
 
             tools:targetApi="p" />

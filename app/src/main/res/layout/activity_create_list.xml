@@ -7,7 +7,8 @@
     tools:context=".CreateList">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -185,7 +186,8 @@
 
         </LinearLayout>
     </RelativeLayout>
-
+</RelativeLayout>
+    </ScrollView>
     <RelativeLayout
         android:id="@+id/rl_retryCreateList"
         android:layout_width="match_parent"
@@ -201,7 +203,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/oh_no"
-            android:textSize="@dimen/_20ssp" />
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
@@ -214,7 +216,7 @@
             android:layout_marginTop="@dimen/_80sdp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/no_internet_connection"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
 
         <TextView
@@ -226,7 +228,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/please_connect_to_internet"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <Button
             android:id="@+id/retryCreateList"
@@ -241,9 +243,8 @@
             android:paddingHorizontal="@dimen/_30sdp"
             android:text="@string/retry"
             android:textColor="#de4500"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
     </RelativeLayout>
-</RelativeLayout>
-    </ScrollView>
+
 </RelativeLayout>

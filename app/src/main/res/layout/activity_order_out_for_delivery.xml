@@ -194,32 +194,31 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/oh_no"
-            android:textSize="@dimen/_20ssp" />
+            android:textSize="@dimen/_15ssp" />
 
 
         <TextView
             android:id="@+id/txtLost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtOhNo"
+             android:layout_above="@id/txtConnect"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_60sdp"
+
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/no_internet_connection"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
 
         <TextView
             android:id="@+id/txtConnect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtLost"
+            android:layout_marginBottom="@dimen/_50sdp"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_above="@id/retryDeliveryOrders"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/please_connect_to_internet"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <Button
             android:id="@+id/retryDeliveryOrders"
@@ -227,14 +226,14 @@
             android:layout_height="@dimen/_30sdp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/stroke"
+            android:layout_margin="@dimen/_20sdp"
+            android:background="@drawable/stroke_solid_btn"
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingHorizontal="@dimen/_30sdp"
             android:text="@string/retry"
             android:textColor="#de4500"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
 
 
     </RelativeLayout>

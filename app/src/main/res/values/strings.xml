@@ -421,8 +421,8 @@
     <string name="_1000">1000</string>
     <string name="_273016">273016</string>
     <string name="india">India</string>
-    <string name="village_locality">Village locality</string>
-    <string name="house_flat_block_no">House flat block no</string>
+    <string name="village_locality">Village/locality</string>
+    <string name="house_flat_block_no">House/flat/block no</string>
     <string name="nearest_landmark">Nearest landmark</string>
     <string name="save_and_proceed">Save and Proceed</string>
     <string name="enter_your_email">Enter Your Email</string>
