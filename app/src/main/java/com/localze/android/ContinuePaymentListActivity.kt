@@ -111,7 +111,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
     private fun prepareNewNotificationMessage(orderId: String) {
         val NOTIFICATION_TOPIC = "/topics/PUSH_NOTIFICATIONS"
         val NOTIFICATION_TITLE = "Cash On Delivery"
-        val NOTIFICATION_MESSAGE = "Amount of ₹${totalCost.toString()} received on delivery"
+        val NOTIFICATION_MESSAGE = "Amount of ₹${totalCost.toString()} will be collected on delivery"
         val NOTIFICATION_TYPE = "PaymentMethod"
         val notificationJs = JSONObject()
         val notificationBodyJs = JSONObject()
