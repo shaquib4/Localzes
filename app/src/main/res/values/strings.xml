@@ -21,10 +21,37 @@
     <string-array name="Spinner_items">
         <item><font fontfamily="@font/montserrat_medium" size="14">piece</font></item>
         <item><font fontfamily="@font/montserrat_medium" size="14">litre</font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14"> meter </font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14"> gm </font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14"> kg </font></item>
-        <item><font fontfamily="@font/montserrat_medium" size="14"> pound </font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">meter</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">gm</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">kg</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">ml</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">mm</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">ft</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">sq.ft.</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">sq. meter</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">km</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">set</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">hour</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">day</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">bunch</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">bundle</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">month</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">year</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">service</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">work</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">packet</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">box</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">pound</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">dozen</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">gunta</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">pair</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">minute</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">quintal</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">ton</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">tablet</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">plate</font></item>
+        <item><font fontfamily="@font/montserrat_medium" size="14">inch</font></item>
+
     </string-array>
 
     <string-array name="Spinner_Bank_type">
