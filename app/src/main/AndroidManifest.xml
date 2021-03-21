@@ -267,7 +267,7 @@
 
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_ZgMINeIeAA6J8X" />
+            android:value="rzp_live_u7mQDn0hzhOHrM" />
     </application>
 
 </manifest>

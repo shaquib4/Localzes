@@ -33,19 +33,19 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
         }else{
 
             val orderRequest = JSONObject()
-            val transfer=JSONObject()
-            val transferRequest=JSONArray()
+            /*val transfer=JSONObject()
+            val transferRequest=JSONArray()*/
             try {
                
                 orderRequest.put("amount", amo.toDouble()*100) // amount in the smallest currency unit
                 orderRequest.put("currency", "INR")
                 orderRequest.put("receipt", "order_rcptid_11")
                 orderRequest.put("payment_capture", 1)
-                transfer.put("account","acc_GNFnz1wTS3UaUu")
+                /*transfer.put("account","acc_GNFnz1wTS3UaUu")
                 transfer.put("amount",100)
                 transfer.put("currency","INR")
                 transferRequest.put(transfer)
-                orderRequest.put("transfers",transferRequest)
+                orderRequest.put("transfers",transferRequest)*/
                // orderRequest.put("order_id",PaymentData().orderId)
 
                 order(orderRequest)
@@ -80,7 +80,7 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
 
 
                 headers["Content-Type"] = "application/json"
-                headers["Authorization"] ="Basic cnpwX3Rlc3RfWmdNSU5lSWVBQTZKOFg6V2tWZTczaXBvS0J2eUdtZUtqOFpMQVRL"
+                headers["Authorization"] ="Basic cnpwX2xpdmVfdTdtUURuMGh6aE9Ick06ZU15aDRScE1CSHpMcVZRRDMxbGE5MGdi"
                // headers["Connection"]="Keep-alive"
 
                // headers["Authorization"] =
