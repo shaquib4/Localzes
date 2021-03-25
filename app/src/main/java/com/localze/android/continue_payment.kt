@@ -114,6 +114,7 @@ class continue_payment : AppCompatActivity() {
                 }
                 "Pay with Razor Pay" -> {
                     val intent=Intent(this,PaymentRazorpay::class.java)
+                    intent.putExtra("platform","Cart")
                     intent.putExtra("shopId", shopId.toString())
                     intent.putExtra("totalCost", totalCost.toString())
                     intent.putExtra("orderBy", uid.toString())

@@ -68,18 +68,24 @@ class AdapterSellerOrders(
                 holder.orderStatusTv.setTextColor(context.resources.getColor(R.color.red))
             }
         }
-       try{ val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
-        val date = Date(sellerOrders.orderTime.toLong())
-        val formattedDate = sdf.format(date)
-        holder.orderDateTv.text = formattedDate}catch (e:Exception){
-           e.printStackTrace()
-       }
+        try {
+            val sdf = SimpleDateFormat("dd/MM/yyyy,hh:mm a")
+            val date = Date(sellerOrders.orderTime.toLong())
+            val formattedDate = sdf.format(date)
+            holder.orderDateTv.text = formattedDate
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         when (sellerOrders.paymentMode) {
             "Unpaid(Cash on Delivery)" -> {
                 holder.paymentPAID.visibility = View.GONE
                 holder.paymentCOD.visibility = View.VISIBLE
             }
             "Paid(Pay with Paytm)" -> {
+                holder.paymentPAID.visibility = View.GONE
+                holder.paymentCOD.visibility = View.VISIBLE
+            }
+            "Paid Online" -> {
                 holder.paymentPAID.visibility = View.GONE
                 holder.paymentCOD.visibility = View.VISIBLE
             }

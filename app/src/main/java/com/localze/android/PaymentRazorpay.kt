@@ -18,59 +18,66 @@ import com.razorpay.PaymentResultWithDataListener
 import org.json.JSONArray
 import org.json.JSONObject
 
-class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
-    private var amo=""
-    private var ali=""
-    private var orderId=""
-    private var email=""
-    private var phone=""
-    private lateinit var auth:FirebaseAuth
-    private lateinit var userDatabase:DatabaseReference
+class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
+    private var amo = ""
+    private var ali = ""
+    private var orderId = ""
+    private var email = ""
+    private var phone = ""
+    private var shopId = ""
+    private var platform = ""
+    private var userId = ""
+    private lateinit var auth: FirebaseAuth
+    private lateinit var userDatabase: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_razorpay)
-        val amount=intent.getStringExtra("totalCost").toString()
-        val shopId=intent.getStringExtra("shopId").toString()
-        orderId=intent.getStringExtra("orderId").toString()
-
-        amo=amount
+        val amount = intent.getStringExtra("totalCost").toString()
+        shopId = intent.getStringExtra("shopId").toString()
+        orderId = intent.getStringExtra("orderId").toString()
+        platform = intent.getStringExtra("platform").toString()
+        userId = intent.getStringExtra("orderBy").toString()
+        amo = amount
 
         Checkout.preload(applicationContext)
-       /* auth=FirebaseAuth.getInstance()
-        val user=auth.currentUser
-        val uid =user!!.uid*/
-        userDatabase=FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
-        userDatabase.addValueEventListener(object:ValueEventListener{
+        /* auth=FirebaseAuth.getInstance()
+         val user=auth.currentUser
+         val uid =user!!.uid*/
+        userDatabase = FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
+        userDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                email=snapshot.child("email").value.toString()
-                phone=snapshot.child("phone").value.toString()
+                email = snapshot.child("email").value.toString()
+                phone = snapshot.child("phone").value.toString()
             }
         })
 
-        if (amount.isEmpty()){
-            
-            Toast.makeText(this,"amount is missing",Toast.LENGTH_LONG).show()
-        }else{
+        if (amount.isEmpty()) {
+
+            Toast.makeText(this, "amount is missing", Toast.LENGTH_LONG).show()
+        } else {
 
             val orderRequest = JSONObject()
-            val transfer=JSONObject()
-            val transferRequest=JSONArray()
+            val transfer = JSONObject()
+            val transferRequest = JSONArray()
             try {
-               
-                orderRequest.put("amount", amo.toDouble()*100) // amount in the smallest currency unit
+
+                orderRequest.put(
+                    "amount",
+                    amo.toDouble() * 100
+                ) // amount in the smallest currency unit
                 orderRequest.put("currency", "INR")
                 orderRequest.put("receipt", "order_rcptid_11")
                 orderRequest.put("payment_capture", 1)
-                transfer.put("account","acc_GpKvr4eZ3cXO9Y")
-                transfer.put("amount",amo.toDouble()*100)
-                transfer.put("currency","INR")
+                transfer.put("account", "acc_GpKvr4eZ3cXO9Y")
+                transfer.put("amount", amo.toDouble() * 100)
+                transfer.put("currency", "INR")
                 transferRequest.put(transfer)
-                orderRequest.put("transfers",transferRequest)
-               // orderRequest.put("order_id",PaymentData().orderId)
+                orderRequest.put("transfers", transferRequest)
+                // orderRequest.put("order_id",PaymentData().orderId)
 
                 order(orderRequest)
             } catch (e: Exception) {
@@ -89,7 +96,7 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
             orderRequest,
             Response.Listener {
                 //after sending fcm start order details activity
-                val orderId=it.get("id")
+                val orderId = it.get("id")
                 startPayment(orderId.toString())
 
 
@@ -104,10 +111,11 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
 
 
                 headers["Content-Type"] = "application/json"
-                headers["Authorization"] ="Basic cnpwX2xpdmVfdTdtUURuMGh6aE9Ick06ZU15aDRScE1CSHpMcVZRRDMxbGE5MGdi"
-               // headers["Connection"]="Keep-alive"
+                headers["Authorization"] =
+                    "Basic cnpwX2xpdmVfdTdtUURuMGh6aE9Ick06ZU15aDRScE1CSHpMcVZRRDMxbGE5MGdi"
+                // headers["Connection"]="Keep-alive"
 
-               // headers["Authorization"] =
+                // headers["Authorization"] =
 
                 return headers
             }
@@ -115,33 +123,32 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
         Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
 
-    private fun startPayment(orderId:String) {
+    private fun startPayment(orderId: String) {
         val activity: Activity = this
         val co = Checkout()
 
         try {
             val options = JSONObject()
-            options.put("name","Localze")
-            options.put("description","Order Charges")
+            options.put("name", "Localze")
+            options.put("description", "Order Charges")
             //You can omit the image option to fetch the image from dashboard
-            options.put("image","https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
+            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
             options.put("theme.color", "#ff4500")
-            options.put("currency","INR")
+            options.put("currency", "INR")
             options.put("order_id", orderId)
-            options.put("amount",amo.toDouble()*100)//pass amount in currency subunits
+            options.put("amount", amo.toDouble() * 100)//pass amount in currency subunits
 
             val prefill = JSONObject()
-            prefill.put("email",email)
-            prefill.put("contact",phone)
+            prefill.put("email", email)
+            prefill.put("contact", phone)
 
-            options.put("prefill",prefill)
-            co.open(activity,options)
-        }catch (e: Exception){
-            Toast.makeText(activity,"Error in payment: "+ e.message,Toast.LENGTH_LONG).show()
+            options.put("prefill", prefill)
+            co.open(activity, options)
+        } catch (e: Exception) {
+            Toast.makeText(activity, "Error in payment: " + e.message, Toast.LENGTH_LONG).show()
             e.printStackTrace()
         }
     }
-
 
 
     override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
@@ -153,9 +160,31 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
     }
 
     override fun onPaymentSuccess(s: String?, p1: PaymentData?) {
-        Log.e("Done", " payment successful "+ s.toString())
+        Log.e("Done", " payment successful " + s.toString())
         Toast.makeText(this, p1?.orderId, Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this,NewActivity::class.java))
-        finish()
+        val headers = HashMap<String, Any>()
+        headers["paymentMode"] = "Paid Online"
+        if (platform == "Cart") {
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId).child("Orders")
+                .child(orderId).updateChildren(headers).addOnSuccessListener {
+                    FirebaseDatabase.getInstance().reference.child("users").child(userId)
+                        .child("MyOrders").child(orderId).updateChildren(headers)
+                        .addOnSuccessListener {
+                            startActivity(Intent(this, NewActivity::class.java))
+                            finish()
+                        }
+                }
+        } else {
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
+                .child("OrdersLists")
+                .child(orderId).updateChildren(headers).addOnSuccessListener {
+                    FirebaseDatabase.getInstance().reference.child("users").child(userId)
+                        .child("MyOrderList").child(orderId).updateChildren(headers)
+                        .addOnSuccessListener {
+                            startActivity(Intent(this, NewActivity::class.java))
+                            finish()
+                        }
+                }
+        }
     }
 }
