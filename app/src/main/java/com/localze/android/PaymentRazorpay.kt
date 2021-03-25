@@ -31,7 +31,7 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
         setContentView(R.layout.activity_payment_razorpay)
         val amount=intent.getStringExtra("totalCost").toString()
         val shopId=intent.getStringExtra("shopId").toString()
-        orderId=intent.getStringExtra("").toString()
+        orderId=intent.getStringExtra("orderId").toString()
 
         amo=amount
 
@@ -46,8 +46,8 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val emailS=snapshot.child("email").value.toString()
-                val phoneS=snapshot.child("phone").value.toString()
+                email=snapshot.child("email").value.toString()
+                phone=snapshot.child("phone").value.toString()
             }
         })
 

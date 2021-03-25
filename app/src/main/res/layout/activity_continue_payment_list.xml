@@ -76,7 +76,7 @@
                         android:textColor="#000000"
                         android:textSize="@dimen/_12ssp" />
 
-                    <!--<RadioButton
+                    <RadioButton
                         android:id="@+id/rbRazorPay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:text="@string/pay_with_razor_pay"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_12ssp" />-->
+                        android:textSize="@dimen/_12ssp" />
                 </RadioGroup>
 
                 <ImageView
@@ -124,6 +124,24 @@
                     android:contentDescription="@string/todo"
                     android:scaleType="fitXY"
                     android:src="@drawable/paytm" />
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/view2"
+                    android:layout_marginTop="@dimen/_43sdp"
+                    android:background="#d3d3d3" />
+
+                <ImageView
+                    android:id="@+id/imgRazorpay"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_below="@+id/view3"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_razorpay" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

@@ -55,14 +55,16 @@ class ContinuePaymentListActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-               try{ val productCharge = totalCost.toString()
-                    .toDouble() - (snapshot.child("deliveryFee").value.toString()).toDouble()
-                productCharges.text = "₹$productCharge"
-                shippingCharges.text = "₹${snapshot.child("deliveryFee").value.toString()}"}catch (
-                   e:Exception
-               ){
-                   e.printStackTrace()
-               }
+                try {
+                    val productCharge = totalCost.toString()
+                        .toDouble() - (snapshot.child("deliveryFee").value.toString()).toDouble()
+                    productCharges.text = "₹$productCharge"
+                    shippingCharges.text = "₹${snapshot.child("deliveryFee").value.toString()}"
+                } catch (
+                    e: Exception
+                ) {
+                    e.printStackTrace()
+                }
             }
         })
         button.setOnClickListener {
@@ -100,8 +102,17 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
+                "Pay with Razor Pay" -> {
+                    val intent = Intent(this, PaymentRazorpay::class.java)
+                    intent.putExtra("platform", "List")
+                    intent.putExtra("shopId", shopId.toString())
+                    intent.putExtra("totalCost", totalCost.toString())
+                    intent.putExtra("orderId", orderId.toString())
+                    intent.putExtra("orderBy", orderBy.toString())
+                    startActivity(intent)
+                    finish()
+                }
             }
-
         }
         imgBackContinue.setOnClickListener {
 
@@ -111,7 +122,8 @@ class ContinuePaymentListActivity : AppCompatActivity() {
     private fun prepareNewNotificationMessage(orderId: String) {
         val NOTIFICATION_TOPIC = "/topics/PUSH_NOTIFICATIONS"
         val NOTIFICATION_TITLE = "Cash On Delivery"
-        val NOTIFICATION_MESSAGE = "Amount of ₹${totalCost.toString()} will be collected on delivery"
+        val NOTIFICATION_MESSAGE =
+            "Amount of ₹${totalCost.toString()} will be collected on delivery"
         val NOTIFICATION_TYPE = "PaymentMethod"
         val notificationJs = JSONObject()
         val notificationBodyJs = JSONObject()
@@ -161,7 +173,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent=Intent(this,Home::class.java)
+        val intent = Intent(this, Home::class.java)
         startActivity(intent)
         finish()
     }

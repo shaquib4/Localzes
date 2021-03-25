@@ -117,6 +117,7 @@ class continue_payment : AppCompatActivity() {
                     intent.putExtra("shopId", shopId.toString())
                     intent.putExtra("totalCost", totalCost.toString())
                     intent.putExtra("orderBy", uid.toString())
+                    intent.putExtra("orderId",orderId.toString())
                     /*intent.putExtra("totalItem", totalItem.toString())
                     intent.putExtra("delivery", deliveryAddress.toString())
                     intent.putExtra("orderByName", orderByName.toString())
