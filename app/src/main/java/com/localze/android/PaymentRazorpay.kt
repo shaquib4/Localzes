@@ -10,6 +10,8 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
 import com.razorpay.PaymentResultWithDataListener
@@ -19,13 +21,35 @@ import org.json.JSONObject
 class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
     private var amo=""
     private var ali=""
+    private var orderId=""
+    private var email=""
+    private var phone=""
+    private lateinit var auth:FirebaseAuth
+    private lateinit var userDatabase:DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_razorpay)
         val amount=intent.getStringExtra("totalCost").toString()
+        val shopId=intent.getStringExtra("shopId").toString()
+        orderId=intent.getStringExtra("").toString()
+
         amo=amount
 
         Checkout.preload(applicationContext)
+       /* auth=FirebaseAuth.getInstance()
+        val user=auth.currentUser
+        val uid =user!!.uid*/
+        userDatabase=FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
+        userDatabase.addValueEventListener(object:ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val emailS=snapshot.child("email").value.toString()
+                val phoneS=snapshot.child("phone").value.toString()
+            }
+        })
 
         if (amount.isEmpty()){
             
@@ -107,8 +131,8 @@ class PaymentRazorpay : AppCompatActivity(),PaymentResultWithDataListener {
             options.put("amount",amo.toDouble()*100)//pass amount in currency subunits
 
             val prefill = JSONObject()
-            prefill.put("email","mohammadshaquib4@gmail.com")
-            prefill.put("contact","8528436997")
+            prefill.put("email",email)
+            prefill.put("contact",phone)
 
             options.put("prefill",prefill)
             co.open(activity,options)
