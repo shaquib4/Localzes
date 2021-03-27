@@ -45,8 +45,8 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
 /*            menuitem.text = "Offers, Referrals"
 
         }*/
-        if (menuTitle=="Refunds & Payments"){
-            menuitem.text = "Refund Initiated, Transaction history"
+        if (menuTitle=="Payments"){
+            menuitem.text = "Account Details, Transaction history"
         }
 
         else if (menuTitle=="Help"){
@@ -95,10 +95,10 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
         }else if (itemTitles=="Referrals"&& menuTitle=="Account")
         {
             img.setImageResource(R.drawable.ic_referrals)
-        }*/ if (itemTitles=="Refund Initiated"&& menuTitle=="Refunds & Payments")
+        }*/ if (itemTitles=="Account Details"&& menuTitle=="Payments")
         {
             img.setImageResource(R.drawable.ic_refundstatus)
-        }else if (itemTitles=="Transaction History"&& menuTitle=="Refunds & Payments")
+        }else if (itemTitles=="Transaction History"&& menuTitle=="Payments")
         {
             img.setImageResource(R.drawable.ic_refundstatus)
         }else if (itemTitles=="Address"&& menuTitle=="Help"){

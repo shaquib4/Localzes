@@ -198,7 +198,7 @@ class AccountsSeller : AppCompatActivity() {
         item = HashMap()
 
         // (menu as ArrayList<String>).add("Account")
-        (menu as ArrayList<String>).add("Refunds & Payments")
+        (menu as ArrayList<String>).add("Payments")
         (menu as ArrayList<String>).add("Help")
         (menu as ArrayList<String>).add("Switch")
 
@@ -207,7 +207,7 @@ class AccountsSeller : AppCompatActivity() {
         //item1.add("Referrals")
 
         val item1: MutableList<String> = ArrayList()
-        item1.add("Refunds Initiated")
+        item1.add("Account Details")
         item1.add("Transaction History")
 
         val item2: MutableList<String> = ArrayList()
