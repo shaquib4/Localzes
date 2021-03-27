@@ -37,6 +37,32 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
         firebaseUser = currentAuth.currentUser!!
 
         val notificationType = remoteMessage.data["notificationType"]
+        if (notificationType.equals("AccountDetails")) {
+            val notificationTitle = remoteMessage.data["notificationTitle"]
+            val notificationDescription = remoteMessage.data["notificationMessage"]
+            val person = remoteMessage.data["person"]
+            val databaseRef = FirebaseDatabase.getInstance().reference.child("seller")
+            databaseRef.child(currentAuth!!.uid.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists() && (!(snapshot.child("Account_Details").exists()))) {
+                            showAddAccountDetailNotification(
+                                currentAuth!!.uid.toString(),
+                                person.toString(),
+                                notificationTitle.toString(),
+                                notificationDescription.toString(),
+                                notificationType.toString()
+                            )
+
+                        }
+                    }
+
+                })
+        }
         if (notificationType.equals("NoProduct")) {
             val notificationTitle = remoteMessage.data["notificationTitle"]
             val notificationDescription = remoteMessage.data["notificationMessage"]
@@ -267,6 +293,43 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 )
             }
         }
+    }
+
+    private fun showAddAccountDetailNotification(
+        uid: String,
+        person: String,
+        notificationTitle: String,
+        notificationDescription: String,
+        notificationType: String
+    ) {
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationId = Random.nextInt(3000)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setUpNotificationChannel(notificationManager)
+        }
+        if (notificationType == "AccountDetails") {
+            intent = Intent(this, AccountDetails::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val largeIcon: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.add_to_cart)
+        val notificationSoundUri: Uri =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder.setSmallIcon(R.drawable.ic_localze)
+            .setLargeIcon(largeIcon)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
+            .setSound(notificationSoundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notificationDescription))
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+        notificationManager.notify(notificationId, notificationBuilder.build())
+
     }
 
     private fun showNoProductNotification(
@@ -608,7 +671,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                 intent = Intent(this, ListOrderDetailSeller::class.java)
                 intent.putExtra("orderId", orderId)
                 intent.putExtra("orderBy", buyerId)
-                intent.putExtra("orderTo",sellerUid)
+                intent.putExtra("orderTo", sellerUid)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
