@@ -1,7 +1,9 @@
 package com.localze.android
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -39,7 +41,17 @@ class AccountDetails : AppCompatActivity() {
 
                     databaseReference.child("seller").child(uid).updateChildren(header)
                     databaseReference.child("customers").child(uid).child("AccountDetails")
-                        .updateChildren(headers)
+                        .updateChildren(headers).addOnSuccessListener {
+                            val snackbar = Snackbar.make(
+                                accDetail,
+                                "Account Added Successfully",
+                                Snackbar.LENGTH_LONG
+                            )
+                            snackbar.show()
+                        }
+                    val intent=Intent(this,Home_seller::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
         }
