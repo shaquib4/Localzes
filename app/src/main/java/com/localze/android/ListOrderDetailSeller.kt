@@ -561,12 +561,12 @@ class ListOrderDetailSeller : AppCompatActivity() {
         val headers = hashMapOf<String, Any>()
         headers["orderStatus"] = selectedItem
         val ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("seller")
-        ref.child(orderBy).child("OrdersLists").child(orderId).updateChildren(headers)
+        ref.child(orderTo).child("OrdersLists").child(orderId).updateChildren(headers)
             .addOnSuccessListener {
                 Toast.makeText(this, "Order has been $selectedItem", Toast.LENGTH_SHORT).show()
                 val message = "Order has been $selectedItem"
                 val reference: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("users").child(orderTo)
+                    FirebaseDatabase.getInstance().reference.child("users").child(orderBy)
                 reference.child("MyOrderList").child(orderId).updateChildren(headers)
                 prepareNotificationMessage(orderId, message)
             }
@@ -654,7 +654,7 @@ class ListOrderDetailSeller : AppCompatActivity() {
                             userMap["orderStatus"] = "Completed"
                             val databaseNewReference: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("seller")
-                            databaseNewReference.child(orderBy).child("OrdersLists").child(orderId)
+                            databaseNewReference.child(orderTo).child("OrdersLists").child(orderId)
                                 .updateChildren(userMap).addOnSuccessListener {
                                     val dataRef =
                                         FirebaseDatabase.getInstance().reference.child("users")
