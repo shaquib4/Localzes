@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountDetails"
-    android:background="#fff">
+    android:background="#fff"
+    tools:context=".AccountDetails">
+
     <RelativeLayout
         android:id="@+id/rl1"
         android:layout_width="match_parent"
@@ -163,20 +164,20 @@
         tools:ignore="UselessParent">
 
         <RelativeLayout
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_rectangle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rectangle">
 
             <Spinner
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:entries="@array/Spinner_Bank_type"
                 android:id="@+id/spn_type"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_36sdp"
-                />
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:entries="@array/Spinner_Bank_type" />
 
         </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -189,5 +190,15 @@
             android:text="Bank Account Type"
             android:textSize="12sp" />
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/addDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl9"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        android:text="Add Details"
+        android:textSize="@dimen/_14ssp" />
 
 </RelativeLayout>
