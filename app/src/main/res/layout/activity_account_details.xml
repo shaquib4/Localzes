@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountDetails"
+    android:background="#fff">
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/imgBack"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Bank Account Details"
+            android:textColor="#000"
+            android:textSize="@dimen/_12ssp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#d3d3d3" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl1"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        tools:ignore="UselessParent">
+
+        <EditText
+            android:id="@+id/edtAccountNumber"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_vertical"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:paddingStart="16dp"
+            android:textSize="13sp"
+            tools:ignore="LabelFor,RtlSymmetry" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:background="#fcfcfc"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="Bank Account Number"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl5"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        tools:ignore="UselessParent">
+
+        <EditText
+            android:id="@+id/edtIFSC"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_vertical"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:paddingStart="16dp"
+            android:textSize="13sp"
+            tools:ignore="LabelFor,RtlSymmetry" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:background="#fcfcfc"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="Bank IFSC Code"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl7"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        tools:ignore="UselessParent">
+
+        <EditText
+            android:id="@+id/edtBeneficiaryName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_vertical"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:paddingStart="16dp"
+            android:textSize="13sp"
+            tools:ignore="LabelFor,RtlSymmetry" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:background="#fcfcfc"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="Beneficiary Name"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl8"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rectangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:entries="@array/Spinner_Bank_type"
+                android:id="@+id/spn_type"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                />
+
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:background="#fcfcfc"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="Bank Account Type"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
