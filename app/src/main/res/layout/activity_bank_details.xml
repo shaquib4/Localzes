@@ -7,68 +7,69 @@
     tools:context=".BankDetailsActivity">
 
 
-
-
-            <RelativeLayout
-                android:id="@+id/rl_create"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border">
-
-                <TextView
-                    android:id="@+id/txtPC"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Your Bank Details"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_20ssp" />
-
-                <TextView
-                    android:id="@+id/txtShops_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtPC"
-                    android:layout_marginStart="@dimen/_11sdp"
-                    android:layout_marginTop="@dimen/_1sdp"
-
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text=""
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_17ssp" />
-
-                <TextView
-                    android:id="@+id/txtShops_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtShops_name"
-                    android:layout_marginStart="@dimen/_11sdp"
-                    android:layout_marginTop="@dimen/_1sdp"
-
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text=""
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_15ssp" />
-
-                <ImageView
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_80sdp"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_toEndOf="@+id/txtPC"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/shop_png" />
-            </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/rl_create"
         android:layout_width="match_parent"
-        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border">
+
+        <TextView
+            android:id="@+id/txtPC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Your Bank Details"
+            android:textColor="#fff"
+            android:textSize="@dimen/_20ssp" />
+
+        <TextView
+            android:id="@+id/txtShops_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPC"
+            android:layout_marginStart="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+
+            android:fontFamily="@font/montserrat_bold"
+            android:text=""
+            android:textColor="#fff"
+            android:textSize="@dimen/_17ssp" />
+
+        <TextView
+            android:id="@+id/txtShops_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtShops_name"
+            android:layout_marginStart="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text=""
+            android:textColor="#fff"
+            android:textSize="@dimen/_15ssp" />
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/txtPC"
+            android:contentDescription="@string/todo"
+            android:scaleType="fitXY"
+            android:src="@drawable/shop_png" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/noAccount"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_create">
+        android:layout_below="@id/rl_create"
+        android:visibility="invisible">
+
         <TextView
             android:id="@+id/txt"
             android:layout_width="wrap_content"
@@ -76,7 +77,8 @@
             android:layout_centerInParent="true"
             android:text="No Account Details Added"
             android:textColor="#000"
-            android:textSize="@dimen/_18ssp"/>
+            android:textSize="@dimen/_18ssp" />
+
         <Button
             android:id="@+id/btnShopNow"
             android:layout_width="160dp"
@@ -91,81 +93,95 @@
             android:textColor="#fcfcfc"
             android:textSize="18sp" />
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_below="@id/rl_create"
-        android:layout_height="match_parent">
-<RelativeLayout
-    android:id="@+id/acc"
-    android:layout_marginTop="@dimen/_18ssp"
-    android:layout_marginStart="@dimen/_18ssp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/txtaccNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/_16ssp"
-        android:fontFamily="@font/montserrat_medium"
-        android:textColor="#000"
-        android:text="Account Number:"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_medium"
-        android:textSize="@dimen/_15ssp"
-        android:textColor="@color/green"
-        android:layout_below="@+id/txtaccNo"
-        android:text="XXXXXXXXXX59"/>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/account"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_create">
+
         <RelativeLayout
-            android:layout_below="@+id/acc"
-            android:id="@+id/accName"
-            android:layout_marginTop="@dimen/_18ssp"
-            android:layout_marginStart="@dimen/_18ssp"
+            android:id="@+id/acc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_18ssp"
+            android:layout_marginTop="@dimen/_18ssp">
+
+            <TextView
+                android:id="@+id/txtaccNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Account Number:"
+                android:textColor="#000"
+                android:textSize="@dimen/_16ssp" />
+
+            <TextView
+                android:id="@+id/acc_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtaccNo"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="XXXXXXXXXX59"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_15ssp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/accName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/acc"
+            android:layout_marginStart="@dimen/_18ssp"
+            android:layout_marginTop="@dimen/_18ssp">
+
             <TextView
                 android:id="@+id/txtaccName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_16ssp"
                 android:fontFamily="@font/montserrat_medium"
+                android:text="Beneficiary Name:"
                 android:textColor="#000"
-                android:text="Beneficiary Name:"/>
+                android:textSize="@dimen/_16ssp" />
+
             <TextView
+                android:id="@+id/beneficiary_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:textSize="@dimen/_15ssp"
-                android:textColor="#3498db"
                 android:layout_below="@+id/txtaccName"
-                android:text="Shaquib Khan"/>
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Shaquib Khan"
+                android:textColor="#3498db"
+                android:textSize="@dimen/_15ssp" />
 
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_below="@+id/accName"
-            android:layout_marginTop="@dimen/_18ssp"
-            android:layout_marginStart="@dimen/_18ssp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/accName"
+            android:layout_marginStart="@dimen/_18ssp"
+            android:layout_marginTop="@dimen/_18ssp">
+
             <TextView
                 android:id="@+id/txtaccType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_16ssp"
                 android:fontFamily="@font/montserrat_medium"
+                android:text="Account Type:"
                 android:textColor="#000"
-                android:text="Account Type:"/>
+                android:textSize="@dimen/_16ssp" />
+
             <TextView
+                android:id="@+id/acc_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:textSize="@dimen/_15ssp"
-                android:textColor="#ff6347"
                 android:layout_below="@+id/txtaccType"
-                android:text="Savings"/>
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Savings"
+                android:textColor="#ff6347"
+                android:textSize="@dimen/_15ssp" />
 
         </RelativeLayout>
     </RelativeLayout>
