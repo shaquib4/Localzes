@@ -155,7 +155,7 @@ class AccountsSeller : AppCompatActivity() {
                 }
                 "Referrals" -> {
                 }
-                "Refunds Initiated" -> {
+                "Payments" -> {
                 }
                 "Transaction History" -> {
                 }
