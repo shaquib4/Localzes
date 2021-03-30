@@ -49,7 +49,7 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
                     }
 
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        if (snapshot.exists() && (!(snapshot.child("Account_Details").exists()))) {
+                        if (snapshot.exists() && !snapshot.child("Account_Details").exists()) {
                             showAddAccountDetailNotification(
                                 currentAuth!!.uid.toString(),
                                 person.toString(),
