@@ -273,7 +273,10 @@ class AccountsSeller : AppCompatActivity() {
                 }
                 "Referrals" -> {
                 }
-                "Refunds Initiated" -> {
+                "Account Details" -> {
+                    val intent = Intent(this, BankDetailsActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 "Transaction History" -> {
                 }
