@@ -29,6 +29,9 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
     private var userId = ""
     private lateinit var auth: FirebaseAuth
     private lateinit var userDatabase: DatabaseReference
+    private var razorpayID=""
+    private var sellerRate:Double=0.0
+    private var userRate:Double=0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_razorpay)
@@ -52,6 +55,7 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 email = snapshot.child("email").value.toString()
                 phone = snapshot.child("phone").value.toString()
+                razorpayID=snapshot.child("razorpayId").value.toString()
             }
         })
 
@@ -72,7 +76,7 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
                 orderRequest.put("currency", "INR")
                 orderRequest.put("receipt", "order_rcptid_11")
                 orderRequest.put("payment_capture", 1)
-                transfer.put("account", "acc_GpKvr4eZ3cXO9Y")
+                transfer.put("account", razorpayID)
                 transfer.put("amount", amo.toDouble() * 100)
                 transfer.put("currency", "INR")
                 transferRequest.put(transfer)
