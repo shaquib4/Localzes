@@ -117,14 +117,14 @@ class continue_payment : AppCompatActivity() {
 
                 }
                 "Pay with Paytm" -> {
-                    if (upiId == "") {
+                    /*if (upiId == "") {
                         Toast.makeText(
                             this,
                             "This shop does not accept payment via upi",
                             Toast.LENGTH_LONG
                         ).show()
 
-                    } else {
+                    } else {*/
                         val intent = Intent(this, PaymentActivity::class.java)
                         intent.putExtra("platform", "Cart")
                         intent.putExtra("shopId", shopId.toString())
@@ -134,16 +134,15 @@ class continue_payment : AppCompatActivity() {
                         intent.putExtra("deliveryFee", orderDeliveryFee.toString())
                         startActivity(intent)
                         finish()
-                    }
                 }
                 "Pay with Razor Pay" -> {
-                    if (razorpayId == "") {
+                    /*if (razorpayId == "") {
                         Toast.makeText(
                             this,
                             "This shop does not accept payment via upi",
                             Toast.LENGTH_LONG
                         ).show()
-                    } else {
+                    } else {*/
                         val intent = Intent(this, PaymentRazorpay::class.java)
                         intent.putExtra("platform", "Cart")
                         intent.putExtra("shopId", shopId.toString())
@@ -156,7 +155,6 @@ class continue_payment : AppCompatActivity() {
                         intent.putExtra("orderByMobile", orderByMobile.toString())*/
                         startActivity(intent)
                         finish()
-                    }
                 }
             }
         }

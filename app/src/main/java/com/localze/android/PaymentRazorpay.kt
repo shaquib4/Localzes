@@ -59,9 +59,9 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
         })
 
         amo = amount
-        amoun=   amo.toDouble()*userRate*1.18+amo.toDouble()
-        sellerAmount=amoun-amoun*razorpayRate*1.18
-        sellerFinalAmount=sellerAmount-sellerAmount*sellerRate *1.18
+        amoun=   (amo.toDouble()*userRate*1.18)+(amo.toDouble())
+        sellerAmount=(amoun)-(amoun*razorpayRate*1.18)
+        sellerFinalAmount=(sellerAmount)-(sellerAmount*sellerRate *1.18)
         Checkout.preload(applicationContext)
         /* auth=FirebaseAuth.getInstance()
          val user=auth.currentUser
