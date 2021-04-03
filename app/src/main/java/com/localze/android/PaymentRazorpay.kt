@@ -45,7 +45,7 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
         platform = intent.getStringExtra("platform").toString()
         userId = intent.getStringExtra("orderBy").toString()
         val databaseRef=FirebaseDatabase.getInstance().reference.child("RazorpayRates")
-        databaseRef.addValueEventListener(object :ValueEventListener{
+        databaseRef.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -57,17 +57,8 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
             }
 
         })
-
-        amo = amount
-        amoun=   (amo.toDouble()*userRate*1.18)+(amo.toDouble())
-        sellerAmount=(amoun)-(amoun*razorpayRate*1.18)
-        sellerFinalAmount=(sellerAmount)-(sellerAmount*sellerRate *1.18)
-        Checkout.preload(applicationContext)
-        /* auth=FirebaseAuth.getInstance()
-         val user=auth.currentUser
-         val uid =user!!.uid*/
         userDatabase = FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
-        userDatabase.addValueEventListener(object : ValueEventListener {
+        userDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -78,6 +69,16 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
                 razorpayID=snapshot.child("razorpayId").value.toString()
             }
         })
+
+        amo = amount
+        amoun=   (amo.toDouble()*userRate*1.18)+(amo.toDouble())
+        sellerAmount=(amoun)-(amoun*razorpayRate*1.18)
+        sellerFinalAmount=(sellerAmount)-(sellerAmount*sellerRate *1.18)
+        Checkout.preload(applicationContext)
+        /* auth=FirebaseAuth.getInstance()
+         val user=auth.currentUser
+         val uid =user!!.uid*/
+
 
         if (amount.isEmpty()) {
 
