@@ -20,9 +20,9 @@ import org.json.JSONObject
 
 class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
     private var amo = ""
-    private var amoun=0.0
-    private var sellerAmount=0.0
-    private var sellerFinalAmount=0.0
+    private var amoun = 0.0
+    private var sellerAmount = 0.0
+    private var sellerFinalAmount = 0.0
     private var ali = ""
     private var orderId = ""
     private var email = ""
@@ -32,10 +32,10 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
     private var userId = ""
     private lateinit var auth: FirebaseAuth
     private lateinit var userDatabase: DatabaseReference
-    private var razorpayID=""
-    private var sellerRate:Double=0.0
-    private var userRate:Double=0.0
-    private var razorpayRate:Double=0.0
+    private var razorpayID = ""
+    private var sellerRate: Double = 0.0
+    private var userRate: Double = 0.0
+    private var razorpayRate: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_razorpay)
@@ -44,16 +44,17 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
         orderId = intent.getStringExtra("orderId").toString()
         platform = intent.getStringExtra("platform").toString()
         userId = intent.getStringExtra("orderBy").toString()
-        val databaseRef=FirebaseDatabase.getInstance().reference.child("RazorpayRates")
-        databaseRef.addListenerForSingleValueEvent(object :ValueEventListener{
+        razorpayID = intent.getStringExtra("razorpayId").toString()
+        val databaseRef = FirebaseDatabase.getInstance().reference.child("RazorpayRates")
+        databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                razorpayRate=snapshot.child("razorpayCRate").value.toString().toDouble()
-                userRate=snapshot.child("rateSeller").value.toString().toDouble()
-                sellerRate=snapshot.child("rateCustomer").value.toString().toDouble()
+                razorpayRate = snapshot.child("razorpayCRate").value.toString().toDouble()
+                userRate = snapshot.child("rateSeller").value.toString().toDouble()
+                sellerRate = snapshot.child("rateCustomer").value.toString().toDouble()
             }
 
         })
@@ -66,14 +67,13 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 email = snapshot.child("email").value.toString()
                 phone = snapshot.child("phone").value.toString()
-                razorpayID=snapshot.child("razorpayId").value.toString()
             }
         })
 
         amo = amount
-        amoun=   (amo.toDouble()*userRate*1.18)+(amo.toDouble())
-        sellerAmount=(amoun)-(amoun*razorpayRate*1.18)
-        sellerFinalAmount=(sellerAmount)-(sellerAmount*sellerRate *1.18)
+        amoun = (amo.toDouble() * userRate * 1.18) + (amo.toDouble())
+        sellerAmount = (amoun) - (amoun * razorpayRate * 1.18)
+        sellerFinalAmount = (sellerAmount) - (sellerAmount * sellerRate * 1.18)
         Checkout.preload(applicationContext)
         /* auth=FirebaseAuth.getInstance()
          val user=auth.currentUser

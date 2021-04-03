@@ -125,15 +125,15 @@ class continue_payment : AppCompatActivity() {
                         ).show()
 
                     } else {*/
-                        val intent = Intent(this, PaymentActivity::class.java)
-                        intent.putExtra("platform", "Cart")
-                        intent.putExtra("shopId", shopId.toString())
-                        intent.putExtra("totalCost", totalCost.toString())
-                        intent.putExtra("orderId", orderId.toString())
-                        intent.putExtra("orderBy", uid.toString())
-                        intent.putExtra("deliveryFee", orderDeliveryFee.toString())
-                        startActivity(intent)
-                        finish()
+                    val intent = Intent(this, PaymentActivity::class.java)
+                    intent.putExtra("platform", "Cart")
+                    intent.putExtra("shopId", shopId.toString())
+                    intent.putExtra("totalCost", totalCost.toString())
+                    intent.putExtra("orderId", orderId.toString())
+                    intent.putExtra("orderBy", uid.toString())
+                    intent.putExtra("deliveryFee", orderDeliveryFee.toString())
+                    startActivity(intent)
+                    finish()
                 }
                 "Pay with Razor Pay" -> {
                     /*if (razorpayId == "") {
@@ -143,18 +143,19 @@ class continue_payment : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     } else {*/
-                        val intent = Intent(this, PaymentRazorpay::class.java)
-                        intent.putExtra("platform", "Cart")
-                        intent.putExtra("shopId", shopId.toString())
-                        intent.putExtra("totalCost", totalCost.toString())
-                        intent.putExtra("orderBy", uid.toString())
-                        intent.putExtra("orderId", orderId.toString())
-                        /*intent.putExtra("totalItem", totalItem.toString())
-                        intent.putExtra("delivery", deliveryAddress.toString())
-                        intent.putExtra("orderByName", orderByName.toString())
-                        intent.putExtra("orderByMobile", orderByMobile.toString())*/
-                        startActivity(intent)
-                        finish()
+                    val intent = Intent(this, PaymentRazorpay::class.java)
+                    intent.putExtra("platform", "Cart")
+                    intent.putExtra("shopId", shopId.toString())
+                    intent.putExtra("totalCost", totalCost.toString())
+                    intent.putExtra("orderBy", uid.toString())
+                    intent.putExtra("orderId", orderId.toString())
+                    intent.putExtra("razorpayId", razorpayId)
+                    /*intent.putExtra("totalItem", totalItem.toString())
+                    intent.putExtra("delivery", deliveryAddress.toString())
+                    intent.putExtra("orderByName", orderByName.toString())
+                    intent.putExtra("orderByMobile", orderByMobile.toString())*/
+                    startActivity(intent)
+                    finish()
                 }
             }
         }
