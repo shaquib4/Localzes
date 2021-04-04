@@ -40,6 +40,12 @@ class continue_payment : AppCompatActivity() {
     private var uidLists: String = ""
     private var upiId: String = ""
     private var razorpayId: String = ""
+    private var sellerRate: Double = 0.0
+    private var userRate: Double = 0.0
+    private var razorpayRate: Double = 0.0
+    private var amoun = 0.0
+    private var sellerAmount = 0.0
+    private var sellerFinalAmount = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_payment)
@@ -65,6 +71,19 @@ class continue_payment : AppCompatActivity() {
                 .child("MyOrders").child(orderId.toString())
         val databaseRef =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+        val databaseRefer = FirebaseDatabase.getInstance().reference.child("RateSection")
+        databaseRefer.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                razorpayRate = snapshot.child("razorpayRate").value.toString().toDouble()
+                userRate = snapshot.child("customerRate").value.toString().toDouble()
+                sellerRate = snapshot.child("sellerRate").value.toString().toDouble()
+            }
+
+        })
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -143,6 +162,11 @@ class continue_payment : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     } else {*/
+                    amoun =
+                        (totalCost.toString().toDouble() * userRate * 1.18) + (totalCost.toString()
+                            .toDouble())
+                    sellerAmount = (amoun) - (amoun * razorpayRate * 1.18)
+                    sellerFinalAmount = (sellerAmount) - (sellerAmount * sellerRate * 1.18)
                     val intent = Intent(this, PaymentRazorpay::class.java)
                     intent.putExtra("platform", "Cart")
                     intent.putExtra("shopId", shopId.toString())
@@ -150,6 +174,8 @@ class continue_payment : AppCompatActivity() {
                     intent.putExtra("orderBy", uid.toString())
                     intent.putExtra("orderId", orderId.toString())
                     intent.putExtra("razorpayId", razorpayId)
+                    intent.putExtra("customerAmount", amoun.toString())
+                    intent.putExtra("sellerAmount", sellerFinalAmount)
                     /*intent.putExtra("totalItem", totalItem.toString())
                     intent.putExtra("delivery", deliveryAddress.toString())
                     intent.putExtra("orderByName", orderByName.toString())
