@@ -69,39 +69,54 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
         /* auth=FirebaseAuth.getInstance()
          val user=auth.currentUser
          val uid =user!!.uid*/
+        val databaseRefer = FirebaseDatabase.getInstance().reference.child("RazorpayRates")
+        databaseRefer.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
-
-        if (amount.isEmpty()) {
-
-            Toast.makeText(this, "amount is missing", Toast.LENGTH_LONG).show()
-        } else {
-
-            val orderRequest = JSONObject()
-            val transfer = JSONObject()
-            val transferRequest = JSONArray()
-            try {
-
-                orderRequest.put(
-                    "amount",
-                    customerAmount.toDouble() * 100
-                ) // amount in the smallest currency unit
-                orderRequest.put("currency", "INR")
-                orderRequest.put("receipt", "order_rcptid_11")
-                orderRequest.put("payment_capture", 1)
-                transfer.put("account", razorpayID)
-                transfer.put("amount", sellersAmount.toDouble() * 100)
-                transfer.put("currency", "INR")
-                transferRequest.put(transfer)
-                orderRequest.put("transfers", transferRequest)
-                // orderRequest.put("order_id",PaymentData().orderId)
-
-                order(orderRequest)
-            } catch (e: Exception) {
-                // Handle Exception
-                println(e.printStackTrace())
             }
 
-        }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                razorpayRate = snapshot.child("razorpayCRate").value.toString().toDouble()
+                userRate = snapshot.child("rateSeller").value.toString().toDouble()
+                sellerRate = snapshot.child("rateCustomer").value.toString().toDouble()
+                if (amount.isEmpty()) {
+
+                    Toast.makeText(this@PaymentRazorpay, "amount is missing", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+
+                    val orderRequest = JSONObject()
+                    val transfer = JSONObject()
+                    val transferRequest = JSONArray()
+                    try {
+                        Toast.makeText(this@PaymentRazorpay, userRate.toString(), Toast.LENGTH_LONG)
+                            .show()
+
+                        orderRequest.put(
+                            "amount",
+                            customerAmount.toDouble() * 100
+                        ) // amount in the smallest currency unit
+                        orderRequest.put("currency", "INR")
+                        orderRequest.put("receipt", "order_rcptid_11")
+                        orderRequest.put("payment_capture", 1)
+                        transfer.put("account", razorpayID)
+                        transfer.put("amount", sellersAmount.toDouble() * 100)
+                        transfer.put("currency", "INR")
+                        transferRequest.put(transfer)
+                        orderRequest.put("transfers", transferRequest)
+                        // orderRequest.put("order_id",PaymentData().orderId)
+
+                        order(orderRequest)
+                    } catch (e: Exception) {
+                        // Handle Exception
+                        println(e.printStackTrace())
+                    }
+
+                }
+            }
+
+        })
+
 
     }
 

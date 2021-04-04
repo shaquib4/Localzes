@@ -71,19 +71,7 @@ class continue_payment : AppCompatActivity() {
                 .child("MyOrders").child(orderId.toString())
         val databaseRef =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
-        val databaseRefer = FirebaseDatabase.getInstance().reference.child("RazorpayRates")
-        databaseRefer.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
 
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                razorpayRate = snapshot.child("razorpayCRate").value.toString().toDouble()
-                userRate = snapshot.child("rateSeller").value.toString().toDouble()
-                sellerRate = snapshot.child("rateCustomer").value.toString().toDouble()
-            }
-
-        })
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -175,7 +163,7 @@ class continue_payment : AppCompatActivity() {
                     intent.putExtra("orderId", orderId.toString())
                     intent.putExtra("razorpayId", razorpayId)
                     intent.putExtra("customerAmount", amoun.toString())
-                    intent.putExtra("sellerAmount", sellerFinalAmount)
+                    intent.putExtra("sellerAmount", sellerFinalAmount.toString())
                     /*intent.putExtra("totalItem", totalItem.toString())
                     intent.putExtra("delivery", deliveryAddress.toString())
                     intent.putExtra("orderByName", orderByName.toString())
