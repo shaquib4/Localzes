@@ -175,7 +175,7 @@ class continue_payment : AppCompatActivity() {
                     intent.putExtra("orderId", orderId.toString())
                     intent.putExtra("razorpayId", razorpayId)
                     intent.putExtra("customerAmount", amoun.toString())
-                    intent.putExtra("sellerAmount", sellerFinalAmount)
+                    intent.putExtra("sellerAmount", sellerFinalAmount.toString())
                     /*intent.putExtra("totalItem", totalItem.toString())
                     intent.putExtra("delivery", deliveryAddress.toString())
                     intent.putExtra("orderByName", orderByName.toString())

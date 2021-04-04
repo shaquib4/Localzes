@@ -35,6 +35,8 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
     private var razorpayID = ""
     private var sellerRate: Double = 0.0
     private var userRate: Double = 0.0
+    private var cAmount=0.0
+    private var sAmount=0.0
     private var razorpayRate: Double = 0.0
     private var customerAmount: String = ""
     private var sellersAmount: String = ""
@@ -69,7 +71,8 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
         /* auth=FirebaseAuth.getInstance()
          val user=auth.currentUser
          val uid =user!!.uid*/
-
+        cAmount= kotlin.math.ceil(customerAmount.toDouble())
+        sAmount= kotlin.math.floor(sellersAmount.toDouble())
 
         if (amount.isEmpty()) {
 
@@ -80,16 +83,15 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
             val transfer = JSONObject()
             val transferRequest = JSONArray()
             try {
-
                 orderRequest.put(
                     "amount",
-                    customerAmount.toDouble() * 100
+                    cAmount.toDouble() * 100
                 ) // amount in the smallest currency unit
                 orderRequest.put("currency", "INR")
                 orderRequest.put("receipt", "order_rcptid_11")
                 orderRequest.put("payment_capture", 1)
                 transfer.put("account", razorpayID)
-                transfer.put("amount", sellersAmount.toDouble() * 100)
+                transfer.put("amount", sAmount.toDouble() * 100)
                 transfer.put("currency", "INR")
                 transferRequest.put(transfer)
                 orderRequest.put("transfers", transferRequest)
@@ -152,7 +154,7 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
             options.put("theme.color", "#ff4500")
             options.put("currency", "INR")
             options.put("order_id", orderId)
-            options.put("amount", customerAmount.toDouble() * 100)//pass amount in currency subunits
+            options.put("amount", cAmount.toDouble() * 100)//pass amount in currency subunits
 
             val prefill = JSONObject()
             prefill.put("email", email)
