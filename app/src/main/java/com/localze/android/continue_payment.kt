@@ -40,12 +40,6 @@ class continue_payment : AppCompatActivity() {
     private var uidLists: String = ""
     private var upiId: String = ""
     private var razorpayId: String = ""
-    private var sellerRate: Double = 0.0
-    private var userRate: Double = 0.0
-    private var razorpayRate: Double = 0.0
-    private var amoun = 0.0
-    private var sellerAmount = 0.0
-    private var sellerFinalAmount = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_payment)
@@ -71,7 +65,6 @@ class continue_payment : AppCompatActivity() {
                 .child("MyOrders").child(orderId.toString())
         val databaseRef =
             FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
-
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -124,52 +117,46 @@ class continue_payment : AppCompatActivity() {
 
                 }
                 "Pay with Paytm" -> {
-                    /*if (upiId == "") {
+                    if (upiId == "") {
                         Toast.makeText(
                             this,
                             "This shop does not accept payment via upi",
                             Toast.LENGTH_LONG
                         ).show()
 
-                    } else {*/
-                    val intent = Intent(this, PaymentActivity::class.java)
-                    intent.putExtra("platform", "Cart")
-                    intent.putExtra("shopId", shopId.toString())
-                    intent.putExtra("totalCost", totalCost.toString())
-                    intent.putExtra("orderId", orderId.toString())
-                    intent.putExtra("orderBy", uid.toString())
-                    intent.putExtra("deliveryFee", orderDeliveryFee.toString())
-                    startActivity(intent)
-                    finish()
+                    } else {
+                        val intent = Intent(this, PaymentActivity::class.java)
+                        intent.putExtra("platform", "Cart")
+                        intent.putExtra("shopId", shopId.toString())
+                        intent.putExtra("totalCost", totalCost.toString())
+                        intent.putExtra("orderId", orderId.toString())
+                        intent.putExtra("orderBy", uid.toString())
+                        intent.putExtra("deliveryFee", orderDeliveryFee.toString())
+                        startActivity(intent)
+                        finish()
+                    }
                 }
                 "Pay with Razor Pay" -> {
-                    /*if (razorpayId == "") {
+                    if (razorpayId == "") {
                         Toast.makeText(
                             this,
                             "This shop does not accept payment via upi",
                             Toast.LENGTH_LONG
                         ).show()
-                    } else {*/
-                    amoun =
-                        (totalCost.toString().toDouble() * userRate * 1.18) + (totalCost.toString()
-                            .toDouble())
-                    sellerAmount = (amoun) - (amoun * razorpayRate * 1.18)
-                    sellerFinalAmount = (sellerAmount) - (sellerAmount * sellerRate * 1.18)
-                    val intent = Intent(this, PaymentRazorpay::class.java)
-                    intent.putExtra("platform", "Cart")
-                    intent.putExtra("shopId", shopId.toString())
-                    intent.putExtra("totalCost", totalCost.toString())
-                    intent.putExtra("orderBy", uid.toString())
-                    intent.putExtra("orderId", orderId.toString())
-                    intent.putExtra("razorpayId", razorpayId)
-                    intent.putExtra("customerAmount", amoun.toString())
-                    intent.putExtra("sellerAmount", sellerFinalAmount.toString())
-                    /*intent.putExtra("totalItem", totalItem.toString())
-                    intent.putExtra("delivery", deliveryAddress.toString())
-                    intent.putExtra("orderByName", orderByName.toString())
-                    intent.putExtra("orderByMobile", orderByMobile.toString())*/
-                    startActivity(intent)
-                    finish()
+                    } else {
+                        val intent = Intent(this, PaymentRazorpay::class.java)
+                        intent.putExtra("platform", "Cart")
+                        intent.putExtra("shopId", shopId.toString())
+                        intent.putExtra("totalCost", totalCost.toString())
+                        intent.putExtra("orderBy", uid.toString())
+                        intent.putExtra("orderId", orderId.toString())
+                        /*intent.putExtra("totalItem", totalItem.toString())
+                        intent.putExtra("delivery", deliveryAddress.toString())
+                        intent.putExtra("orderByName", orderByName.toString())
+                        intent.putExtra("orderByMobile", orderByMobile.toString())*/
+                        startActivity(intent)
+                        finish()
+                    }
                 }
             }
         }
