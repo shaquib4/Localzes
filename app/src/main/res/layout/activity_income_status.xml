@@ -7,106 +7,104 @@
     tools:context=".IncomeStatus">
 
 
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@drawable/border">
 
-        <RelativeLayout
-            android:id="@+id/rl2"
+
+        <TextView
+            android:id="@+id/txtSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Income"
+            android:textColor="#fff"
+            android:textSize="@dimen/_30ssp" />
+
+
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120sdp"
-            android:background="@drawable/border">
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/txtSearch"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:scrollbars="none">
 
-
-            <TextView
-                android:id="@+id/txtSearch"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Income"
-                android:textColor="#fff"
-                android:textSize="@dimen/_30ssp" />
+                android:orientation="horizontal">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <Button
+                        android:id="@+id/btnCOD"
+                        android:layout_width="120dp"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="COD"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_10ssp" />
+                </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <HorizontalScrollView
-                android:layout_marginTop="@dimen/_3sdp"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_below="@id/txtSearch"
-                android:scrollbars="none">
+                    <Button
+                        android:id="@+id/btnPaytm"
+                        android:layout_width="120dp"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Paytm"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_10ssp" />
+                </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btnRazorpay"
+                        android:layout_width="120dp"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Razorpay"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_10ssp" />
+                </RelativeLayout>
 
-                        <Button
-                            android:id="@+id/btnCOD"
-                            android:layout_width="120dp"
-                            android:layout_height="@dimen/_32sdp"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/round_button"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:text="COD"
-                            android:textAllCaps="false"
-                            android:textSize="@dimen/_10ssp" />
-                    </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:id="@+id/btnPaytm"
-                            android:layout_width="120dp"
-                            android:layout_height="@dimen/_32sdp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/round_button"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:text="Paytm"
-                            android:textAllCaps="false"
-                            android:textSize="@dimen/_10ssp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:id="@+id/btnRazorpay"
-                            android:layout_width="120dp"
-                            android:layout_height="@dimen/_32sdp"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/round_button"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:text="Razorpay"
-                            android:textAllCaps="false"
-                            android:textSize="@dimen/_10ssp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <Button
-                            android:id="@+id/btnLocality2"
-                            android:layout_width="120dp"
-                            android:layout_height="@dimen/_32sdp"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/round_button"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:text="@string/locality2"
-                            android:textAllCaps="false"
-                            android:textSize="@dimen/_10ssp" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </HorizontalScrollView>
-        </RelativeLayout>
+                    <Button
+                        android:id="@+id/btnLocality2"
+                        android:layout_width="120dp"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/locality2"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_10ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
 
 </RelativeLayout>
