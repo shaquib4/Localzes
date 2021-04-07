@@ -7,6 +7,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_120sdp"
+        android:background="#fcfcfc"
         android:layout_marginHorizontal="@dimen/_5sdp"
         android:layout_marginVertical="@dimen/_3sdp"
         app:cardCornerRadius="@dimen/_10sdp">
@@ -22,7 +23,7 @@
               android:textColor="#3498db"
               android:fontFamily="@font/montserrat_bold"
               android:layout_height="wrap_content"
-              android:layout_marginStart="@dimen/_20sdp"
+              android:layout_marginStart="@dimen/_6sdp"
               android:text="₹300"/>
             <TextView
                 android:id="@+id/Date"
@@ -42,12 +43,13 @@
                 android:id="@+id/Payee"
                 android:layout_below="@+id/PaidAmount"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:textSize="@dimen/_16ssp"
+
                 android:textColor="#000"
                 android:fontFamily="@font/montserrat_medium"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:text="Status:"/>
             <TextView
                 android:id="@+id/trnfID"
@@ -83,10 +85,10 @@
                 android:layout_below="@+id/PaidAmount"
                 android:layout_toEndOf="@id/Payee"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:textSize="@dimen/_16ssp"
                 android:textColor="#ff6347"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/montserrat_bold"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:text="Transfer in Process(Online)"/>
@@ -107,7 +109,7 @@
                 android:textColor="#000"
                 android:fontFamily="@font/montserrat_medium"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_6sdp"
                 android:text="Transfer Id:"/>
 
         </RelativeLayout>
