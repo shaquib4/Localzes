@@ -1,7 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginVertical="@dimen/_3sdp"
+        app:cardCornerRadius="@dimen/_10sdp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+          <TextView
+              android:id="@+id/PaidAmount"
+              android:layout_width="wrap_content"
+              android:layout_marginTop="@dimen/_3sdp"
+              android:textSize="@dimen/_22ssp"
+              android:textColor="#3498db"
+              android:fontFamily="@font/montserrat_bold"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="@dimen/_20sdp"
+              android:text="₹300"/>
+            <TextView
+                android:id="@+id/Date"
+
+                android:layout_below="@+id/viewIncome"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="#000"
+                android:textAlignment="textEnd"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="17/03/2021, 9:30pm"/>
+            <TextView
+                android:id="@+id/Payee"
+                android:layout_below="@+id/PaidAmount"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="#000"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_18sdp"
+                android:text="Status:"/>
+            <TextView
+                android:id="@+id/trnfID"
+                android:layout_below="@+id/Payee"
+                android:layout_toEndOf="@id/PayeePhone"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="#000"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_height="wrap_content"
+
+                android:text="123456789"/>
+            <TextView
+                android:id="@+id/PayeeNAme"
+
+                android:layout_toEndOf="@id/Payee"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="#000"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAlignment="textEnd"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+
+                android:text=" Shaquib Khan"/>
+            <TextView
+                android:id="@+id/PayeeName"
+                android:layout_below="@+id/PaidAmount"
+                android:layout_toEndOf="@id/Payee"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="#000"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Transfer in Process(Online)"/>
+            <View
+                android:id="@+id/viewIncome"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="#eaeaea"
+                android:layout_below="@+id/PayeePhone"/>
+
+            <TextView
+                android:id="@+id/PayeePhone"
+                android:layout_below="@+id/Payee"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="#000"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_18sdp"
+                android:text="Transfer Id:"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>
