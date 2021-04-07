@@ -5,62 +5,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PaymentModes">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardCod"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_65sdp"
         app:cardCornerRadius="@dimen/_7sdp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/cash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="Cash On Delivery"
-                android:textStyle="bold"
                 android:textColor="#de4500"
-                android:layout_centerHorizontal="true"
-                android:textSize="@dimen/_22sdp"/>
+                android:textSize="@dimen/_22sdp"
+                android:textStyle="bold" />
+
             <ImageView
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:src="@drawable/ic_cod_pay"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_25sdp"
                 android:layout_toEndOf="@+id/cash"
-                android:layout_centerVertical="true"/>
+                android:src="@drawable/ic_cod_pay" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_below="@+id/cardCod"
         android:id="@+id/cardPaytm"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_65sdp"
+        android:layout_below="@+id/cardCod"
+        android:layout_marginTop="@dimen/_5sdp"
         app:cardCornerRadius="@dimen/_7sdp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/paytm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="Paytm"
-                android:textStyle="bold"
                 android:textColor="#de4500"
-                android:layout_centerHorizontal="true"
-                android:textSize="@dimen/_22sdp"/>
+                android:textSize="@dimen/_22sdp"
+                android:textStyle="bold" />
+
             <ImageView
 
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:src="@drawable/paytm"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_35sdp"
                 android:layout_toEndOf="@+id/paytm"
-                android:layout_centerVertical="true"/>
+                android:src="@drawable/paytm" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardRazorpay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_65sdp"
+        android:layout_below="@+id/cardPaytm"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_7sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/razorpay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="Razorpay"
+                android:textColor="#de4500"
+                android:textSize="@dimen/_22sdp"
+                android:textStyle="bold" />
+
+            <ImageView
+
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_35sdp"
+                android:layout_toEndOf="@+id/razorpay"
+                android:src="@drawable/ic_razorpay" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
