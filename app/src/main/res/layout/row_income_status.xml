@@ -6,7 +6,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_120sdp"
+        android:layout_height="@dimen/_143sdp"
         android:layout_marginHorizontal="@dimen/_5sdp"
         android:layout_marginVertical="@dimen/_3sdp"
         android:background="#fcfcfc"
@@ -43,10 +43,22 @@
                 android:textSize="@dimen/_14ssp" />
 
             <TextView
-                android:id="@+id/Payee"
+                android:id="@+id/StlDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/PaidAmount"
+                android:layout_marginStart="@dimen/_8sdp"
+
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Settelment Date:"
+                android:textColor="#000"
+                android:textSize="@dimen/_16ssp" />
+            <TextView
+                android:id="@+id/Payee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/StlDate"
                 android:layout_marginStart="@dimen/_8sdp"
 
                 android:layout_marginTop="@dimen/_5sdp"
@@ -90,7 +102,7 @@
                 android:id="@+id/Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/PaidAmount"
+                android:layout_below="@+id/StlDate"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toEndOf="@id/Payee"
@@ -98,6 +110,18 @@
                 android:text="Transfer in Process(Online)"
                 android:textColor="#ff6347"
                 android:textSize="@dimen/_16ssp" />
+            <TextView
+                android:id="@+id/txtSettleDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/PaidAmount"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_toEndOf="@id/StlDate"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="17/03/2001 ,9:50Am"
+                android:textColor="#ff6347"
+                android:textSize="@dimen/_15ssp" />
 
             <View
                 android:id="@+id/viewIncome"
