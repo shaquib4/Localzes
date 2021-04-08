@@ -25,56 +25,59 @@
             android:textSize="@dimen/_30ssp" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSearch"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-
-            <LinearLayout
-                android:layout_below="@id/txtSearch"
-                android:layout_width="match_parent"
-                android:weightSum="2"
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_weight="1">
 
-                <RelativeLayout
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnList"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/round_button"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="List Order"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_10ssp" />
+            </RelativeLayout>
 
-                    <Button
-                        android:id="@+id/btnList"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/round_button"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="List Order"
-                        android:textAllCaps="false"
-                        android:textSize="@dimen/_10ssp" />
-                </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-                <RelativeLayout
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-
-                    <Button
-                        android:id="@+id/btnCart"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_32sdp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:background="@drawable/round_button"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="Cart Order"
-                        android:textAllCaps="false"
-                        android:textSize="@dimen/_10ssp" />
-                </RelativeLayout>
+                <Button
+                    android:id="@+id/btnCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/round_button"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Cart Order"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_10ssp" />
+            </RelativeLayout>
 
 
-
-
-            </LinearLayout>
+        </LinearLayout>
 
     </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_income_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl2"
+        tools:listitem="@layout/row_income_status" />
 
 </RelativeLayout>
