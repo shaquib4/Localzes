@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.localze.android.Adapters.AdapterIncomeStatus
+import com.localze.android.Modals.ModalIncomeStatus
 
 class IncomeStatus : AppCompatActivity() {
     private lateinit var adapterIncome: AdapterIncomeStatus
@@ -19,6 +20,7 @@ class IncomeStatus : AppCompatActivity() {
     private lateinit var listButton: Button
     private lateinit var cartButton: Button
     private lateinit var auth: FirebaseAuth
+    private lateinit var listIncomeDetails: List<ModalIncomeStatus>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_income_status)
@@ -26,6 +28,7 @@ class IncomeStatus : AppCompatActivity() {
         listButton = findViewById(R.id.btnList)
         cartButton = findViewById(R.id.btnCart)
         recyclerIncome = findViewById(R.id.recycler_income_status)
+        listIncomeDetails = ArrayList<ModalIncomeStatus>()
         recyclerIncome.layoutManager = LinearLayoutManager(this)
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
@@ -56,25 +59,33 @@ class IncomeStatus : AppCompatActivity() {
     }
 
     private fun showRazorpayOrders(uid: String, s: String) {
-
-    }
-
-    private fun showPaytmOrders(uid: String, s: String) {
         val databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
         if (s == "Cart") {
             databaseReference.child("Orders").addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
+
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    (listIncomeDetails as ArrayList<ModalIncomeStatus>).clear()
                     for (i in snapshot.children) {
-                        if (i.child("paymentMode").value.toString() == "Paid(Pay with Paytm)") {
-
+                        if (i.child("paymentMode").value.toString() == "Paid Online") {
+                            val obj = ModalIncomeStatus(
+                                i.child("orderCost").value.toString(),
+                                i.child("transferId").value.toString(),
+                                i.child("settlementId").value.toString(),
+                                i.child("orderId").value.toString(),
+                                i.child("orderByName").value.toString(),
+                                "Razorpay",
+                                i.child("orderByMobile").value.toString()
+                            )
+                            (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                         }
                     }
+                    adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
+                    recyclerIncome.adapter = adapterIncome
                 }
-
             })
         }
         if (s == "List") {
@@ -85,11 +96,86 @@ class IncomeStatus : AppCompatActivity() {
                     }
 
                     override fun onDataChange(snapshot: DataSnapshot) {
+                        (listIncomeDetails as ArrayList<ModalIncomeStatus>).clear()
                         for (i in snapshot.children) {
-                            if (i.child("paymentMode").value.toString() == "Paid(Pay with Paytm)") {
-
+                            if (i.child("paymentMode").value.toString() == "Paid Online") {
+                                val obj = ModalIncomeStatus(
+                                    i.child("orderCost").value.toString(),
+                                    i.child("transferId").value.toString(),
+                                    i.child("settlementId").value.toString(),
+                                    i.child("orderId").value.toString(),
+                                    i.child("orderByName").value.toString(),
+                                    "Razorpay",
+                                    i.child("orderByMobile").value.toString()
+                                )
+                                (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                             }
                         }
+                        adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
+                        recyclerIncome.adapter = adapterIncome
+                    }
+
+                })
+        }
+
+
+    }
+
+    private fun showPaytmOrders(uid: String, s: String) {
+        val databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+        if (s == "Cart") {
+            databaseReference.child("Orders").addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    (listIncomeDetails as ArrayList<ModalIncomeStatus>).clear()
+                    for (i in snapshot.children) {
+                        if (i.child("paymentMode").value.toString() == "Paid(Pay with Paytm)") {
+                            val obj = ModalIncomeStatus(
+                                i.child("orderCost").value.toString(),
+                                i.child("transferId").value.toString(),
+                                i.child("settlementId").value.toString(),
+                                i.child("orderId").value.toString(),
+                                i.child("orderByName").value.toString(),
+                                "Paytm",
+                                i.child("orderByMobile").value.toString()
+                            )
+                            (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
+                        }
+                    }
+                    adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
+                    recyclerIncome.adapter = adapterIncome
+                }
+            })
+        }
+        if (s == "List") {
+            databaseReference.child("OrdersLists")
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        (listIncomeDetails as ArrayList<ModalIncomeStatus>).clear()
+                        for (i in snapshot.children) {
+                            if (i.child("paymentMode").value.toString() == "Paid(Pay with Paytm)") {
+                                val obj = ModalIncomeStatus(
+                                    i.child("orderCost").value.toString(),
+                                    i.child("transferId").value.toString(),
+                                    i.child("settlementId").value.toString(),
+                                    i.child("orderId").value.toString(),
+                                    i.child("orderByName").value.toString(),
+                                    "Paytm",
+                                    i.child("orderByMobile").value.toString()
+                                )
+                                (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
+                            }
+                        }
+                        adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
+                        recyclerIncome.adapter = adapterIncome
                     }
 
                 })
@@ -105,11 +191,23 @@ class IncomeStatus : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    (listIncomeDetails as ArrayList<ModalIncomeStatus>).clear()
                     for (i in snapshot.children) {
                         if (i.child("paymentMode").value.toString() == "Unpaid(Cash on Delivery)") {
-
+                            val obj = ModalIncomeStatus(
+                                i.child("orderCost").value.toString(),
+                                i.child("transferId").value.toString(),
+                                i.child("settlementId").value.toString(),
+                                i.child("orderId").value.toString(),
+                                i.child("orderByName").value.toString(),
+                                "Cash On Delivery",
+                                i.child("orderByMobile").value.toString()
+                            )
+                            (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                         }
                     }
+                    adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
+                    recyclerIncome.adapter = adapterIncome
                 }
 
             })
@@ -122,11 +220,23 @@ class IncomeStatus : AppCompatActivity() {
                     }
 
                     override fun onDataChange(snapshot: DataSnapshot) {
+                        (listIncomeDetails as ArrayList<ModalIncomeStatus>).clear()
                         for (i in snapshot.children) {
                             if (i.child("paymentMode").value.toString() == "Unpaid(Cash on Delivery)") {
-
+                                val obj = ModalIncomeStatus(
+                                    i.child("orderCost").value.toString(),
+                                    i.child("transferId").value.toString(),
+                                    i.child("settlementId").value.toString(),
+                                    i.child("orderId").value.toString(),
+                                    i.child("orderByName").value.toString(),
+                                    "Cash On Delivery",
+                                    i.child("orderByMobile").value.toString()
+                                )
+                                (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                             }
                         }
+                        adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
+                        recyclerIncome.adapter = adapterIncome
                     }
 
                 })

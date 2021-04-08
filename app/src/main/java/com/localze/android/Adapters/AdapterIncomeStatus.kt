@@ -34,6 +34,17 @@ class AdapterIncomeStatus (val context: Context, val listIncome:List<ModalIncome
         holder.payeeName.text=list_Income.payeeName
         holder.transferStatus.text="TransferInProgress"
         holder.transferId.text=list_Income.transferId
+        when(list_Income.payWith){
+            "Cash On Delivery"->{
+
+            }
+            "Paytm"->{
+
+            }
+            "Razorpay"->{
+
+            }
+        }
 
 
     }
