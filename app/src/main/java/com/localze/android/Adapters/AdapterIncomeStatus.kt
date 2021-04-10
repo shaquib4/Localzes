@@ -42,12 +42,12 @@ class AdapterIncomeStatus(val context: Context, val listIncome: List<ModalIncome
         holder.trnfTime.text = formattedDate
         when (list_Income.payWith) {
             "Cash On Delivery" -> {
-                holder.transferStatus.text = "TransferInProgress"
-                holder.transferId.text = list_Income.transferId
+                holder.transferStatus.text = "Amount collected by COD"
+                holder.transferId.text = "------"
             }
             "Paytm" -> {
                 holder.transferStatus.text = "TransferSuccessful"
-                holder.transferId.text = ""
+                holder.transferId.text = "------"
             }
             "Razorpay" -> {
                 if (list_Income.settlementId == "") {
