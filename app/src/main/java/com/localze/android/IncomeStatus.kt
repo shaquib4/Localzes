@@ -25,7 +25,7 @@ class IncomeStatus : AppCompatActivity() {
     private lateinit var cartButton: Button
     private lateinit var auth: FirebaseAuth
     private lateinit var listIncomeDetails: List<ModalIncomeStatus>
-    private lateinit var progress:ProgressDialog
+    private lateinit var progress: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_income_status)
@@ -33,7 +33,7 @@ class IncomeStatus : AppCompatActivity() {
         listButton = findViewById(R.id.btnList)
         cartButton = findViewById(R.id.btnCart)
         recyclerIncome = findViewById(R.id.recycler_income_status)
-        progress= ProgressDialog(this)
+        progress = ProgressDialog(this)
         progress.setTitle("Please Wait")
         progress.setCanceledOnTouchOutside(false)
         listIncomeDetails = ArrayList<ModalIncomeStatus>()
@@ -56,16 +56,16 @@ class IncomeStatus : AppCompatActivity() {
         cartButton.setOnClickListener {
             if (paymentMode == "COD") {
                 progress.setMessage("Fetching Details")
-                showCODOrders(uid, "Cart",progress)
+                showCODOrders(uid, "Cart", progress)
             }
             if (paymentMode == "PAYTM") {
                 progress.setMessage("Fetching Details")
-                showPaytmOrders(uid, "Cart",progress)
+                showPaytmOrders(uid, "Cart", progress)
             }
             if (paymentMode == "RAZORPAY") {
                 progress.setMessage("Fetching Details")
                 progress.show()
-                showRazorpayOrders(uid, "Cart",progress)
+                showRazorpayOrders(uid, "Cart", progress)
             }
         }
     }
@@ -100,7 +100,8 @@ class IncomeStatus : AppCompatActivity() {
                                 i.child("orderId").value.toString(),
                                 i.child("orderByName").value.toString(),
                                 "Razorpay",
-                                i.child("orderByMobile").value.toString()
+                                i.child("orderByMobile").value.toString(),
+                                i.child("orderTime").value.toString()
                             )
                             (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                         }
@@ -135,7 +136,8 @@ class IncomeStatus : AppCompatActivity() {
                                     i.child("orderId").value.toString(),
                                     i.child("orderByName").value.toString(),
                                     "Razorpay",
-                                    i.child("orderByMobile").value.toString()
+                                    i.child("orderByMobile").value.toString(),
+                                    i.child("orderTime").value.toString()
                                 )
                                 (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                             }
@@ -205,7 +207,8 @@ class IncomeStatus : AppCompatActivity() {
                                 i.child("orderId").value.toString(),
                                 i.child("orderByName").value.toString(),
                                 "Paytm",
-                                i.child("orderByMobile").value.toString()
+                                i.child("orderByMobile").value.toString(),
+                                i.child("orderTime").value.toString()
                             )
                             (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                         }
@@ -234,7 +237,8 @@ class IncomeStatus : AppCompatActivity() {
                                     i.child("orderId").value.toString(),
                                     i.child("orderByName").value.toString(),
                                     "Paytm",
-                                    i.child("orderByMobile").value.toString()
+                                    i.child("orderByMobile").value.toString(),
+                                    i.child("orderTime").value.toString()
                                 )
                                 (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                             }
@@ -271,7 +275,8 @@ class IncomeStatus : AppCompatActivity() {
                                 i.child("orderId").value.toString(),
                                 i.child("orderByName").value.toString(),
                                 "Cash On Delivery",
-                                i.child("orderByMobile").value.toString()
+                                i.child("orderByMobile").value.toString(),
+                                i.child("orderTime").value.toString()
                             )
                             (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                         }
@@ -301,7 +306,8 @@ class IncomeStatus : AppCompatActivity() {
                                     i.child("orderId").value.toString(),
                                     i.child("orderByName").value.toString(),
                                     "Cash On Delivery",
-                                    i.child("orderByMobile").value.toString()
+                                    i.child("orderByMobile").value.toString(),
+                                    i.child("orderTime").value.toString()
                                 )
                                 (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                             }
@@ -320,7 +326,7 @@ class IncomeStatus : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         auth = FirebaseAuth.getInstance()
-        progress= ProgressDialog(this)
+        progress = ProgressDialog(this)
         progress.setTitle("Please Wait")
         progress.setCanceledOnTouchOutside(false)
         val user = auth.currentUser
