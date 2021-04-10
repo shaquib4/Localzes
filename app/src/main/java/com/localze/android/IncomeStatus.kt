@@ -45,22 +45,30 @@ class IncomeStatus : AppCompatActivity() {
 
         listButton.setOnClickListener {
             if (paymentMode == "COD") {
+                progress.setMessage("Fetching Details")
+                progress.show()
                 showCODOrders(uid, "List", progress)
             }
             if (paymentMode == "PAYTM") {
+                progress.setMessage("Fetching Details")
+                progress.show()
                 showPaytmOrders(uid, "List", progress)
             }
             if (paymentMode == "RAZORPAY") {
+                progress.setMessage("Fetching Details")
+                progress.show()
                 showRazorpayOrders(uid, "List", progress)
             }
         }
         cartButton.setOnClickListener {
             if (paymentMode == "COD") {
                 progress.setMessage("Fetching Details")
+                progress.show()
                 showCODOrders(uid, "Cart", progress)
             }
             if (paymentMode == "PAYTM") {
                 progress.setMessage("Fetching Details")
+                progress.show()
                 showPaytmOrders(uid, "Cart", progress)
             }
             if (paymentMode == "RAZORPAY") {
