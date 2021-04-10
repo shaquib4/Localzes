@@ -117,6 +117,7 @@ class Home_seller : AppCompatActivity() {
             }
             return@setOnNavigationItemSelectedListener false
         }
+
         orderDatabaseReference = FirebaseDatabase.getInstance().reference.child("seller")
         orderDatabaseReference.child(uid)
             .addValueEventListener(object : ValueEventListener {
@@ -129,6 +130,10 @@ class Home_seller : AppCompatActivity() {
                             .exists()) || snapshot.child("staffOfShop").value.toString() == ""
                     ) {
                         homeSeller(uid)
+                        incomeStatus.setOnClickListener {
+                            startActivity(Intent(this@Home_seller,IncomeType::class.java))
+                            finish()
+                        }
                     } else {
                         val uidOfShop = snapshot.child("staffOfShop").value.toString()
                         if (snapshot.child("StaffOf").child(uidOfShop).exists()) {

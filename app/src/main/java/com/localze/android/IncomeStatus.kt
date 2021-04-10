@@ -331,7 +331,7 @@ class IncomeStatus : AppCompatActivity() {
         progress.setCanceledOnTouchOutside(false)
         val user = auth.currentUser
         val uid = user!!.uid
-        paymentMode = intent.getStringExtra("PaymentMode").toString()
+        paymentMode = intent.getStringExtra("IncomeType").toString()
         if (paymentMode == "COD") {
             progress.setMessage("Fetching Details")
             progress.show()
