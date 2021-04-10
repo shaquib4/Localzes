@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -178,8 +179,16 @@ class IncomeStatus : AppCompatActivity() {
             Response.ErrorListener {
 
             }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] =
+                    "Basic cnpwX2xpdmVfdTdtUURuMGh6aE9Ick06ZU15aDRScE1CSHpMcVZRRDMxbGE5MGdi"
+                return headers
+            }
 
         }
+        Volley.newRequestQueue(this).add(jsonObjectRequest)
 
     }
 
