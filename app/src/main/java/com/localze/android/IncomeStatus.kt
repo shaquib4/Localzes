@@ -102,17 +102,7 @@ class IncomeStatus : AppCompatActivity() {
                                 uid,
                                 i.child("orderId").value.toString()
                             )
-                            val obj = ModalIncomeStatus(
-                                i.child("orderCost").value.toString(),
-                                i.child("transferId").value.toString(),
-                                i.child("settlementId").value.toString(),
-                                i.child("orderId").value.toString(),
-                                i.child("orderByName").value.toString(),
-                                "Razorpay",
-                                i.child("orderByMobile").value.toString(),
-                                i.child("orderTime").value.toString()
-                            )
-                            (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
+
                         }
                     }
                     /*progress.dismiss()*/
@@ -138,17 +128,7 @@ class IncomeStatus : AppCompatActivity() {
                                     uid,
                                     i.child("orderId").value.toString()
                                 )
-                                val obj = ModalIncomeStatus(
-                                    i.child("orderCost").value.toString(),
-                                    i.child("transferId").value.toString(),
-                                    i.child("settlementId").value.toString(),
-                                    i.child("orderId").value.toString(),
-                                    i.child("orderByName").value.toString(),
-                                    "Razorpay",
-                                    i.child("orderByMobile").value.toString(),
-                                    i.child("orderTime").value.toString()
-                                )
-                                (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
+
                             }
                         }
                         /*progress.dismiss()*/
@@ -177,10 +157,51 @@ class IncomeStatus : AppCompatActivity() {
                 headers["settlementId"] = settlementId
                 if (s == "Cart") {
                     FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                        .child("Orders").child(orderId).updateChildren(headers)
+                        .child("Orders").child(orderId).updateChildren(headers).addOnSuccessListener {
+                            val databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                            databaseReference.child("Orders").child(orderId).addValueEventListener(object :ValueEventListener{
+                                override fun onCancelled(error: DatabaseError) {
+
+                                }
+
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    val obj = ModalIncomeStatus(
+                                        snapshot.child("orderCost").value.toString(),
+                                        snapshot.child("transferId").value.toString(),
+                                        snapshot.child("settlementId").value.toString(),
+                                        snapshot.child("orderId").value.toString(),
+                                        snapshot.child("orderByName").value.toString(),
+                                        "Razorpay",
+                                        snapshot.child("orderByMobile").value.toString(),
+                                        snapshot.child("orderTime").value.toString()
+                                    )
+                                    (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
+                                }
+                            })
+                        }
                 } else {
                     FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                         .child("OrdersLists").child(orderId).updateChildren(headers)
+                    val databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                    databaseReference.child("OrdersLists").child(orderId).addValueEventListener(object :ValueEventListener{
+                        override fun onCancelled(error: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val obj = ModalIncomeStatus(
+                                snapshot.child("orderCost").value.toString(),
+                                snapshot.child("transferId").value.toString(),
+                                snapshot.child("settlementId").value.toString(),
+                                snapshot.child("orderId").value.toString(),
+                                snapshot.child("orderByName").value.toString(),
+                                "Razorpay",
+                                snapshot.child("orderByMobile").value.toString(),
+                                snapshot.child("orderTime").value.toString()
+                            )
+                            (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
+                        }
+                    })
                 }
 
             },
