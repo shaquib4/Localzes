@@ -7,7 +7,8 @@ class ModalIncomeStatus(
     val orderId: String,
     val payeeName: String,
     val payWith: String,
-    val payeeMobNo: String
+    val payeeMobNo: String,
+    val orderTime:String
 ) {
-    constructor() : this("", "", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "", "","")
 }

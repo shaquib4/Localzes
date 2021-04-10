@@ -124,6 +124,8 @@ class continue_payment : AppCompatActivity() {
                             .child(shopId.toString()).child("Orders").child(orderId.toString())
                     val headers = HashMap<String, Any>()
                     headers["paymentMode"] = "Unpaid(Cash on Delivery)"
+                    headers["transferId"]=""
+                    headers["settlementId"]=""
                     dataReference.updateChildren(headers).addOnSuccessListener {
                         val userRef: DatabaseReference =
                             FirebaseDatabase.getInstance().reference.child("users")

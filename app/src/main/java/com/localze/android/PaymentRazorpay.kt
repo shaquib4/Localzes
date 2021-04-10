@@ -20,6 +20,7 @@ import org.json.JSONObject
 
 class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
     private var amo = ""
+    private var trnfId = ""
     private var amoun = 0.0
     private var sellerAmount = 0.0
     private var sellerFinalAmount = 0.0
@@ -35,8 +36,8 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
     private var razorpayID = ""
     private var sellerRate: Double = 0.0
     private var userRate: Double = 0.0
-    private var cAmount=0.0
-    private var sAmount=0.0
+    private var cAmount = 0.0
+    private var sAmount = 0.0
     private var razorpayRate: Double = 0.0
     private var customerAmount: String = ""
     private var sellersAmount: String = ""
@@ -71,8 +72,8 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
         /* auth=FirebaseAuth.getInstance()
          val user=auth.currentUser
          val uid =user!!.uid*/
-        cAmount= kotlin.math.ceil(customerAmount.toDouble())
-        sAmount= kotlin.math.floor(sellersAmount.toDouble())
+        cAmount = kotlin.math.ceil(customerAmount.toDouble())
+        sAmount = kotlin.math.floor(sellersAmount.toDouble())
 
         if (amount.isEmpty()) {
 
@@ -188,8 +189,7 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
                     FirebaseDatabase.getInstance().reference.child("users").child(userId)
                         .child("MyOrders").child(orderId).updateChildren(headers)
                         .addOnSuccessListener {
-                            startActivity(Intent(this, NewActivity::class.java))
-                            finish()
+                            sendRequest(p1?.orderId, orderId, platform)
                         }
                 }
         } else {
@@ -199,10 +199,51 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
                     FirebaseDatabase.getInstance().reference.child("users").child(userId)
                         .child("MyOrderList").child(orderId).updateChildren(headers)
                         .addOnSuccessListener {
+                            sendRequest(p1?.orderId, orderId, platform)
+                        }
+                }
+        }
+    }
+
+    private fun sendRequest(orderId: String?, orderId1: String, platform: String) {
+        val jsonObjectRequest = object : JsonObjectRequest(
+            Request.Method.GET,
+            "https://api.razorpay.com/v1/orders/${orderId.toString()}/?expand[]=transfers", null,
+            Response.Listener {
+                val JSONArray = it.getJSONObject("transfers")
+                val newJsonArray = JSONArray.getJSONObject("items")
+                trnfId = newJsonArray.getString("id")
+                val newHeaders = HashMap<String, Any>()
+                val transferId: String = trnfId
+                newHeaders["transferId"] = transferId
+                if (platform == "Cart") {
+                    FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
+                        .child("Orders").child(orderId1).updateChildren(newHeaders)
+                        .addOnSuccessListener {
+                            startActivity(Intent(this, NewActivity::class.java))
+                            finish()
+                        }
+                } else {
+                    FirebaseDatabase.getInstance().reference.child("seller").child(shopId)
+                        .child("OrdersLists")
+                        .child(orderId1).updateChildren(newHeaders).addOnSuccessListener {
                             startActivity(Intent(this, NewActivity::class.java))
                             finish()
                         }
                 }
+
+            },
+            Response.ErrorListener {
+
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] =
+                    "Basic cnpwX2xpdmVfdTdtUURuMGh6aE9Ick06ZU15aDRScE1CSHpMcVZRRDMxbGE5MGdi"
+                return headers
+            }
         }
+        Volley.newRequestQueue(this).add(jsonObjectRequest)
     }
 }

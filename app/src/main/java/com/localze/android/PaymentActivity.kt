@@ -32,19 +32,19 @@ class PaymentActivity : AppCompatActivity() {
     var note: TextView? = null
     var name: TextView? = null
     var upivirtualid: TextView? = null
-    private  lateinit var send:RelativeLayout
+    private lateinit var send: RelativeLayout
     var TAG = "main"
     private var shopId: String? = "100"
     private var totalCost: String? = ""
-    private var deliveryAmount:String?=""
+    private var deliveryAmount: String? = ""
     private var uid: String? = "400"
     private var orderId: String? = "800"
     private var mode: String? = "900"
     private lateinit var progressDialog: ProgressDialog
     private lateinit var orderDetails: ModelOrderDetails
     private lateinit var cartProducts: List<UserCartDetails>
-    private lateinit var itemCost:TextView
-    private lateinit var deliveryFee:TextView
+    private lateinit var itemCost: TextView
+    private lateinit var deliveryFee: TextView
     val UPI_PAYMENT = 0
     private lateinit var userDatabase: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +55,7 @@ class PaymentActivity : AppCompatActivity() {
         progressDialog.setCanceledOnTouchOutside(false)
         shopId = intent.getStringExtra("shopId")
         totalCost = intent.getStringExtra("totalCost")
-        deliveryAmount=intent.getStringExtra("deliveryFee")
+        deliveryAmount = intent.getStringExtra("deliveryFee")
         uid = intent.getStringExtra("orderBy")
         orderId = intent.getStringExtra("orderId")
         mode = intent.getStringExtra("platform")
@@ -70,11 +70,11 @@ class PaymentActivity : AppCompatActivity() {
         retryPayment.setOnClickListener {
             this.recreate()
         }
-        itemCost=findViewById(R.id.txtPayAmount)
-        deliveryFee=findViewById(R.id.charge)
-        val c=totalCost.toString().toDouble()-deliveryAmount.toString().toDouble()
-        itemCost.text="₹${c.toString()}"
-        deliveryFee.text="₹${deliveryAmount.toString()}"
+        itemCost = findViewById(R.id.txtPayAmount)
+        deliveryFee = findViewById(R.id.charge)
+        val c = totalCost.toString().toDouble() - deliveryAmount.toString().toDouble()
+        itemCost.text = "₹${c.toString()}"
+        deliveryFee.text = "₹${deliveryAmount.toString()}"
         if (ConnectionManager().checkConnectivity(this)) {
             rl_Payment.visibility = View.VISIBLE
             rl_retryPayment.visibility = View.GONE
@@ -239,6 +239,8 @@ class PaymentActivity : AppCompatActivity() {
                                 .child(shopId.toString()).child("Orders").child(orderId.toString())
                         val headers = HashMap<String, Any>()
                         headers["paymentMode"] = "Paid(Pay with Paytm)"
+                        headers["transferId"] = ""
+                        headers["settlementId"] = ""
                         dataReference.updateChildren(headers).addOnSuccessListener {
                             val userData: DatabaseReference =
                                 FirebaseDatabase.getInstance().reference.child("users")
