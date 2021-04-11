@@ -50,7 +50,7 @@ class AdapterIncomeStatus(val context: Context, val listIncome: List<ModalIncome
                 holder.transferId.text = "------"
             }
             "Razorpay" -> {
-                if (list_Income.settlementId == "") {
+                if (list_Income.settlementId == "" || list_Income.settlementId == null) {
                     holder.transferStatus.text = "TransferInProgress"
                     holder.transferId.text = list_Income.transferId
                 } else {

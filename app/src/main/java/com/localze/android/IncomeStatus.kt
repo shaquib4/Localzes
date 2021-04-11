@@ -45,8 +45,8 @@ class IncomeStatus : AppCompatActivity() {
 
         listButton.setOnClickListener {
             if (paymentMode == "COD") {
-               /* progress.setMessage("Fetching Details")
-                progress.show()*/
+                /* progress.setMessage("Fetching Details")
+                 progress.show()*/
                 showCODOrders(uid, "List", progress)
             }
             if (paymentMode == "PAYTM") {
@@ -62,8 +62,8 @@ class IncomeStatus : AppCompatActivity() {
         }
         cartButton.setOnClickListener {
             if (paymentMode == "COD") {
-               /* progress.setMessage("Fetching Details")
-                progress.show()*/
+                /* progress.setMessage("Fetching Details")
+                 progress.show()*/
                 showCODOrders(uid, "Cart", progress)
             }
             if (paymentMode == "PAYTM") {
@@ -95,7 +95,7 @@ class IncomeStatus : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     (listIncomeDetails as ArrayList<ModalIncomeStatus>).clear()
                     for (i in snapshot.children) {
-                        if (i.child("paymentMode").value.toString() == "Paid Online" && i.child("settlementId").value.toString() == "") {
+                        if (i.child("paymentMode").value.toString() == "Paid Online") {
                             sendRequest(
                                 i.child("transferId").value.toString(),
                                 s,
@@ -157,51 +157,56 @@ class IncomeStatus : AppCompatActivity() {
                 headers["settlementId"] = settlementId
                 if (s == "Cart") {
                     FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                        .child("Orders").child(orderId).updateChildren(headers).addOnSuccessListener {
-                            val databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                            databaseReference.child("Orders").child(orderId).addValueEventListener(object :ValueEventListener{
-                                override fun onCancelled(error: DatabaseError) {
+                        .child("Orders").child(orderId).updateChildren(headers)
+                        .addOnSuccessListener {
+                            val databaseReference =
+                                FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                            databaseReference.child("Orders").child(orderId)
+                                .addValueEventListener(object : ValueEventListener {
+                                    override fun onCancelled(error: DatabaseError) {
 
-                                }
+                                    }
 
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    val obj = ModalIncomeStatus(
-                                        snapshot.child("orderCost").value.toString(),
-                                        snapshot.child("transferId").value.toString(),
-                                        snapshot.child("settlementId").value.toString(),
-                                        snapshot.child("orderId").value.toString(),
-                                        snapshot.child("orderByName").value.toString(),
-                                        "Razorpay",
-                                        snapshot.child("orderByMobile").value.toString(),
-                                        snapshot.child("orderTime").value.toString()
-                                    )
-                                    (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
-                                }
-                            })
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        val obj = ModalIncomeStatus(
+                                            snapshot.child("orderCost").value.toString(),
+                                            snapshot.child("transferId").value.toString(),
+                                            snapshot.child("settlementId").value.toString(),
+                                            snapshot.child("orderId").value.toString(),
+                                            snapshot.child("orderByName").value.toString(),
+                                            "Razorpay",
+                                            snapshot.child("orderByMobile").value.toString(),
+                                            snapshot.child("orderTime").value.toString()
+                                        )
+                                        (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
+                                    }
+                                })
                         }
                 } else {
                     FirebaseDatabase.getInstance().reference.child("seller").child(uid)
                         .child("OrdersLists").child(orderId).updateChildren(headers)
-                    val databaseReference = FirebaseDatabase.getInstance().reference.child("seller").child(uid)
-                    databaseReference.child("OrdersLists").child(orderId).addValueEventListener(object :ValueEventListener{
-                        override fun onCancelled(error: DatabaseError) {
+                    val databaseReference =
+                        FirebaseDatabase.getInstance().reference.child("seller").child(uid)
+                    databaseReference.child("OrdersLists").child(orderId)
+                        .addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError) {
 
-                        }
+                            }
 
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            val obj = ModalIncomeStatus(
-                                snapshot.child("orderCost").value.toString(),
-                                snapshot.child("transferId").value.toString(),
-                                snapshot.child("settlementId").value.toString(),
-                                snapshot.child("orderId").value.toString(),
-                                snapshot.child("orderByName").value.toString(),
-                                "Razorpay",
-                                snapshot.child("orderByMobile").value.toString(),
-                                snapshot.child("orderTime").value.toString()
-                            )
-                            (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
-                        }
-                    })
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                val obj = ModalIncomeStatus(
+                                    snapshot.child("orderCost").value.toString(),
+                                    snapshot.child("transferId").value.toString(),
+                                    snapshot.child("settlementId").value.toString(),
+                                    snapshot.child("orderId").value.toString(),
+                                    snapshot.child("orderByName").value.toString(),
+                                    "Razorpay",
+                                    snapshot.child("orderByMobile").value.toString(),
+                                    snapshot.child("orderTime").value.toString()
+                                )
+                                (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
+                            }
+                        })
                 }
 
             },
@@ -350,7 +355,7 @@ class IncomeStatus : AppCompatActivity() {
                                 (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                             }
                         }
-                       /* progress.dismiss()*/
+                        /* progress.dismiss()*/
                         adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
                         recyclerIncome.adapter = adapterIncome
                     }
