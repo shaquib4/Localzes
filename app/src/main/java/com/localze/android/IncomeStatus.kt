@@ -45,35 +45,35 @@ class IncomeStatus : AppCompatActivity() {
 
         listButton.setOnClickListener {
             if (paymentMode == "COD") {
-                /* progress.setMessage("Fetching Details")
-                 progress.show()*/
+                 progress.setMessage("Fetching Details")
+                 progress.show()
                 showCODOrders(uid, "List", progress)
             }
             if (paymentMode == "PAYTM") {
-                /*progress.setMessage("Fetching Details")
-                progress.show()*/
+                progress.setMessage("Fetching Details")
+                progress.show()
                 showPaytmOrders(uid, "List", progress)
             }
             if (paymentMode == "RAZORPAY") {
-                /*progress.setMessage("Fetching Details")
-                progress.show()*/
+                progress.setMessage("Fetching Details")
+                progress.show()
                 showRazorpayOrders(uid, "List", progress)
             }
         }
         cartButton.setOnClickListener {
             if (paymentMode == "COD") {
-                /* progress.setMessage("Fetching Details")
-                 progress.show()*/
+                 progress.setMessage("Fetching Details")
+                 progress.show()
                 showCODOrders(uid, "Cart", progress)
             }
             if (paymentMode == "PAYTM") {
-                /*progress.setMessage("Fetching Details")
-                progress.show()*/
+                progress.setMessage("Fetching Details")
+                progress.show()
                 showPaytmOrders(uid, "Cart", progress)
             }
             if (paymentMode == "RAZORPAY") {
-                /*progress.setMessage("Fetching Details")
-                progress.show()*/
+                progress.setMessage("Fetching Details")
+                progress.show()
                 showRazorpayOrders(uid, "Cart", progress)
             }
         }
@@ -116,7 +116,7 @@ class IncomeStatus : AppCompatActivity() {
 
                         }
                     }
-                    /*progress.dismiss()*/
+                    progress.dismiss()
                     adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
                     recyclerIncome.adapter = adapterIncome
                 }
@@ -153,7 +153,7 @@ class IncomeStatus : AppCompatActivity() {
 
                             }
                         }
-                        /*progress.dismiss()*/
+                        progress.dismiss()
                         adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
                         recyclerIncome.adapter = adapterIncome
                     }
@@ -234,7 +234,7 @@ class IncomeStatus : AppCompatActivity() {
                             (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                         }
                     }
-                    /*progress.dismiss()*/
+                    progress.dismiss()
                     adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
                     recyclerIncome.adapter = adapterIncome
                 }
@@ -264,7 +264,7 @@ class IncomeStatus : AppCompatActivity() {
                                 (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                             }
                         }
-                        /*progress.dismiss()*/
+                        progress.dismiss()
                         adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
                         recyclerIncome.adapter = adapterIncome
                     }
@@ -302,7 +302,7 @@ class IncomeStatus : AppCompatActivity() {
                             (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                         }
                     }
-                    /*progress.dismiss()*/
+                    progress.dismiss()
                     adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
                     recyclerIncome.adapter = adapterIncome
                 }
@@ -333,7 +333,7 @@ class IncomeStatus : AppCompatActivity() {
                                 (listIncomeDetails as ArrayList<ModalIncomeStatus>).add(obj)
                             }
                         }
-                        /* progress.dismiss()*/
+                         progress.dismiss()
                         adapterIncome = AdapterIncomeStatus(this@IncomeStatus, listIncomeDetails)
                         recyclerIncome.adapter = adapterIncome
                     }
@@ -354,18 +354,18 @@ class IncomeStatus : AppCompatActivity() {
         val uid = user!!.uid
         paymentMode = intent.getStringExtra("IncomeType").toString()
         if (paymentMode == "COD") {
-            /*progress.setMessage("Fetching Details")
-            progress.show()*/
+            progress.setMessage("Fetching Details")
+            progress.show()
             showCODOrders(uid, "Cart", progress)
         }
         if (paymentMode == "PAYTM") {
-            /*progress.setMessage("Fetching Details")
-            progress.show()*/
+            progress.setMessage("Fetching Details")
+            progress.show()
             showPaytmOrders(uid, "Cart", progress)
         }
         if (paymentMode == "RAZORPAY") {
-            /*progress.setMessage("Fetching Details")
-            progress.show()*/
+            progress.setMessage("Fetching Details")
+            progress.show()
             showRazorpayOrders(uid, "Cart", progress)
         }
     }
