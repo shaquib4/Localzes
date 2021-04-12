@@ -51,7 +51,7 @@
 
                 android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Settelment Date:"
+                android:text="Settlement Date:"
                 android:textColor="#000"
                 android:textSize="@dimen/_14ssp" />
             <TextView

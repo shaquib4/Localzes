@@ -49,7 +49,7 @@ class AccountDetails : AppCompatActivity() {
                             )
                             snackbar.show()
                         }
-                    val intent=Intent(this,Home_seller::class.java)
+                    val intent = Intent(this, Home_seller::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -57,5 +57,11 @@ class AccountDetails : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, AccountsSeller::class.java)
+        startActivity(intent)
+        finish()
     }
 }

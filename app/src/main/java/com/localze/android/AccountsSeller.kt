@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.localze.android.Adapters.ExpandableListViewAdapterSeller
@@ -158,6 +159,11 @@ class AccountsSeller : AppCompatActivity() {
                 "Account Details" -> {
                 }
                 "Transaction History" -> {
+                    Toast.makeText(
+                        this,
+                        "This is only accessible to main seller",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 "Address" -> {
                     startActivity(Intent(this, AddressSellerEdit::class.java))
@@ -279,7 +285,7 @@ class AccountsSeller : AppCompatActivity() {
                     finish()
                 }
                 "Transaction History" -> {
-                    val intent=Intent(this, IncomeType::class.java)
+                    val intent = Intent(this, IncomeType::class.java)
                     startActivity(intent)
                     finish()
                 }

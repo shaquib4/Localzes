@@ -19,6 +19,7 @@ class AdapterIncomeStatus(val context: Context, val listIncome: List<ModalIncome
         val transferStatus: TextView = view.findViewById(R.id.Status)
         val transferId: TextView = view.findViewById(R.id.trnfID)
         val trnfTime: TextView = view.findViewById(R.id.Date)
+        val settlementDate: TextView = view.findViewById(R.id.txtSettleDate)
 
     }
 
@@ -44,18 +45,22 @@ class AdapterIncomeStatus(val context: Context, val listIncome: List<ModalIncome
             "Cash On Delivery" -> {
                 holder.transferStatus.text = "Amount collected by COD"
                 holder.transferId.text = "------"
+                holder.settlementDate.text = formattedDate
             }
             "Paytm" -> {
                 holder.transferStatus.text = "TransferSuccessful"
                 holder.transferId.text = "------"
+                holder.settlementDate.text = formattedDate
             }
             "Razorpay" -> {
                 if (list_Income.settlementId == "" || list_Income.settlementId == null) {
                     holder.transferStatus.text = "TransferInProgress"
                     holder.transferId.text = list_Income.transferId
+                    holder.settlementDate.text = "Amount to be settled in two business days"
                 } else {
                     holder.transferStatus.text = "TransferSuccessful"
                     holder.transferId.text = list_Income.transferId
+                    holder.settlementDate.text = "-------"
                 }
             }
         }
