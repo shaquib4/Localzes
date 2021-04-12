@@ -279,6 +279,9 @@ class AccountsSeller : AppCompatActivity() {
                     finish()
                 }
                 "Transaction History" -> {
+                    val intent=Intent(this, IncomeType::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 "FAQs" -> {
                 }
