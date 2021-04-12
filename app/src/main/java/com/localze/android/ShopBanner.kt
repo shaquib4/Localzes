@@ -65,7 +65,7 @@ class ShopBanner : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 shopName = snapshot.child("shop_name").value.toString()
-                storeName.text = shopName
+                storeName.text = shopName.capitalize()
             }
 
         })

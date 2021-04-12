@@ -90,7 +90,11 @@ class UserProductsActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val shopName = snapshot.child("shop_name").value.toString()
                 val minAmount = snapshot.child("minAm").value.toString()
-                minOrderAmount.text = "₹$minAmount"
+                if (minAmount == null) {
+                    minOrderAmount.text = "Not Available"
+                } else {
+                    minOrderAmount.text = "₹$minAmount"
+                }
                 shop_Name = shopName.capitalize()
                 storeName.text = shopName.capitalize()
 

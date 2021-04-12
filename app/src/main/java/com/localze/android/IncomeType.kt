@@ -11,22 +11,28 @@ class IncomeType : AppCompatActivity() {
         setContentView(R.layout.activity_income_type)
 
         cardCOD.setOnClickListener {
-            val intent= Intent(this,IncomeStatus::class.java)
-            intent.putExtra("IncomeType","COD")
+            val intent = Intent(this, IncomeStatus::class.java)
+            intent.putExtra("IncomeType", "COD")
             startActivity(intent)
             finish()
         }
         cardPAYTM.setOnClickListener {
-            val intent= Intent(this,IncomeStatus::class.java)
-            intent.putExtra("IncomeType","PAYTM")
+            val intent = Intent(this, IncomeStatus::class.java)
+            intent.putExtra("IncomeType", "PAYTM")
             startActivity(intent)
             finish()
         }
         cardRAZORPAY.setOnClickListener {
-            val intent= Intent(this,IncomeStatus::class.java)
-            intent.putExtra("IncomeType","RAZORPAY")
+            val intent = Intent(this, IncomeStatus::class.java)
+            intent.putExtra("IncomeType", "RAZORPAY")
             startActivity(intent)
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, Home_seller::class.java)
+        startActivity(intent)
+        finish()
     }
 }

@@ -244,10 +244,10 @@
     <string name="appliances">Appliances</string>
     <string name="toys_amp_kids"><![CDATA[Toys & Kids]]></string>
     <string name="sports">Sports</string>
-    <string name="books">Books</string>
+    <string name="books">Stationary</string>
     <string name="automobiles">Automobiles</string>
     <string name="fitness">Fitness</string>
-    <string name="healthcare">Healthcare</string>
+    <string name="healthcare">Health Care</string>
     <string name="travel">Travel</string>
     <string name="gaming">Gaming</string>
     <string name="others">Others</string>

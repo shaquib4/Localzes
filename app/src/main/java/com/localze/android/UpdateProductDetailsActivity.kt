@@ -1,6 +1,7 @@
 package com.localze.android
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -35,6 +36,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
     private lateinit var offerPriceUpdate: EditText
     private lateinit var quantityUpdate: EditText
     private lateinit var unitUpdate: Spinner
+    private lateinit var progressDialog: ProgressDialog
     private lateinit var updateProduct: Button
     var thumb_Bitmap: Bitmap? = null
     var imgUrl: Uri? = null
@@ -50,6 +52,9 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
         unitUpdate = findViewById(R.id.sp_unit_update)
         quantityUpdate = findViewById(R.id.etQuantityUpdate)
         updateProduct = findViewById(R.id.btnUpdateProduct)
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Please wait")
+        progressDialog.setCanceledOnTouchOutside(false)
         retryUpdateProductDetail.setOnClickListener {
             this.recreate()
 
@@ -131,7 +136,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     if (ConnectionManager().checkConnectivity(this)) {
                         rl_retryUpdateProductDetail.visibility = View.GONE
                         rl_productDetail.visibility = View.VISIBLE
-                        updateData()
+                        updateData(progressDialog)
 
                     } else {
 
@@ -208,8 +213,10 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
             .start(this)
     }
 
-    private fun updateData() {
+    private fun updateData(progressDialog: ProgressDialog) {
         if (imagePathUpdate == null) {
+            progressDialog.setMessage("Updating Your Product Details")
+            progressDialog.show()
             val headers = HashMap<String, Any>()
             headers["offerPrice"] = offerPriceUpdate.text.toString().trim()
             headers["productCategory"] = categoryUpdate.selectedItem.toString().trim()
@@ -219,6 +226,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
             headers["unit"] = unitUpdate.selectedItem.toString().trim()
             databaseRef.child("Products").child(productId.toString()).updateChildren(headers)
                 .addOnSuccessListener {
+                    progressDialog.dismiss()
                     Toast.makeText(this, "Item Updated Successfully", Toast.LENGTH_SHORT)
                         .show()
                     val intent = Intent(this, Seller_Products::class.java)
@@ -261,6 +269,8 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                 }
             }*/
             if (imgUrl != null) {
+                progressDialog.setMessage("Updating Your Product Details")
+                progressDialog.show()
                 val users = FirebaseAuth.getInstance().currentUser
                 val imageUrl = imgUrl
                 val request = UserProfileChangeRequest.Builder().setPhotoUri(imgUrl).build()
@@ -275,6 +285,7 @@ class UpdateProductDetailsActivity : AppCompatActivity() {
                     headers["unit"] = unitUpdate.selectedItem.toString().trim()
                     databaseRef.child("Products").child(productId.toString())
                         .updateChildren(headers).addOnSuccessListener {
+                            progressDialog.dismiss()
                             Toast.makeText(
                                 this,
                                 "Item Updated Successfully",

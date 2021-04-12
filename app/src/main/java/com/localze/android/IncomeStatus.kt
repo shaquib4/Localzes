@@ -1,6 +1,7 @@
 package com.localze.android
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.volley.Request
@@ -368,5 +369,11 @@ class IncomeStatus : AppCompatActivity() {
             progress.show()
             showRazorpayOrders(uid, "Cart", progress)
         }
+    }
+
+    override fun onBackPressed() {
+        val intent=Intent(this,IncomeType::class.java)
+        startActivity(intent)
+        finish()
     }
 }
