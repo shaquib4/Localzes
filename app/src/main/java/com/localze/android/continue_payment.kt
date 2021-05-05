@@ -112,12 +112,11 @@ class continue_payment : AppCompatActivity() {
             }
 
         })
-        val id = radioGroup!!.checkedRadioButtonId
-        val radioButton = findViewById<RadioButton>(id)
-        when (radioButton.text) {
-            "Pay on Delivery" -> {
-                btnPayContinue.setOnClickListener {
-                    val charges = 0.0
+        btnPayContinue.setOnClickListener {
+            val id = radioGroup!!.checkedRadioButtonId
+            val radioButton = findViewById<RadioButton>(id)
+            when (radioButton.text) {
+                "Pay on Delivery" -> {
                     progressDialog.setMessage("Processing Your Request...")
                     progressDialog.show()
                     val dataReference: DatabaseReference =
@@ -125,8 +124,8 @@ class continue_payment : AppCompatActivity() {
                             .child(shopId.toString()).child("Orders").child(orderId.toString())
                     val headers = HashMap<String, Any>()
                     headers["paymentMode"] = "Unpaid(Cash on Delivery)"
-                    headers["transferId"] = ""
-                    headers["settlementId"] = ""
+                    headers["transferId"]=""
+                    headers["settlementId"]=""
                     dataReference.updateChildren(headers).addOnSuccessListener {
                         val userRef: DatabaseReference =
                             FirebaseDatabase.getInstance().reference.child("users")
@@ -136,18 +135,17 @@ class continue_payment : AppCompatActivity() {
                             prepareNotificationMessage(orderId.toString())
                         }
                     }
-                }
-            }
-            "Pay with Paytm" -> {
-                /*if (upiId == "") {
-                    Toast.makeText(
-                        this,
-                        "This shop does not accept payment via upi",
-                        Toast.LENGTH_LONG
-                    ).show()
 
-                } else {*/
-                btnPayContinue.setOnClickListener {
+                }
+                "Pay with Paytm" -> {
+                    /*if (upiId == "") {
+                        Toast.makeText(
+                            this,
+                            "This shop does not accept payment via upi",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    } else {*/
                     val intent = Intent(this, PaymentActivity::class.java)
                     intent.putExtra("platform", "Cart")
                     intent.putExtra("shopId", shopId.toString())
@@ -158,9 +156,7 @@ class continue_payment : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
-            }
-            "Pay with Razor Pay" -> {
-                btnPayContinue.setOnClickListener {
+                "Pay with Razor Pay" -> {
                     /*if (razorpayId == "") {
                         Toast.makeText(
                             this,
@@ -168,9 +164,8 @@ class continue_payment : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     } else {*/
-                    val charges = (totalCost.toString().toDouble() * userRate * 1.18)
                     amoun =
-                        charges + (totalCost.toString()
+                        (totalCost.toString().toDouble() * userRate * 1.18) + (totalCost.toString()
                             .toDouble())
                     sellerAmount = (amoun) - (amoun * razorpayRate * 1.18)
                     sellerFinalAmount = (sellerAmount) - (sellerAmount * sellerRate * 1.18)
