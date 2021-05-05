@@ -202,11 +202,33 @@
                     android:textColor="#008000"
                     android:textSize="@dimen/_10ssp" />
 
+                <TextView
+                    android:id="@+id/txttax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtSC"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Taxes and Charges"
+                    android:textSize="@dimen/_10ssp" />
+
+                <TextView
+                    android:id="@+id/txttaxcharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtSCPrice"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Rs.20 "
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_10ssp" />
+
                 <View
                     android:id="@id/view1"
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:layout_below="@+id/txtSC"
+                    android:layout_below="@+id/txttax"
                     android:layout_margin="@dimen/_5sdp"
                     android:background="#d3d3d3" />
 

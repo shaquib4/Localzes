@@ -31,7 +31,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_continue_payment_list)
         radioGroup = findViewById(R.id.radioPaymentList)
         productCharges = findViewById(R.id.txtPCPriceList)
-        shippingCharges = findViewById(R.id.txtSCPrice)
+        shippingCharges = findViewById(R.id.txtSCPriceList)
         totalCharges = findViewById(R.id.txtTotalPayPriceList)
         totalChargesTv = findViewById(R.id.txtPriceList)
         progressDialog = ProgressDialog(this)

@@ -201,10 +201,31 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <TextView
-                    android:id="@+id/txtSCPrice"
+                    android:id="@+id/txtSCPriceList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtPP"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Rs.20 "
+                    android:textColor="#008000"
+                    android:textSize="@dimen/_10ssp" />
+                <TextView
+                    android:id="@+id/txttaxList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtSCList"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Taxes and Charges"
+                    android:textSize="@dimen/_10ssp" />
+
+                <TextView
+                    android:id="@+id/txttaxchargeList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtSCPriceList"
                     android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/_5sdp"
                     android:fontFamily="@font/montserrat_medium"
@@ -216,7 +237,7 @@
                     android:id="@id/view1"
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:layout_below="@+id/txtSCList"
+                    android:layout_below="@+id/txttaxList"
                     android:layout_margin="@dimen/_5sdp"
                     android:background="#d3d3d3" />
 
