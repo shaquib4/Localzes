@@ -45,6 +45,10 @@ class IncomeStatus : AppCompatActivity() {
         val uid = user!!.uid
 
         listButton.setOnClickListener {
+            listButton.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
+            listButton.setTextColor(this.resources.getColor(R.color.white))
+            cartButton.setTextColor(this.resources.getColor(R.color.black))
+            cartButton.setBackgroundColor(this.resources.getColor(R.color.white))
             if (paymentMode == "COD") {
                  progress.setMessage("Fetching Details")
                  progress.show()
@@ -62,6 +66,10 @@ class IncomeStatus : AppCompatActivity() {
             }
         }
         cartButton.setOnClickListener {
+            cartButton.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
+            cartButton.setTextColor(this.resources.getColor(R.color.white))
+            listButton.setTextColor(this.resources.getColor(R.color.black))
+            listButton.setBackgroundColor(this.resources.getColor(R.color.white))
             if (paymentMode == "COD") {
                  progress.setMessage("Fetching Details")
                  progress.show()
@@ -354,6 +362,10 @@ class IncomeStatus : AppCompatActivity() {
         val user = auth.currentUser
         val uid = user!!.uid
         paymentMode = intent.getStringExtra("IncomeType").toString()
+        cartButton.setBackgroundColor(this.resources.getColor(R.color.colorPrimary))
+        cartButton.setTextColor(this.resources.getColor(R.color.white))
+        listButton.setTextColor(this.resources.getColor(R.color.black))
+        listButton.setBackgroundColor(this.resources.getColor(R.color.white))
         if (paymentMode == "COD") {
             progress.setMessage("Fetching Details")
             progress.show()
