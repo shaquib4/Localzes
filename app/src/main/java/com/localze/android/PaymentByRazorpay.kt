@@ -1,6 +1,7 @@
 package com.localze.android
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -21,6 +22,8 @@ class PaymentByRazorpay : AppCompatActivity() {
     private var shopId: String? = "100"
     private var totalCost: String? = ""
     private var taxesCharges:String?="450"
+    private var razorpayId:String?="400"
+    private var sellerAmount:String?="600"
     private var uid: String? = "400"
     private var orderId: String? = "800"
     private var mode: String? = "900"
@@ -41,6 +44,8 @@ class PaymentByRazorpay : AppCompatActivity() {
         taxesCharges=intent.getStringExtra("taxes")
         orderId=intent.getStringExtra("orderId")
         mode=intent.getStringExtra("platform")
+        razorpayId=intent.getStringExtra("razorpayId")
+        sellerAmount=intent.getStringExtra("sellerAmount")
         taxes.text="₹"+kotlin.math.ceil(taxesCharges.toString().toDouble()).toString()
         val userDatabase=FirebaseDatabase.getInstance().reference.child("users").child(uid.toString())
         val databaseRef=FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
@@ -91,6 +96,9 @@ class PaymentByRazorpay : AppCompatActivity() {
             }
 
         })
+        payNow.setOnClickListener {
+            val intent= Intent(this,PaymentRazorpay::class.java)
+        }
 
     }
 }

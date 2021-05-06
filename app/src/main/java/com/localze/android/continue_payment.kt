@@ -170,7 +170,7 @@ class continue_payment : AppCompatActivity() {
                             .toDouble())
                     sellerAmount = (amoun) - (amoun * razorpayRate * 1.18)
                     sellerFinalAmount = (sellerAmount) - (sellerAmount * sellerRate * 1.18)
-                    val intent = Intent(this, PaymentRazorpay::class.java)
+                    val intent = Intent(this, PaymentByRazorpay::class.java)
                     intent.putExtra("platform", "Cart")
                     intent.putExtra("shopId", shopId.toString())
                     intent.putExtra("totalCost", totalCost.toString())
