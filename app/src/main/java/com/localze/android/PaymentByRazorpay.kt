@@ -46,7 +46,7 @@ class PaymentByRazorpay : AppCompatActivity() {
         mode=intent.getStringExtra("platform")
         razorpayId=intent.getStringExtra("razorpayId")
         sellerAmount=intent.getStringExtra("sellerAmount")
-        taxes.text="₹"+kotlin.math.ceil(taxesCharges.toString().toDouble()).toString()
+
         val userDatabase=FirebaseDatabase.getInstance().reference.child("users").child(uid.toString())
         val databaseRef=FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
         databaseRef.addValueEventListener(object :ValueEventListener{
@@ -71,10 +71,11 @@ class PaymentByRazorpay : AppCompatActivity() {
                         }
 
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            val customerAm=custAm.toString().toDouble()+taxesCharges.toString().toDouble()
+
+                            taxes.text="₹"+kotlin.math.ceil(taxesCharges.toString().toDouble()).toString()
                             priceDetails.text="₹"+snapshot.child("orderCost").value.toString()
                             deliveryCharge.text="₹${snapshot.child("deliveryFee").value.toString()}"
-                            totalAmount.text="₹"+customerAm.toString()
+                            totalAmount.text="₹"+kotlin.math.ceil(custAm.toString().toDouble()).toString()
                         }
 
                     })
@@ -85,10 +86,11 @@ class PaymentByRazorpay : AppCompatActivity() {
                         }
 
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            val customerAm=custAm.toString().toDouble()+taxesCharges.toString().toDouble()
+                            taxes.text="₹"+kotlin.math.ceil(taxesCharges.toString().toDouble()).toString()
+                            totalAmount.text="₹"+kotlin.math.ceil(custAm.toString().toDouble()).toString()
                             priceDetails.text="₹"+snapshot.child("orderCost").value.toString()
                             deliveryCharge.text="₹${snapshot.child("deliveryFee").value.toString()}"
-                            totalAmount.text="₹"+customerAm.toString()
+
                         }
 
                     })
@@ -98,6 +100,16 @@ class PaymentByRazorpay : AppCompatActivity() {
         })
         payNow.setOnClickListener {
             val intent= Intent(this,PaymentRazorpay::class.java)
+            intent.putExtra("platform", mode.toString())
+            intent.putExtra("shopId", shopId.toString())
+            intent.putExtra("totalCost", totalCost.toString())
+            intent.putExtra("orderBy", uid.toString())
+            intent.putExtra("orderId", orderId.toString())
+            intent.putExtra("razorpayId", razorpayId)
+            intent.putExtra("customerAmount", custAm.toString())
+            intent.putExtra("sellerAmount", sellerAmount.toString())
+            startActivity(intent)
+            finish()
         }
 
     }
