@@ -152,7 +152,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                     intent.putExtra("razorpayId",razorpayId)
                     intent.putExtra("customerAmount", amoun.toString())
                     intent.putExtra("sellerAmount", sellerFinalAmount.toString())
-                    intent.putExtra("taxes",taxes)
+                    intent.putExtra("taxes",taxes.toString())
                     startActivity(intent)
                     finish()
                 }
