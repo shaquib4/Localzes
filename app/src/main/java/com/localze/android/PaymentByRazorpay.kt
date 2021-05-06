@@ -20,10 +20,11 @@ class PaymentByRazorpay : AppCompatActivity() {
     private lateinit var payNow:Button
     private var shopId: String? = "100"
     private var totalCost: String? = ""
-    private var deliveryAmount: String? = ""
+    private var taxesCharges:String?="450"
     private var uid: String? = "400"
     private var orderId: String? = "800"
     private var mode: String? = "900"
+    private var custAm:String?="500"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_by_razorpay)
@@ -35,9 +36,12 @@ class PaymentByRazorpay : AppCompatActivity() {
         payNow=findViewById(R.id.paymentRazorpay)
         shopId=intent.getStringExtra("shopId")
         totalCost=intent.getStringExtra("totalCost")
+        custAm=intent.getStringExtra("customerAmount")
         uid=intent.getStringExtra("orderBy")
-        orderId=intent.getStringExtra(orderId)
-        mode=intent.getStringExtra("mode")
+        taxesCharges=intent.getStringExtra("taxes")
+        orderId=intent.getStringExtra("orderId")
+        mode=intent.getStringExtra("platform")
+        taxes.text="₹"+kotlin.math.ceil(taxesCharges.toString().toDouble()).toString()
         val userDatabase=FirebaseDatabase.getInstance().reference.child("users").child(uid.toString())
         val databaseRef=FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
         databaseRef.addValueEventListener(object :ValueEventListener{
@@ -62,15 +66,27 @@ class PaymentByRazorpay : AppCompatActivity() {
                         }
 
                         override fun onDataChange(snapshot: DataSnapshot) {
+                            val customerAm=custAm.toString().toDouble()+taxesCharges.toString().toDouble()
                             priceDetails.text="₹"+snapshot.child("orderCost").value.toString()
                             deliveryCharge.text="₹${snapshot.child("deliveryFee").value.toString()}"
-                            taxes.text=
-                            totalAmount.text=
+                            totalAmount.text="₹"+customerAm.toString()
                         }
 
                     })
                 }else{
-                    userDatabase.child("MyOrderList").child(orderId.toString())
+                    userDatabase.child("MyOrderList").child(orderId.toString()).addValueEventListener(object :ValueEventListener{
+                        override fun onCancelled(error: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val customerAm=custAm.toString().toDouble()+taxesCharges.toString().toDouble()
+                            priceDetails.text="₹"+snapshot.child("orderCost").value.toString()
+                            deliveryCharge.text="₹${snapshot.child("deliveryFee").value.toString()}"
+                            totalAmount.text="₹"+customerAm.toString()
+                        }
+
+                    })
                 }
             }
 

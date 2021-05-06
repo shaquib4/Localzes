@@ -164,6 +164,7 @@ class continue_payment : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     } else {*/
+                    val taxes=totalCost.toString().toDouble() * userRate * 1.18
                     amoun =
                         (totalCost.toString().toDouble() * userRate * 1.18) + (totalCost.toString()
                             .toDouble())
@@ -178,6 +179,7 @@ class continue_payment : AppCompatActivity() {
                     intent.putExtra("razorpayId", razorpayId)
                     intent.putExtra("customerAmount", amoun.toString())
                     intent.putExtra("sellerAmount", sellerFinalAmount.toString())
+                    intent.putExtra("taxes",taxes)
                     /*intent.putExtra("totalItem", totalItem.toString())
                     intent.putExtra("delivery", deliveryAddress.toString())
                     intent.putExtra("orderByName", orderByName.toString())
