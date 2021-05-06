@@ -77,33 +77,13 @@
                     android:textColor="#000000"
                     android:textSize="@dimen/_16ssp" />
 
+
+
                 <TextView
-                    android:id="@+id/txtUpi"
+                    android:id="@+id/txtPAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtSellerName"
-                    android:layout_alignStart="@+id/txtShop"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/upi"
-                    android:textSize="@dimen/_12ssp" />
-
-                <TextView
-                    android:id="@+id/txtUPI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtUpi"
-                    android:layout_alignStart="@+id/txtSellerName"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/katappamama_paytm"
-                    android:textColor="#de4500"
-                    android:textSize="@dimen/_14ssp" />
-
-                <TextView
-                    android:id="@+id/txtReason"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtUPI"
                     android:layout_alignStart="@+id/txtSellerName"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_medium"
@@ -111,13 +91,13 @@
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
-                    android:id="@+id/reason"
+                    android:id="@+id/AmountPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/txtReason"
-                    android:layout_alignStart="@id/txtReason"
+                    android:layout_below="@id/txtPAmount"
+                    android:layout_alignStart="@id/txtPAmount"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/paymet_for_localze"
+                    android:text="0.0"
                     android:textColor="#000000"
                     android:textSize="@dimen/_13ssp" />
 
@@ -125,7 +105,7 @@
                     android:id="@+id/txtPriceDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/reason"
+                    android:layout_below="@+id/AmountPrice"
                     android:layout_alignStart="@+id/txtSellerName"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/montserrat_medium"
@@ -133,11 +113,11 @@
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
-                    android:id="@+id/txtPayAmount"
+                    android:id="@+id/txtPayAmountDelivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtPriceDetails"
-                    android:layout_alignStart="@id/txtReason"
+                    android:layout_alignStart="@id/txtPAmount"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/rs_199"
                     android:textColor="#008000"
@@ -148,7 +128,7 @@
                     android:id="@+id/txtDeliveryPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/reason"
+                    android:layout_below="@+id/AmountPrice"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
@@ -186,7 +166,7 @@
                     android:textSize="@dimen/_15ssp" />
 
                 <TextView
-                    android:id="@+id/TxtTotalPrice"
+                    android:id="@+id/TxtTotalPriceAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/view3"
@@ -221,8 +201,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_buttons"
-                android:text="PAY"
-                android:textSize="@dimen/_28ssp"
+                android:text="Pay"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_18ssp"
                 android:textColor="#fff"/>
         </RelativeLayout>
 
