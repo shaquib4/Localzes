@@ -88,7 +88,7 @@ class PaymentActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val names = snapshot.child("shop_name").value.toString()
                     val upiId = snapshot.child("upi").value.toString()
-                    name!!.text = names
+                    name!!.text = names.capitalize()
                     upivirtualid!!.text = upiId
                     amount!!.text = "₹${totalCost.toString()}"
                 }

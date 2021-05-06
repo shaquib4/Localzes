@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".IncomeType"></activity>
+        <activity android:name=".PaymentByRazorpay"></activity>
+        <activity android:name=".IncomeType" />
         <activity android:name=".IncomeStatus" />
         <activity android:name=".BankDetailsActivity" />
         <activity android:name=".AccountDetails" />
