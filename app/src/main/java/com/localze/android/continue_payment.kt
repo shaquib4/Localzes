@@ -124,8 +124,8 @@ class continue_payment : AppCompatActivity() {
                             .child(shopId.toString()).child("Orders").child(orderId.toString())
                     val headers = HashMap<String, Any>()
                     headers["paymentMode"] = "Unpaid(Cash on Delivery)"
-                    headers["transferId"]=""
-                    headers["settlementId"]=""
+                    headers["transferId"] = ""
+                    headers["settlementId"] = ""
                     dataReference.updateChildren(headers).addOnSuccessListener {
                         val userRef: DatabaseReference =
                             FirebaseDatabase.getInstance().reference.child("users")
@@ -146,15 +146,18 @@ class continue_payment : AppCompatActivity() {
                         ).show()
 
                     } else {*/
-                    val intent = Intent(this, PaymentActivity::class.java)
-                    intent.putExtra("platform", "Cart")
-                    intent.putExtra("shopId", shopId.toString())
-                    intent.putExtra("totalCost", totalCost.toString())
-                    intent.putExtra("orderId", orderId.toString())
-                    intent.putExtra("orderBy", uid.toString())
-                    intent.putExtra("deliveryFee", orderDeliveryFee.toString())
-                    startActivity(intent)
-                    finish()
+                    if (upiId != "" || upiId != null) {
+                        val intent = Intent(this, PaymentActivity::class.java)
+                        intent.putExtra("platform", "Cart")
+                        intent.putExtra("shopId", shopId.toString())
+                        intent.putExtra("totalCost", totalCost.toString())
+                        intent.putExtra("orderId", orderId.toString())
+                        intent.putExtra("orderBy", uid.toString())
+                        intent.putExtra("deliveryFee", orderDeliveryFee.toString())
+                        startActivity(intent)
+                        finish()
+                    }
+
                 }
                 "Pay with Razor Pay" -> {
                     /*if (razorpayId == "") {
@@ -164,28 +167,34 @@ class continue_payment : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     } else {*/
-                    val taxes=totalCost.toString().toDouble() * userRate * 1.18
-                    amoun =
-                        (totalCost.toString().toDouble() * userRate * 1.18) + (totalCost.toString()
-                            .toDouble())
-                    sellerAmount = (amoun) - (amoun * razorpayRate * 1.18)
-                    sellerFinalAmount = (sellerAmount) - (sellerAmount * sellerRate * 1.18)
-                    val intent = Intent(this, PaymentByRazorpay::class.java)
-                    intent.putExtra("platform", "Cart")
-                    intent.putExtra("shopId", shopId.toString())
-                    intent.putExtra("totalCost", totalCost.toString())
-                    intent.putExtra("orderBy", uid.toString())
-                    intent.putExtra("orderId", orderId.toString())
-                    intent.putExtra("razorpayId", razorpayId)
-                    intent.putExtra("customerAmount", amoun.toString())
-                    intent.putExtra("sellerAmount", sellerFinalAmount.toString())
-                    intent.putExtra("taxes",taxes.toString())
-                    /*intent.putExtra("totalItem", totalItem.toString())
-                    intent.putExtra("delivery", deliveryAddress.toString())
-                    intent.putExtra("orderByName", orderByName.toString())
-                    intent.putExtra("orderByMobile", orderByMobile.toString())*/
-                    startActivity(intent)
-                    finish()
+                    if (razorpayId != "" || razorpayId != null) {
+                        val taxes = totalCost.toString().toDouble() * userRate * 1.18
+                        amoun =
+                            (totalCost.toString()
+                                .toDouble() * userRate * 1.18) + (totalCost.toString()
+                                .toDouble())
+                        sellerAmount = (amoun) - (amoun * razorpayRate * 1.18)
+                        sellerFinalAmount = (sellerAmount) - (sellerAmount * sellerRate * 1.18)
+                        val intent = Intent(this, PaymentByRazorpay::class.java)
+                        intent.putExtra("platform", "Cart")
+                        intent.putExtra("shopId", shopId.toString())
+                        intent.putExtra("totalCost", totalCost.toString())
+                        intent.putExtra("orderBy", uid.toString())
+                        intent.putExtra("orderId", orderId.toString())
+                        intent.putExtra("razorpayId", razorpayId)
+                        intent.putExtra("customerAmount", amoun.toString())
+                        intent.putExtra("sellerAmount", sellerFinalAmount.toString())
+                        intent.putExtra("taxes", taxes.toString())
+                        /*intent.putExtra("totalItem", totalItem.toString())
+                        intent.putExtra("delivery", deliveryAddress.toString())
+                        intent.putExtra("orderByName", orderByName.toString())
+                        intent.putExtra("orderByMobile", orderByMobile.toString())*/
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Choose another method to pay", Toast.LENGTH_LONG)
+                            .show()
+                    }
                 }
             }
         }
