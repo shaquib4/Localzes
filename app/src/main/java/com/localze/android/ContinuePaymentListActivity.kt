@@ -19,6 +19,9 @@ class ContinuePaymentListActivity : AppCompatActivity() {
     private lateinit var shippingCharges: TextView
     private lateinit var totalCharges: TextView
     private lateinit var totalChargesTv: TextView
+    private var amoun = 0.0
+    private var sellerAmount = 0.0
+    private var sellerFinalAmount = 0.0
     private lateinit var progressDialog: ProgressDialog
     private lateinit var imgBackContinue: ImageView
     private var shopId: String? = "100"
@@ -26,6 +29,10 @@ class ContinuePaymentListActivity : AppCompatActivity() {
     private var orderId: String? = "300"
     private var orderBy: String? = "400"
     private var orderDeliveryFee: String? = "500"
+    private var razorpayId: String = ""
+    private var sellerRate: Double = 0.0
+    private var userRate: Double = 0.0
+    private var razorpayRate: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_payment_list)
@@ -49,6 +56,31 @@ class ContinuePaymentListActivity : AppCompatActivity() {
         val databaseReference =
             FirebaseDatabase.getInstance().reference.child("users").child(orderBy.toString())
                 .child("MyOrderList").child(orderId.toString())
+        val databaseRefer = FirebaseDatabase.getInstance().reference.child("RateSection")
+        val databaseRef =
+            FirebaseDatabase.getInstance().reference.child("seller").child(shopId.toString())
+        databaseRefer.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                razorpayRate = snapshot.child("razorpayRate").value.toString().toDouble()
+                userRate = snapshot.child("customerRate").value.toString().toDouble()
+                sellerRate = snapshot.child("sellerRate").value.toString().toDouble()
+            }
+
+        })
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                razorpayId = snapshot.child("razorpayId").value.toString()
+            }
+
+        })
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -105,12 +137,22 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                     finish()
                 }
                 "Pay with Razor Pay" -> {
-                    val intent = Intent(this, PaymentRazorpay::class.java)
+                    val taxes=totalCost.toString().toDouble() * userRate * 1.18
+                    amoun =
+                        (totalCost.toString().toDouble() * userRate * 1.18) + (totalCost.toString()
+                            .toDouble())
+                    sellerAmount = (amoun) - (amoun * razorpayRate * 1.18)
+                    sellerFinalAmount = (sellerAmount) - (sellerAmount * sellerRate * 1.18)
+                    val intent = Intent(this, PaymentByRazorpay::class.java)
                     intent.putExtra("platform", "List")
                     intent.putExtra("shopId", shopId.toString())
                     intent.putExtra("totalCost", totalCost.toString())
                     intent.putExtra("orderId", orderId.toString())
                     intent.putExtra("orderBy", orderBy.toString())
+                    intent.putExtra("razorpayId",razorpayId)
+                    intent.putExtra("customerAmount", amoun.toString())
+                    intent.putExtra("sellerAmount", sellerFinalAmount.toString())
+                    intent.putExtra("taxes",taxes)
                     startActivity(intent)
                     finish()
                 }
