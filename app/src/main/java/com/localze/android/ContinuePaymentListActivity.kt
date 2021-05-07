@@ -22,6 +22,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
     private var amoun = 0.0
     private var sellerAmount = 0.0
     private var sellerFinalAmount = 0.0
+    private var upiId: String = ""
     private lateinit var progressDialog: ProgressDialog
     private lateinit var imgBackContinue: ImageView
     private var shopId: String? = "100"
@@ -77,6 +78,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                upiId = snapshot.child("upi").value.toString()
                 razorpayId = snapshot.child("razorpayId").value.toString()
             }
 
@@ -126,7 +128,16 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                     }
                 }
                 "Pay with Paytm" -> {
-                    val intent = Intent(this, PaymentActivity::class.java)
+                    if (upiId == ""||upiId==null) {
+                        Toast.makeText(
+                            this,
+                            "This shop does not accept payment via upi",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    } else {
+
+                        val intent = Intent(this, PaymentActivity::class.java)
                     intent.putExtra("platform", "List")
                     intent.putExtra("shopId", shopId.toString())
                     intent.putExtra("totalCost", totalCost.toString())
@@ -134,9 +145,16 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                     intent.putExtra("orderBy", orderBy.toString())
                     intent.putExtra("deliveryFee", orderDeliveryFee.toString())
                     startActivity(intent)
-                    finish()
+                    finish()}
                 }
                 "Pay with Razor Pay" -> {
+                    if (razorpayId == ""||razorpayId==null) {
+                        Toast.makeText(
+                            this,
+                            "This shop does not accept payment via razorpay",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
                     val taxes=totalCost.toString().toDouble() * userRate * 1.18
                     amoun =
                         (totalCost.toString().toDouble() * userRate * 1.18) + (totalCost.toString()
@@ -155,7 +173,7 @@ class ContinuePaymentListActivity : AppCompatActivity() {
                     intent.putExtra("taxes",taxes.toString())
                     startActivity(intent)
                     finish()
-                }
+                }}
             }
         }
         imgBackContinue.setOnClickListener {
