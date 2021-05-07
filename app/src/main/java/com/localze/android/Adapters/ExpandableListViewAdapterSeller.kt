@@ -50,7 +50,7 @@ class ExpandableListViewAdapterSeller internal constructor(private val context: 
         }
 
         else if (menuTitle=="Help"){
-            menuitem.text = "Address, Contact us"
+            menuitem.text = "Address, Contact us,Tutorial"
         }else if(menuTitle=="Switch"){
             menuitem.text="To Main Seller, Staff"
         }

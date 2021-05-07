@@ -138,15 +138,15 @@ class continue_payment : AppCompatActivity() {
 
                 }
                 "Pay with Paytm" -> {
-                    /*if (upiId == "") {
+                    if (upiId == ""||upiId==null) {
                         Toast.makeText(
                             this,
                             "This shop does not accept payment via upi",
                             Toast.LENGTH_LONG
                         ).show()
 
-                    } else {*/
-                    if (upiId != "" || upiId != null) {
+                    } else {
+
                         val intent = Intent(this, PaymentActivity::class.java)
                         intent.putExtra("platform", "Cart")
                         intent.putExtra("shopId", shopId.toString())
@@ -160,14 +160,14 @@ class continue_payment : AppCompatActivity() {
 
                 }
                 "Pay with Razor Pay" -> {
-                    /*if (razorpayId == "") {
+                    if (razorpayId == ""||razorpayId==null) {
                         Toast.makeText(
                             this,
-                            "This shop does not accept payment via upi",
+                            "This shop does not accept payment via razorpay",
                             Toast.LENGTH_LONG
                         ).show()
-                    } else {*/
-                    if (razorpayId != "" || razorpayId != null) {
+                    } else {
+
                         val taxes = totalCost.toString().toDouble() * userRate * 1.18
                         amoun =
                             (totalCost.toString()
@@ -191,10 +191,8 @@ class continue_payment : AppCompatActivity() {
                         intent.putExtra("orderByMobile", orderByMobile.toString())*/
                         startActivity(intent)
                         finish()
-                    } else {
-                        Toast.makeText(this, "Choose another method to pay", Toast.LENGTH_LONG)
-                            .show()
                     }
+
                 }
             }
         }

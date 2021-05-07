@@ -174,6 +174,12 @@ class AccountsSeller : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
+                "Tutorials" ->{
+                    val webLink = "https://youtu.be/e5gEG0N56_A"
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webLink))
+                    val chooser = Intent.createChooser(intent, "Open With")
+                    startActivity(chooser)
+                }
                 "To Main Seller" -> {
                     val intent = Intent(this, Home_seller::class.java)
                     val databaseReference =
@@ -220,6 +226,7 @@ class AccountsSeller : AppCompatActivity() {
         //item2.add("FAQs")
         item2.add("Contact Us")
         item2.add("Address")
+        item2.add("Tutorials")
 
         val item3: MutableList<String> = ArrayList()
         item3.add("To Main Seller")
@@ -300,6 +307,12 @@ class AccountsSeller : AppCompatActivity() {
                     val intent = Intent(this, ContactUsSeller::class.java)
                     startActivity(intent)
                     finish()
+                }
+                "Tutorials" ->{
+                    val webLink = "https://youtu.be/e5gEG0N56_A"
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webLink))
+                    val chooser = Intent.createChooser(intent, "Open With")
+                    startActivity(chooser)
                 }
                 "To Main Seller" -> {
                     val intent = Intent(this, Home_seller::class.java)
