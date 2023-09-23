@@ -131,7 +131,7 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
 
                 headers["Content-Type"] = "application/json"
                 headers["Authorization"] =
-                    "Basic cnpwX2xpdmVfdTdtUURuMGh6aE9Ick06ZU15aDRScE1CSHpMcVZRRDMxbGE5MGdi"
+                    "Basic nFehRoykFIpW6I9N4VVb2qq1"
                 // headers["Connection"]="Keep-alive"
 
                 // headers["Authorization"] =
@@ -240,7 +240,7 @@ class PaymentRazorpay : AppCompatActivity(), PaymentResultWithDataListener {
                 val headers = HashMap<String, String>()
                 headers["Content-Type"] = "application/json"
                 headers["Authorization"] =
-                    "Basic cnpwX2xpdmVfdTdtUURuMGh6aE9Ick06ZU15aDRScE1CSHpMcVZRRDMxbGE5MGdi"
+                    "Basic nFehRoykFIpW6I9N4VVb2qq1"
                 return headers
             }
         }
